@@ -287,6 +287,8 @@ public class LoadModel extends SimpleApplication
         inputManager.addListener(actionListener, "ChangeEyes"); 
         inputManager.addMapping("Capture", new KeyTrigger(KeyInput.KEY_NUMPAD5));
         inputManager.addListener(actionListener, "Capture"); 
+        inputManager.addMapping("Special", new KeyTrigger(KeyInput.KEY_NUMPAD9));
+        inputManager.addListener(actionListener, "Special"); 
     }
   
     private ActionListener actionListener = new ActionListener() 
@@ -309,15 +311,28 @@ public class LoadModel extends SimpleApplication
                 changeEyes();
             }
             else if (name.equals("Capture") && !keyPressed) {          
-                //screenshot(); 
-                for (int i=0 ; i<15; i++){
                     screenshot();
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException ex) {
-
-                    }
                 }
+            else if (name.equals("Special") && !keyPressed){
+                String trousersPath = "assets/Textures/Textures Boy/Photoshop/PantalonCortoChico.png";
+                String shirtPath = "assets/Textures/Textures Boy/Photoshop/CamisaLargaChico.png";
+                String socksPath = "assets/Textures/Textures Boy/Photoshop/CalcetinesChico.png";
+                String clockPath = "assets/Textures/Textures Boy/Photoshop/RelojChico.png";
+                String tiePath = "assets/Textures/Textures Boy/Photoshop/CorbataChico.png";
+                img = new ImagesProcessing(skinsPath, trousersPath, shirtPath, eyesPath, socksPath, shoesPath, clockPath, tiePath);
+                indexImage++;
+                destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
+                img.fusionaImagenes(destinationPath);        
+                //Set the texture to the material        
+                mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));          
+                chico.setMaterial(mat);        
+                //Delete the file        
+                Path file = Paths.get(destinationPath);        
+                try {        
+                    Files.delete(file);            
+                } catch (IOException ex) {        
+                    System.out.println("Failed deleting file");            
+                }        
             }
         }
     };

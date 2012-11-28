@@ -16,6 +16,9 @@ public class ImagesProcessing
     BufferedImage tShirt;
     BufferedImage eyes;
     BufferedImage shoes;
+    BufferedImage socks;
+    BufferedImage clock;
+    BufferedImage tie;
     ArrayList<BufferedImage> images;
     int num = 0;
 	
@@ -40,7 +43,35 @@ public class ImagesProcessing
             System.out.println("Failed loading file");
         }		
     }
-
+    
+    public ImagesProcessing(String skinPath,String trousersPath,String tShirtPath,
+            String eyesPath,String socksPath,String shoesPath,String clockPath,String tiePath)
+    {
+            images = new ArrayList<BufferedImage>();
+            try
+            {
+                skin = ImageIO.read(new File(skinPath));
+                trousers = ImageIO.read(new File(trousersPath));
+                tShirt = ImageIO.read(new File(tShirtPath));
+                eyes = ImageIO.read(new File(eyesPath));
+                shoes = ImageIO.read(new File(shoesPath));
+                socks = ImageIO.read(new File(socksPath));
+                clock = ImageIO.read(new File(clockPath));
+                tie = ImageIO.read(new File(tiePath));
+                images.add(skin);
+                images.add(socks);
+                images.add(trousers);
+                images.add(tShirt);
+                images.add(eyes);
+                images.add(shoes);
+                images.add(clock);
+                images.add(tie);
+            } 
+        catch (IOException e) 
+        {
+            System.out.println("Failed loading file");
+        }		
+    }
     public void fusionaImagenes(String destinationPath)
     {
         int w = skin.getWidth();
