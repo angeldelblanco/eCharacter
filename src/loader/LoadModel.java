@@ -318,8 +318,9 @@ public class LoadModel extends SimpleApplication
                 String shirtPath = "assets/Textures/Textures Boy/Photoshop/CamisaLargaChico.png";
                 String socksPath = "assets/Textures/Textures Boy/Photoshop/CalcetinesChico.png";
                 String clockPath = "assets/Textures/Textures Boy/Photoshop/RelojChico.png";
-                String tiePath = "assets/Textures/Textures Boy/Photoshop/CorbataChico.png";
-                img = new ImagesProcessing(skinsPath, trousersPath, shirtPath, eyesPath, socksPath, shoesPath, clockPath, tiePath);
+                String tiePath = "assets/Textures/Textures Boy/Photoshop/CorbataAzulChico.png";
+                String beardPath = "assets/Textures/Textures Boy/Photoshop/BarbaChico.png";
+                img = new ImagesProcessing(skinsPath, trousersPath, shirtPath, eyesPath, socksPath, shoesPath, clockPath, tiePath, beardPath);
                 indexImage++;
                 destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
                 img.fusionaImagenes(destinationPath);        

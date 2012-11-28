@@ -19,6 +19,7 @@ public class ImagesProcessing
     BufferedImage socks;
     BufferedImage clock;
     BufferedImage tie;
+    BufferedImage beard;
     ArrayList<BufferedImage> images;
     int num = 0;
 	
@@ -45,7 +46,7 @@ public class ImagesProcessing
     }
     
     public ImagesProcessing(String skinPath,String trousersPath,String tShirtPath,
-            String eyesPath,String socksPath,String shoesPath,String clockPath,String tiePath)
+            String eyesPath,String socksPath,String shoesPath,String clockPath,String tiePath,String beardPath)
     {
             images = new ArrayList<BufferedImage>();
             try
@@ -58,6 +59,7 @@ public class ImagesProcessing
                 socks = ImageIO.read(new File(socksPath));
                 clock = ImageIO.read(new File(clockPath));
                 tie = ImageIO.read(new File(tiePath));
+                beard = ImageIO.read(new File(beardPath));
                 images.add(skin);
                 images.add(socks);
                 images.add(trousers);
@@ -66,6 +68,7 @@ public class ImagesProcessing
                 images.add(shoes);
                 images.add(clock);
                 images.add(tie);
+                images.add(beard);
             } 
         catch (IOException e) 
         {
