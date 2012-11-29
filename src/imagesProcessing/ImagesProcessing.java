@@ -23,7 +23,7 @@ public class ImagesProcessing
     ArrayList<BufferedImage> images;
     int num = 0;
 	
-    public ImagesProcessing(String skinPath,String trousersPath,String tShirtPath,String eyesPath,String shoesPath)
+    public ImagesProcessing(String skinPath, String trousersPath, String tShirtPath, String eyesPath, String shoesPath)
     {
         images = new ArrayList<BufferedImage>();
         try 
@@ -45,8 +45,8 @@ public class ImagesProcessing
         }		
     }
     
-    public ImagesProcessing(String skinPath,String trousersPath,String tShirtPath,
-            String eyesPath,String socksPath,String shoesPath,String clockPath,String tiePath,String beardPath)
+    public ImagesProcessing(String skinPath, String trousersPath, String tShirtPath,
+            String eyesPath, String socksPath, String shoesPath, String clockPath, String tiePath, String beardPath)
     {
             images = new ArrayList<BufferedImage>();
             try
@@ -75,6 +75,7 @@ public class ImagesProcessing
             System.out.println("Failed loading file");
         }		
     }
+    
     public void fusionaImagenes(String destinationPath)
     {
         int w = skin.getWidth();

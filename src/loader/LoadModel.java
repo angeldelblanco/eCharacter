@@ -13,7 +13,9 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
+import imagesProcessing.ColoringImage;
 import imagesProcessing.ImagesProcessing;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -400,7 +402,8 @@ public class LoadModel extends SimpleApplication
     private void initPathsTShirts() 
     {
         //Paths of tshirts
-        String tshirtsPath1 = "assets/Textures/Textures Boy/TShirts/CamisetaAmarillaChico.png";
+        //String tshirtsPath1 = "assets/Textures/Textures Boy/TShirts/CamisetaAmarillaChico.png";
+        String tshirtsPath1 = "assets/Textures/Textures Boy/final.png";
         String tshirtsPath2 = "assets/Textures/Textures Boy/TShirts/CamisetaAzulChico.png";
         String tshirtsPath3 = "assets/Textures/Textures Boy/TShirts/CamisetaBlancaChico.png";
         String tshirtsPath4 = "assets/Textures/Textures Boy/TShirts/CamisetaNegraChico.png";

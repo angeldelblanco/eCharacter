@@ -24,6 +24,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import loader.LoadModel;
+import window_color.ColorChooser;
 
 public class Gui extends JFrame implements ActionListener
 {
@@ -31,6 +32,7 @@ public class Gui extends JFrame implements ActionListener
     private JFrame frame;
     private LoadModel app;
     
+    public Color color;
     
     private ViewPort view;
     
@@ -59,23 +61,40 @@ public class Gui extends JFrame implements ActionListener
         frame.setSize(new Dimension(800,600));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        /*app.setShowSettings(false);
-        app.start();*/
     }
     
     private JMenuBar getMenu()
     {
         JMenuBar menuBar = new JMenuBar();
         
-        JMenu importMenu = new JMenu("Import");
+        JMenu tshirtMenu = new JMenu("T-Shirt");   
+        JMenuItem changeColorTShirt = new JMenuItem("Change color t-shirt");
+	changeColorTShirt.addActionListener(this);
+	changeColorTShirt.setActionCommand("changeColorTShirt");
+        tshirtMenu.add(changeColorTShirt);
         
-        JMenuItem importAnimation = new JMenuItem("Import Animation");
-	importAnimation.addActionListener(this);
-	importAnimation.setActionCommand("import");
-        importMenu.add(importAnimation);
-        importMenu.setBorderPainted(true);
+        JMenuItem changeTShirt = new JMenuItem("Change t-shirt");
+	changeTShirt.addActionListener(this);
+	changeTShirt.setActionCommand("changeTShirt");
+        tshirtMenu.add(changeTShirt);
         
-        menuBar.add(importMenu);
+        tshirtMenu.setBorderPainted(true);
+        menuBar.add(tshirtMenu);
+        
+        JMenu trousersMenu = new JMenu("Trousers");
+        JMenuItem changeColorTrouser = new JMenuItem("Change color trouser");
+	changeColorTrouser.addActionListener(this);
+	changeColorTrouser.setActionCommand("changeColorTrouser");
+        trousersMenu.add(changeColorTrouser);
+        
+        JMenuItem changeTrouser = new JMenuItem("Change trouser");
+	changeTrouser.addActionListener(this);
+	changeTrouser.setActionCommand("changeTrouser");
+        trousersMenu.add(changeTrouser);
+        
+        trousersMenu.setBorderPainted(true);
+        menuBar.add(trousersMenu);
+        
         menuBar.setBackground(Color.LIGHT_GRAY);
         return menuBar;        
     }
@@ -97,23 +116,27 @@ public class Gui extends JFrame implements ActionListener
         eyesButton.setAlignmentY(Component.CENTER_ALIGNMENT);
         buttonPanel.add(eyesButton);   
                 
-        JButton tShirtButton = new JButton("TShirt");
+        /*JButton tShirtButton = new JButton("TShirt");
         tShirtButton.addActionListener(this);
         tShirtButton.setActionCommand("tshirt");
         tShirtButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        buttonPanel.add(tShirtButton);
+        buttonPanel.add(tShirtButton);*/
         
-        JButton trousersButton = new JButton("Trousers");
+        /*JButton trousersButton = new JButton("Trousers");
         trousersButton.addActionListener(this);
         trousersButton.setActionCommand("trousers");
         trousersButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        buttonPanel.add(trousersButton);
+        buttonPanel.add(trousersButton);*/
         
         JButton shoesButton = new JButton("Shoes");
         shoesButton.addActionListener(this);
         shoesButton.setActionCommand("shoes");
         shoesButton.setAlignmentY(Component.CENTER_ALIGNMENT);
         buttonPanel.add(shoesButton);
+        
+        /*JColorChooser chooseColor = new JColorChooser();
+        chooseColor.setSize(30, 30);
+        buttonPanel.add(chooseColor);*/
         
         return buttonPanel;
     }
@@ -131,12 +154,21 @@ public class Gui extends JFrame implements ActionListener
             app.changeEyes();
             previewWindow.repaint();          
         }
-        if(e.getActionCommand().equals("tshirt"))
+        if(e.getActionCommand().equals("changeTShirt"))
         {
             app.changeTShirt();
             previewWindow.repaint();          
         }
-        if(e.getActionCommand().equals("trousers"))
+        if(e.getActionCommand().equals("changeColorTShirt"))
+        {
+            ColorChooser window = new ColorChooser(this);
+            
+        }
+        if(e.getActionCommand().equals("colorea"))
+        {
+
+        }
+        if(e.getActionCommand().equals("changeTrouser"))
         {
             app.changeTrousers();
             previewWindow.repaint();           
