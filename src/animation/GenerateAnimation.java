@@ -2,7 +2,18 @@ package animation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public class GenerateAnimation 
 {
@@ -10,7 +21,7 @@ public class GenerateAnimation
 	String animationPath;
 	String nameAnimation;
 
-	public GenerateAnimation(String folderPath,String nameAnimation)
+	public GenerateAnimation(String folderPath, String nameAnimation)
 	{
 		this.nameAnimation = nameAnimation;
 		this.animationPath = folderPath + "/" + nameAnimation + ".eaa";
@@ -29,30 +40,61 @@ public class GenerateAnimation
 	
 	private void createAnimation(String path) 
 	{
-		PrintWriter f = null;
-		try
+            try
+            {
+                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance( );
+                TransformerFactory tf = TransformerFactory.newInstance( );
+                DocumentBuilder db = dbf.newDocumentBuilder( );
+                Document doc = db.newDocument( );
+                Transformer transformer = null;
+                OutputStream fout = null;
+                OutputStreamWriter writeFile = null;
+                //Creat the main node
+                Element mainNode = doc.createElement( "animation");
+                mainNode.setAttribute("id", this.nameAnimation);
+                mainNode.setAttribute("usetransitions", "no");
+        	mainNode.setAttribute("slides", "no");
+                
+                for (int i = 0; i < imagesNames.length; i++ )
 		{
-			f = new PrintWriter(path);
-			f.print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
-			f.println("<!DOCTYPE animation SYSTEM \"animation.dtd\">");
-			f.print("<animation id=\"" + this.nameAnimation + "\" slides=\"no\" usetransitions=\"no\">");
-			for (int i = 0; i < imagesNames.length; i++ )
-			{
-				f.print("<transition time=\"0\" type=\"none\"/>");
-				f.print("<frame maxSoundTime=\"1000\" soundUri=\"\" time=\"200\" type=\"image\" uri=assets/animation/" + imagesNames[i] + "\" waitforclick=\"no\"/>");
-			}
-			f.print("</animation>");			
-		}
-		catch (FileNotFoundException e)
-		{
-			System.out.println("Failed saving animation");
-		}
-		f.close();
-	}
+                    //Creat the node "transition"
+                    Element transitionNode = doc.createElement("transition");
+                    transitionNode.setAttribute("type", "none");
+                    transitionNode.setAttribute("time", "0");
+                    //Creat the node "frame"
+                    Element frameNode = doc.createElement("frame");
+                    frameNode.setAttribute("maxSoundTime", "1000");
+                    frameNode.setAttribute("soundUri", "");
+                    frameNode.setAttribute("time", "200");
+                    frameNode.setAttribute("type", "image");
+                    frameNode.setAttribute("uri", "assets/animation/" + imagesNames[i]);
+                    frameNode.setAttribute("waitforclick", "no");
+                    //Add de nodes to main node
+                    mainNode.appendChild(transitionNode);
+                    mainNode.appendChild(frameNode);
+		}            
+                doc.adoptNode(mainNode);
+                doc.appendChild(mainNode);
+                transformer = tf.newTransformer();
+                transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "animation.dtd");
+                try {
+                    fout = new FileOutputStream(path);
+                }
+                catch( FileNotFoundException e ) {
+                    System.out.println("error");
+                }
+                writeFile = new OutputStreamWriter(fout, "UTF-8");
+                transformer.transform(new DOMSource(doc), new StreamResult(writeFile));
+                writeFile.close();
+                fout.close();
+            }
+            catch( Exception e ) {
+                System.out.println("error");
+            }
+        }
 	
-	/*public static void main(String[] args)
+	public static void main(String[] args)
 	{
-		GenerateAnimation aux = new GenerateAnimation("C:/Users/Alex/Dropbox/Sistemas Inform�ticos/eAdventure/Projects/New project/assets/animation/capturas","animacionSaludo");
-	}*/
+		GenerateAnimation aux = new GenerateAnimation("C:/Users/Sergio/Desktop/prueba/capturas", "chico_sentado");
+	}
 }
-
