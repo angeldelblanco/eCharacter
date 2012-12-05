@@ -4,7 +4,6 @@
  */
 package gui;
 
-import com.jme3.renderer.ViewPort;
 import com.jme3.system.JmeCanvasContext;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -26,15 +25,13 @@ import javax.swing.JPanel;
 import loader.LoadModel;
 import window_color.ColorChooser;
 
-public class Gui extends JFrame implements ActionListener
+public class Gui extends JFrame implements ActionListener 
 {
     private Component previewWindow;
     private JFrame frame;
     private LoadModel app;
     
     public Color color;
-    
-    private ViewPort view;
     
     public Gui()
     {
@@ -52,7 +49,7 @@ public class Gui extends JFrame implements ActionListener
         app.createCanvas();
         JmeCanvasContext ctx = (JmeCanvasContext)app.getContext();
         previewWindow = ctx.getCanvas();
-        previewWindow.setEnabled(false);
+        previewWindow.setEnabled(true);
         previewWindow.setSize(new Dimension(640,480));
         panel.add(previewWindow,BorderLayout.LINE_END);
         
@@ -61,6 +58,7 @@ public class Gui extends JFrame implements ActionListener
         frame.setSize(new Dimension(800,600));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //app.start();
     }
     
     private JMenuBar getMenu()
@@ -146,13 +144,15 @@ public class Gui extends JFrame implements ActionListener
         if(e.getActionCommand().equals("skin"))
         {
             app.changeSkin();
-            previewWindow.repaint();
-                                 
+            previewWindow.repaint(); 
+            
+            //app.actionListener.onAction("Capture", false, 0);
+            //app.screenshot();
         }
         if(e.getActionCommand().equals("eyes"))
         {            
             app.changeEyes();
-            previewWindow.repaint();          
+            previewWindow.repaint();  
         }
         if(e.getActionCommand().equals("changeTShirt"))
         {
@@ -190,6 +190,7 @@ public class Gui extends JFrame implements ActionListener
     public static void main(String[] args)
     {
         Gui window = new Gui();
+
     }   
     
     public static void screenShot(Component component) 

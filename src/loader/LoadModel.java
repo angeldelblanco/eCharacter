@@ -10,7 +10,9 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.Renderer;
 import com.jme3.scene.Spatial;
+import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
 import imagesProcessing.ColoringImage;
@@ -47,7 +49,6 @@ public class LoadModel extends SimpleApplication
     private int numTShirts = 6;
     private int numEyes = 4;
     
-  
     public static void main(String[] args) {
       LoadModel app = new LoadModel();
       app.setShowSettings(false);
@@ -57,6 +58,8 @@ public class LoadModel extends SimpleApplication
  
     public void simpleInitApp() 
     {
+        flyCam.setEnabled(false);
+        
         setDisplayFps(false);       // to hide the FPS
         setDisplayStatView(false);  // to hide the statistics 
         
@@ -255,7 +258,9 @@ public class LoadModel extends SimpleApplication
         BufferedImage rawFrame = new BufferedImage(width, height,BufferedImage.TYPE_4BYTE_ABGR);        
         ByteBuffer byteBuffer = BufferUtils.createByteBuffer(width * height * 4 ); 
         
-        this.renderManager.getRenderer().readFrameBuffer(this.viewPort.getOutputFrameBuffer(), byteBuffer);        
+        FrameBuffer fram = this.viewPort.getOutputFrameBuffer();
+        Renderer renderer1 = this.renderManager.getRenderer();
+        renderer1.readFrameBuffer(fram, byteBuffer);        
         Screenshots.convertScreenShot(byteBuffer, rawFrame);       
         
         
@@ -293,7 +298,7 @@ public class LoadModel extends SimpleApplication
         inputManager.addListener(actionListener, "Special"); 
     }
   
-    private ActionListener actionListener = new ActionListener() 
+    public ActionListener actionListener = new ActionListener() 
     {
         public void onAction(String name, boolean keyPressed, float tpf) 
         {
