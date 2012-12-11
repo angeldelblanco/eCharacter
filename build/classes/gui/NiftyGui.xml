@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+    <useControls filename="nifty-default-controls.xml"/>  
+    <useStyles filename="nifty-default-styles.xml" />  
+    <screen id="start" controller="loader.LoadModel">
+        <layer id="background" backgroundColor="#0000" childLayout="vertical">
+            <!-- ... -->
+        </layer>
+        <layer id="foreground" backgroundColor="#0000" childLayout="horizontal">
+            <!-- Option Panel -->
+            <panel id="panel_options" height="100%" width="20%" childLayout="vertical" backgroundColor="#0000"> 
+                <!-- Change Skin Options Panel -->
+                <panel id="panel_option_skin" height="10%" width="100%" childLayout="vertical" backgroundColor="#ff0f">  
+                    <!-- Caption -->
+                    <panel id="panel_option_skin_caption" height="50%" width="100%" childLayout="vertical">
+                        <text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                    </panel>
+                    <!-- Option Buttons -->
+                    <panel id="panel_option_skin_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
+                        <control name="button" label="Change" id="button_skin_change" align="center" valign="center">
+                            <interact onClick="changeSkin()"/>
+                        </control>
+                    </panel>
+                </panel>
+                <!-- Change Eyes Options Panel -->
+                <panel id="panel_option_eyes" height="10%" width="100%" childLayout="vertical" backgroundColor="#f00f">  
+                    <!-- Caption -->
+                    <panel id="panel_option_eyes_caption" height="50%" width="100%" childLayout="vertical">
+                        <text text="Eyes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                    </panel>
+                    <!-- Option Buttons -->
+                    <panel id="panel_option_eyes_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
+                        <control name="button" label="Change" id="button_eyes_change" align="center" valign="center">
+                            <interact onClick="changeEyes()"/>
+                        </control>
+                    </panel>
+                </panel>
+                <!-- Change Shoes Options Panel -->
+                <panel id="panel_option_shoes" height="10%" width="100%" childLayout="vertical" backgroundColor="#0f0f">  
+                    <!-- Caption -->
+                    <panel id="panel_option_shoes_caption" height="50%" width="100%" childLayout="vertical">
+                        <text text="Shoes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                    </panel>
+                    <!-- Option Buttons -->
+                    <panel id="panel_option_shoes_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
+                        <control name="button" label="Change" id="button_shoes_change_color" align="center" valign="center">
+                            <interact onClick="changeShoes()"/>
+                        </control>
+                    </panel>
+                </panel>
+                <!-- Change T-Shirt Options Panel -->
+                <panel id="panel_option_tshirt" height="10%" width="100%" childLayout="vertical" backgroundColor="#00ff">  
+                    <!-- Caption -->
+                    <panel id="panel_option_tshirt_caption" height="50%" width="100%" childLayout="vertical">
+                        <text text="T-Shirt" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                    </panel>
+                    <!-- Option Buttons -->
+                    <panel id="panel_option_tshirt_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
+                        <control name="button" label="Change" id="button_tshirt_change" align="center" valign="center">
+                            <interact onClick="changeTShirt()"/>
+                        </control>
+                    </panel>
+                </panel>
+                <!-- Change Trousers Options Panel -->
+                <panel id="panel_option_trousers" height="10%" width="100%" childLayout="vertical" backgroundColor="#0fff">  
+                    <!-- Caption -->
+                    <panel id="panel_option_trousers_caption" height="50%" width="100%" childLayout="vertical">
+                        <text text="Trousers" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                    </panel>
+                    <!-- Option Buttons -->
+                    <panel id="panel_option_trousers_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
+                        <control name="button" label="Change" id="button_trousers_change" align="center" valign="center">
+                            <interact onClick="changeTrousers()"/>
+                        </control>
+                    </panel>
+                </panel> 
+            </panel>
+            <panel id="panel_title" height="10%" width="60%" childLayout="vertical" backgroundColor="#0000">
+                <text text="Configurator Characters" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+            </panel>
+            <!-- ScreenShot Panel -->
+            <panel id="panel_screenshot" height="10%" width="20%" childLayout="vertical" backgroundColor="#0fff">  
+                <!-- Caption -->
+                <panel id="panel_screenshot_caption" height="50%" width="100%" childLayout="vertical">
+                    <text text="Screenshot" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                </panel>
+                <!-- Button -->
+                <panel id="panel__screenshot_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">                
+                    <control name="button" label="Take" id="button_screenshotr" align="center" valign="center">
+                        <interact onClick="screenshot()"/>
+                    </control>
+                </panel>
+            </panel>
+        </layer>
+    </screen>
+</nifty>

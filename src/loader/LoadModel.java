@@ -10,11 +10,15 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
+import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.Renderer;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
+import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.screen.Screen;
+import de.lessvoid.nifty.screen.ScreenController;
 import imagesProcessing.ColoringImage;
 import imagesProcessing.ImagesProcessing;
 import java.awt.image.BufferedImage;
@@ -29,7 +33,7 @@ import tipos.Objeto;
 
  
 /** Ejemplo de carga de modelos */
-public class LoadModel extends SimpleApplication
+public class LoadModel extends SimpleApplication implements ScreenController
 {
     private AnimChannel channel;
     private AnimControl control;
@@ -52,6 +56,10 @@ public class LoadModel extends SimpleApplication
     private int numTrousers = 2;
     private int numTShirts = 5;
     private int numEyes = 4;
+    
+    /* GUI NIFTY CODE */
+     private Nifty nifty;
+    /* --- */
     
     public static void main(String[] args) {
       LoadModel app = new LoadModel();
@@ -132,6 +140,16 @@ public class LoadModel extends SimpleApplication
         control = chico.getControl(AnimControl.class);
         channel = control.createChannel();
         channel.setAnim("my_animation");
+        
+        /* GUI NIFTY CODE */        
+        NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
+        nifty = niftyDisplay.getNifty();
+        nifty.fromXml("/gui/NiftyGui.xml", "start", this);
+
+        // attach the nifty display to the gui view port as a processor
+        guiViewPort.addProcessor(niftyDisplay);
+        flyCam.setEnabled(false);
+        /* --- */
     }
  
     public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
@@ -468,10 +486,23 @@ public class LoadModel extends SimpleApplication
                 }
                 break;         
         }
+    }
+
+    public void bind(Nifty nifty, Screen screen) {
+       
+    }
+
+    public void onStartScreen() {
         
+    }
+
+    public void onEndScreen() {
         
-        
-        
-        
+    }
+    
+    public void changeColor() {
+    }
+    
+    public void changeType() {
     }
 }
