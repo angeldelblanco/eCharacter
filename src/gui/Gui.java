@@ -15,14 +15,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import loader.LoadModel;
+import tipos.Objeto;
 import window_color.ColorChooser;
 
 public class Gui extends JFrame implements ActionListener 
@@ -31,7 +30,7 @@ public class Gui extends JFrame implements ActionListener
     private JFrame frame;
     private LoadModel app;
     
-    public Color color;
+    private Objeto estado;
     
     public Gui()
     {
@@ -42,7 +41,7 @@ public class Gui extends JFrame implements ActionListener
         JPanel panel = new JPanel();
         frame.setContentPane(panel);
         panel.setLayout(new BorderLayout());
-        panel.add(getButtonPanel(),BorderLayout.LINE_START);
+        //panel.add(getButtonPanel(),BorderLayout.LINE_START);
         
         app = new LoadModel();
         
@@ -51,7 +50,8 @@ public class Gui extends JFrame implements ActionListener
         previewWindow = ctx.getCanvas();
         previewWindow.setEnabled(true);
         previewWindow.setSize(new Dimension(640,480));
-        panel.add(previewWindow,BorderLayout.LINE_END);
+        //panel.add(previewWindow,BorderLayout.LINE_END);
+        panel.add(previewWindow,BorderLayout.CENTER);
         
         frame.setEnabled(true);
         frame.setVisible(true);
@@ -65,6 +65,29 @@ public class Gui extends JFrame implements ActionListener
     {
         JMenuBar menuBar = new JMenuBar();
         
+        //Menu to skin
+        JMenu skinMenu = new JMenu("Skin");
+        
+        JMenuItem changeSkin = new JMenuItem("Change skin");
+	changeSkin.addActionListener(this);
+	changeSkin.setActionCommand("changeSkin");
+        skinMenu.add(changeSkin);
+        
+        skinMenu.setBorderPainted(true);
+        menuBar.add(skinMenu);
+        
+        //Menu to eyes
+        JMenu eyesMenu = new JMenu("Eyes");
+        
+        JMenuItem changeEyes = new JMenuItem("Change eyes");
+	changeEyes.addActionListener(this);
+	changeEyes.setActionCommand("changeEyes");
+        eyesMenu.add(changeEyes);
+        
+        eyesMenu.setBorderPainted(true);
+        menuBar.add(eyesMenu);
+        
+        //Menu to tshirt
         JMenu tshirtMenu = new JMenu("T-Shirt");   
         JMenuItem changeColorTShirt = new JMenuItem("Change color t-shirt");
 	changeColorTShirt.addActionListener(this);
@@ -79,6 +102,7 @@ public class Gui extends JFrame implements ActionListener
         tshirtMenu.setBorderPainted(true);
         menuBar.add(tshirtMenu);
         
+        //Menu to trousers
         JMenu trousersMenu = new JMenu("Trousers");
         JMenuItem changeColorTrouser = new JMenuItem("Change color trouser");
 	changeColorTrouser.addActionListener(this);
@@ -93,55 +117,33 @@ public class Gui extends JFrame implements ActionListener
         trousersMenu.setBorderPainted(true);
         menuBar.add(trousersMenu);
         
+        //Menu to shoes
+        JMenu shoesMenu = new JMenu("Shoes");
+        JMenuItem changeShoes = new JMenuItem("Change shoes");
+	changeShoes.addActionListener(this);
+	changeShoes.setActionCommand("changeShoes");
+        shoesMenu.add(changeShoes);
+        
+        shoesMenu.setBorderPainted(true);
+        menuBar.add(shoesMenu);
+        
+        //Menu to animation
+        JMenu animationMenu = new JMenu("Animation");
+        JMenuItem generateAnimation = new JMenuItem("Generate animation");
+	generateAnimation.addActionListener(this);
+	generateAnimation.setActionCommand("generateAnimation");
+        animationMenu.add(generateAnimation);
+        
+        animationMenu.setBorderPainted(true);
+        menuBar.add(animationMenu);
+        
         menuBar.setBackground(Color.LIGHT_GRAY);
         return menuBar;        
     }
     
-    private JPanel getButtonPanel()
-    {
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-        
-        JButton skinButton = new JButton("Skin");
-        skinButton.addActionListener(this);
-        skinButton.setActionCommand("skin");
-        skinButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        buttonPanel.add(skinButton);
-        
-        JButton eyesButton = new JButton("Eyes");
-        eyesButton.addActionListener(this);
-        eyesButton.setActionCommand("eyes");
-        eyesButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        buttonPanel.add(eyesButton);   
-                
-        /*JButton tShirtButton = new JButton("TShirt");
-        tShirtButton.addActionListener(this);
-        tShirtButton.setActionCommand("tshirt");
-        tShirtButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        buttonPanel.add(tShirtButton);*/
-        
-        /*JButton trousersButton = new JButton("Trousers");
-        trousersButton.addActionListener(this);
-        trousersButton.setActionCommand("trousers");
-        trousersButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        buttonPanel.add(trousersButton);*/
-        
-        JButton shoesButton = new JButton("Shoes");
-        shoesButton.addActionListener(this);
-        shoesButton.setActionCommand("shoes");
-        shoesButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        buttonPanel.add(shoesButton);
-        
-        /*JColorChooser chooseColor = new JColorChooser();
-        chooseColor.setSize(30, 30);
-        buttonPanel.add(chooseColor);*/
-        
-        return buttonPanel;
-    }
-    
     public void actionPerformed(ActionEvent e) 
     {
-        if(e.getActionCommand().equals("skin"))
+        if(e.getActionCommand().equals("changeSkin"))
         {
             app.changeSkin();
             previewWindow.repaint(); 
@@ -149,7 +151,7 @@ public class Gui extends JFrame implements ActionListener
             //app.actionListener.onAction("Capture", false, 0);
             //app.screenshot();
         }
-        if(e.getActionCommand().equals("eyes"))
+        if(e.getActionCommand().equals("changeEyes"))
         {            
             app.changeEyes();
             previewWindow.repaint();  
@@ -161,24 +163,27 @@ public class Gui extends JFrame implements ActionListener
         }
         if(e.getActionCommand().equals("changeColorTShirt"))
         {
-            ColorChooser window = new ColorChooser(this);
-            
-        }
-        if(e.getActionCommand().equals("colorea"))
-        {
-
+            estado = Objeto.t_shirt;
+            ColorChooser window = new ColorChooser(this);    
+            window.setAlwaysOnTop(true);
         }
         if(e.getActionCommand().equals("changeTrouser"))
         {
             app.changeTrousers();
             previewWindow.repaint();           
         }
-        if(e.getActionCommand().equals("shoes"))
+        if(e.getActionCommand().equals("changeColorTrouser"))
+        {
+            estado = Objeto.trouser;
+            ColorChooser window = new ColorChooser(this);      
+            window.setAlwaysOnTop(true);
+        }
+        if(e.getActionCommand().equals("changeShoes"))
         {
             app.changeShoes();
             previewWindow.repaint();           
         }
-        if(e.getActionCommand().equals("import"))
+        if(e.getActionCommand().equals("generateAnimation"))
         {
             //app.screenshot();
             previewWindow.setEnabled(true);
@@ -207,4 +212,9 @@ public class Gui extends JFrame implements ActionListener
             System.out.println("Error");
         }
      }
+    
+    public void changeColor (int color) throws IOException
+    {
+        app.changeColor(color, estado);          
+    }
 }

@@ -17,7 +17,6 @@ import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
 import imagesProcessing.ColoringImage;
 import imagesProcessing.ImagesProcessing;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.imageio.ImageIO;
+import tipos.Objeto;
 
  
 /** Ejemplo de carga de modelos */
@@ -42,11 +42,15 @@ public class LoadModel extends SimpleApplication
     private int indexImage = 0;
     
     String [] arraySkin, arrayShoes, arrayTrouser, arrayTShirt, arrayEyes;
-    private int indexSkin, indexShoes, indexTrouser, indexTShirt, indexEyes = 0;
+    private int indexSkin = -1;
+    private int indexTShirt = -1;
+    private int indexShoes = -1;
+    private int indexTrouser = -1;
+    private int indexEyes = -1;
     private int numSkins = 4;
     private int numShoes = 5;
-    private int numTrousers = 7;
-    private int numTShirts = 6;
+    private int numTrousers = 2;
+    private int numTShirts = 5;
     private int numEyes = 4;
     
     public static void main(String[] args) {
@@ -70,17 +74,18 @@ public class LoadModel extends SimpleApplication
         dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
         rootNode.addLight(dl);
 
-        skinsPath = arraySkin[indexSkin];
         indexSkin++;
-        shoesPath = arrayShoes[indexShoes];
+        skinsPath = arraySkin[indexSkin];
         indexShoes++;
-        trousersPath = arrayTrouser[indexTrouser];
+        shoesPath = arrayShoes[indexShoes];
         indexTrouser++;
-        tShirtsPath = arrayTShirt[indexTShirt];
+        trousersPath = arrayTrouser[indexTrouser];
         indexTShirt++;
-        eyesPath = arrayEyes[indexEyes];
+        tShirtsPath = arrayTShirt[indexTShirt];
         indexEyes++;
+        eyesPath = arrayEyes[indexEyes];     
 
+        
         img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);
         destinationPath = "assets/Textures/OriginalTexture.png";
         img.fusionaImagenes(destinationPath);
@@ -145,8 +150,8 @@ public class LoadModel extends SimpleApplication
  
     public void changeSkin()
     {
-        skinsPath = arraySkin[indexSkin%numSkins];
         indexSkin++;
+        skinsPath = arraySkin[indexSkin%numSkins];
         //Creat the image
                
         img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);                
@@ -167,8 +172,8 @@ public class LoadModel extends SimpleApplication
     
     public void changeShoes()
     {
-        shoesPath = arrayShoes[indexShoes%numShoes];                
-        indexShoes++;                
+        indexShoes++;   
+        shoesPath = arrayShoes[indexShoes%numShoes];                    
         //Creat the image                
         img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);                
         indexImage++;                
@@ -188,8 +193,8 @@ public class LoadModel extends SimpleApplication
     
     public void changeTrousers()
     {
-        trousersPath = arrayTrouser[indexTrouser%numTrousers];                
-        indexTrouser++;               
+        indexTrouser++;   
+        trousersPath = arrayTrouser[indexTrouser%numTrousers];                                
         //Creat the image                
         img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);         
         indexImage++;        
@@ -209,8 +214,8 @@ public class LoadModel extends SimpleApplication
     
     public void changeTShirt()
     {
-        tShirtsPath = arrayTShirt[indexTShirt%numTShirts];                
-        indexTShirt++;               
+        indexTShirt++;
+        tShirtsPath = arrayTShirt[indexTShirt%numTShirts];                                     
         //Creat the image        
         img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);        
         indexImage++;        
@@ -230,8 +235,8 @@ public class LoadModel extends SimpleApplication
     
     public void changeEyes()
     {
-        eyesPath = arrayEyes[indexEyes%numEyes];                
-        indexEyes++;               
+        indexEyes++;
+        eyesPath = arrayEyes[indexEyes%numEyes];                                      
         //Creat the image        
         img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);        
         indexImage++;        
@@ -387,40 +392,27 @@ public class LoadModel extends SimpleApplication
     private void initPathsTrousers() 
     {
         //Paths of trousers
-        String trousersPath1 = "assets/Textures/Textures Boy/Trousers/PantalonAmarilloChico.png";
-        String trousersPath2 = "assets/Textures/Textures Boy/Trousers/PantalonAzulChico.png";
-        String trousersPath3 = "assets/Textures/Textures Boy/Trousers/PantalonBlancoChico.png";
-        String trousersPath4 = "assets/Textures/Textures Boy/Trousers/PantalonMarronChico.png";
-        String trousersPath5 = "assets/Textures/Textures Boy/Trousers/PantalonNegroChico.png";
-        String trousersPath6 = "assets/Textures/Textures Boy/Trousers/PantalonRojoChico.png";
-        String trousersPath7 = "assets/Textures/Textures Boy/Trousers/PantalonVerdeChico.png";
+        String trousersPath1 = "assets/Textures/Textures Boy/Photoshop/PantalonCortoSolidoChico.png";
+        String trousersPath2 = "assets/Textures/Textures Boy/Photoshop/PantalonLargoSolidoChico.png";
         arrayTrouser = new String[numTrousers];
         arrayTrouser[0] = trousersPath1;
         arrayTrouser[1] = trousersPath2;
-        arrayTrouser[2] = trousersPath3;
-        arrayTrouser[3] = trousersPath4;
-        arrayTrouser[4] = trousersPath5;
-        arrayTrouser[5] = trousersPath6;
-        arrayTrouser[6] = trousersPath7;
     }
 
     private void initPathsTShirts() 
     {
         //Paths of tshirts
-        //String tshirtsPath1 = "assets/Textures/Textures Boy/TShirts/CamisetaAmarillaChico.png";
-        String tshirtsPath1 = "assets/Textures/Textures Boy/final.png";
-        String tshirtsPath2 = "assets/Textures/Textures Boy/TShirts/CamisetaAzulChico.png";
-        String tshirtsPath3 = "assets/Textures/Textures Boy/TShirts/CamisetaBlancaChico.png";
-        String tshirtsPath4 = "assets/Textures/Textures Boy/TShirts/CamisetaNegraChico.png";
-        String tshirtsPath5 = "assets/Textures/Textures Boy/TShirts/CamisetaRojaChico.png";
-        String tshirtsPath6 = "assets/Textures/Textures Boy/TShirts/CamisetaVerdeChico.png";
+        String tshirtsPath1 = "assets/Textures/Textures Boy/Photoshop/CamisaCortaSolidoChico.png";
+        String tshirtsPath2 = "assets/Textures/Textures Boy/Photoshop/CamisaLargaSolidoChico.png";
+        String tshirtsPath3 = "assets/Textures/Textures Boy/Photoshop/CamisetaCortaSolidoChico.png";
+        String tshirtsPath4 = "assets/Textures/Textures Boy/Photoshop/CamisetaLargaSolidoChico.png";
+        String tshirtsPath5 = "assets/Textures/Textures Boy/Photoshop/CamisetaTirantesSolidoChico.png";
         arrayTShirt = new String[numTShirts];
         arrayTShirt[0] = tshirtsPath1;
         arrayTShirt[1] = tshirtsPath2;
         arrayTShirt[2] = tshirtsPath3;
         arrayTShirt[3] = tshirtsPath4;
         arrayTShirt[4] = tshirtsPath5;
-        arrayTShirt[5] = tshirtsPath6;
     }
 
     private void initPathsEyes() 
@@ -435,5 +427,51 @@ public class LoadModel extends SimpleApplication
         arrayEyes[1] = eyesPath2;
         arrayEyes[2] = eyesPath3;
         arrayEyes[3] = eyesPath4;
+    }
+    
+    public void changeColor(int color, Objeto estado) throws IOException{
+        ColoringImage coloringImage;
+        Path file;
+        switch(estado) {
+            case t_shirt:
+                coloringImage = new  ColoringImage(arrayTShirt[indexTShirt%numTShirts], color, Objeto.t_shirt); 
+                tShirtsPath = "assets/Textures/Textures Boy/TShirtFinal.png";
+                img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);
+                indexImage++; 
+                destinationPath = "assets/Textures/FinalTexture"+indexImage+".png"; 
+                img.fusionaImagenes(destinationPath); 
+                mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));     
+                chico.setMaterial(mat);
+                //Delete the file               
+                file = Paths.get(destinationPath);               
+                try {                    
+                    Files.delete(file);                
+                } catch (IOException ex) {                    
+                    System.out.println("Failed deleting file");                
+                }
+                break;
+            case trouser:
+                coloringImage = new  ColoringImage(arrayTrouser[indexTrouser%numTrousers], color, Objeto.trouser);
+                trousersPath = "assets/Textures/Textures Boy/TrouserFinal.png";
+                img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);
+                indexImage++; 
+                destinationPath = "assets/Textures/FinalTexture"+indexImage+".png"; 
+                img.fusionaImagenes(destinationPath); 
+                mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));     
+                chico.setMaterial(mat);
+                //Delete the file               
+                file = Paths.get(destinationPath);               
+                try {                    
+                    Files.delete(file);                
+                } catch (IOException ex) {                    
+                    System.out.println("Failed deleting file");                
+                }
+                break;         
+        }
+        
+        
+        
+        
+        
     }
 }

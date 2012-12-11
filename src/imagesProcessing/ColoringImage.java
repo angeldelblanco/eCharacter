@@ -1,31 +1,40 @@
 package imagesProcessing;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import tipos.Objeto;
 
 public class ColoringImage 
 {
-    private Color color;
-    private String imagePath, destinationPath;
+    private int color;
+    private String imagePath, imageColoredPath, destinationPath;
     
-    public ColoringImage(String imagePath, Color color) throws IOException
+    public ColoringImage(String imagePath, int color, Objeto estado) throws IOException
     {
         this.imagePath = imagePath;
         this.color = color;
         
-        destinationPath = "assets/Textures/Textures Boy/Sombreada.png";
+        switch(estado) {
+            case t_shirt:
+                imageColoredPath = "assets/Textures/Textures Boy/TShirtSombreada.png";
+                destinationPath = "assets/Textures/Textures Boy/TShirtFinal.png";
+            break;
+            case trouser:
+                imageColoredPath = "assets/Textures/Textures Boy/TrouserSombreada.png";
+                destinationPath = "assets/Textures/Textures Boy/TrouserFinal.png";
+            break;
+        }
         coloringImage();
         juntaImagen();
     }        
 
     private void coloringImage() throws IOException 
     {
-        BufferedImage image = ImageIO.read(new File(imagePath));
+        BufferedImage image = ImageIO.read(new File(imagePath)); 
         
         int w = image.getWidth();
         int h= image.getHeight();  
@@ -35,20 +44,25 @@ public class ColoringImage
             for (int j=0;j<h;j++)
             {  
                 //16777215 es el codigo RGB para transparente
-                if (image.getRGB(i, j)!= 16777215) 
+                //if (image.getRGB(i, j)!= 16777215) 
+                if (image.getRGB(i, j) < 0) 
                 {
-                    image.setRGB(i, j, color.getRGB());
+                    image.setRGB(i, j, color);
                 }
             }
         }
         
-        ImageIO.write(image, "png", new File(destinationPath));
+        ImageIO.write(image, "png", new File(imageColoredPath));
     }
     
     private void juntaImagen() throws IOException 
     {
-        BufferedImage image = ImageIO.read(new File(destinationPath));
-        BufferedImage shadow = ImageIO.read(new File("assets/Textures/Textures Boy/PhotoShop/CamisaCortaSombrasChico.png"));
+        BufferedImage image = ImageIO.read(new File(imageColoredPath));
+        
+        String shadowPath = getShadowPath();
+        System.out.println(shadowPath);
+        
+        BufferedImage shadow = ImageIO.read(new File(shadowPath));
         
         int w = image.getWidth();
         int h= image.getHeight();
@@ -66,7 +80,7 @@ public class ColoringImage
         }
         try 
         {
-            ImageIO.write(finalImage, "png", new File("assets/Textures/Textures Boy/Final.png"));
+            ImageIO.write(finalImage, "png", new File(destinationPath));
         } 
         catch (IOException e) 
         {
@@ -74,8 +88,18 @@ public class ColoringImage
         }  
     }
     
+    private String getShadowPath()
+    {
+        int length = imagePath.length();
+        
+        String aux = imagePath.substring(0, length-15);
+        aux = aux + "SombrasChico.png";
+        
+        return aux;
+    }
+    
     public static void main(String[] args) throws IOException 
     {
-        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/PhotoShop/CamisaCortaSolidoChico.png", new Color(-3394561));
+        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/PhotoShop/CamisetaLargaSolidoChico.png", -3394561, Objeto.t_shirt);
     } 
 }

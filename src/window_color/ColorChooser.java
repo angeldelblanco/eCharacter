@@ -2,10 +2,12 @@ package window_color;
 
 import gui.Gui;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
@@ -18,7 +20,6 @@ public class ColorChooser extends JFrame implements ChangeListener, ActionListen
     
     private JColorChooser chooserColor;
     private JButton buttonOk, buttonCancel;
-    private Color color;
     private Gui gui;
     
     public ColorChooser(Gui aThis)
@@ -46,14 +47,8 @@ public class ColorChooser extends JFrame implements ChangeListener, ActionListen
         panelButtons.add(buttonOk);
         panelButtons.add(buttonCancel);
         add(chooserColor, BorderLayout.CENTER);
-        //add(buttonOk, BorderLayout.SOUTH);
         add(panelButtons, BorderLayout.SOUTH);
         pack();
-    }
-
-    public void stateChanged(ChangeEvent e) 
-    {
-        buttonOk.setForeground(chooserColor.getColor());
     }
 
     public void actionPerformed(ActionEvent e) 
@@ -61,15 +56,17 @@ public class ColorChooser extends JFrame implements ChangeListener, ActionListen
         if(e.getActionCommand().equals("ok"))
         {
             setVisible(false);
-            color = chooserColor.getColor();
-            System.out.println("RGB: "+color.getRGB());
-            gui.color = color;
-            Object obj = new Object();
-            gui.actionPerformed(new ActionEvent(obj, 1, "colorea"));                        
+            try {                  
+                gui.changeColor(chooserColor.getColor().getRGB());
+            } catch (IOException ex) {
+                Logger.getLogger(ColorChooser.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } 
         if(e.getActionCommand().equals("cancel"))
         {
             setVisible(false);                       
         } 
     }
+
+    public void stateChanged(ChangeEvent e) {}
 }
