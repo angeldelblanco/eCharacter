@@ -6,12 +6,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import org.apache.log4j.Logger;
 import tipos.Objeto;
 
 public class ColoringImage 
 {
     private int color;
     private String imagePath, imageColoredPath, destinationPath;
+    static Logger log = Logger.getLogger(ColoringImage.class.getName());
+                    
     
     public ColoringImage(String imagePath, int color, Objeto estado) throws IOException
     {
@@ -28,8 +31,15 @@ public class ColoringImage
                 destinationPath = "assets/Textures/Textures Boy/TrouserFinal.png";
             break;
         }
+            long tiempoInicio = System.currentTimeMillis();
         coloringImage();
+            long totalTiempo = System.currentTimeMillis() - tiempoInicio;
+            //System.out.println("El tiempo de coloringImage() es : " + totalTiempo + " miliseg");
+            log.info("El tiempo de coloringImage() es :"  + totalTiempo + " miliseg");
+            tiempoInicio = System.currentTimeMillis();
         juntaImagen();
+            totalTiempo = System.currentTimeMillis() - tiempoInicio;
+            System.out.println("El tiempo de juntaImagen() es : " + totalTiempo + " miliseg");
     }        
 
     private void coloringImage() throws IOException 
@@ -45,7 +55,7 @@ public class ColoringImage
             {  
                 //16777215 es el codigo RGB para transparente
                 //if (image.getRGB(i, j)!= 16777215) 
-                if (image.getRGB(i, j) < 0) 
+                if (image.getRGB(i, j) < 0)
                 {
                     image.setRGB(i, j, color);
                 }
