@@ -28,6 +28,8 @@ import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import tipos.Objeto;
 
@@ -59,6 +61,7 @@ public class LoadModel extends SimpleApplication implements ScreenController
     
     /* GUI NIFTY CODE */
      private Nifty nifty;
+     private NiftyJmeDisplay niftyDisplay;
     /* --- */
     
     public static void main(String[] args) {
@@ -142,7 +145,7 @@ public class LoadModel extends SimpleApplication implements ScreenController
         channel.setAnim("my_animation");
         
         /* GUI NIFTY CODE */        
-        NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
+        niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
         nifty = niftyDisplay.getNifty();
         nifty.fromXml("/gui/NiftyGui.xml", "start", this);
 
@@ -300,6 +303,8 @@ public class LoadModel extends SimpleApplication implements ScreenController
         } catch (IOException e) {        
             System.out.println("Error");            
         }
+        
+        //guiViewPort.addProcessor(niftyDisplay);
     }
     
     /** Custom Keybinding: Map named actions to inputs. */
@@ -341,8 +346,8 @@ public class LoadModel extends SimpleApplication implements ScreenController
                 changeEyes();
             }
             else if (name.equals("Capture") && !keyPressed) {          
-                    screenshot();
-                }
+                screenshot();          
+            }
             else if (name.equals("Special") && !keyPressed){
                 String trousersPath = "assets/Textures/Textures Boy/Photoshop/PantalonCortoChico.png";
                 String shirtPath = "assets/Textures/Textures Boy/Photoshop/CamisaLargaChico.png";
