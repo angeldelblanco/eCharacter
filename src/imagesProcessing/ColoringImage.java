@@ -22,6 +22,7 @@ public class ColoringImage
         this.imagePath = imagePath;
         this.color = color;
         
+        //Configuration of Logger
         BasicConfigurator.configure();
         
         switch(estado) {
