@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import tipos.Objeto;
 
@@ -13,13 +14,15 @@ public class ColoringImage
 {
     private int color;
     private String imagePath, imageColoredPath, destinationPath;
-    static Logger log = Logger.getLogger(ColoringImage.class.getName());
-                    
+    private final static Logger logger = Logger.getLogger(ColoringImage.class);
+    private long tiempoInicio, totalTiempo;               
     
     public ColoringImage(String imagePath, int color, Objeto estado) throws IOException
     {
         this.imagePath = imagePath;
         this.color = color;
+        
+        BasicConfigurator.configure();
         
         switch(estado) {
             case t_shirt:
@@ -31,20 +34,22 @@ public class ColoringImage
                 destinationPath = "assets/Textures/Textures Boy/TrouserFinal.png";
             break;
         }
-            long tiempoInicio = System.currentTimeMillis();
+        tiempoInicio = System.currentTimeMillis();
         coloringImage();
-            long totalTiempo = System.currentTimeMillis() - tiempoInicio;
-            //System.out.println("El tiempo de coloringImage() es : " + totalTiempo + " miliseg");
-            log.info("El tiempo de coloringImage() es :"  + totalTiempo + " miliseg");
-            tiempoInicio = System.currentTimeMillis();
+        totalTiempo = System.currentTimeMillis() - tiempoInicio;
+        logger.info("El tiempo de coloringImage() es :"  + totalTiempo + " miliseg");
+        
+        tiempoInicio = System.currentTimeMillis();
         juntaImagen();
-            totalTiempo = System.currentTimeMillis() - tiempoInicio;
-            System.out.println("El tiempo de juntaImagen() es : " + totalTiempo + " miliseg");
+        totalTiempo = System.currentTimeMillis() - tiempoInicio;
+        logger.info("El tiempo de juntaImagen() es : " + totalTiempo + " miliseg");
     }        
 
     private void coloringImage() throws IOException 
     {
         BufferedImage image = ImageIO.read(new File(imagePath)); 
+        String shadowPath = getShadowPath();
+        BufferedImage aux = ImageIO.read(new File(shadowPath)); 
         
         int w = image.getWidth();
         int h= image.getHeight();  

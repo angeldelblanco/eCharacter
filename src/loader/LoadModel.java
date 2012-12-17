@@ -28,10 +28,9 @@ import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import tipos.Objeto;
+import window_color.ColorChooser;
 
  
 /** Ejemplo de carga de modelos */
@@ -63,6 +62,9 @@ public class LoadModel extends SimpleApplication implements ScreenController
      private Nifty nifty;
      private NiftyJmeDisplay niftyDisplay;
     /* --- */
+     
+     
+     private Objeto estado;
     
     public static void main(String[] args) {
       LoadModel app = new LoadModel();
@@ -275,6 +277,34 @@ public class LoadModel extends SimpleApplication implements ScreenController
         }        
     }
     
+    public void changeColor(int color) throws IOException{
+        ColoringImage coloringImage;
+        Path file;
+        switch(estado) {
+            case t_shirt:
+                coloringImage = new  ColoringImage(arrayTShirt[indexTShirt%numTShirts], color, Objeto.t_shirt); 
+                tShirtsPath = "assets/Textures/Textures Boy/TShirtFinal.png";
+                break;
+            case trouser:
+                coloringImage = new  ColoringImage(arrayTrouser[indexTrouser%numTrousers], color, Objeto.trouser);
+                trousersPath = "assets/Textures/Textures Boy/TrouserFinal.png";
+                break;        
+        }
+        img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);
+        indexImage++; 
+        destinationPath = "assets/Textures/FinalTexture"+indexImage+".png"; 
+        img.fusionaImagenes(destinationPath); 
+        mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));     
+        chico.setMaterial(mat);
+        //Delete the file               
+        file = Paths.get(destinationPath);               
+        try {                    
+            Files.delete(file);                
+        } catch (IOException ex) {                    
+            System.out.println("Failed deleting file");                
+        }
+    }
+    
     public void screenshot()
     {
         int height = this.viewPort.getCamera().getHeight();               
@@ -452,62 +482,26 @@ public class LoadModel extends SimpleApplication implements ScreenController
         arrayEyes[3] = eyesPath4;
     }
     
-    public void changeColor(int color, Objeto estado) throws IOException{
-        ColoringImage coloringImage;
-        Path file;
-        switch(estado) {
-            case t_shirt:
-                coloringImage = new  ColoringImage(arrayTShirt[indexTShirt%numTShirts], color, Objeto.t_shirt); 
-                tShirtsPath = "assets/Textures/Textures Boy/TShirtFinal.png";
-                img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);
-                indexImage++; 
-                destinationPath = "assets/Textures/FinalTexture"+indexImage+".png"; 
-                img.fusionaImagenes(destinationPath); 
-                mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));     
-                chico.setMaterial(mat);
-                //Delete the file               
-                file = Paths.get(destinationPath);               
-                try {                    
-                    Files.delete(file);                
-                } catch (IOException ex) {                    
-                    System.out.println("Failed deleting file");                
-                }
-                break;
-            case trouser:
-                coloringImage = new  ColoringImage(arrayTrouser[indexTrouser%numTrousers], color, Objeto.trouser);
-                trousersPath = "assets/Textures/Textures Boy/TrouserFinal.png";
-                img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);
-                indexImage++; 
-                destinationPath = "assets/Textures/FinalTexture"+indexImage+".png"; 
-                img.fusionaImagenes(destinationPath); 
-                mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));     
-                chico.setMaterial(mat);
-                //Delete the file               
-                file = Paths.get(destinationPath);               
-                try {                    
-                    Files.delete(file);                
-                } catch (IOException ex) {                    
-                    System.out.println("Failed deleting file");                
-                }
-                break;         
-        }
-    }
-
-    public void bind(Nifty nifty, Screen screen) {
-       
-    }
-
-    public void onStartScreen() {
-        
-    }
-
-    public void onEndScreen() {
-        
+    public void showWindowChangeColorTShirt() throws InterruptedException
+    {
+        estado = Objeto.t_shirt;
+        ColorChooser window = new ColorChooser(this, guiViewPort); 
+        guiViewPort.setEnabled(false);
     }
     
-    public void changeColor() {
+    public void showWindowChangeColorTrouser() throws InterruptedException
+    {
+        estado = Objeto.trouser;
+        ColorChooser window = new ColorChooser(this, guiViewPort); 
+        guiViewPort.setEnabled(false);
     }
-    
-    public void changeType() {
-    }
+
+    public void bind(Nifty nifty, Screen screen) 
+    {}
+
+    public void onStartScreen() 
+    {}
+
+    public void onEndScreen()
+    {}
 }

@@ -56,8 +56,9 @@
                     </panel>
                     <!-- Option Buttons -->
                     <panel id="panel_option_tshirt_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
-                        <control name="button" label="Change" id="button_tshirt_change" align="center" valign="center">
-                            <interact onClick="changeTShirt()"/>
+                        <control name="button" label="Change color" id="button_tshirt_change" align="center" valign="center">
+                            <!-- <interact onClick="changeTShirt()"/> -->
+                            <interact onClick="showWindowChangeColorTShirt()"/>
                         </control>
                     </panel>
                 </panel>

@@ -1,6 +1,6 @@
 package window_color;
 
-import gui.Gui;
+import com.jme3.renderer.ViewPort;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -14,17 +14,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import loader.LoadModel;
 
 public class ColorChooser extends JFrame implements ChangeListener, ActionListener
 {
     
     private JColorChooser chooserColor;
     private JButton buttonOk, buttonCancel;
-    private Gui gui;
+    private LoadModel gui;
+    public ViewPort guiViewPort;
     
-    public ColorChooser(Gui aThis)
+    public ColorChooser(LoadModel gui, ViewPort guiViewPort)
     {
-        gui = aThis;
+        this.gui = gui;
+        this.guiViewPort = guiViewPort;
         
         setEnabled(true);
         setVisible(true);
@@ -55,16 +58,17 @@ public class ColorChooser extends JFrame implements ChangeListener, ActionListen
     {
         if(e.getActionCommand().equals("ok"))
         {
-            setVisible(false);
-            try {                  
+            this.dispose();
+            try {
                 gui.changeColor(chooserColor.getColor().getRGB());
+                guiViewPort.setEnabled(true);
             } catch (IOException ex) {
                 Logger.getLogger(ColorChooser.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
         if(e.getActionCommand().equals("cancel"))
         {
-            setVisible(false);                       
+            this.dispose();                     
         } 
     }
 
