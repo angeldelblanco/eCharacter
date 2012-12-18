@@ -542,8 +542,7 @@ public class Gui extends SimpleApplication{
                 }
 
                 model.rotate(1.5f, 0.0f, 0.0f);
-                model.setLocalTranslation(-0.5f, -2.5f, 0.0f);
-                rootNode.attachChild(model);
+                model.setLocalTranslation(0.0f, -3.0f, 0.0f);                
 
                 control = model.getControl(AnimControl.class);
                 channel = control.createChannel();
@@ -551,7 +550,9 @@ public class Gui extends SimpleApplication{
                 
                 if (age == Age.Young){
                     //Escalar el modelo a más pequeño
-                }        
+                    model.scale(0.65f, 0.65f, 0.65f);
+                } 
+                rootNode.attachChild(model);
                 break;
             case Female:
                 //Cargar el modelo de la mujer
