@@ -78,11 +78,39 @@ public class ColoringImage
         
         String shadowPath = getShadowPath();
         System.out.println(shadowPath);
+		Color shadowColor;
+        Color baseColor = new Color(color);
+        double red;
+        double green;
+        double blue;
+        int alpha;
         
         BufferedImage shadow = ImageIO.read(new File(shadowPath));
         
         int w = image.getWidth();
         int h= image.getHeight();
+		for (int i=0;i<w;i++)
+        {
+            for (int j=0;j<h;j++)
+            {
+            	if((shadow.getRGB(i,j)&0xFF000000) != 0){
+            		shadowColor = new Color(shadow.getRGB(i, j));
+            		red = baseColor.getRed() - shadowColor.getRed()*0.5;
+            		green = baseColor.getGreen() - shadowColor.getGreen()*0.5;
+            		blue = baseColor.getBlue() - shadowColor.getBlue()*0.5;
+					//Arreglar con maximos y minimos
+            		if(red < 0) red = 0;
+            		if(red > 255) red = 255;
+            		if(green < 0) green = 0;
+            		if(green > 255) green = 255;
+            		if(blue < 0) blue = 0;
+            		if(blue > 255) blue = 255;
+            		alpha = ((shadow.getRGB(i,j)&0xFF000000));
+					//Quitar el new Color, trabajar con ints
+            		shadow.setRGB(i, j, new Color((int)red,(int)green,(int)blue).getRGB() + alpha);
+            	}
+            }
+        }
         
         ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
         images.add(image);
@@ -109,6 +137,8 @@ public class ColoringImage
     {
         int length = imagePath.length();
         
+		//Arreglar chapuza, idea: poner de nombre a los archivos camisetaazul.sombras
+		//y coger el substring hasta el punto
         String aux = imagePath.substring(0, length-15);
         aux = aux + "SombrasChico.png";
         
