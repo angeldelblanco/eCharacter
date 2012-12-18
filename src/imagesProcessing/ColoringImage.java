@@ -16,7 +16,8 @@ public class ColoringImage
     private int color;
     private String imagePath, imageColoredPath, destinationPath;
     private final static Logger logger = Logger.getLogger(ColoringImage.class);
-    private long tiempoInicio, totalTiempo;               
+    private long tiempoInicio, totalTiempo;         
+    private BufferedImage shadow, image;
     
     public ColoringImage(String imagePath, int color, Objeto estado) throws IOException
     {
@@ -49,9 +50,16 @@ public class ColoringImage
 
     private void coloringImage() throws IOException 
     {
-        BufferedImage image = ImageIO.read(new File(imagePath)); 
+        image = ImageIO.read(new File(imagePath)); 
         String shadowPath = getShadowPath();
-        BufferedImage aux = ImageIO.read(new File(shadowPath)); 
+        shadow = ImageIO.read(new File(shadowPath));
+        
+        Color shadowColor;
+        Color baseColor = new Color(color);
+        double red;
+        double green;
+        double blue;
+        int alpha;
         
         int w = image.getWidth();
         int h= image.getHeight();  
@@ -66,39 +74,12 @@ public class ColoringImage
                 {
                     image.setRGB(i, j, color);
                 }
-            }
-        }
-        
-        ImageIO.write(image, "png", new File(imageColoredPath));
-    }
-    
-    private void juntaImagen() throws IOException 
-    {
-        BufferedImage image = ImageIO.read(new File(imageColoredPath));
-        
-        String shadowPath = getShadowPath();
-        System.out.println(shadowPath);
-		Color shadowColor;
-        Color baseColor = new Color(color);
-        double red;
-        double green;
-        double blue;
-        int alpha;
-        
-        BufferedImage shadow = ImageIO.read(new File(shadowPath));
-        
-        int w = image.getWidth();
-        int h= image.getHeight();
-		for (int i=0;i<w;i++)
-        {
-            for (int j=0;j<h;j++)
-            {
-            	if((shadow.getRGB(i,j)&0xFF000000) != 0){
+                if((shadow.getRGB(i,j)&0xFF000000) != 0){
             		shadowColor = new Color(shadow.getRGB(i, j));
             		red = baseColor.getRed() - shadowColor.getRed()*0.5;
             		green = baseColor.getGreen() - shadowColor.getGreen()*0.5;
             		blue = baseColor.getBlue() - shadowColor.getBlue()*0.5;
-					//Arreglar con maximos y minimos
+                        //Arreglar con maximos y minimos
             		if(red < 0) red = 0;
             		if(red > 255) red = 255;
             		if(green < 0) green = 0;
@@ -106,11 +87,19 @@ public class ColoringImage
             		if(blue < 0) blue = 0;
             		if(blue > 255) blue = 255;
             		alpha = ((shadow.getRGB(i,j)&0xFF000000));
-					//Quitar el new Color, trabajar con ints
+                        //Quitar el new Color, trabajar con ints
             		shadow.setRGB(i, j, new Color((int)red,(int)green,(int)blue).getRGB() + alpha);
             	}
             }
         }
+        
+        ImageIO.write(image, "png", new File(imageColoredPath));
+    }
+    
+    private void juntaImagen() throws IOException 
+    {     
+        int w = image.getWidth();
+        int h= image.getHeight();
         
         ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
         images.add(image);
@@ -137,8 +126,8 @@ public class ColoringImage
     {
         int length = imagePath.length();
         
-		//Arreglar chapuza, idea: poner de nombre a los archivos camisetaazul.sombras
-		//y coger el substring hasta el punto
+        //Arreglar chapuza, idea: poner de nombre a los archivos camisetaazul.sombras
+        //y coger el substring hasta el punto
         String aux = imagePath.substring(0, length-15);
         aux = aux + "SombrasChico.png";
         
@@ -147,6 +136,6 @@ public class ColoringImage
     
     public static void main(String[] args) throws IOException 
     {
-        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/PhotoShop/CamisetaLargaSolidoChico.png", -3394561, Objeto.t_shirt);
+        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/PhotoShop/CamisaLargaSolidoChico.png", -3394561, Objeto.t_shirt);
     } 
 }
