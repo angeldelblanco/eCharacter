@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import tipos.Objeto;
 
 public class ColoringImage 
@@ -18,23 +19,29 @@ public class ColoringImage
     private final static Logger logger = Logger.getLogger(ColoringImage.class);
     private long tiempoInicio, totalTiempo;         
     private BufferedImage shadow, image;
+    private String pathSex;
     
-    public ColoringImage(String imagePath, int color, Objeto estado) throws IOException
+    public ColoringImage(String imagePath, int color, Objeto estado, String pathSex) throws IOException
     {
         this.imagePath = imagePath;
         this.color = color;        
+        this.pathSex = pathSex;
  
         //Configuration of Logger
         BasicConfigurator.configure();
         
         switch(estado) {
             case t_shirt:
-                imageColoredPath = "assets/Textures/Textures Boy/TShirtSombreada.png";
-                destinationPath = "assets/Textures/Textures Boy/TShirtFinal.png";
+                imageColoredPath = "assets/Textures/Textures "+ this.pathSex + "/TShirtSombreada.png";
+                destinationPath = "assets/Textures/Textures "+ this.pathSex + "/TShirtFinal.png";
             break;
             case trouser:
-                imageColoredPath = "assets/Textures/Textures Boy/TrouserSombreada.png";
-                destinationPath = "assets/Textures/Textures Boy/TrouserFinal.png";
+                imageColoredPath = "assets/Textures/Textures "+ this.pathSex + "/TrouserSombreada.png";
+                destinationPath = "assets/Textures/Textures "+ this.pathSex + "/TrouserFinal.png";
+            break;
+            case shoes:
+                imageColoredPath = "assets/Textures/Textures "+ this.pathSex + "/ShoesSombreada.png";
+                destinationPath = "assets/Textures/Textures "+ this.pathSex + "/ShoesFinal.png";
             break;
         }
         tiempoInicio = System.currentTimeMillis();
@@ -128,14 +135,19 @@ public class ColoringImage
         
         //Arreglar chapuza, idea: poner de nombre a los archivos camisetaazul.sombras
         //y coger el substring hasta el punto
-        String aux = imagePath.substring(0, length-15);
-        aux = aux + "SombrasChico.png";
-        
+        String aux = "";
+        if (pathSex.equals("Boy")){
+            aux = imagePath.substring(0, length-13);
+        }
+        else if (pathSex.equals("Girl")){
+            aux = imagePath.substring(0, length-14);
+        }
+        aux = aux + "Sombras"+ pathSex +".png";
         return aux;
     }
     
     public static void main(String[] args) throws IOException 
     {
-        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/PhotoShop/CamisaLargaSolidoChico.png", -3394561, Objeto.t_shirt);
+        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/ZapatosSolidoBoy.png", -3394561, Objeto.shoes, "Boy");
     } 
 }

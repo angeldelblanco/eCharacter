@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty.xsd http://nifty-gui.sourceforge.net/nifty.xsd">
+  <useStyles filename="nifty-default-styles.xml" />
+  <useControls filename="nifty-default-controls.xml" />
+  
+  <!-- First Screen-->
+  <screen id="start" controller="gui_nifty.StartScreen">
+    <layer id="background" childLayout="center">
+      <image filename="Interface/start-background.jpg"></image>
+    </layer>
+    <layer id="foreground" childLayout="vertical">
+      <panel id="panel_mid" height="30%" width="75%" align="center" childLayout="center">       
+        <text text="Bienvenido al configurador de personajes para eAdventure. Con este configurador de personajes podrás crear tu avatar para jugar a los juegos de la plataforma eAdventure." 
+        font="Interface/Fonts/Default.fnt" width="100%" height="100%" wrap="true" />
+      </panel>
+      <panel id="panel_bottom" height="30%" width="75%" align="center" childLayout="horizontal">  
+        <panel id="panel_bottom_left" height="50%" width="50%" valign="center" childLayout="center">  
+          <control name="button" label="Start" id="StartButton" align="center" valign="center" visibleToMouse="true"> 
+            <interact onClick="startGame(secondScreen)" />
+          </control>
+        </panel>
+        <panel id="panel_bottom_right" height="50%" width="50%" valign="center" childLayout="center">  
+          <control name="button" label="Quit" id="QuitButton" align="center" valign="center"  visibleToMouse="true" > 
+            <interact onClick="quitGame()"/>
+          </control>
+        </panel>
+      </panel>
+    </layer>
+  </screen>
+  <!-- Second Screen-->
+  <screen id="secondScreen" controller="gui_nifty.StartScreen">
+    <layer id="background" childLayout="center">
+        <image filename="Interface/second-background.jpg"></image>
+    </layer>
+    <layer id="foreground" childLayout="vertical">
+        <panel id="panel_text" height="10%" width="75%" align="center" childLayout="center">       
+            <text text="Selecciona el modelo que desees: Hombre o mujer." 
+            font="Interface/Fonts/Default.fnt" width="100%" height="100%" wrap="true" />
+        </panel>
+        <panel id="panel_images" height="60%" width="75%" align="center" childLayout="horizontal">           
+            <panel id="panel_man" height="100%" width="50%" align="center" childLayout="center">       
+                <image filename="Interface/hombre.jpg" height="70%" width="60%"></image>
+            </panel>
+            <panel id="panel_woman" height="100%" width="50%" align="center" childLayout="center">       
+                <image filename="Interface/mujer.jpg" height="70%" width="60%"></image>
+            </panel>
+        </panel>  
+        <panel id="panel_bottom" height="10%" width="75%" align="center" childLayout="horizontal">  
+            <panel id="panel_bottom_left" height="50%" width="50%" valign="center" childLayout="center">  
+                <control name="button" label="Man" id="ManButton" align="center" valign="center" visibleToMouse="true"> 
+                    <interact onClick="manSelected(thirdScreen)" />
+                </control>
+            </panel>
+            <panel id="panel_bottom_right" height="50%" width="50%" valign="center" childLayout="center">  
+                <control name="button" label="Woman" id="WomanButton" align="center" valign="center"  visibleToMouse="true" > 
+                    <interact onClick="womanSelected(thirdScreen)"/>
+                </control>
+            </panel>
+      </panel>
+    </layer>
+  </screen>
+  
+  <!-- Third Screen-->
+  <screen id="thirdScreen" controller="gui_nifty.StartScreen">
+    <layer id="background" childLayout="center">
+        <image filename="Interface/second-background.jpg"></image>
+    </layer>
+    <layer id="foreground" childLayout="vertical">
+        <panel id="panel_text" height="10%" width="75%" align="center" childLayout="center">       
+            <text text="Selecciona el modelo que desees: Adult or Young." 
+            font="Interface/Fonts/Default.fnt" width="100%" height="100%" wrap="true" />
+        </panel>
+        <panel id="panel_images" height="60%" width="75%" align="center" childLayout="horizontal">           
+            <panel id="panel_man" height="100%" width="50%" align="center" childLayout="center">       
+                <image filename="Interface/hombre.jpg" height="70%" width="60%"></image>
+            </panel>
+            <panel id="panel_woman" height="100%" width="50%" align="center" childLayout="center">       
+                <image filename="Interface/niño.jpg" height="70%" width="60%"></image>
+            </panel>
+        </panel>  
+        <panel id="panel_bottom" height="10%" width="75%" align="center" childLayout="horizontal">  
+            <panel id="panel_bottom_left" height="50%" width="50%" valign="center" childLayout="center">  
+                <control name="button" label="Adult" id="AdultButton" align="center" valign="center" visibleToMouse="true"> 
+                    <interact onClick="adultSelected(fourthScreen)" />
+                </control>
+            </panel>
+            <panel id="panel_bottom_right" height="50%" width="50%" valign="center" childLayout="center">  
+                <control name="button" label="Young" id="YoungButton" align="center" valign="center"  visibleToMouse="true" > 
+                    <interact onClick="youngSelected(fourthScreen)"/>
+                </control>
+            </panel>
+      </panel>
+    </layer>
+  </screen>
+  
+  <!-- Fourth screen -->
+  <screen id="fourthScreen" controller="gui_nifty.StartScreen">
+        <layer id="background" backgroundColor="#0000" childLayout="vertical">
+            <!-- Option Panel -->    
+        </layer>
+        <layer id="foreground" backgroundColor="#0000" childLayout="horizontal">
+            <panel id="panel_total" height="100%" width="100%" childLayout="Vertical">
+                <!-- Option Panel -->
+                <panel id="panel_options" height="15%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+                    <!-- Change Skin Options Panel -->
+                    <panel id="panel_option_skin" height="100%" width="20%" childLayout="vertical">  
+                        <!-- Caption -->
+                        <panel id="panel_option_skin_caption" height="50%" width="100%" childLayout="vertical">
+                            <text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                        </panel>
+                        <!-- Option Buttons -->
+                        <panel id="panel_option_skin_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
+                            <control name="button" label="Change" id="button_skin_change" align="center" valign="center">
+                                <interact onClick="changeSkin()"/>
+                            </control>
+                        </panel>
+                    </panel>
+                    <!-- Change Eyes Options Panel -->
+                    <panel id="panel_option_eyes" height="100%" width="20%" childLayout="vertical">  
+                        <!-- Caption -->
+                        <panel id="panel_option_eyes_caption" height="50%" width="100%" childLayout="vertical">
+                            <text text="Eyes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                        </panel>
+                        <!-- Option Buttons -->
+                        <panel id="panel_option_eyes_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
+                            <control name="button" label="Change" id="button_eyes_change" align="center" valign="center">
+                                <interact onClick="changeEyes()"/>
+                            </control>
+                        </panel>
+                    </panel>
+                    <!-- Change T-Shirt Options Panel -->
+                    <panel id="panel_option_tshirt" height="100%" width="20%" childLayout="vertical">  
+                        <!-- Caption -->
+                        <panel id="panel_option_tshirt_caption" height="30%" width="100%" childLayout="vertical">
+                            <text text="T-Shirt" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                        </panel>
+                        <!-- Option Buttons -->
+                        <panel id="panel_option_tshirt_buttons" height="70%" width="100%" childLayout="vertical" visibleToMouse="true">
+                            <control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+                                <interact onClick="changeTShirt()"/>
+                            </control>
+                            <control name="button" label="Change color" id="button_tshirt_change_Color" align="center" valign="center">
+                                <interact onClick="showWindowChangeColorTShirt()"/>
+                            </control>
+                        </panel>
+                    </panel>
+                    <!-- Change Trousers Options Panel -->
+                    <panel id="panel_option_trousers" height="100%" width="20%" childLayout="vertical">  
+                        <!-- Caption -->
+                        <panel id="panel_option_trousers_caption" height="30%" width="100%" childLayout="vertical">
+                            <text text="Trousers" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                        </panel>
+                        <!-- Option Buttons -->
+                        <panel id="panel_option_trousers_buttons" height="70%" width="100%" childLayout="vertical" visibleToMouse="true">
+                            <control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+                                <interact onClick="changeTrousers()"/>
+                            </control>
+                            <control name="button" label="Change color" id="button_trousers_change_color" align="center" valign="center">
+                                <interact onClick="showWindowChangeColorTrouser()"/>
+                            </control>
+                        </panel>
+                    </panel>
+                    <!-- Change Shoes Options Panel -->
+                    <panel id="panel_option_shoes" height="100%" width="20%" childLayout="vertical">  
+                        <!-- Caption -->
+                        <panel id="panel_option_shoes_caption" height="50%" width="100%" childLayout="vertical">
+                            <text text="Shoes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                        </panel>
+                        <!-- Option Buttons -->
+                        <panel id="panel_option_shoes_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
+                            <control name="button" label="Change color" id="button_shoes_change_color" align="center" valign="center">
+                                <interact onClick="showWindowChangeColorShoes()"/>
+                            </control>
+                        </panel>
+                    </panel>
+                </panel>
+                <!-- ScreenShot Panel -->
+                <panel id="panel_screenshot" height="10%" width="20%" childLayout="vertical" backgroundColor="#A9A9A9">  
+                    <!-- Caption -->
+                    <panel id="panel_screenshot_caption" height="50%" width="100%" childLayout="vertical">
+                        <text text="Screenshot" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+                    </panel>
+                    <!-- Button -->
+                    <panel id="panel__screenshot_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">                
+                        <control name="button" label="Take" id="button_screenshotr" align="center" valign="center">
+                            <interact onClick="screenshot()"/>
+                        </control>
+                    </panel>
+                </panel>
+            </panel>
+        </layer>
+    </screen>
+</nifty>
