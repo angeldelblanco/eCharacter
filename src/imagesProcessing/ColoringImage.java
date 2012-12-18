@@ -1,5 +1,6 @@
 package imagesProcessing;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,8 +21,8 @@ public class ColoringImage
     public ColoringImage(String imagePath, int color, Objeto estado) throws IOException
     {
         this.imagePath = imagePath;
-        this.color = color;
-        
+        this.color = color;        
+ 
         //Configuration of Logger
         BasicConfigurator.configure();
         
