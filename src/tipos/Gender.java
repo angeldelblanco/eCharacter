@@ -1,5 +1,5 @@
 package tipos;
 
-public enum Sex {
+public enum Gender {
     Male, Female
 }

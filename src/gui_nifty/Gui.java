@@ -29,8 +29,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.imageio.ImageIO;
 import tipos.Age;
-import tipos.Objeto;
-import tipos.Sex;
+import tipos.Gender;
+import tipos.TypeObject;
 import window_color.ColorChooser;
 
 public class Gui extends SimpleApplication{
@@ -59,9 +59,9 @@ public class Gui extends SimpleApplication{
     private int numTShirts = 5;
     private int numEyes = 4;
     
-    private Sex sex;
+    private Gender gender;
     private Age age;
-    private Objeto estado;
+    private TypeObject typeObject;
     private String pathSex="";
     
     public static void main(String[] args) {
@@ -281,17 +281,17 @@ public class Gui extends SimpleApplication{
     public void changeColor(int color) throws IOException{
         ColoringImage coloringImage;
         Path file;
-        switch(estado) {
+        switch(typeObject) {
             case t_shirt:
-                coloringImage = new  ColoringImage(arrayTShirt[indexTShirt%numTShirts], color, Objeto.t_shirt, pathSex); 
+                coloringImage = new  ColoringImage(arrayTShirt[indexTShirt%numTShirts], color, TypeObject.t_shirt, pathSex); 
                 tShirtsPath = "assets/Textures/Textures "+ pathSex + "/TShirtFinal.png";
                 break;
             case trouser:
-                coloringImage = new  ColoringImage(arrayTrouser[indexTrouser%numTrousers], color, Objeto.trouser, pathSex);
+                coloringImage = new  ColoringImage(arrayTrouser[indexTrouser%numTrousers], color, TypeObject.trouser, pathSex);
                 trousersPath = "assets/Textures/Textures "+ pathSex + "/TrouserFinal.png";
                 break;      
             case shoes:
-                coloringImage = new  ColoringImage(arrayShoes[indexShoes%numShoes], color, Objeto.shoes, pathSex);
+                coloringImage = new  ColoringImage(arrayShoes[indexShoes%numShoes], color, TypeObject.shoes, pathSex);
                 shoesPath = "assets/Textures/Textures "+ pathSex + "/ShoesFinal.png";
                 break; 
         }
@@ -386,7 +386,7 @@ public class Gui extends SimpleApplication{
     
     private void initPaths() //Cambiar bien los paths para que funcione con la chica
     {
-        switch (sex){
+        switch (gender){
             case Male:
                 pathSex = "Boy";
                 break;
@@ -465,33 +465,33 @@ public class Gui extends SimpleApplication{
     
     public void showWindowChangeColorTShirt() throws InterruptedException
     {
-        estado = Objeto.t_shirt;
+        typeObject = TypeObject.t_shirt;
         ColorChooser window = new ColorChooser(this, guiViewPort); 
         guiViewPort.setEnabled(false);
     }
     
     public void showWindowChangeColorTrouser() throws InterruptedException
     {
-        estado = Objeto.trouser;
+        typeObject = TypeObject.trouser;
         ColorChooser window = new ColorChooser(this, guiViewPort); 
         guiViewPort.setEnabled(false);
     }
     
     public void showWindowChangeColorShoes() throws InterruptedException
     {
-        estado = Objeto.shoes;
+        typeObject = TypeObject.shoes;
         ColorChooser window = new ColorChooser(this, guiViewPort); 
         guiViewPort.setEnabled(false);
     }
     
-    public Sex getSex() 
+    public Gender getGender() 
     {
-        return sex;
+        return gender;
     }
 
-    public void setSex(Sex sex) 
+    public void setGender(Gender gender) 
     {
-        this.sex = sex;
+        this.gender = gender;
     }
 
     public Age getAge() 
@@ -505,7 +505,7 @@ public class Gui extends SimpleApplication{
     }
     
     public void refreshModel(){ //HACER
-        switch(sex) {
+        switch(gender) {
             case Male:
                 initPaths();
                 DirectionalLight dl = new DirectionalLight();

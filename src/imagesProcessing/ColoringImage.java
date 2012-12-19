@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import tipos.Objeto;
+import tipos.TypeObject;
 
 public class ColoringImage 
 {
@@ -21,7 +21,7 @@ public class ColoringImage
     private BufferedImage shadow, image;
     private String pathSex;
     
-    public ColoringImage(String imagePath, int color, Objeto estado, String pathSex) throws IOException
+    public ColoringImage(String imagePath, int color, TypeObject estado, String pathSex) throws IOException
     {
         this.imagePath = imagePath;
         this.color = color;        
@@ -148,6 +148,6 @@ public class ColoringImage
     
     public static void main(String[] args) throws IOException 
     {
-        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/ZapatosSolidoBoy.png", -3394561, Objeto.shoes, "Boy");
+        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/ZapatosSolidoBoy.png", -3394561, TypeObject.shoes, "Boy");
     } 
 }

@@ -7,7 +7,7 @@ import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import tipos.Age;
-import tipos.Sex;
+import tipos.Gender;
 
 public class StartScreen extends AbstractAppState implements ScreenController {
     
@@ -44,12 +44,12 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void manSelected(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        gui.setSex(Sex.Male);
+        gui.setGender(Gender.Male);
     }
     
     public void womanSelected(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        gui.setSex(Sex.Female);
+        gui.setGender(Gender.Female);
     }
     
     public void adultSelected(String nextScreen) {

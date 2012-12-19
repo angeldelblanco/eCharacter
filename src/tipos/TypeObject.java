@@ -1,6 +1,6 @@
 package tipos;
 
 
-public enum Objeto {
+public enum TypeObject {
    eyes, t_shirt, trouser, shoes
 }
