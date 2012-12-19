@@ -27,7 +27,17 @@ import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import tipos.Age;
 import tipos.Gender;
 import tipos.TypeObject;
@@ -454,8 +464,8 @@ public class Gui extends SimpleApplication{
         //Paths of eyes
         String eyesPath1 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosAzul"+ pathSex + ".png";
         String eyesPath2 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosMarron"+ pathSex + ".png";
-        String eyesPath3 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosNegros"+ pathSex + ".png";
-        String eyesPath4 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosVerdes"+ pathSex + ".png";
+        String eyesPath3 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosNegro"+ pathSex + ".png";
+        String eyesPath4 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosVerde"+ pathSex + ".png";
         arrayEyes = new String[numEyes];
         arrayEyes[0] = eyesPath1;
         arrayEyes[1] = eyesPath2;
@@ -557,6 +567,54 @@ public class Gui extends SimpleApplication{
             case Female:
                 //Cargar el modelo de la mujer
                 break;      
+        }
+    }
+    
+    private void readXML(String file)
+    {
+        try {
+            //Assing the file to the DOM doc.
+            File xmlFile = new File(file);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(xmlFile);
+            doc.getDocumentElement().normalize();
+            
+            //Read the doc.
+            //Read all nodes with name man
+            NodeList nList = doc.getElementsByTagName("man");
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+               Node nNode = nList.item(temp);
+               if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                  //Here, we have the element man 
+                  Element eElement = (Element) nNode;
+                  NodeList nList2 = eElement.getElementsByTagName("objects").item(0).getChildNodes();
+                  Node nNode2 = (Node) nList2.item(0);
+                  if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
+                    //In eElement2, we have the node objects
+                    Element eElement2 = (Element) nNode2;
+                    NodeList nList3 = eElement2.getElementsByTagName("skin");
+                    int numSkin;
+                    for (numSkin = 0; numSkin < nList3.getLength(); numSkin++){
+                        Node nNode3 = nList3.item(numSkin);
+                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
+                            //In element3, we have the node skin
+                            Element eElement3 = (Element) nNode3;
+                            NodeList nList4 = eElement3.getElementsByTagName("path").item(0).getChildNodes();
+                            Node nValue = (Node) nList4.item(0);
+                            String pathSkinReaded = nValue.getNodeValue();
+                            System.out.println("Skin "+numSkin+": " + pathSkinReaded);
+                        }
+                    }
+                  }
+                  /*System.out.println("First Name : " + getTagValue("firstname", eElement));
+                  System.out.println("Last Name : " + getTagValue("lastname", eElement));
+                  System.out.println("Nick Name : " + getTagValue("nickname", eElement));
+                  System.out.println("Salary : " + getTagValue("salary", eElement));*/
+               }
+            }
+        } catch (Exception e) {
+              e.printStackTrace();
         }
     }
 }

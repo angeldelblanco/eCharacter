@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.xml.DOMConfigurator;
 import tipos.TypeObject;
 
 public class ColoringImage 
@@ -28,7 +29,8 @@ public class ColoringImage
         this.pathSex = pathSex;
  
         //Configuration of Logger
-        BasicConfigurator.configure();
+        DOMConfigurator.configure("assets/Log/configuration_log.xml");
+        //BasicConfigurator.configure();
         
         switch(estado) {
             case t_shirt:
