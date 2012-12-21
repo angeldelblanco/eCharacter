@@ -1,0 +1,6 @@
+[Time: 2012-12-20 23:32:25,609] [Thread: AWT-EventQueue-0] [Level: INFO]El tiempo de coloringImage() es :972 miliseg
+[Time: 2012-12-20 23:32:25,842] [Thread: AWT-EventQueue-0] [Level: INFO]El tiempo de juntaImagen() es : 232 miliseg
+[Time: 2012-12-20 23:32:38,300] [Thread: AWT-EventQueue-0] [Level: INFO]El tiempo de coloringImage() es :748 miliseg
+[Time: 2012-12-20 23:32:38,486] [Thread: AWT-EventQueue-0] [Level: INFO]El tiempo de juntaImagen() es : 185 miliseg
+[Time: 2012-12-20 23:32:51,669] [Thread: AWT-EventQueue-0] [Level: INFO]El tiempo de coloringImage() es :669 miliseg
+[Time: 2012-12-20 23:32:51,814] [Thread: AWT-EventQueue-0] [Level: INFO]El tiempo de juntaImagen() es : 145 miliseg

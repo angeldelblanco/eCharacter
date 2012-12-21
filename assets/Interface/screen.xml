@@ -40,10 +40,10 @@
         </panel>
         <panel id="panel_images" height="60%" width="75%" align="center" childLayout="horizontal">           
             <panel id="panel_man" height="100%" width="50%" align="center" childLayout="center">       
-                <image filename="Interface/hombre.jpg" height="70%" width="60%"></image>
+                <image filename="Interface/man.png" height="70%" width="35%"></image>
             </panel>
             <panel id="panel_woman" height="100%" width="50%" align="center" childLayout="center">       
-                <image filename="Interface/mujer.jpg" height="70%" width="60%"></image>
+                <image filename="Interface/woman.png" height="85%" width="70%"></image>
             </panel>
         </panel>  
         <panel id="panel_bottom" height="10%" width="75%" align="center" childLayout="horizontal">  
@@ -73,10 +73,10 @@
         </panel>
         <panel id="panel_images" height="60%" width="75%" align="center" childLayout="horizontal">           
             <panel id="panel_man" height="100%" width="50%" align="center" childLayout="center">       
-                <image filename="Interface/hombre.jpg" height="70%" width="60%"></image>
+                <image filename="Interface/man.png" height="70%" width="35%"></image>
             </panel>
             <panel id="panel_woman" height="100%" width="50%" align="center" childLayout="center">       
-                <image filename="Interface/niño.jpg" height="70%" width="60%"></image>
+                <image filename="Interface/children.png" height="70%" width="70%"></image>
             </panel>
         </panel>  
         <panel id="panel_bottom" height="10%" width="75%" align="center" childLayout="horizontal">  
