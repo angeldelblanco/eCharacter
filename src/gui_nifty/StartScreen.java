@@ -55,13 +55,13 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void adultSelected(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
         gui.setAge(Age.Adult);
-        gui.refreshModel();
+        gui.loadModel();
     }
     
     public void youngSelected(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
         gui.setAge(Age.Young);
-        gui.refreshModel();
+        gui.loadModel();
     }
     
     public void changeEyes()

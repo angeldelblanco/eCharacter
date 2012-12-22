@@ -75,7 +75,7 @@
             <panel id="panel_man" height="100%" width="50%" align="center" childLayout="center">       
                 <image filename="Interface/man.png" height="70%" width="35%"></image>
             </panel>
-            <panel id="panel_woman" height="100%" width="50%" align="center" childLayout="center">       
+            <panel id="panel_children" height="100%" width="50%" align="center" childLayout="center">       
                 <image filename="Interface/children.png" height="70%" width="70%"></image>
             </panel>
         </panel>  

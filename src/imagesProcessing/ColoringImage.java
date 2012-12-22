@@ -7,26 +7,23 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.xml.DOMConfigurator;
 import tipos.TypeObject;
 
 public class ColoringImage 
 {
     private int color;
-    private String imagePath, imageColoredPath, destinationPath;
+    private String imagePath, shadowPath, imageColoredPath, destinationPath;
     private final static Logger logger = Logger.getLogger(ColoringImage.class);
     private long tiempoInicio, totalTiempo;         
     private BufferedImage shadow, image;
-    private String pathSex;
     
-    public ColoringImage(String imagePath, int color, TypeObject estado, String pathSex) throws IOException
+    public ColoringImage(String imagePath, String shadowPath, int color, TypeObject estado) throws IOException
     {
         this.imagePath = imagePath;
-        this.color = color;        
-        this.pathSex = pathSex;
+        this.shadowPath = shadowPath;
+        this.color = color;       
  
         //Configuration of Logger
         DOMConfigurator.configure("assets/Log/configuration_log.xml");
@@ -34,33 +31,25 @@ public class ColoringImage
         
         switch(estado) {
             case t_shirt:
-                imageColoredPath = "assets/Textures/Textures "+ this.pathSex + "/TShirtSombreada.png";
-                destinationPath = "assets/Textures/Textures "+ this.pathSex + "/TShirtFinal.png";
+                imageColoredPath = "assets/Textures/TShirtSombreada.png";
+                destinationPath = "assets/Textures/TShirtFinal.png";
             break;
             case trouser:
-                imageColoredPath = "assets/Textures/Textures "+ this.pathSex + "/TrouserSombreada.png";
-                destinationPath = "assets/Textures/Textures "+ this.pathSex + "/TrouserFinal.png";
+                imageColoredPath = "assets/Textures/TrouserSombreada.png";
+                destinationPath = "assets/Textures/TrouserFinal.png";
             break;
             case shoes:
-                imageColoredPath = "assets/Textures/Textures "+ this.pathSex + "/ShoesSombreada.png";
-                destinationPath = "assets/Textures/Textures "+ this.pathSex + "/ShoesFinal.png";
+                imageColoredPath = "assets/Textures/ShoesSombreada.png";
+                destinationPath = "assets/Textures/ShoesFinal.png";
             break;
         }
-        tiempoInicio = System.currentTimeMillis();
-        coloringImage();
-        totalTiempo = System.currentTimeMillis() - tiempoInicio;
-        logger.info("El tiempo de coloringImage() es :"  + totalTiempo + " miliseg");
-        
-        tiempoInicio = System.currentTimeMillis();
-        juntaImagen();
-        totalTiempo = System.currentTimeMillis() - tiempoInicio;
-        logger.info("El tiempo de juntaImagen() es : " + totalTiempo + " miliseg");
     }        
 
-    private void coloringImage() throws IOException 
+    public BufferedImage coloringImage() throws IOException 
     {
+        tiempoInicio = System.currentTimeMillis();
+        
         image = ImageIO.read(new File(imagePath)); 
-        String shadowPath = getShadowPath();
         shadow = ImageIO.read(new File(shadowPath));
         
         Color shadowColor;
@@ -77,8 +66,7 @@ public class ColoringImage
         {
             for (int j=0;j<h;j++)
             {  
-                //16777215 es el codigo RGB para transparente
-                //if (image.getRGB(i, j)!= 16777215) 
+                //if the pixel isn't transparent
                 if (image.getRGB(i, j) < 0)
                 {
                     image.setRGB(i, j, color);
@@ -101,12 +89,20 @@ public class ColoringImage
             	}
             }
         }
+        totalTiempo = System.currentTimeMillis() - tiempoInicio;
+        logger.info("El tiempo de coloringImage() es :"  + totalTiempo + " miliseg");
         
+        //Se escribe para probar el resultado. Luego hay que quitarlo.
         ImageIO.write(image, "png", new File(imageColoredPath));
+        
+        BufferedImage finalImage = pasteImage();
+        return finalImage;
     }
     
-    private void juntaImagen() throws IOException 
+    private BufferedImage pasteImage() throws IOException 
     {     
+        tiempoInicio = System.currentTimeMillis();
+        
         int w = image.getWidth();
         int h= image.getHeight();
         
@@ -123,33 +119,24 @@ public class ColoringImage
         }
         try 
         {
+            //Se escribe para probar el resultado. Luego hay que quitarlo
             ImageIO.write(finalImage, "png", new File(destinationPath));
+            
+            totalTiempo = System.currentTimeMillis() - tiempoInicio;
+            logger.info("El tiempo de pasteImage() es : " + totalTiempo + " miliseg");
+            return finalImage;
         } 
         catch (IOException e) 
         {
             System.out.println("Failed saving image");
+            return null;
         }  
-    }
-    
-    private String getShadowPath()
-    {
-        int length = imagePath.length();
         
-        //Arreglar chapuza, idea: poner de nombre a los archivos camisetaazul.sombras
-        //y coger el substring hasta el punto
-        String aux = "";
-        if (pathSex.equals("Boy")){
-            aux = imagePath.substring(0, length-13);
-        }
-        else if (pathSex.equals("Girl")){
-            aux = imagePath.substring(0, length-14);
-        }
-        aux = aux + "Sombras"+ pathSex +".png";
-        return aux;
     }
     
     public static void main(String[] args) throws IOException 
     {
-        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/ZapatosSolidoBoy.png", -3394561, TypeObject.shoes, "Boy");
+        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/ZapatosSolidoBoy.png", 
+                "assets/Textures/Textures Boy/ZapatosSombrasBoy.png", -3394561, TypeObject.shoes);
     } 
 }

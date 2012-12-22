@@ -27,17 +27,13 @@ import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import tipos.Age;
 import tipos.Gender;
 import tipos.TypeObject;
@@ -52,27 +48,27 @@ public class Gui extends SimpleApplication{
     private Spatial model;
     private Material mat;
     private ImagesProcessing img;
-    private String skinsPath,trousersPath,tShirtsPath,eyesPath,shoesPath,destinationPath;
+    private String skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, eyesPath, 
+            shoesColorPath, shoesShadowPath, destinationPath;
     
     private int indexCaptura = 0;
     private int indexImage = 0;
     
-    String [] arraySkin, arrayShoes, arrayTrouser, arrayTShirt, arrayEyes;
+    String [] arraySkin, arrayShoesColor, arrayShoesShadow, arrayTrouserColor, arrayTrouserShadow, arrayTShirtColor, arrayTShirtShadow, arrayEyes;
     private int indexSkin = -1;
     private int indexTShirt = -1;
     private int indexShoes = -1;
     private int indexTrouser = -1;
     private int indexEyes = -1;
-    private int numSkins = 4;
-    private int numShoes = 1;
-    private int numTrousers = 2;
-    private int numTShirts = 5;
-    private int numEyes = 4;
+    private int numSkins;
+    private int numShoes;
+    private int numTrousers;
+    private int numTShirts;
+    private int numEyes;
     
     private Gender gender;
     private Age age;
     private TypeObject typeObject;
-    private String pathSex="";
     
     public static void main(String[] args) {
         AppSettings settings = new AppSettings(true);
@@ -87,28 +83,6 @@ public class Gui extends SimpleApplication{
     public void simpleInitApp() {
         setDisplayFps(false);
         setDisplayStatView(false);
-        
-        /*initPaths();
-
-        DirectionalLight dl = new DirectionalLight();
-        dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
-        rootNode.addLight(dl);
-
-        indexSkin++;
-        skinsPath = arraySkin[indexSkin];
-        indexShoes++;
-        shoesPath = arrayShoes[indexShoes];
-        indexTrouser++;
-        trousersPath = arrayTrouser[indexTrouser];
-        indexTShirt++;
-        tShirtsPath = arrayTShirt[indexTShirt];
-        indexEyes++;
-        eyesPath = arrayEyes[indexEyes];     
-
-        
-        img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);
-        destinationPath = "assets/Textures/OriginalTexture.png";
-        img.fusionaImagenes(destinationPath);*/
         
         //CHICO
         //Andar
@@ -134,25 +108,7 @@ public class Gui extends SimpleApplication{
         /*model = assetManager.loadModel("Models/prueba/polySurfaceShape4.mesh.xml");
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));  
-        model.setMaterial(mat);
-        
-        //Borrar la imagen
-        Path file = Paths.get(destinationPath);
-        try {
-            Files.delete(file);
-        } 
-        catch (IOException ex) {
-            System.out.println("Error al borrar el fichero");
-        }
-
-        model.rotate(1.5f, 0.0f, 0.0f);
-        model.setLocalTranslation(-0.5f, -2.5f, 0.0f);
-        rootNode.attachChild(model);
-        
-        control = model.getControl(AnimControl.class);
-        channel = control.createChannel();
-        channel.setAnim("my_animation");*/
-        
+        model.setMaterial(mat);*/
         
         startScreen = new StartScreen(this);
         stateManager.attach(startScreen);
@@ -186,9 +142,9 @@ public class Gui extends SimpleApplication{
     {
         indexSkin++;
         skinsPath = arraySkin[indexSkin%numSkins];
-        //Creat the image
-               
-        img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);                
+        //Creat the image             
+        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
+                eyesPath, shoesColorPath, shoesShadowPath);                
         indexImage++;                
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";                
         img.fusionaImagenes(destinationPath);                
@@ -207,9 +163,11 @@ public class Gui extends SimpleApplication{
     public void changeShoes()
     {
         indexShoes++;   
-        shoesPath = arrayShoes[indexShoes%numShoes];                    
+        shoesColorPath = arrayShoesColor[indexShoes%numShoes];    
+        shoesShadowPath = arrayShoesShadow[indexShoes%numShoes]; 
         //Creat the image                
-        img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);                
+        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
+                eyesPath, shoesColorPath, shoesShadowPath);                 
         indexImage++;                
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";                
         img.fusionaImagenes(destinationPath);                
@@ -228,9 +186,11 @@ public class Gui extends SimpleApplication{
     public void changeTrousers()
     {
         indexTrouser++;   
-        trousersPath = arrayTrouser[indexTrouser%numTrousers];                                
+        trousersColorPath = arrayTrouserColor[indexTrouser%numTrousers]; 
+        trousersShadowPath = arrayTrouserShadow[indexTrouser%numTrousers]; 
         //Creat the image                
-        img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);         
+        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
+                eyesPath, shoesColorPath, shoesShadowPath);          
         indexImage++;        
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
         img.fusionaImagenes(destinationPath);        
@@ -249,9 +209,11 @@ public class Gui extends SimpleApplication{
     public void changeTShirt()
     {
         indexTShirt++;
-        tShirtsPath = arrayTShirt[indexTShirt%numTShirts];                                     
+        tShirtsColorPath = arrayTShirtColor[indexTShirt%numTShirts];  
+        tShirtsShadowPath = arrayTShirtShadow[indexTShirt%numTShirts];  
         //Creat the image        
-        img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);        
+        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
+                eyesPath, shoesColorPath, shoesShadowPath);        
         indexImage++;        
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
         img.fusionaImagenes(destinationPath);        
@@ -272,7 +234,8 @@ public class Gui extends SimpleApplication{
         indexEyes++;
         eyesPath = arrayEyes[indexEyes%numEyes];                                      
         //Creat the image        
-        img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);        
+        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
+                eyesPath, shoesColorPath, shoesShadowPath);      
         indexImage++;        
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
         img.fusionaImagenes(destinationPath);        
@@ -291,21 +254,27 @@ public class Gui extends SimpleApplication{
     public void changeColor(int color) throws IOException{
         ColoringImage coloringImage;
         Path file;
+        BufferedImage coloredImage;
         switch(typeObject) {
             case t_shirt:
-                coloringImage = new  ColoringImage(arrayTShirt[indexTShirt%numTShirts], color, TypeObject.t_shirt, pathSex); 
-                tShirtsPath = "assets/Textures/Textures "+ pathSex + "/TShirtFinal.png";
+                coloringImage = new  ColoringImage(arrayTShirtColor[indexTShirt%numTShirts], arrayTShirtShadow[indexTShirt%numTShirts], color, TypeObject.t_shirt); 
+                coloredImage = coloringImage.coloringImage();
+                img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, coloredImage, eyesPath, 
+                        shoesColorPath, shoesShadowPath);  
                 break;
             case trouser:
-                coloringImage = new  ColoringImage(arrayTrouser[indexTrouser%numTrousers], color, TypeObject.trouser, pathSex);
-                trousersPath = "assets/Textures/Textures "+ pathSex + "/TrouserFinal.png";
+                coloringImage = new  ColoringImage(arrayTrouserColor[indexTrouser%numTrousers], arrayTrouserShadow[indexTrouser%numTrousers], color, TypeObject.trouser);
+                coloredImage = coloringImage.coloringImage();
+                img = new ImagesProcessing(skinsPath, coloredImage, tShirtsColorPath, tShirtsShadowPath, eyesPath, 
+                        shoesColorPath, shoesShadowPath);  
                 break;      
             case shoes:
-                coloringImage = new  ColoringImage(arrayShoes[indexShoes%numShoes], color, TypeObject.shoes, pathSex);
-                shoesPath = "assets/Textures/Textures "+ pathSex + "/ShoesFinal.png";
+                coloringImage = new  ColoringImage(arrayShoesColor[indexShoes%numShoes], arrayShoesShadow[indexShoes%numShoes], color, TypeObject.shoes);
+                coloredImage = coloringImage.coloringImage();
+                img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
+                eyesPath, coloredImage);  
                 break; 
-        }
-        img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);
+        }     
         indexImage++; 
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png"; 
         img.fusionaImagenes(destinationPath); 
@@ -394,85 +363,6 @@ public class Gui extends SimpleApplication{
         }
     };
     
-    private void initPaths() //Cambiar bien los paths para que funcione con la chica
-    {
-        switch (gender){
-            case Male:
-                pathSex = "Boy";
-                break;
-            case Female:
-                pathSex = "Girl";
-                break;
-        }        
-        initPathsSkins();
-        initPathsShoes();
-        initPathsTrousers();
-        initPathsTShirts();
-        initPathsEyes();
-    }
-
-    private void initPathsSkins() 
-    {       
-        //Paths of skin
-        String skinPath1 = "assets/Textures/Textures " + pathSex + "/PielBlanca"+ pathSex + ".png";
-        String skinPath2 = "assets/Textures/Textures " + pathSex + "/PielAmarilla"+ pathSex + ".png";
-        String skinPath3 = "assets/Textures/Textures " + pathSex + "/PielRoja"+ pathSex + ".png";
-        String skinPath4 = "assets/Textures/Textures " + pathSex + "/PielNegra"+ pathSex + ".png";
-        arraySkin = new String[numSkins];
-        arraySkin[0] = skinPath1;
-        arraySkin[1] = skinPath2;
-        arraySkin[2] = skinPath3;
-        arraySkin[3] = skinPath4;
-    }
-
-    private void initPathsShoes() 
-    {
-        //Paths of shoes
-        String shoesPath1 = "assets/Textures/Textures " + pathSex + "/ZapatosSolido"+ pathSex + ".png";
-        arrayShoes = new String[numShoes];
-        arrayShoes[0] = shoesPath1;
-    }
-
-    private void initPathsTrousers() 
-    {
-        //Paths of trousers
-        String trousersPath1 = "assets/Textures/Textures " + pathSex + "/PantalonCortoSolido"+ pathSex + ".png";
-        String trousersPath2 = "assets/Textures/Textures " + pathSex + "/PantalonLargoSolido"+ pathSex + ".png";
-        arrayTrouser = new String[numTrousers];
-        arrayTrouser[0] = trousersPath1;
-        arrayTrouser[1] = trousersPath2;
-    }
-
-    private void initPathsTShirts() 
-    {
-        //Paths of tshirts
-        String tshirtsPath1 = "assets/Textures/Textures " + pathSex + "/CamisaCortaSolido"+ pathSex + ".png";
-        String tshirtsPath2 = "assets/Textures/Textures " + pathSex + "/CamisaLargaSolido"+ pathSex + ".png";
-        String tshirtsPath3 = "assets/Textures/Textures " + pathSex + "/CamisetaCortaSolido"+ pathSex + ".png";
-        String tshirtsPath4 = "assets/Textures/Textures " + pathSex + "/CamisetaLargaSolido"+ pathSex + ".png";
-        String tshirtsPath5 = "assets/Textures/Textures " + pathSex + "/CamisetaTirantesSolido"+ pathSex + ".png";
-        arrayTShirt = new String[numTShirts];
-        arrayTShirt[0] = tshirtsPath1;
-        arrayTShirt[1] = tshirtsPath2;
-        arrayTShirt[2] = tshirtsPath3;
-        arrayTShirt[3] = tshirtsPath4;
-        arrayTShirt[4] = tshirtsPath5;
-    }
-
-    private void initPathsEyes() 
-    {
-        //Paths of eyes
-        String eyesPath1 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosAzul"+ pathSex + ".png";
-        String eyesPath2 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosMarron"+ pathSex + ".png";
-        String eyesPath3 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosNegro"+ pathSex + ".png";
-        String eyesPath4 = "assets/Textures/Textures " + pathSex + "/Eyes/OjosVerde"+ pathSex + ".png";
-        arrayEyes = new String[numEyes];
-        arrayEyes[0] = eyesPath1;
-        arrayEyes[1] = eyesPath2;
-        arrayEyes[2] = eyesPath3;
-        arrayEyes[3] = eyesPath4;
-    }
-    
     public void showWindowChangeColorTShirt() throws InterruptedException
     {
         typeObject = TypeObject.t_shirt;
@@ -514,43 +404,37 @@ public class Gui extends SimpleApplication{
         this.age = age;
     }
     
-    public void refreshModel(){ //HACER
+    public void loadModel(){ //HACER
+        readXML("assets/XML Configuration/configuration.xml", gender);
+        DirectionalLight dl = new DirectionalLight();
+        dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
+        rootNode.addLight(dl);
+
+        indexSkin++;
+        skinsPath = arraySkin[indexSkin];
+        indexShoes++;
+        shoesColorPath = arrayShoesColor[indexShoes];
+        shoesShadowPath = arrayShoesShadow[indexShoes];
+        indexTrouser++;
+        trousersColorPath = arrayTrouserColor[indexTrouser];
+        trousersShadowPath = arrayTrouserShadow[indexTrouser];
+        indexTShirt++;
+        tShirtsColorPath = arrayTShirtColor[indexTShirt];
+        tShirtsShadowPath = arrayTShirtShadow[indexTShirt];
+        indexEyes++;
+        eyesPath = arrayEyes[indexEyes];     
+
+        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
+                eyesPath, shoesColorPath, shoesShadowPath);
+        destinationPath = "assets/Textures/OriginalTexture.png";
+        img.fusionaImagenes(destinationPath);
+        
         switch(gender) {
             case Male:
-                initPaths();
-                DirectionalLight dl = new DirectionalLight();
-                dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
-                rootNode.addLight(dl);
-
-                indexSkin++;
-                skinsPath = arraySkin[indexSkin];
-                indexShoes++;
-                shoesPath = arrayShoes[indexShoes];
-                indexTrouser++;
-                trousersPath = arrayTrouser[indexTrouser];
-                indexTShirt++;
-                tShirtsPath = arrayTShirt[indexTShirt];
-                indexEyes++;
-                eyesPath = arrayEyes[indexEyes];     
-
-                img = new ImagesProcessing(skinsPath, trousersPath, tShirtsPath, eyesPath, shoesPath);
-                destinationPath = "assets/Textures/OriginalTexture.png";
-                img.fusionaImagenes(destinationPath);
-                
                 model = assetManager.loadModel("Models/prueba/polySurfaceShape4.mesh.xml");
                 mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
                 mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));  
                 model.setMaterial(mat);
-
-                //Borrar la imagen
-                Path file = Paths.get(destinationPath);
-                try {
-                    Files.delete(file);
-                } 
-                catch (IOException ex) {
-                    System.out.println("Error al borrar el fichero");
-                }
-
                 model.rotate(1.5f, 0.0f, 0.0f);
                 model.setLocalTranslation(0.0f, -3.0f, 0.0f);                
 
@@ -559,7 +443,7 @@ public class Gui extends SimpleApplication{
                 channel.setAnim("my_animation");
                 
                 if (age == Age.Young){
-                    //Escalar el modelo a más pequeño
+                    //Scale the model
                     model.scale(0.65f, 0.65f, 0.65f);
                 } 
                 rootNode.attachChild(model);
@@ -568,53 +452,178 @@ public class Gui extends SimpleApplication{
                 //Cargar el modelo de la mujer
                 break;      
         }
+        //Borrar la imagen
+        Path file = Paths.get(destinationPath);
+        try {
+            Files.delete(file);
+        } 
+        catch (IOException ex) {
+            System.out.println("Error al borrar el fichero");
+        }
     }
     
-    private void readXML(String file)
+    //This method read the XML document of configuration.
+    private void readXML(String file, Gender gender1)
     {
-        try {
-            //Assing the file to the DOM doc.
-            File xmlFile = new File(file);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(xmlFile);
-            doc.getDocumentElement().normalize();
-            
-            //Read the doc.
-            //Read all nodes with name man
-            NodeList nList = doc.getElementsByTagName("man");
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-               Node nNode = nList.item(temp);
-               if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                  //Here, we have the element man 
-                  Element eElement = (Element) nNode;
-                  NodeList nList2 = eElement.getElementsByTagName("objects").item(0).getChildNodes();
-                  Node nNode2 = (Node) nList2.item(0);
-                  if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
-                    //In eElement2, we have the node objects
-                    Element eElement2 = (Element) nNode2;
-                    NodeList nList3 = eElement2.getElementsByTagName("skin");
-                    int numSkin;
-                    for (numSkin = 0; numSkin < nList3.getLength(); numSkin++){
-                        Node nNode3 = nList3.item(numSkin);
-                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
-                            //In element3, we have the node skin
-                            Element eElement3 = (Element) nNode3;
-                            NodeList nList4 = eElement3.getElementsByTagName("path").item(0).getChildNodes();
-                            Node nValue = (Node) nList4.item(0);
-                            String pathSkinReaded = nValue.getNodeValue();
-                            System.out.println("Skin "+numSkin+": " + pathSkinReaded);
-                        }
+        switch(gender) {
+            case Male:
+                try {
+                    //Assing the file to the DOM doc.
+                    File xmlFile = new File(file);
+                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                    Document doc = dBuilder.parse(xmlFile);
+                    doc.getDocumentElement().normalize();
+
+                    //Read the doc.
+                    //Read all nodes with name man
+                    NodeList nListMan = doc.getElementsByTagName("man");
+                    for (int temp = 0; temp < nListMan.getLength(); temp++) {
+                       Node nNode = nListMan.item(temp); 
+                       if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                          //Here, we have the element man 
+                          Element eElement = (Element) nNode;
+                          NodeList nListObjects = eElement.getElementsByTagName("objects");
+                          Node nNode2 = (Node) nListObjects.item(0);
+                          if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
+                            //In eElement2, we have the node objects
+                            Element eElement2 = (Element) nNode2;
+                            NodeList nListSkins = eElement2.getElementsByTagName("skin");
+                            
+                            numSkins = nListSkins.getLength();
+                            arraySkin = new String[numSkins];
+                            
+                            int indexSkinReaded;
+                            for (indexSkinReaded = 0; indexSkinReaded < nListSkins.getLength(); indexSkinReaded++){
+                                Node nNode3 = nListSkins.item(indexSkinReaded);
+                                if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element3, we have the node skin
+                                    Element eElement3 = (Element) nNode3;
+                                    NodeList nListPathSkin = eElement3.getElementsByTagName("path").item(0).getChildNodes();
+                                    Node nValue = (Node) nListPathSkin.item(0);
+                                    String pathSkinReaded = nValue.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Skin "+indexSkinReaded+": " + pathSkinReaded);
+                                    //Save the path of this skin
+                                    arraySkin[indexSkinReaded] = pathSkinReaded;
+                                }
+                            }
+                            NodeList nListEyes = eElement2.getElementsByTagName("eyes");
+                            
+                            numEyes = nListEyes.getLength();
+                            arrayEyes = new String[numEyes];
+                            
+                            int indexEyesReaded;
+                            for (indexEyesReaded = 0; indexEyesReaded < nListEyes.getLength(); indexEyesReaded++){
+                                Node nNode4 = nListEyes.item(indexEyesReaded);
+                                if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element4, we have the node eyes
+                                    Element eElement4 = (Element) nNode4;
+                                    NodeList nListPathEyes = eElement4.getElementsByTagName("path").item(0).getChildNodes();
+                                    Node nValue2 = (Node) nListPathEyes.item(0);
+                                    String pathEyesReaded = nValue2.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Eyes "+indexEyesReaded+": " + pathEyesReaded);
+                                    //Save the path of these eyes
+                                    arrayEyes[indexEyesReaded] = pathEyesReaded;
+                                }
+                            }
+                            NodeList nListTShirts = eElement2.getElementsByTagName("tshirt");
+                            
+                            numTShirts = nListTShirts.getLength();
+                            arrayTShirtColor = new String[numTShirts];
+                            arrayTShirtShadow = new String[numTShirts];
+                            
+                            int indexTShirtReaded;
+                            for (indexTShirtReaded = 0; indexTShirtReaded < nListTShirts.getLength(); indexTShirtReaded++){
+                                Node nNode5 = nListTShirts.item(indexTShirtReaded);
+                                if (nNode5.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element5, we have the node tshirt
+                                    Element eElement5 = (Element) nNode5;
+                                    NodeList nListPathColorTshirt = eElement5.getElementsByTagName("pathColor").item(0).getChildNodes();
+                                    Node nValue3 = (Node) nListPathColorTshirt.item(0);
+                                    String pathTShirtColorReaded = nValue3.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtColorReaded);
+                                    //Save the path of this tshirt
+                                    arrayTShirtColor[indexTShirtReaded] = pathTShirtColorReaded;
+
+                                    NodeList nListPathShadowTshirt = eElement5.getElementsByTagName("pathShadow").item(0).getChildNodes();
+                                    Node nValue4 = (Node) nListPathShadowTshirt.item(0);
+                                    String pathTShirtShadowReaded = nValue4.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtShadowReaded);
+                                    //Save the path of this tshirt
+                                    arrayTShirtShadow[indexTShirtReaded] = pathTShirtShadowReaded;
+                                }
+                            }
+                            NodeList nListTrousers = eElement2.getElementsByTagName("trouser");
+                            
+                            numTrousers = nListTrousers.getLength();
+                            arrayTrouserColor = new String[numTrousers];
+                            arrayTrouserShadow = new String[numTrousers];
+                            
+                            int indexTrouserReaded;
+                            for (indexTrouserReaded = 0; indexTrouserReaded < nListTrousers.getLength(); indexTrouserReaded++){
+                                Node nNode6 = nListTrousers.item(indexTrouserReaded);
+                                if (nNode6.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element6, we have the node trouser
+                                    Element eElement6 = (Element) nNode6;
+                                    NodeList nListPathColorTrouser = eElement6.getElementsByTagName("pathColor").item(0).getChildNodes();
+                                    Node nValue5 = (Node) nListPathColorTrouser.item(0);
+                                    String pathTrouserColorReaded = nValue5.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserColorReaded);
+                                    //Save the path of this trouser
+                                    arrayTrouserColor[indexTrouserReaded] = pathTrouserColorReaded;
+
+                                    NodeList nListPathShadowTrouser = eElement6.getElementsByTagName("pathShadow").item(0).getChildNodes();
+                                    Node nValue6 = (Node) nListPathShadowTrouser.item(0);
+                                    String pathTrouserShadowReaded = nValue6.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserShadowReaded);
+                                    //Save the path of this tshirt
+                                    arrayTrouserShadow[indexTrouserReaded] = pathTrouserShadowReaded;
+                                }
+                            }
+                            NodeList nListShoes = eElement2.getElementsByTagName("shoes");
+                            
+                            numShoes = nListShoes.getLength();
+                            arrayShoesColor = new String[numShoes];
+                            arrayShoesShadow = new String[numShoes];
+                            
+                            int indexShoesReaded;
+                            for (indexShoesReaded = 0; indexShoesReaded < nListShoes.getLength(); indexShoesReaded++){
+                                Node nNode7 = nListShoes.item(indexShoesReaded);
+                                if (nNode7.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element7, we have the node shoes
+                                    Element eElement7 = (Element) nNode7;
+                                    NodeList nListPathColorShoes = eElement7.getElementsByTagName("pathColor").item(0).getChildNodes();
+                                    Node nValue7 = (Node) nListPathColorShoes.item(0);
+                                    String pathShoesColorReaded = nValue7.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Eyes "+indexShoesReaded+": " + pathShoesColorReaded);
+                                    //Save the path of this trouser
+                                    arrayShoesColor[indexShoesReaded] = pathShoesColorReaded;
+
+                                    NodeList nListPathShadowShoes = eElement7.getElementsByTagName("pathShadow").item(0).getChildNodes();
+                                    Node nValue8 = (Node) nListPathShadowShoes.item(0);
+                                    String pathShoesShadowReaded = nValue8.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Eyes "+indexShoesReaded+": " + pathShoesShadowReaded);
+                                    //Save the path of this tshirt
+                                    arrayShoesShadow[indexShoesReaded] = pathShoesShadowReaded;
+                                }
+                            }
+                          }
+                       }
                     }
-                  }
-                  /*System.out.println("First Name : " + getTagValue("firstname", eElement));
-                  System.out.println("Last Name : " + getTagValue("lastname", eElement));
-                  System.out.println("Nick Name : " + getTagValue("nickname", eElement));
-                  System.out.println("Salary : " + getTagValue("salary", eElement));*/
-               }
-            }
-        } catch (Exception e) {
-              e.printStackTrace();
-        }
+                } catch (Exception e) {
+                      e.printStackTrace();
+                }
+                break;
+            case Female:
+                break;
+        }     
     }
 }
