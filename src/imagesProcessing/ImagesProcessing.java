@@ -8,124 +8,33 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import tipos.TypeObject;
 
 public class ImagesProcessing
 {
-    BufferedImage skin;
-    BufferedImage trousers;
-    BufferedImage tShirt;
-    BufferedImage eyes;
-    BufferedImage shoes;
-    BufferedImage socks;
-    BufferedImage clock;
-    BufferedImage tie;
-    BufferedImage beard;
-    ArrayList<BufferedImage> images;
-    int num = 0;
+    private BufferedImage skin, trousers, tShirt, eyes, shoes;
+    private BufferedImage socks;
+    private BufferedImage clock;
+    private BufferedImage tie;
+    private BufferedImage beard;
+    private ArrayList<BufferedImage> images;
     
-    public ImagesProcessing(String skinPath, String trousersColorPath, String trousersShadowPath, BufferedImage tShirtBuffer, 
-            String eyesPath, String shoesColorPath, String shoesShadowPath)
+    public ImagesProcessing(BufferedImage skin, BufferedImage trousers, BufferedImage tShirt, BufferedImage eyes, 
+            BufferedImage shoes)
     {
+        this.skin = skin;
+        this.trousers = trousers;
+        this.tShirt = tShirt;
+        this.eyes = eyes;
+        this.shoes = shoes;
         images = new ArrayList<BufferedImage>();
-        try 
-        {
-            skin = ImageIO.read(new File(skinPath));
-            ColoringImage coloredImage = new ColoringImage(trousersColorPath, trousersShadowPath, -3394561, TypeObject.trouser);
-            trousers = coloredImage.coloringImage();
-            tShirt = tShirtBuffer;
-            eyes = ImageIO.read(new File(eyesPath));
-            coloredImage = new ColoringImage(shoesColorPath, shoesShadowPath, -3394561, TypeObject.shoes);
-            shoes = coloredImage.coloringImage();
-            images.add(skin);
-            images.add(trousers);
-            images.add(tShirt);
-            images.add(eyes);
-            images.add(shoes);
-        } 
-        catch (IOException e) 
-        {
-            System.out.println("Failed loading file");
-        }		
+        images.add(skin);
+        images.add(trousers);
+        images.add(tShirt);
+        images.add(eyes);
+        images.add(shoes);		
     }
     
-    public ImagesProcessing(String skinPath, String trousersColorPath, String trousersShadowPath, String tShirtColorPath,
-            String tShirtShadowPath, String eyesPath, BufferedImage shoesBuffer)
-    {
-        images = new ArrayList<BufferedImage>();
-        try 
-        {
-            skin = ImageIO.read(new File(skinPath));
-            ColoringImage coloredImage = new ColoringImage(trousersColorPath, trousersShadowPath, -3394561, TypeObject.trouser);
-            trousers = coloredImage.coloringImage();
-            coloredImage = new ColoringImage(tShirtColorPath, tShirtShadowPath, -3394561, TypeObject.t_shirt);
-            tShirt = coloredImage.coloringImage();
-            eyes = ImageIO.read(new File(eyesPath));
-            shoes = shoesBuffer;
-            images.add(skin);
-            images.add(trousers);
-            images.add(tShirt);
-            images.add(eyes);
-            images.add(shoes);
-        } 
-        catch (IOException e) 
-        {
-            System.out.println("Failed loading file");
-        }		
-    }
-    
-    public ImagesProcessing(String skinPath, BufferedImage trousersBuffer, String tShirtColorPath,
-            String tShirtShadowPath, String eyesPath, String shoesColorPath, String shoesShadowPath)
-    {
-        images = new ArrayList<BufferedImage>();
-        try 
-        {
-            skin = ImageIO.read(new File(skinPath));
-            trousers = trousersBuffer;
-            ColoringImage coloredImage = new ColoringImage(tShirtColorPath, tShirtShadowPath, -3394561, TypeObject.t_shirt);
-            tShirt = coloredImage.coloringImage();
-            eyes = ImageIO.read(new File(eyesPath));
-            coloredImage = new ColoringImage(shoesColorPath, shoesShadowPath, -3394561, TypeObject.shoes);
-            shoes = coloredImage.coloringImage();
-            images.add(skin);
-            images.add(trousers);
-            images.add(tShirt);
-            images.add(eyes);
-            images.add(shoes);
-        } 
-        catch (IOException e) 
-        {
-            System.out.println("Failed loading file");
-        }		
-    }
-    
-    public ImagesProcessing(String skinPath, String trousersColorPath, String trousersShadowPath, String tShirtColorPath,
-            String tShirtShadowPath, String eyesPath, String shoesColorPath, String shoesShadowPath)
-    {
-            images = new ArrayList<BufferedImage>();
-            try
-            {
-                skin = ImageIO.read(new File(skinPath));
-                ColoringImage coloredImage = new ColoringImage(trousersColorPath, trousersShadowPath, -3394561, TypeObject.trouser);
-                trousers = coloredImage.coloringImage();
-                coloredImage = new ColoringImage(tShirtColorPath, tShirtShadowPath, -3394561, TypeObject.t_shirt);
-                tShirt = coloredImage.coloringImage();
-                eyes = ImageIO.read(new File(eyesPath));
-                coloredImage = new ColoringImage(shoesColorPath, shoesShadowPath, -3394561, TypeObject.shoes);
-                shoes = coloredImage.coloringImage();
-                images.add(skin);
-                images.add(trousers);
-                images.add(tShirt);
-                images.add(eyes);
-                images.add(shoes);
-            } 
-        catch (IOException e) 
-        {
-            System.out.println("Failed loading file");
-        }		
-    }
-    
-    /*public ImagesProcessing(String skinPath, String trousersPath, String tShirtPath,
+    public ImagesProcessing(String skinPath, String trousersPath, String tShirtPath,
             String eyesPath, String socksPath, String shoesPath, String clockPath, String tiePath, String beardPath)
     {
             images = new ArrayList<BufferedImage>();
@@ -154,7 +63,7 @@ public class ImagesProcessing
         {
             System.out.println("Failed loading file");
         }		
-    }*/
+    }
     
     public void fusionaImagenes(String destinationPath)
     {

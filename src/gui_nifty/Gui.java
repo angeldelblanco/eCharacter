@@ -27,6 +27,8 @@ import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -48,8 +50,8 @@ public class Gui extends SimpleApplication{
     private Spatial model;
     private Material mat;
     private ImagesProcessing img;
-    private String skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, eyesPath, 
-            shoesColorPath, shoesShadowPath, destinationPath;
+    private String destinationPath;
+    private BufferedImage skin, trousers, tShirt, eyes, shoes;
     
     private int indexCaptura = 0;
     private int indexImage = 0;
@@ -141,10 +143,9 @@ public class Gui extends SimpleApplication{
     public void changeSkin()
     {
         indexSkin++;
-        skinsPath = arraySkin[indexSkin%numSkins];
+        skin = readBuffer(arraySkin[indexSkin%numSkins]);
         //Creat the image             
-        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
-                eyesPath, shoesColorPath, shoesShadowPath);                
+        img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);                 
         indexImage++;                
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";                
         img.fusionaImagenes(destinationPath);                
@@ -163,11 +164,9 @@ public class Gui extends SimpleApplication{
     public void changeShoes()
     {
         indexShoes++;   
-        shoesColorPath = arrayShoesColor[indexShoes%numShoes];    
-        shoesShadowPath = arrayShoesShadow[indexShoes%numShoes]; 
-        //Creat the image                
-        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
-                eyesPath, shoesColorPath, shoesShadowPath);                 
+        shoes = readBuffer(arrayShoesColor[indexShoes%numShoes], arrayShoesShadow[indexShoes%numShoes], TypeObject.shoes);
+        //Creat the image        
+        img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);                  
         indexImage++;                
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";                
         img.fusionaImagenes(destinationPath);                
@@ -186,11 +185,9 @@ public class Gui extends SimpleApplication{
     public void changeTrousers()
     {
         indexTrouser++;   
-        trousersColorPath = arrayTrouserColor[indexTrouser%numTrousers]; 
-        trousersShadowPath = arrayTrouserShadow[indexTrouser%numTrousers]; 
-        //Creat the image                
-        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
-                eyesPath, shoesColorPath, shoesShadowPath);          
+        trousers = readBuffer(arrayTrouserColor[indexTrouser%numTrousers], arrayTrouserShadow[indexTrouser%numTrousers], TypeObject.trouser);
+        //Creat the image        
+        img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);           
         indexImage++;        
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
         img.fusionaImagenes(destinationPath);        
@@ -209,11 +206,9 @@ public class Gui extends SimpleApplication{
     public void changeTShirt()
     {
         indexTShirt++;
-        tShirtsColorPath = arrayTShirtColor[indexTShirt%numTShirts];  
-        tShirtsShadowPath = arrayTShirtShadow[indexTShirt%numTShirts];  
+        tShirt = readBuffer(arrayTShirtColor[indexTShirt%numTShirts], arrayTShirtShadow[indexTShirt%numTShirts], TypeObject.t_shirt);
         //Creat the image        
-        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
-                eyesPath, shoesColorPath, shoesShadowPath);        
+        img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);        
         indexImage++;        
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
         img.fusionaImagenes(destinationPath);        
@@ -231,11 +226,10 @@ public class Gui extends SimpleApplication{
     
     public void changeEyes()
     {
-        indexEyes++;
-        eyesPath = arrayEyes[indexEyes%numEyes];                                      
+        indexEyes++; 
+        eyes = readBuffer(arrayEyes[indexEyes%numEyes]);
         //Creat the image        
-        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
-                eyesPath, shoesColorPath, shoesShadowPath);      
+        img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);      
         indexImage++;        
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
         img.fusionaImagenes(destinationPath);        
@@ -258,23 +252,18 @@ public class Gui extends SimpleApplication{
         switch(typeObject) {
             case t_shirt:
                 coloringImage = new  ColoringImage(arrayTShirtColor[indexTShirt%numTShirts], arrayTShirtShadow[indexTShirt%numTShirts], color, TypeObject.t_shirt); 
-                coloredImage = coloringImage.coloringImage();
-                img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, coloredImage, eyesPath, 
-                        shoesColorPath, shoesShadowPath);  
+                tShirt = coloringImage.coloringImage();      
                 break;
             case trouser:
                 coloringImage = new  ColoringImage(arrayTrouserColor[indexTrouser%numTrousers], arrayTrouserShadow[indexTrouser%numTrousers], color, TypeObject.trouser);
-                coloredImage = coloringImage.coloringImage();
-                img = new ImagesProcessing(skinsPath, coloredImage, tShirtsColorPath, tShirtsShadowPath, eyesPath, 
-                        shoesColorPath, shoesShadowPath);  
+                trousers = coloringImage.coloringImage(); 
                 break;      
             case shoes:
                 coloringImage = new  ColoringImage(arrayShoesColor[indexShoes%numShoes], arrayShoesShadow[indexShoes%numShoes], color, TypeObject.shoes);
-                coloredImage = coloringImage.coloringImage();
-                img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
-                eyesPath, coloredImage);  
+                shoes = coloringImage.coloringImage();
                 break; 
-        }     
+        }    
+        img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);  
         indexImage++; 
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png"; 
         img.fusionaImagenes(destinationPath); 
@@ -410,24 +399,7 @@ public class Gui extends SimpleApplication{
         dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
         rootNode.addLight(dl);
 
-        indexSkin++;
-        skinsPath = arraySkin[indexSkin];
-        indexShoes++;
-        shoesColorPath = arrayShoesColor[indexShoes];
-        shoesShadowPath = arrayShoesShadow[indexShoes];
-        indexTrouser++;
-        trousersColorPath = arrayTrouserColor[indexTrouser];
-        trousersShadowPath = arrayTrouserShadow[indexTrouser];
-        indexTShirt++;
-        tShirtsColorPath = arrayTShirtColor[indexTShirt];
-        tShirtsShadowPath = arrayTShirtShadow[indexTShirt];
-        indexEyes++;
-        eyesPath = arrayEyes[indexEyes];     
-
-        img = new ImagesProcessing(skinsPath, trousersColorPath, trousersShadowPath, tShirtsColorPath, tShirtsShadowPath, 
-                eyesPath, shoesColorPath, shoesShadowPath);
-        destinationPath = "assets/Textures/OriginalTexture.png";
-        img.fusionaImagenes(destinationPath);
+        readBuffers();
         
         switch(gender) {
             case Male:
@@ -625,5 +597,61 @@ public class Gui extends SimpleApplication{
             case Female:
                 break;
         }     
+    }
+    
+    private void readBuffers()
+    {
+        indexSkin++;
+        String skinsPath = arraySkin[indexSkin];
+        indexShoes++;
+        String shoesColorPath = arrayShoesColor[indexShoes];
+        String shoesShadowPath = arrayShoesShadow[indexShoes];
+        indexTrouser++;
+        String trousersColorPath = arrayTrouserColor[indexTrouser];
+        String trousersShadowPath = arrayTrouserShadow[indexTrouser];
+        indexTShirt++;
+        String tShirtsColorPath = arrayTShirtColor[indexTShirt];
+        String tShirtsShadowPath = arrayTShirtShadow[indexTShirt];
+        indexEyes++;
+        String eyesPath = arrayEyes[indexEyes]; 
+        
+        try {
+            skin = ImageIO.read(new File(skinsPath));
+            ColoringImage coloredImage = new ColoringImage(trousersColorPath, trousersShadowPath, -3394561, TypeObject.trouser);
+            trousers = coloredImage.coloringImage();
+            coloredImage = new ColoringImage(tShirtsColorPath, tShirtsShadowPath, -3394561, TypeObject.t_shirt);
+            tShirt = coloredImage.coloringImage();
+            eyes = ImageIO.read(new File(eyesPath));
+            coloredImage = new ColoringImage(shoesColorPath, shoesShadowPath, -3394561, TypeObject.shoes);
+            shoes = coloredImage.coloringImage();
+        } catch (IOException ex) {
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+        img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);
+        destinationPath = "assets/Textures/OriginalTexture.png";
+        img.fusionaImagenes(destinationPath);
+    }
+    
+    private BufferedImage readBuffer(String path)
+    {
+        try {
+            BufferedImage aux = ImageIO.read(new File(path));
+            return aux;
+        } catch (IOException ex) {
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    private BufferedImage readBuffer(String pathColor, String pathShadow, TypeObject typeObject)
+    {
+        try {
+            ColoringImage coloredImage = new ColoringImage(pathColor, pathShadow, -3394561, typeObject);
+            BufferedImage aux = coloredImage.coloringImage();
+            return aux;
+        } catch (IOException ex) {
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 }
