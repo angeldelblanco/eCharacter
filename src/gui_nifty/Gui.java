@@ -4,6 +4,7 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.animation.LoopMode;
 import com.jme3.app.SimpleApplication;
+import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
@@ -11,19 +12,13 @@ import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.renderer.Renderer;
 import com.jme3.scene.Spatial;
 import com.jme3.system.AppSettings;
-import com.jme3.texture.FrameBuffer;
-import com.jme3.util.BufferUtils;
-import com.jme3.util.Screenshots;
 import de.lessvoid.nifty.Nifty;
-import imagesProcessing.ColoringImage;
-import imagesProcessing.ImagesProcessing;
+import imagesProcessing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,14 +31,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import tipos.Age;
-import tipos.Gender;
-import tipos.TypeObject;
-import window_color.ColorChooser;
+import tipos.*;
+import window_color.*;
 
 public class Gui extends SimpleApplication{
 
     private StartScreen startScreen;
+    private ScreenshotAppState screenShotState;
+    private NiftyJmeDisplay niftyDisplay;
     
     private AnimChannel channel;
     private AnimControl control;
@@ -115,11 +110,13 @@ public class Gui extends SimpleApplication{
         startScreen = new StartScreen(this);
         stateManager.attach(startScreen);
         
+        screenShotState = new ScreenshotAppState();
+        stateManager.attach(screenShotState);
+        
         /**
         * Åctivate the Nifty-JME integration: 
         */
-        NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
-                assetManager, inputManager, audioRenderer, guiViewPort);
+        niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
         Nifty nifty = niftyDisplay.getNifty();
         guiViewPort.addProcessor(niftyDisplay);
         nifty.fromXml("Interface/screen.xml", "start", startScreen);
@@ -280,34 +277,11 @@ public class Gui extends SimpleApplication{
     
     public void screenshot()
     {
-        int height = this.viewPort.getCamera().getHeight();               
-        int width = this.viewPort.getCamera().getWidth();   
+        guiViewPort.removeProcessor(niftyDisplay);
+        ScreenshotThread sst = new ScreenshotThread(screenShotState,1000, "Captura");
+        sst.start();
+        guiViewPort.addProcessor(niftyDisplay);
         
-        
-        BufferedImage rawFrame = new BufferedImage(width, height,BufferedImage.TYPE_4BYTE_ABGR);        
-        ByteBuffer byteBuffer = BufferUtils.createByteBuffer(width * height * 4 ); 
-        
-        FrameBuffer fram = this.viewPort.getOutputFrameBuffer();
-        Renderer renderer1 = this.renderManager.getRenderer();
-        renderer1.readFrameBuffer(fram, byteBuffer);        
-        Screenshots.convertScreenShot(byteBuffer, rawFrame);       
-        
-        
-        indexCaptura++;
-        try {        
-            if (indexCaptura < 10) 
-            {
-                ImageIO.write(rawFrame, "png", new File("assets/Textures/screenshots/Captura_0"+indexCaptura+".png"));
-            } 
-            else 
-            {
-                ImageIO.write(rawFrame, "png", new File("assets/Textures/screenshots/Captura_"+indexCaptura+".png"));
-            }            
-        } catch (IOException e) {        
-            System.out.println("Error");            
-        }
-        
-        //guiViewPort.addProcessor(niftyDisplay);
     }
     
     /** Custom Keybinding: Map named actions to inputs. */

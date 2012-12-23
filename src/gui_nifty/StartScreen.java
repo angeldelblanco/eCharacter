@@ -103,4 +103,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         gui.showWindowChangeColorShoes();
     }
+    
+    public void screenshot()
+    {
+        gui.screenshot();
+    }
 }
