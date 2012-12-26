@@ -127,15 +127,12 @@ public class Gui extends SimpleApplication{
     
      public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
     {
-        if (animName.equals("my_animation")) {
-            channel.setAnim("my_animation");
-            channel.setLoopMode(LoopMode.DontLoop);
-            channel.setSpeed(1f);
-        }
+        
     }
  
     public void onAnimChange(AnimControl control, AnimChannel channel, String animName) 
-    {}
+    {
+    }
     
     public void changeSkin()
     {
@@ -275,13 +272,13 @@ public class Gui extends SimpleApplication{
         }
     }
     
-    public void screenshot()
+    public void screenshot() 
     {
         guiViewPort.removeProcessor(niftyDisplay);
-        ScreenshotThread sst = new ScreenshotThread(screenShotState,1000, "Captura");
-        sst.start();
-        guiViewPort.addProcessor(niftyDisplay);
-        
+        float length = control.getAnimationLength(channel.getAnimationName());
+        ScreenshotThread sst = new ScreenshotThread(screenShotState,length,
+                channel.getAnimationName(),channel,guiViewPort,niftyDisplay);
+        sst.start();        
     }
     
     /** Custom Keybinding: Map named actions to inputs. */
@@ -387,6 +384,7 @@ public class Gui extends SimpleApplication{
                 control = model.getControl(AnimControl.class);
                 channel = control.createChannel();
                 channel.setAnim("my_animation");
+                channel.setLoopMode(LoopMode.DontLoop);
                 
                 if (age == Age.Young){
                     //Scale the model

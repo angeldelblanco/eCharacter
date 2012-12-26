@@ -6,6 +6,8 @@ import com.jme3.app.state.AppStateManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tipos.Age;
 import tipos.Gender;
 
@@ -104,7 +106,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         gui.showWindowChangeColorShoes();
     }
     
-    public void screenshot()
+    public void screenshot() 
     {
         gui.screenshot();
     }
