@@ -73,9 +73,14 @@ public class ColoringImage
                 }
                 if((shadow.getRGB(i,j)&0xFF000000) != 0){
             		shadowColor = new Color(shadow.getRGB(i, j));
-            		red = baseColor.getRed() - shadowColor.getRed()*0.5;
-            		green = baseColor.getGreen() - shadowColor.getGreen()*0.5;
-            		blue = baseColor.getBlue() - shadowColor.getBlue()*0.5;
+            		if(!((shadowColor.getRed()<85)&&(shadowColor.getGreen()<85)&&(shadowColor.getBlue()<85))){
+						red = baseColor.getRed() - shadowColor.getRed()*0.5;
+						green = baseColor.getGreen() - shadowColor.getGreen()*0.5;
+						blue = baseColor.getBlue() - shadowColor.getBlue()*0.5;
+            		}
+            		else{
+            			red=85;green=85;blue=85;
+            		}
                         //Arreglar con maximos y minimos
             		if(red < 0) red = 0;
             		if(red > 255) red = 255;
