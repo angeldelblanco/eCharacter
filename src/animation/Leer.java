@@ -128,6 +128,24 @@ public class Leer {
                         }
                     }
                   }
+                  NodeList nListAnimations = eElement.getElementsByTagName("animation");
+
+                    int indexAnimationReaded;
+                    for (indexAnimationReaded = 0; indexAnimationReaded < nListAnimations.getLength(); indexAnimationReaded++){
+                          Node nNode8 = nListAnimations.item(indexAnimationReaded);
+                          if (nNode8.getNodeType() == Node.ELEMENT_NODE) {
+                              //In element8, we have the node animation
+                              Element eElement8 = (Element) nNode8;
+
+                              NodeList nListPathAnimation = eElement8.getElementsByTagName("path").item(0).getChildNodes();
+                              Node nValue9 = (Node) nListPathAnimation.item(0);
+                              String pathAnimationReaded = nValue9.getNodeValue();
+                              //Print the data readed
+                              System.out.println("Animation "+indexAnimationReaded+": " + pathAnimationReaded);
+                              //Save the path of this 
+                          }
+                    }
+                  
                }
             }
         } catch (Exception e) {

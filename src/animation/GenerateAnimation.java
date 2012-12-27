@@ -1,6 +1,5 @@
 package animation;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -28,17 +27,7 @@ public class GenerateAnimation
 		this.nameAnimation = nameAnimation;
 		this.animationPath = folderPath + "/" + nameAnimation + ".eaa";
                 this.imagesNames = imagesNames;
-		//Opening the folder for get the name of images
-		/*File folder = new File(folderPath);
-		this.imagesNames = folder.list();
-		if(this.imagesNames == null)
-		{
-			System.out.println("No files in folder");
-		}
-		else
-		{
-			createAnimation(this.animationPath);
-		}*/
+
                 createAnimation();
 	}
 	
@@ -50,9 +39,7 @@ public class GenerateAnimation
                 TransformerFactory tf = TransformerFactory.newInstance( );
                 DocumentBuilder db = dbf.newDocumentBuilder( );
                 Document doc = db.newDocument( );
-                Transformer transformer = null;
                 OutputStream fout = null;
-                OutputStreamWriter writeFile = null;
                 //Creat the main node
                 Element mainNode = doc.createElement( "animation");
                 mainNode.setAttribute("id", this.nameAnimation);
@@ -81,7 +68,7 @@ public class GenerateAnimation
 		}            
                 doc.adoptNode(mainNode);
                 doc.appendChild(mainNode);
-                transformer = tf.newTransformer();
+                Transformer transformer = tf.newTransformer();
                 transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "animation.dtd");
                 try {
                     fout = new FileOutputStream(this.animationPath);
@@ -89,7 +76,7 @@ public class GenerateAnimation
                 catch( FileNotFoundException e ) {
                     System.out.println("error");
                 }
-                writeFile = new OutputStreamWriter(fout, "UTF-8");
+                OutputStreamWriter writeFile = new OutputStreamWriter(fout, "UTF-8");
                 transformer.transform(new DOMSource(doc), new StreamResult(writeFile));
                 writeFile.close();
                 fout.close();

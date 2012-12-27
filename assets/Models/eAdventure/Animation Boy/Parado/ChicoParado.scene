@@ -1,0 +1,391 @@
+<scene exported_by="Sergio" formatVersion="1.0.1" previous_export_time="0" export_time="1350936858.077" >
+  <nodes >
+    <node name="MuniecaDer_orientConstraint1" >
+      <position y="0.000000" x="0.000000" z="-0.000000" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+    </node>
+    <node name="MuniecaIz_orientConstraint1" >
+      <position y="0.000000" x="0.000000" z="-0.000000" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+    </node>
+    <node name="Armature" >
+      <position y="0.000000" x="0.000000" z="-0.000000" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <node name="Armature.001" >
+        <position y="0.000000" x="0.000000" z="-0.000000" />
+        <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+        <scale y="1.000000" x="1.000000" z="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <node name="polySurface3" >
+          <position y="0.000000" x="0.000000" z="-0.000000" />
+          <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+          <scale y="1.000000" x="1.000000" z="1.000000" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+          <entity anisotropic_friction="False" lock_trans_y="False" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" actor="False" velocity_min="0.0" lock_trans_z="False" physics_type="STATIC" lock_trans_x="False" meshFile="polySurfaceShape4.mesh" friction_y="1.0" friction_x="1.0" friction_z="1.0" velocity_max="0.0" ghost="False" name="polySurfaceShape4" mass_radius="1.0" mass="1.0" lock_rot_x="False" lock_rot_y="False" lock_rot_z="False" />
+        </node>
+      </node>
+    </node>
+    <node name="Lleva" >
+      <position y="0.000000" x="0.000000" z="-0.000000" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <node name="BrazoDer" >
+        <position y="-1.359020" x="0.855452" z="2.063290" />
+        <rotation qy="0.425053" qx="0.327837" qz="0.302235" qw="0.787723" />
+        <scale y="1.000000" x="1.000000" z="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <node name="ikHandleMuniecaDer" >
+          <position y="-0.011644" x="-0.794008" z="-4.169739" />
+          <rotation qy="0.000000" qx="0.000000" qz="0.000000" qw="1.000000" />
+          <scale y="1.000000" x="1.000000" z="1.000000" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+          <node name="ikHandleMuniecaDer_poleVectorConstraint1" >
+            <position y="0.000000" x="0.000000" z="0.000000" />
+            <rotation qy="-0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+            <scale y="1.000000" x="1.000000" z="1.000000" />
+            <game >
+              <sensors />
+              <actuators />
+            </game>
+          </node>
+        </node>
+        <node name="locatorMuniecaDer" >
+          <position y="0.266077" x="-0.807777" z="-4.189019" />
+          <rotation qy="-0.316698" qx="0.210502" qz="-0.092980" qw="0.920188" />
+          <scale y="1.000000" x="1.000000" z="1.000000" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+      <node name="BrazoIz" >
+        <position y="-0.590732" x="-0.760898" z="1.638260" />
+        <rotation qy="-0.155483" qx="0.441244" qz="-0.133730" qw="0.873639" />
+        <scale y="1.000000" x="1.000000" z="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <node name="ikHandleMuniecaIz" >
+          <position y="-0.179901" x="1.431120" z="-3.691569" />
+          <rotation qy="0.000000" qx="-0.000000" qz="0.000000" qw="1.000000" />
+          <scale y="1.000000" x="1.000000" z="1.000000" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+          <node name="ikHandle1_poleVectorConstraint1" >
+            <position y="0.000000" x="0.000000" z="0.000000" />
+            <rotation qy="-0.000000" qx="-0.000000" qz="0.000000" qw="1.000000" />
+            <scale y="1.000000" x="1.000000" z="1.000000" />
+            <game >
+              <sensors />
+              <actuators />
+            </game>
+          </node>
+        </node>
+        <node name="locator1" >
+          <position y="0.074616" x="1.466640" z="-3.639449" />
+          <rotation qy="-0.000000" qx="0.086620" qz="0.000000" qw="0.996241" />
+          <scale y="1.000000" x="1.000000" z="1.000000" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+        </node>
+      </node>
+      <node name="GiroTobilloDer" >
+        <position y="0.000000" x="0.000000" z="-0.000000" />
+        <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+        <scale y="1.000000" x="1.000000" z="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <node name="TobilloDer" >
+          <position y="0.000000" x="0.000000" z="-0.000000" />
+          <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+          <scale y="1.000000" x="1.000000" z="1.000000" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+          <node name="PuntaPieDer" >
+            <position y="0.000000" x="0.000000" z="-0.000000" />
+            <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+            <scale y="1.000000" x="1.000000" z="1.000000" />
+            <game >
+              <sensors />
+              <actuators />
+            </game>
+            <node name="DedosPieDer" >
+              <position y="0.000000" x="0.000000" z="-0.000000" />
+              <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+              <scale y="1.000000" x="1.000000" z="1.000000" />
+              <game >
+                <sensors />
+                <actuators />
+              </game>
+              <node name="ikHandle3Der" >
+                <position y="0.101904" x="-0.325034" z="-0.056278" />
+                <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+                <scale y="1.000000" x="1.000000" z="1.000000" />
+                <game >
+                  <sensors />
+                  <actuators />
+                </game>
+              </node>
+            </node>
+            <node name="ikHandle2Der" >
+              <position y="-0.064852" x="-0.332982" z="-0.057180" />
+              <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+              <scale y="1.000000" x="1.000000" z="1.000000" />
+              <game >
+                <sensors />
+                <actuators />
+              </game>
+            </node>
+            <node name="TalonDer" >
+              <position y="0.000000" x="0.000000" z="-0.000000" />
+              <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+              <scale y="1.000000" x="1.000000" z="1.000000" />
+              <game >
+                <sensors />
+                <actuators />
+              </game>
+              <node name="ikHandleTobilloDer" >
+                <position y="-0.446089" x="-0.350796" z="-0.373046" />
+                <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+                <scale y="1.000000" x="1.000000" z="1.000000" />
+                <game >
+                  <sensors />
+                  <actuators />
+                </game>
+                <node name="ikHandleTobilloDer_poleVectorConstraint1" >
+                  <position y="0.000000" x="0.000000" z="-0.000000" />
+                  <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+                  <scale y="1.000000" x="1.000000" z="1.000000" />
+                  <game >
+                    <sensors />
+                    <actuators />
+                  </game>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node name="GiroTobilloIz" >
+        <position y="0.000000" x="0.000000" z="-0.000000" />
+        <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+        <scale y="1.000000" x="1.000000" z="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <node name="TobilloIz" >
+          <position y="0.000000" x="0.000000" z="-0.000000" />
+          <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+          <scale y="1.000000" x="1.000000" z="1.000000" />
+          <game >
+            <sensors />
+            <actuators />
+          </game>
+          <node name="PuntaPieIz" >
+            <position y="0.000000" x="0.000000" z="-0.000000" />
+            <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+            <scale y="1.000000" x="1.000000" z="1.000000" />
+            <game >
+              <sensors />
+              <actuators />
+            </game>
+            <node name="DedosPieIz" >
+              <position y="0.000000" x="0.000000" z="-0.000000" />
+              <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+              <scale y="1.000000" x="1.000000" z="1.000000" />
+              <game >
+                <sensors />
+                <actuators />
+              </game>
+              <node name="ikHandle3Iz" >
+                <position y="0.104309" x="0.257216" z="-0.053730" />
+                <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+                <scale y="1.000000" x="1.000000" z="1.000000" />
+                <game >
+                  <sensors />
+                  <actuators />
+                </game>
+              </node>
+            </node>
+            <node name="ikHandle2Iz" >
+              <position y="-0.086835" x="0.262007" z="-0.067829" />
+              <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+              <scale y="1.000000" x="1.000000" z="1.000000" />
+              <game >
+                <sensors />
+                <actuators />
+              </game>
+            </node>
+            <node name="TalonIz" >
+              <position y="0.000000" x="0.000000" z="-0.000000" />
+              <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+              <scale y="1.000000" x="1.000000" z="1.000000" />
+              <game >
+                <sensors />
+                <actuators />
+              </game>
+              <node name="ikHandleTobilloIz" >
+                <position y="-0.447320" x="0.273309" z="-0.407467" />
+                <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+                <scale y="1.000000" x="1.000000" z="1.000000" />
+                <game >
+                  <sensors />
+                  <actuators />
+                </game>
+                <node name="ikHandleTobilloIz_poleVectorConstraint1" >
+                  <position y="0.000000" x="0.000000" z="-0.000000" />
+                  <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+                  <scale y="1.000000" x="1.000000" z="1.000000" />
+                  <game >
+                    <sensors />
+                    <actuators />
+                  </game>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node name="PoleCodoDer" >
+        <position y="-2.981110" x="-0.326897" z="-2.937700" />
+        <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+        <scale y="1.000000" x="1.000000" z="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+      </node>
+      <node name="PoleCodoIz" >
+        <position y="-3.007520" x="0.177134" z="-2.933460" />
+        <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+        <scale y="1.000000" x="1.000000" z="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+      </node>
+      <node name="PoleRodillaDer" >
+        <position y="0.258657" x="-0.340262" z="-1.168220" />
+        <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+        <scale y="1.000000" x="1.000000" z="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+      </node>
+      <node name="PoleRodillaIz" >
+        <position y="0.258002" x="0.272110" z="-1.173040" />
+        <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+        <scale y="1.000000" x="1.000000" z="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+      </node>
+    </node>
+    <node name="front1" >
+      <position y="100.099998" x="0.047438" z="-4.590660" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.000000" qw="1.000000" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera projectionType="perspective" fov="0.5033799435163735" name="frontShape2" >
+        <clipping far="1000.0" nearPlaneDist="0.10000000149011612" near="0.10000000149011612" farPlaneDist="1000.0" />
+      </camera>
+    </node>
+    <node name="side1" >
+      <position y="-0.460924" x="100.099998" z="-4.458960" />
+      <rotation qy="0.000000" qx="0.000000" qz="-0.707107" qw="0.707107" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera projectionType="perspective" fov="0.5033799435163735" name="sideShape2" >
+        <clipping far="1000.0" nearPlaneDist="0.10000000149011612" near="0.10000000149011612" farPlaneDist="1000.0" />
+      </camera>
+    </node>
+    <node name="Lamp" >
+      <position y="5.903862" x="4.076245" z="-1.005454" />
+      <rotation qy="0.755880" qx="0.169076" qz="-0.272171" qw="0.570947" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <light shadow="true" type="point" name="Lamp" powerScale="1.0" >
+        <position y="5.903862" x="4.076245" z="-1.005454" />
+        <lightAttenuation range="5000" quadratic="0.0" constant="1.0" linear="0.03333335240683057" />
+        <colourDiffuse r="1.0" b="1.0" g="1.0" />
+        <colourSpecular r="1.0" b="1.0" g="1.0" />
+        <colourShadow r="1.0" b="1.0" g="1.0" />
+      </light>
+    </node>
+    <node name="Camera" >
+      <position y="5.343665" x="7.481132" z="6.507640" />
+      <rotation qy="0.334251" qx="0.481707" qz="-0.212922" qw="0.781600" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera projectionType="perspective" fov="0.5033799435163735" name="Camera" >
+        <clipping far="100.0" nearPlaneDist="0.10000000149011612" near="0.10000000149011612" farPlaneDist="100.0" />
+      </camera>
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\Sergio\jMonkeyEngine\HelloWorldTutorial\assets\Models\eAdventure\Animation Boy\Parado\polySurfaceShape4.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourBackground r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+    <colourAmbient r="0.0" b="0.0" g="0.0" />
+    <colourDiffuse r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+  </environment>
+</scene>

@@ -60,5 +60,88 @@
                 <pathShadow>assets/Textures/Textures Boy/ZapatosSombrasBoy.png</pathShadow>
             </shoes>
         </objects>
+        <animation>
+			<path>Models/eAdventure/Animation Boy/Andar/polySurfaceShape4.mesh.xml</path>
+        </animation>
+        <animation>
+			<path>Models/eAdventure/Animation Boy/Coger/polySurfaceShape4.mesh.xml</path>
+        </animation>
+        <animation>
+			<path>Models/eAdventure/Animation Boy/Hablar/polySurfaceShape4.mesh.xml</path>
+        </animation>
+        <animation>
+			<path>Models/eAdventure/Animation Boy/Parado/polySurfaceShape4.mesh.xml</path>
+        </animation>
     </man>
+    <woman>
+		<objects>
+			<skin>
+				<path>assets/Textures/Textures Girl/PielAmarillaClaraGirl.png</path>
+			</skin>
+			<skin>
+				<path>assets/Textures/Textures Girl/PielAmarillaOscuraGirl.png</path>
+			</skin>
+			<skin>
+				<path>assets/Textures/Textures Girl/PielBlancaGirl.png</path>
+			</skin>
+			<skin>
+				<path>assets/Textures/Textures Girl/PielNegraGirl.png</path>
+			</skin>
+			<skin>
+				<path>assets/Textures/Textures Girl/PielRojaGirl.png</path>
+			</skin>
+			 <eyes>
+                  <path>assets/Textures/Textures Girl/Eyes/OjosAzulGirl.png</path>
+            </eyes>
+            <eyes>
+                  <path>assets/Textures/Textures Girl/Eyes/OjosMarronGirl.png</path>
+            </eyes>
+            <eyes>
+                  <path>assets/Textures/Textures Girl/Eyes/OjosNegroGirl.png</path>
+            </eyes>
+            <eyes>
+                  <path>assets/Textures/Textures Girl/Eyes/OjosVerdeGirl.png</path>
+            </eyes>
+			<tshirt>
+                  <pathColor>assets/Textures/Textures Girl/CamisetaSinMangasSolidoGirl.png</pathColor>
+                  <pathShadow>assets/Textures/Textures Girl/CamisetaSinMangasSombrasGirl.png</pathShadow>
+            </tshirt>
+            <tshirt>
+                  <pathColor>assets/Textures/Textures Girl/CamisetaSolidoGirl.png</pathColor>
+                  <pathShadow>assets/Textures/Textures Girl/CamisetaSombrasGirl.png</pathShadow>
+            </tshirt>
+            <tshirt>
+                  <pathColor>assets/Textures/Textures Girl/CamisetaTirantesSolidoGirl.png</pathColor>
+                  <pathShadow>assets/Textures/Textures Girl/CamisetaTirantesSombrasGirl.png</pathShadow>
+            </tshirt>
+            <tshirt>
+                  <pathColor>assets/Textures/Textures Girl/TopSolidoGirl.png</pathColor>
+                  <pathShadow>assets/Textures/Textures Girl/TopSombrasGirl.png</pathShadow>
+            </tshirt>
+			<trouser>
+                 <pathColor>assets/Textures/Textures Girl/PantalonCortoSolidoGirl.png</pathColor>
+                 <pathShadow>assets/Textures/Textures Girl/PantalonCortoSombrasGirl.png</pathShadow>
+            </trouser>
+            <trouser>
+                <pathColor>assets/Textures/Textures Girl/PantalonLargoSolidoGirl.png</pathColor>
+                <pathShadow>assets/Textures/Textures Girl/PantalonLargoSombrasGirl.png</pathShadow>
+            </trouser>
+			<shoes>
+                <pathColor>assets/Textures/Textures Girl/ZapatosSolidoGirl.png</pathColor>
+                <pathShadow>assets/Textures/Textures Girl/ZapatosSombrasGirl.png</pathShadow>
+            </shoes>
+		</objects>
+		<animation>
+			<path>Models/eAdventure/Animation Girl/Andar/polySurfaceShape12.mesh.xml</path>
+        </animation>
+        <animation>
+			<path>Models/eAdventure/Animation Girl/Coger/polySurfaceShape12.mesh.xml</path>
+        </animation>
+        <animation>
+			<path>Models/eAdventure/Animation Girl/Hablar/polySurfaceShape12.mesh.xml</path>
+        </animation>
+        <animation>
+			<path>Models/eAdventure/Animation Girl/Parada/polySurfaceShape12.mesh.xml</path>
+        </animation>
+	</woman>
 </models>

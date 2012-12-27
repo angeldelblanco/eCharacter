@@ -51,26 +51,35 @@ public class Gui extends SimpleApplication{
     private int indexCaptura = 0;
     private int indexImage = 0;
     
-    String [] arraySkin, arrayShoesColor, arrayShoesShadow, arrayTrouserColor, arrayTrouserShadow, arrayTShirtColor, arrayTShirtShadow, arrayEyes;
+    private String [] arraySkin, arrayShoesColor, arrayShoesShadow, arrayTrouserColor, arrayTrouserShadow, arrayTShirtColor, 
+            arrayTShirtShadow, arrayEyes, arrayAnimations;
+    
     private int indexSkin = -1;
     private int indexTShirt = -1;
     private int indexShoes = -1;
     private int indexTrouser = -1;
     private int indexEyes = -1;
+    private int indexAnimation = -1;
     private int numSkins;
     private int numShoes;
     private int numTrousers;
     private int numTShirts;
     private int numEyes;
+    private int numAnimations;
     
     private Gender gender;
     private Age age;
     private TypeObject typeObject;
     
     public static void main(String[] args) {
+        //Averiguar la resolucion de pantalla del usuario
+        /*Toolkit t = Toolkit.getDefaultToolkit();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        System.out.println("Tu resolución es de " + screenSize.width + "x" + screenSize.height);*/
+        
         AppSettings settings = new AppSettings(true);
         settings.setResolution(800, 600);
-        settings.setFullscreen(true);
+        //settings.setFullscreen(true);
         Gui app = new Gui();
         app.setShowSettings(false);
         app.setSettings(settings);
@@ -81,32 +90,6 @@ public class Gui extends SimpleApplication{
     public void simpleInitApp() {
         setDisplayFps(false);
         setDisplayStatView(false);
-        
-        //CHICO
-        //Andar
-        //Spatial chico = assetManager.loadModel("Models/eAdventure/Animation Boy/Andar/polySurfaceShape4.mesh.xml");
-        //Coger
-        //Spatial chico = assetManager.loadModel("Models/eAdventure/Animation Boy/Coger/polySurfaceShape4.mesh.xml");
-        //Hablar
-        //Spatial chico = assetManager.loadModel("Models/eAdventure/Animation Boy/Hablar/polySurfaceShape4.mesh.xml");
-        //Parado
-        //Spatial chico = assetManager.loadModel("Models/eAdventure/Animation Boy/Parado/polySurfaceShape4.mesh.xml");
-
-        //CHICA
-        //Andar
-        //Spatial chico = assetManager.loadModel("Models/eAdventure/Animation Girl/Andar/polySurfaceShape12.mesh.xml");
-        //Coger
-        //Spatial chico = assetManager.loadModel("Models/eAdventure/Animation Girl/Coger/polySurfaceShape12.mesh.xml");
-        //Hablar
-        //Spatial chico = assetManager.loadModel("Models/eAdventure/Animation Girl/Hablar/polySurfaceShape12.mesh.xml");
-        //Parada
-        //Spatial chico = assetManager.loadModel("Models/eAdventure/Animation Girl/Parada/polySurfaceShape12.mesh.xml");
-
-        //Animacion cambiada con blender
-        /*model = assetManager.loadModel("Models/prueba/polySurfaceShape4.mesh.xml");
-        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));  
-        model.setMaterial(mat);*/
         
         startScreen = new StartScreen(this);
         stateManager.attach(startScreen);
@@ -365,7 +348,7 @@ public class Gui extends SimpleApplication{
         this.age = age;
     }
     
-    public void loadModel(){ //HACER
+    public void loadModel(){
         readXML("assets/XML Configuration/configuration.xml", gender);
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
@@ -373,30 +356,30 @@ public class Gui extends SimpleApplication{
 
         readBuffers();
         
-        switch(gender) {
-            case Male:
-                model = assetManager.loadModel("Models/prueba/polySurfaceShape4.mesh.xml");
-                mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-                mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));  
-                model.setMaterial(mat);
-                model.rotate(1.5f, 0.0f, 0.0f);
-                model.setLocalTranslation(0.0f, -3.0f, 0.0f);                
+        //Cargar el modelo
+        //Modelo cambiado con blender
+        //model = assetManager.loadModel("Models/prueba/polySurfaceShape4.mesh.xml");
+        indexAnimation++;
+        String animationsBoyPath = arrayAnimations[indexAnimation];
+        model = assetManager.loadModel(animationsBoyPath);
+        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));  
+        model.setMaterial(mat);
+        model.rotate(1.5f, 0.0f, 0.0f);
+        model.setLocalTranslation(0.0f, -3.0f, 0.0f);                
 
-                control = model.getControl(AnimControl.class);
-                channel = control.createChannel();
-                channel.setAnim("my_animation");
-                channel.setLoopMode(LoopMode.DontLoop);
+        control = model.getControl(AnimControl.class);
+        channel = control.createChannel();
+        channel.setAnim("my_animation");
+        //Cambiado para que se repita
+        channel.setLoopMode(LoopMode.Loop);
+
+        if (age == Age.Young){
+            //Scale the model
+            model.scale(0.65f, 0.65f, 0.65f);
+        } 
+        rootNode.attachChild(model);
                 
-                if (age == Age.Young){
-                    //Scale the model
-                    model.scale(0.65f, 0.65f, 0.65f);
-                } 
-                rootNode.attachChild(model);
-                break;
-            case Female:
-                //Cargar el modelo de la mujer
-                break;      
-        }
         //Borrar la imagen
         Path file = Paths.get(destinationPath);
         try {
@@ -547,7 +530,7 @@ public class Gui extends SimpleApplication{
                                     Node nValue7 = (Node) nListPathColorShoes.item(0);
                                     String pathShoesColorReaded = nValue7.getNodeValue();
                                     //Print the data readed
-                                    System.out.println("Eyes "+indexShoesReaded+": " + pathShoesColorReaded);
+                                    System.out.println("Shoes "+indexShoesReaded+": " + pathShoesColorReaded);
                                     //Save the path of this trouser
                                     arrayShoesColor[indexShoesReaded] = pathShoesColorReaded;
 
@@ -555,11 +538,30 @@ public class Gui extends SimpleApplication{
                                     Node nValue8 = (Node) nListPathShadowShoes.item(0);
                                     String pathShoesShadowReaded = nValue8.getNodeValue();
                                     //Print the data readed
-                                    System.out.println("Eyes "+indexShoesReaded+": " + pathShoesShadowReaded);
+                                    System.out.println("Shoes "+indexShoesReaded+": " + pathShoesShadowReaded);
                                     //Save the path of this tshirt
                                     arrayShoesShadow[indexShoesReaded] = pathShoesShadowReaded;
                                 }
                             }
+                          }
+                          NodeList nListAnimations = eElement.getElementsByTagName("animation");
+                          numAnimations = nListAnimations.getLength();
+                          arrayAnimations = new String[numAnimations];
+                          
+                          int indexAnimationReaded;
+                          for (indexAnimationReaded = 0; indexAnimationReaded < nListAnimations.getLength(); indexAnimationReaded++){
+                                Node nNode8 = nListAnimations.item(indexAnimationReaded);
+                                if (nNode8.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element8, we have the node animation
+                                    Element eElement8 = (Element) nNode8;
+                                    NodeList nListPathAnimation = eElement8.getElementsByTagName("path").item(0).getChildNodes();
+                                    Node nValue9 = (Node) nListPathAnimation.item(0);
+                                    String pathAnimationReaded = nValue9.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Animation "+indexAnimationReaded+": " + pathAnimationReaded);
+                                    //Save the path of this skin
+                                    arrayAnimations[indexAnimationReaded] = pathAnimationReaded;
+                                }
                           }
                        }
                     }
@@ -568,6 +570,179 @@ public class Gui extends SimpleApplication{
                 }
                 break;
             case Female:
+                try {
+                    //Assing the file to the DOM doc.
+                    File xmlFile = new File(file);
+                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                    Document doc = dBuilder.parse(xmlFile);
+                    doc.getDocumentElement().normalize();
+
+                    //Read the doc.
+                    //Read all nodes with name woman
+                    NodeList nListWoman = doc.getElementsByTagName("woman");
+                    for (int temp = 0; temp < nListWoman.getLength(); temp++) {
+                       Node nNode = nListWoman.item(temp); 
+                       if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                          //Here, we have the element man 
+                          Element eElement = (Element) nNode;
+                          NodeList nListObjects = eElement.getElementsByTagName("objects");
+                          Node nNode2 = (Node) nListObjects.item(0);
+                          if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
+                            //In eElement2, we have the node objects
+                            Element eElement2 = (Element) nNode2;
+                            NodeList nListSkins = eElement2.getElementsByTagName("skin");
+                            
+                            numSkins = nListSkins.getLength();
+                            arraySkin = new String[numSkins];
+                            
+                            int indexSkinReaded;
+                            for (indexSkinReaded = 0; indexSkinReaded < nListSkins.getLength(); indexSkinReaded++){
+                                Node nNode3 = nListSkins.item(indexSkinReaded);
+                                if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element3, we have the node skin
+                                    Element eElement3 = (Element) nNode3;
+                                    NodeList nListPathSkin = eElement3.getElementsByTagName("path").item(0).getChildNodes();
+                                    Node nValue = (Node) nListPathSkin.item(0);
+                                    String pathSkinReaded = nValue.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Skin "+indexSkinReaded+": " + pathSkinReaded);
+                                    //Save the path of this skin
+                                    arraySkin[indexSkinReaded] = pathSkinReaded;
+                                }
+                            }
+                            NodeList nListEyes = eElement2.getElementsByTagName("eyes");
+                            
+                            numEyes = nListEyes.getLength();
+                            arrayEyes = new String[numEyes];
+                            
+                            int indexEyesReaded;
+                            for (indexEyesReaded = 0; indexEyesReaded < nListEyes.getLength(); indexEyesReaded++){
+                                Node nNode4 = nListEyes.item(indexEyesReaded);
+                                if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element4, we have the node eyes
+                                    Element eElement4 = (Element) nNode4;
+                                    NodeList nListPathEyes = eElement4.getElementsByTagName("path").item(0).getChildNodes();
+                                    Node nValue2 = (Node) nListPathEyes.item(0);
+                                    String pathEyesReaded = nValue2.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Eyes "+indexEyesReaded+": " + pathEyesReaded);
+                                    //Save the path of these eyes
+                                    arrayEyes[indexEyesReaded] = pathEyesReaded;
+                                }
+                            }
+                            NodeList nListTShirts = eElement2.getElementsByTagName("tshirt");
+                            
+                            numTShirts = nListTShirts.getLength();
+                            arrayTShirtColor = new String[numTShirts];
+                            arrayTShirtShadow = new String[numTShirts];
+                            
+                            int indexTShirtReaded;
+                            for (indexTShirtReaded = 0; indexTShirtReaded < nListTShirts.getLength(); indexTShirtReaded++){
+                                Node nNode5 = nListTShirts.item(indexTShirtReaded);
+                                if (nNode5.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element5, we have the node tshirt
+                                    Element eElement5 = (Element) nNode5;
+                                    NodeList nListPathColorTshirt = eElement5.getElementsByTagName("pathColor").item(0).getChildNodes();
+                                    Node nValue3 = (Node) nListPathColorTshirt.item(0);
+                                    String pathTShirtColorReaded = nValue3.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtColorReaded);
+                                    //Save the path of this tshirt
+                                    arrayTShirtColor[indexTShirtReaded] = pathTShirtColorReaded;
+
+                                    NodeList nListPathShadowTshirt = eElement5.getElementsByTagName("pathShadow").item(0).getChildNodes();
+                                    Node nValue4 = (Node) nListPathShadowTshirt.item(0);
+                                    String pathTShirtShadowReaded = nValue4.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtShadowReaded);
+                                    //Save the path of this tshirt
+                                    arrayTShirtShadow[indexTShirtReaded] = pathTShirtShadowReaded;
+                                }
+                            }
+                            NodeList nListTrousers = eElement2.getElementsByTagName("trouser");
+                            
+                            numTrousers = nListTrousers.getLength();
+                            arrayTrouserColor = new String[numTrousers];
+                            arrayTrouserShadow = new String[numTrousers];
+                            
+                            int indexTrouserReaded;
+                            for (indexTrouserReaded = 0; indexTrouserReaded < nListTrousers.getLength(); indexTrouserReaded++){
+                                Node nNode6 = nListTrousers.item(indexTrouserReaded);
+                                if (nNode6.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element6, we have the node trouser
+                                    Element eElement6 = (Element) nNode6;
+                                    NodeList nListPathColorTrouser = eElement6.getElementsByTagName("pathColor").item(0).getChildNodes();
+                                    Node nValue5 = (Node) nListPathColorTrouser.item(0);
+                                    String pathTrouserColorReaded = nValue5.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserColorReaded);
+                                    //Save the path of this trouser
+                                    arrayTrouserColor[indexTrouserReaded] = pathTrouserColorReaded;
+
+                                    NodeList nListPathShadowTrouser = eElement6.getElementsByTagName("pathShadow").item(0).getChildNodes();
+                                    Node nValue6 = (Node) nListPathShadowTrouser.item(0);
+                                    String pathTrouserShadowReaded = nValue6.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserShadowReaded);
+                                    //Save the path of this tshirt
+                                    arrayTrouserShadow[indexTrouserReaded] = pathTrouserShadowReaded;
+                                }
+                            }
+                            NodeList nListShoes = eElement2.getElementsByTagName("shoes");
+                            
+                            numShoes = nListShoes.getLength();
+                            arrayShoesColor = new String[numShoes];
+                            arrayShoesShadow = new String[numShoes];
+                            
+                            int indexShoesReaded;
+                            for (indexShoesReaded = 0; indexShoesReaded < nListShoes.getLength(); indexShoesReaded++){
+                                Node nNode7 = nListShoes.item(indexShoesReaded);
+                                if (nNode7.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element7, we have the node shoes
+                                    Element eElement7 = (Element) nNode7;
+                                    NodeList nListPathColorShoes = eElement7.getElementsByTagName("pathColor").item(0).getChildNodes();
+                                    Node nValue7 = (Node) nListPathColorShoes.item(0);
+                                    String pathShoesColorReaded = nValue7.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Shoes "+indexShoesReaded+": " + pathShoesColorReaded);
+                                    //Save the path of this trouser
+                                    arrayShoesColor[indexShoesReaded] = pathShoesColorReaded;
+
+                                    NodeList nListPathShadowShoes = eElement7.getElementsByTagName("pathShadow").item(0).getChildNodes();
+                                    Node nValue8 = (Node) nListPathShadowShoes.item(0);
+                                    String pathShoesShadowReaded = nValue8.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Shoes "+indexShoesReaded+": " + pathShoesShadowReaded);
+                                    //Save the path of this shoes
+                                    arrayShoesShadow[indexShoesReaded] = pathShoesShadowReaded;
+                                }
+                            }
+                          }
+                          NodeList nListAnimations = eElement.getElementsByTagName("animation");
+                          numAnimations = nListAnimations.getLength();
+                          arrayAnimations = new String[numAnimations];
+                          
+                          int indexAnimationReaded;
+                          for (indexAnimationReaded = 0; indexAnimationReaded < nListAnimations.getLength(); indexAnimationReaded++){
+                                Node nNode8 = nListAnimations.item(indexAnimationReaded);
+                                if (nNode8.getNodeType() == Node.ELEMENT_NODE) {
+                                    //In element8, we have the node animation
+                                    Element eElement8 = (Element) nNode8;
+                                    NodeList nListPathAnimation = eElement8.getElementsByTagName("path").item(0).getChildNodes();
+                                    Node nValue9 = (Node) nListPathAnimation.item(0);
+                                    String pathAnimationReaded = nValue9.getNodeValue();
+                                    //Print the data readed
+                                    System.out.println("Animation "+indexAnimationReaded+": " + pathAnimationReaded);
+                                    //Save the path of this skin
+                                    arrayAnimations[indexAnimationReaded] = pathAnimationReaded;
+                                }
+                          }
+                       }
+                    }
+                } catch (Exception e) {
+                      e.printStackTrace();
+                }
                 break;
         }     
     }
@@ -602,7 +777,7 @@ public class Gui extends SimpleApplication{
         }     
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);
         destinationPath = "assets/Textures/OriginalTexture.png";
-        img.fusionaImagenes(destinationPath);
+        img.fusionaImagenes(destinationPath);       
     }
     
     private BufferedImage readBuffer(String path)
