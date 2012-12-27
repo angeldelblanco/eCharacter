@@ -1,10 +1,12 @@
 package imagesProcessing;
 
+import animation.GenerateAnimation;
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.LoopMode;
 import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +19,7 @@ public class ScreenshotThread extends Thread
     private AnimChannel channel;
     private ViewPort guiViewPort;
     private NiftyJmeDisplay niftyDisplay;
+    private ArrayList<String> imagesNames;
     
     public ScreenshotThread(ScreenshotAppState screeShotState,float animationTime,
             String screenshotName,AnimChannel channel,ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay)
@@ -28,6 +31,7 @@ public class ScreenshotThread extends Thread
         this.channel = channel;
         this.guiViewPort = guiViewPort;
         this.niftyDisplay = niftyDisplay;
+        this.imagesNames = new ArrayList<String>();
         
     }
     
@@ -43,8 +47,10 @@ public class ScreenshotThread extends Thread
             for(int i = 1 ; i<=numScreenshot; i++)
             {
                 screenShotState.takeScreenshot();
+                imagesNames.add(screenshotName+"Gui"+i+".png");
                 sleep(stepAnimationTime + 50);
             }
+            GenerateAnimation generateAnimation = new GenerateAnimation("assets/Textures/screenshots", screenshotName, imagesNames);
             guiViewPort.addProcessor(niftyDisplay);
         } catch (InterruptedException ex) {
             Logger.getLogger(ScreenshotThread.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -17,16 +19,17 @@ import org.w3c.dom.Element;
 
 public class GenerateAnimation 
 {
-	String[] imagesNames;
-	String animationPath;
-	String nameAnimation;
+	private ArrayList<String> imagesNames;
+	private String animationPath;
+	private String nameAnimation;
 
-	public GenerateAnimation(String folderPath, String nameAnimation)
+	public GenerateAnimation(String folderPath, String nameAnimation, ArrayList<String> imagesNames)
 	{
 		this.nameAnimation = nameAnimation;
 		this.animationPath = folderPath + "/" + nameAnimation + ".eaa";
+                this.imagesNames = imagesNames;
 		//Opening the folder for get the name of images
-		File folder = new File(folderPath);
+		/*File folder = new File(folderPath);
 		this.imagesNames = folder.list();
 		if(this.imagesNames == null)
 		{
@@ -35,10 +38,11 @@ public class GenerateAnimation
 		else
 		{
 			createAnimation(this.animationPath);
-		}
+		}*/
+                createAnimation();
 	}
 	
-	private void createAnimation(String path) 
+	private void createAnimation() 
 	{
             try
             {
@@ -55,8 +59,10 @@ public class GenerateAnimation
                 mainNode.setAttribute("usetransitions", "no");
         	mainNode.setAttribute("slides", "no");
                 
-                for (int i = 0; i < imagesNames.length; i++ )
-		{
+                Iterator<String> it = imagesNames.iterator();              
+                //for (int i = 0; i < imagesNames.size(); i++ )
+                while (it.hasNext())
+		{                
                     //Creat the node "transition"
                     Element transitionNode = doc.createElement("transition");
                     transitionNode.setAttribute("type", "none");
@@ -67,7 +73,7 @@ public class GenerateAnimation
                     frameNode.setAttribute("soundUri", "");
                     frameNode.setAttribute("time", "200");
                     frameNode.setAttribute("type", "image");
-                    frameNode.setAttribute("uri", "assets/animation/" + imagesNames[i]);
+                    frameNode.setAttribute("uri", "assets/animation/" + it.next());
                     frameNode.setAttribute("waitforclick", "no");
                     //Add de nodes to main node
                     mainNode.appendChild(transitionNode);
@@ -78,7 +84,7 @@ public class GenerateAnimation
                 transformer = tf.newTransformer();
                 transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "animation.dtd");
                 try {
-                    fout = new FileOutputStream(path);
+                    fout = new FileOutputStream(this.animationPath);
                 }
                 catch( FileNotFoundException e ) {
                     System.out.println("error");
@@ -92,9 +98,4 @@ public class GenerateAnimation
                 System.out.println("error");
             }
         }
-	
-	public static void main(String[] args)
-	{
-		GenerateAnimation aux = new GenerateAnimation("C:/Users/Sergio/Desktop/prueba/capturas", "chico_sentado");
-	}
 }
