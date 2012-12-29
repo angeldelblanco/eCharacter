@@ -64,19 +64,34 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         gui.loadModel();
     }
     
-    public void changeEyes()
+    public void changeEyes(String walk)
     {
-        gui.changeEyes();
+        if(walk.contains("+")){
+            gui.changeEyes(1);
+        }
+        else{
+            gui.changeEyes(-1);
+        }
     }
     
-    public void changeTShirt()
+    public void changeTShirt(String walk)
     {
-        gui.changeTShirt();
+        if(walk.contains("+")){
+            gui.changeTShirt(1);
+        }
+        else{
+            gui.changeTShirt(-1);
+        }
     }
     
-    public void changeTrousers()
+    public void changeTrousers(String walk)
     {
-        gui.changeTrousers();
+        if(walk.contains("+")){
+            gui.changeTrousers(1);
+        }
+        else{
+            gui.changeTrousers(-1);
+        }
     }
     
     public void changeShoes()
@@ -84,9 +99,39 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         gui.changeShoes();
     }
     
-    public void changeSkin()
+    public void changeSkin(String walk)
     {
-        gui.changeSkin();
+        if(walk.contains("+")){
+            gui.changeSkin(1);
+        }
+        else{
+            gui.changeSkin(-1);
+        }
+    }
+    
+    public void eyesScreen()
+    {
+        nifty.gotoScreen("eyesScreen");
+    }
+    
+    public void tShirtScreen()
+    {
+        nifty.gotoScreen("tshirtScreen");
+    }
+    
+    public void trousersScreen()
+    {
+        nifty.gotoScreen("trousersScreen");
+    }
+    
+    public void shoesScreen()
+    {
+        nifty.gotoScreen("shoesScreen");
+    }
+    
+    public void skinScreen()
+    {
+        nifty.gotoScreen("skinScreen");
     }
     
     public void showWindowChangeColorTrouser() throws InterruptedException

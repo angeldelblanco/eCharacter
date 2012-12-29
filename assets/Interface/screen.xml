@@ -96,99 +96,341 @@
   
   <!-- Fourth screen -->
   <screen id="fourthScreen" controller="gui_nifty.StartScreen">
-        <layer id="background" backgroundColor="#0000" childLayout="vertical">
+        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
-        <layer id="foreground" backgroundColor="#0000" childLayout="horizontal">
-            <panel id="panel_total" height="100%" width="100%" childLayout="Vertical">
-                <!-- Option Panel -->
-                <panel id="panel_options" height="15%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
-                    <!-- Change Skin Options Panel -->
-                    <panel id="panel_option_skin" height="100%" width="20%" childLayout="vertical">  
-                        <!-- Caption -->
-                        <panel id="panel_option_skin_caption" height="50%" width="100%" childLayout="vertical">
-                            <text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-                        </panel>
-                        <!-- Option Buttons -->
-                        <panel id="panel_option_skin_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
-                            <control name="button" label="Change" id="button_skin_change" align="center" valign="center">
-                                <interact onClick="changeSkin()"/>
-                            </control>
-                        </panel>
-                    </panel>
-                    <!-- Change Eyes Options Panel -->
-                    <panel id="panel_option_eyes" height="100%" width="20%" childLayout="vertical">  
-                        <!-- Caption -->
-                        <panel id="panel_option_eyes_caption" height="50%" width="100%" childLayout="vertical">
-                            <text text="Eyes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-                        </panel>
-                        <!-- Option Buttons -->
-                        <panel id="panel_option_eyes_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
-                            <control name="button" label="Change" id="button_eyes_change" align="center" valign="center">
-                                <interact onClick="changeEyes()"/>
-                            </control>
-                        </panel>
-                    </panel>
-                    <!-- Change T-Shirt Options Panel -->
-                    <panel id="panel_option_tshirt" height="100%" width="20%" childLayout="vertical">  
-                        <!-- Caption -->
-                        <panel id="panel_option_tshirt_caption" height="30%" width="100%" childLayout="vertical">
-                            <text text="T-Shirt" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-                        </panel>
-                        <!-- Option Buttons -->
-                        <panel id="panel_option_tshirt_buttons" height="70%" width="100%" childLayout="vertical" visibleToMouse="true">
-                            <control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
-                                <interact onClick="changeTShirt()"/>
-                            </control>
-                            <control name="button" label="Change color" id="button_tshirt_change_Color" align="center" valign="center">
-                                <interact onClick="showWindowChangeColorTShirt()"/>
-                            </control>
-                        </panel>
-                    </panel>
-                    <!-- Change Trousers Options Panel -->
-                    <panel id="panel_option_trousers" height="100%" width="20%" childLayout="vertical">  
-                        <!-- Caption -->
-                        <panel id="panel_option_trousers_caption" height="30%" width="100%" childLayout="vertical">
-                            <text text="Trousers" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-                        </panel>
-                        <!-- Option Buttons -->
-                        <panel id="panel_option_trousers_buttons" height="70%" width="100%" childLayout="vertical" visibleToMouse="true">
-                            <control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
-                                <interact onClick="changeTrousers()"/>
-                            </control>
-                            <control name="button" label="Change color" id="button_trousers_change_color" align="center" valign="center">
-                                <interact onClick="showWindowChangeColorTrouser()"/>
-                            </control>
-                        </panel>
-                    </panel>
-                    <!-- Change Shoes Options Panel -->
-                    <panel id="panel_option_shoes" height="100%" width="20%" childLayout="vertical">  
-                        <!-- Caption -->
-                        <panel id="panel_option_shoes_caption" height="50%" width="100%" childLayout="vertical">
-                            <text text="Shoes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-                        </panel>
-                        <!-- Option Buttons -->
-                        <panel id="panel_option_shoes_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">
-                            <control name="button" label="Change color" id="button_shoes_change_color" align="center" valign="center">
-                                <interact onClick="showWindowChangeColorShoes()"/>
-                            </control>
-                        </panel>
-                    </panel>
-                </panel>
-                <!-- ScreenShot Panel -->
-                <panel id="panel_screenshot" height="10%" width="20%" childLayout="vertical" backgroundColor="#A9A9A9">  
-                    <!-- Caption -->
-                    <panel id="panel_screenshot_caption" height="50%" width="100%" childLayout="vertical">
-                        <text text="Screenshot" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-                    </panel>
-                    <!-- Button -->
-                    <panel id="panel__screenshot_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">                
-                        <control name="button" label="Take" id="button_screenshotr" align="center" valign="center">
-                            <interact onClick="screenshot()"/>
-                        </control>
-                    </panel>
-                </panel>
-            </panel>
+        <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<!-- Option Panel -->
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+				<!-- Change Skin Options Panel -->
+				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+						<interact onClick="skinScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Eyes Options Panel -->
+				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+						<interact onClick="eyesScreen()"/>
+					</control>
+				</panel>
+				<!-- Change T-Shirt Options Panel -->
+				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+						<interact onClick="tShirtScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Trousers Options Panel -->
+				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+						<interact onClick="trousersScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Shoes Options Panel -->
+				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+						<interact onClick="shoesScreen()"/>
+					</control>
+				</panel>
+			</panel>
+        </layer>
+    </screen>
+	<!-- Fifth screen (Change skin)-->
+  <screen id="skinScreen" controller="gui_nifty.StartScreen">
+        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
+            <!-- Option Panel -->
+        </layer>
+        <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<!-- Option Panel -->
+			<panel id="panel_options" height="5%" width="100%" childLayout="horizontal" backgroundColor="#778899"> 
+				<!-- Change Skin Options Panel -->
+				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
+					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+						<interact onClick="skinScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Eyes Options Panel -->
+				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+						<interact onClick="eyesScreen()"/>
+					</control>
+				</panel>
+				<!-- Change T-Shirt Options Panel -->
+				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+						<interact onClick="tShirtScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Trousers Options Panel -->
+				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+						<interact onClick="trousersScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Shoes Options Panel -->
+				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+						<interact onClick="shoesScreen()"/>
+					</control>
+				</panel>
+			</panel>
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
+					<!-- Texture's Image -->
+				</panel>
+				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
+					<control name="button" label="ant" id="button_ant" align="center" valign="center">
+						<interact onClick="changeSkin(-)"/>
+					</control>
+					<control name="button" label="sig" id="button_sig" align="center" valign="center">
+						<interact onClick="changeSkin(+)"/>
+					</control>
+				</panel>
+			</panel>
+        </layer>
+    </screen>
+	<!-- Sixth screen (Eyes change) -->
+  <screen id="eyesScreen" controller="gui_nifty.StartScreen">
+        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
+            <!-- Option Panel -->    
+        </layer>
+        <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<!-- Option Panel -->
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+				<!-- Change Skin Options Panel -->
+				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+						<interact onClick="skinScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Eyes Options Panel -->
+				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
+					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+						<interact onClick="eyesScreen()"/>
+					</control>
+				</panel>
+				<!-- Change T-Shirt Options Panel -->
+				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+						<interact onClick="tShirtScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Trousers Options Panel -->
+				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+						<interact onClick="trousersScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Shoes Options Panel -->
+				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+						<interact onClick="shoesScreen()"/>
+					</control>
+				</panel>
+			</panel>
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
+					<!-- Texture's Image -->
+				</panel>
+				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
+					<control name="button" label="ant" id="button_ant" align="center" valign="center">
+						<interact onClick="changeEyes(-)"/>
+					</control>
+					<control name="button" label="sig" id="button_sig" align="center" valign="center">
+						<interact onClick="changeEyes(+)"/>
+					</control>
+				</panel>
+			</panel>
+        </layer>
+    </screen>
+	<!-- Seventh screen (T-Shirt change) -->
+  <screen id="tshirtScreen" controller="gui_nifty.StartScreen">
+        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
+            <!-- Option Panel -->    
+        </layer>
+        <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<!-- Option Panel -->
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+				<!-- Change Skin Options Panel -->
+				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+						<interact onClick="skinScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Eyes Options Panel -->
+				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+						<interact onClick="eyesScreen()"/>
+					</control>
+				</panel>
+				<!-- Change T-Shirt Options Panel -->
+				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
+					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+						<interact onClick="tShirtScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Trousers Options Panel -->
+				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+						<interact onClick="trousersScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Shoes Options Panel -->
+				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+						<interact onClick="shoesScreen()"/>
+					</control>
+				</panel>
+			</panel>
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
+					<!-- Texture's Image -->
+				</panel>
+				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
+					<control name="button" label="ant" id="button_ant" align="center" valign="center">
+						<interact onClick="changeTShirt(-)"/>
+					</control>
+					<control name="button" label="sig" id="button_sig" align="center" valign="center">
+						<interact onClick="changeTShirt(+)"/>
+					</control>
+				</panel>
+				<panel id="panel_color" height="10%" width="80%" align="center" childLayout="horizontal">
+					<control name="button" label="color" id="button_color" align="center" valign="center">
+						<interact onClick="showWindowChangeColorTShirt()"/>
+					</control>
+				</panel>
+			</panel>
+        </layer>
+    </screen>
+	<!-- Eighth screen (Trousers change) -->
+  <screen id="trousersScreen" controller="gui_nifty.StartScreen">
+        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
+            <!-- Option Panel -->    
+        </layer>
+        <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<!-- Option Panel -->
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+				<!-- Change Skin Options Panel -->
+				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+						<interact onClick="skinScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Eyes Options Panel -->
+				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+						<interact onClick="eyesScreen()"/>
+					</control>
+				</panel>
+				<!-- Change T-Shirt Options Panel -->
+				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+						<interact onClick="tShirtScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Trousers Options Panel -->
+				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
+					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+						<interact onClick="trousersScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Shoes Options Panel -->
+				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+						<interact onClick="shoesScreen()"/>
+					</control>
+				</panel>
+			</panel>
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
+					<!-- Texture's Image -->
+				</panel>
+				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
+					<control name="button" label="ant" id="button_ant" align="center" valign="center">
+						<interact onClick="changeTrousers(-)"/>
+					</control>
+					<control name="button" label="sig" id="button_sig" align="center" valign="center">
+						<interact onClick="changeTrousers(+)"/>
+					</control>
+				</panel>
+				<panel id="panel_color" height="10%" width="80%" align="center" childLayout="horizontal">
+					<control name="button" label="color" id="button_color" align="center" valign="center">
+						<interact onClick="showWindowChangeColorTrouser()"/>
+					</control>
+				</panel>
+			</panel>
+        </layer>
+    </screen>
+	<!-- Nineth screen (Shoes change) -->
+  <screen id="shoesScreen" controller="gui_nifty.StartScreen">
+        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
+            <!-- Option Panel -->    
+        </layer>
+        <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<!-- Option Panel -->
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+				<!-- Change Skin Options Panel -->
+				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+						<interact onClick="skinScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Eyes Options Panel -->
+				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+						<interact onClick="eyesScreen()"/>
+					</control>
+				</panel>
+				<!-- Change T-Shirt Options Panel -->
+				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
+					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+						<interact onClick="tShirtScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Trousers Options Panel -->
+				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
+					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+						<interact onClick="trousersScreen()"/>
+					</control>
+				</panel>
+				<!-- Change Shoes Options Panel -->
+				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
+					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+						<interact onClick="shoesScreen()"/>
+					</control>
+				</panel>
+			</panel>
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
+					<!-- Texture's Image -->
+				</panel>
+				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
+					<control name="button" label="ant" id="button_ant" align="center" valign="center">
+						<interact onClick="changeTrousers(-)"/>
+					</control>
+					<control name="button" label="sig" id="button_sig" align="center" valign="center">
+						<interact onClick="changeTrousers(+)"/>
+					</control>
+				</panel>
+				<panel id="panel_color" height="10%" width="80%" align="center" childLayout="horizontal">
+					<control name="button" label="color" id="button_color" align="center" valign="center">
+						<interact onClick="showWindowChangeColorTrouser()"/>
+					</control>
+				</panel>
+			</panel>
+			<!-- ScreenShot Panel -->
+			<panel id="panel_screenshot" height="10%" width="20%" childLayout="vertical" backgroundColor="#A9A9A9">  
+				<!-- Caption -->
+				<panel id="panel_screenshot_caption" height="50%" width="100%" childLayout="vertical">
+					<text text="Screenshot" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+				</panel>
+				<!-- Button -->
+				<panel id="panel__screenshot_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">                
+					<control name="button" label="Take" id="button_screenshotr" align="center" valign="center">
+						<interact onClick="screenshot()"/>
+					</control>
+				</panel>
+			</panel>
         </layer>
     </screen>
 </nifty>
