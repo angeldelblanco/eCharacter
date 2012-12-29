@@ -101,36 +101,36 @@
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
 				<!-- Change Skin Options Panel -->
 				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+					<image filename="Interface/SkinAzul.png" height="100%" width="100%">
 						<interact onClick="skinScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Eyes Options Panel -->
 				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+					<image filename="Interface/EyesAzul.png" height="100%" width="100%">
 						<interact onClick="eyesScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change T-Shirt Options Panel -->
 				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+					<image filename="Interface/TshirtAzul.png" height="100%" width="100%">
 						<interact onClick="tShirtScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Trousers Options Panel -->
 				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+					<image filename="Interface/TrousersAzul.png" height="100%" width="100%">
 						<interact onClick="trousersScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Shoes Options Panel -->
 				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+					<image filename="Interface/ShoesAzul.png" height="100%" width="100%">
 						<interact onClick="shoesScreen()"/>
-					</control>
+					</image>
 				</panel>
 			</panel>
         </layer>
@@ -142,39 +142,39 @@
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="horizontal" backgroundColor="#778899"> 
+			<panel id="panel_options" height="5%" width="100%" childLayout="horizontal"> 
 				<!-- Change Skin Options Panel -->
-				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
-					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
+					<image filename="Interface/SkinRojo.png" height="100%" width="100%">
 						<interact onClick="skinScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Eyes Options Panel -->
 				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+					<image filename="Interface/EyesAzul.png" height="100%" width="100%">
 						<interact onClick="eyesScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change T-Shirt Options Panel -->
 				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+					<image filename="Interface/TshirtAzul.png" height="100%" width="100%">
 						<interact onClick="tShirtScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Trousers Options Panel -->
 				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+					<image filename="Interface/TrousersAzul.png" height="100%" width="100%">
 						<interact onClick="trousersScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Shoes Options Panel -->
 				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+					<image filename="Interface/ShoesAzul.png" height="100%" width="100%">
 						<interact onClick="shoesScreen()"/>
-					</control>
+					</image>
 				</panel>
 			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
 				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
 					<!-- Texture's Image -->
 				</panel>
@@ -196,39 +196,39 @@
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
 				<!-- Change Skin Options Panel -->
 				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+					<image filename="Interface/SkinAzul.png" height="100%" width="100%">
 						<interact onClick="skinScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Eyes Options Panel -->
-				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
-					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
+					<image filename="Interface/EyesRojo.png" height="100%" width="100%">
 						<interact onClick="eyesScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change T-Shirt Options Panel -->
 				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+					<image filename="Interface/TshirtAzul.png" height="100%" width="100%">
 						<interact onClick="tShirtScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Trousers Options Panel -->
 				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+					<image filename="Interface/TrousersAzul.png" height="100%" width="100%">
 						<interact onClick="trousersScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Shoes Options Panel -->
 				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+					<image filename="Interface/ShoesAzul.png" height="100%" width="100%">
 						<interact onClick="shoesScreen()"/>
-					</control>
+					</image>
 				</panel>
 			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
 				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
 					<!-- Texture's Image -->
 				</panel>
@@ -250,39 +250,39 @@
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
 				<!-- Change Skin Options Panel -->
 				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+					<image filename="Interface/SkinAzul.png" height="100%" width="100%">
 						<interact onClick="skinScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Eyes Options Panel -->
 				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+					<image filename="Interface/EyesAzul.png" height="100%" width="100%">
 						<interact onClick="eyesScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change T-Shirt Options Panel -->
-				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
-					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
+					<image filename="Interface/TshirtRojo.png" height="100%" width="100%">
 						<interact onClick="tShirtScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Trousers Options Panel -->
 				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+					<image filename="Interface/TrousersAzul.png" height="100%" width="100%">
 						<interact onClick="trousersScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Shoes Options Panel -->
 				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+					<image filename="Interface/ShoesAzul.png" height="100%" width="100%">
 						<interact onClick="shoesScreen()"/>
-					</control>
+					</image>
 				</panel>
 			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
 				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
 					<!-- Texture's Image -->
 				</panel>
@@ -309,39 +309,39 @@
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
 				<!-- Change Skin Options Panel -->
 				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+					<image filename="Interface/SkinAzul.png" height="100%" width="100%">
 						<interact onClick="skinScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Eyes Options Panel -->
 				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+					<image filename="Interface/EyesAzul.png" height="100%" width="100%">
 						<interact onClick="eyesScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change T-Shirt Options Panel -->
 				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+					<image filename="Interface/TshirtAzul.png" height="100%" width="100%">
 						<interact onClick="tShirtScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Trousers Options Panel -->
-				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
-					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
+					<image filename="Interface/TrousersRojo.png" height="100%" width="100%">
 						<interact onClick="trousersScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Shoes Options Panel -->
 				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+					<image filename="Interface/ShoesAzul.png" height="100%" width="100%">
 						<interact onClick="shoesScreen()"/>
-					</control>
+					</image>
 				</panel>
 			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
 				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
 					<!-- Texture's Image -->
 				</panel>
@@ -368,39 +368,39 @@
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal" backgroundColor="#778899"> 
+			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
 				<!-- Change Skin Options Panel -->
 				<panel id="panel_option_skin" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change skin" id="button_skin_change" align="center" valign="center">
+					<image filename="Interface/SkinAzul.png" height="100%" width="100%">
 						<interact onClick="skinScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Eyes Options Panel -->
 				<panel id="panel_option_eyes" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change eyes" id="button_eyes_change" align="center" valign="center">
+					<image filename="Interface/EyesAzul.png" height="100%" width="100%">
 						<interact onClick="eyesScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change T-Shirt Options Panel -->
 				<panel id="panel_option_tshirt" height="100%" width="20%" childLayout="center">
-					<control name="button" label="Change Tshirt" id="button_tshirt_change" align="center" valign="center">
+					<image filename="Interface/TshirtAzul.png" height="100%" width="100%">
 						<interact onClick="tShirtScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Trousers Options Panel -->
-				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
-					<control name="button" label="Change trousers" id="button_trousers_change" align="center" valign="center">
+				<panel id="panel_option_trousers" height="100%" width="20%" childLayout="center">
+					<image filename="Interface/TrousersAzul.png" height="100%" width="100%">
 						<interact onClick="trousersScreen()"/>
-					</control>
+					</image>
 				</panel>
 				<!-- Change Shoes Options Panel -->
-				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000">
-					<control name="button" label="Change shoes" id="button_shoes_change_color" align="center" valign="center">
+				<panel id="panel_option_shoes" height="100%" width="20%" childLayout="center">
+					<image filename="Interface/ShoesRojo.png" height="100%" width="100%">
 						<interact onClick="shoesScreen()"/>
-					</control>
+					</image>
 				</panel>
 			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundColor="#A9A9A9">
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
 				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
 					<!-- Texture's Image -->
 				</panel>
