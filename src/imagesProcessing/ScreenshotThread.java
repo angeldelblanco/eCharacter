@@ -7,55 +7,69 @@ import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class ScreenshotThread extends Thread
 {
     static final int numScreenshot = 9;
+    
     private ScreenshotAppState screenShotState;
-    private long stepAnimationTime;
-    private String screenshotName;
     private AnimChannel channel;
     private ViewPort guiViewPort;
-    private NiftyJmeDisplay niftyDisplay;
+    private NiftyJmeDisplay niftyDisplay;    
+    private Set<String> namesAnimations;
+    private long stepAnimationTime;
+    
     private ArrayList<String> imagesNames;
     
-    public ScreenshotThread(ScreenshotAppState screeShotState,float animationTime,
-            String screenshotName,AnimChannel channel,ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay)
+    public ScreenshotThread(ScreenshotAppState screeShotState,AnimChannel channel,
+            ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,Set<String> namesAnimations)
     {
         super();
         this.screenShotState = screeShotState;
-        this.stepAnimationTime = (long) (animationTime * 1000 / numScreenshot);
-        this.screenshotName = screenshotName;
         this.channel = channel;
         this.guiViewPort = guiViewPort;
         this.niftyDisplay = niftyDisplay;
-        this.imagesNames = new ArrayList<String>();
-        
+        this.namesAnimations = namesAnimations;        
     }
     
     @Override
     public void run()
     {
-        try {
-            screenShotState.setFilePath("assets/Textures/screenshots/"+screenshotName);
-            channel.reset(true);
-            channel.setAnim("my_animation");
-            channel.setLoopMode(LoopMode.DontLoop);
-            sleep(100);
-            for(int i = 1 ; i<=numScreenshot; i++)
+        try 
+        {
+            int cont = 1;
+            Iterator<String> it = namesAnimations.iterator();
+            while(it.hasNext())
             {
-                screenShotState.takeScreenshot();
-                imagesNames.add(screenshotName+"Gui"+i+".png");
-                sleep(stepAnimationTime + 50);
+                String nameAnimation = it.next();
+                screenShotState.setFilePath("assets/Textures/screenshots/"+nameAnimation);
+                imagesNames = new ArrayList<String>();                
+                channel.setAnim(nameAnimation);
+                channel.setLoopMode(LoopMode.DontLoop);
+                stepAnimationTime = (long) (channel.getAnimMaxTime() * 1000 / numScreenshot);
+                sleep(100);
+                for(int j= 1 ; j<=numScreenshot; j++)
+                {
+                    screenShotState.takeScreenshot();
+                    imagesNames.add(nameAnimation+"Gui"+cont+".png");
+                    cont++;
+                    sleep(stepAnimationTime);
+                }
+                GenerateAnimation generateAnimation = new GenerateAnimation("assets/Textures/screenshots",nameAnimation, imagesNames);
             }
-            GenerateAnimation generateAnimation = new GenerateAnimation("assets/Textures/screenshots", screenshotName, imagesNames);
-            guiViewPort.addProcessor(niftyDisplay);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ScreenshotThread.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+            it = namesAnimations.iterator();
+            channel.setAnim(it.next());
+            channel.setLoopMode(LoopMode.Loop);
+            guiViewPort.addProcessor(niftyDisplay);            
+         } 
+        catch (InterruptedException ex) 
+        {
+                Logger.getLogger(ScreenshotThread.class.getName()).log(Level.SEVERE, null, ex);
+        }      
     }
-    
 }

@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -48,7 +50,6 @@ public class Gui extends SimpleApplication{
     private String destinationPath;
     private BufferedImage skin, trousers, tShirt, eyes, shoes;
     
-    private int indexCaptura = 0;
     private int indexImage = 0;
     
     private String [] arraySkin, arrayShoesColor, arrayShoesShadow, arrayTrouserColor, arrayTrouserShadow, arrayTShirtColor, 
@@ -257,12 +258,11 @@ public class Gui extends SimpleApplication{
     }
     
     public void screenshot() 
-    {
+    {      
         guiViewPort.removeProcessor(niftyDisplay);
-        float length = control.getAnimationLength(channel.getAnimationName());
-        ScreenshotThread sst = new ScreenshotThread(screenShotState,length,
-                channel.getAnimationName(),channel,guiViewPort,niftyDisplay);
-        sst.start();        
+        Set<String> namesAnimations = (Set<String>) control.getAnimationNames();
+        ScreenshotThread sst = new ScreenshotThread(screenShotState,channel,guiViewPort,niftyDisplay,namesAnimations);
+        sst.start();
     }
     
     /** Custom Keybinding: Map named actions to inputs. */
@@ -358,19 +358,19 @@ public class Gui extends SimpleApplication{
         
         //Cargar el modelo
         //Modelo cambiado con blender
-        //model = assetManager.loadModel("Models/prueba/polySurfaceShape4.mesh.xml");
-        indexAnimation++;
+        model = assetManager.loadModel("Models/prueba/polySurfaceShape4.mesh.xml");
+        /*indexAnimation++;
         String animationsBoyPath = arrayAnimations[indexAnimation];
-        model = assetManager.loadModel(animationsBoyPath);
+        model = assetManager.loadModel(animationsBoyPath);*/
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));  
+        mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));
         model.setMaterial(mat);
         model.rotate(1.5f, 0.0f, 0.0f);
-        model.setLocalTranslation(0.0f, -3.0f, 0.0f);                
+        model.setLocalTranslation(0.0f, -3.70f, 0.0f);                
 
         control = model.getControl(AnimControl.class);
         channel = control.createChannel();
-        channel.setAnim("my_animation");
+        channel.setAnim("Hablar");
         //Cambiado para que se repita
         channel.setLoopMode(LoopMode.Loop);
 

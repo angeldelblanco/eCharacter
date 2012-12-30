@@ -1,16 +1,16 @@
-// lambert12-material genrated by blender2ogre 0.5.8
+// lambert12-material-material genrated by blender2ogre 0.5.8
 
-material lambert12-material 
+material lambert12-material-material 
 {
     receive_shadows on 
 
     technique
     {
-        pass lambert12-material
+        pass lambert12-material-material
         {
-            ambient 0.6399999856948853 0.6399999856948853 0.6399999856948853 1.0
-            diffuse 0.5119999961853026 0.5119999961853026 0.5119999961853026 1.0
-            specular 0.25 0.25 0.25 1.0 12.5
+            ambient 0.5120000243186951 0.5120000243186951 0.5120000243186951 1.0
+            diffuse 0.40960002555847197 0.40960002555847197 0.40960002555847197 1.0
+            specular 0.125 0.125 0.125 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
             alpha_to_coverage off
@@ -29,6 +29,7 @@ material lambert12-material
             scene_blend_op add
             shading gouraud
             transparent_sorting on
+
         }
     }
 }
