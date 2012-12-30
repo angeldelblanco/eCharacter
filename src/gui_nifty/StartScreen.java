@@ -100,10 +100,10 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void showWindowChangeColor() throws InterruptedException{
         if(selection.equals("skin")){}
-        if(selection.equals("eyes")){gui.showWindowChangeColorShoes();}
+        if(selection.equals("eyes")){}
         if(selection.equals("tshirt")){gui.showWindowChangeColorTShirt();}
         if(selection.equals("trousers")){gui.showWindowChangeColorTrouser();}
-        if(selection.equals("shoes")){}
+        if(selection.equals("shoes")){gui.showWindowChangeColorShoes();}
         if(selection.equals("accesories")){}
     }
     
