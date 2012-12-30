@@ -15,6 +15,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private Application app;
     private Screen screen;
     private Gui gui;
+    private String selection;
     
     public StartScreen(Gui gui){
         this.gui = gui;
@@ -64,89 +65,41 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         gui.loadModel();
     }
     
-    public void changeEyes(String walk)
-    {
-        if(walk.contains("+")){
-            gui.changeEyes(1);
+    public void changeScreen(String param){
+        selection = param;
+        nifty.gotoScreen("changeScreen");
+    }
+    
+    public String getMenu(String param){
+        if(param.equals(selection)){
+            return "Interface/MenuRojo.png";
         }
         else{
-            gui.changeEyes(-1);
+            return "Interface/MenuAzul.png";
         }
     }
     
-    public void changeTShirt(String walk)
-    {
-        if(walk.contains("+")){
-            gui.changeTShirt(1);
-        }
-        else{
-            gui.changeTShirt(-1);
-        }
+    public void changeTexture(String steep){
+        int i;
+        if(steep.equals("+")){i = 1;}
+        else{i = -1;}
+        if(selection.equals("skin")){gui.changeSkin(i);}
+        if(selection.equals("eyes")){gui.changeEyes(i);}
+        if(selection.equals("tshirt")){gui.changeTShirt(i);}
+        if(selection.equals("trousers")){gui.changeTrousers(i);}
+        if(selection.equals("shoes")){}
+        if(selection.equals("accesories")){}
+        if(selection.equals("bones")){}
     }
     
-    public void changeTrousers(String walk)
-    {
-        if(walk.contains("+")){
-            gui.changeTrousers(1);
-        }
-        else{
-            gui.changeTrousers(-1);
-        }
-    }
-    
-    public void changeShoes()
-    {
-        gui.changeShoes();
-    }
-    
-    public void changeSkin(String walk)
-    {
-        if(walk.contains("+")){
-            gui.changeSkin(1);
-        }
-        else{
-            gui.changeSkin(-1);
-        }
-    }
-    
-    public void eyesScreen()
-    {
-        nifty.gotoScreen("eyesScreen");
-    }
-    
-    public void tShirtScreen()
-    {
-        nifty.gotoScreen("tshirtScreen");
-    }
-    
-    public void trousersScreen()
-    {
-        nifty.gotoScreen("trousersScreen");
-    }
-    
-    public void shoesScreen()
-    {
-        nifty.gotoScreen("shoesScreen");
-    }
-    
-    public void skinScreen()
-    {
-        nifty.gotoScreen("skinScreen");
-    }
-    
-    public void showWindowChangeColorTrouser() throws InterruptedException
-    {
-        gui.showWindowChangeColorTrouser();
-    }
-    
-    public void showWindowChangeColorTShirt() throws InterruptedException
-    {
-        gui.showWindowChangeColorTShirt();
-    }
-    
-    public void showWindowChangeColorShoes() throws InterruptedException
-    {
-        gui.showWindowChangeColorShoes();
+    public void showWindowChangeColor() throws InterruptedException{
+        if(selection.equals("skin")){}
+        if(selection.equals("eyes")){gui.showWindowChangeColorShoes();}
+        if(selection.equals("tshirt")){gui.showWindowChangeColorTShirt();}
+        if(selection.equals("trousers")){gui.showWindowChangeColorTrouser();}
+        if(selection.equals("shoes")){}
+        if(selection.equals("accesories")){}
+        if(selection.equals("bones")){}
     }
     
     public void screenshot() 

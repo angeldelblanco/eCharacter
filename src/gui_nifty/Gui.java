@@ -118,10 +118,12 @@ public class Gui extends SimpleApplication{
     {
     }
     
-    public void changeSkin(int walk)
+    public void changeSkin(int steep)
     {
-        indexSkin=indexSkin+walk;
-        skin = readBuffer(arraySkin[indexSkin%numSkins]);
+        indexSkin=indexSkin+steep;
+        if (indexSkin < 0){ indexSkin = numSkins - 1;}
+        indexSkin = indexSkin%numSkins;
+        skin = readBuffer(arraySkin[indexSkin]);
         //Creat the image             
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);                 
         indexImage++;                
@@ -160,10 +162,12 @@ public class Gui extends SimpleApplication{
         }
     }
     
-    public void changeTrousers(int walk)
+    public void changeTrousers(int steep)
     {
-        indexTrouser=indexTrouser+walk;   
-        trousers = readBuffer(arrayTrouserColor[indexTrouser%numTrousers], arrayTrouserShadow[indexTrouser%numTrousers], TypeObject.trouser);
+        indexTrouser=indexTrouser+steep;
+        if (indexTrouser < 0){ indexTrouser = numTrousers - 1;}
+        indexTrouser = indexTrouser%numTrousers;   
+        trousers = readBuffer(arrayTrouserColor[indexTrouser], arrayTrouserShadow[indexTrouser], TypeObject.trouser);
         //Creat the image        
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);           
         indexImage++;        
@@ -181,10 +185,12 @@ public class Gui extends SimpleApplication{
         }
     }
     
-    public void changeTShirt(int walk)
+    public void changeTShirt(int steep)
     {
-        indexTShirt=indexTShirt+walk;
-        tShirt = readBuffer(arrayTShirtColor[indexTShirt%numTShirts], arrayTShirtShadow[indexTShirt%numTShirts], TypeObject.t_shirt);
+        indexTShirt=indexTShirt+steep;
+        if (indexTShirt < 0){ indexTShirt = numTShirts - 1;}
+        indexTShirt = indexTShirt%numTShirts;
+        tShirt = readBuffer(arrayTShirtColor[indexTShirt], arrayTShirtShadow[indexTShirt], TypeObject.t_shirt);
         //Creat the image        
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);        
         indexImage++;        
@@ -202,10 +208,12 @@ public class Gui extends SimpleApplication{
         }
     }
     
-    public void changeEyes(int walk)
+    public void changeEyes(int steep)
     {
-        indexEyes=indexEyes+walk; 
-        eyes = readBuffer(arrayEyes[indexEyes%numEyes]);
+        indexEyes=indexEyes+steep;
+        if (indexEyes < 0){ indexEyes = numEyes - 1;}
+        indexEyes = indexEyes%numEyes;
+        eyes = readBuffer(arrayEyes[indexEyes]);
         //Creat the image        
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);      
         indexImage++;        
