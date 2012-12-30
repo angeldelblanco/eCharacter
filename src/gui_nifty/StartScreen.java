@@ -68,10 +68,17 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void changeScreen(String param){
         selection = param;
         nifty.gotoScreen("changeScreen");
+        if(param.equals("skin")){nifty.gotoScreen("skinScreen");}
+        if(param.equals("eyes")){nifty.gotoScreen("eyesScreen");}
+        if(param.equals("tshirt")){nifty.gotoScreen("tshirtScreen");}
+        if(param.equals("trousers")){nifty.gotoScreen("trousersScreen");}
+        if(param.equals("shoes")){nifty.gotoScreen("shoesScreen");}
+        if(param.equals("accesories")){nifty.gotoScreen("accesoriesScreen");}
+        if(param.equals("bones")){nifty.gotoScreen("bonesScreen");}
     }
     
     public String getMenu(String param){
-        if(param.equals(selection)){
+        if(param.equals("yes")){
             return "Interface/MenuRojo.png";
         }
         else{
@@ -89,7 +96,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(selection.equals("trousers")){gui.changeTrousers(i);}
         if(selection.equals("shoes")){}
         if(selection.equals("accesories")){}
-        if(selection.equals("bones")){}
     }
     
     public void showWindowChangeColor() throws InterruptedException{
@@ -99,7 +105,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(selection.equals("trousers")){gui.showWindowChangeColorTrouser();}
         if(selection.equals("shoes")){}
         if(selection.equals("accesories")){}
-        if(selection.equals("bones")){}
     }
     
     public void screenshot() 
