@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!ELEMENT models (man*, woman*)>
-<!ELEMENT man (objects, animation+)>
+<!ELEMENT man (objects, model)>
 <!ELEMENT objects (skin+, eyes+, tshirt+, trouser+, shoes+)>
 <!ELEMENT skin (path)>
 <!ELEMENT eyes (path)>
@@ -11,5 +11,5 @@
 <!ELEMENT path (#PCDATA)>
 <!ELEMENT pathColor (#PCDATA)>
 <!ELEMENT pathShadow (#PCDATA)>
-<!ELEMENT animation (path)>
-<!ELEMENT woman (objects, animation+)>
+<!ELEMENT model (path)>
+<!ELEMENT woman (objects, model)>

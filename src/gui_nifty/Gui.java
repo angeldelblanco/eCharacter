@@ -89,20 +89,19 @@ public class Gui extends SimpleApplication{
     private int indexImage = 0;
     
     private String [] arraySkin, arrayShoesColor, arrayShoesShadow, arrayTrouserColor, arrayTrouserShadow, arrayTShirtColor, 
-            arrayTShirtShadow, arrayEyes, arrayAnimations;
+            arrayTShirtShadow, arrayEyes;
+    private String modelPath;
     
     private int indexSkin = -1;
     private int indexTShirt = -1;
     private int indexShoes = -1;
     private int indexTrouser = -1;
     private int indexEyes = -1;
-    private int indexAnimation = -1;
     private int numSkins;
     private int numShoes;
     private int numTrousers;
     private int numTShirts;
     private int numEyes;
-    private int numAnimations;
     
     private Gender gender;
     private Age age;
@@ -403,9 +402,7 @@ public class Gui extends SimpleApplication{
         //Cargar el modelo
         //Modelo cambiado con blender
         model = assetManager.loadModel("Models/prueba/polySurfaceShape4.mesh.xml");
-        /*indexAnimation++;
-        String animationsBoyPath = arrayAnimations[indexAnimation];
-        model = assetManager.loadModel(animationsBoyPath);*/
+        /*model = assetManager.loadModel(modelPath);*/
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));
         model.setMaterial(mat);
@@ -588,25 +585,19 @@ public class Gui extends SimpleApplication{
                                 }
                             }
                           }
-                          NodeList nListAnimations = eElement.getElementsByTagName("animation");
-                          numAnimations = nListAnimations.getLength();
-                          arrayAnimations = new String[numAnimations];
-                          
-                          int indexAnimationReaded;
-                          for (indexAnimationReaded = 0; indexAnimationReaded < nListAnimations.getLength(); indexAnimationReaded++){
-                                Node nNode8 = nListAnimations.item(indexAnimationReaded);
-                                if (nNode8.getNodeType() == Node.ELEMENT_NODE) {
-                                    //In element8, we have the node animation
-                                    Element eElement8 = (Element) nNode8;
-                                    NodeList nListPathAnimation = eElement8.getElementsByTagName("path").item(0).getChildNodes();
-                                    Node nValue9 = (Node) nListPathAnimation.item(0);
-                                    String pathAnimationReaded = nValue9.getNodeValue();
-                                    //Print the data readed
-                                    System.out.println("Animation "+indexAnimationReaded+": " + pathAnimationReaded);
-                                    //Save the path of this skin
-                                    arrayAnimations[indexAnimationReaded] = pathAnimationReaded;
-                                }
-                          }
+                          NodeList nListAnimations = eElement.getElementsByTagName("model");        
+                          Node nNode8 = nListAnimations.item(0);
+                            if (nNode8.getNodeType() == Node.ELEMENT_NODE) {
+                                //In element8, we have the node model
+                                Element eElement8 = (Element) nNode8;
+                                NodeList nListPathAnimation = eElement8.getElementsByTagName("path").item(0).getChildNodes();
+                                Node nValue9 = (Node) nListPathAnimation.item(0);
+                                String pathAnimationReaded = nValue9.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Animation : " + pathAnimationReaded);
+                                //Save the path of this skin
+                                modelPath = pathAnimationReaded;
+                            }
                        }
                     }
                 } catch (Exception e) {
@@ -763,25 +754,19 @@ public class Gui extends SimpleApplication{
                                 }
                             }
                           }
-                          NodeList nListAnimations = eElement.getElementsByTagName("animation");
-                          numAnimations = nListAnimations.getLength();
-                          arrayAnimations = new String[numAnimations];
-                          
-                          int indexAnimationReaded;
-                          for (indexAnimationReaded = 0; indexAnimationReaded < nListAnimations.getLength(); indexAnimationReaded++){
-                                Node nNode8 = nListAnimations.item(indexAnimationReaded);
-                                if (nNode8.getNodeType() == Node.ELEMENT_NODE) {
-                                    //In element8, we have the node animation
-                                    Element eElement8 = (Element) nNode8;
-                                    NodeList nListPathAnimation = eElement8.getElementsByTagName("path").item(0).getChildNodes();
-                                    Node nValue9 = (Node) nListPathAnimation.item(0);
-                                    String pathAnimationReaded = nValue9.getNodeValue();
-                                    //Print the data readed
-                                    System.out.println("Animation "+indexAnimationReaded+": " + pathAnimationReaded);
-                                    //Save the path of this skin
-                                    arrayAnimations[indexAnimationReaded] = pathAnimationReaded;
-                                }
-                          }
+                          NodeList nListAnimations = eElement.getElementsByTagName("model");        
+                          Node nNode8 = nListAnimations.item(0);
+                            if (nNode8.getNodeType() == Node.ELEMENT_NODE) {
+                                //In element8, we have the node model
+                                Element eElement8 = (Element) nNode8;
+                                NodeList nListPathAnimation = eElement8.getElementsByTagName("path").item(0).getChildNodes();
+                                Node nValue9 = (Node) nListPathAnimation.item(0);
+                                String pathAnimationReaded = nValue9.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Animation : " + pathAnimationReaded);
+                                //Save the path of this skin
+                                modelPath = pathAnimationReaded;
+                            }
                        }
                     }
                 } catch (Exception e) {

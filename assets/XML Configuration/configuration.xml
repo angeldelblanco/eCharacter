@@ -60,18 +60,9 @@
                 <pathShadow>assets/Textures/Textures Boy/ZapatosSombrasBoy.png</pathShadow>
             </shoes>
         </objects>
-        <animation>
-			<path>Models/eAdventure/Animation Boy/Andar/polySurfaceShape4.mesh.xml</path>
-        </animation>
-        <animation>
-			<path>Models/eAdventure/Animation Boy/Coger/polySurfaceShape4.mesh.xml</path>
-        </animation>
-        <animation>
-			<path>Models/eAdventure/Animation Boy/Hablar/polySurfaceShape4.mesh.xml</path>
-        </animation>
-        <animation>
-			<path>Models/eAdventure/Animation Boy/Parado/polySurfaceShape4.mesh.xml</path>
-        </animation>
+        <model>
+			<path>Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml</path>
+        </model>
     </man>
     <woman>
 		<objects>
@@ -131,17 +122,8 @@
                 <pathShadow>assets/Textures/Textures Girl/ZapatosSombrasGirl.png</pathShadow>
             </shoes>
 		</objects>
-		<animation>
-			<path>Models/eAdventure/Animation Girl/Andar/polySurfaceShape12.mesh.xml</path>
-        </animation>
-        <animation>
-			<path>Models/eAdventure/Animation Girl/Coger/polySurfaceShape12.mesh.xml</path>
-        </animation>
-        <animation>
-			<path>Models/eAdventure/Animation Girl/Hablar/polySurfaceShape12.mesh.xml</path>
-        </animation>
-        <animation>
-			<path>Models/eAdventure/Animation Girl/Parada/polySurfaceShape12.mesh.xml</path>
-        </animation>
+		<model>
+			<path>Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml</path>
+        </model>
 	</woman>
 </models>
