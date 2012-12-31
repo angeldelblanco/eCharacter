@@ -2,7 +2,7 @@
  * <eAdventure Character Configurator> is a research project of the <e-UCM>
  *          research group.
  *
- *    Developed by: Alejandro Muñoz Rey, Sergio de Luis Nieto and David González
+ *    Developed by: Alejandro Muñoz del Rey, Sergio de Luis Nieto and David González
  *    Ledesma.
  *    Under the supervision of Baltasar Fernández-Manjón and Javier Torrente
  * 
@@ -58,7 +58,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -401,8 +401,7 @@ public class Gui extends SimpleApplication{
         
         //Cargar el modelo
         //Modelo cambiado con blender
-        model = assetManager.loadModel("Models/prueba/polySurfaceShape4.mesh.xml");
-        /*model = assetManager.loadModel(modelPath);*/
+        model = assetManager.loadModel(modelPath);
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));
         model.setMaterial(mat);
@@ -411,7 +410,8 @@ public class Gui extends SimpleApplication{
 
         control = model.getControl(AnimControl.class);
         channel = control.createChannel();
-        channel.setAnim("Hablar");
+        Iterator<String> it = control.getAnimationNames().iterator();
+        channel.setAnim(it.next());
         //Cambiado para que se repita
         channel.setLoopMode(LoopMode.Loop);
 

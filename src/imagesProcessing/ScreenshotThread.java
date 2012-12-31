@@ -2,7 +2,7 @@
  * <eAdventure Character Configurator> is a research project of the <e-UCM>
  *          research group.
  *
- *    Developed by: Alejandro Muñoz Rey, Sergio de Luis Nieto and David González
+ *    Developed by: Alejandro Muñoz del Rey, Sergio de Luis Nieto and David González
  *    Ledesma.
  *    Under the supervision of Baltasar Fernández-Manjón and Javier Torrente
  * 
