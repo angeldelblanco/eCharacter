@@ -94,7 +94,7 @@ public class GenerateAnimation
                     Element frameNode = doc.createElement("frame");
                     frameNode.setAttribute("maxSoundTime", "1000");
                     frameNode.setAttribute("soundUri", "");
-                    frameNode.setAttribute("time", "300");
+                    frameNode.setAttribute("time", "150");
                     frameNode.setAttribute("type", "image");
                     frameNode.setAttribute("uri", "assets/animation/" + it.next());
                     frameNode.setAttribute("waitforclick", "no");
