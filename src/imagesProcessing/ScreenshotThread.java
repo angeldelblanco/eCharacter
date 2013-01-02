@@ -80,6 +80,7 @@ public class ScreenshotThread extends Thread
         {
             int cont = 1;
             Iterator<String> it = namesAnimations.iterator();
+            GenerateAnimation generateAnimation = null;
             while(it.hasNext())
             {
                 String nameAnimation = it.next();
@@ -96,7 +97,10 @@ public class ScreenshotThread extends Thread
                     cont++;
                     sleep(stepAnimationTime);
                 }
-                GenerateAnimation generateAnimation = new GenerateAnimation("assets/Textures/screenshots",nameAnimation, imagesNames);
+                generateAnimation = new GenerateAnimation("assets/Textures/screenshots",nameAnimation, imagesNames);
+            }
+            if (generateAnimation != null){
+                generateAnimation.cleanDirectory("assets/Textures/screenshots");
             }
             it = namesAnimations.iterator();
             channel.setAnim(it.next());
