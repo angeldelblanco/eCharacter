@@ -41,9 +41,11 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.math.Vector3f;
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.EffectBuilder;
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.controls.Slider;
+import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import tipos.Age;
@@ -160,9 +162,24 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(selection.equals("accesories")){}
     }
     
-    public void camera(){
-        Slider s = (Slider)nifty.getCurrentScreen().findElementByName("head");
-        gui.getCamera().setViewPort(s.getValue(), s.getValue(), s.getValue(), s.getValue());
+    @NiftyEventSubscriber(id="head")
+    public void onHeadSliderChange(final String id, final SliderChangedEvent event) {
+    System.out.println(event.getValue());
+    }
+    
+    @NiftyEventSubscriber(id="body")
+    public void onBodySliderChange(final String id, final SliderChangedEvent event) {
+    System.out.println(event.getValue());
+    }
+    
+    @NiftyEventSubscriber(id="hands")
+    public void onHandsSliderChange(final String id, final SliderChangedEvent event) {
+    System.out.println(event.getValue());
+    }
+    
+    @NiftyEventSubscriber(id="feet")
+    public void onFeetSliderChange(final String id, final SliderChangedEvent event) {
+    System.out.println(event.getValue());
     }
     
     public void screenshot() 
