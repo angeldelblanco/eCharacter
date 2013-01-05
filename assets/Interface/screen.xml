@@ -97,7 +97,7 @@
   <!-- Fourth screen -->
   <screen id="fourthScreen" controller="gui_nifty.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
-            <!-- Option Panel -->    
+            <!-- Option Panel -->
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<!-- Option Panel -->
@@ -194,7 +194,7 @@
 					<!-- Space -->
 			</panel>
 			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
-				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="horizontal">
+				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="vertical">
 					<!-- Texture's Image -->
 				</panel>
 				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
@@ -611,6 +611,22 @@
 			</panel>
 			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
 				<!-- Tratamiento de huesos -->
+				<text text="Head" font="Interface/Fonts/Default.fnt" height="12%" width="100%" />
+				<control id="head" name="horizontalSlider" max="100" min="0" value="50" height="13%" width="80%">
+					<interact onClick=""/>
+				</control>
+				<text text="Body" font="Interface/Fonts/Default.fnt" height="12%" width="100%" />
+				<control id="body" name="horizontalSlider" max="100" min="0" value="50" height="13%" width="80%">
+					<interact onClick=""/>
+				</control>
+				<text text="Hands" font="Interface/Fonts/Default.fnt" height="12%" width="100%" />
+				<control id="hands" name="horizontalSlider" max="100" min="0" value="50" height="13%" width="80%">
+					<interact onClick=""/>
+				</control>
+				<text text="Feet" font="Interface/Fonts/Default.fnt" height="12%" width="100%" />
+				<control id="feet" name="horizontalSlider" max="100" min="0" value="50" height="13%" width="80%">
+					<interact onClick=""/>
+				</control>
 			</panel>
 			<!-- ScreenShot Panel -->
 			<panel id="panel_screenshot" height="10%" width="20%" childLayout="vertical" backgroundColor="#A9A9A9">  

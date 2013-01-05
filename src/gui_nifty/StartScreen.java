@@ -39,7 +39,11 @@ package gui_nifty;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.math.Vector3f;
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.builder.EffectBuilder;
+import de.lessvoid.nifty.builder.ImageBuilder;
+import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import tipos.Age;
@@ -103,14 +107,27 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void changeScreen(String param){
         selection = param;
-        nifty.gotoScreen("changeScreen");
-        if(param.equals("skin")){nifty.gotoScreen("skinScreen");}
-        if(param.equals("eyes")){nifty.gotoScreen("eyesScreen");}
-        if(param.equals("tshirt")){nifty.gotoScreen("tshirtScreen");}
-        if(param.equals("trousers")){nifty.gotoScreen("trousersScreen");}
-        if(param.equals("shoes")){nifty.gotoScreen("shoesScreen");}
-        if(param.equals("accesories")){nifty.gotoScreen("accesoriesScreen");}
-        if(param.equals("bones")){nifty.gotoScreen("bonesScreen");}
+        if(param.equals("skin")){
+            nifty.gotoScreen("skinScreen");
+        }
+        if(param.equals("eyes")){
+            nifty.gotoScreen("eyesScreen");
+        }
+        if(param.equals("tshirt")){
+            nifty.gotoScreen("tshirtScreen");
+        }
+        if(param.equals("trousers")){
+            nifty.gotoScreen("trousersScreen");
+        }
+        if(param.equals("shoes")){
+            nifty.gotoScreen("shoesScreen");
+        }
+        if(param.equals("accesories")){
+            nifty.gotoScreen("accesoriesScreen");
+        }
+        if(param.equals("bones")){
+            nifty.gotoScreen("bonesScreen");
+        }
     }
     
     public String getMenu(String param){
@@ -141,6 +158,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(selection.equals("trousers")){gui.showWindowChangeColorTrouser();}
         if(selection.equals("shoes")){gui.showWindowChangeColorShoes();}
         if(selection.equals("accesories")){}
+    }
+    
+    public void camera(){
+        Slider s = (Slider)nifty.getCurrentScreen().findElementByName("head");
+        gui.getCamera().setViewPort(s.getValue(), s.getValue(), s.getValue(), s.getValue());
     }
     
     public void screenshot() 

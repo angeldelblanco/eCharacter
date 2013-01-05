@@ -107,6 +107,10 @@ public class Gui extends SimpleApplication{
     private Age age;
     private TypeObject typeObject;
     
+    public String getSkin(){
+        return arraySkin[0];
+    }
+    
     public static void main(String[] args) {
         //Averiguar la resolucion de pantalla del usuario
         /*Toolkit t = Toolkit.getDefaultToolkit();
