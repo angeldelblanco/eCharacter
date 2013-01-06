@@ -198,10 +198,13 @@
 					<!-- Texture's Image -->
 				</panel>
 				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-					<image filename="Interface/ant.png" height="50%" width="50%" valign="center">
+					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<image filename="Interface/sig.png" height="50%" width="50%" valign="center">
+					<panel height="50%" width="33%">
+					<!-- Space -->
+					</panel>
+					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
 						<interact onClick="changeTexture(+)"/>
 					</image>
 				</panel>
@@ -263,17 +266,19 @@
 					<!-- Texture's Image -->
 				</panel>
 				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-					<image filename="Interface/ant.png" height="50%" width="50%" valign="center">
+					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<image filename="Interface/sig.png" height="50%" width="50%" valign="center">
+					<panel height="50%" width="33%">
+					<!-- Space -->
+					</panel>
+					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
 						<interact onClick="changeTexture(+)"/>
 					</image>
 				</panel>
-				<panel id="panel_color" height="10%" width="80%" align="center" childLayout="horizontal">
-					<control name="button" label="color" id="button_color" align="center" valign="center">
-						<interact onClick="showWindowChangeColor()"/>
-					</control>
+				<panel id="panel_color" height="7%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
         </layer>
@@ -333,17 +338,19 @@
 					<!-- Texture's Image -->
 				</panel>
 				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-					<image filename="Interface/ant.png" height="50%" width="50%" valign="center">
+					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<image filename="Interface/sig.png" height="50%" width="50%" valign="center">
+					<panel height="50%" width="33%">
+					<!-- Space -->
+					</panel>
+					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
 						<interact onClick="changeTexture(+)"/>
 					</image>
 				</panel>
-				<panel id="panel_color" height="10%" width="80%" align="center" childLayout="horizontal">
-					<control name="button" label="color" id="button_color" align="center" valign="center">
-						<interact onClick="showWindowChangeColor()"/>
-					</control>
+				<panel id="panel_color" height="7%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
         </layer>
@@ -403,17 +410,19 @@
 					<!-- Texture's Image -->
 				</panel>
 				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-					<image filename="Interface/ant.png" height="50%" width="50%" valign="center">
+					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<image filename="Interface/sig.png" height="50%" width="50%" valign="center">
+					<panel height="50%" width="33%">
+					<!-- Space -->
+					</panel>
+					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
 						<interact onClick="changeTexture(+)"/>
 					</image>
 				</panel>
-				<panel id="panel_color" height="10%" width="80%" align="center" childLayout="horizontal">
-					<control name="button" label="color" id="button_color" align="center" valign="center">
-						<interact onClick="showWindowChangeColor()"/>
-					</control>
+				<panel id="panel_color" height="7%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
 			
@@ -474,17 +483,19 @@
 					<!-- Texture's Image -->
 				</panel>
 				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-					<image filename="Interface/ant.png" height="50%" width="50%" valign="center">
+					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<image filename="Interface/sig.png" height="50%" width="50%" valign="center">
+					<panel height="50%" width="33%">
+					<!-- Space -->
+					</panel>
+					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
 						<interact onClick="changeTexture(+)"/>
 					</image>
 				</panel>
-				<panel id="panel_color" height="10%" width="80%" align="center" childLayout="horizontal">
-					<control name="button" label="color" id="button_color" align="center" valign="center">
-						<interact onClick="showWindowChangeColor()"/>
-					</control>
+				<panel id="panel_color" height="7%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
         </layer>
@@ -544,17 +555,19 @@
 					<!-- Texture's Image -->
 				</panel>
 				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-					<image filename="Interface/ant.png" height="50%" width="50%" valign="center">
+					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<image filename="Interface/sig.png" height="50%" width="50%" valign="center">
+					<panel height="50%" width="33%">
+					<!-- Space -->
+					</panel>
+					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
 						<interact onClick="changeTexture(+)"/>
 					</image>
 				</panel>
-				<panel id="panel_color" height="10%" width="80%" align="center" childLayout="horizontal">
-					<control name="button" label="color" id="button_color" align="center" valign="center">
-						<interact onClick="showWindowChangeColor()"/>
-					</control>
+				<panel id="panel_color" height="7%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
         </layer>

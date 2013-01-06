@@ -141,6 +141,20 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
     }
     
+    public String getButton(String param){
+        if(param.equals("left")){
+            return "Interface/ant.png";
+        }
+        else{
+            if(param.equals("right")){
+                return "Interface/sig.png";
+            }
+            else{
+                return "Interface/ColorButton.png";
+            }
+        }
+    }
+    
     public void changeTexture(String steep){
         int i;
         if(steep.equals("+")){i = 1;}
