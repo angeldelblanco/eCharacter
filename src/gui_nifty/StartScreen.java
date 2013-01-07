@@ -177,23 +177,32 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     @NiftyEventSubscriber(id="head")
-    public void onHeadSliderChange(final String id, final SliderChangedEvent event) {
-    System.out.println(event.getValue());
+    public void onHeadSliderChange(final String id, final SliderChangedEvent event) 
+    {
+        float inc = 1.0f + event.getValue() * 0.01f;
+        String[] namesBones = {"Cabeza"};
+        gui.scale(namesBones, inc);
     }
     
     @NiftyEventSubscriber(id="body")
     public void onBodySliderChange(final String id, final SliderChangedEvent event) {
-    System.out.println(event.getValue());
+        float inc = 1.0f + event.getValue() * 0.01f;
+        String[] namesBones = {"Torax"};
+        gui.scale(namesBones, inc);
     }
     
     @NiftyEventSubscriber(id="hands")
     public void onHandsSliderChange(final String id, final SliderChangedEvent event) {
-    System.out.println(event.getValue());
+        float inc = 1.0f + event.getValue() * 0.01f;
+        String[] namesBones = {"MuniecaIz","MuniecaDer"};
+        gui.scale(namesBones, inc);
     }
     
     @NiftyEventSubscriber(id="feet")
     public void onFeetSliderChange(final String id, final SliderChangedEvent event) {
-    System.out.println(event.getValue());
+        float inc = 1.0f + event.getValue() * 0.01f;
+        String[] namesBones = {"TobilloIz","TobilloDer"};
+        gui.scale(namesBones, inc);
     }
     
     public void screenshot() 

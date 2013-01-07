@@ -38,6 +38,7 @@ package gui_nifty;
 
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
+import com.jme3.animation.Bone;
 import com.jme3.animation.LoopMode;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.ScreenshotAppState;
@@ -46,6 +47,7 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Spatial;
@@ -106,6 +108,8 @@ public class Gui extends SimpleApplication{
     private Gender gender;
     private Age age;
     private TypeObject typeObject;
+    
+    private Vector3f vectorScaleBase;
     
     public String getSkin(){
         return arraySkin[0];
@@ -410,7 +414,8 @@ public class Gui extends SimpleApplication{
         mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));
         model.setMaterial(mat);
         model.rotate(1.5f, 0.0f, 0.0f);
-        model.setLocalTranslation(0.0f, -3.70f, 0.0f);                
+        model.setLocalTranslation(0.0f, -3.70f, 0.0f);
+        vectorScaleBase = model.getLocalScale();
 
         control = model.getControl(AnimControl.class);
         channel = control.createChannel();
@@ -833,6 +838,19 @@ public class Gui extends SimpleApplication{
         } catch (IOException ex) {
             Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        }
+    }
+    
+    public void scale(String[] namesBones,float inc)
+    {
+        Bone b;
+        Vector3f vector;
+        for(int i = 0; i < namesBones.length ; i++)
+        {
+            b = control.getSkeleton().getBone(namesBones[i]);
+            vector = vectorScaleBase.mult(inc);
+            b.setUserControl(true);
+            b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,vector);
         }
     }
 }
