@@ -136,3 +136,39 @@
 [Time: 2013-01-07 17:00:48,542] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 282 miliseg
 [Time: 2013-01-07 17:00:49,319] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :700 miliseg
 [Time: 2013-01-07 17:00:50,030] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 520 miliseg
+[Time: 2013-01-07 17:31:03,442] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :2241 miliseg
+[Time: 2013-01-07 17:31:05,815] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 1064 miliseg
+[Time: 2013-01-07 17:31:07,490] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1556 miliseg
+[Time: 2013-01-07 17:31:09,315] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 1238 miliseg
+[Time: 2013-01-07 17:31:10,928] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1449 miliseg
+[Time: 2013-01-07 17:31:11,913] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 519 miliseg
+[Time: 2013-01-07 17:32:35,520] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1264 miliseg
+[Time: 2013-01-07 17:32:36,817] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 600 miliseg
+[Time: 2013-01-07 17:32:38,791] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1925 miliseg
+[Time: 2013-01-07 17:32:40,636] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 1267 miliseg
+[Time: 2013-01-07 17:32:42,132] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1318 miliseg
+[Time: 2013-01-07 17:32:43,079] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 501 miliseg
+[Time: 2013-01-07 17:35:23,963] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :2586 miliseg
+[Time: 2013-01-07 17:35:26,618] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 1275 miliseg
+[Time: 2013-01-07 17:35:28,536] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1784 miliseg
+[Time: 2013-01-07 17:35:30,428] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 1301 miliseg
+[Time: 2013-01-07 17:35:31,932] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1325 miliseg
+[Time: 2013-01-07 17:35:32,951] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 537 miliseg
+[Time: 2013-01-07 17:37:55,638] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :2286 miliseg
+[Time: 2013-01-07 17:37:57,589] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 960 miliseg
+[Time: 2013-01-07 17:37:59,259] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1601 miliseg
+[Time: 2013-01-07 17:38:01,098] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 1280 miliseg
+[Time: 2013-01-07 17:38:02,609] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1334 miliseg
+[Time: 2013-01-07 17:38:03,675] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 570 miliseg
+[Time: 2013-01-07 17:40:06,787] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :2224 miliseg
+[Time: 2013-01-07 17:40:08,713] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 941 miliseg
+[Time: 2013-01-07 17:40:10,412] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1637 miliseg
+[Time: 2013-01-07 17:40:12,292] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 1295 miliseg
+[Time: 2013-01-07 17:40:13,759] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1294 miliseg
+[Time: 2013-01-07 17:40:14,747] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 512 miliseg
+[Time: 2013-01-07 17:45:58,275] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :2234 miliseg
+[Time: 2013-01-07 17:46:00,215] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 943 miliseg
+[Time: 2013-01-07 17:46:02,149] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1895 miliseg
+[Time: 2013-01-07 17:46:03,457] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 720 miliseg
+[Time: 2013-01-07 17:46:05,560] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1923 miliseg
+[Time: 2013-01-07 17:46:06,576] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 525 miliseg

@@ -150,7 +150,12 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 return "Interface/sig.png";
             }
             else{
-                return "Interface/ColorButton.png";
+                if(param.equals("color")){
+                    return "Interface/ColorButton.png";
+                }
+                else{
+                    return "Interface/Finish.png";
+                }
             }
         }
     }
@@ -208,5 +213,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void screenshot() 
     {
         gui.screenshot();
+        nifty.gotoScreen("finishScreen");
     }
 }

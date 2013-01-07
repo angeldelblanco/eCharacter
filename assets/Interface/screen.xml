@@ -141,6 +141,13 @@
 					<interact onClick="changeScreen(bones)"/>
 				</panel>
 			</panel>
+			<!-- ScreenShot Panel -->
+			<panel id="panel_screenshot" height="15%" width="30%" childLayout="center" align="right">
+				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(finish)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+			</panel>
         </layer>
     </screen>
 	<!-- Fifth screen(skin)-->
@@ -201,12 +208,19 @@
 					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<panel height="50%" width="33%">
+					<panel height="50%" width="34%">
 					<!-- Space -->
 					</panel>
 					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
 						<interact onClick="changeTexture(+)"/>
 					</image>
+				</panel>
+			</panel>
+			<!-- ScreenShot Panel -->
+			<panel id="panel_screenshot" height="15%" width="30%" childLayout="center" align="right">
+				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(finish)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
 				</panel>
 			</panel>
         </layer>
@@ -269,7 +283,7 @@
 					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<panel height="50%" width="33%">
+					<panel height="50%" width="34%">
 					<!-- Space -->
 					</panel>
 					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
@@ -279,6 +293,13 @@
 				<panel id="panel_color" height="7%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
 					<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="showWindowChangeColor()"/>
+				</panel>
+			</panel>
+			<!-- ScreenShot Panel -->
+			<panel id="panel_screenshot" height="15%" width="30%" childLayout="center" align="right">
+				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(finish)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
 				</panel>
 			</panel>
         </layer>
@@ -341,7 +362,7 @@
 					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<panel height="50%" width="33%">
+					<panel height="50%" width="34%">
 					<!-- Space -->
 					</panel>
 					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
@@ -351,6 +372,13 @@
 				<panel id="panel_color" height="7%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
 					<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="showWindowChangeColor()"/>
+				</panel>
+			</panel>
+			<!-- ScreenShot Panel -->
+			<panel id="panel_screenshot" height="15%" width="30%" childLayout="center" align="right">
+				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(finish)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
 				</panel>
 			</panel>
         </layer>
@@ -413,7 +441,7 @@
 					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<panel height="50%" width="33%">
+					<panel height="50%" width="34%">
 					<!-- Space -->
 					</panel>
 					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
@@ -425,7 +453,13 @@
 					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
-			
+			<!-- ScreenShot Panel -->
+			<panel id="panel_screenshot" height="15%" width="30%" childLayout="center" align="right">
+				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(finish)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+			</panel>	
         </layer>
     </screen>
 	<!-- Nineth screen(shoes)-->
@@ -486,7 +520,7 @@
 					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<panel height="50%" width="33%">
+					<panel height="50%" width="34%">
 					<!-- Space -->
 					</panel>
 					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
@@ -496,6 +530,13 @@
 				<panel id="panel_color" height="7%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
 					<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="showWindowChangeColor()"/>
+				</panel>
+			</panel>
+			<!-- ScreenShot Panel -->
+			<panel id="panel_screenshot" height="15%" width="30%" childLayout="center" align="right">
+				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(finish)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
 				</panel>
 			</panel>
         </layer>
@@ -558,7 +599,7 @@
 					<image filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
 						<interact onClick="changeTexture(-)"/>
 					</image>
-					<panel height="50%" width="33%">
+					<panel height="50%" width="34%">
 					<!-- Space -->
 					</panel>
 					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
@@ -570,10 +611,17 @@
 					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
+			<!-- ScreenShot Panel -->
+			<panel id="panel_screenshot" height="15%" width="30%" childLayout="center" align="right">
+				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(finish)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+			</panel>
         </layer>
     </screen>
 	<!-- Eleventh screen(bones)-->
-  <screen id="bonesScreen" controller="gui_nifty.StartScreen">
+	<screen id="bonesScreen" controller="gui_nifty.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -634,18 +682,21 @@
 				<control id="feet" name="horizontalSlider" max="100" min="-50" value="0" height="13%" width="80%"/>>
 			</panel>
 			<!-- ScreenShot Panel -->
-			<panel id="panel_screenshot" height="10%" width="20%" childLayout="vertical" backgroundColor="#A9A9A9">  
-				<!-- Caption -->
-				<panel id="panel_screenshot_caption" height="50%" width="100%" childLayout="vertical">
-					<text text="Screenshot" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-				</panel>
-				<!-- Button -->
-				<panel id="panel__screenshot_buttons" height="50%" width="100%" childLayout="vertical" visibleToMouse="true">                
-					<control name="button" label="Take" id="button_screenshotr" align="center" valign="center">
-						<interact onClick="screenshot()"/>
-					</control>
+			<panel id="panel_screenshot" height="15%" width="30%" childLayout="center" align="right">
+				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(finish)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
 				</panel>
 			</panel>
         </layer>
+    </screen>
+	<!-- Twelveth screen(finish)-->
+	<screen id="finishScreen" controller="gui_nifty.StartScreen">
+        <layer id="background" childLayout="center">
+			<image filename="Interface/start-background.jpg"></image>
+		</layer>
+        <layer id="foreground" childLayout="center">
+			<text text="Finish" font="Interface/Fonts/Default.fnt" width="20%" height="20%" />
+		</layer>
     </screen>
 </nifty>
