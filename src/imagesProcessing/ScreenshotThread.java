@@ -78,13 +78,15 @@ public class ScreenshotThread extends Thread
     {
         try 
         {
+            String dirScreenshots = "assets/Textures/screenshots";
             int cont = 1;
             Iterator<String> it = namesAnimations.iterator();
-            GenerateAnimation generateAnimation = null;
+            GenerateAnimation generateAnimation = new GenerateAnimation();
+            generateAnimation.cleanDirectory(dirScreenshots);
             while(it.hasNext())
             {
                 String nameAnimation = it.next();
-                screenShotState.setFilePath("assets/Textures/screenshots/"+nameAnimation);
+                screenShotState.setFilePath(dirScreenshots+"/"+nameAnimation);
                 imagesNames = new ArrayList<String>();                
                 channel.setAnim(nameAnimation);
                 channel.setLoopMode(LoopMode.DontLoop);
@@ -97,11 +99,12 @@ public class ScreenshotThread extends Thread
                     cont++;
                     sleep(stepAnimationTime);
                 }
-                generateAnimation = new GenerateAnimation("assets/Textures/screenshots",nameAnimation, imagesNames);
+                generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }
-            if (generateAnimation != null){
-                generateAnimation.cleanDirectory("assets/Textures/screenshots");
-            }
+            generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
+            //Ya está creados todos los ficheros de las animaciones. Limpiar el directorio
+            //generateAnimation.cleanDirectory("assets/Textures/screenshots");
+            
             it = namesAnimations.iterator();
             channel.setAnim(it.next());
             channel.setLoopMode(LoopMode.Loop);

@@ -48,10 +48,10 @@ import javax.imageio.ImageIO;
 public class ImagesProcessing
 {
     private BufferedImage skin, trousers, tShirt, eyes, shoes;
-    private BufferedImage socks;
+    /*private BufferedImage socks;
     private BufferedImage clock;
     private BufferedImage tie;
-    private BufferedImage beard;
+    private BufferedImage beard;*/
     private ArrayList<BufferedImage> images;
     
     public ImagesProcessing(BufferedImage skin, BufferedImage trousers, BufferedImage tShirt, BufferedImage eyes, 
@@ -63,14 +63,14 @@ public class ImagesProcessing
         this.eyes = eyes;
         this.shoes = shoes;
         images = new ArrayList<BufferedImage>();
-        images.add(skin);
-        images.add(trousers);
-        images.add(tShirt);
-        images.add(eyes);
-        images.add(shoes);		
+        images.add(this.skin);
+        images.add(this.trousers);
+        images.add(this.tShirt);
+        images.add(this.eyes);
+        images.add(this.shoes);		
     }
     
-    public ImagesProcessing(String skinPath, String trousersPath, String tShirtPath,
+    /*public ImagesProcessing(String skinPath, String trousersPath, String tShirtPath,
             String eyesPath, String socksPath, String shoesPath, String clockPath, String tiePath, String beardPath)
     {
             images = new ArrayList<BufferedImage>();
@@ -99,7 +99,7 @@ public class ImagesProcessing
         {
             System.out.println("Failed loading file");
         }		
-    }
+    }*/
     
     public void fusionaImagenes(String destinationPath)
     {

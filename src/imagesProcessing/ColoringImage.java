@@ -134,7 +134,7 @@ public class ColoringImage
         logger.info("El tiempo de coloringImage() es :"  + totalTiempo + " miliseg");
         
         //Se escribe para probar el resultado. Luego hay que quitarlo.
-        ImageIO.write(image, "png", new File(imageColoredPath));
+        //ImageIO.write(image, "png", new File(imageColoredPath));
         
         BufferedImage finalImage = pasteImage();
         return finalImage;
@@ -158,21 +158,12 @@ public class ColoringImage
             BufferedImage aux = images.get(i);
             g.drawImage(aux, 0, 0, null);
         }
-        try 
-        {
-            //Se escribe para probar el resultado. Luego hay que quitarlo
-            ImageIO.write(finalImage, "png", new File(destinationPath));
-            
-            totalTiempo = System.currentTimeMillis() - tiempoInicio;
-            logger.info("El tiempo de pasteImage() es : " + totalTiempo + " miliseg");
-            return finalImage;
-        } 
-        catch (IOException e) 
-        {
-            System.out.println("Failed saving image");
-            return null;
-        }  
-        
+        //Se escribe para probar el resultado. Luego hay que quitarlo
+        //ImageIO.write(finalImage, "png", new File(destinationPath));
+
+        totalTiempo = System.currentTimeMillis() - tiempoInicio;
+        logger.info("El tiempo de pasteImage() es : " + totalTiempo + " miliseg");
+        return finalImage;
     }
     
     public static void main(String[] args) throws IOException 
