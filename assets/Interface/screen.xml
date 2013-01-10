@@ -672,14 +672,18 @@
 			</panel>
 			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
 				<!-- Tratamiento de huesos -->
-				<text text="Head" font="Interface/Fonts/Default.fnt" height="12%" width="100%" />
-				<control id="head" name="horizontalSlider" max="100" min="-50" value="0" height="13%" width="80%"/>
-				<text text="Body" font="Interface/Fonts/Default.fnt" height="12%" width="100%" />
-				<control id="body" name="horizontalSlider" max="100" min="-50" value="0" height="13%" width="80%"/>
-				<text text="Hands" font="Interface/Fonts/Default.fnt" height="12%" width="100%" />
-				<control id="hands" name="horizontalSlider" max="100" min="-50" value="0" height="13%" width="80%"/>
-				<text text="Feet" font="Interface/Fonts/Default.fnt" height="12%" width="100%" />
-				<control id="feet" name="horizontalSlider" max="100" min="-50" value="0" height="13%" width="80%"/>>
+				<text text="Head" font="Interface/Fonts/Default.fnt" height="8%" width="100%" />
+				<control id="head" name="horizontalSlider" max="100" min="-50" value="0" height="8%" width="80%"/>
+                                <text text="Torso" font="Interface/Fonts/Default.fnt" height="8%" width="100%" />
+				<control id="torso" name="horizontalSlider" max="100" min="-50" value="0" height="8%" width="80%"/>
+                                <text text="Arms" font="Interface/Fonts/Default.fnt" height="8%" width="100%" />
+				<control id="arms" name="horizontalSlider" max="100" min="-50" value="0" height="8%" width="80%"/>
+                                <text text="Hands" font="Interface/Fonts/Default.fnt" height="8%" width="100%" />
+				<control id="hands" name="horizontalSlider" max="100" min="-50" value="0" height="8%" width="80%"/>
+				<text text="Legs" font="Interface/Fonts/Default.fnt" height="8%" width="100%" />
+				<control id="legs" name="horizontalSlider" max="100" min="-50" value="0" height="8%" width="80%"/>				
+				<text text="Feet" font="Interface/Fonts/Default.fnt" height="8%" width="100%" />
+				<control id="feet" name="horizontalSlider" max="100" min="-50" value="0" height="8%" width="80%"/>>
 			</panel>
 			<!-- ScreenShot Panel -->
 			<panel id="panel_screenshot" height="15%" width="30%" childLayout="center" align="right">

@@ -1,5 +1,41 @@
+/*******************************************************************************
+ * <eAdventure Character Configurator> is a research project of the <e-UCM>
+ *          research group.
+ *
+ *    Developed by: Alejandro Muñoz del Rey, Sergio de Luis Nieto and David González
+ *    Ledesma.
+ *    Under the supervision of Baltasar Fernández-Manjón and Javier Torrente
+ * 
+ *    Copyright 2012-2013 <e-UCM> research group.
+ *  
+ *     <e-UCM> is a research group of the Department of Software Engineering
+ *          and Artificial Intelligence at the Complutense University of Madrid
+ *          (School of Computer Science).
+ *  
+ *          C Profesor Jose Garcia Santesmases sn,
+ *          28040 Madrid (Madrid), Spain.
+ *  
+ *          For more info please visit:  <http://character.e-ucm.es>, 
+ *          <http://e-adventure.e-ucm.es> or <http://www.e-ucm.es>
+ *  
+ *  ****************************************************************************
+ *      <eAdventure Character Configurator> is free software: you can 
+ *      redistribute it and/or modify it under the terms of the GNU Lesser 
+ *      General Public License as published by the Free Software Foundation, 
+ *      either version 3 of the License, or (at your option) any later version.
+ *  
+ *      <eAdventure Character Configurator> is distributed in the hope that it 
+ *      will be useful, but WITHOUT ANY WARRANTY; without even the implied 
+ *      warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+ *      See the GNU Lesser General Public License for more details.
+ *  
+ *      You should have received a copy of the GNU Lesser General Public License
+ *      along with <eAdventure Character Configurator>. If not, 
+ *      see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
 package Model;
 
+import animation.ScreenshotThread;
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.animation.Bone;
@@ -14,11 +50,9 @@ import com.jme3.scene.Spatial;
 import gui_nifty.Gui;
 import imagesProcessing.ColoringImage;
 import imagesProcessing.ImagesProcessing;
-import animation.ScreenshotThread;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
@@ -32,7 +66,6 @@ public class Model{
 
     private Spatial model;
     private Material mat;
-    private Vector3f vectorScaleBase;
     private AnimChannel channel;
     private AnimControl control;
     private Age age;
@@ -64,12 +97,10 @@ public class Model{
     
     public void scale(String[] namesBones,float inc)
     {
-        Bone b;
-        Vector3f vector;
         for(int i = 0; i < namesBones.length ; i++)
         {
-            b = control.getSkeleton().getBone(namesBones[i]);
-            vector = vectorScaleBase.mult(inc);
+            Bone b = control.getSkeleton().getBone(namesBones[i]);
+            Vector3f vector = new Vector3f(inc,inc,inc);
             b.setUserControl(true);
             b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,vector);
         }
@@ -231,7 +262,6 @@ public class Model{
         this.model.setMaterial(mat);
         this.model.rotate(1.5f, 0.0f, 0.0f);
         this.model.setLocalTranslation(0.0f, -3.70f, 0.0f);
-        this.vectorScaleBase = model.getLocalScale();
         this.control = model.getControl(AnimControl.class);
         this.channel = this.control.createChannel();
         Iterator<String> it = this.control.getAnimationNames().iterator();
@@ -252,16 +282,6 @@ public class Model{
     {
         this.mat = mat;
         this.model.setMaterial(this.mat);
-    }
-
-    public Vector3f getVectorScaleBase() 
-    {
-        return vectorScaleBase;
-    }
-
-    public void setVectorScaleBase(Vector3f vectorScaleBase) 
-    {
-        this.vectorScaleBase = vectorScaleBase;
     }
     
     public Age getAge() 

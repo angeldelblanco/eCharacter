@@ -36,9 +36,6 @@
 
 package gui_nifty;
 
-import types.TypeObject;
-import types.Gender;
-import types.Age;
 import Model.Model;
 import XML.XMLReader;
 import com.jme3.animation.AnimChannel;
@@ -55,6 +52,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import types.Age;
+import types.Gender;
+import types.TypeObject;
 import window_color.*;
 
 public class Gui extends SimpleApplication{
