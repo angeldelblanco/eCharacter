@@ -51,3 +51,18 @@
  *    the next secion of this document.                                         	 *
  *                                                                                 	 *
  *************************************************************************************
+ 
+ -----
+|Log4j| 
+ -----
+http://logging.apache.org/log4j
+Log4j is a logging library for Java.
+License: Apache License 2.0 (LICENSE-2.0.txt).
+
+ ---------
+|Nifty GUI| 
+ ---------
+http://sourceforge.net/projects/nifty-gui/
+Nifty GUI is a Java Library that supports the building of interactive user interfaces 
+for games or similar applications. Nifty GUI is integrated into jME3 (jMonkeyEngine).
+License: BSD (Berkeley Software Distribution).
