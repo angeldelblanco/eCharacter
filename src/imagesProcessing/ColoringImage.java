@@ -45,7 +45,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
-import tipos.TypeObject;
+import types.TypeObject;
 
 public class ColoringImage 
 {

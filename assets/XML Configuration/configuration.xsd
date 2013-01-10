@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="models">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="man" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="objects">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="skin" type="skin_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="eyes" type="eyes_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="tshirt" type="tshirt_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="trouser" type="trouser_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="shoes" type="shoes_type" minOccurs="1" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="model" minOccurs="1">
+								<xs:complexType>
+									<xs:attribute name="path" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="woman" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="objects">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="skin" type="skin_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="eyes" type="eyes_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="tshirt" type="tshirt_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="trouser" type="trouser_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="shoes" type="shoes_type" minOccurs="1" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="model" minOccurs="1">
+								<xs:complexType>
+									<xs:attribute name="path" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="skin_type">
+		<xs:attribute name="path" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="eyes_type">
+		<xs:attribute name="path" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="tshirt_type">
+		<xs:attribute name="pathColor" type="xs:string"/>
+		<xs:attribute name="pathShadow" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="trouser_type">
+		<xs:attribute name="pathColor" type="xs:string"/>
+		<xs:attribute name="pathShadow" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="shoes_type">
+		<xs:attribute name="pathColor" type="xs:string"/>
+		<xs:attribute name="pathShadow" type="xs:string"/>
+	</xs:complexType>
+</xs:schema>

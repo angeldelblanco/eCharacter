@@ -34,9 +34,8 @@
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package tipos;
+package types;
 
-
-public enum TypeObject {
-   eyes, t_shirt, trouser, shoes
+public enum Gender {
+    Male, Female
 }

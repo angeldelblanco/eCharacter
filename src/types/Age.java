@@ -34,8 +34,8 @@
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package tipos;
+package types;
 
-public enum Gender {
-    Male, Female
+public enum Age {
+    Adult, Young
 }

@@ -1,129 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE models SYSTEM "configuration.dtd">
-<models>
-    <man>
+<models xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="configuration.xsd">
+	<man>
         <objects>
-            <skin>
-                  <path>assets/Textures/Textures Boy/PielBlancaBoy.png</path>
-            </skin>
-            <skin>
-                  <path>assets/Textures/Textures Boy/PielNegraBoy.png</path>
-            </skin>
-            <skin>
-                  <path>assets/Textures/Textures Boy/PielAmarillaBoy.png</path>
-            </skin>
-            <skin>
-                  <path>assets/Textures/Textures Boy/PielRojaBoy.png</path>
-            </skin>
-            <eyes>
-                  <path>assets/Textures/Textures Boy/Eyes/OjosAzulBoy.png</path>
-            </eyes>
-            <eyes>
-                  <path>assets/Textures/Textures Boy/Eyes/OjosMarronBoy.png</path>
-            </eyes>
-            <eyes>
-                  <path>assets/Textures/Textures Boy/Eyes/OjosNegroBoy.png</path>
-            </eyes>
-            <eyes>
-                  <path>assets/Textures/Textures Boy/Eyes/OjosVerdeBoy.png</path>
-            </eyes>
-            <tshirt>
-                  <pathColor>assets/Textures/Textures Boy/CamisaCortaSolidoBoy.png</pathColor>
-                  <pathShadow>assets/Textures/Textures Boy/CamisaCortaSombrasBoy.png</pathShadow>
-            </tshirt>
-            <tshirt>
-                  <pathColor>assets/Textures/Textures Boy/CamisaLargaSolidoBoy.png</pathColor>
-                  <pathShadow>assets/Textures/Textures Boy/CamisaLargaSombrasBoy.png</pathShadow>
-            </tshirt>
-            <tshirt>
-                  <pathColor>assets/Textures/Textures Boy/CamisetaCortaSolidoBoy.png</pathColor>
-                  <pathShadow>assets/Textures/Textures Boy/CamisetaCortaSombrasBoy.png</pathShadow>
-            </tshirt>
-            <tshirt>
-                  <pathColor>assets/Textures/Textures Boy/CamisetaLargaSolidoBoy.png</pathColor>
-                  <pathShadow>assets/Textures/Textures Boy/CamisetaLargaSombrasBoy.png</pathShadow>
-            </tshirt>
-            <tshirt>
-                  <pathColor>assets/Textures/Textures Boy/CamisetaTirantesSolidoBoy.png</pathColor>
-                  <pathShadow>assets/Textures/Textures Boy/CamisetaTirantesSombrasBoy.png</pathShadow>
-            </tshirt>
-            <trouser>
-                 <pathColor>assets/Textures/Textures Boy/PantalonCortoSolidoBoy.png</pathColor>
-                 <pathShadow>assets/Textures/Textures Boy/PantalonCortoSombrasBoy.png</pathShadow>
-            </trouser>
-            <trouser>
-                <pathColor>assets/Textures/Textures Boy/PantalonLargoSolidoBoy.png</pathColor>
-                <pathShadow>assets/Textures/Textures Boy/PantalonLargoSombrasBoy.png</pathShadow>
-            </trouser>
-            <shoes>
-                <pathColor>assets/Textures/Textures Boy/ZapatosSolidoBoy.png</pathColor>
-                <pathShadow>assets/Textures/Textures Boy/ZapatosSombrasBoy.png</pathShadow>
-            </shoes>
+            <skin path="assets/Textures/Textures Boy/PielBlancaBoy.png"/>
+            <skin path="assets/Textures/Textures Boy/PielNegraBoy.png"/>
+            <skin path="assets/Textures/Textures Boy/PielAmarillaBoy.png"/>
+            <skin path="assets/Textures/Textures Boy/PielRojaBoy.png"/>
+            <eyes path="assets/Textures/Textures Boy/Eyes/OjosAzulBoy.png"/>
+            <eyes path="assets/Textures/Textures Boy/Eyes/OjosMarronBoy.png"/>
+            <eyes path="assets/Textures/Textures Boy/Eyes/OjosNegroBoy.png"/>
+            <eyes path="assets/Textures/Textures Boy/Eyes/OjosVerdeBoy.png"/>
+            <tshirt pathColor="assets/Textures/Textures Boy/CamisaCortaSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/CamisaCortaSombrasBoy.png"/>
+            <tshirt pathColor="assets/Textures/Textures Boy/CamisaLargaSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/CamisaLargaSombrasBoy.png"/>
+            <tshirt pathColor="assets/Textures/Textures Boy/CamisetaCortaSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/CamisetaCortaSombrasBoy.png"/>
+            <tshirt pathColor="assets/Textures/Textures Boy/CamisetaLargaSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/CamisetaLargaSombrasBoy.png"/>
+            <tshirt pathColor="assets/Textures/Textures Boy/CamisetaTirantesSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/CamisetaTirantesSombrasBoy.png"/>
+            <trouser pathColor="assets/Textures/Textures Boy/PantalonCortoSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/PantalonCortoSombrasBoy.png"/>
+            <trouser pathColor="assets/Textures/Textures Boy/PantalonLargoSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/PantalonLargoSombrasBoy.png"/>
+            <shoes pathColor="assets/Textures/Textures Boy/ZapatosSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/ZapatosSombrasBoy.png"/>
         </objects>
-        <model>
-			<path>Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml</path>
-        </model>
+        <model path="Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml"/>
     </man>
     <woman>
 		<objects>
-			<skin>
-				<path>assets/Textures/Textures Girl/PielAmarillaClaraGirl.png</path>
-			</skin>
-			<skin>
-				<path>assets/Textures/Textures Girl/PielAmarillaOscuraGirl.png</path>
-			</skin>
-			<skin>
-				<path>assets/Textures/Textures Girl/PielBlancaGirl.png</path>
-			</skin>
-			<skin>
-				<path>assets/Textures/Textures Girl/PielNegraGirl.png</path>
-			</skin>
-			<skin>
-				<path>assets/Textures/Textures Girl/PielRojaGirl.png</path>
-			</skin>
-			 <eyes>
-                  <path>assets/Textures/Textures Girl/Eyes/OjosAzulGirl.png</path>
-            </eyes>
-            <eyes>
-                  <path>assets/Textures/Textures Girl/Eyes/OjosMarronGirl.png</path>
-            </eyes>
-            <eyes>
-                  <path>assets/Textures/Textures Girl/Eyes/OjosNegroGirl.png</path>
-            </eyes>
-            <eyes>
-                  <path>assets/Textures/Textures Girl/Eyes/OjosVerdeGirl.png</path>
-            </eyes>
-			<tshirt>
-                  <pathColor>assets/Textures/Textures Girl/CamisetaSinMangasSolidoGirl.png</pathColor>
-                  <pathShadow>assets/Textures/Textures Girl/CamisetaSinMangasSombrasGirl.png</pathShadow>
-            </tshirt>
-            <tshirt>
-                  <pathColor>assets/Textures/Textures Girl/CamisetaSolidoGirl.png</pathColor>
-                  <pathShadow>assets/Textures/Textures Girl/CamisetaSombrasGirl.png</pathShadow>
-            </tshirt>
-            <tshirt>
-                  <pathColor>assets/Textures/Textures Girl/CamisetaTirantesSolidoGirl.png</pathColor>
-                  <pathShadow>assets/Textures/Textures Girl/CamisetaTirantesSombrasGirl.png</pathShadow>
-            </tshirt>
-            <tshirt>
-                  <pathColor>assets/Textures/Textures Girl/TopSolidoGirl.png</pathColor>
-                  <pathShadow>assets/Textures/Textures Girl/TopSombrasGirl.png</pathShadow>
-            </tshirt>
-			<trouser>
-                 <pathColor>assets/Textures/Textures Girl/PantalonCortoSolidoGirl.png</pathColor>
-                 <pathShadow>assets/Textures/Textures Girl/PantalonCortoSombrasGirl.png</pathShadow>
-            </trouser>
-            <trouser>
-                <pathColor>assets/Textures/Textures Girl/PantalonLargoSolidoGirl.png</pathColor>
-                <pathShadow>assets/Textures/Textures Girl/PantalonLargoSombrasGirl.png</pathShadow>
-            </trouser>
-			<shoes>
-                <pathColor>assets/Textures/Textures Girl/ZapatosSolidoGirl.png</pathColor>
-                <pathShadow>assets/Textures/Textures Girl/ZapatosSombrasGirl.png</pathShadow>
-            </shoes>
+			<skin path="assets/Textures/Textures Girl/PielAmarillaClaraGirl.png"/>
+			<skin path="assets/Textures/Textures Girl/PielAmarillaOscuraGirl.png"/>
+			<skin path="assets/Textures/Textures Girl/PielBlancaGirl.png"/>
+			<skin path="assets/Textures/Textures Girl/PielNegraGirl.png"/>
+			<skin path="assets/Textures/Textures Girl/PielRojaGirl.png"/>
+			<eyes path="assets/Textures/Textures Girl/Eyes/OjosAzulGirl.png"/>
+            <eyes path="assets/Textures/Textures Girl/Eyes/OjosMarronGirl.png"/>
+            <eyes path="assets/Textures/Textures Girl/Eyes/OjosNegroGirl.png"/>
+            <eyes path="assets/Textures/Textures Girl/Eyes/OjosVerdeGirl.png"/>
+            <tshirt pathColor="assets/Textures/Textures Girl/CamisetaSinMangasSolidoGirl.png" pathShadow="assets/Textures/Textures Girl/CamisetaSinMangasSombrasGirl.png"/>
+            <tshirt pathColor="assets/Textures/Textures Girl/CamisetaSolidoGirl.png" pathShadow="assets/Textures/Textures Girl/CamisetaSombrasGirl.png"/>
+            <tshirt pathColor="assets/Textures/Textures Girl/CamisetaTirantesSolidoGirl.png" pathShadow="assets/Textures/Textures Girl/CamisetaTirantesSombrasGirl.png"/>
+            <tshirt pathColor="assets/Textures/Textures Girl/TopSolidoGirl.png" pathShadow="assets/Textures/Textures Girl/TopSombrasGirl.png"/>
+            <trouser pathColor="assets/Textures/Textures Girl/PantalonCortoSolidoGirl.png" pathShadow="assets/Textures/Textures Girl/PantalonCortoSombrasGirl.png"/>
+            <trouser pathColor="assets/Textures/Textures Girl/PantalonLargoSolidoGirl.png" pathShadow="assets/Textures/Textures Girl/PantalonLargoSombrasGirl.png"/>
+            <shoes pathColor="assets/Textures/Textures Girl/ZapatosSolidoGirl.png" pathShadow="assets/Textures/Textures Girl/ZapatosSombrasGirl.png"/>
 		</objects>
-		<model>
-			<path>Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml</path>
-        </model>
+		<model path="Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml"/>
 	</woman>
 </models>

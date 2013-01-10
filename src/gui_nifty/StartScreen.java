@@ -44,8 +44,8 @@ import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import tipos.Age;
-import tipos.Gender;
+import types.Age;
+import types.Gender;
 
 public class StartScreen extends AbstractAppState implements ScreenController {
     
@@ -77,33 +77,39 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void onEndScreen() {}
     
     @Override
-    public void initialize(AppStateManager stateManager, Application app) {
+    public void initialize(AppStateManager stateManager, Application app) 
+    {
         this.app = app;
     }
     
-    public void manSelected(String nextScreen) {
+    public void manSelected(String nextScreen) 
+    {
         nifty.gotoScreen(nextScreen);  // switch to another screen
         gui.setGender(Gender.Male);
     }
     
-    public void womanSelected(String nextScreen) {
+    public void womanSelected(String nextScreen) 
+    {
         nifty.gotoScreen(nextScreen);  // switch to another screen
         gui.setGender(Gender.Female);
     }
     
-    public void adultSelected(String nextScreen) {
+    public void adultSelected(String nextScreen) 
+    {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        gui.setAge(Age.Adult);
-        gui.loadModel();
+        gui.setAgeModel(Age.Adult);
+        gui.loadModel();    
     }
     
-    public void youngSelected(String nextScreen) {
-        nifty.gotoScreen(nextScreen);  // switch to another screen
-        gui.setAge(Age.Young);
-        gui.loadModel();
+    public void youngSelected(String nextScreen) 
+    {
+        nifty.gotoScreen(nextScreen);  // switch to another screen 
+        gui.setAgeModel(Age.Young);
+        gui.loadModel();        
     }
     
-    public void changeScreen(String param){
+    public void changeScreen(String param)
+    {
         selection = param;
         if(param.equals("skin")){
             nifty.gotoScreen("skinScreen");
@@ -128,7 +134,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
     }
     
-    public String getMenu(String param){
+    public String getMenu(String param)
+    {
         if(param.equals("yes")){
             return "Interface/MenuRojo.png";
         }
@@ -137,7 +144,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
     }
     
-    public String getButton(String param){
+    public String getButton(String param)
+    {
         if(param.equals("left")){
             return "Interface/ant.png";
         }
@@ -156,7 +164,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
     }
     
-    public void changeTexture(String steep){
+    public void changeTexture(String steep)
+    {
         int i;
         if(steep.equals("+")){i = 1;}
         else{i = -1;}
@@ -168,7 +177,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(selection.equals("accesories")){}
     }
     
-    public void showWindowChangeColor() throws InterruptedException{
+    public void showWindowChangeColor() throws InterruptedException
+    {
         if(selection.equals("skin")){}
         if(selection.equals("eyes")){}
         if(selection.equals("tshirt")){gui.showWindowChangeColorTShirt();}
@@ -182,28 +192,31 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         String[] namesBones = {"Cabeza"};
-        gui.scale(namesBones, inc);
+        gui.scaleModel(namesBones, inc);
     }
     
     @NiftyEventSubscriber(id="body")
-    public void onBodySliderChange(final String id, final SliderChangedEvent event) {
+    public void onBodySliderChange(final String id, final SliderChangedEvent event) 
+    {
         float inc = 1.0f + event.getValue() * 0.01f;
         String[] namesBones = {"Torax"};
-        gui.scale(namesBones, inc);
+        gui.scaleModel(namesBones, inc);
     }
     
     @NiftyEventSubscriber(id="hands")
-    public void onHandsSliderChange(final String id, final SliderChangedEvent event) {
+    public void onHandsSliderChange(final String id, final SliderChangedEvent event) 
+    {
         float inc = 1.0f + event.getValue() * 0.01f;
         String[] namesBones = {"MuniecaIz","MuniecaDer"};
-        gui.scale(namesBones, inc);
+        gui.scaleModel(namesBones, inc);
     }
     
     @NiftyEventSubscriber(id="feet")
-    public void onFeetSliderChange(final String id, final SliderChangedEvent event) {
+    public void onFeetSliderChange(final String id, final SliderChangedEvent event) 
+    {
         float inc = 1.0f + event.getValue() * 0.01f;
         String[] namesBones = {"TobilloIz","TobilloDer"};
-        gui.scale(namesBones, inc);
+        gui.scaleModel(namesBones, inc);
     }
     
     public void screenshot() 

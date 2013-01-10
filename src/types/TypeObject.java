@@ -34,8 +34,9 @@
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package tipos;
+package types;
 
-public enum Age {
-    Adult, Young
+
+public enum TypeObject {
+   eyes, t_shirt, trouser, shoes
 }

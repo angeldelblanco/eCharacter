@@ -34,9 +34,8 @@
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package imagesProcessing;
+package animation;
 
-import animation.GenerateAnimation;
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.LoopMode;
 import com.jme3.app.state.ScreenshotAppState;
@@ -47,7 +46,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 public class ScreenshotThread extends Thread
 {
@@ -102,8 +100,6 @@ public class ScreenshotThread extends Thread
                 generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }
             generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
-            //Ya está creados todos los ficheros de las animaciones. Limpiar el directorio
-            //generateAnimation.cleanDirectory("assets/Textures/screenshots");
             
             it = namesAnimations.iterator();
             channel.setAnim(it.next());
