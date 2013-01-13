@@ -61,16 +61,19 @@
 	<xs:complexType name="tshirt_type">
 		<xs:attribute name="pathColor" type="xs:string"/>
 		<xs:attribute name="pathShadow" type="xs:string"/>
+		<xs:attribute name="transparencyShadow" type="xs:integer"/>
 		<xs:attribute name="pathIcon" type="xs:string"/>
 	</xs:complexType>
 	<xs:complexType name="trouser_type">
 		<xs:attribute name="pathColor" type="xs:string"/>
 		<xs:attribute name="pathShadow" type="xs:string"/>
+		<xs:attribute name="transparencyShadow" type="xs:integer"/>
 		<xs:attribute name="pathIcon" type="xs:string"/>
 	</xs:complexType>
 	<xs:complexType name="shoes_type">
 		<xs:attribute name="pathColor" type="xs:string"/>
 		<xs:attribute name="pathShadow" type="xs:string"/>
+		<xs:attribute name="transparencyShadow" type="xs:integer"/>
 		<xs:attribute name="pathIcon" type="xs:string"/>
 	</xs:complexType>
 </xs:schema>
