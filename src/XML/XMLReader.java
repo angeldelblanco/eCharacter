@@ -94,6 +94,7 @@ public class XMLReader {
 
                     int numSkins = nListSkins.getLength();
                     String [] arraySkin = new String[numSkins];
+                    String [] arraySkinIcon = new String[numSkins];
 
                     int indexSkinReaded;
                     for (indexSkinReaded = 0; indexSkinReaded < nListSkins.getLength(); indexSkinReaded++){
@@ -106,131 +107,172 @@ public class XMLReader {
                             System.out.println("Skin "+indexSkinReaded+": " + pathSkinReaded);
                             //Save the path of this skin
                             arraySkin[indexSkinReaded] = pathSkinReaded;
+                            
+                            nValue = attributes.getNamedItem("pathIcon");
+                            String pathIconSkinReaded = nValue.getNodeValue();
+                            //Print the data readed
+                            System.out.println("Skin "+indexSkinReaded+": " + pathIconSkinReaded);
+                            //Save the path of this skin's icon
+                            arraySkinIcon[indexSkinReaded] = pathIconSkinReaded;
                         }
                     }
                     model.setNumSkins(numSkins);
                     model.setArraySkin(arraySkin);
+                    model.setArraySkinIcon(arraySkinIcon);
 
                     NodeList nListEyes = eElement2.getElementsByTagName("eyes");
 
                     int numEyes = nListEyes.getLength();
                     String [] arrayEyes = new String[numEyes];
+                    String [] arrayEyesIcon = new String[numEyes];
 
                     int indexEyesReaded;
                     for (indexEyesReaded = 0; indexEyesReaded < nListEyes.getLength(); indexEyesReaded++){
-                        Node nNode4 = nListEyes.item(indexEyesReaded);
-                        if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
-                            NamedNodeMap attributes2 = nNode4.getAttributes();
-                            Node nValue2 = attributes2.getNamedItem("path");
-                            String pathEyesReaded = nValue2.getNodeValue();
+                        Node nNode3 = nListEyes.item(indexEyesReaded);
+                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
+                            NamedNodeMap attributes = nNode3.getAttributes();
+                            Node nValue = attributes.getNamedItem("path");
+                            String pathEyesReaded = nValue.getNodeValue();
                             //Print the data readed
                             System.out.println("Eyes "+indexEyesReaded+": " + pathEyesReaded);
                             //Save the path of these eyes
                             arrayEyes[indexEyesReaded] = pathEyesReaded;
+                            
+                            nValue = attributes.getNamedItem("pathIcon");
+                            String pathIconEyesReaded = nValue.getNodeValue();
+                            //Print the data readed
+                            System.out.println("Eyes "+indexEyesReaded+": " + pathIconEyesReaded);           
+                            //Save the path of these eyes
+                            arrayEyesIcon[indexEyesReaded] = pathIconEyesReaded;
                         }
                     }
                     model.setNumEyes(numEyes);
                     model.setArrayEyes(arrayEyes);
+                    model.setArrayEyesIcon(arrayEyesIcon);
 
                     NodeList nListTShirts = eElement2.getElementsByTagName("tshirt");
 
                     int numTShirts = nListTShirts.getLength();
                     String [] arrayTShirtColor = new String[numTShirts];
                     String [] arrayTShirtShadow = new String[numTShirts];
+                    String [] arrayTShirtIcon = new String[numTShirts];
 
                     int indexTShirtReaded;
                     for (indexTShirtReaded = 0; indexTShirtReaded < nListTShirts.getLength(); indexTShirtReaded++){
-                        Node nNode5 = nListTShirts.item(indexTShirtReaded);
-                        if (nNode5.getNodeType() == Node.ELEMENT_NODE) {
-                            NamedNodeMap attributes3 = nNode5.getAttributes();
-                            Node nValue3 = attributes3.getNamedItem("pathColor");
-                            String pathTShirtColorReaded = nValue3.getNodeValue();
+                        Node nNode3 = nListTShirts.item(indexTShirtReaded);
+                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
+                            NamedNodeMap attributes = nNode3.getAttributes();
+                            Node nValue = attributes.getNamedItem("pathColor");
+                            String pathTShirtColorReaded = nValue.getNodeValue();
                             //Print the data readed
                             System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtColorReaded);
                             //Save the path of this tshirt
                             arrayTShirtColor[indexTShirtReaded] = pathTShirtColorReaded;
 
-                            NamedNodeMap attributes4 = nNode5.getAttributes();
-                            Node nValue4 = attributes4.getNamedItem("pathShadow");
-                            String pathTShirtShadowReaded = nValue4.getNodeValue();
+                            nValue = attributes.getNamedItem("pathShadow");
+                            String pathTShirtShadowReaded = nValue.getNodeValue();
                             //Print the data readed
                             System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtShadowReaded);
                             //Save the path of this tshirt
                             arrayTShirtShadow[indexTShirtReaded] = pathTShirtShadowReaded;
+                            
+                            nValue = attributes.getNamedItem("pathIcon");
+                            String pathIconTShirtReaded = nValue.getNodeValue();
+                            //Print the data readed
+                            System.out.println("TShirt "+indexTShirtReaded+": " + pathIconTShirtReaded);
+                            //Save the path of this tshirt
+                            arrayTShirtIcon[indexTShirtReaded] = pathIconTShirtReaded;
                         }
                     }
                     model.setNumTShirts(numSkins);
                     model.setArrayTShirtColor(arrayTShirtColor);
                     model.setArrayTShirtShadow(arrayTShirtShadow);
+                    model.setArrayTShirtIcon(arrayTShirtIcon);
 
                     NodeList nListTrousers = eElement2.getElementsByTagName("trouser");
 
                     int numTrousers = nListTrousers.getLength();
                     String [] arrayTrouserColor = new String[numTrousers];
                     String [] arrayTrouserShadow = new String[numTrousers];
+                    String [] arrayTrouserIcon = new String[numTrousers];
 
                     int indexTrouserReaded;
                     for (indexTrouserReaded = 0; indexTrouserReaded < nListTrousers.getLength(); indexTrouserReaded++){
-                        Node nNode6 = nListTrousers.item(indexTrouserReaded);
-                        if (nNode6.getNodeType() == Node.ELEMENT_NODE) {
-                            NamedNodeMap attributes5 = nNode6.getAttributes();
-                            Node nValue5 = attributes5.getNamedItem("pathColor");
-                            String pathTrouserColorReaded = nValue5.getNodeValue();
+                        Node nNode3 = nListTrousers.item(indexTrouserReaded);
+                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
+                            NamedNodeMap attributes = nNode3.getAttributes();
+                            Node nValue = attributes.getNamedItem("pathColor");
+                            String pathTrouserColorReaded = nValue.getNodeValue();
                             //Print the data readed
                             System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserColorReaded);
                             //Save the path of this trouser
                             arrayTrouserColor[indexTrouserReaded] = pathTrouserColorReaded;
 
-                            NamedNodeMap attributes6 = nNode6.getAttributes();
-                            Node nValue6 = attributes6.getNamedItem("pathShadow");
-                            String pathTrouserShadowReaded = nValue6.getNodeValue();
+                            nValue = attributes.getNamedItem("pathShadow");
+                            String pathTrouserShadowReaded = nValue.getNodeValue();
                             //Print the data readed
                             System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserShadowReaded);
-                            //Save the path of this tshirt
+                            //Save the path of this trouser
                             arrayTrouserShadow[indexTrouserReaded] = pathTrouserShadowReaded;
+                            
+                            nValue = attributes.getNamedItem("pathIcon");
+                            String pathIconTrouserReaded = nValue.getNodeValue();
+                            //Print the data readed
+                            System.out.println("Trouser "+indexTrouserReaded+": " + pathIconTrouserReaded);
+                            //Save the path of this trouser
+                            arrayTrouserIcon[indexTrouserReaded] = pathIconTrouserReaded;
                         }
                     }
                     model.setNumTrousers(numTrousers);
                     model.setArrayTrouserColor(arrayTrouserColor);
                     model.setArrayTrouserShadow(arrayTrouserShadow);
+                    model.setArrayTrouserIcon(arrayTrouserIcon);
 
                     NodeList nListShoes = eElement2.getElementsByTagName("shoes");
 
                     int numShoes = nListShoes.getLength();
                     String [] arrayShoesColor = new String[numShoes];
                     String [] arrayShoesShadow = new String[numShoes];
+                    String [] arrayShoesIcon = new String[numShoes];
 
                     int indexShoesReaded;
                     for (indexShoesReaded = 0; indexShoesReaded < nListShoes.getLength(); indexShoesReaded++){
-                        Node nNode7 = nListShoes.item(indexShoesReaded);
-                        if (nNode7.getNodeType() == Node.ELEMENT_NODE) {
-                            NamedNodeMap attributes7 = nNode7.getAttributes();
-                            Node nValue7 = attributes7.getNamedItem("pathColor");
-                            String pathShoesColorReaded = nValue7.getNodeValue();
+                        Node nNode3 = nListShoes.item(indexShoesReaded);
+                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
+                            NamedNodeMap attributes = nNode3.getAttributes();
+                            Node nValue = attributes.getNamedItem("pathColor");
+                            String pathShoesColorReaded = nValue.getNodeValue();
                             //Print the data readed
                             System.out.println("Shoes "+indexShoesReaded+": " + pathShoesColorReaded);
-                            //Save the path of this trouser
+                            //Save the path of this shoe
                             arrayShoesColor[indexShoesReaded] = pathShoesColorReaded;
 
-                            NamedNodeMap attributes8 = nNode7.getAttributes();
-                            Node nValue8 = attributes8.getNamedItem("pathShadow");
-                            String pathShoesShadowReaded = nValue8.getNodeValue();
+                            nValue = attributes.getNamedItem("pathShadow");
+                            String pathShoesShadowReaded = nValue.getNodeValue();
                             //Print the data readed
                             System.out.println("Shoes "+indexShoesReaded+": " + pathShoesShadowReaded);
-                            //Save the path of this tshirt
+                            //Save the path of this shoe
                             arrayShoesShadow[indexShoesReaded] = pathShoesShadowReaded;
+                            
+                            nValue = attributes.getNamedItem("pathIcon");
+                            String pathIconShoesReaded = nValue.getNodeValue();
+                            //Print the data readed
+                            System.out.println("Shoes "+indexShoesReaded+": " + pathIconShoesReaded);
+                            //Save the path of this shoe
+                            arrayShoesIcon[indexShoesReaded] = pathIconShoesReaded;
                         }
                     }
                     model.setNumShoes(numShoes);
                     model.setArrayShoesColor(arrayShoesColor);
                     model.setArrayShoesShadow(arrayShoesShadow);
+                    model.setArrayShoesIcon(arrayShoesIcon);
                   }
                   NodeList nListAnimations = eElement.getElementsByTagName("model");        
-                  Node nNode8 = nListAnimations.item(0);
-                    if (nNode8.getNodeType() == Node.ELEMENT_NODE) {
-                        NamedNodeMap attributes9 = nNode8.getAttributes();
-                        Node nValue9 = attributes9.getNamedItem("path");
-                        String pathAnimationReaded = nValue9.getNodeValue();
+                  Node nNode3 = nListAnimations.item(0);
+                    if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
+                        NamedNodeMap attributes = nNode3.getAttributes();
+                        Node nValue = attributes.getNamedItem("path");
+                        String pathAnimationReaded = nValue.getNodeValue();
                         //Print the data readed
                         System.out.println("Animation : " + pathAnimationReaded);
                         //Save the path of this skin

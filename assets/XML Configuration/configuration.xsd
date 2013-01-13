@@ -52,20 +52,25 @@
 	</xs:element>
 	<xs:complexType name="skin_type">
 		<xs:attribute name="path" type="xs:string"/>
+		<xs:attribute name="pathIcon" type="xs:string"/>
 	</xs:complexType>
 	<xs:complexType name="eyes_type">
 		<xs:attribute name="path" type="xs:string"/>
+		<xs:attribute name="pathIcon" type="xs:string"/>
 	</xs:complexType>
 	<xs:complexType name="tshirt_type">
 		<xs:attribute name="pathColor" type="xs:string"/>
 		<xs:attribute name="pathShadow" type="xs:string"/>
+		<xs:attribute name="pathIcon" type="xs:string"/>
 	</xs:complexType>
 	<xs:complexType name="trouser_type">
 		<xs:attribute name="pathColor" type="xs:string"/>
 		<xs:attribute name="pathShadow" type="xs:string"/>
+		<xs:attribute name="pathIcon" type="xs:string"/>
 	</xs:complexType>
 	<xs:complexType name="shoes_type">
 		<xs:attribute name="pathColor" type="xs:string"/>
 		<xs:attribute name="pathShadow" type="xs:string"/>
+		<xs:attribute name="pathIcon" type="xs:string"/>
 	</xs:complexType>
 </xs:schema>

@@ -74,8 +74,9 @@ public class Model{
     private ImagesProcessing img;
     private BufferedImage skin, trousers, tShirt, eyes, shoes;
     
-    private String [] arraySkin, arrayShoesColor, arrayShoesShadow, arrayTrouserColor, arrayTrouserShadow, arrayTShirtColor, 
-            arrayTShirtShadow, arrayEyes;
+    private String [] arraySkin, arraySkinIcon, arrayShoesColor, arrayShoesShadow, arrayShoesIcon, arrayTrouserColor, 
+            arrayTrouserShadow, arrayTrouserIcon, arrayTShirtColor, arrayTShirtShadow, arrayTShirtIcon, arrayEyes, 
+            arrayEyesIcon;
     private int indexSkin = -1;
     private int indexTShirt = -1;
     private int indexShoes = -1;
@@ -392,5 +393,25 @@ public class Model{
     public void setModelPath(String modelPath) 
     {
         this.modelPath = modelPath;
+    }
+
+    public void setArraySkinIcon(String[] arraySkinIcon) {
+        this.arraySkinIcon = arraySkinIcon;
+    }
+
+    public void setArrayEyesIcon(String[] arrayEyesIcon) {
+        this.arrayEyesIcon = arrayEyesIcon;
+    }
+
+    public void setArrayTShirtIcon(String[] arrayTShirtIcon) {
+        this.arrayTShirtIcon = arrayTShirtIcon;
+    }
+
+    public void setArrayTrouserIcon(String[] arrayTrouserIcon) {
+        this.arrayTrouserIcon = arrayTrouserIcon;
+    }
+
+    public void setArrayShoesIcon(String[] arrayShoesIcon) {
+        this.arrayShoesIcon = arrayShoesIcon;
     }
 }
