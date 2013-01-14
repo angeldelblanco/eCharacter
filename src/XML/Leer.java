@@ -161,4 +161,12 @@ public class Leer {
               e.printStackTrace();
         }
     }
+    
+    private boolean pathOK (String path){
+        File file = new File(path);
+        if (file.exists())
+            return true;
+        else
+            return false;
+    }
 }
