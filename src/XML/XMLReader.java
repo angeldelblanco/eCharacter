@@ -351,7 +351,8 @@ public class XMLReader {
                             NamedNodeMap attributes = nNode3.getAttributes();
                             Node nValue = attributes.getNamedItem("path");
                             String pathAnimationReaded = nValue.getNodeValue();
-                            if (pathOK(pathAnimationReaded)){
+                            String pathAnimation_aux = "assets/"+pathAnimationReaded;
+                            if (pathOK(pathAnimation_aux)){
                                 //Print the data readed
                                 System.out.println("Animation : " + pathAnimationReaded);
                                 //Save the path of this skin
@@ -359,7 +360,7 @@ public class XMLReader {
                                 model.setModelPath(modelPath);
                             }
                             else{
-                                    System.out.println("El siguiente path de model es incorrecto: "+pathAnimationReaded);
+                                    System.out.println("El siguiente path de model es incorrecto: "+pathAnimation_aux);
                                     return;
                                 }
                         }                      
