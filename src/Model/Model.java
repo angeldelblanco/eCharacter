@@ -70,6 +70,7 @@ public class Model{
     private AnimControl control;
     private Age age;
     private Gender gender;
+    private Vector3f vectorScaleBase;
     
     private ImagesProcessing img;
     private BufferedImage skin, trousers, tShirt, eyes, shoes;
@@ -95,6 +96,56 @@ public class Model{
     private TypeObject typeObject;
     
     public Model(){}
+    
+    public void setBodyType(int bodyType)
+    {        
+        Vector3f inc;
+        Bone b;
+        switch(bodyType)
+        {
+            case 0: //Normal
+                    model.setLocalScale(vectorScaleBase);
+                    b = control.getSkeleton().getBone("Cabeza");
+                    b.setUserControl(true);
+                    b.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY,Vector3f.UNIT_XYZ);
+                    break;
+            case 1: //Tall
+                    inc = new Vector3f(1.1f,1.25f,1.25f);
+                    inc.multLocal(vectorScaleBase);
+                    model.setLocalScale(inc);
+                    b = control.getSkeleton().getBone("Cabeza");
+                    b.setUserControl(true);
+                    b.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY,new Vector3f(1.0f/1.1f,1.0f/1.25f,1.0f/1.25f));
+                    break;
+            case 2: //Small
+                    inc = new Vector3f(0.9f,0.75f,0.75f);
+                    inc.multLocal(vectorScaleBase);
+                    model.setLocalScale(inc);
+                    b = control.getSkeleton().getBone("Cabeza");
+                    b.setUserControl(true);
+                    b.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY,new Vector3f(1.0f/0.9f,1.0f/0.75f,1.0f/0.75f));
+                    break;                
+            case 3: //Heavy
+                    inc = new Vector3f(1.50f,1.0f,1.0f);
+                    inc.multLocal(vectorScaleBase);
+                    model.setLocalScale(inc);
+                    b = control.getSkeleton().getBone("Cabeza");
+                    b.setUserControl(true);
+                    b.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY,new Vector3f(1.0f/1.50f,1.0f,1.0f));
+                    break;
+            case 4: //Thin
+                    inc = new Vector3f(0.65f,1.0f,1.0f);
+                    inc.multLocal(vectorScaleBase);
+                    model.setLocalScale(inc);
+                    b = control.getSkeleton().getBone("Cabeza");
+                    b.setUserControl(true);
+                    b.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY,new Vector3f(1.0f/0.65f,1.0f,1.0f));                    
+                    break;
+            default: break;
+                    
+        }
+        
+    }
     
     public void scale(String[] namesBones,float inc)
     {
@@ -268,9 +319,11 @@ public class Model{
         Iterator<String> it = this.control.getAnimationNames().iterator();
         this.channel.setAnim(it.next());
         this.channel.setLoopMode(LoopMode.Loop);
+        this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         if (this.age == Age.Young){
             //Scale the model
             model.scale(0.65f, 0.65f, 0.65f);
+            this.vectorScaleBase.set(0.65f,0.65f,0.65f);
         }
     }
 

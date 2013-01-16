@@ -281,4 +281,9 @@ public class Gui extends SimpleApplication{
     {
         model.scale(namesBones, inc);
     }
+    
+    public void setBodyType(int bodyType)
+    {
+        model.setBodyType(bodyType);
+    }
 }

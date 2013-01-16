@@ -231,13 +231,23 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void onArmsSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        String[] namesBones = {"CodoIz","CodoDer"};
+        String[] namesBones = {"ClaviculaIz","ClaviculaDer"};
         gui.scaleModel(namesBones, inc);
     }
     
     public void screenshot() 
     {
-        gui.screenshot();
-        nifty.gotoScreen("finishScreen");
+        /*gui.screenshot();
+        nifty.gotoScreen("finishScreen");*/
+        gui.setBodyType(0);
+    }
+    
+    public void changeBodyType(String bodyType)
+    {
+        if(bodyType.equals("Normal")){gui.setBodyType(0);}
+        if(bodyType.equals("Tall")){gui.setBodyType(1);}
+        if(bodyType.equals("Small")) {gui.setBodyType(2);}
+        if(bodyType.equals("Heavy")) {gui.setBodyType(3);}
+        if(bodyType.equals("Thin")) {gui.setBodyType(4);}
     }
 }
