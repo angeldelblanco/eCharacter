@@ -74,7 +74,7 @@ public class Gui extends SimpleApplication{
         System.out.println("Tu resolución es de " + screenSize.width + "x" + screenSize.height);*/
         
         AppSettings settings = new AppSettings(true);
-        settings.setResolution(800, 600);
+        settings.setResolution(1024, 768);
         //settings.setFullscreen(true);
         Gui app = new Gui();
         app.setShowSettings(false);

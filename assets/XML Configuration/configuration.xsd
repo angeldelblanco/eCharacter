@@ -9,17 +9,20 @@
 							<xs:element name="objects">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="skin" type="skin_type" minOccurs="1" maxOccurs="unbounded"/>
-										<xs:element name="eyes" type="eyes_type" minOccurs="1" maxOccurs="unbounded"/>
-										<xs:element name="tshirt" type="tshirt_type" minOccurs="1" maxOccurs="unbounded"/>
-										<xs:element name="trouser" type="trouser_type" minOccurs="1" maxOccurs="unbounded"/>
-										<xs:element name="shoes" type="shoes_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="skin" type="skin_type" maxOccurs="unbounded"/>
+										<xs:element name="eyes" type="eyes_type" maxOccurs="unbounded"/>
+										<xs:element name="tshirt" type="tshirt_type" maxOccurs="unbounded"/>
+										<xs:element name="trouser" type="trouser_type" maxOccurs="unbounded"/>
+										<xs:element name="shoes" type="shoes_type" maxOccurs="unbounded"/>
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="model" minOccurs="1">
+							<xs:element name="model">
 								<xs:complexType>
-									<xs:attribute name="path" type="xs:string"/>
+									<xs:sequence>
+										<xs:element name="bones" type="bones_type"/>
+									</xs:sequence>
+									<xs:attribute name="path" type="xs:string" use="required"/>								
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -31,17 +34,20 @@
 							<xs:element name="objects">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="skin" type="skin_type" minOccurs="1" maxOccurs="unbounded"/>
-										<xs:element name="eyes" type="eyes_type" minOccurs="1" maxOccurs="unbounded"/>
-										<xs:element name="tshirt" type="tshirt_type" minOccurs="1" maxOccurs="unbounded"/>
-										<xs:element name="trouser" type="trouser_type" minOccurs="1" maxOccurs="unbounded"/>
-										<xs:element name="shoes" type="shoes_type" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="skin" type="skin_type" maxOccurs="unbounded"/>
+										<xs:element name="eyes" type="eyes_type" maxOccurs="unbounded"/>
+										<xs:element name="tshirt" type="tshirt_type" maxOccurs="unbounded"/>
+										<xs:element name="trouser" type="trouser_type" maxOccurs="unbounded"/>
+										<xs:element name="shoes" type="shoes_type" maxOccurs="unbounded"/>
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="model" minOccurs="1">
+							<xs:element name="model">
 								<xs:complexType>
-									<xs:attribute name="path" type="xs:string"/>
+									<xs:sequence>
+										<xs:element name="bones" type="bones_type"/>
+									</xs:sequence>
+									<xs:attribute name="path" type="xs:string" use="required"/>								
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -51,29 +57,85 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:complexType name="skin_type">
-		<xs:attribute name="path" type="xs:string"/>
-		<xs:attribute name="pathIcon" type="xs:string"/>
+		<xs:attribute name="path" type="xs:string" use="required"/>
+		<xs:attribute name="pathIcon" type="xs:string" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="eyes_type">
-		<xs:attribute name="path" type="xs:string"/>
-		<xs:attribute name="pathIcon" type="xs:string"/>
+		<xs:attribute name="path" type="xs:string" use="required"/>
+		<xs:attribute name="pathIcon" type="xs:string" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="tshirt_type">
-		<xs:attribute name="pathColor" type="xs:string"/>
-		<xs:attribute name="pathShadow" type="xs:string"/>
-		<xs:attribute name="transparencyShadow" type="xs:integer"/>
-		<xs:attribute name="pathIcon" type="xs:string"/>
+		<xs:attribute name="pathColor" type="xs:string" use="required"/>
+		<xs:attribute name="pathShadow" type="xs:string" use="optional"/>
+		<xs:attribute name="transparencyShadow" type="xs:integer" use="optional"/>
+		<xs:attribute name="pathIcon" type="xs:string" use="required"/>
+		<xs:attribute name="pathDetail" type="xs:string" use="optional"/>
 	</xs:complexType>
 	<xs:complexType name="trouser_type">
-		<xs:attribute name="pathColor" type="xs:string"/>
-		<xs:attribute name="pathShadow" type="xs:string"/>
-		<xs:attribute name="transparencyShadow" type="xs:integer"/>
-		<xs:attribute name="pathIcon" type="xs:string"/>
+		<xs:attribute name="pathColor" type="xs:string" use="required"/>
+		<xs:attribute name="pathShadow" type="xs:string" use="optional"/>
+		<xs:attribute name="transparencyShadow" type="xs:integer" use="optional"/>
+		<xs:attribute name="pathIcon" type="xs:string" use="required"/>
+		<xs:attribute name="pathDetail" type="xs:string" use="optional"/>
 	</xs:complexType>
 	<xs:complexType name="shoes_type">
-		<xs:attribute name="pathColor" type="xs:string"/>
-		<xs:attribute name="pathShadow" type="xs:string"/>
-		<xs:attribute name="transparencyShadow" type="xs:integer"/>
-		<xs:attribute name="pathIcon" type="xs:string"/>
+		<xs:attribute name="pathColor" type="xs:string" use="required"/>
+		<xs:attribute name="pathShadow" type="xs:string" use="optional"/>
+		<xs:attribute name="transparencyShadow" type="xs:integer" use="optional"/>
+		<xs:attribute name="pathIcon" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="bones_type">
+		<xs:sequence>
+			<xs:element name="head">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="torax">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="leftWrist">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rightWrist">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="leftAnkle">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rightAnkle">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="leftFemur">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rightFemur">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="leftClavicle">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rightClavicle">
+				<xs:complexType>
+					<xs:attribute name="boneName" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

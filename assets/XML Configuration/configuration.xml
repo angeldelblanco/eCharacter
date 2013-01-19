@@ -23,7 +23,20 @@
             <trouser pathColor="assets/Textures/Textures Boy/PantalonLargoSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/PantalonLargoSombrasBoy.png" pathIcon="assets/Textures/Textures Boy/Icons/IconoPantalonLargoBoy.png"/>
             <shoes pathColor="assets/Textures/Textures Boy/ZapatosSolidoBoy.png" pathShadow="assets/Textures/Textures Boy/ZapatosSombrasBoy.png" pathIcon="assets/Textures/Textures Boy/Icons/IconoZapatosBoy.png"/>
         </objects>
-        <model path="Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml"/>
+        <model path="Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml">
+			<bones>
+				<head boneName="Cabeza"/>
+				<torax boneName="Torax"/>
+				<leftWrist boneName="MuniecaIz"/>
+				<rightWrist boneName="MuniecaDer"/>
+				<leftAnkle boneName="TobilloIz"/>
+				<rightAnkle boneName="TobilloDer"/>
+				<leftFemur boneName="FemurIz"/>
+				<rightFemur boneName="FemurDer"/>
+				<leftClavicle boneName="ClaviculaIz"/>
+				<rightClavicle boneName="ClaviculaDer"/>
+			</bones>
+        </model>
     </man>
     <woman>
 		<objects>
@@ -53,6 +66,19 @@
             <trouser pathColor="assets/Textures/Textures Girl/PantalonLargoSolidoGirl.png" pathShadow="assets/Textures/Textures Girl/PantalonLargoSombrasGirl.png" pathIcon="assets/Textures/Textures Girl/Icons/IconoPantalonLargoGirl.png"/>
             <shoes pathColor="assets/Textures/Textures Girl/ZapatosSolidoGirl.png" pathShadow="assets/Textures/Textures Girl/ZapatosSombrasGirl.png" pathIcon="assets/Textures/Textures Girl/Icons/IconoZapatosGirl.png"/>
 		</objects>
-		<model path="Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml"/>
+		<model path="Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml">
+			<bones>
+				<head boneName="Cabeza"/>
+				<torax boneName="Torax"/>
+				<leftWrist boneName="MuniecaIz"/>
+				<rightWrist boneName="MuniecaDer"/>
+				<leftAnkle boneName="TobilloIz"/>
+				<rightAnkle boneName="TobilloDer"/>
+				<leftFemur boneName="FemurIz"/>
+				<rightFemur boneName="FemurDer"/>
+				<leftClavicle boneName="ClaviculaIz"/>
+				<rightClavicle boneName="ClaviculaDer"/>
+			</bones>
+		</model>
 	</woman>
 </models>
