@@ -114,6 +114,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(param.equals("skin")){
             nifty.gotoScreen("skinScreen");
         }
+        if(param.equals("hair")){
+            nifty.gotoScreen("hairScreen");
+        }
         if(param.equals("eyes")){
             nifty.gotoScreen("eyesScreen");
         }
@@ -132,6 +135,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(param.equals("bones")){
             nifty.gotoScreen("bonesScreen");
         }
+        if(param.equals("basic")){
+            nifty.gotoScreen("basicScreen");
+        }
     }
     
     public String getMenu(String param)
@@ -139,9 +145,16 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(param.equals("yes")){
             return "Interface/MenuRojo.png";
         }
-        else{
+        if(param.equals("no")){
             return "Interface/MenuAzul.png";
         }
+        if(param.equals("an")){
+            return "Interface/MenuAzulAntiguo.png";
+        }
+        if(param.equals("ay")){
+            return "Interface/MenuRojoAntiguo.png";
+        }
+        return null;
     }
     
     public String getButton(String param)
@@ -149,19 +162,19 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(param.equals("left")){
             return "Interface/ant.png";
         }
-        else{
-            if(param.equals("right")){
-                return "Interface/sig.png";
-            }
-            else{
-                if(param.equals("color")){
-                    return "Interface/ColorButton.png";
-                }
-                else{
-                    return "Interface/Finish.png";
-                }
-            }
+        if(param.equals("right")){
+            return "Interface/sig.png";
         }
+        if(param.equals("color")){
+            return "Interface/ColorButton.png";
+        }
+        if(param.equals("next")){
+            return "Interface/next.png";
+        }
+        if(param.equals("previous")){
+            return "Interface/previous.png";
+        }
+        return null;
     }
     
     public void changeTexture(String steep)
@@ -170,6 +183,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(steep.equals("+")){i = 1;}
         else{i = -1;}
         if(selection.equals("skin")){gui.changeSkin(i);}
+        if(selection.equals("hair")){}
         if(selection.equals("eyes")){gui.changeEyes(i);}
         if(selection.equals("tshirt")){gui.changeTShirt(i);}
         if(selection.equals("trousers")){gui.changeTrousers(i);}
@@ -180,6 +194,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void showWindowChangeColor() throws InterruptedException
     {
         if(selection.equals("skin")){}
+        if(selection.equals("hair")){}
         if(selection.equals("eyes")){}
         if(selection.equals("tshirt")){gui.showWindowChangeColorTShirt();}
         if(selection.equals("trousers")){gui.showWindowChangeColorTrouser();}
