@@ -206,48 +206,42 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void onHeadSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        String[] namesBones = {"Cabeza"};
-        gui.scaleModel(namesBones, inc);
+        gui.scaleHead(inc);
     }
     
     @NiftyEventSubscriber(id="torso")
     public void onTorsoSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        String[] namesBones = {"Torax"};
-        gui.scaleModel(namesBones, inc);
+        gui.scaleTorax(inc);
     }
     
     @NiftyEventSubscriber(id="hands")
     public void onHandsSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        String[] namesBones = {"MuniecaIz","MuniecaDer"};
-        gui.scaleModel(namesBones, inc);
+        gui.scaleHands(inc);
     }
     
     @NiftyEventSubscriber(id="feet")
     public void onFeetSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        String[] namesBones = {"TobilloIz","TobilloDer"};
-        gui.scaleModel(namesBones, inc);
+        gui.scaleFeet(inc);
     }
     
     @NiftyEventSubscriber(id="legs")
     public void onLegsSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        String[] namesBones = {"FemurIz","FemurDer"};
-        gui.scaleModel(namesBones, inc);
+        gui.scaleLegs(inc);
     }
     
     @NiftyEventSubscriber(id="arms")
     public void onArmsSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        String[] namesBones = {"ClaviculaIz","ClaviculaDer"};
-        gui.scaleModel(namesBones, inc);
+        gui.scaleArms(inc);
     }
     
     public void screenshot() 

@@ -277,13 +277,34 @@ public class Gui extends SimpleApplication{
         }
     }
     
-    public void scaleModel(String[] namesBones,float inc)
-    {
-        model.scale(namesBones, inc);
-    }
+    
     
     public void setBodyType(int bodyType)
     {
         model.setBodyType(bodyType);
+    }
+
+    public void scaleHead(float inc) {
+        model.scaleHead(inc);
+    }
+
+    public void scaleTorax(float inc) {
+        model.scaleTorax(inc);
+    }
+
+    public void scaleHands(float inc) {
+        model.scaleHands(inc);
+    }
+
+    public void scaleFeet(float inc) {
+        model.scaleFeet(inc);
+    }
+
+    public void scaleLegs(float inc) {
+        model.scaleLegs(inc);
+    }
+
+    public void scaleArms(float inc) {
+        model.scaleArms(inc);
     }
 }

@@ -355,16 +355,146 @@ public class XMLReader {
                             if (pathOK(pathAnimation_aux)){
                                 //Print the data readed
                                 System.out.println("Animation : " + pathAnimationReaded);
-                                //Save the path of this skin
-                                String modelPath = pathAnimationReaded;
-                                model.setModelPath(modelPath);
+                                //Save the path of this model
+                                model.setModelPath(pathAnimationReaded);
                             }
                             else{
                                     System.out.println("El siguiente path de model es incorrecto: "+pathAnimation_aux);
                                     return;
                                 }
-                        }                      
-                   }
+                            //In eElement2, we have the node model
+                            Element eElement2 = (Element) nNode3;
+                            NodeList nListBones = eElement2.getElementsByTagName("bones");                     
+                            Node nNode4 = nListBones.item(0);
+                            int numBones = nNode4.getChildNodes().getLength();
+                            String [] nameBones= new String[numBones];
+                            
+                            //In eElement3, we have the node bones
+                            Element eElement3 = (Element) nNode4;
+                            //Head
+                            NodeList nListHeadBone = eElement3.getElementsByTagName("head");
+                            nNode4 = nListHeadBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameHead = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Head bone : " + nameHead);
+                                //Save the name of this bone
+                                nameBones[0] = nameHead;        
+                            }
+                            //Torax
+                            NodeList nListToraxBone = eElement3.getElementsByTagName("torax");
+                            nNode4 = nListToraxBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameTorax = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Torax bone : " + nameTorax);
+                                //Save the name of this bone
+                                nameBones[1] = nameTorax;        
+                            }
+                            //Left Wrist
+                            NodeList nListLeftWristBone = eElement3.getElementsByTagName("leftWrist");
+                            nNode4 = nListLeftWristBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameLeftWristBone = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Left Wrist bone : " + nameLeftWristBone);
+                                //Save the name of this bone
+                                nameBones[2] = nameLeftWristBone;        
+                            }
+                            //Right Wrist
+                            NodeList nListRightWristBone = eElement3.getElementsByTagName("rightWrist");
+                            nNode4 = nListRightWristBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameRightWristBone = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Right Wrist bone : " + nameRightWristBone);
+                                //Save the name of this bone
+                                nameBones[3] = nameRightWristBone;        
+                            }
+                            //Left Ankle
+                            NodeList nListLeftAnkleBone = eElement3.getElementsByTagName("leftAnkle");
+                            nNode4 = nListLeftAnkleBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameLeftAnkleBone = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Left Ankle bone : " + nameLeftAnkleBone);
+                                //Save the name of this bone
+                                nameBones[4] = nameLeftAnkleBone;        
+                            }
+                            //Right Ankle
+                            NodeList nListRightAnkleBone = eElement3.getElementsByTagName("rightAnkle");
+                            nNode4 = nListRightAnkleBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameRightAnkleBone = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Right Ankle bone : " + nameRightAnkleBone);
+                                //Save the name of this bone
+                                nameBones[5] = nameRightAnkleBone;        
+                            }
+                            //Left Femur
+                            NodeList nListLeftFemurBone = eElement3.getElementsByTagName("leftFemur");
+                            nNode4 = nListLeftFemurBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameLeftFemurBone = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Left Femur bone : " + nameLeftFemurBone);
+                                //Save the name of this bone
+                                nameBones[6] = nameLeftFemurBone;        
+                            }
+                            //Right Femur
+                            NodeList nListRightFemurBone = eElement3.getElementsByTagName("rightFemur");
+                            nNode4 = nListRightFemurBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameRightFemurBone = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Right Femur bone : " + nameRightFemurBone);
+                                //Save the name of this bone
+                                nameBones[7] = nameRightFemurBone;        
+                            }
+                            //Left Clavicle
+                            NodeList nListLeftClavicleBone = eElement3.getElementsByTagName("leftClavicle");
+                            nNode4 = nListLeftClavicleBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameLeftClavicleBone = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Left Clavicle bone : " + nameLeftClavicleBone);
+                                //Save the name of this bone
+                                nameBones[8] = nameLeftClavicleBone;        
+                            }
+                            
+                            //Right Clavicle
+                            NodeList nListRightClavicleBone = eElement3.getElementsByTagName("rightClavicle");
+                            nNode4 = nListRightClavicleBone.item(0);
+                            if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes2 = nNode4.getAttributes();
+                                Node nValue2 = attributes2.getNamedItem("boneName");
+                                String nameRightClavicleBone = nValue2.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Right Clavicle bone : " + nameRightClavicleBone);
+                                //Save the name of this bone
+                                nameBones[9] = nameRightClavicleBone;        
+                            }
+                            model.setNamesBones(nameBones);
+                        }                   
+                    }
                 }
             } catch (Exception e) {
                   e.printStackTrace();

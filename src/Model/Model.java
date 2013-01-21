@@ -77,7 +77,8 @@ public class Model{
     
     private String [] arraySkin, arraySkinIcon, arrayShoesColor, arrayShoesShadow, arrayShoesIcon, arrayTrouserColor, 
             arrayTrouserShadow, arrayTrouserIcon, arrayTShirtColor, arrayTShirtShadow, arrayTShirtIcon, arrayEyes, 
-            arrayEyesIcon;
+            arrayEyesIcon, namesBones;
+
     private int indexSkin = -1;
     private int indexTShirt = -1;
     private int indexShoes = -1;
@@ -145,9 +146,49 @@ public class Model{
                     
         }
         
+    }  
+    
+    public void scaleHead(float inc) {
+        String[] arrayNameBones = new String[1];
+        arrayNameBones[0] = this.namesBones[0];
+        this.scale(arrayNameBones, inc);
     }
     
-    public void scale(String[] namesBones,float inc)
+    public void scaleTorax(float inc) {
+        String[] arrayNameBones = new String[1];
+        arrayNameBones[0] = this.namesBones[1];
+        this.scale(arrayNameBones, inc);
+    }
+    
+    public void scaleHands(float inc) {
+        String[] arrayNameBones = new String[2];
+        arrayNameBones[0] = this.namesBones[2];
+        arrayNameBones[1] = this.namesBones[3];
+        this.scale(arrayNameBones, inc);
+    }
+    
+    public void scaleFeet(float inc) {
+        String[] arrayNameBones = new String[2];
+        arrayNameBones[0] = this.namesBones[4];
+        arrayNameBones[1] = this.namesBones[5];
+        this.scale(arrayNameBones, inc);
+    }
+    
+    public void scaleLegs(float inc) {
+        String[] arrayNameBones = new String[2];
+        arrayNameBones[0] = this.namesBones[6];
+        arrayNameBones[1] = this.namesBones[7];
+        this.scale(arrayNameBones, inc);
+    }
+    
+    public void scaleArms(float inc) {
+        String[] arrayNameBones = new String[2];
+        arrayNameBones[0] = this.namesBones[8];
+        arrayNameBones[1] = this.namesBones[9];
+        this.scale(arrayNameBones, inc);
+    }
+    
+    private void scale(String[] namesBones,float inc)
     {
         for(int i = 0; i < namesBones.length ; i++)
         {
@@ -466,5 +507,13 @@ public class Model{
 
     public void setArrayShoesIcon(String[] arrayShoesIcon) {
         this.arrayShoesIcon = arrayShoesIcon;
+    }
+    
+    public String[] getNamesBones() {
+        return namesBones;
+    }
+
+    public void setNamesBones(String[] namesBones) {
+        this.namesBones = namesBones;
     }
 }
