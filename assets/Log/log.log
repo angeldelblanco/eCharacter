@@ -166,3 +166,17 @@
 [Time: 2013-01-22 03:51:20,196] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 52 miliseg
 [Time: 2013-01-22 03:51:21,829] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :1455 miliseg
 [Time: 2013-01-22 03:51:21,871] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 41 miliseg
+[Time: 2013-01-22 10:35:07,546] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :716 miliseg
+[Time: 2013-01-22 10:35:07,591] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 45 miliseg
+[Time: 2013-01-22 10:35:08,180] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :579 miliseg
+[Time: 2013-01-22 10:35:08,193] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 13 miliseg
+[Time: 2013-01-22 10:35:08,831] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :557 miliseg
+[Time: 2013-01-22 10:35:08,841] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 10 miliseg
+[Time: 2013-01-22 10:35:40,535] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :586 miliseg
+[Time: 2013-01-22 10:35:40,550] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 15 miliseg
+[Time: 2013-01-22 10:42:42,733] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :664 miliseg
+[Time: 2013-01-22 10:42:42,776] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 43 miliseg
+[Time: 2013-01-22 10:42:43,325] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :540 miliseg
+[Time: 2013-01-22 10:42:43,336] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 11 miliseg
+[Time: 2013-01-22 10:42:43,838] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de coloringImage() es :441 miliseg
+[Time: 2013-01-22 10:42:43,849] [Thread: LWJGL Renderer Thread] [Level: INFO]El tiempo de pasteImage() es : 10 miliseg

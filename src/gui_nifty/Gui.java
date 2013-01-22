@@ -75,7 +75,7 @@ public class Gui extends SimpleApplication{
         
         AppSettings settings = new AppSettings(true);
         settings.setResolution(1024, 768);
-        //settings.setFullscreen(true);
+        settings.setFullscreen(true);
         Gui app = new Gui();
         app.setShowSettings(false);
         app.setSettings(settings);
