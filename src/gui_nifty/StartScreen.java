@@ -44,6 +44,8 @@ import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import de.lessvoid.nifty.builder.ImageBuilder;
+import de.lessvoid.nifty.elements.Element;
 import types.Age;
 import types.Gender;
 
@@ -54,6 +56,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private Screen screen;
     private Gui gui;
     private String selection;
+    private ImageBuilder i11, i12, i21, i22;
     
     public StartScreen(Gui gui){
         this.gui = gui;
@@ -61,6 +64,23 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
+        i11 = new ImageBuilder(){{
+            id("i11");
+            width("100%");
+            height("100%");
+        }};
+        i12= new ImageBuilder(){{
+            width("100%");
+            height("100%");
+        }};
+        i21= new ImageBuilder(){{
+            width("100%");
+            height("100%");
+        }};
+        i22= new ImageBuilder(){{
+            width("100%");
+            height("100%");
+        }};
     }
 
     public void quitGame() {
@@ -108,11 +128,30 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         gui.loadModel();        
     }
     
+    public void aaa(){
+        nifty.getCurrentScreen().findElementByName("i11").removeFromFocusHandler();
+            i11 = new ImageBuilder(){{
+            id("i11");
+            width("100%");
+            height("100%");
+            }};
+        i11.filename("Interface/MenuRojo.png");
+        i11.build(nifty, nifty.getCurrentScreen(), nifty.getCurrentScreen().findElementByName("t11"));
+    }
+    
     public void changeScreen(String param)
     {
         selection = param;
         if(param.equals("skin")){
             nifty.gotoScreen("skinScreen");
+            nifty.getCurrentScreen().findElementByName("i11").removeFromFocusHandler();
+            i11 = new ImageBuilder(){{
+            id("i11");
+            width("100%");
+            height("100%");
+            }};
+            i11.filename("Interface/MenuAzul.png");
+            i11.build(nifty, nifty.getCurrentScreen(), nifty.getCurrentScreen().findElementByName("t11"));
         }
         if(param.equals("hair")){
             nifty.gotoScreen("hairScreen");
@@ -246,8 +285,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void screenshot() 
     {
-        /*gui.screenshot();
-        nifty.gotoScreen("finishScreen");*/
+        gui.screenshot();
+        nifty.gotoScreen("finishScreen");
         gui.setBodyType(0);
     }
     
