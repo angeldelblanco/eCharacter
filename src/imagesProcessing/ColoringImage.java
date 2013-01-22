@@ -86,7 +86,9 @@ public class ColoringImage
         tiempoInicio = System.currentTimeMillis();
         
         image = ImageIO.read(new File(imagePath)); 
-        shadow = ImageIO.read(new File(shadowPath));
+        if (shadowPath != null) {
+            shadow = ImageIO.read(new File(shadowPath));
+        }
         
         Color shadowColor;
         Color baseColor = new Color(color);
@@ -107,27 +109,29 @@ public class ColoringImage
                 {
                     image.setRGB(i, j, color);
                 }
-                if((shadow.getRGB(i,j)&0xFF000000) != 0){
-            		shadowColor = new Color(shadow.getRGB(i, j));
-            		if(!((shadowColor.getRed()<85)&&(shadowColor.getGreen()<85)&&(shadowColor.getBlue()<85))){
-						red = baseColor.getRed() - shadowColor.getRed()*0.5;
-						green = baseColor.getGreen() - shadowColor.getGreen()*0.5;
-						blue = baseColor.getBlue() - shadowColor.getBlue()*0.5;
-            		}
-            		else{
-            			red=85;green=85;blue=85;
-            		}
-                        //Arreglar con maximos y minimos
-            		if(red < 0) red = 0;
-            		if(red > 255) red = 255;
-            		if(green < 0) green = 0;
-            		if(green > 255) green = 255;
-            		if(blue < 0) blue = 0;
-            		if(blue > 255) blue = 255;
-            		alpha = ((shadow.getRGB(i,j)&0xFF000000));
-                        //Quitar el new Color, trabajar con ints
-            		shadow.setRGB(i, j, new Color((int)red,(int)green,(int)blue).getRGB() + alpha);
-            	}
+                if (shadow != null){
+                    if((shadow.getRGB(i,j)&0xFF000000) != 0){
+                            shadowColor = new Color(shadow.getRGB(i, j));
+                            if(!((shadowColor.getRed()<85)&&(shadowColor.getGreen()<85)&&(shadowColor.getBlue()<85))){
+                                                    red = baseColor.getRed() - shadowColor.getRed()*0.5;
+                                                    green = baseColor.getGreen() - shadowColor.getGreen()*0.5;
+                                                    blue = baseColor.getBlue() - shadowColor.getBlue()*0.5;
+                            }
+                            else{
+                                    red=85;green=85;blue=85;
+                            }
+                            //Arreglar con maximos y minimos
+                            if(red < 0) red = 0;
+                            if(red > 255) red = 255;
+                            if(green < 0) green = 0;
+                            if(green > 255) green = 255;
+                            if(blue < 0) blue = 0;
+                            if(blue > 255) blue = 255;
+                            alpha = ((shadow.getRGB(i,j)&0xFF000000));
+                            //Quitar el new Color, trabajar con ints
+                            shadow.setRGB(i, j, new Color((int)red,(int)green,(int)blue).getRGB() + alpha);
+                    }
+                }
             }
         }
         totalTiempo = System.currentTimeMillis() - tiempoInicio;
@@ -147,20 +151,25 @@ public class ColoringImage
         int w = image.getWidth();
         int h= image.getHeight();
         
-        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-        images.add(image);
-        images.add(shadow);
-        
         BufferedImage finalImage = new BufferedImage(w,h,BufferedImage.TYPE_4BYTE_ABGR);
         Graphics g = finalImage.getGraphics();
-        for (int i = 0; i < images.size(); i++) 
-        {
-            BufferedImage aux = images.get(i);
-            g.drawImage(aux, 0, 0, null);
+        
+        if (shadow == null){
+            g.drawImage(image, 0, 0, null);
+        }
+        else{
+            ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
+            images.add(image);
+            images.add(shadow);
+
+            for (int i = 0; i < images.size(); i++) 
+            {
+                BufferedImage aux = images.get(i);
+                g.drawImage(aux, 0, 0, null);
+            }           
         }
         //Se escribe para probar el resultado. Luego hay que quitarlo
         //ImageIO.write(finalImage, "png", new File(destinationPath));
-
         totalTiempo = System.currentTimeMillis() - tiempoInicio;
         logger.info("El tiempo de pasteImage() es : " + totalTiempo + " miliseg");
         return finalImage;

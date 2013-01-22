@@ -45,6 +45,9 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import types.Gender;
+import types.Shoes;
+import types.TShirt;
+import types.Trouser;
 
 public class XMLReader {
     private Model model;
@@ -177,8 +180,7 @@ public class XMLReader {
                         NodeList nListTShirts = eElement2.getElementsByTagName("tshirt");
 
                         int numTShirts = nListTShirts.getLength();
-                        String [] arrayTShirtColor = new String[numTShirts];
-                        String [] arrayTShirtShadow = new String[numTShirts];
+                        TShirt [] arrayTShirt = new TShirt[numTShirts];
                         String [] arrayTShirtIcon = new String[numTShirts];
 
                         int indexTShirtReaded;
@@ -186,31 +188,34 @@ public class XMLReader {
                             Node nNode3 = nListTShirts.item(indexTShirtReaded);
                             if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
                                 NamedNodeMap attributes = nNode3.getAttributes();
+                                TShirt tShirt = new TShirt();
                                 Node nValue = attributes.getNamedItem("pathColor");
                                 String pathTShirtColorReaded = nValue.getNodeValue();
                                 if (pathOK(pathTShirtColorReaded)){
                                     //Print the data readed
                                     System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtColorReaded);
                                     //Save the path of this tshirt
-                                    arrayTShirtColor[indexTShirtReaded] = pathTShirtColorReaded;
+                                    tShirt.setPathTShirt(pathTShirtColorReaded);
                                 }
                                 else{
                                     System.out.println("El siguiente path de tshirt es incorrecto: "+pathTShirtColorReaded);
                                     return;
                                 }
-                                
                                 nValue = attributes.getNamedItem("pathShadow");
-                                String pathTShirtShadowReaded = nValue.getNodeValue();
-                                if (pathOK(pathTShirtShadowReaded)){
-                                    //Print the data readed
-                                    System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtShadowReaded);
-                                    //Save the path of this tshirt
-                                    arrayTShirtShadow[indexTShirtReaded] = pathTShirtShadowReaded;
+                                if (nValue != null){
+                                    String pathTShirtShadowReaded = nValue.getNodeValue();
+                                    if (pathOK(pathTShirtShadowReaded)){
+                                        //Print the data readed
+                                        System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtShadowReaded);
+                                        //Save the path of this tshirt
+                                        tShirt.setPathShadow(pathTShirtShadowReaded);
+                                    }
+                                    else{
+                                        System.out.println("El siguiente path de tshirt es incorrecto: "+pathTShirtShadowReaded);
+                                        return;
+                                    }
                                 }
-                                else{
-                                    System.out.println("El siguiente path de tshirt es incorrecto: "+pathTShirtShadowReaded);
-                                    return;
-                                }
+                                arrayTShirt[indexTShirtReaded] = tShirt;
                                 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconTShirtReaded = nValue.getNodeValue();
@@ -227,15 +232,13 @@ public class XMLReader {
                             }
                         }
                         model.setNumTShirts(numSkins);
-                        model.setArrayTShirtColor(arrayTShirtColor);
-                        model.setArrayTShirtShadow(arrayTShirtShadow);
+                        model.setArrayTShirt(arrayTShirt);
                         model.setArrayTShirtIcon(arrayTShirtIcon);
 
                         NodeList nListTrousers = eElement2.getElementsByTagName("trouser");
 
                         int numTrousers = nListTrousers.getLength();
-                        String [] arrayTrouserColor = new String[numTrousers];
-                        String [] arrayTrouserShadow = new String[numTrousers];
+                        Trouser [] arrayTrouser = new Trouser[numTrousers];
                         String [] arrayTrouserIcon = new String[numTrousers];
 
                         int indexTrouserReaded;
@@ -243,13 +246,14 @@ public class XMLReader {
                             Node nNode3 = nListTrousers.item(indexTrouserReaded);
                             if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
                                 NamedNodeMap attributes = nNode3.getAttributes();
+                                Trouser trouser = new Trouser();
                                 Node nValue = attributes.getNamedItem("pathColor");
                                 String pathTrouserColorReaded = nValue.getNodeValue();
                                 if (pathOK(pathTrouserColorReaded)){
                                     //Print the data readed
                                     System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserColorReaded);
                                     //Save the path of this trouser
-                                    arrayTrouserColor[indexTrouserReaded] = pathTrouserColorReaded;
+                                    trouser.setPathTrouser(pathTrouserColorReaded);
                                 }
                                 else{
                                     System.out.println("El siguiente path de trouser es incorrecto: "+pathTrouserColorReaded);
@@ -257,17 +261,20 @@ public class XMLReader {
                                 }
                                 
                                 nValue = attributes.getNamedItem("pathShadow");
-                                String pathTrouserShadowReaded = nValue.getNodeValue();
-                                if (pathOK(pathTrouserShadowReaded)){
-                                    //Print the data readed
-                                    System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserShadowReaded);
-                                    //Save the path of this trouser
-                                    arrayTrouserShadow[indexTrouserReaded] = pathTrouserShadowReaded;
+                                if (nValue != null){
+                                    String pathTrouserShadowReaded = nValue.getNodeValue();
+                                    if (pathOK(pathTrouserShadowReaded)){
+                                        //Print the data readed
+                                        System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserShadowReaded);
+                                        //Save the path of this trouser
+                                        trouser.setPathShadow(pathTrouserShadowReaded);
+                                    }
+                                    else{
+                                        System.out.println("El siguiente path de trouser es incorrecto: "+pathTrouserShadowReaded);
+                                        return;
+                                    }
                                 }
-                                else{
-                                    System.out.println("El siguiente path de trouser es incorrecto: "+pathTrouserShadowReaded);
-                                    return;
-                                }
+                                arrayTrouser[indexTrouserReaded] = trouser;
                                 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconTrouserReaded = nValue.getNodeValue();
@@ -284,15 +291,13 @@ public class XMLReader {
                             }
                         }
                         model.setNumTrousers(numTrousers);
-                        model.setArrayTrouserColor(arrayTrouserColor);
-                        model.setArrayTrouserShadow(arrayTrouserShadow);
+                        model.setArrayTrouser(arrayTrouser);
                         model.setArrayTrouserIcon(arrayTrouserIcon);
 
                         NodeList nListShoes = eElement2.getElementsByTagName("shoes");
 
                         int numShoes = nListShoes.getLength();
-                        String [] arrayShoesColor = new String[numShoes];
-                        String [] arrayShoesShadow = new String[numShoes];
+                        Shoes [] arrayShoes = new Shoes[numShoes];
                         String [] arrayShoesIcon = new String[numShoes];
 
                         int indexShoesReaded;
@@ -300,13 +305,14 @@ public class XMLReader {
                             Node nNode3 = nListShoes.item(indexShoesReaded);
                             if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
                                 NamedNodeMap attributes = nNode3.getAttributes();
+                                Shoes shoes = new Shoes();
                                 Node nValue = attributes.getNamedItem("pathColor");
                                 String pathShoesColorReaded = nValue.getNodeValue();
                                 if (pathOK(pathShoesColorReaded)){
                                     //Print the data readed
                                     System.out.println("Shoes "+indexShoesReaded+": " + pathShoesColorReaded);
                                     //Save the path of this shoe
-                                    arrayShoesColor[indexShoesReaded] = pathShoesColorReaded;
+                                    shoes.setPathShoes(pathShoesColorReaded);
                                 }
                                 else{
                                     System.out.println("El siguiente path de shoes es incorrecto: "+pathShoesColorReaded);
@@ -314,17 +320,20 @@ public class XMLReader {
                                 }
 
                                 nValue = attributes.getNamedItem("pathShadow");
-                                String pathShoesShadowReaded = nValue.getNodeValue();
-                                if (pathOK(pathShoesShadowReaded)){
-                                    //Print the data readed
-                                    System.out.println("Shoes "+indexShoesReaded+": " + pathShoesShadowReaded);
-                                    //Save the path of this shoe
-                                    arrayShoesShadow[indexShoesReaded] = pathShoesShadowReaded;
+                                if (nValue != null){
+                                    String pathShoesShadowReaded = nValue.getNodeValue();
+                                    if (pathOK(pathShoesShadowReaded)){
+                                        //Print the data readed
+                                        System.out.println("Shoes "+indexShoesReaded+": " + pathShoesShadowReaded);
+                                        //Save the path of this shoe
+                                        shoes.setPathShadow(pathShoesShadowReaded);
+                                    }
+                                    else{
+                                        System.out.println("El siguiente path de shoes es incorrecto: "+pathShoesShadowReaded);
+                                        return;
+                                    }
                                 }
-                                else{
-                                    System.out.println("El siguiente path de shoes es incorrecto: "+pathShoesShadowReaded);
-                                    return;
-                                }
+                                arrayShoes[indexShoesReaded] = shoes;
 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconShoesReaded = nValue.getNodeValue();
@@ -341,8 +350,7 @@ public class XMLReader {
                             }
                         }
                         model.setNumShoes(numShoes);
-                        model.setArrayShoesColor(arrayShoesColor);
-                        model.setArrayShoesShadow(arrayShoesShadow);
+                        model.setArrayShoes(arrayShoes);
                         model.setArrayShoesIcon(arrayShoesIcon);
                       }
                       NodeList nListAnimations = eElement.getElementsByTagName("model");        
@@ -501,7 +509,7 @@ public class XMLReader {
             }
         }
         else {
-            System.out.println("Ruta del cichero XML incorrecta");
+            System.out.println("Ruta del fichero XML incorrecta");
         }
     }
     

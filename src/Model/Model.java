@@ -60,6 +60,9 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import types.Age;
 import types.Gender;
+import types.Shoes;
+import types.TShirt;
+import types.Trouser;
 import types.TypeObject;
 
 public class Model{
@@ -75,10 +78,12 @@ public class Model{
     private ImagesProcessing img;
     private BufferedImage skin, trousers, tShirt, eyes, shoes;
     
-    private String [] arraySkin, arraySkinIcon, arrayShoesColor, arrayShoesShadow, arrayShoesIcon, arrayTrouserColor, 
-            arrayTrouserShadow, arrayTrouserIcon, arrayTShirtColor, arrayTShirtShadow, arrayTShirtIcon, arrayEyes, 
-            arrayEyesIcon, namesBones;
-
+    private String [] arraySkin, arraySkinIcon, arrayShoesIcon, arrayTrouserIcon, 
+            arrayTShirtIcon, arrayEyes, arrayEyesIcon, namesBones;
+    private TShirt [] arrayTShirt;
+    private Trouser [] arrayTrouser;
+    private Shoes [] arrayShoes;
+    
     private int indexSkin = -1;
     private int indexTShirt = -1;
     private int indexShoes = -1;
@@ -222,7 +227,7 @@ public class Model{
     public void changeShoes()
     {
         indexShoes++;   
-        shoes = readBuffer(arrayShoesColor[indexShoes%numShoes], arrayShoesShadow[indexShoes%numShoes], TypeObject.shoes);
+        shoes = readBuffer(arrayShoes[indexShoes%numShoes].getPathShoes(), arrayShoes[indexShoes%numShoes].getPathShadow(), TypeObject.shoes);
         //Creat the image        
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes); 
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";                
@@ -234,7 +239,7 @@ public class Model{
         indexTrouser=indexTrouser+steep;
         if (indexTrouser < 0){ indexTrouser = numTrousers - 1;}
         indexTrouser = indexTrouser%numTrousers;   
-        trousers = readBuffer(arrayTrouserColor[indexTrouser], arrayTrouserShadow[indexTrouser], TypeObject.trouser);
+        trousers = readBuffer(arrayTrouser[indexTrouser].getPathTrouser(), arrayTrouser[indexTrouser].getPathShadow(), TypeObject.trouser);
         //Creat the image        
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);     
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
@@ -246,7 +251,7 @@ public class Model{
         indexTShirt=indexTShirt+steep;
         if (indexTShirt < 0){ indexTShirt = numTShirts - 1;}
         indexTShirt = indexTShirt%numTShirts;
-        tShirt = readBuffer(arrayTShirtColor[indexTShirt], arrayTShirtShadow[indexTShirt], TypeObject.t_shirt);
+        tShirt = readBuffer(arrayTShirt[indexTShirt].getPathTShirt(), arrayTShirt[indexTShirt].getPathShadow(), TypeObject.t_shirt);
         //Creat the image        
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);     
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
@@ -270,15 +275,15 @@ public class Model{
         ColoringImage coloringImage;
         switch(typeObject) {
             case t_shirt:
-                coloringImage = new  ColoringImage(arrayTShirtColor[indexTShirt%numTShirts], arrayTShirtShadow[indexTShirt%numTShirts], color, TypeObject.t_shirt); 
+                coloringImage = new  ColoringImage(arrayTShirt[indexTShirt%numTShirts].getPathTShirt(), arrayTShirt[indexTShirt%numTShirts].getPathShadow(), color, TypeObject.t_shirt); 
                 tShirt = coloringImage.coloringImage();      
                 break;
             case trouser:
-                coloringImage = new  ColoringImage(arrayTrouserColor[indexTrouser%numTrousers], arrayTrouserShadow[indexTrouser%numTrousers], color, TypeObject.trouser);
+                coloringImage = new  ColoringImage(arrayTrouser[indexTrouser%numTrousers].getPathTrouser(), arrayTrouser[indexTrouser%numTrousers].getPathShadow(), color, TypeObject.trouser);
                 trousers = coloringImage.coloringImage(); 
                 break;      
             case shoes:
-                coloringImage = new  ColoringImage(arrayShoesColor[indexShoes%numShoes], arrayShoesShadow[indexShoes%numShoes], color, TypeObject.shoes);
+                coloringImage = new  ColoringImage(arrayShoes[indexShoes%numShoes].getPathShoes(), arrayShoes[indexShoes%numShoes].getPathShadow(), color, TypeObject.shoes);
                 shoes = coloringImage.coloringImage();
                 break; 
         }    
@@ -292,14 +297,14 @@ public class Model{
         indexSkin++;
         String skinsPath = arraySkin[indexSkin];
         indexShoes++;
-        String shoesColorPath = arrayShoesColor[indexShoes];
-        String shoesShadowPath = arrayShoesShadow[indexShoes];
+        String shoesColorPath = arrayShoes[indexShoes].getPathShoes();
+        String shoesShadowPath = arrayShoes[indexShoes].getPathShadow();
         indexTrouser++;
-        String trousersColorPath = arrayTrouserColor[indexTrouser];
-        String trousersShadowPath = arrayTrouserShadow[indexTrouser];
+        String trousersColorPath = arrayTrouser[indexTrouser].getPathTrouser();
+        String trousersShadowPath = arrayTrouser[indexTrouser].getPathShadow();
         indexTShirt++;
-        String tShirtsColorPath = arrayTShirtColor[indexTShirt];
-        String tShirtsShadowPath = arrayTShirtShadow[indexTShirt];
+        String tShirtsColorPath = arrayTShirt[indexTShirt].getPathTShirt();
+        String tShirtsShadowPath = arrayTShirt[indexTShirt].getPathShadow();
         indexEyes++;
         String eyesPath = arrayEyes[indexEyes]; 
         
@@ -419,34 +424,19 @@ public class Model{
         this.arraySkin = arraySkin;
     }
 
-    public void setArrayShoesColor(String[] arrayShoesColor) 
+    public void setArrayShoes(Shoes[] arrayShoes) 
     {
-        this.arrayShoesColor = arrayShoesColor;
+        this.arrayShoes = arrayShoes;
     }
 
-    public void setArrayShoesShadow(String[] arrayShoesShadow) 
+    public void setArrayTrouser(Trouser[] arrayTrouser) 
     {
-        this.arrayShoesShadow = arrayShoesShadow;
+        this.arrayTrouser = arrayTrouser;
     }
 
-    public void setArrayTrouserColor(String[] arrayTrouserColor) 
+    public void setArrayTShirt(TShirt[] arrayTShirt) 
     {
-        this.arrayTrouserColor = arrayTrouserColor;
-    }
-
-    public void setArrayTrouserShadow(String[] arrayTrouserShadow) 
-    {
-        this.arrayTrouserShadow = arrayTrouserShadow;
-    }
-
-    public void setArrayTShirtColor(String[] arrayTShirtColor) 
-    {
-        this.arrayTShirtColor = arrayTShirtColor;
-    }
-
-    public void setArrayTShirtShadow(String[] arrayTShirtShadow) 
-    {
-        this.arrayTShirtShadow = arrayTShirtShadow;
+        this.arrayTShirt = arrayTShirt;
     }
 
     public void setArrayEyes(String[] arrayEyes) 
