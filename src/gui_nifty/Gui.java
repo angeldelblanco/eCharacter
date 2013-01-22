@@ -114,6 +114,70 @@ public class Gui extends SimpleApplication{
     public void onAnimChange(AnimControl control, AnimChannel channel, String animName) 
     {
     }
+    public int lengthSkins(){
+        return model.getArraySkinIcon().length;
+    }
+    
+    public String pathSkin(int i){
+        if((i>0)&&(i<= model.getArraySkinIcon().length)){
+            return model.getArraySkinIcon()[i];
+        }
+        else{
+            return "";
+        }
+    }
+    
+    public int lengthEyes(){
+        return model.getArrayEyesIcon().length;
+    }
+    
+    public String pathEyes(int i){
+        if((i>0)&&(i<= model.getArrayEyesIcon().length)){
+            return model.getArrayEyesIcon()[i];
+        }
+        else{
+            return "";
+        }
+    }
+    
+    public int lengthTShirt(){
+        return model.getArrayTShirtIcon().length;
+    }
+    
+    public String pathTshirt(int i){
+        if((i>0)&&(i<= model.getArrayTShirtIcon().length)){
+            return model.getArrayTShirtIcon()[i];
+        }
+        else{
+            return "";
+        }
+    }
+    
+    public int lengthTrouser(){
+        return model.getArrayTrouserIcon().length;
+    }
+    
+    public String pathTrouser(int i){
+        if((i>0)&&(i<= model.getArrayTrouserIcon().length)){
+            return model.getArrayTrouserIcon()[i];
+        }
+        else{
+            return "";
+        }
+    }
+    
+    public int lengthShoes(){
+        return model.getArrayShoesIcon().length;
+    }
+    
+    public String pathShoes(int i){
+        if((i>0)&&(i<= model.getArrayShoesIcon().length)){
+            return model.getArrayShoesIcon()[i];
+        }
+        else{
+            return "";
+        }
+    }
     
     public void changeSkin(int steep)
     {   

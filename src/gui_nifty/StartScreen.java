@@ -56,7 +56,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private Screen screen;
     private Gui gui;
     private String selection;
-    private ImageBuilder i11, i12, i21, i22;
+    private ImageBuilder [] skins, eyes, tshirts, trousers, shoes;
     
     public StartScreen(Gui gui){
         this.gui = gui;
@@ -64,23 +64,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        i11 = new ImageBuilder(){{
-            id("i11");
-            width("100%");
-            height("100%");
-        }};
-        i12= new ImageBuilder(){{
-            width("100%");
-            height("100%");
-        }};
-        i21= new ImageBuilder(){{
-            width("100%");
-            height("100%");
-        }};
-        i22= new ImageBuilder(){{
-            width("100%");
-            height("100%");
-        }};
     }
 
     public void quitGame() {
@@ -118,25 +101,85 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         nifty.gotoScreen(nextScreen);  // switch to another screen
         gui.setAgeModel(Age.Adult);
-        gui.loadModel();    
+        gui.loadModel();
+        initIcons();
     }
     
     public void youngSelected(String nextScreen) 
     {
         nifty.gotoScreen(nextScreen);  // switch to another screen 
         gui.setAgeModel(Age.Young);
-        gui.loadModel();        
+        gui.loadModel();
+        initIcons();
+    }
+    
+    public void initIcons(){
+        skins = new ImageBuilder[gui.lengthSkins()];
+        for(int i=0; i<gui.lengthSkins(); i++){
+            skins[i] = new ImageBuilder(){{}};
+            skins[i].id("s"+Integer.toString(i));
+            skins[i].filename(gui.pathSkin(i));
+            skins[i].width("0%");
+            skins[i].height("0%");
+            skins[i].interactOnClick("gui.changeSkin("+Integer.toString(i)+")");
+            skins[i].build(nifty, nifty.getScreen("skinScreen"), nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%4)));
+        }
+        eyes = new ImageBuilder[gui.lengthEyes()];
+        for(int i=0; i<gui.lengthEyes(); i++){
+            eyes[i].id(Integer.toString(i));
+            eyes[i] = new ImageBuilder(){{
+                interactOnClick("gui.changeEyes("+get("id")+")");
+                width("0%");
+                height("0%");
+            }};
+            eyes[i].build(nifty, nifty.getScreen("eyesScreen"), nifty.getScreen("eyesScreen").findElementByName("t"+Integer.toString(i%4)));
+        }
+        tshirts = new ImageBuilder[gui.lengthTShirt()];
+        for(int i=0; i<gui.lengthTShirt(); i++){
+            tshirts[i].id(Integer.toString(i));
+            tshirts[i] = new ImageBuilder(){{
+                interactOnClick("gui.changeTShirt("+get("id")+")");
+                width("0%");
+                height("0%");
+            }};
+            tshirts[i].build(nifty, nifty.getScreen("tshirtScreen"), nifty.getScreen("tshirtScreen").findElementByName("t"+Integer.toString(i%4)));
+        }
+        trousers = new ImageBuilder[gui.lengthTrouser()];
+        for(int i=0; i<gui.lengthTrouser(); i++){
+            trousers[i].id(Integer.toString(i));
+            trousers[i] = new ImageBuilder(){{
+                interactOnClick("gui.changeTrousers("+get("id")+")");
+                width("0%");
+                height("0%");
+            }};
+            trousers[i].build(nifty, nifty.getScreen("trousersScreen"), nifty.getScreen("trousersScreen").findElementByName("t"+Integer.toString(i%4)));
+        }
+        shoes = new ImageBuilder[gui.lengthShoes()];
+        for(int i=0; i<gui.lengthShoes(); i++){
+            shoes[i].id(Integer.toString(i));
+            shoes[i] = new ImageBuilder(){{
+                interactOnClick("gui.changeShoes("+get("id")+")");
+                width("0%");
+                height("0%");
+            }};
+            shoes[i].build(nifty, nifty.getScreen("shoesScreen"), nifty.getScreen("shoesScreen").findElementByName("t"+Integer.toString(i%4)));
+        }
     }
     
     public void aaa(){
-        nifty.getCurrentScreen().findElementByName("i11").removeFromFocusHandler();
-            i11 = new ImageBuilder(){{
-            id("i11");
-            width("100%");
-            height("100%");
-            }};
-        i11.filename("Interface/MenuRojo.png");
-        i11.build(nifty, nifty.getCurrentScreen(), nifty.getCurrentScreen().findElementByName("t11"));
+        /*nifty.getScreen("skinScreen").findElementByName("s1").setVisible(true);
+        nifty.getScreen("skinScreen").findElementByName("s1").setHeight(nifty.getScreen("skinScreen").findElementByName("t1").getHeight());
+        nifty.getScreen("skinScreen").findElementByName("s1").setWidth(nifty.getScreen("skinScreen").findElementByName("t1").getWidth());
+        nifty.getScreen("skinScreen").findElementByName("i11").disable();
+        nifty.getScreen("skinScreen").findElementByName("i11").setVisible(false);
+        nifty.getScreen("skinScreen").findElementByName("i12").setHeight(nifty.getScreen("skinScreen").findElementByName("t11").getHeight());
+        nifty.getScreen("skinScreen").findElementByName("i12").setWidth(nifty.getScreen("skinScreen").findElementByName("t11").getWidth());
+        System.out.println(nifty.getScreen("skinScreen").findElementByName("t11").getElements().toString());
+        nifty.getScreen("skinScreen").findElementByName("i12").enable();
+        nifty.getScreen("skinScreen").findElementByName("i12").setVisible(true);*/
+        System.out.println(nifty.getScreen("skinScreen").findElementByName("t1").getElements().toString());
+        System.out.println(skins.length);
+        System.out.println(skins[0].toString());
     }
     
     public void changeScreen(String param)
@@ -144,14 +187,17 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         selection = param;
         if(param.equals("skin")){
             nifty.gotoScreen("skinScreen");
-            nifty.getCurrentScreen().findElementByName("i11").removeFromFocusHandler();
-            i11 = new ImageBuilder(){{
-            id("i11");
-            width("100%");
-            height("100%");
-            }};
-            i11.filename("Interface/MenuAzul.png");
-            i11.build(nifty, nifty.getCurrentScreen(), nifty.getCurrentScreen().findElementByName("t11"));
+            /*for(int i=0; i<gui.lengthSkins(); i++){
+                if(i<4){
+                    nifty.getScreen("skinScreen").findElementByName(Integer.toString(i)).setVisible(true);
+                    nifty.getScreen("skinScreen").findElementByName(Integer.toString(i)).setHeight(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%4)).getHeight());
+                    nifty.getScreen("skinScreen").findElementByName(Integer.toString(i)).setWidth(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%4)).getWidth());
+                }
+            }*/
+            //System.out.println(nifty.getScreen("skinScreen").findElementByName("t1").getElements().toString());
+            //System.out.println(nifty.getScreen("skinScreen").findElementByName("t2").getElements().toString());
+            //System.out.println(nifty.getScreen("skinScreen").findElementByName("t3").getElements().toString());
+            //System.out.println(nifty.getScreen("skinScreen").findElementByName("t4").getElements().toString());
         }
         if(param.equals("hair")){
             nifty.gotoScreen("hairScreen");

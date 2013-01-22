@@ -498,6 +498,25 @@ public class Model{
     public void setArrayShoesIcon(String[] arrayShoesIcon) {
         this.arrayShoesIcon = arrayShoesIcon;
     }
+    public String[] getArraySkinIcon() {
+        return arraySkinIcon;
+    }
+
+    public String[] getArrayEyesIcon() {
+        return arrayEyesIcon;
+    }
+
+    public String[] getArrayTShirtIcon() {
+        return arrayTShirtIcon;
+    }
+
+    public String[] getArrayTrouserIcon() {
+        return arrayTrouserIcon;
+    }
+
+    public String[] getArrayShoesIcon() {
+        return arrayShoesIcon;
+    }
     
     public String[] getNamesBones() {
         return namesBones;

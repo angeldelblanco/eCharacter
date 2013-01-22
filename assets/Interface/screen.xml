@@ -249,28 +249,28 @@
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t11" height="100%" width="47.5%" childLayout="vertical">
+					<panel id="t12" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t1" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t12" height="100%" width="47.5%"backgroundImage="Interface/MenuRojo.png">
+						<panel id="t2" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t2" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t21" height="100%" width="47.5%"backgroundImage="Interface/MenuRojo.png">
+					<panel id="t34" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t3" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t22" height="100%" width="47.5%"backgroundImage="Interface/MenuRojo.png">
+						<panel id="t4" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
@@ -345,28 +345,28 @@
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t11" height="100%" width="47.5%">
+					<panel id="t12" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t1" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t12" height="100%" width="47.5%">
+						<panel id="t2" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t2" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t21" height="100%" width="47.5%">
+					<panel id="t34" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t3" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t22" height="100%" width="47.5%">
+						<panel id="t4" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
@@ -452,28 +452,28 @@
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t11" height="100%" width="47.5%">
+					<panel id="t12" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t1" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t12" height="100%" width="47.5%">
+						<panel id="t2" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t2" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t21" height="100%" width="47.5%">
+					<panel id="t34" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t3" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t22" height="100%" width="47.5%">
+						<panel id="t4" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
@@ -559,28 +559,28 @@
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t11" height="100%" width="47.5%">
+					<panel id="t12" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t1" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t12" height="100%" width="47.5%">
+						<panel id="t2" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t2" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t21" height="100%" width="47.5%">
+					<panel id="t34" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t3" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t22" height="100%" width="47.5%">
+						<panel id="t4" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
@@ -666,28 +666,31 @@
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t11" height="100%" width="47.5%">
+					<panel height="10%" width="100%">
+					<!-- Space -->
+					</panel>
+					<panel id="t12" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t1" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t12" height="100%" width="47.5%">
+						<panel id="t2" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t2" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t21" height="100%" width="47.5%">
+					<panel id="t34" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t3" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t22" height="100%" width="47.5%">
+						<panel id="t4" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
@@ -773,28 +776,28 @@
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t11" height="100%" width="47.5%">
+					<panel id="t12" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t1" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t12" height="100%" width="47.5%">
+						<panel id="t2" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t2" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t21" height="100%" width="47.5%">
+					<panel id="t34" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t3" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t22" height="100%" width="47.5%">
+						<panel id="t4" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
@@ -880,28 +883,28 @@
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t11" height="100%" width="47.5%">
+					<panel id="t12" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t1" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t12" height="100%" width="47.5%">
+						<panel id="t2" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t2" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t21" height="100%" width="47.5%">
+					<panel id="t34" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t3" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t22" height="100%" width="47.5%">
+						<panel id="t4" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
