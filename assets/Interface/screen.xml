@@ -288,7 +288,14 @@
 				</panel>
 			</panel>
 			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="center" align="right">
+			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
+				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="changeScreen(basic)"/>
+				</panel>
+				<panel height="66%" width="34%">
+					<!-- Space -->
+				</panel>
 				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
 					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(hair)"/>
@@ -308,7 +315,7 @@
 					<!-- Space -->
 				</panel>
 				<!-- Change Skin Options Panel -->
-				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Hair Options Panel -->
@@ -415,11 +422,12 @@
 					<!-- Space -->
 				</panel>
 				<!-- Change Skin Options Panel -->
-				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="changeScreen(skin)"/>
 				</panel>
 				<!-- Change Hair Options Panel -->
-				<panel id="panel_option_bones" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_bones" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Hair" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Eyes Options Panel -->
@@ -522,15 +530,15 @@
 					<!-- Space -->
 				</panel>
 				<!-- Change Skin Options Panel -->
-				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Hair Options Panel -->
-				<panel id="panel_option_bones" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_bones" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Hair" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Eyes Options Panel -->
-				<panel id="panel_option_eyes" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_eyes" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Eyes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change T-Shirt Options Panel -->
@@ -629,19 +637,19 @@
 					<!-- Space -->
 				</panel>
 				<!-- Change Skin Options Panel -->
-				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Hair Options Panel -->
-				<panel id="panel_option_bones" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_bones" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Hair" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Eyes Options Panel -->
-				<panel id="panel_option_eyes" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_eyes" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Eyes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change T-Shirt Options Panel -->
-				<panel id="panel_option_tshirt" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_tshirt" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="T-Shirt" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Trousers Options Panel -->
@@ -739,23 +747,23 @@
 					<!-- Space -->
 				</panel>
 				<!-- Change Skin Options Panel -->
-				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Hair Options Panel -->
-				<panel id="panel_option_bones" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_bones" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Hair" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Eyes Options Panel -->
-				<panel id="panel_option_eyes" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_eyes" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Eyes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change T-Shirt Options Panel -->
-				<panel id="panel_option_tshirt" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_tshirt" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="T-Shirt" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Trousers Options Panel -->
-				<panel id="panel_option_trousers" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(no)}">
+				<panel id="panel_option_trousers" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Trousers" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 				</panel>
 				<!-- Change Shoes Options Panel -->
