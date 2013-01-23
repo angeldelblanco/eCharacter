@@ -214,10 +214,11 @@ public class Model{
     
     public void changeSkin(int steep)
     {
-        indexSkin=indexSkin+steep;
-        if (indexSkin < 0){ indexSkin = numSkins - 1;}
-        indexSkin = indexSkin%numSkins;
-        skin = readBuffer(arraySkin[indexSkin]);
+        //indexSkin=indexSkin+steep;
+        //if (indexSkin < 0){ indexSkin = numSkins - 1;}
+        //indexSkin = indexSkin%numSkins;
+        //skin = readBuffer(arraySkin[indexSkin]);
+        skin = readBuffer(arraySkin[steep]);
         //Creat the image             
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);                
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";                

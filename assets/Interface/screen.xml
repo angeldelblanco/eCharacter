@@ -249,28 +249,28 @@
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t12" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t1" height="100%" width="47.5%" childLayout="vertical">
+					<panel id="t01" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t0" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t2" height="100%" width="47.5%" childLayout="vertical">
+						<panel id="t1" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
 					<panel height="10%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t34" height="40%" width="100%" childLayout="horizontal">
-						<panel id="t3" height="100%" width="47.5%" childLayout="vertical">
+					<panel id="t23" height="40%" width="100%" childLayout="horizontal">
+						<panel id="t2" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
 						</panel>
-						<panel id="t4" height="100%" width="47.5%" childLayout="vertical">
+						<panel id="t3" height="100%" width="47.5%" childLayout="vertical">
 						
 						</panel>
 					</panel>
@@ -283,7 +283,7 @@
 					<!-- Space -->
 					</panel>
 					<image filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
-						<interact onClick="aaa()"/>
+						<interact onClick="changeTexture(+)"/>
 					</image>
 				</panel>
 			</panel>

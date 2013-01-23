@@ -114,17 +114,24 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void initIcons(){
+        String[] s = new String[4];
+        s[0] = "Interface/Icons/IconoPielBlancaBoy.png";
+        s[1] = "Interface/Icons/IconoPielNegraBoy.png";
+        s[2] = "Interface/Icons/IconoPielAmarillaBoy.png";
+        s[3] = "Interface/Icons/IconoPielRojaBoy.png";
         skins = new ImageBuilder[gui.lengthSkins()];
         for(int i=0; i<gui.lengthSkins(); i++){
-            skins[i] = new ImageBuilder(){{}};
+            skins[i] = new ImageBuilder(){{
+                width("0%");
+                height("0%");
+            }};
             skins[i].id("s"+Integer.toString(i));
-            skins[i].filename(gui.pathSkin(i));
-            skins[i].width("0%");
-            skins[i].height("0%");
-            skins[i].interactOnClick("gui.changeSkin("+Integer.toString(i)+")");
+            //skins[i].filename(gui.pathSkin(i));
+            skins[i].filename(s[i]);
+            skins[i].interactOnClick("changeSkin("+Integer.toString(i)+")");
             skins[i].build(nifty, nifty.getScreen("skinScreen"), nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%4)));
         }
-        eyes = new ImageBuilder[gui.lengthEyes()];
+        /*eyes = new ImageBuilder[gui.lengthEyes()];
         for(int i=0; i<gui.lengthEyes(); i++){
             eyes[i].id(Integer.toString(i));
             eyes[i] = new ImageBuilder(){{
@@ -163,23 +170,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 height("0%");
             }};
             shoes[i].build(nifty, nifty.getScreen("shoesScreen"), nifty.getScreen("shoesScreen").findElementByName("t"+Integer.toString(i%4)));
-        }
-    }
-    
-    public void aaa(){
-        /*nifty.getScreen("skinScreen").findElementByName("s1").setVisible(true);
-        nifty.getScreen("skinScreen").findElementByName("s1").setHeight(nifty.getScreen("skinScreen").findElementByName("t1").getHeight());
-        nifty.getScreen("skinScreen").findElementByName("s1").setWidth(nifty.getScreen("skinScreen").findElementByName("t1").getWidth());
-        nifty.getScreen("skinScreen").findElementByName("i11").disable();
-        nifty.getScreen("skinScreen").findElementByName("i11").setVisible(false);
-        nifty.getScreen("skinScreen").findElementByName("i12").setHeight(nifty.getScreen("skinScreen").findElementByName("t11").getHeight());
-        nifty.getScreen("skinScreen").findElementByName("i12").setWidth(nifty.getScreen("skinScreen").findElementByName("t11").getWidth());
-        System.out.println(nifty.getScreen("skinScreen").findElementByName("t11").getElements().toString());
-        nifty.getScreen("skinScreen").findElementByName("i12").enable();
-        nifty.getScreen("skinScreen").findElementByName("i12").setVisible(true);*/
-        System.out.println(nifty.getScreen("skinScreen").findElementByName("t1").getElements().toString());
-        System.out.println(skins.length);
-        System.out.println(skins[0].toString());
+        }*/
     }
     
     public void changeScreen(String param)
@@ -187,17 +178,13 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         selection = param;
         if(param.equals("skin")){
             nifty.gotoScreen("skinScreen");
-            /*for(int i=0; i<gui.lengthSkins(); i++){
+            for(int i=0; i<gui.lengthSkins(); i++){
                 if(i<4){
-                    nifty.getScreen("skinScreen").findElementByName(Integer.toString(i)).setVisible(true);
-                    nifty.getScreen("skinScreen").findElementByName(Integer.toString(i)).setHeight(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%4)).getHeight());
-                    nifty.getScreen("skinScreen").findElementByName(Integer.toString(i)).setWidth(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%4)).getWidth());
+                    nifty.getScreen("skinScreen").findElementByName("s"+Integer.toString(i)).setVisible(true);
+                    nifty.getScreen("skinScreen").findElementByName("s"+Integer.toString(i)).setHeight(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%4)).getHeight());
+                    nifty.getScreen("skinScreen").findElementByName("s"+Integer.toString(i)).setWidth(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%4)).getWidth());
                 }
-            }*/
-            //System.out.println(nifty.getScreen("skinScreen").findElementByName("t1").getElements().toString());
-            //System.out.println(nifty.getScreen("skinScreen").findElementByName("t2").getElements().toString());
-            //System.out.println(nifty.getScreen("skinScreen").findElementByName("t3").getElements().toString());
-            //System.out.println(nifty.getScreen("skinScreen").findElementByName("t4").getElements().toString());
+            }
         }
         if(param.equals("hair")){
             nifty.gotoScreen("hairScreen");
@@ -260,6 +247,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             return "Interface/previous.png";
         }
         return null;
+    }
+    
+    public void changeSkin(String steep)
+    {
+        gui.changeSkin(Integer.parseInt(steep));
     }
     
     public void changeTexture(String steep)

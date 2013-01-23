@@ -119,7 +119,7 @@ public class Gui extends SimpleApplication{
     }
     
     public String pathSkin(int i){
-        if((i>0)&&(i<= model.getArraySkinIcon().length)){
+        if((i>=0)&&(i<= model.getArraySkinIcon().length)){
             return model.getArraySkinIcon()[i];
         }
         else{
@@ -132,7 +132,7 @@ public class Gui extends SimpleApplication{
     }
     
     public String pathEyes(int i){
-        if((i>0)&&(i<= model.getArrayEyesIcon().length)){
+        if((i>=0)&&(i<= model.getArrayEyesIcon().length)){
             return model.getArrayEyesIcon()[i];
         }
         else{
@@ -145,7 +145,7 @@ public class Gui extends SimpleApplication{
     }
     
     public String pathTshirt(int i){
-        if((i>0)&&(i<= model.getArrayTShirtIcon().length)){
+        if((i>=0)&&(i<= model.getArrayTShirtIcon().length)){
             return model.getArrayTShirtIcon()[i];
         }
         else{
@@ -158,7 +158,7 @@ public class Gui extends SimpleApplication{
     }
     
     public String pathTrouser(int i){
-        if((i>0)&&(i<= model.getArrayTrouserIcon().length)){
+        if((i>=0)&&(i<= model.getArrayTrouserIcon().length)){
             return model.getArrayTrouserIcon()[i];
         }
         else{
@@ -171,7 +171,7 @@ public class Gui extends SimpleApplication{
     }
     
     public String pathShoes(int i){
-        if((i>0)&&(i<= model.getArrayShoesIcon().length)){
+        if((i>=0)&&(i<= model.getArrayShoesIcon().length)){
             return model.getArrayShoesIcon()[i];
         }
         else{
