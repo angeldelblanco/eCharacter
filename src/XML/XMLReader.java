@@ -217,6 +217,28 @@ public class XMLReader {
                                         return;
                                     }
                                 }
+                                nValue = attributes.getNamedItem("pathDetail");
+                                if (nValue != null){
+                                    String pathTShirtDetailReaded = nValue.getNodeValue();
+                                    if (pathOK(pathTShirtDetailReaded)){
+                                        //Print the data readed
+                                        System.out.println("TShirt "+indexTShirtReaded+": " + pathTShirtDetailReaded);
+                                        //Save the path of this tshirt
+                                        tShirt.setPathDetail(pathTShirtDetailReaded);
+                                    }
+                                    else{
+                                        System.out.println("El siguiente path de tshirt es incorrecto: "+pathTShirtDetailReaded);
+                                        return;
+                                    }
+                                }
+                                nValue = attributes.getNamedItem("transparencyShadow");
+                                if (nValue != null){
+                                    int transparencyShadowReaded = Integer.parseInt(nValue.getNodeValue());
+                                    //Print the data readed
+                                    System.out.println("TShirt "+indexTShirtReaded+": " + transparencyShadowReaded);
+                                    //Save the transparencyShadow of this tshirt
+                                    tShirt.setTransparencyShadow(transparencyShadowReaded);
+                                }
                                 arrayTShirt[indexTShirtReaded] = tShirt;
                                 
                                 nValue = attributes.getNamedItem("pathIcon");
@@ -277,6 +299,28 @@ public class XMLReader {
                                         return;
                                     }
                                 }
+                                nValue = attributes.getNamedItem("pathDetail");
+                                if (nValue != null){
+                                    String pathTrouserDetailReaded = nValue.getNodeValue();
+                                    if (pathOK(pathTrouserDetailReaded)){
+                                        //Print the data readed
+                                        System.out.println("Trouser "+indexTrouserReaded+": " + pathTrouserDetailReaded);
+                                        //Save the path of this trouser
+                                        trouser.setPathDetail(pathTrouserDetailReaded);
+                                    }
+                                    else{
+                                        System.out.println("El siguiente path de trouser es incorrecto: "+pathTrouserDetailReaded);
+                                        return;
+                                    }
+                                }
+                                nValue = attributes.getNamedItem("transparencyShadow");
+                                if (nValue != null){
+                                    int transparencyShadowReaded = Integer.parseInt(nValue.getNodeValue());
+                                    //Print the data readed
+                                    System.out.println("Trouser "+indexTrouserReaded+": " + transparencyShadowReaded);
+                                    //Save the transparencyShadow of this trouser
+                                    trouser.setTransparencyShadow(transparencyShadowReaded);
+                                }
                                 arrayTrouser[indexTrouserReaded] = trouser;
                                 
                                 nValue = attributes.getNamedItem("pathIcon");
@@ -336,6 +380,14 @@ public class XMLReader {
                                         System.out.println("El siguiente path de shoes es incorrecto: "+pathShoesShadowReaded);
                                         return;
                                     }
+                                }
+                                nValue = attributes.getNamedItem("transparencyShadow");
+                                if (nValue != null){
+                                    int transparencyShadowReaded = Integer.parseInt(nValue.getNodeValue());
+                                    //Print the data readed
+                                    System.out.println("Shoes "+indexShoesReaded+": " + transparencyShadowReaded);
+                                    //Save the transparencyShadow of this shoe
+                                    shoes.setTransparencyShadow(transparencyShadowReaded);
                                 }
                                 arrayShoes[indexShoesReaded] = shoes;
 
