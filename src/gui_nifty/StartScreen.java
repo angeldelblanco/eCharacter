@@ -114,11 +114,13 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void initIcons(){
-        String[] s = new String[4];
+        /*String[] s = new String[4];
         s[0] = "Interface/Icons/IconoPielBlancaBoy.png";
         s[1] = "Interface/Icons/IconoPielNegraBoy.png";
         s[2] = "Interface/Icons/IconoPielAmarillaBoy.png";
-        s[3] = "Interface/Icons/IconoPielRojaBoy.png";
+        s[3] = "Interface/Icons/IconoPielRojaBoy.png";*/
+        
+        String[] s = gui.getArraySkinIcon();
         skins = new ImageBuilder[gui.lengthSkins()];
         for(int i=0; i<gui.lengthSkins(); i++){
             skins[i] = new ImageBuilder(){{

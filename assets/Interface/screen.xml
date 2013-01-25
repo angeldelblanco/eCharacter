@@ -422,7 +422,7 @@
 					<!-- Space -->
 				</panel>
 				<!-- Change Skin Options Panel -->
-				<panel id="panel_option_skin" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
+				<panel id="skins" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
 					<text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(skin)"/>
 				</panel>

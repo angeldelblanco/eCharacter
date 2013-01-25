@@ -127,6 +127,10 @@ public class Gui extends SimpleApplication{
         }
     }
     
+    public String[] getArraySkinIcon() {
+        return model.getArraySkinIcon();
+    }
+    
     public int lengthEyes(){
         return model.getArrayEyesIcon().length;
     }

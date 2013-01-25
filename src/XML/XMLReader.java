@@ -119,7 +119,8 @@ public class XMLReader {
                                 }
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconSkinReaded = nValue.getNodeValue();
-                                if (pathOK(pathIconSkinReaded)){
+                                String pathIconSkinReaded_aux = "assets/"+pathIconSkinReaded;
+                                if (pathOK(pathIconSkinReaded_aux)){
                                     //Print the data readed
                                     System.out.println("Skin "+indexSkinReaded+": " + pathIconSkinReaded);
                                     //Save the path of this skin's icon
@@ -161,7 +162,8 @@ public class XMLReader {
 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconEyesReaded = nValue.getNodeValue();
-                                if (pathOK(pathIconEyesReaded)){
+                                String pathIconEyesReaded_aux = "assets/"+pathIconEyesReaded;
+                                if (pathOK(pathIconEyesReaded_aux)){
                                     //Print the data readed
                                     System.out.println("Eyes "+indexEyesReaded+": " + pathIconEyesReaded);           
                                     //Save the path of these eyes
@@ -219,7 +221,8 @@ public class XMLReader {
                                 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconTShirtReaded = nValue.getNodeValue();
-                                if (pathOK(pathIconTShirtReaded)){
+                                String pathIconTShirtReaded_aux = "assets/"+pathIconTShirtReaded;
+                                if (pathOK(pathIconTShirtReaded_aux)){
                                     //Print the data readed
                                     System.out.println("TShirt "+indexTShirtReaded+": " + pathIconTShirtReaded);
                                     //Save the path of this tshirt
@@ -278,7 +281,8 @@ public class XMLReader {
                                 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconTrouserReaded = nValue.getNodeValue();
-                                if (pathOK(pathIconTrouserReaded)){
+                                String pathIconTrouserReaded_aux = "assets/"+pathIconTrouserReaded;
+                                if (pathOK(pathIconTrouserReaded_aux)){
                                     //Print the data readed
                                     System.out.println("Trouser "+indexTrouserReaded+": " + pathIconTrouserReaded);
                                     //Save the path of this trouser
@@ -337,7 +341,8 @@ public class XMLReader {
 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconShoesReaded = nValue.getNodeValue();
-                                if (pathOK(pathIconShoesReaded)){
+                                String pathIconShoesReaded_aux = "assets/"+pathIconShoesReaded;
+                                if (pathOK(pathIconShoesReaded_aux)){
                                     //Print the data readed
                                     System.out.println("Shoes "+indexShoesReaded+": " + pathIconShoesReaded);
                                     //Save the path of this shoe
