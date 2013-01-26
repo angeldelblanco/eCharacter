@@ -114,13 +114,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void initIcons(){
-        /*String[] s = new String[4];
-        s[0] = "Interface/Icons/IconoPielBlancaBoy.png";
-        s[1] = "Interface/Icons/IconoPielNegraBoy.png";
-        s[2] = "Interface/Icons/IconoPielAmarillaBoy.png";
-        s[3] = "Interface/Icons/IconoPielRojaBoy.png";*/
-        
-        String[] s = gui.getArraySkinIcon();
         skins = new ImageBuilder[gui.lengthSkins()];
         for(int i=0; i<gui.lengthSkins(); i++){
             skins[i] = new ImageBuilder(){{
@@ -128,51 +121,55 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 height("0%");
             }};
             skins[i].id("s"+Integer.toString(i));
-            //skins[i].filename(gui.pathSkin(i));
-            skins[i].filename(s[i]);
-            skins[i].interactOnClick("changeSkin("+Integer.toString(i)+")");
+            skins[i].filename(gui.pathSkin(i));
+            skins[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
             skins[i].build(nifty, nifty.getScreen("skinScreen"), nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%4)));
         }
-        /*eyes = new ImageBuilder[gui.lengthEyes()];
+        eyes = new ImageBuilder[gui.lengthEyes()];
         for(int i=0; i<gui.lengthEyes(); i++){
-            eyes[i].id(Integer.toString(i));
             eyes[i] = new ImageBuilder(){{
-                interactOnClick("gui.changeEyes("+get("id")+")");
                 width("0%");
                 height("0%");
             }};
+            eyes[i].id("e"+Integer.toString(i));
+            eyes[i].filename(gui.pathEyes(i));
+            eyes[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
             eyes[i].build(nifty, nifty.getScreen("eyesScreen"), nifty.getScreen("eyesScreen").findElementByName("t"+Integer.toString(i%4)));
         }
         tshirts = new ImageBuilder[gui.lengthTShirt()];
         for(int i=0; i<gui.lengthTShirt(); i++){
-            tshirts[i].id(Integer.toString(i));
             tshirts[i] = new ImageBuilder(){{
-                interactOnClick("gui.changeTShirt("+get("id")+")");
                 width("0%");
                 height("0%");
             }};
+            tshirts[i].id("ts"+Integer.toString(i));
+            tshirts[i].filename(gui.pathTshirt(i));
+            tshirts[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
             tshirts[i].build(nifty, nifty.getScreen("tshirtScreen"), nifty.getScreen("tshirtScreen").findElementByName("t"+Integer.toString(i%4)));
         }
         trousers = new ImageBuilder[gui.lengthTrouser()];
         for(int i=0; i<gui.lengthTrouser(); i++){
-            trousers[i].id(Integer.toString(i));
             trousers[i] = new ImageBuilder(){{
                 interactOnClick("gui.changeTrousers("+get("id")+")");
                 width("0%");
                 height("0%");
             }};
+            trousers[i].id("tr"+Integer.toString(i));
+            trousers[i].filename(gui.pathTrouser(i));
+            trousers[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
             trousers[i].build(nifty, nifty.getScreen("trousersScreen"), nifty.getScreen("trousersScreen").findElementByName("t"+Integer.toString(i%4)));
         }
         shoes = new ImageBuilder[gui.lengthShoes()];
         for(int i=0; i<gui.lengthShoes(); i++){
-            shoes[i].id(Integer.toString(i));
             shoes[i] = new ImageBuilder(){{
-                interactOnClick("gui.changeShoes("+get("id")+")");
                 width("0%");
                 height("0%");
             }};
+            shoes[i].id("sh"+Integer.toString(i));
+            shoes[i].filename(gui.pathShoes(i));
+            shoes[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
             shoes[i].build(nifty, nifty.getScreen("shoesScreen"), nifty.getScreen("shoesScreen").findElementByName("t"+Integer.toString(i%4)));
-        }*/
+        }
     }
     
     public void changeScreen(String param)
@@ -193,15 +190,43 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
         if(param.equals("eyes")){
             nifty.gotoScreen("eyesScreen");
+            for(int i=0; i<gui.lengthSkins(); i++){
+                if(i<4){
+                    nifty.getScreen("eyesScreen").findElementByName("e"+Integer.toString(i)).setVisible(true);
+                    nifty.getScreen("eyesScreen").findElementByName("e"+Integer.toString(i)).setHeight(nifty.getScreen("eyesScreen").findElementByName("t"+Integer.toString(i%4)).getHeight());
+                    nifty.getScreen("eyesScreen").findElementByName("e"+Integer.toString(i)).setWidth(nifty.getScreen("eyesScreen").findElementByName("t"+Integer.toString(i%4)).getWidth());
+                }
+            }
         }
         if(param.equals("tshirt")){
             nifty.gotoScreen("tshirtScreen");
+            for(int i=0; i<gui.lengthSkins(); i++){
+                if(i<4){
+                    nifty.getScreen("tshirtScreen").findElementByName("ts"+Integer.toString(i)).setVisible(true);
+                    nifty.getScreen("tshirtScreen").findElementByName("ts"+Integer.toString(i)).setHeight(nifty.getScreen("tshirtScreen").findElementByName("t"+Integer.toString(i%4)).getHeight());
+                    nifty.getScreen("tshirtScreen").findElementByName("ts"+Integer.toString(i)).setWidth(nifty.getScreen("tshirtScreen").findElementByName("t"+Integer.toString(i%4)).getWidth());
+                }
+            }
         }
         if(param.equals("trousers")){
             nifty.gotoScreen("trousersScreen");
+            for(int i=0; i<gui.lengthSkins(); i++){
+                if(i<4){
+                    nifty.getScreen("trousersScreen").findElementByName("tr"+Integer.toString(i)).setVisible(true);
+                    nifty.getScreen("trousersScreen").findElementByName("tr"+Integer.toString(i)).setHeight(nifty.getScreen("trousersScreen").findElementByName("t"+Integer.toString(i%4)).getHeight());
+                    nifty.getScreen("trousersScreen").findElementByName("tr"+Integer.toString(i)).setWidth(nifty.getScreen("trousersScreen").findElementByName("t"+Integer.toString(i%4)).getWidth());
+                }
+            }
         }
         if(param.equals("shoes")){
             nifty.gotoScreen("shoesScreen");
+            for(int i=0; i<gui.lengthSkins(); i++){
+                if(i<4){
+                    nifty.getScreen("shoesScreen").findElementByName("sh"+Integer.toString(i)).setVisible(true);
+                    nifty.getScreen("shoesScreen").findElementByName("sh"+Integer.toString(i)).setHeight(nifty.getScreen("shoesScreen").findElementByName("t"+Integer.toString(i%4)).getHeight());
+                    nifty.getScreen("shoesScreen").findElementByName("sh"+Integer.toString(i)).setWidth(nifty.getScreen("shoesScreen").findElementByName("t"+Integer.toString(i%4)).getWidth());
+                }
+            }
         }
         if(param.equals("accesories")){
             nifty.gotoScreen("accesoriesScreen");
@@ -251,21 +276,13 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         return null;
     }
     
-    public void changeSkin(String steep)
-    {
-        gui.changeSkin(Integer.parseInt(steep));
-    }
-    
     public void changeTexture(String steep)
     {
-        int i;
-        if(steep.equals("+")){i = 1;}
-        else{i = -1;}
-        if(selection.equals("skin")){gui.changeSkin(i);}
+        if(selection.equals("skin")){gui.changeSkin(Integer.parseInt(steep));}
         if(selection.equals("hair")){}
-        if(selection.equals("eyes")){gui.changeEyes(i);}
-        if(selection.equals("tshirt")){gui.changeTShirt(i);}
-        if(selection.equals("trousers")){gui.changeTrousers(i);}
+        if(selection.equals("eyes")){gui.changeEyes(Integer.parseInt(steep));}
+        if(selection.equals("tshirt")){gui.changeTShirt(Integer.parseInt(steep));}
+        if(selection.equals("trousers")){gui.changeTrousers(Integer.parseInt(steep));}
         if(selection.equals("shoes")){}
         if(selection.equals("accesories")){}
     }

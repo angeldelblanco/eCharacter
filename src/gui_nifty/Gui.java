@@ -199,11 +199,11 @@ public class Gui extends SimpleApplication{
         }
     }
     
-    public void changeShoes()
+    public void changeShoes(int steep)
     {
         indexImage++;
         model.setIndexImage(indexImage);
-        model.changeShoes();
+        model.changeShoes(steep);
         mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));                
         model.setMaterial(mat);               
         //Delete the file               

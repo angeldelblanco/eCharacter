@@ -218,6 +218,7 @@ public class Model{
         //if (indexSkin < 0){ indexSkin = numSkins - 1;}
         //indexSkin = indexSkin%numSkins;
         //skin = readBuffer(arraySkin[indexSkin]);
+        indexSkin = steep;
         skin = readBuffer(arraySkin[steep]);
         //Creat the image             
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);                
@@ -225,10 +226,12 @@ public class Model{
         img.fusionaImagenes(destinationPath);                              
     }
     
-    public void changeShoes()
+    public void changeShoes(int steep)
     {
-        indexShoes++;   
-        shoes = readBuffer(arrayShoes[indexShoes%numShoes].getPathShoes(), arrayShoes[indexShoes%numShoes].getPathShadow(), TypeObject.shoes);
+        /*indexShoes++;   
+        shoes = readBuffer(arrayShoes[indexShoes%numShoes].getPathShoes(), arrayShoes[indexShoes%numShoes].getPathShadow(), TypeObject.shoes);*/
+        indexShoes = steep;
+        shoes = readBuffer(arrayShoes[steep].getPathShoes(), arrayShoes[steep].getPathShadow(), TypeObject.shoes);
         //Creat the image        
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes); 
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";                
@@ -237,10 +240,12 @@ public class Model{
     
     public void changeTrousers(int steep)
     {
-        indexTrouser=indexTrouser+steep;
+        /*indexTrouser=indexTrouser+steep;
         if (indexTrouser < 0){ indexTrouser = numTrousers - 1;}
         indexTrouser = indexTrouser%numTrousers;   
-        trousers = readBuffer(arrayTrouser[indexTrouser].getPathTrouser(), arrayTrouser[indexTrouser].getPathShadow(), TypeObject.trouser);
+        trousers = readBuffer(arrayTrouser[indexTrouser].getPathTrouser(), arrayTrouser[indexTrouser].getPathShadow(), TypeObject.trouser);*/
+        indexTrouser = steep;
+        trousers = readBuffer(arrayTrouser[steep].getPathTrouser(), arrayTrouser[steep].getPathShadow(), TypeObject.trouser);
         //Creat the image        
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);     
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
@@ -249,10 +254,12 @@ public class Model{
     
     public void changeTShirt(int steep)
     {
-        indexTShirt=indexTShirt+steep;
+        /*indexTShirt=indexTShirt+steep;
         if (indexTShirt < 0){ indexTShirt = numTShirts - 1;}
         indexTShirt = indexTShirt%numTShirts;
-        tShirt = readBuffer(arrayTShirt[indexTShirt].getPathTShirt(), arrayTShirt[indexTShirt].getPathShadow(), TypeObject.t_shirt);
+        tShirt = readBuffer(arrayTShirt[indexTShirt].getPathTShirt(), arrayTShirt[indexTShirt].getPathShadow(), TypeObject.t_shirt);*/
+        indexTShirt = steep;
+        tShirt = readBuffer(arrayTShirt[steep].getPathTShirt(), arrayTShirt[steep].getPathShadow(), TypeObject.t_shirt);
         //Creat the image        
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);     
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
@@ -261,11 +268,13 @@ public class Model{
     
     public void changeEyes(int steep)
     {
-        indexEyes=indexEyes+steep;
+        /*indexEyes=indexEyes+steep;
         if (indexEyes < 0){ indexEyes = numEyes - 1;}
         indexEyes = indexEyes%numEyes;
-        eyes = readBuffer(arrayEyes[indexEyes]);
-        //Creat the image        
+        eyes = readBuffer(arrayEyes[indexEyes]);*/
+        //Creat the image
+        indexEyes = steep;
+        eyes = readBuffer(arrayEyes[steep]);
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes); 
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";        
         img.fusionaImagenes(destinationPath);              
@@ -276,15 +285,15 @@ public class Model{
         ColoringImage coloringImage;
         switch(typeObject) {
             case t_shirt:
-                coloringImage = new  ColoringImage(arrayTShirt[indexTShirt%numTShirts].getPathTShirt(), arrayTShirt[indexTShirt%numTShirts].getPathShadow(), color, TypeObject.t_shirt); 
+                coloringImage = new  ColoringImage(arrayTShirt[indexTShirt].getPathTShirt(), arrayTShirt[indexTShirt].getPathShadow(), color, TypeObject.t_shirt); 
                 tShirt = coloringImage.coloringImage();      
                 break;
             case trouser:
-                coloringImage = new  ColoringImage(arrayTrouser[indexTrouser%numTrousers].getPathTrouser(), arrayTrouser[indexTrouser%numTrousers].getPathShadow(), color, TypeObject.trouser);
+                coloringImage = new  ColoringImage(arrayTrouser[indexTrouser].getPathTrouser(), arrayTrouser[indexTrouser].getPathShadow(), color, TypeObject.trouser);
                 trousers = coloringImage.coloringImage(); 
                 break;      
             case shoes:
-                coloringImage = new  ColoringImage(arrayShoes[indexShoes%numShoes].getPathShoes(), arrayShoes[indexShoes%numShoes].getPathShadow(), color, TypeObject.shoes);
+                coloringImage = new  ColoringImage(arrayShoes[indexShoes].getPathShoes(), arrayShoes[indexShoes].getPathShadow(), color, TypeObject.shoes);
                 shoes = coloringImage.coloringImage();
                 break; 
         }    
