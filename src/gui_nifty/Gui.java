@@ -114,6 +114,15 @@ public class Gui extends SimpleApplication{
     public void onAnimChange(AnimControl control, AnimChannel channel, String animName) 
     {
     }
+    
+    public int length(String param){
+        if(param.equals("skinScreen")){return lengthSkins();}
+        if(param.equals("eyesScreen")){return lengthEyes();}
+        if(param.equals("tshirtScreen")){return lengthTShirt();}
+        if(param.equals("trousersScreen")){return lengthTrouser();}
+        if(param.equals("shoesScreen")){return lengthShoes();}
+        return 0;
+    }
     public int lengthSkins(){
         return model.getArraySkinIcon().length;
     }
