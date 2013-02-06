@@ -82,17 +82,67 @@
         <panel id="panel_bottom" height="10%" width="75%" align="center" childLayout="horizontal">  
             <panel id="panel_bottom_left" height="50%" width="50%" valign="center" childLayout="center">  
                 <control name="button" label="Adult" id="AdultButton" align="center" valign="center" visibleToMouse="true"> 
-                    <interact onClick="adultSelected(basicScreen)" />
+                    <interact onClick="adultSelected(modelScreen)" />
                 </control>
             </panel>
             <panel id="panel_bottom_right" height="50%" width="50%" valign="center" childLayout="center">  
                 <control name="button" label="Young" id="YoungButton" align="center" valign="center"  visibleToMouse="true" > 
-                    <interact onClick="youngSelected(basicScreen)"/>
+                    <interact onClick="youngSelected(modelScreen)"/>
                 </control>
             </panel>
       </panel>
     </layer>
   </screen>
+  
+  <!-- Optional screen(Model selection)-->
+	<screen id="modelScreen" controller="gui_nifty.StartScreen">
+        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
+            <!-- Option Panel -->    
+        </layer>
+        <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<panel height="5%" width="100%" childLayout="center"> 
+				<text text="Choose your model" font="Interface/Fonts/Default.fnt" width="100%" height="100%" valign="center"/>
+			</panel>
+			<panel height="10%" width="100%"> 
+				<!-- Space -->
+			</panel>
+			<panel id="texturePanel" height="14%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
+				<panel id="panel_change" height="100%" width="80%" align="center" childLayout="horizontal">
+					<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
+							<interact onClick=""/>
+					</image>
+					<panel height="50%" width="34%">
+					<!-- Space -->
+					</panel>
+					<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
+							<interact onClick=""/>
+					</image>
+				</panel>
+			</panel>
+			<panel height="56%" width="100%"> 
+				<!-- Space -->
+			</panel>
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
+					<!-- Space -->
+				</panel>
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="center" align="right">
+					<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(basicScreen)"/>
+					</panel>
+				</panel>
+			</panel>
+        </layer>
+    </screen>
   
   <!-- Fourth screen(basic)-->
 	<screen id="basicScreen" controller="gui_nifty.StartScreen">
@@ -112,7 +162,7 @@
 				</panel>
 				<!-- Change Advanced Options Panel -->
 				<panel id="panel_option_eyes" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-					<text text="Advanced" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text text="Custom" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(bonesScreen)"/>
 				</panel>
 			</panel>
@@ -121,7 +171,7 @@
 			</panel>
 			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
 				<panel id="panel_bodyTypes_normal" height="20%" width="100%" childLayout="center">
-					<text text="Normal" font="Interface/Fonts/Default.fnt" width="100%" height="100%"/>
+					<text text="Medium-Height" font="Interface/Fonts/Default.fnt" width="100%" height="100%"/>
 					<interact onClick="changeBodyType(Normal)"/>
 				</panel>
 				<panel id="panel_bodyTypes_normal" height="20%" width="100%" childLayout="center">
@@ -129,7 +179,7 @@
 					<interact onClick="changeBodyType(Tall)"/>
 				</panel>
 				<panel id="panel_bodyTypes_normal" height="20%" width="100%" childLayout="center">
-					<text text="Small" font="Interface/Fonts/Default.fnt" width="100%" height="100%"/>
+					<text text="Small/Petite" font="Interface/Fonts/Default.fnt" width="100%" height="100%"/>
 					<interact onClick="changeBodyType(Small)"/>
 				</panel>
 				<panel id="panel_bodyTypes_normal" height="20%" width="100%" childLayout="center">
@@ -141,11 +191,23 @@
 					<interact onClick="changeBodyType(Thin)"/>
 				</panel>
 			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="center" align="right">
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(skinScreen)"/>
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
+					<!-- Space -->
+				</panel>
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="center" align="right">
+					<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(skinScreen)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -168,7 +230,7 @@
 				</panel>
 				<!-- Change Advanced Options Panel -->
 				<panel id="panel_option_eyes" height="100%" width="14%" childLayout="center" backgroundImage="${CALL.getMenu(ay)}">
-					<text text="Advanced" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text text="Custom" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(bonesScreen)"/>
 				</panel>
 			</panel>
@@ -190,11 +252,23 @@
 				<text text="Feet" font="Interface/Fonts/Default.fnt" height="8%" width="100%" />
 				<control id="feet" name="horizontalSlider" max="100" min="-50" value="0" height="8%" width="80%"/>
 			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="center" align="right">
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(skinScreen)"/>
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
+					<!-- Space -->
+				</panel>
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="center" align="right">
+					<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(skinScreen)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -308,18 +382,30 @@
 					</image>
 				</panel>
 			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(basicScreen)"/>
-				</panel>
-				<panel height="66%" width="34%">
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(hairScreen)"/>
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="horizontal" align="right">
+					<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(basicScreen)"/>
+					</panel>
+					<panel height="66%" width="34%">
+						<!-- Space -->
+					</panel>
+					<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(hairScreen)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -437,18 +523,30 @@
 					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(skinScreen)"/>
-				</panel>
-				<panel height="66%" width="34%">
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(eyesScreen)"/>
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="horizontal" align="right">
+					<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(skinScreen)"/>
+					</panel>
+					<panel height="66%" width="34%">
+						<!-- Space -->
+					</panel>
+					<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(eyesScreen)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -566,18 +664,30 @@
 					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(hairScreen)"/>
-				</panel>
-				<panel height="66%" width="34%">
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(tshirtScreen)"/>
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="horizontal" align="right">
+					<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(hairScreen)"/>
+					</panel>
+					<panel height="66%" width="34%">
+						<!-- Space -->
+					</panel>
+					<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(tshirtScreen)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -695,18 +805,30 @@
 					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(eyesScreen)"/>
-				</panel>
-				<panel height="66%" width="34%">
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(trousersScreen)"/>
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="horizontal" align="right">
+					<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(eyesScreen)"/>
+					</panel>
+					<panel height="66%" width="34%">
+						<!-- Space -->
+					</panel>
+					<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(trousersScreen)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -824,18 +946,30 @@
 					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(tshirtScreen)"/>
-				</panel>
-				<panel height="66%" width="34%">
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(shoesScreen)"/>
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="horizontal" align="right">
+					<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(tshirtScreen)"/>
+					</panel>
+					<panel height="66%" width="34%">
+						<!-- Space -->
+					</panel>
+					<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(shoesScreen)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -953,18 +1087,30 @@
 					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(trousersScreen)"/>
-				</panel>
-				<panel height="66%" width="34%">
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(accesoriesScreen)"/>
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="horizontal" align="right">
+					<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(trousersScreen)"/>
+					</panel>
+					<panel height="66%" width="34%">
+						<!-- Space -->
+					</panel>
+					<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(accesoriesScreen)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -1084,18 +1230,23 @@
 					<interact onClick="showWindowChangeColor()"/>
 				</panel>
 			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(shoesScreen)"/>
-				</panel>
-				<panel height="66%" width="34%">
+			<panel height="15%" width="100%" childLayout="horizontal">
+				<panel height="100%" width="8%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_screenshot" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
 					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="screenshot()"/>
+				</panel>
+				<panel height="100%" width="55%">
+					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="100%" width="30%" childLayout="horizontal" align="right">
+					<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+						<interact onClick="changeScreen(shoesScreen)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>

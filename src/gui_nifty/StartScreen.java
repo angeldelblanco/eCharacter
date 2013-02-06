@@ -85,6 +85,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void initialize(AppStateManager stateManager, Application app) 
     {
         this.app = app;
+        skinspage = 0;
+        eyespage = 0;
+        tshirtspage = 0; 
+        trouserspage = 0; 
+        shoespage = 0;
     }
     
     public void manSelected(String nextScreen) 
@@ -193,7 +198,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void changeTexturePage(String steep){
             for(int i=getPage()*TEXTURES_PAGE; i<gui.length(selection); i++){
-                if(i<(getPage()+1)*TEXTURES_PAGE){
+                if(i<((getPage()+1)*TEXTURES_PAGE)){
                     nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setVisible(false);
                     nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setHeight(0);
                     nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setWidth(0);
@@ -201,7 +206,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }
             changePage(steep);
             for(int i=getPage()*TEXTURES_PAGE; i<gui.length(selection); i++){
-                if(i<(getPage()+1)*TEXTURES_PAGE){
+                if(i<((getPage()+1)*TEXTURES_PAGE)){
                     nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setVisible(true);
                     nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setHeight(nifty.getScreen(selection).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
                     nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setWidth(nifty.getScreen(selection).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
@@ -236,11 +241,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void changePage(String steep){
         int i = 0;
-        if(selection.equals("+")){i++;}
-        if(selection.equals("-")){i--;}
+        if(steep.equals("+")){i = 1;}
+        if(steep.equals("-")){i = -1;}
         if(selection.equals("skinScreen")){
-            skinspage = skinspage + i;
-            if(selection.equals("0")){}
+            if(selection.equals("0")){skinspage = 0;}
+            else{skinspage = skinspage + i;}
         }
         if(selection.equals("eyesScreen")){
             if(selection.equals("0")){eyespage = 0;}
