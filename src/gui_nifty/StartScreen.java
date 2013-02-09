@@ -42,9 +42,23 @@ import com.jme3.app.state.AppStateManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.ImageBuilder;
+import de.lessvoid.nifty.builder.PanelBuilder;
+import de.lessvoid.nifty.builder.PopupBuilder;
+import de.lessvoid.nifty.controls.ButtonClickedEvent;
+import de.lessvoid.nifty.controls.Scrollbar;
+import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
+import de.lessvoid.nifty.controls.TextField;
+import de.lessvoid.nifty.controls.TextFieldChangedEvent;
+import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
+import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
+import de.lessvoid.nifty.controls.slider.builder.SliderBuilder;
+import de.lessvoid.nifty.controls.textfield.builder.TextFieldBuilder;
+import de.lessvoid.nifty.elements.Element;
+import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import de.lessvoid.nifty.tools.Color;
 import types.Age;
 import types.Gender;
 
@@ -58,6 +72,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private String selection;
     private ImageBuilder [] skins, eyes, tshirts, trousers, shoes;
     private int skinspage, eyespage, tshirtspage, trouserspage, shoespage;
+    private Element popup;
+    private float red, green, blue;
     
     public StartScreen(Gui gui){
         this.gui = gui;
@@ -65,6 +81,72 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
+        new PopupBuilder("popupColor") {{
+                childLayoutVertical();
+                backgroundColor("#fffa");
+                panel(new PanelBuilder("panelSelection") {{
+                        childLayoutHorizontal();
+                        height("25%");
+                        width("25%");
+                        alignCenter();
+                        valignCenter();
+                    panel(new PanelBuilder("panelRed") {{
+                        childLayoutVertical();
+                        height("100%");
+                        width("25%");
+                        control(new SliderBuilder("sliderR", true));
+                        control(new LabelBuilder() {{
+                            alignCenter();
+                            text("Red");
+                            width("100%");
+                        }});
+                    }});
+                    panel(new PanelBuilder("panelGreen") {{
+                        childLayoutVertical();
+                        height("100%");
+                        width("25%");
+                        control(new SliderBuilder("sliderG", true));
+                        control(new LabelBuilder() {{
+                            alignCenter();
+                            text("Green");
+                            width("100%");
+                        }});
+                    }});
+                    panel(new PanelBuilder("panelBlue") {{
+                        childLayoutVertical();
+                        height("100%");
+                        width("25%");
+                        control(new SliderBuilder("sliderB", true));
+                        control(new LabelBuilder() {{
+                            alignCenter();
+                            text("Blue");
+                            width("100%");
+                        }});
+                    }});
+                    panel(new PanelBuilder("panelColor") {{
+                        backgroundColor("#000f");
+                        valignCenter();
+                        alignCenter();
+                        height("25%");
+                        width("25%");
+                    }});
+                }});
+                panel(new PanelBuilder("panelButton") {{
+                        alignCenter();
+                        valignCenter();
+                        childLayoutHorizontal();
+                        height("25%");
+                        width("25%");
+                        control(new ButtonBuilder("changeButton", "Change"));
+                        control(new ButtonBuilder("cancelButton", "Cancel"));
+                }});
+        }}.registerPopup(nifty);
+        ((Slider)popup.findElementByName("sliderR")).setup(0.f, 255.f,   0.f, 1.f, 10.f);
+        ((Slider)popup.findElementByName("sliderG")).setup(0.f, 255.f,   0.f, 1.f, 10.f);
+        ((Slider)popup.findElementByName("sliderB")).setup(0.f, 255.f,   0.f, 1.f, 10.f);
+        red = 0;
+        green = 0;
+        blue = 0;
     }
 
     public void quitGame() {
@@ -314,13 +396,47 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void showWindowChangeColor() throws InterruptedException
     {
+        popup = nifty.createPopup("popupColor");
+        nifty.showPopup(nifty.getCurrentScreen(), popup.getId(), null);
+    }
+    @NiftyEventSubscriber(id="changeButton")
+    public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException {
+        //Cambiar color con red, blue green
         if(selection.equals("skinScreen")){}
         if(selection.equals("hairScreen")){}
         if(selection.equals("eyesScreen")){}
-        if(selection.equals("tshirtScreen")){gui.showWindowChangeColorTShirt();}
-        if(selection.equals("trousersScreen")){gui.showWindowChangeColorTrouser();}
-        if(selection.equals("shoesScreen")){gui.showWindowChangeColorShoes();}
+        if(selection.equals("tshirtScreen")){}
+        if(selection.equals("trousersScreen")){}
+        if(selection.equals("shoesScreen")){}
         if(selection.equals("accesoriesScreen")){}
+        nifty.closePopup(popup.getId()); 
+    }
+    
+    @NiftyEventSubscriber(id="cancelButton")
+    public void onCancelButtonClicked(final String id, final ButtonClickedEvent event) {
+        nifty.closePopup(popup.getId()); 
+    }
+    
+    @NiftyEventSubscriber(id="sliderR")
+    public void onRedSliderChange(final String id, final SliderChangedEvent event) {
+      red = event.getValue();
+      changeColor();
+    }
+
+    @NiftyEventSubscriber(id="sliderG")
+    public void onGreenSliderChange(final String id, final SliderChangedEvent event) {
+      green = event.getValue();
+      changeColor();
+    }
+
+    @NiftyEventSubscriber(id="sliderB")
+    public void onBlueSliderChange(final String id, final SliderChangedEvent event) {
+      blue = event.getValue();
+      changeColor();
+    }
+  
+    private void changeColor() {
+        popup.findElementByName("panelColor").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 255.f));
     }
     
     @NiftyEventSubscriber(id="head")
