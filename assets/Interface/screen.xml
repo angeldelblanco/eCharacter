@@ -31,7 +31,7 @@
   <!-- Second Screen-->
   <screen id="secondScreen" controller="gui_nifty.StartScreen">
     <layer id="background" childLayout="center">
-        <image filename="Interface/second-background.jpg"></image>
+        <image filename="Interface/second-background.png"></image>
     </layer>
     <layer id="foreground" childLayout="vertical">
         <panel id="panel_text" height="10%" width="75%" align="center" childLayout="center">       
@@ -64,7 +64,7 @@
   <!-- Third Screen-->
   <screen id="thirdScreen" controller="gui_nifty.StartScreen">
     <layer id="background" childLayout="center">
-        <image filename="Interface/second-background.jpg"></image>
+        <image filename="Interface/second-background.png"></image>
     </layer>
     <layer id="foreground" childLayout="vertical">
         <panel id="panel_text" height="10%" width="75%" align="center" childLayout="center">       
@@ -122,23 +122,11 @@
 			<panel height="56%" width="100%"> 
 				<!-- Space -->
 			</panel>
-			<panel height="15%" width="100%" childLayout="horizontal">
-				<panel height="100%" width="8%">
-					<!-- Space -->
-				</panel>
-				<panel id="panel_finish" height="50%" width="7%" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="screenshot()"/>
-				</panel>
-				<panel height="100%" width="55%">
-					<!-- Space -->
-				</panel>
-				<!-- Change screen Panel -->
-				<panel id="panel_change_screen" height="100%" width="30%" childLayout="center" align="right">
-					<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-						<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-						<interact onClick="changeScreen(basicScreen)"/>
-					</panel>
+			<!-- Change screen Panel -->
+			<panel id="panel_change_screen" height="15%" width="30%" childLayout="center" align="right">
+				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="changeScreen(basicScreen)"/>
 				</panel>
 			</panel>
         </layer>
@@ -1392,6 +1380,13 @@
 				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
 					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(accesoriesScreen)"/>
+				</panel>
+				<panel height="66%" width="34%">
+					<!-- Space -->
+				</panel>
+				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="screenshot()"/>
 				</panel>
 			</panel>
         </layer>

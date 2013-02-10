@@ -123,6 +123,16 @@ public class Gui extends SimpleApplication{
         if(param.equals("shoesScreen")){return lengthShoes();}
         return 0;
     }
+    
+    public String path(String param, int i){
+        if(param.equals("skinScreen")){return pathSkin(i);}
+        if(param.equals("eyesScreen")){return pathEyes(i);}
+        if(param.equals("tshirtScreen")){return pathTShirt(i);}
+        if(param.equals("trousersScreen")){return pathTrouser(i);}
+        if(param.equals("shoesScreen")){return pathShoes(i);}
+        return "";
+    }
+    
     public int lengthSkins(){
         return model.getArraySkinIcon().length;
     }
@@ -157,7 +167,7 @@ public class Gui extends SimpleApplication{
         return model.getArrayTShirtIcon().length;
     }
     
-    public String pathTshirt(int i){
+    public String pathTShirt(int i){
         if((i>=0)&&(i<= model.getArrayTShirtIcon().length)){
             return model.getArrayTShirtIcon()[i];
         }

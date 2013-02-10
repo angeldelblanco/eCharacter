@@ -45,15 +45,10 @@ import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.PopupBuilder;
 import de.lessvoid.nifty.controls.ButtonClickedEvent;
-import de.lessvoid.nifty.controls.Scrollbar;
-import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
-import de.lessvoid.nifty.controls.TextField;
-import de.lessvoid.nifty.controls.TextFieldChangedEvent;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.controls.slider.builder.SliderBuilder;
-import de.lessvoid.nifty.controls.textfield.builder.TextFieldBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.screen.Screen;
@@ -70,7 +65,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private Screen screen;
     private Gui gui;
     private String selection;
-    private ImageBuilder [] skins, eyes, tshirts, trousers, shoes;
     private int skinspage, eyespage, tshirtspage, trouserspage, shoespage;
     private Element popup;
     private float red, green, blue;
@@ -82,68 +76,92 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
         new PopupBuilder("popupColor") {{
-                childLayoutVertical();
+                childLayoutCenter();
                 backgroundColor("#fffa");
-                panel(new PanelBuilder("panelSelection") {{
+                panel(new PanelBuilder("popupPanel") {{
+                    backgroundImage("Interface/CuadroAzul.png");
+                    height("25%");
+                    width("25%");
+                    childLayoutVertical();
+                    panel(new PanelBuilder("panelSelection") {{
+                        height("80%");
                         childLayoutHorizontal();
-                        height("25%");
-                        width("25%");
-                        alignCenter();
-                        valignCenter();
-                    panel(new PanelBuilder("panelRed") {{
-                        childLayoutVertical();
-                        height("100%");
-                        width("25%");
-                        control(new SliderBuilder("sliderR", true));
-                        control(new LabelBuilder() {{
+                        panel(new PanelBuilder("panelRed") {{
+                            childLayoutVertical();
+                            height("90%");
+                            width("25%");
+                            valignCenter();
+                            control(new SliderBuilder("sliderR", true){{
+                                max(255);
+                                min(0);
+                                initial(0);
+                            }});
+                            control(new LabelBuilder() {{
+                                alignCenter();
+                                text("Red");
+                                width("100%");
+                            }});
+                        }});
+                        panel(new PanelBuilder("panelGreen") {{
+                            childLayoutVertical();
+                            height("90%");
+                            width("25%");
+                            valignCenter();
+                            control(new SliderBuilder("sliderG", true){{
+                                max(255);
+                                min(0);
+                                initial(0);
+                            }});
+                            control(new LabelBuilder() {{
+                                alignCenter();
+                                text("Green");
+                                width("100%");
+                            }});
+                        }});
+                        panel(new PanelBuilder("panelBlue") {{
+                            childLayoutVertical();
+                            height("90%");
+                            width("25%");
+                            valignCenter();
+                            control(new SliderBuilder("sliderB", true){{
+                                max(255);
+                                min(0);
+                                initial(0);
+                            }});
+                            control(new LabelBuilder() {{
+                                alignCenter();
+                                text("Blue");
+                                width("100%");
+                            }});
+                        }});
+                        panel(new PanelBuilder("panelColor") {{
+                            backgroundColor("#000f");
+                            valignCenter();
                             alignCenter();
-                            text("Red");
-                            width("100%");
+                            height("25%");
+                            width("15%");
                         }});
                     }});
-                    panel(new PanelBuilder("panelGreen") {{
-                        childLayoutVertical();
-                        height("100%");
-                        width("25%");
-                        control(new SliderBuilder("sliderG", true));
-                        control(new LabelBuilder() {{
-                            alignCenter();
-                            text("Green");
-                            width("100%");
-                        }});
+                    panel(new PanelBuilder("panelButton") {{
+                            childLayoutHorizontal();
+                            height("20%");
+                            panel(new PanelBuilder("panelAcept") {{
+                                height("90%");
+                                width("50%");
+                                valignCenter();
+                                childLayoutCenter();
+                                control(new ButtonBuilder("aceptButton", "Acept"));
+                            }});
+                            panel(new PanelBuilder("panelCancel") {{
+                                height("90%");
+                                width("50%");
+                                valignCenter();
+                                childLayoutCenter();
+                                control(new ButtonBuilder("cancelButton", "Cancel"));
+                            }});
                     }});
-                    panel(new PanelBuilder("panelBlue") {{
-                        childLayoutVertical();
-                        height("100%");
-                        width("25%");
-                        control(new SliderBuilder("sliderB", true));
-                        control(new LabelBuilder() {{
-                            alignCenter();
-                            text("Blue");
-                            width("100%");
-                        }});
-                    }});
-                    panel(new PanelBuilder("panelColor") {{
-                        backgroundColor("#000f");
-                        valignCenter();
-                        alignCenter();
-                        height("25%");
-                        width("25%");
-                    }});
-                }});
-                panel(new PanelBuilder("panelButton") {{
-                        alignCenter();
-                        valignCenter();
-                        childLayoutHorizontal();
-                        height("25%");
-                        width("25%");
-                        control(new ButtonBuilder("changeButton", "Change"));
-                        control(new ButtonBuilder("cancelButton", "Cancel"));
                 }});
         }}.registerPopup(nifty);
-        ((Slider)popup.findElementByName("sliderR")).setup(0.f, 255.f,   0.f, 1.f, 10.f);
-        ((Slider)popup.findElementByName("sliderG")).setup(0.f, 255.f,   0.f, 1.f, 10.f);
-        ((Slider)popup.findElementByName("sliderB")).setup(0.f, 255.f,   0.f, 1.f, 10.f);
         red = 0;
         green = 0;
         blue = 0;
@@ -202,61 +220,18 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void initIcons(){
-        skins = new ImageBuilder[gui.lengthSkins()];
-        for(int i=0; i<gui.lengthSkins(); i++){
-            skins[i] = new ImageBuilder(){{
-                width("0%");
-                height("0%");
-            }};
-            skins[i].id("i"+Integer.toString(i));
-            skins[i].filename(gui.pathSkin(i));
-            skins[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
-            skins[i].build(nifty, nifty.getScreen("skinScreen"), nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
-        }
-        eyes = new ImageBuilder[gui.lengthEyes()];
-        for(int i=0; i<gui.lengthEyes(); i++){
-            eyes[i] = new ImageBuilder(){{
-                width("0%");
-                height("0%");
-            }};
-            eyes[i].id("i"+Integer.toString(i));
-            eyes[i].filename(gui.pathEyes(i));
-            eyes[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
-            eyes[i].build(nifty, nifty.getScreen("eyesScreen"), nifty.getScreen("eyesScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
-        }
-        tshirts = new ImageBuilder[gui.lengthTShirt()];
-        for(int i=0; i<gui.lengthTShirt(); i++){
-            tshirts[i] = new ImageBuilder(){{
-                width("0%");
-                height("0%");
-            }};
-            tshirts[i].id("i"+Integer.toString(i));
-            tshirts[i].filename(gui.pathTshirt(i));
-            tshirts[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
-            tshirts[i].build(nifty, nifty.getScreen("tshirtScreen"), nifty.getScreen("tshirtScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
-        }
-        trousers = new ImageBuilder[gui.lengthTrouser()];
-        for(int i=0; i<gui.lengthTrouser(); i++){
-            trousers[i] = new ImageBuilder(){{
-                interactOnClick("gui.changeTrousers("+get("id")+")");
-                width("0%");
-                height("0%");
-            }};
-            trousers[i].id("i"+Integer.toString(i));
-            trousers[i].filename(gui.pathTrouser(i));
-            trousers[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
-            trousers[i].build(nifty, nifty.getScreen("trousersScreen"), nifty.getScreen("trousersScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
-        }
-        shoes = new ImageBuilder[gui.lengthShoes()];
-        for(int i=0; i<gui.lengthShoes(); i++){
-            shoes[i] = new ImageBuilder(){{
-                width("0%");
-                height("0%");
-            }};
-            shoes[i].id("i"+Integer.toString(i));
-            shoes[i].filename(gui.pathShoes(i));
-            shoes[i].interactOnClick("changeTexture("+Integer.toString(i)+")");
-            shoes[i].build(nifty, nifty.getScreen("shoesScreen"), nifty.getScreen("shoesScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
+        String [] screens = {"skinScreen","eyesScreen","tshirtScreen","trousersScreen","shoesScreen"};
+        for(String auxScreen : screens){
+            for(int i=0; i<gui.length(auxScreen); i++){
+                ImageBuilder image = new ImageBuilder(){{
+                    width("0%");
+                    height("0%");
+                }};
+                image.id("i"+Integer.toString(i));
+                image.filename(gui.path(auxScreen,i));
+                image.interactOnClick("changeTexture("+Integer.toString(i)+")");
+                image.build(nifty, nifty.getScreen(auxScreen), nifty.getScreen(auxScreen).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
+            }
         }
     }
     
@@ -396,10 +371,13 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void showWindowChangeColor() throws InterruptedException
     {
+        red = 0;
+        green = 0;
+        blue = 0;
         popup = nifty.createPopup("popupColor");
         nifty.showPopup(nifty.getCurrentScreen(), popup.getId(), null);
     }
-    @NiftyEventSubscriber(id="changeButton")
+    @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException {
         //Cambiar color con red, blue green
         if(selection.equals("skinScreen")){}
@@ -436,7 +414,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
   
     private void changeColor() {
-        popup.findElementByName("panelColor").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 255.f));
+        popup.findElementByName("panelColor").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 1));
     }
     
     @NiftyEventSubscriber(id="head")
@@ -484,7 +462,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void screenshot() 
     {
         gui.screenshot();
-        nifty.gotoScreen("finishScreen");
         gui.setBodyType(0);
     }
     
