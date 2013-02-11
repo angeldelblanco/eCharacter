@@ -48,6 +48,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.system.AppSettings;
 import de.lessvoid.nifty.Nifty;
+import java.awt.Color;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -55,7 +56,6 @@ import java.nio.file.Paths;
 import types.Age;
 import types.Gender;
 import types.TypeObject;
-import window_color.*;
 
 public class Gui extends SimpleApplication{
 
@@ -131,6 +131,22 @@ public class Gui extends SimpleApplication{
         if(param.equals("trousersScreen")){return pathTrouser(i);}
         if(param.equals("shoesScreen")){return pathShoes(i);}
         return "";
+    }
+    
+    public void setTypeObject(String selection){
+        if(selection.equals("skinScreen")){}
+        if(selection.equals("hairScreen")){}
+        if(selection.equals("eyesScreen")){}
+        if(selection.equals("tshirtScreen")){
+            model.setTypeObject(TypeObject.t_shirt);
+        }
+        if(selection.equals("trousersScreen")){
+            model.setTypeObject(TypeObject.trouser);
+        }
+        if(selection.equals("shoesScreen")){
+            model.setTypeObject(TypeObject.shoes);
+        }
+        if(selection.equals("accesoriesScreen")){}
     }
     
     public int lengthSkins(){
@@ -282,10 +298,11 @@ public class Gui extends SimpleApplication{
         }
     }
     
-    public void changeColor(int color) throws IOException
+    public void changeColor(float red, float green, float blue) throws IOException
     {
         indexImage++; 
         model.setIndexImage(indexImage);
+        Color color = new Color(red, green, blue);
         model.changeColor(color);
         mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));     
         model.setMaterial(mat);
@@ -308,7 +325,7 @@ public class Gui extends SimpleApplication{
         sst.start();*/
     }
     
-    public void showWindowChangeColorTShirt() throws InterruptedException
+    /*public void showWindowChangeColorTShirt() throws InterruptedException
     {
         model.setTypeObject(TypeObject.t_shirt);
         ColorChooser window = new ColorChooser(this, guiViewPort); 
@@ -327,7 +344,7 @@ public class Gui extends SimpleApplication{
         model.setTypeObject(TypeObject.shoes);
         ColorChooser window = new ColorChooser(this, guiViewPort); 
         guiViewPort.setEnabled(false);
-    }
+    }*/
 
     public void setGender(Gender gender) 
     {

@@ -49,13 +49,13 @@ import types.TypeObject;
 
 public class ColoringImage 
 {
-    private int color;
+    private Color color;
     private String imagePath, shadowPath, imageColoredPath, destinationPath;
     private final static Logger logger = Logger.getLogger(ColoringImage.class);
     private long tiempoInicio, totalTiempo;         
     private BufferedImage shadow, image;
     
-    public ColoringImage(String imagePath, String shadowPath, int color, TypeObject estado) throws IOException
+    public ColoringImage(String imagePath, String shadowPath, Color color, TypeObject estado) throws IOException
     {
         this.imagePath = imagePath;
         this.shadowPath = shadowPath;
@@ -91,7 +91,6 @@ public class ColoringImage
         }
         
         Color shadowColor;
-        Color baseColor = new Color(color);
         double red;
         double green;
         double blue;
@@ -107,15 +106,15 @@ public class ColoringImage
                 //if the pixel isn't transparent
                 if (image.getRGB(i, j) < 0)
                 {
-                    image.setRGB(i, j, color);
+                    image.setRGB(i, j, color.getRGB());
                 }
                 if (shadow != null){
                     if((shadow.getRGB(i,j)&0xFF000000) != 0){
                             shadowColor = new Color(shadow.getRGB(i, j));
                             if(!((shadowColor.getRed()<85)&&(shadowColor.getGreen()<85)&&(shadowColor.getBlue()<85))){
-                                                    red = baseColor.getRed() - shadowColor.getRed()*0.5;
-                                                    green = baseColor.getGreen() - shadowColor.getGreen()*0.5;
-                                                    blue = baseColor.getBlue() - shadowColor.getBlue()*0.5;
+                                                    red = color.getRed() - shadowColor.getRed()*0.5;
+                                                    green = color.getGreen() - shadowColor.getGreen()*0.5;
+                                                    blue = color.getBlue() - shadowColor.getBlue()*0.5;
                             }
                             else{
                                     red=85;green=85;blue=85;
@@ -178,6 +177,6 @@ public class ColoringImage
     public static void main(String[] args) throws IOException 
     {
         ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/ZapatosSolidoBoy.png", 
-                "assets/Textures/Textures Boy/ZapatosSombrasBoy.png", -3394561, TypeObject.shoes);
+                "assets/Textures/Textures Boy/ZapatosSombrasBoy.png", new Color(0, 255, 0), TypeObject.shoes);
     } 
 }

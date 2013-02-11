@@ -50,6 +50,7 @@ import com.jme3.scene.Spatial;
 import gui_nifty.Gui;
 import imagesProcessing.ColoringImage;
 import imagesProcessing.ImagesProcessing;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -280,7 +281,7 @@ public class Model{
         img.fusionaImagenes(destinationPath);              
     }
     
-    public void changeColor(int color) throws IOException
+    public void changeColor(Color color) throws IOException
     {
         ColoringImage coloringImage;
         switch(typeObject) {
@@ -320,12 +321,12 @@ public class Model{
         
         try {
             skin = ImageIO.read(new File(skinsPath));
-            ColoringImage coloredImage = new ColoringImage(trousersColorPath, trousersShadowPath, -3394561, TypeObject.trouser);
+            ColoringImage coloredImage = new ColoringImage(trousersColorPath, trousersShadowPath, new Color(0, 255, 0), TypeObject.trouser);
             trousers = coloredImage.coloringImage();
-            coloredImage = new ColoringImage(tShirtsColorPath, tShirtsShadowPath, -3394561, TypeObject.t_shirt);
+            coloredImage = new ColoringImage(tShirtsColorPath, tShirtsShadowPath, new Color(0, 255, 0), TypeObject.t_shirt);
             tShirt = coloredImage.coloringImage();
             eyes = ImageIO.read(new File(eyesPath));
-            coloredImage = new ColoringImage(shoesColorPath, shoesShadowPath, -3394561, TypeObject.shoes);
+            coloredImage = new ColoringImage(shoesColorPath, shoesShadowPath, new Color(0, 255, 0), TypeObject.shoes);
             shoes = coloredImage.coloringImage();
         } catch (IOException ex) {
             Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
@@ -349,7 +350,7 @@ public class Model{
     private BufferedImage readBuffer(String pathColor, String pathShadow, TypeObject typeObject)
     {
         try {
-            ColoringImage coloredImage = new ColoringImage(pathColor, pathShadow, -3394561, typeObject);
+            ColoringImage coloredImage = new ColoringImage(pathColor, pathShadow, new Color(0, 255, 0, 0), typeObject);
             BufferedImage aux = coloredImage.coloringImage();
             return aux;
         } catch (IOException ex) {

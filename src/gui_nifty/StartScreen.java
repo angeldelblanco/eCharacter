@@ -54,6 +54,7 @@ import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import de.lessvoid.nifty.tools.Color;
+import java.io.IOException;
 import types.Age;
 import types.Gender;
 
@@ -377,16 +378,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         popup = nifty.createPopup("popupColor");
         nifty.showPopup(nifty.getCurrentScreen(), popup.getId(), null);
     }
+    
     @NiftyEventSubscriber(id="aceptButton")
-    public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException {
+    public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
         //Cambiar color con red, blue green
-        if(selection.equals("skinScreen")){}
-        if(selection.equals("hairScreen")){}
-        if(selection.equals("eyesScreen")){}
-        if(selection.equals("tshirtScreen")){}
-        if(selection.equals("trousersScreen")){}
-        if(selection.equals("shoesScreen")){}
-        if(selection.equals("accesoriesScreen")){}
+        gui.changeColor(red, green, blue);
         nifty.closePopup(popup.getId()); 
     }
     
