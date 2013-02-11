@@ -240,6 +240,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         selection = param;
         nifty.gotoScreen(param);
+        gui.setTypeObject(selection);
         if(param.equals("skinScreen")||param.equals("eyesScreen")||param.equals("tshirtScreen")||param.equals("trousersScreen")||param.equals("shoesScreen")){
             changeTexturePage("0");
         }
@@ -382,7 +383,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
         //Cambiar color con red, blue green
-        gui.changeColor(red, green, blue);
+        gui.changeColor(red / 255.f, green / 255.f, blue / 255.f);
         nifty.closePopup(popup.getId()); 
     }
     
