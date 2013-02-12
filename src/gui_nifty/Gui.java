@@ -318,33 +318,7 @@ public class Gui extends SimpleApplication{
     public void screenshot() 
     {      
         model.screenShot(guiViewPort, niftyDisplay, screenShotState);
-        
-        /*guiViewPort.removeProcessor(niftyDisplay);
-        Set<String> namesAnimations = (Set<String>) control.getAnimationNames();
-        ScreenshotThread sst = new ScreenshotThread(screenShotState,channel,guiViewPort,niftyDisplay,namesAnimations);
-        sst.start();*/
     }
-    
-    /*public void showWindowChangeColorTShirt() throws InterruptedException
-    {
-        model.setTypeObject(TypeObject.t_shirt);
-        ColorChooser window = new ColorChooser(this, guiViewPort); 
-        guiViewPort.setEnabled(false);
-    }
-    
-    public void showWindowChangeColorTrouser() throws InterruptedException
-    {
-        model.setTypeObject(TypeObject.trouser);
-        ColorChooser window = new ColorChooser(this, guiViewPort); 
-        guiViewPort.setEnabled(false);
-    }
-    
-    public void showWindowChangeColorShoes() throws InterruptedException
-    {
-        model.setTypeObject(TypeObject.shoes);
-        ColorChooser window = new ColorChooser(this, guiViewPort); 
-        guiViewPort.setEnabled(false);
-    }*/
 
     public void setGender(Gender gender) 
     {
@@ -380,9 +354,7 @@ public class Gui extends SimpleApplication{
             System.out.println("Error al borrar el fichero");
         }
     }
-    
-    
-    
+     
     public void setBodyType(int bodyType)
     {
         model.setBodyType(bodyType);

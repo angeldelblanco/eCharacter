@@ -374,10 +374,10 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void showWindowChangeColor() throws InterruptedException
     {
-        red = 0;
+        /*red = 0;
         green = 0;
-        blue = 0;
-        popup = nifty.createPopup("popupColor");
+        blue = 0;*/
+        if(popup == null){popup = nifty.createPopup("popupColor");}
         nifty.showPopup(nifty.getCurrentScreen(), popup.getId(), null);
     }
     
