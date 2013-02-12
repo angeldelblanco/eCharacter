@@ -190,6 +190,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         tshirtspage = 0; 
         trouserspage = 0; 
         shoespage = 0;
+        popup = null;
     }
     
     public void manSelected(String nextScreen) 
@@ -382,7 +383,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        //Cambiar color con red, blue green
         gui.changeColor(red / 255.f, green / 255.f, blue / 255.f);
         nifty.closePopup(popup.getId()); 
     }
@@ -394,20 +394,26 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="sliderR")
     public void onRedSliderChange(final String id, final SliderChangedEvent event) {
-      red = event.getValue();
-      changeColor();
+      if(popup != null){
+        red = event.getValue();
+        changeColor();
+      }
     }
 
     @NiftyEventSubscriber(id="sliderG")
     public void onGreenSliderChange(final String id, final SliderChangedEvent event) {
-      green = event.getValue();
-      changeColor();
+      if(popup != null){
+        green = event.getValue();
+        changeColor();
+      }
     }
 
     @NiftyEventSubscriber(id="sliderB")
     public void onBlueSliderChange(final String id, final SliderChangedEvent event) {
-      blue = event.getValue();
-      changeColor();
+      if(popup != null){
+        blue = event.getValue();
+        changeColor();
+      }
     }
   
     private void changeColor() {
