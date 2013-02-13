@@ -350,7 +350,7 @@ public class Model{
     private BufferedImage readBuffer(String pathColor, String pathShadow, TypeObject typeObject)
     {
         try {
-            ColoringImage coloredImage = new ColoringImage(pathColor, pathShadow, new Color(0, 255, 0, 0), typeObject);
+            ColoringImage coloredImage = new ColoringImage(pathColor, pathShadow, new Color(0, 255, 0), typeObject);
             BufferedImage aux = coloredImage.coloringImage();
             return aux;
         } catch (IOException ex) {
