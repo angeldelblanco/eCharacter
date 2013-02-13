@@ -67,7 +67,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private Gui gui;
     private String selection;
     private int skinspage, eyespage, tshirtspage, trouserspage, shoespage;
-    private Element popup;
+    private Element popupColor, popupAnim, popupFin;
     private float red, green, blue;
     
     public StartScreen(Gui gui){
@@ -76,6 +76,39 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
+    }
+
+    public void quitGame() {
+        app.stop();
+    }
+
+    public void bind(Nifty nifty, Screen screen) {
+        this.nifty = nifty;
+        this.screen = screen;
+    }
+
+    public void onStartScreen() {}
+
+    public void onEndScreen() {}
+    
+    @Override
+    public void initialize(AppStateManager stateManager, Application app) 
+    {
+        this.app = app;
+        skinspage = 0;
+        eyespage = 0;
+        tshirtspage = 0; 
+        trouserspage = 0; 
+        shoespage = 0;
+        popupColor = null;
+        popupColor();
+        popupAnim = null;
+        popupAnim();
+        popupFin = null;
+        popupFin();
+    }
+    
+    public void popupColor(){
         new PopupBuilder("popupColor") {{
                 childLayoutCenter();
                 backgroundColor("#fffa");
@@ -167,30 +200,87 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         green = 0;
         blue = 0;
     }
-
-    public void quitGame() {
-        app.stop();
-    }
-
-    public void bind(Nifty nifty, Screen screen) {
-        this.nifty = nifty;
-        this.screen = screen;
-    }
-
-    public void onStartScreen() {}
-
-    public void onEndScreen() {}
     
-    @Override
-    public void initialize(AppStateManager stateManager, Application app) 
+    public void popupAnim()
     {
-        this.app = app;
-        skinspage = 0;
-        eyespage = 0;
-        tshirtspage = 0; 
-        trouserspage = 0; 
-        shoespage = 0;
-        popup = null;
+        new PopupBuilder("popupAnim") {{
+            childLayoutCenter();
+            backgroundColor("#fffa");
+            panel(new PanelBuilder("popupPanelAnim") {{
+                backgroundImage("Interface/CuadroAzul.png");
+                height("15%");
+                width("40%");
+                childLayoutVertical();
+                panel(new PanelBuilder("panelTexto") {{
+                    height("50%");
+                    childLayoutCenter();
+                    control(new LabelBuilder() {{
+                            alignCenter();
+                            text("Do you want to tweak the model, or go to the export stage?");
+                            width("100%");
+                    }});
+                }});
+                panel(new PanelBuilder("panelButton") {{
+                    childLayoutHorizontal();
+                    height("50%");
+                    panel(new PanelBuilder("panelTweak") {{
+                        height("90%");
+                        width("50%");
+                        valignCenter();
+                        childLayoutCenter();
+                        control(new ButtonBuilder("tweakButton", "Tweak model"));
+                    }});
+                    panel(new PanelBuilder("panelExport") {{
+                        height("90%");
+                        width("50%");
+                        valignCenter();
+                        childLayoutCenter();
+                        control(new ButtonBuilder("exportButton", "Export stage"));
+                    }});
+                }});
+            }});
+        }}.registerPopup(nifty);
+    }
+    
+    public void popupFin()
+    {
+	new PopupBuilder("popupFin") {{
+            childLayoutCenter();
+            backgroundColor("#fffa");
+            panel(new PanelBuilder("popupPanel") {{
+                backgroundImage("Interface/CuadroAzul.png");
+                height("15%");
+                width("25%");
+                childLayoutVertical();
+                panel(new PanelBuilder("panelTexto") {{
+                    height("50%");
+                    childLayoutCenter();
+                    control(new LabelBuilder() {{
+                            alignCenter();
+                            text("Do you want to generate a new model?");
+                            width("100%");
+                    }});
+                }});
+                panel(new PanelBuilder("panelButton") {{
+                        childLayoutHorizontal();
+                        height("50%");
+                        panel(new PanelBuilder("panelYes") {{
+                            height("90%");
+                            width("50%");
+                            valignCenter();
+                            childLayoutCenter();
+                            control(new ButtonBuilder("yesButton", "Yes"));
+                        }});
+                        panel(new PanelBuilder("panelNo") {{
+                            height("90%");
+                            width("50%");
+                            valignCenter();
+                            childLayoutCenter();
+                            control(new ButtonBuilder("noButton", "No"));
+                        }});
+                }});
+            }});
+        }}.registerPopup(nifty);
     }
     
     public void manSelected(String nextScreen) 
@@ -241,9 +331,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         selection = param;
         nifty.gotoScreen(param);
-        gui.setTypeObject(selection);
         if(param.equals("skinScreen")||param.equals("eyesScreen")||param.equals("tshirtScreen")||param.equals("trousersScreen")||param.equals("shoesScreen")){
             changeTexturePage("0");
+            gui.setTypeObject(selection);
         }
         if(param.equals("hairScreen")){
         }
@@ -374,27 +464,60 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void showWindowChangeColor() throws InterruptedException
     {
-        /*red = 0;
+        red = 0;
+        blue = 0;
         green = 0;
-        blue = 0;*/
-        if(popup == null){popup = nifty.createPopup("popupColor");}
-        nifty.showPopup(nifty.getCurrentScreen(), popup.getId(), null);
+        //Si lleva el if a los X cambios de color lanza excepcion
+        //if(popupColor == null){
+            popupColor = nifty.createPopup("popupColor");
+        //}
+        nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
     }
     
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
         gui.changeColor(red / 255.f, green / 255.f, blue / 255.f);
-        nifty.closePopup(popup.getId()); 
+        nifty.closePopup(popupColor.getId()); 
     }
     
     @NiftyEventSubscriber(id="cancelButton")
     public void onCancelButtonClicked(final String id, final ButtonClickedEvent event) {
-        nifty.closePopup(popup.getId()); 
+        nifty.closePopup(popupColor.getId()); 
+    }
+    
+    @NiftyEventSubscriber(id="tweakButton")
+    public void onTweakButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
+        nifty.closePopup(popupAnim.getId());
+        //Lanza excepcion al cambiar de pantalla
+        changeScreen("basicScreen");
+    }
+    
+    @NiftyEventSubscriber(id="exportButton")
+    public void onExportButtonClicked(final String id, final ButtonClickedEvent event) {
+        nifty.closePopup(popupAnim.getId());
+        //gui.screenshot();
+        if(popupFin == null){
+                popupFin = nifty.createPopup("popupFin");
+        }
+        nifty.showPopup(nifty.getCurrentScreen(), popupFin.getId(), null);
+    }
+    
+    @NiftyEventSubscriber(id="yesButton")
+    public void onYesButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
+        //Lanza excepcion cuando intenta cambiar de pantalla
+        nifty.gotoScreen("start");
+        nifty.closePopup(popupFin.getId()); 
+    }
+    
+    @NiftyEventSubscriber(id="noButton")
+    public void onNoButtonClicked(final String id, final ButtonClickedEvent event) {
+        //nifty.gotoScreen("finalScreen");
+        nifty.closePopup(popupFin.getId());
     }
     
     @NiftyEventSubscriber(id="sliderR")
     public void onRedSliderChange(final String id, final SliderChangedEvent event) {
-      if(popup != null){
+      if(popupColor != null){
         red = event.getValue();
         changeColor();
       }
@@ -402,7 +525,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
 
     @NiftyEventSubscriber(id="sliderG")
     public void onGreenSliderChange(final String id, final SliderChangedEvent event) {
-      if(popup != null){
+      if(popupColor != null){
         green = event.getValue();
         changeColor();
       }
@@ -410,14 +533,16 @@ public class StartScreen extends AbstractAppState implements ScreenController {
 
     @NiftyEventSubscriber(id="sliderB")
     public void onBlueSliderChange(final String id, final SliderChangedEvent event) {
-      if(popup != null){
+      if(popupColor != null){
         blue = event.getValue();
         changeColor();
       }
     }
   
     private void changeColor() {
-        popup.findElementByName("panelColor").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 1));
+        //if(popupColor != null){
+            popupColor.findElementByName("panelColor").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 1));
+        //}
     }
     
     @NiftyEventSubscriber(id="head")
@@ -464,8 +589,10 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void screenshot() 
     {
-        gui.screenshot();
-        gui.setBodyType(0);
+        //if(popupAnim == null){
+            popupAnim = nifty.createPopup("popupAnim");
+        //}
+        nifty.showPopup(nifty.getCurrentScreen(), popupAnim.getId(), null);
     }
     
     public void changeBodyType(String bodyType)
