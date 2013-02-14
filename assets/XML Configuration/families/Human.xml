@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<family name="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="family.xsd">
+	<properties description="" author="">
+		<stages></stages>
+	</properties>
+	<models>
+		<model nameModel="" pathIcon="" pathModel=""/>
+	</models>
+</family>
