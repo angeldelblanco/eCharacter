@@ -44,6 +44,7 @@ import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.PopupBuilder;
+import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.ButtonClickedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
@@ -69,6 +70,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private int skinspage, eyespage, tshirtspage, trouserspage, shoespage;
     private Element popupColor, popupAnim, popupFin;
     private float red, green, blue;
+    private String pantallas[];
+    private int index;
     
     public StartScreen(Gui gui){
         this.gui = gui;
@@ -94,6 +97,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     @Override
     public void initialize(AppStateManager stateManager, Application app) 
     {
+        selection = "";
         this.app = app;
         skinspage = 0;
         eyespage = 0;
@@ -106,6 +110,34 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         popupAnim();
         popupFin = null;
         popupFin();
+        index = -1;
+        pantallas = new String[4];
+        pantallas[0] = "skinScreen";
+        pantallas[1] = "tshirtScreen";
+        pantallas[2] = "trousersScreen";
+        pantallas[3] = "shoesScreen";
+        creaMenu();
+    }
+    
+    public void creaMenu(){
+        for(int i = 0; i<pantallas.length; i++){
+            final String pant = pantallas[i];
+            PanelBuilder menu;
+            menu = new PanelBuilder(){{
+                width(Float.toString(100/pantallas.length)+"%");
+                height("100%");
+                childLayoutCenter();
+                control(new LabelBuilder(){{
+                    alignCenter();
+                    text(pant);
+                    width("100%");
+                }});
+            }};
+            menu.id(pantallas[i]+"Menu");
+            menu.backgroundImage(getMenu("no"));
+            menu.interactOnClick("changeScreen("+pantallas[i]+")");
+            menu.build(nifty, nifty.getScreen("skinScreen"), nifty.getScreen("skinScreen").findElementByName("panel_options"));
+        }
     }
     
     public void popupColor(){
@@ -312,27 +344,72 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void initIcons(){
-        String [] screens = {"skinScreen","eyesScreen","tshirtScreen","trousersScreen","shoesScreen"};
-        for(String auxScreen : screens){
+        for(String auxScreen : pantallas){
             for(int i=0; i<gui.length(auxScreen); i++){
                 ImageBuilder image = new ImageBuilder(){{
                     width("0%");
                     height("0%");
                 }};
-                image.id("i"+Integer.toString(i));
+                image.id(auxScreen+"i"+Integer.toString(i));
                 image.filename(gui.path(auxScreen,i));
                 image.interactOnClick("changeTexture("+Integer.toString(i)+")");
-                image.build(nifty, nifty.getScreen(auxScreen), nifty.getScreen(auxScreen).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
+                image.build(nifty, nifty.getScreen("skinScreen"), nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
             }
         }
     }
     
     public void changeScreen(String param)
     {
+        if(selection.equals("bonesScreen")){
+            nifty.gotoScreen(param);
+            index++;
+            selection = pantallas[index];
+            cargaScreen("","skinScreen");
+            gui.setTypeObject(selection);
+        }
+        if(selection.equals("basicScreen")){
+            nifty.gotoScreen(param);
+            index++;
+            selection = pantallas[index];
+            cargaScreen("","skinScreen");
+            gui.setTypeObject(selection);
+        }
+        String antiguo = selection;
         selection = param;
-        nifty.gotoScreen(param);
-        if(param.equals("skinScreen")||param.equals("eyesScreen")||param.equals("tshirtScreen")||param.equals("trousersScreen")||param.equals("shoesScreen")){
-            changeTexturePage("0");
+        if(param.equals("+")){
+            index++;
+            selection = pantallas[index];
+            cargaScreen("",antiguo);
+            gui.setTypeObject(selection);
+        }
+        if(param.equals("-")){
+            index--;
+            selection = pantallas[index];
+            cargaScreen("",antiguo);
+            gui.setTypeObject(selection);
+        }
+        //nifty.gotoScreen(param);
+        if(param.equals("skinScreen")){
+            index = 0;
+            cargaScreen("",antiguo);
+            gui.setTypeObject(selection);
+        }
+        if(param.equals("eyesScreen")){
+            
+        }
+        if(param.equals("tshirtScreen")){
+            index = 1;
+            cargaScreen("",antiguo);
+            gui.setTypeObject(selection);
+        }
+        if(param.equals("trousersScreen")){
+            index = 2;
+            cargaScreen("",antiguo);
+            gui.setTypeObject(selection);
+        }
+        if(param.equals("shoesScreen")){
+            index = 3;
+            cargaScreen("",antiguo);
             gui.setTypeObject(selection);
         }
         if(param.equals("hairScreen")){
@@ -340,42 +417,64 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(param.equals("accesoriesScreen")){
         }
         if(param.equals("bonesScreen")){
+            nifty.gotoScreen(param);
         }
         if(param.equals("basicScreen")){
+            nifty.gotoScreen(param);
         }
     }
     
-    public void changeTexturePage(String steep){
-            for(int i=getPage()*TEXTURES_PAGE; i<gui.length(selection); i++){
+    public void cargaScreen(String tipo, String param){
+        //cargaMenu();
+        escondeTexturePage(param);
+        changeTexturePage("0");
+    }
+    
+    public void cargaMenu(){
+        String color = "yes";
+        for(String auxScreen : pantallas){
+            Element panel = nifty.getScreen("skinScreen").findElementByName(auxScreen+"Menu");
+            if(auxScreen.equals(selection)){
+                color = "no";
+            }
+        }
+    }
+    
+    public void escondeTexturePage(String param){
+            for(int i=getPage()*TEXTURES_PAGE; i<gui.length(param); i++){
                 if(i<((getPage()+1)*TEXTURES_PAGE)){
-                    nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setVisible(false);
-                    nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setHeight(0);
-                    nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setWidth(0);
+                    nifty.getScreen("skinScreen").findElementByName(param+"i"+Integer.toString(i)).setVisible(false);
+                    nifty.getScreen("skinScreen").findElementByName(param+"i"+Integer.toString(i)).setHeight(0);
+                    nifty.getScreen("skinScreen").findElementByName(param+"i"+Integer.toString(i)).setWidth(0);
                 }
             }
+    }
+    
+    public void changeTexturePage(String steep){
+            escondeTexturePage(selection);
             changePage(steep);
             for(int i=getPage()*TEXTURES_PAGE; i<gui.length(selection); i++){
                 if(i<((getPage()+1)*TEXTURES_PAGE)){
-                    nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setVisible(true);
-                    nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setHeight(nifty.getScreen(selection).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
-                    nifty.getScreen(selection).findElementByName("i"+Integer.toString(i)).setWidth(nifty.getScreen(selection).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
+                    nifty.getScreen("skinScreen").findElementByName(selection+"i"+Integer.toString(i)).setVisible(true);
+                    nifty.getScreen("skinScreen").findElementByName(selection+"i"+Integer.toString(i)).setHeight(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
+                    nifty.getScreen("skinScreen").findElementByName(selection+"i"+Integer.toString(i)).setWidth(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
                 }
             }
             if(getPage() > 0){
-                nifty.getScreen(selection).findElementByName("leftT").enable();
-                nifty.getScreen(selection).findElementByName("leftT").setVisible(true);
+                nifty.getScreen("skinScreen").findElementByName("leftT").enable();
+                nifty.getScreen("skinScreen").findElementByName("leftT").setVisible(true);
             }
             else{
-                nifty.getScreen(selection).findElementByName("leftT").disable();
-                nifty.getScreen(selection).findElementByName("leftT").setVisible(false);
+                nifty.getScreen("skinScreen").findElementByName("leftT").disable();
+                nifty.getScreen("skinScreen").findElementByName("leftT").setVisible(false);
             }
             if((((double)gui.length(selection)/(double)TEXTURES_PAGE) - getPage()) > 1){
-                nifty.getScreen(selection).findElementByName("rightT").enable();
-                nifty.getScreen(selection).findElementByName("rightT").setVisible(true);
+                nifty.getScreen("skinScreen").findElementByName("rightT").enable();
+                nifty.getScreen("skinScreen").findElementByName("rightT").setVisible(true);
             }
             else{
-                nifty.getScreen(selection).findElementByName("rightT").disable();
-                nifty.getScreen(selection).findElementByName("rightT").setVisible(false);
+                nifty.getScreen("skinScreen").findElementByName("rightT").disable();
+                nifty.getScreen("skinScreen").findElementByName("rightT").setVisible(false);
             }
     }
     
