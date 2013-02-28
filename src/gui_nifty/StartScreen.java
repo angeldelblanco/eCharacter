@@ -71,6 +71,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private Element popupColor, popupAnim, popupFin;
     private float red, green, blue;
     private String pantallas[];
+    private String screenType[];
     private int index;
     
     public StartScreen(Gui gui){
@@ -110,33 +111,39 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         popupAnim();
         popupFin = null;
         popupFin();
-        index = -1;
-        pantallas = new String[4];
-        pantallas[0] = "skinScreen";
-        pantallas[1] = "tshirtScreen";
-        pantallas[2] = "trousersScreen";
-        pantallas[3] = "shoesScreen";
+        index = 0;
+        pantallas = new String[5];
+        screenType = new String[5];
+        pantallas[0] = "bones"; screenType[0] = "basicScreen";
+        pantallas[1] = "skinScreen"; screenType[1] = "singleTextureScreen";
+        pantallas[2] = "tshirtScreen"; screenType[2] = "singleTextureScreen";
+        pantallas[3] = "trousersScreen"; screenType[3] = "singleTextureScreen";
+        pantallas[4] = "shoesScreen"; screenType[4] = "singleTextureScreen";
         creaMenu();
     }
     
     public void creaMenu(){
-        for(int i = 0; i<pantallas.length; i++){
-            final String pant = pantallas[i];
-            PanelBuilder menu;
-            menu = new PanelBuilder(){{
-                width(Float.toString(100/pantallas.length)+"%");
-                height("100%");
-                childLayoutCenter();
-                control(new LabelBuilder(){{
-                    alignCenter();
-                    text(pant);
-                    width("100%");
-                }});
-            }};
-            menu.id(pantallas[i]+"Menu");
-            menu.backgroundImage(getMenu("no"));
-            menu.interactOnClick("changeScreen("+pantallas[i]+")");
-            menu.build(nifty, nifty.getScreen("skinScreen"), nifty.getScreen("skinScreen").findElementByName("panel_options"));
+        String types[] = {"singleTextureScreen","basicScreen"};
+        for(String type : types){
+            for(int i = 0; i<pantallas.length; i++){
+                final String pant = pantallas[i];
+                PanelBuilder menu;
+                menu = new PanelBuilder(){{
+                    width(Float.toString(100/pantallas.length)+"%");
+                    height("100%");
+                    childLayoutCenter();
+                    text(new TextBuilder(){{
+                        color(Color.WHITE);
+                        font("Interface/Fonts/Default.fnt");
+                        text(pant);
+                        width("100%");
+                    }});
+                }};
+                menu.id(pantallas[i]+"Menu");
+                menu.backgroundImage(getMenu("no"));
+                menu.interactOnClick("changeScreen("+pantallas[i]+")");
+                menu.build(nifty, nifty.getScreen(type), nifty.getScreen(type).findElementByName("panel_options"));
+            }
         }
     }
     
@@ -344,137 +351,117 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void initIcons(){
-        for(String auxScreen : pantallas){
-            for(int i=0; i<gui.length(auxScreen); i++){
-                ImageBuilder image = new ImageBuilder(){{
-                    width("0%");
-                    height("0%");
-                }};
-                image.id(auxScreen+"i"+Integer.toString(i));
-                image.filename(gui.path(auxScreen,i));
-                image.interactOnClick("changeTexture("+Integer.toString(i)+")");
-                image.build(nifty, nifty.getScreen("skinScreen"), nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
+        for(int j = 0; j < pantallas.length; j++){
+            if(screenType[j].equals("singleTextureScreen")){
+                for(int i=0; i<gui.length(pantallas[j]); i++){
+                    ImageBuilder image = new ImageBuilder(){{
+                        width("0%");
+                        height("0%");
+                    }};
+                    image.id(pantallas[j]+"i"+Integer.toString(i));
+                    image.filename(gui.path(pantallas[j],i));
+                    image.interactOnClick("changeTexture("+Integer.toString(i)+")");
+                    image.build(nifty, nifty.getScreen("singleTextureScreen"), nifty.getScreen("singleTextureScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
+                }
             }
         }
     }
     
     public void changeScreen(String param)
     {
-        if(selection.equals("bonesScreen")){
-            nifty.gotoScreen(param);
-            index++;
-            selection = pantallas[index];
-            cargaScreen("","skinScreen");
-            gui.setTypeObject(selection);
-        }
-        if(selection.equals("basicScreen")){
-            nifty.gotoScreen(param);
-            index++;
-            selection = pantallas[index];
-            cargaScreen("","skinScreen");
-            gui.setTypeObject(selection);
-        }
-        String antiguo = selection;
+        String old = selection;
+        int oldIndex = index;
         selection = param;
-        if(param.equals("+")){
-            index++;
-            selection = pantallas[index];
-            cargaScreen("",antiguo);
-            gui.setTypeObject(selection);
-        }
-        if(param.equals("-")){
-            index--;
-            selection = pantallas[index];
-            cargaScreen("",antiguo);
-            gui.setTypeObject(selection);
-        }
-        //nifty.gotoScreen(param);
-        if(param.equals("skinScreen")){
-            index = 0;
-            cargaScreen("",antiguo);
-            gui.setTypeObject(selection);
-        }
-        if(param.equals("eyesScreen")){
-            
-        }
-        if(param.equals("tshirtScreen")){
-            index = 1;
-            cargaScreen("",antiguo);
-            gui.setTypeObject(selection);
-        }
-        if(param.equals("trousersScreen")){
-            index = 2;
-            cargaScreen("",antiguo);
-            gui.setTypeObject(selection);
-        }
-        if(param.equals("shoesScreen")){
-            index = 3;
-            cargaScreen("",antiguo);
-            gui.setTypeObject(selection);
-        }
-        if(param.equals("hairScreen")){
-        }
-        if(param.equals("accesoriesScreen")){
-        }
         if(param.equals("bonesScreen")){
             nifty.gotoScreen(param);
+            selection = pantallas[index];
+            cargaMenu(screenType[index]);
+            return;
         }
         if(param.equals("basicScreen")){
             nifty.gotoScreen(param);
+            selection = pantallas[index];
+            cargaMenu(screenType[index]);
+            return;
         }
-    }
-    
-    public void cargaScreen(String tipo, String param){
-        //cargaMenu();
-        escondeTexturePage(param);
-        changeTexturePage("0");
-    }
-    
-    public void cargaMenu(){
-        String color = "yes";
-        for(String auxScreen : pantallas){
-            Element panel = nifty.getScreen("skinScreen").findElementByName(auxScreen+"Menu");
-            if(auxScreen.equals(selection)){
-                color = "no";
-            }
-        }
-    }
-    
-    public void escondeTexturePage(String param){
-            for(int i=getPage()*TEXTURES_PAGE; i<gui.length(param); i++){
-                if(i<((getPage()+1)*TEXTURES_PAGE)){
-                    nifty.getScreen("skinScreen").findElementByName(param+"i"+Integer.toString(i)).setVisible(false);
-                    nifty.getScreen("skinScreen").findElementByName(param+"i"+Integer.toString(i)).setHeight(0);
-                    nifty.getScreen("skinScreen").findElementByName(param+"i"+Integer.toString(i)).setWidth(0);
+        if(param.equals("+")){
+            index++;
+            selection = pantallas[index];
+            
+        }else{
+            if(param.equals("-")){
+                index--;
+                selection = pantallas[index];
+            }else{
+                for(int i = 0; i < pantallas.length; i++){
+                    if(selection.equals(pantallas[i])){
+                        index = i;
+                    }
                 }
             }
+        }
+        if(!screenType[oldIndex].equals(screenType[index])){
+            nifty.gotoScreen(screenType[index]);
+        }
+        cargaScreen(screenType[index],screenType[oldIndex],old);
+        gui.setTypeObject(selection);
+    }
+    
+    public void cargaScreen(String type, String oldType, String param){
+        cargaMenu(type);
+        if(type.equals("singleTextureScreen")){
+            escondeTexturePage(oldType, param);
+            changeTexturePage("0");
+        }
+    }
+    
+    public void cargaMenu(String type){
+        String color = "#FF0000AA";
+        for(String auxScreen : pantallas){
+            nifty.getScreen(type).findElementByName(auxScreen+"Menu").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(color));
+            if(auxScreen.equals(selection)){
+                color = "#FF000000";
+            }
+        }
+    }
+    
+    public void escondeTexturePage(String type, String param){
+        if(type.equals("singleTextureScreen")){
+            for(int i=getPage()*TEXTURES_PAGE; i<gui.length(param); i++){
+                if(i<((getPage()+1)*TEXTURES_PAGE)){
+                    nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setVisible(false);
+                    nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setHeight(0);
+                    nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setWidth(0);
+                }
+            }
+        }
     }
     
     public void changeTexturePage(String steep){
-            escondeTexturePage(selection);
+            escondeTexturePage("singleTextureScreen",selection);
             changePage(steep);
             for(int i=getPage()*TEXTURES_PAGE; i<gui.length(selection); i++){
                 if(i<((getPage()+1)*TEXTURES_PAGE)){
-                    nifty.getScreen("skinScreen").findElementByName(selection+"i"+Integer.toString(i)).setVisible(true);
-                    nifty.getScreen("skinScreen").findElementByName(selection+"i"+Integer.toString(i)).setHeight(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
-                    nifty.getScreen("skinScreen").findElementByName(selection+"i"+Integer.toString(i)).setWidth(nifty.getScreen("skinScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
+                    nifty.getScreen("singleTextureScreen").findElementByName(selection+"i"+Integer.toString(i)).setVisible(true);
+                    nifty.getScreen("singleTextureScreen").findElementByName(selection+"i"+Integer.toString(i)).setHeight(nifty.getScreen("singleTextureScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
+                    nifty.getScreen("singleTextureScreen").findElementByName(selection+"i"+Integer.toString(i)).setWidth(nifty.getScreen("singleTextureScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
                 }
             }
             if(getPage() > 0){
-                nifty.getScreen("skinScreen").findElementByName("leftT").enable();
-                nifty.getScreen("skinScreen").findElementByName("leftT").setVisible(true);
+                nifty.getScreen("singleTextureScreen").findElementByName("leftT").enable();
+                nifty.getScreen("singleTextureScreen").findElementByName("leftT").setVisible(true);
             }
             else{
-                nifty.getScreen("skinScreen").findElementByName("leftT").disable();
-                nifty.getScreen("skinScreen").findElementByName("leftT").setVisible(false);
+                nifty.getScreen("singleTextureScreen").findElementByName("leftT").disable();
+                nifty.getScreen("singleTextureScreen").findElementByName("leftT").setVisible(false);
             }
             if((((double)gui.length(selection)/(double)TEXTURES_PAGE) - getPage()) > 1){
-                nifty.getScreen("skinScreen").findElementByName("rightT").enable();
-                nifty.getScreen("skinScreen").findElementByName("rightT").setVisible(true);
+                nifty.getScreen("singleTextureScreen").findElementByName("rightT").enable();
+                nifty.getScreen("singleTextureScreen").findElementByName("rightT").setVisible(true);
             }
             else{
-                nifty.getScreen("skinScreen").findElementByName("rightT").disable();
-                nifty.getScreen("skinScreen").findElementByName("rightT").setVisible(false);
+                nifty.getScreen("singleTextureScreen").findElementByName("rightT").disable();
+                nifty.getScreen("singleTextureScreen").findElementByName("rightT").setVisible(false);
             }
     }
     
