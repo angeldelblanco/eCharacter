@@ -40,12 +40,15 @@ import Model.Model;
 import XML.XMLReader;
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
+import com.jme3.animation.SkeletonControl;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.scene.Spatial;
 import com.jme3.system.AppSettings;
 import de.lessvoid.nifty.Nifty;
 import java.awt.Color;
@@ -343,8 +346,11 @@ public class Gui extends SimpleApplication{
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));
         model.setModel(assetManager.loadModel(model.getModelPath()), mat);
+        model.setHair(assetManager.loadModel("Models/eAdventure/HairBoy/pasted__pasted__pasted__polySurfaceShape2.j3o"));
+        //model.setHair("assets/Models/eAdventure/HairBoy/pasted__pasted__pasted__polySurfaceShape2.mesh.xml", "assets/Models/eAdventure/HairBoy/pasted__pasted__pasted__polySurfaceShape2.material");
         rootNode.attachChild(model.getModel());
-                
+        model.setPositionModel();
+        
         //Borrar la imagen
         Path file = Paths.get("assets/Textures/OriginalTexture.png");
         try {

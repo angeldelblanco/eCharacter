@@ -40,8 +40,10 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.animation.Bone;
 import com.jme3.animation.LoopMode;
+import com.jme3.animation.SkeletonControl;
 import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.material.Material;
+import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
@@ -369,21 +371,40 @@ public class Model{
         this.model = model;
         this.mat = mat;
         this.model.setMaterial(mat);
-        this.model.rotate(1.5f, 0.0f, 0.0f);
-        this.model.setLocalTranslation(0.0f, -3.70f, 0.0f);
         this.control = model.getControl(AnimControl.class);
         this.channel = this.control.createChannel();
         Iterator<String> it = this.control.getAnimationNames().iterator();
         this.channel.setAnim(it.next());
-        this.channel.setLoopMode(LoopMode.Loop);
+        this.channel.setLoopMode(LoopMode.Loop);       
+    }
+    
+    public void setPositionModel()
+    {
+        this.model.rotate(FastMath.DEG_TO_RAD * 90,0.0f,0.0f);
+        this.model.move(0.0f,-3.0f,0.0f);
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         if (this.age == Age.Young){
             //Scale the model
-            model.scale(0.65f, 0.65f, 0.65f);
+            this.model.scale(0.65f, 0.65f, 0.65f);
             this.vectorScaleBase.set(0.65f,0.65f,0.65f);
         }
     }
-
+    
+    public void setHair(Spatial hairMesh)
+    {
+           //convertToJ3o(pathMesh,pathMaterial);           
+           SkeletonControl control = this.model.getControl(SkeletonControl.class);
+           control.getAttachmentsNode("Cabeza").attachChild(hairMesh);           
+           hairMesh.rotate(FastMath.DEG_TO_RAD * 90,0.0f,0.0f);
+           hairMesh.center(); 
+           hairMesh.move(0.0f,0.3f,0.0f);
+    }
+    
+    private void convertToJ3o(String pathMesh,String pathMaterial)
+    {
+       //Para convertir dinamicamente .material y .mesh.xml a .j3o 
+    }
+    
     public Material getMaterial() 
     {
         return mat;
