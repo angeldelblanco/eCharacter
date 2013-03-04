@@ -5,21 +5,59 @@
 			<xs:sequence>
 				<xs:element name="textures">
 					<xs:complexType>
+						<xs:choice minOccurs="1" maxOccurs="unbounded">
+							<xs:element name="base-shadowTexture" type="base-shadowTextureType"/>
+							<xs:element name="simpleTexture" type="simpleTextureType"/>
+							<xs:element name="colorTexture" type="colorTextureType"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="meshes">
+					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="texture" minOccurs="1" maxOccurs="unbounded">
-								<xs:complexType>
-									<xs:attribute name="path" type="xs:string" use="required"/>
-									<xs:attribute name="pathIcon" type="xs:string" use="required"/>
-									<xs:attribute name="pathShadow" type="xs:string" use="optional"/>
-									<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
-									<xs:attribute name="priority" type="xs:integer" use="required"/>
-								</xs:complexType>
-							</xs:element>
+							<xs:element name="mesh" type="meshType" minOccurs="0" maxOccurs="unbounded"/>
 						</xs:sequence>
 					</xs:complexType>
-				</xs:element>		
+				</xs:element>
 			</xs:sequence>
-			<xs:attribute name="pathModel" type="xs:string" use="required"/>
+			<xs:attribute name="modelPath" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
+	
+	<xs:complexType name="base-shadowTextureType">
+		<xs:attribute name="path" type="xs:string" use="required"/>
+		<xs:attribute name="iconPath" type="xs:string" use="required"/>
+		<xs:attribute name="shadowPath" type="xs:string" use="required"/>
+		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="layer" type="xs:integer" use="required"/>
+	</xs:complexType>
+	
+	<xs:complexType name="simpleTextureType">
+		<xs:attribute name="path" type="xs:string" use="required"/>
+		<xs:attribute name="iconPath" type="xs:string" use="required"/>
+		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="layer" type="xs:integer" use="required"/>
+	</xs:complexType>
+	
+	<xs:complexType name="colorTextureType">
+		<xs:sequence>
+			<xs:element name="texture" minOccurs="1" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="path" type="xs:string" use="required"/>
+					<xs:attribute name="iconPath" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="defaultPath" type="xs:string" use="required"/>
+		<xs:attribute name="iconPath" type="xs:string" use="required"/>
+		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="layer" type="xs:integer" use="required"/>
+	</xs:complexType>
+	
+	<xs:complexType name="meshType">
+		<xs:attribute name="path" type="xs:string" use="required"/>
+		<xs:attribute name="iconPath" type="xs:string" use="required"/>
+		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="associatedBone" type="xs:string" use="required"/>
+	</xs:complexType>
 </xs:schema>

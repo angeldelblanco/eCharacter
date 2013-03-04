@@ -3,57 +3,67 @@
 	<xs:element name="family">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="properties">
+				<xs:element name="metadata">
 					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="stages">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="stageTexture" type="typeStageTexture" minOccurs="0" maxOccurs="10"/>
-										<xs:element name="stageScale" type="typeStageScale" minOccurs="0" maxOccurs="10"/>
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="required"/>
 						<xs:attribute name="description" type="xs:string" use="required"/>
 						<xs:attribute name="author" type="xs:string" use="required"/>
 						<xs:attribute name="URL" type="xs:string" use="optional"/>
 					</xs:complexType>
 				</xs:element>
+				<xs:element name="properties">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="stages">
+								<xs:complexType>
+									<xs:choice minOccurs="1" maxOccurs="10">
+										<xs:element name="meshStage" type="meshStageType"/>
+										<xs:element name="textureStage" type="textureStageType"/>
+										<xs:element name="scaleStage" type="scaleStageType"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
 				<xs:element name="models">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="model" type="typeModel" minOccurs="1" maxOccurs="unbounded"/>
+							<xs:element name="model" type="modelType" minOccurs="1" maxOccurs="unbounded"/>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute name="nameFamily" type="xs:string" use="required"/>
-		</xs:complexType>	
+		</xs:complexType>
 	</xs:element>
-	<xs:complexType name="typeStageTexture">
-		<xs:attribute name="nameStage" type="xs:string" use="required"/>
+	<xs:complexType name="meshStageType">
+		<xs:attribute name="stageName" type="xs:string" use="required"/>
+		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="meshChangeControl" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="textureStageType">
+		<xs:attribute name="stageName" type="xs:string" use="required"/>
 		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
 		<xs:attribute name="textureChangeControl" type="xs:boolean" use="required"/>
-		<xs:attribute name="colorChangeControl" type="xs:boolean" use="required"/>
 	</xs:complexType>
-	<xs:complexType name="typeStageScale">
+	<xs:complexType name="scaleStageType">
 		<xs:sequence>
 			<xs:element name="boneController" minOccurs="1" maxOccurs="10">
 				<xs:complexType>
 					<xs:attribute name="labelController" type="xs:string" use="required"/>
 					<xs:attribute name="boneName" type="xs:string" use="required"/>
+					<xs:attribute name="defaultValue" type="xs:integer" use="required"/>
 					<xs:attribute name="minValue" type="xs:integer" use="required"/>
 					<xs:attribute name="maxValue" type="xs:integer" use="required"/>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
-		<xs:attribute name="nameStage" type="xs:string" use="required"/>
+		<xs:attribute name="stageName" type="xs:string" use="required"/>
 		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
 	</xs:complexType>
-	<xs:complexType name="typeModel">
+	<xs:complexType name="modelType">
 		<xs:attribute name="nameModel" type="xs:string" use="required"/>
-		<xs:attribute name="pathIcon" type="xs:string" use="required"/>
-		<xs:attribute name="pathModel" type="xs:string" use="required"/>
+		<xs:attribute name="iconPath" type="xs:string" use="required"/>
+		<xs:attribute name="modelPath" type="xs:string" use="required"/>
 	</xs:complexType>
-</xs:schema>			
+</xs:schema>
