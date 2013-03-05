@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="model.xsd">
-	<mesh path="">
+	<mesh path="Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml">
 		<textures>
-			<base-shadowTexture path="" iconPath="" screenOrder="" layer=""/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/CamisetaSinMangasSolidoGirl.png"  iconPath="Interface/Icons/IconoCamisetaSinMangasGirl.png"   shadowPath="assets/Textures/Textures Girl/CamisetaSinMangasSombrasGirl.png" screenOrder="3" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/CamisetaSolidoGirl.png"  iconPath="Interface/Icons/IconoCamisetaGirl.png"   shadowPath="assets/Textures/Textures Girl/CamisetaSombrasGirl.png" screenOrder="3" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/CamisetaTirantesSolidoGirl.png"  iconPath="Interface/Icons/IconoCamisetaTirantesSolidoGirl.png"   shadowPath="assets/Textures/Textures Girl/CamisetaTirantesSombrasGirl.png" screenOrder="3" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/TopSolidoGirl.png"  iconPath="Interface/Icons/IconoTopSolidoGirl.png"   shadowPath="assets/Textures/Textures Girl/TopSombrasGirl.png" screenOrder="3" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/PantalonCortoSolidoGirl.png"  iconPath="Interface/Icons/IconoPantalonCortoGirl.png"   shadowPath="assets/Textures/Textures Girl/PantalonCortoSombrasGirl.png" screenOrder="4" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/PantalonLargoSolidoGirl.png"  iconPath="Interface/Icons/IconoPantalonLargoGirl.png"   shadowPath="assets/Textures/Textures Girl/PantalonLargoSombrasGirl.png" screenOrder="4" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/ZapatosSolidoGirl.png"  iconPath="Interface/Icons/IconoZapatosGirl.png"   shadowPath="assets/Textures/Textures Girl/ZapatosSombrasGirl.png" screenOrder="5" layer="1"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielAmarillaClaraGirl.png" iconPath="Interface/Icons/IconoPielAmarillaClaraGirl.png" screenOrder="2" layer="0"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielAmarillaOscuraGirl.png" iconPath="Interface/Icons/IconoPielAmarillaOscuraGirl.png" screenOrder="2" layer="0"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielBlancaGirl.png" iconPath="Interface/Icons/IconoPielBlancaGirl.png" screenOrder="2" layer="0"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielNegraGirl.png" iconPath="Interface/Icons/IconoPielNegraGirl.png" screenOrder="2" layer="0"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielRojaGirl.png" iconPath="Interface/Icons/IconoPielRojaGirl.png" screenOrder="2" layer="0"/>
 		</textures>
 	</mesh>
 </model>

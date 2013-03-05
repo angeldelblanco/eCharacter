@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="model.xsd">
-	<mesh path="">
+	<mesh path="Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml">
 		<textures>
-			<base-shadowTexture path="" iconPath="" screenOrder="" layer=""/>
+			<base-shadowTexture path="assets/Textures/Textures Boy/CamisaCortaSolidoBoy.png"  iconPath="Interface/Icons/IconoCamisaCortaBoy.png"   shadowPath="assets/Textures/Textures Boy/CamisaCortaSombrasBoy.png" screenOrder="3" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Boy/CamisaLargaSolidoBoy.png"  iconPath="Interface/Icons/IconoCamisaLargaBoy.png"   shadowPath="assets/Textures/Textures Boy/CamisaLargaSombrasBoy.png" screenOrder="3" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Boy/CamisetaCortaSolidoBoy.png"  iconPath="Interface/Icons/IconoCamisetaCortaBoy.png"   shadowPath="assets/Textures/Textures Boy/CamisetaCortaSombrasBoy.png" screenOrder="3" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Boy/CamisetaLargaSolidoBoy.png"  iconPath="Interface/Icons/IconoCamisetaLargaSolidoBoy.png"   shadowPath="assets/Textures/Textures Boy/CamisetaLargaSombrasBoy.png" screenOrder="3" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Boy/CamisetaTirantesBoy.png"  iconPath="Interface/Icons/IconoCamisetaTirantesBoy.png"   shadowPath="assets/Textures/Textures Boy/CamisetaTirantesSombrasBoy.png" screenOrder="3" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Boy/PantalonCortoSolidoBoy.png"  iconPath="Interface/Icons/IconoPantalonCortoBoy.png"   shadowPath="assets/Textures/Textures Boy/PantalonCortoSombrasBoy.png" screenOrder="4" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Boy/PantalonLargoSolidoBoy.png"  iconPath="Interface/Icons/IconoPantalonLargoBoy.png"   shadowPath="assets/Textures/Textures Boy/PantalonLargoSombrasBoy.png" screenOrder="4" layer="1"/>
+			<base-shadowTexture path="assets/Textures/Textures Boy/ZapatosSolidoBoy.png"  iconPath="Interface/Icons/IconoZapatosBoy.png"   shadowPath="assets/Textures/Textures Boy/ZapatosSombrasBoy.png" screenOrder="5" layer="1"/>
+			<simpleTexture path="assets/Textures/Textures Boy/PielBlancaBoy.png" iconPath="Interface/Icons/IconoPielBlancaBoy.png" screenOrder="2" layer="0"/>
+			<simpleTexture path="assets/Textures/Textures Boy/PielNegraBoy.png" iconPath="Interface/Icons/IconoPielNegraBoy.png" screenOrder="2" layer="0"/>
+			<simpleTexture path="assets/Textures/Textures Boy/PielAmarillaBoy.png" iconPath="Interface/Icons/IconoPielAmarillaBoy.png" screenOrder="2" layer="0"/>
+			<simpleTexture path="assets/Textures/Textures Boy/PielRojaBoy.png" iconPath="Interface/Icons/IconoPielRojaBoy.png" screenOrder="2" layer="0"/>
 		</textures>
+	</mesh>
+	<mesh path="Models/eAdventure/HairBoy/pasted__pasted__pasted__polySurfaceShape2.j3o">
+		<changeable iconPath="Interface/Icons/IconoPeloChicoAfro.jpg" screenOrder="6" associatedBone="Cabeza">
+			<transformations type="rotación" valueX="90" valueY="0.0" valueZ="0.0"/>
+			<transformations type="traslación" valueX="0.0" valueY="0.3" valueZ="0.0"/>
+		</changeable>
 	</mesh>
 </model>

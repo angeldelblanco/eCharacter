@@ -1,18 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <family xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="family.xsd">
-	<metadata name="" description="" author=""/>
+	<metadata name="Human" description="Esta familia está compuesta por 2 humanos: un chico y una chica." author="Alex, David y Sergio."/>
 	<properties>
 		<stages>
-			<multiStage stageName="" screenOrder="">
-				<meshStage subStageName="" subScreenOrder="" meshChangeControl="" multiselection=""/>
+			<multiStage stageName="Camiseta" screenOrder="3">
+				<textureStage subStageName="Camisetas" subScreenOrder="1" textureChangeControl="true" multiselection="false"/>
+			</multiStage>
+			<multiStage stageName="Pantalón" screenOrder="4">
+				<textureStage subStageName="Pantalones" subScreenOrder="1" textureChangeControl="true" multiselection="false"/>
+			</multiStage>
+			<multiStage stageName="Piel" screenOrder="2">
+				<textureStage subStageName="Pieles" subScreenOrder="1" textureChangeControl="true" multiselection="false"/>
+			</multiStage>
+			<multiStage stageName="Zapatos" screenOrder="5">
+				<textureStage subStageName="Zapatos" subScreenOrder="1" textureChangeControl="true" multiselection="false"/>
+			</multiStage>
+			<multiStage stageName="Escalado" screenOrder="1">
+				<scaleStage subStageName="Huesos" subScreenOrder="1">
+					<boneController labelController="Cabeza" boneName="Cabeza" defaultValue="10" minValue="1" maxValue="30"/>
+					<boneController labelController="Torax" boneName="Torax" defaultValue="10" minValue="1" maxValue="30"/>
+					<boneController labelController="Muñeca Izquierda" boneName="MuniecaIz" defaultValue="10" minValue="1" maxValue="30"/>
+					<boneController labelController="Muñeca Derecha" boneName="MuniecaDer" defaultValue="10" minValue="1" maxValue="30"/>
+					<boneController labelController="Tobillo Izquierdo" boneName="TobilloIz" defaultValue="10" minValue="1" maxValue="30"/>
+					<boneController labelController="Tobillo Derecho" boneName="TobilloDer" defaultValue="10" minValue="1" maxValue="30"/>
+					<boneController labelController="Fémur Izquierdo" boneName="FemurIz" defaultValue="10" minValue="1" maxValue="30"/>
+					<boneController labelController="Fémur Derecha" boneName="FemurDer" defaultValue="10" minValue="1" maxValue="30"/>
+					<boneController labelController="Clavícula Izquierda" boneName="ClaviculaIz" defaultValue="10" minValue="1" maxValue="30"/>
+					<boneController labelController="Clavícula Derecho" boneName="ClaviculaDer" defaultValue="10" minValue="1" maxValue="30"/>
+				</scaleStage>
+			</multiStage>
+			<multiStage stageName="Pelo" screenOrder="6">
+				<meshStage subStageName="Pelos" subScreenOrder="1" meshChangeControl="true" multiselection="false"/>
 			</multiStage>
 			<animationStage>
-				<fps qualityName="" valueFPS=""/>
-				<camera cameraName="" cameraValue=""/>
+				<fps qualityName="High" valueFPS="2"/>
+				<camera cameraName="Delante" cameraValue="5"/>
 			</animationStage>
 		</stages>
 	</properties>
 	<models>
-		<model nameModel="" iconPath="" modelPath=""/>
+		<model nameModel="Chico" iconPath="assets/Interface/man.png" modelPath="assets/XML Configuration/models/Man.xml"/>
+		<model nameModel="Chica" iconPath="assets/Interface/woman.png" modelPath="assets/XML Configuration/models/Woman.xml"/>
 	</models>
 </family>
