@@ -2,7 +2,15 @@
 <family xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="family.xsd">
 	<metadata name="" description="" author=""/>
 	<properties>
-		<stages/>
+		<stages>
+			<multiStage stageName="" screenOrder="">
+				<meshStage subStageName="" subScreenOrder="" meshChangeControl="" multiselection=""/>
+			</multiStage>
+			<animationStage>
+				<fps qualityName="" valueFPS=""/>
+				<camera cameraName="" cameraValue=""/>
+			</animationStage>
+		</stages>
 	</properties>
 	<models>
 		<model nameModel="" iconPath="" modelPath=""/>

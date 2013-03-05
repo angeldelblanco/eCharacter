@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model modelPath="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="model.xsd">
-	<textures>
-		<base-shadowTexture path="" iconPath="" shadowPath="" screenOrder="" layer=""/>
-	</textures>
-	<meshes/>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="model.xsd">
+	<mesh path="">
+		<textures>
+			<base-shadowTexture path="" iconPath="" screenOrder="" layer=""/>
+		</textures>
+	</mesh>
 </model>

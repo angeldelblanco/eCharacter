@@ -3,31 +3,31 @@
 	<xs:element name="model">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="textures">
-					<xs:complexType>
-						<xs:choice minOccurs="1" maxOccurs="unbounded">
-							<xs:element name="base-shadowTexture" type="base-shadowTextureType"/>
-							<xs:element name="simpleTexture" type="simpleTextureType"/>
-							<xs:element name="colorTexture" type="colorTextureType"/>
-						</xs:choice>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="meshes">
+				<xs:element name="mesh" minOccurs="1" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="mesh" type="meshType" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="textures" type="textureType"/>
+							<xs:element name="changeable" type="changeableType" minOccurs="0" maxOccurs="1"/>
 						</xs:sequence>
-					</xs:complexType>
+						<xs:attribute name="path" type="xs:string" use="required"/>
+					</xs:complexType>									
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute name="modelPath" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
+	
+	<xs:complexType name="textureType">
+		<xs:choice minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="base-shadowTexture" type="base-shadowTextureType"/>
+			<xs:element name="simpleTexture" type="simpleTextureType"/>
+			<xs:element name="colorTexture" type="colorTextureType"/>
+		</xs:choice>
+	</xs:complexType>
 	
 	<xs:complexType name="base-shadowTextureType">
 		<xs:attribute name="path" type="xs:string" use="required"/>
 		<xs:attribute name="iconPath" type="xs:string" use="required"/>
-		<xs:attribute name="shadowPath" type="xs:string" use="required"/>
+		<xs:attribute name="shadowPath" type="xs:string" use="optional"/>
 		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
 	</xs:complexType>
@@ -45,19 +45,27 @@
 				<xs:complexType>
 					<xs:attribute name="path" type="xs:string" use="required"/>
 					<xs:attribute name="iconPath" type="xs:string" use="required"/>
+					<xs:attribute name="default" type="xs:boolean" use="required"/>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
-		<xs:attribute name="defaultPath" type="xs:string" use="required"/>
-		<xs:attribute name="iconPath" type="xs:string" use="required"/>
 		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
 	</xs:complexType>
 	
-	<xs:complexType name="meshType">
-		<xs:attribute name="path" type="xs:string" use="required"/>
+	<xs:complexType name="changeableType">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="transformations" type="transformationsType"/>
+		</xs:sequence>
 		<xs:attribute name="iconPath" type="xs:string" use="required"/>
 		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
 		<xs:attribute name="associatedBone" type="xs:string" use="required"/>
+	</xs:complexType>
+	
+	<xs:complexType name="transformationsType">
+		<xs:attribute name="type" type="xs:string" use="required"/>
+		<xs:attribute name="valueX" type="xs:float" use="required"/>
+		<xs:attribute name="valueY" type="xs:float" use="required"/>
+		<xs:attribute name="valueZ" type="xs:float" use="required"/>
 	</xs:complexType>
 </xs:schema>
