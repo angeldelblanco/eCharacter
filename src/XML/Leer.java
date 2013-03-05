@@ -19,143 +19,99 @@ import org.w3c.dom.NodeList;
  */
 public class Leer {
     public static void main(String argv[]) { 
+        File directorio = new File("assets/XML Configuration/families");
+        File[] ficheros = directorio.listFiles();
+        for (int x=0;x<ficheros.length;x++)
+        {
+            File file = ficheros[x];
+            if (! file.isDirectory() && ! file.getName().equals("family.xsd")) {
+               read(file);
+            }
+        }
+    }
+    
+    private static void read (File xmlFile){
         try {
+            System.out.println(xmlFile.getName());
             //Assing the file to the DOM doc.
-            File xmlFile = new File("assets/XML Configuration/configuration.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(xmlFile);
             doc.getDocumentElement().normalize();
             
             //Read the doc.
-            //Read all nodes with name man
-            NodeList nListMan = doc.getElementsByTagName("man");
-            for (int temp = 0; temp < nListMan.getLength(); temp++) {
-               Node nNode = nListMan.item(temp); 
+            //Read all nodes with name family
+            NodeList nListFamily = doc.getElementsByTagName("family");
+            for (int temp = 0; temp < nListFamily.getLength(); temp++) {
+               Node nNode = nListFamily.item(temp); 
                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                  //Here, we have the element man 
+                  //Here, we have the element family 
                   Element eElement = (Element) nNode;
-                  NodeList nListObjects = eElement.getElementsByTagName("objects");
-                  Node nNode2 = (Node) nListObjects.item(0);
+                  NodeList nListMetadata = eElement.getElementsByTagName("metadata");
+                  Node nNode2 = (Node) nListMetadata.item(0);
                   if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
-                    //In eElement2, we have the node objects
-                    Element eElement2 = (Element) nNode2;
-                    NodeList nListSkins = eElement2.getElementsByTagName("skin");
-                    int numSkin;
-                    for (numSkin = 0; numSkin < nListSkins.getLength(); numSkin++){
-                        Node nNode3 = nListSkins.item(numSkin);    
-                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
-                            NamedNodeMap attributes = nNode3.getAttributes();
-                            Node nValue = attributes.getNamedItem("path");
-                            String pathSkinReaded = nValue.getNodeValue();
+                        //In eElement2, we have the node metadata
+                        Element eElement2 = (Element) nNode2;
+                        NamedNodeMap attributes = nNode2.getAttributes();
+                        Node nValue = attributes.getNamedItem("name");
+                        String nameReaded = nValue.getNodeValue();
+                        //Print the data readed
+                        System.out.println("Nombre de la familia: " + nameReaded);
+                        
+                        nValue = attributes.getNamedItem("description");
+                        String descriptionReaded = nValue.getNodeValue();
+                        //Print the data readed
+                        System.out.println("Descripción de la familia: " + descriptionReaded);
+                          
+                        nValue = attributes.getNamedItem("author");
+                        String authorReaded = nValue.getNodeValue();
+                        //Print the data readed
+                        System.out.println("Autor de la familia: " + authorReaded);
+                        
+                        nValue = attributes.getNamedItem("URL");
+                        if (nValue != null){
+                            String urlReaded = nValue.getNodeValue();
                             //Print the data readed
-                            System.out.println("Skin "+numSkin+": " + pathSkinReaded);
-                            
-                            nValue = attributes.getNamedItem("pathIcon");
-                            String pathIconSkinReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("Skin "+numSkin+": " + pathIconSkinReaded);
+                            System.out.println("URL de la familia: " + urlReaded);
                         }
-                    }
-                    NodeList nListEyes = eElement2.getElementsByTagName("eyes");
-                    int numEyes;
-                    for (numEyes = 0; numEyes < nListEyes.getLength(); numEyes++){
-                        Node nNode3 = nListEyes.item(numEyes);
-                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
-                            NamedNodeMap attributes = nNode3.getAttributes();
-                            Node nValue = attributes.getNamedItem("path");
-                            String pathEyesReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("Eyes "+numEyes+": " + pathEyesReaded);
-                            
-                            nValue = attributes.getNamedItem("pathIcon");
-                            String pathIconEyesReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("Eyes "+numEyes+": " + pathIconEyesReaded);
-                        }
-                    }
-                    NodeList nListTShirts = eElement2.getElementsByTagName("tshirt");
-                    int numTShirt;
-                    for (numTShirt = 0; numTShirt < nListTShirts.getLength(); numTShirt++){
-                        Node nNode3 = nListTShirts.item(numTShirt);
-                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
-                            NamedNodeMap attributes = nNode3.getAttributes();
-                            Node nValue = attributes.getNamedItem("pathColor");
-                            String pathTShirtColorReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("TShirt "+numTShirt+": " + pathTShirtColorReaded);
-                            
-                            nValue = attributes.getNamedItem("pathShadow");
-                            String pathTShirtShadowReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("TShirt "+numTShirt+": " + pathTShirtShadowReaded);
-                            
-                            nValue = attributes.getNamedItem("pathIcon");
-                            String pathIconTShirtReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("TShirt "+numTShirt+": " + pathIconTShirtReaded);
-                        }
-                    }
-                    NodeList nListTrousers = eElement2.getElementsByTagName("trouser");
-                    int numTrouser;
-                    for (numTrouser = 0; numTrouser < nListTrousers.getLength(); numTrouser++){
-                        Node nNode3 = nListTrousers.item(numTrouser);
-                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
-                            NamedNodeMap attributes = nNode3.getAttributes();
-                            Node nValue = attributes.getNamedItem("pathColor");
-                            String pathTrouserColorReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("Trouser "+numTrouser+": " + pathTrouserColorReaded);
-                            
-                            nValue = attributes.getNamedItem("pathShadow");
-                            String pathTrouserShadowReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("Trouser "+numTrouser+": " + pathTrouserShadowReaded);
-                            
-                            nValue = attributes.getNamedItem("pathIcon");
-                            String pathIconTrouserReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("Trouser "+numTrouser+": " + pathIconTrouserReaded);
-                        }
-                    }
-                    NodeList nListShoes = eElement2.getElementsByTagName("shoes");
-                    int numShoes;
-                    for (numShoes = 0; numShoes < nListShoes.getLength(); numShoes++){
-                        Node nNode3 = nListShoes.item(numShoes);
-                        if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
-                            NamedNodeMap attributes = nNode3.getAttributes();
-                            Node nValue = attributes.getNamedItem("pathColor");
-                            String pathShoesColorReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("Shoes "+numShoes+": " + pathShoesColorReaded);
-                            
-                            nValue = attributes.getNamedItem("pathShadow");
-                            String pathShoesShadowReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("Shoes "+numShoes+": " + pathShoesShadowReaded);
-                            
-                            nValue = attributes.getNamedItem("pathIcon");
-                            String pathIconShoesReaded = nValue.getNodeValue();
-                            //Print the data readed
-                            System.out.println("Shoes "+numShoes+": " + pathIconShoesReaded);
-                        }
-                    }
                   }
-                  NodeList nListAnimations = eElement.getElementsByTagName("model");
+                  /*
+                   * 
+                   * FALTA LEER EL ELEMENTO PROPERTIES
+                   * 
+                   */
+                                              
+                  NodeList nListModels = eElement.getElementsByTagName("models");
+                  Node nNode4 = (Node) nListModels.item(0);
+                  if (nNode4.getNodeType() == Node.ELEMENT_NODE) {
+                        //In eElement2, we have the node models
+                        Element eElement2 = (Element) nNode4;
+                        NodeList nListModel = eElement2.getElementsByTagName("model");
+                        int numModels;
+                        for (numModels = 0; numModels < nListModel.getLength(); numModels++){
+                            Node nNode5 = nListModel.item(numModels);
+                            if (nNode5.getNodeType() == Node.ELEMENT_NODE) {
+                                NamedNodeMap attributes = nNode5.getAttributes();
+                                
+                                Node nValue = attributes.getNamedItem("nameModel");
+                                String nameModelReaded = nValue.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Nombre del modelo "+numModels+": "+nameModelReaded);
 
-                    int indexAnimationReaded;
-                    for (indexAnimationReaded = 0; indexAnimationReaded < nListAnimations.getLength(); indexAnimationReaded++){
-                          Node nNode3 = nListAnimations.item(indexAnimationReaded);
-                          if (nNode3.getNodeType() == Node.ELEMENT_NODE) {
-                              NamedNodeMap attributes = nNode3.getAttributes();
-                              Node nValue = attributes.getNamedItem("path");
-                              String pathAnimationReaded = nValue.getNodeValue();
-                              //Print the data readed
-                              System.out.println("Model "+indexAnimationReaded+": " + pathAnimationReaded);
-                              //Save the path of this 
-                          }
-                    }
+                                nValue = attributes.getNamedItem("iconPath");
+                                String iconPathReaded = nValue.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Path del icono del modelo "+numModels+": "+iconPathReaded);
+
+                                nValue = attributes.getNamedItem("modelPath");
+                                String modelPathReaded = nValue.getNodeValue();
+                                //Print the data readed
+                                System.out.println("Path del modelo "+numModels+": "+modelPathReaded);
+                            }
+                        }
+                  }
                }
+               System.out.println();
             }
         } catch (Exception e) {
               e.printStackTrace();
