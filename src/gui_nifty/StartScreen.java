@@ -67,11 +67,12 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private Screen screen;
     private Gui gui;
     private String selection;
-    private int skinspage, eyespage, tshirtspage, trouserspage, shoespage;
+    private int skinspage, eyespage, tshirtspage, trouserspage, shoespage, modelspage;
     private Element popupColor, popupAnim, popupFin;
     private float red, green, blue;
     private String pantallas[];
     private String screenType[];
+    private String models[], modelIcons[];
     private int index;
     
     public StartScreen(Gui gui){
@@ -80,6 +81,34 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
+        models = new String[4];
+        modelIcons = new String[4];
+        models[0] = "Man"; modelIcons[0] = "Interface/man.png";
+        models[1] = "Woman"; modelIcons[1] = "Interface/woman.png";
+        models[2] = "Boy"; modelIcons[2] = "Interface/children.png";
+        models[3] = "Girl"; modelIcons[3] = "Interface/children.png";
+        for(int i=0; i<models.length; i++){
+            ImageBuilder image = new ImageBuilder(){{
+                width("0%");
+                height("0%");
+            }};
+            image.id("model"+Integer.toString(i));
+            image.filename(modelIcons[i]);
+            image.interactOnClick("selectModel("+models[i]+")");
+            image.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
+        }
+        nifty.getScreen("modelScreen").findElementByName("panel_screenright").disable();
+        nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(false);
+        nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(false);
+        new TextBuilder(){{
+            color(Color.BLACK);
+            font("Interface/Fonts/Default.fnt");
+            text("Modelos básicos disenados para la aplicación que está usted usando.\nEsta familia está compuesta por cuatro modelos: hombre, mujer, nino y nina.");
+            width("100%");
+            wrap(true);
+        }}.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("descriptionPanel"));
+        modelspage = 0;
+        changeCharacterPage("0");
     }
 
     public void quitGame() {
@@ -119,7 +148,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         pantallas[2] = "tshirtScreen"; screenType[2] = "singleTextureScreen";
         pantallas[3] = "trousersScreen"; screenType[3] = "singleTextureScreen";
         pantallas[4] = "shoesScreen"; screenType[4] = "singleTextureScreen";
-        creaMenu();
     }
     
     public void creaMenu(){
@@ -322,6 +350,72 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }}.registerPopup(nifty);
     }
     
+    public void changeCharacterPage(String steep){
+            for(int i=modelspage*TEXTURES_PAGE; i<models.length; i++){
+                if(i<((modelspage+1)*TEXTURES_PAGE)){
+                    nifty.getScreen("modelScreen").findElementByName("model"+Integer.toString(i)).setVisible(false);
+                    nifty.getScreen("modelScreen").findElementByName("model"+Integer.toString(i)).setHeight(0);
+                    nifty.getScreen("modelScreen").findElementByName("model"+Integer.toString(i)).setWidth(0);
+                }
+            }
+            if(steep.equals("+")){modelspage++;}
+            if(steep.equals("-")){modelspage--;}
+            if(steep.equals("0")){modelspage = 0;}
+            for(int i=modelspage*TEXTURES_PAGE; i<models.length; i++){
+                if(i<((modelspage+1)*TEXTURES_PAGE)){
+                    nifty.getScreen("modelScreen").findElementByName("model"+Integer.toString(i)).setVisible(true);
+                    nifty.getScreen("modelScreen").findElementByName("model"+Integer.toString(i)).setHeight(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
+                    nifty.getScreen("modelScreen").findElementByName("model"+Integer.toString(i)).setWidth(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
+                }
+            }
+            if(modelspage > 0){
+                nifty.getScreen("modelScreen").findElementByName("leftT").enable();
+                nifty.getScreen("modelScreen").findElementByName("leftT").setVisible(true);
+            }
+            else{
+                nifty.getScreen("modelScreen").findElementByName("leftT").disable();
+                nifty.getScreen("modelScreen").findElementByName("leftT").setVisible(false);
+            }
+            if((((double)models.length/(double)TEXTURES_PAGE) - modelspage) > 1){
+                nifty.getScreen("modelScreen").findElementByName("rightT").enable();
+                nifty.getScreen("modelScreen").findElementByName("rightT").setVisible(true);
+            }
+            else{
+                nifty.getScreen("modelScreen").findElementByName("rightT").disable();
+                nifty.getScreen("modelScreen").findElementByName("rightT").setVisible(false);
+            }
+    }
+    
+    public void selectModel(String param){
+        if(param.equals("Man")){
+            gui.setGender(Gender.Male);
+            gui.setAgeModel(Age.Adult);
+        }
+        if(param.equals("Woman")){
+            gui.setGender(Gender.Female);
+            gui.setAgeModel(Age.Adult);
+        }
+        if(param.equals("Boy")){
+            gui.setGender(Gender.Male);
+            gui.setAgeModel(Age.Young);
+        }
+        if(param.equals("Girl")){
+            gui.setGender(Gender.Female);
+            gui.setAgeModel(Age.Young);
+        }
+        nifty.getScreen("modelScreen").findElementByName("panel_screenright").enable();
+        nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(true);
+    }
+    
+    public void loadFirstScreen(){
+        nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
+        gui.loadModel();
+        selection = pantallas[index];
+        creaMenu();
+        initIcons();
+        cargaMenu(screenType[index]);
+        nifty.gotoScreen(screenType[index]);
+    }
     public void manSelected(String nextScreen) 
     {
         nifty.gotoScreen(nextScreen);  // switch to another screen
@@ -338,16 +432,16 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         nifty.gotoScreen(nextScreen);  // switch to another screen
         gui.setAgeModel(Age.Adult);
-        gui.loadModel();
-        initIcons();
+        //gui.loadModel();
+        //initIcons();
     }
     
     public void youngSelected(String nextScreen) 
     {
         nifty.gotoScreen(nextScreen);  // switch to another screen 
         gui.setAgeModel(Age.Young);
-        gui.loadModel();
-        initIcons();
+        //gui.loadModel();
+        //initIcons();
     }
     
     public void initIcons(){
@@ -479,23 +573,23 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(steep.equals("+")){i = 1;}
         if(steep.equals("-")){i = -1;}
         if(selection.equals("skinScreen")){
-            if(selection.equals("0")){skinspage = 0;}
+            if(steep.equals("0")){skinspage = 0;}
             else{skinspage = skinspage + i;}
         }
         if(selection.equals("eyesScreen")){
-            if(selection.equals("0")){eyespage = 0;}
+            if(steep.equals("0")){eyespage = 0;}
             else{eyespage = eyespage + i;}
         }
         if(selection.equals("tshirtScreen")){
-            if(selection.equals("0")){tshirtspage = 0;}
+            if(steep.equals("0")){tshirtspage = 0;}
             else{tshirtspage = tshirtspage + i;}
         }
         if(selection.equals("trousersScreen")){
-            if(selection.equals("0")){trouserspage = 0;}
+            if(steep.equals("0")){trouserspage = 0;}
             else{trouserspage = trouserspage + i;}
         }
         if(selection.equals("shoesScreen")){
-            if(selection.equals("0")){shoespage = 0;}
+            if(steep.equals("0")){shoespage = 0;}
             else{shoespage = shoespage + i;}
         }
     }
