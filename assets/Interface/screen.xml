@@ -103,8 +103,10 @@
 			<panel height="5%" width="100%" childLayout="center"> 
 				<text text="Choose your model" font="Interface/Fonts/Default.fnt" width="100%" height="100%" valign="center"/>
 			</panel>
-			<panel height="10%" width="100%"> 
-				<!-- Space -->
+			<panel id="familyPanel" height="10%" width="100%" childLayout="horizontal"> 
+				<panel height="100%" width="25%">
+					<!-- Space -->
+				</panel>
 			</panel>
 			<panel height="70%" width="100%" childLayout="horizontal">
 				<panel height="100%" width="5%">
