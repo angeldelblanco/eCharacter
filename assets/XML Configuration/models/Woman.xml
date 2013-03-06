@@ -2,18 +2,38 @@
 <model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="model.xsd">
 	<mesh path="Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml">
 		<textures>
-			<base-shadowTexture path="assets/Textures/Textures Girl/CamisetaSinMangasSolidoGirl.png"  iconPath="Interface/Icons/IconoCamisetaSinMangasGirl.png"   shadowPath="assets/Textures/Textures Girl/CamisetaSinMangasSombrasGirl.png" screenOrder="3" layer="1"/>
-			<base-shadowTexture path="assets/Textures/Textures Girl/CamisetaSolidoGirl.png"  iconPath="Interface/Icons/IconoCamisetaGirl.png"   shadowPath="assets/Textures/Textures Girl/CamisetaSombrasGirl.png" screenOrder="3" layer="1"/>
-			<base-shadowTexture path="assets/Textures/Textures Girl/CamisetaTirantesSolidoGirl.png"  iconPath="Interface/Icons/IconoCamisetaTirantesSolidoGirl.png"   shadowPath="assets/Textures/Textures Girl/CamisetaTirantesSombrasGirl.png" screenOrder="3" layer="1"/>
-			<base-shadowTexture path="assets/Textures/Textures Girl/TopSolidoGirl.png"  iconPath="Interface/Icons/IconoTopSolidoGirl.png"   shadowPath="assets/Textures/Textures Girl/TopSombrasGirl.png" screenOrder="3" layer="1"/>
-			<base-shadowTexture path="assets/Textures/Textures Girl/PantalonCortoSolidoGirl.png"  iconPath="Interface/Icons/IconoPantalonCortoGirl.png"   shadowPath="assets/Textures/Textures Girl/PantalonCortoSombrasGirl.png" screenOrder="4" layer="1"/>
-			<base-shadowTexture path="assets/Textures/Textures Girl/PantalonLargoSolidoGirl.png"  iconPath="Interface/Icons/IconoPantalonLargoGirl.png"   shadowPath="assets/Textures/Textures Girl/PantalonLargoSombrasGirl.png" screenOrder="4" layer="1"/>
-			<base-shadowTexture path="assets/Textures/Textures Girl/ZapatosSolidoGirl.png"  iconPath="Interface/Icons/IconoZapatosGirl.png"   shadowPath="assets/Textures/Textures Girl/ZapatosSombrasGirl.png" screenOrder="5" layer="1"/>
-			<simpleTexture path="assets/Textures/Textures Girl/PielAmarillaClaraGirl.png" iconPath="Interface/Icons/IconoPielAmarillaClaraGirl.png" screenOrder="2" layer="0"/>
-			<simpleTexture path="assets/Textures/Textures Girl/PielAmarillaOscuraGirl.png" iconPath="Interface/Icons/IconoPielAmarillaOscuraGirl.png" screenOrder="2" layer="0"/>
-			<simpleTexture path="assets/Textures/Textures Girl/PielBlancaGirl.png" iconPath="Interface/Icons/IconoPielBlancaGirl.png" screenOrder="2" layer="0"/>
-			<simpleTexture path="assets/Textures/Textures Girl/PielNegraGirl.png" iconPath="Interface/Icons/IconoPielNegraGirl.png" screenOrder="2" layer="0"/>
-			<simpleTexture path="assets/Textures/Textures Girl/PielRojaGirl.png" iconPath="Interface/Icons/IconoPielRojaGirl.png" screenOrder="2" layer="0"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/CamisetaSinMangasSolidoGirl.png"  iconPath="Interface/Icons/IconoCamisetaSinMangasGirl.png"   shadowPath="assets/Textures/Textures Girl/CamisetaSinMangasSombrasGirl.png" idPanel="panelCamisetas" layer="1" default="true"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/CamisetaSolidoGirl.png"  iconPath="Interface/Icons/IconoCamisetaGirl.png"   shadowPath="assets/Textures/Textures Girl/CamisetaSombrasGirl.png" idPanel="panelCamisetas" layer="1" default="false"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/CamisetaTirantesSolidoGirl.png"  iconPath="Interface/Icons/IconoCamisetaTirantesSolidoGirl.png"   shadowPath="assets/Textures/Textures Girl/CamisetaTirantesSombrasGirl.png" idPanel="panelCamisetas" layer="1" default="false"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/TopSolidoGirl.png"  iconPath="Interface/Icons/IconoTopSolidoGirl.png"   shadowPath="assets/Textures/Textures Girl/TopSombrasGirl.png" idPanel="panelCamisetas" layer="1" default="false"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/PantalonCortoSolidoGirl.png"  iconPath="Interface/Icons/IconoPantalonCortoGirl.png"   shadowPath="assets/Textures/Textures Girl/PantalonCortoSombrasGirl.png" idPanel="panelPantalones" layer="1" default="false"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/PantalonLargoSolidoGirl.png"  iconPath="Interface/Icons/IconoPantalonLargoGirl.png"   shadowPath="assets/Textures/Textures Girl/PantalonLargoSombrasGirl.png" idPanel="panelPantalones" layer="1" default="true"/>
+			<base-shadowTexture path="assets/Textures/Textures Girl/ZapatosSolidoGirl.png"  iconPath="Interface/Icons/IconoZapatosGirl.png"   shadowPath="assets/Textures/Textures Girl/ZapatosSombrasGirl.png" idPanel="panelZapatos" layer="1" default="true"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielAmarillaClaraGirl.png" iconPath="Interface/Icons/IconoPielAmarillaClaraGirl.png" idPanel="panelPieles" layer="0" default="true"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielAmarillaOscuraGirl.png" iconPath="Interface/Icons/IconoPielAmarillaOscuraGirl.png" idPanel="panelPieles" layer="0" default="false"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielBlancaGirl.png" iconPath="Interface/Icons/IconoPielBlancaGirl.png" idPanel="panelPieles" layer="0" default="false"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielNegraGirl.png" iconPath="Interface/Icons/IconoPielNegraGirl.png" idPanel="panelPieles" layer="0" default="false"/>
+			<simpleTexture path="assets/Textures/Textures Girl/PielRojaGirl.png" iconPath="Interface/Icons/IconoPielRojaGirl.png" idPanel="panelPieles" layer="0" default="false"/>
+			<!--Falta añadir los paths de los ojos -->
+			<doubleTexture path1="" path2="" iconPath="" idPanel="panelOjos" layer="1" default="true"/>
 		</textures>
+		<bones>
+			<!-- Dar valores a los huesos, Los que hay son aleatorios -->
+			<boneController labelController="Cabeza" defaultValue="5" minValue="1" maxValue="10" boneName="Cabeza"/>
+			<boneController labelController="Torax" defaultValue="5" minValue="1" maxValue="10" boneName="Torax"/>
+			<boneController labelController="Muñeca Izquierda" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaIz"/>
+			<boneController labelController="Muñeca Derecha" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaDer"/>
+			<boneController labelController="Tobillo Izquierdo" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloIz"/>
+			<boneController labelController="Tobillo Derecho" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloDer"/>
+			<boneController labelController="Fémur Izquierdo" defaultValue="5" minValue="1" maxValue="10" boneName="FemurIz"/>
+			<boneController labelController="Fémur Derecho" defaultValue="5" minValue="1" maxValue="10" boneName="FemurDer"/>
+			<boneController labelController="Clavícula Izquierda" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaIz"/>
+			<boneController labelController="Clavícula Derecha" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaDer"/>
+			<!-- Falta rellenar todas las complexiones -->
+			<basicMode name="Gorda">
+				<bone nameBone="Torax" value="1"/>
+				<bone nameBone="FemurIz" value="2"/>
+			</basicMode>
+		</bones>
 	</mesh>
 </model>
