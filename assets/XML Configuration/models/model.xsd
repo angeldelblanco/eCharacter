@@ -7,7 +7,8 @@
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="textures" type="textureType" minOccurs="0" maxOccurs="1"/>
-							<xs:element name="changeable" type="changeableType" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="bones" type="bonesType" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="subMeshes" type="subMeshesType" minOccurs="0" maxOccurs="1"/>
 						</xs:sequence>
 						<xs:attribute name="path" type="xs:string" use="required"/>
 					</xs:complexType>
@@ -19,6 +20,7 @@
 		<xs:choice minOccurs="1" maxOccurs="unbounded">
 			<xs:element name="base-shadowTexture" type="base-shadowTextureType"/>
 			<xs:element name="simpleTexture" type="simpleTextureType"/>
+			<xs:element name="doubleTexture" type="doubleTextureType"/>
 			<xs:element name="colorTexture" type="colorTextureType"/>
 		</xs:choice>
 	</xs:complexType>
@@ -26,14 +28,24 @@
 		<xs:attribute name="path" type="xs:string" use="required"/>
 		<xs:attribute name="iconPath" type="xs:string" use="required"/>
 		<xs:attribute name="shadowPath" type="xs:string" use="optional"/>
-		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="idPanel" type="xs:string" use="required"/>
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
+		<xs:attribute name="default" type="xs:boolean" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="simpleTextureType">
 		<xs:attribute name="path" type="xs:string" use="required"/>
 		<xs:attribute name="iconPath" type="xs:string" use="required"/>
-		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="idPanel" type="xs:string" use="required"/>
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
+		<xs:attribute name="default" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="doubleTextureType">
+		<xs:attribute name="path1" type="xs:string" use="required"/>
+		<xs:attribute name="path2" type="xs:string" use="required"/>
+		<xs:attribute name="iconPath" type="xs:string" use="required"/>
+		<xs:attribute name="idPanel" type="xs:string" use="required"/>
+		<xs:attribute name="layer" type="xs:integer" use="required"/>
+		<xs:attribute name="default" type="xs:boolean" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="colorTextureType">
 		<xs:sequence>
@@ -45,15 +57,38 @@
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
-		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="idPanel" type="xs:string" use="required"/>
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
 	</xs:complexType>
-	<xs:complexType name="changeableType">
+	<xs:complexType name="bonesType">
+		<xs:sequence>
+			<xs:element name="boneController" type="boneControllerType" minOccurs="1" maxOccurs="10"/>
+			<xs:element name="basicMode" type="basicModeType" minOccurs="1" maxOccurs="10"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="boneControllerType">
+		<xs:attribute name="labelController" type="xs:string" use="required"/>
+		<xs:attribute name="defaultValue" type="xs:integer" use="required"/>
+		<xs:attribute name="minValue" type="xs:integer" use="required"/>
+		<xs:attribute name="maxValue" type="xs:integer" use="required"/>
+		<xs:attribute name="boneName" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="basicModeType">
+		<xs:sequence>
+			<xs:element name="bone" type="boneType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="boneType">
+		<xs:attribute name="nameBone" type="xs:string" use="required"/>
+		<xs:attribute name="value" type="xs:integer" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="subMeshesType">
 		<xs:sequence minOccurs="0" maxOccurs="unbounded">
 			<xs:element name="transformations" type="transformationsType"/>
 		</xs:sequence>
 		<xs:attribute name="iconPath" type="xs:string" use="required"/>
-		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="idPanel" type="xs:string" use="required"/>
 		<xs:attribute name="associatedBone" type="xs:string" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="transformationsType">

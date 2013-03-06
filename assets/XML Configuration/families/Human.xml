@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <family xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="family.xsd">
-	<metadata name="Human" description="Esta familia está compuesta por 2 humanos: un chico y una chica." author="Alex, David y Sergio."/>
+	<metadata name="Human" description="Esta familia está compuesta por 2 humanos: un chico y una chica." author="Alex, David y Sergio.">
+		<license title="Prueba" terms="esto es una prueba."></license>
+	</metadata>
 	<properties>
 		<stages>
-			<multiStage stageName="Camiseta" screenOrder="3">
-				<textureStage subStageName="Camisetas" subScreenOrder="1" textureChangeControl="true" multiselection="false"/>
+			<scaleStage stageName="Escalado" idPanel="panelEscalado">
+				<boneController labelController="Cabeza"/>
+				<boneController labelController="Torax"/>
+				<boneController labelController="Muñeca Izquierda"/>
+				<boneController labelController="Muñeca Derecha"/>
+				<boneController labelController="Tobillo Izquierdo"/>
+				<boneController labelController="Tobillo Derecho"/>
+				<boneController labelController="Fémur Izquierdo"/>
+				<boneController labelController="Fémur Derecho"/>
+				<boneController labelController="Clavícula Izquierda"/>
+				<boneController labelController="Clavícula Derecha"/>
+			</scaleStage>
+			<multiStage stageName="Piel">
+				<textureStage subStageName="Pieles" idPanel="panelPieles" textureChangeControl="true" multiselection="false"/>
 			</multiStage>
-			<multiStage stageName="Pantalón" screenOrder="4">
-				<textureStage subStageName="Pantalones" subScreenOrder="1" textureChangeControl="true" multiselection="false"/>
+			<multiStage stageName="Ojos">
+				<textureStage subStageName="Ojos" idPanel="panelOjos" textureChangeControl="true" multiselection="false"/>
 			</multiStage>
-			<multiStage stageName="Piel" screenOrder="2">
-				<textureStage subStageName="Pieles" subScreenOrder="1" textureChangeControl="true" multiselection="false"/>
+			<multiStage stageName="Camiseta">
+				<textureStage subStageName="Camisetas" idPanel="panelCamisetas" textureChangeControl="true" multiselection="false"/>
 			</multiStage>
-			<multiStage stageName="Zapatos" screenOrder="5">
-				<textureStage subStageName="Zapatos" subScreenOrder="1" textureChangeControl="true" multiselection="false"/>
+			<multiStage stageName="Pantalón">
+				<textureStage subStageName="Pantalones" idPanel="panelPantalones" textureChangeControl="true" multiselection="false"/>
 			</multiStage>
-			<multiStage stageName="Escalado" screenOrder="1">
-				<scaleStage subStageName="Huesos" subScreenOrder="1">
-					<boneController labelController="Cabeza" boneName="Cabeza" defaultValue="10" minValue="1" maxValue="30"/>
-					<boneController labelController="Torax" boneName="Torax" defaultValue="10" minValue="1" maxValue="30"/>
-					<boneController labelController="Muñeca Izquierda" boneName="MuniecaIz" defaultValue="10" minValue="1" maxValue="30"/>
-					<boneController labelController="Muñeca Derecha" boneName="MuniecaDer" defaultValue="10" minValue="1" maxValue="30"/>
-					<boneController labelController="Tobillo Izquierdo" boneName="TobilloIz" defaultValue="10" minValue="1" maxValue="30"/>
-					<boneController labelController="Tobillo Derecho" boneName="TobilloDer" defaultValue="10" minValue="1" maxValue="30"/>
-					<boneController labelController="Fémur Izquierdo" boneName="FemurIz" defaultValue="10" minValue="1" maxValue="30"/>
-					<boneController labelController="Fémur Derecha" boneName="FemurDer" defaultValue="10" minValue="1" maxValue="30"/>
-					<boneController labelController="Clavícula Izquierda" boneName="ClaviculaIz" defaultValue="10" minValue="1" maxValue="30"/>
-					<boneController labelController="Clavícula Derecho" boneName="ClaviculaDer" defaultValue="10" minValue="1" maxValue="30"/>
-				</scaleStage>
+			
+			<multiStage stageName="Zapatos">
+				<textureStage subStageName="Zapatos" idPanel="panelZapatos" textureChangeControl="true" multiselection="false"/>
 			</multiStage>
-			<multiStage stageName="Pelo" screenOrder="6">
-				<meshStage subStageName="Pelos" subScreenOrder="1" meshChangeControl="true" multiselection="false"/>
+
+			<multiStage stageName="Pelo">
+				<meshStage subStageName="Pelos" idPanel="panelPelos" meshChangeControl="true" multiselection="false"/>
 			</multiStage>
 			<animationStage>
-				<fps qualityName="High" valueFPS="2"/>
+				<fps qualityName="High" FPSValue="2"/>
 				<camera cameraName="Delante" cameraValue="5"/>
 			</animationStage>
 		</stages>

@@ -5,6 +5,9 @@
 			<xs:sequence>
 				<xs:element name="metadata">
 					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="license" type="licenseType"/>
+						</xs:sequence>
 						<xs:attribute name="name" type="xs:string" use="required"/>
 						<xs:attribute name="description" type="xs:string" use="required"/>
 						<xs:attribute name="author" type="xs:string" use="required"/>
@@ -16,10 +19,11 @@
 						<xs:sequence>
 							<xs:element name="stages">
 								<xs:complexType>
-									<xs:sequence>
+									<xs:choice maxOccurs="21">
 										<xs:element name="multiStage" type="multiStageType" minOccurs="1" maxOccurs="10"/>
+										<xs:element name="scaleStage" type="scaleStageType" minOccurs="1" maxOccurs="10"/>
 										<xs:element name="animationStage" type="animationStageType"/>
-									</xs:sequence>
+									</xs:choice>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -35,64 +39,55 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	
+	<xs:complexType name="licenseType">
+		<xs:attribute name="title" type="xs:string" use="required"/>
+		<xs:attribute name="terms" type="xs:string" use="required"/>
+		<xs:attribute name="URL" type="xs:string" use="optional"/>
+	</xs:complexType>
 	<xs:complexType name="multiStageType">
-		<xs:choice minOccurs="1" maxOccurs="3">
+		<xs:choice minOccurs="1" maxOccurs="2">
 			<xs:element name="meshStage" type="meshStageType"/>
 			<xs:element name="textureStage" type="textureStageType"/>
-			<xs:element name="scaleStage" type="scaleStageType"/>
 		</xs:choice>
 		<xs:attribute name="stageName" type="xs:string" use="required"/>
-		<xs:attribute name="screenOrder" type="xs:integer" use="required"/>
 	</xs:complexType>
-	
 	<xs:complexType name="meshStageType">
 		<xs:attribute name="subStageName" type="xs:string" use="required"/>
-		<xs:attribute name="subScreenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="idPanel" type="xs:ID" use="required"/>
 		<xs:attribute name="meshChangeControl" type="xs:boolean" use="required"/>
 		<xs:attribute name="multiselection" type="xs:boolean" use="required"/>
 	</xs:complexType>
-	
 	<xs:complexType name="textureStageType">
 		<xs:attribute name="subStageName" type="xs:string" use="required"/>
-		<xs:attribute name="subScreenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="idPanel" type="xs:ID" use="required"/>
 		<xs:attribute name="textureChangeControl" type="xs:boolean" use="required"/>
 		<xs:attribute name="multiselection" type="xs:boolean" use="required"/>
 	</xs:complexType>
-	
 	<xs:complexType name="scaleStageType">
 		<xs:sequence>
 			<xs:element name="boneController" minOccurs="1" maxOccurs="10">
 				<xs:complexType>
 					<xs:attribute name="labelController" type="xs:string" use="required"/>
-					<xs:attribute name="boneName" type="xs:string" use="required"/>
-					<xs:attribute name="defaultValue" type="xs:integer" use="required"/>
-					<xs:attribute name="minValue" type="xs:integer" use="required"/>
-					<xs:attribute name="maxValue" type="xs:integer" use="required"/>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
-		<xs:attribute name="subStageName" type="xs:string" use="required"/>
-		<xs:attribute name="subScreenOrder" type="xs:integer" use="required"/>
+		<xs:attribute name="stageName" type="xs:string" use="required"/>
+		<xs:attribute name="idPanel" type="xs:ID" use="required"/>
 	</xs:complexType>
-	
 	<xs:complexType name="animationStageType">
 		<xs:sequence>
 			<xs:element name="fps" type="fpsType" minOccurs="1" maxOccurs="unbounded"/>
 			<xs:element name="camera" type="cameraType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-	
 	<xs:complexType name="fpsType">
 		<xs:attribute name="qualityName" type="xs:string" use="required"/>
-		<xs:attribute name="valueFPS" type="xs:integer" use="required"/>
+		<xs:attribute name="FPSValue" type="xs:integer" use="required"/>
 	</xs:complexType>
-	
 	<xs:complexType name="cameraType">
 		<xs:attribute name="cameraName" type="xs:string" use="required"/>
 		<xs:attribute name="cameraValue" type="xs:integer" use="required"/>
 	</xs:complexType>
-	
 	<xs:complexType name="modelType">
 		<xs:attribute name="nameModel" type="xs:string" use="required"/>
 		<xs:attribute name="iconPath" type="xs:string" use="required"/>
