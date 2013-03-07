@@ -41,12 +41,13 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
+import de.lessvoid.nifty.builder.HoverEffectBuilder;
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.PopupBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
-import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.ButtonClickedEvent;
+import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
@@ -69,7 +70,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private Application app;
     private Screen screen;
     private Gui gui;
-    private String selection, familySelection;
+    private String selection, familySelection, panelSelection;
     private int skinspage, eyespage, tshirtspage, trouserspage, shoespage, modelspage;
     private Element popupColor, popupAnim, popupFin;
     private float red, green, blue;
@@ -168,6 +169,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         popupFin = null;
         popupFin();
         index = 0;
+        panelSelection = null;
         pantallas = new String[5];
         screenType = new String[5];
         pantallas[0] = "bones"; screenType[0] = "basicScreen";
@@ -414,22 +416,30 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void selectModel(String param){
+        if(panelSelection != null){
+            nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF000000"));
+        }
         if(param.equals("Man")){
             gui.setGender(Gender.Male);
             gui.setAgeModel(Age.Adult);
+            panelSelection = "t0";
         }
         if(param.equals("Woman")){
             gui.setGender(Gender.Female);
             gui.setAgeModel(Age.Adult);
+            panelSelection = "t1";
         }
         if(param.equals("Boy")){
             gui.setGender(Gender.Male);
             gui.setAgeModel(Age.Young);
+            panelSelection = "t2";
         }
         if(param.equals("Girl")){
             gui.setGender(Gender.Female);
             gui.setAgeModel(Age.Young);
+            panelSelection = "t3";
         }
+        nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").enable();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(true);
     }
