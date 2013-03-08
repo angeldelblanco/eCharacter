@@ -6,11 +6,13 @@
 				<xs:element name="mesh" minOccurs="1" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
+							<xs:element name="path" type="xs:string"/>
 							<xs:element name="textures" type="textureType" minOccurs="0" maxOccurs="1"/>
-							<xs:element name="bones" type="bonesType" minOccurs="0" maxOccurs="1"/>
-							<xs:element name="subMeshes" type="subMeshesType" minOccurs="0" maxOccurs="1"/>
+							<xs:choice minOccurs="0" maxOccurs="1">
+								<xs:element name="bones" type="bonesType"/>
+								<xs:element name="subMeshes" type="subMeshesType"/>
+							</xs:choice>
 						</xs:sequence>
-						<xs:attribute name="path" type="xs:string" use="required"/>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
@@ -25,24 +27,30 @@
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="base-shadowTextureType">
-		<xs:attribute name="path" type="xs:string" use="required"/>
-		<xs:attribute name="iconPath" type="xs:string" use="required"/>
-		<xs:attribute name="shadowPath" type="xs:string" use="optional"/>
+		<xs:sequence>
+			<xs:element name="path" type="xs:string"/>
+			<xs:element name="iconPath" type="xs:string"/>
+			<xs:element name="shadowPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
 		<xs:attribute name="idPanel" type="xs:string" use="required"/>
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
 		<xs:attribute name="default" type="xs:boolean" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="simpleTextureType">
-		<xs:attribute name="path" type="xs:string" use="required"/>
-		<xs:attribute name="iconPath" type="xs:string" use="required"/>
+		<xs:sequence>
+			<xs:element name="path" type="xs:string"/>
+			<xs:element name="iconPath" type="xs:string"/>
+		</xs:sequence>
 		<xs:attribute name="idPanel" type="xs:string" use="required"/>
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
 		<xs:attribute name="default" type="xs:boolean" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="doubleTextureType">
-		<xs:attribute name="path1" type="xs:string" use="required"/>
-		<xs:attribute name="path2" type="xs:string" use="required"/>
-		<xs:attribute name="iconPath" type="xs:string" use="required"/>
+		<xs:sequence>
+			<xs:element name="basePath" type="xs:string"/>
+			<xs:element name="detailsPath" type="xs:string"/>
+			<xs:element name="iconPath" type="xs:string"/>
+		</xs:sequence>
 		<xs:attribute name="idPanel" type="xs:string" use="required"/>
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
 		<xs:attribute name="default" type="xs:boolean" use="required"/>
@@ -51,8 +59,10 @@
 		<xs:sequence>
 			<xs:element name="texture" minOccurs="1" maxOccurs="unbounded">
 				<xs:complexType>
-					<xs:attribute name="path" type="xs:string" use="required"/>
-					<xs:attribute name="iconPath" type="xs:string" use="required"/>
+					<xs:sequence>
+						<xs:element name="path" type="xs:string"/>
+						<xs:element name="iconPath" type="xs:string"/>
+					</xs:sequence>
 					<xs:attribute name="default" type="xs:boolean" use="required"/>
 				</xs:complexType>
 			</xs:element>
@@ -75,19 +85,21 @@
 	</xs:complexType>
 	<xs:complexType name="basicModeType">
 		<xs:sequence>
-			<xs:element name="bone" type="boneType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="escalations" type="escalationsType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required"/>
 	</xs:complexType>
-	<xs:complexType name="boneType">
+	<xs:complexType name="escalationsType">
 		<xs:attribute name="nameBone" type="xs:string" use="required"/>
-		<xs:attribute name="value" type="xs:integer" use="required"/>
+		<xs:attribute name="valueX" type="xs:integer" use="required"/>
+		<xs:attribute name="valueY" type="xs:integer" use="required"/>
+		<xs:attribute name="valueZ" type="xs:integer" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="subMeshesType">
-		<xs:sequence minOccurs="0" maxOccurs="unbounded">
-			<xs:element name="transformations" type="transformationsType"/>
-		</xs:sequence>
-		<xs:attribute name="iconPath" type="xs:string" use="required"/>
+		<xs:sequence>
+			<xs:element name="iconPath" type="xs:string"/>
+			<xs:element name="transformations" type="transformationsType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>		
 		<xs:attribute name="idPanel" type="xs:string" use="required"/>
 		<xs:attribute name="associatedBone" type="xs:string" use="required"/>
 	</xs:complexType>

@@ -7,11 +7,11 @@
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="license" type="licenseType"/>
+							<xs:element name="name" type="xs:string"/>
+							<xs:element name="description" type="xs:string"/>
+							<xs:element name="author" type="xs:string"/>
+							<xs:element name="URL" type="xs:string" minOccurs="0" maxOccurs="1"/>
 						</xs:sequence>
-						<xs:attribute name="name" type="xs:string" use="required"/>
-						<xs:attribute name="description" type="xs:string" use="required"/>
-						<xs:attribute name="author" type="xs:string" use="required"/>
-						<xs:attribute name="URL" type="xs:string" use="optional"/>
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="properties">
@@ -40,12 +40,14 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:complexType name="licenseType">
-		<xs:attribute name="title" type="xs:string" use="required"/>
-		<xs:attribute name="terms" type="xs:string" use="required"/>
-		<xs:attribute name="URL" type="xs:string" use="optional"/>
+		<xs:sequence>
+			<xs:element name="title" type="xs:string"/>
+			<xs:element name="terms" type="xs:string"/>
+			<xs:element name="URL" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="multiStageType">
-		<xs:choice minOccurs="1" maxOccurs="2">
+		<xs:choice minOccurs="1" maxOccurs="unbounded">
 			<xs:element name="meshStage" type="meshStageType"/>
 			<xs:element name="textureStage" type="textureStageType"/>
 		</xs:choice>
@@ -85,12 +87,23 @@
 		<xs:attribute name="FPSValue" type="xs:integer" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="cameraType">
+		<xs:sequence>
+			<xs:element name="upAxis" type="vectorType"/>
+			<xs:element name="location" type="vectorType"/>
+			<xs:element name="direction" type="vectorType"/>
+		</xs:sequence>
 		<xs:attribute name="cameraName" type="xs:string" use="required"/>
-		<xs:attribute name="cameraValue" type="xs:integer" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="vectorType">
+		<xs:attribute name="valueX" type="xs:integer" use="required"/>
+		<xs:attribute name="valueY" type="xs:integer" use="required"/>
+		<xs:attribute name="valueZ" type="xs:integer" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="modelType">
-		<xs:attribute name="nameModel" type="xs:string" use="required"/>
-		<xs:attribute name="iconPath" type="xs:string" use="required"/>
-		<xs:attribute name="modelPath" type="xs:string" use="required"/>
+		<xs:sequence>
+			<xs:element name="modelName" type="xs:string"/>
+			<xs:element name="iconPath" type="xs:string"/>
+			<xs:element name="modelPath" type="xs:string"/>
+		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

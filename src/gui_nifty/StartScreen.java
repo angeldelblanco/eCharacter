@@ -170,13 +170,13 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         popupFin();
         index = 0;
         panelSelection = null;
-        pantallas = new String[5];
-        screenType = new String[5];
+        pantallas = new String[4];
+        screenType = new String[4];
         pantallas[0] = "bones"; screenType[0] = "basicScreen";
         pantallas[1] = "skinScreen"; screenType[1] = "singleTextureScreen";
         pantallas[2] = "tshirtScreen"; screenType[2] = "singleTextureScreen";
         pantallas[3] = "trousersScreen"; screenType[3] = "singleTextureScreen";
-        pantallas[4] = "shoesScreen"; screenType[4] = "singleTextureScreen";
+        //pantallas[4] = "shoesScreen"; screenType[4] = "singleTextureScreen";
     }
     
     public void creaMenu(){
