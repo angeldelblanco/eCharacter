@@ -211,8 +211,8 @@ public class Model{
     {
         guiViewPort.removeProcessor(niftyDisplay);
         Set<String> namesAnimations = (Set<String>) control.getAnimationNames();
-        ScreenshotThread sst = new ScreenshotThread(screenShotState,channel,guiViewPort,niftyDisplay,namesAnimations);
-        sst.start();
+        //ScreenshotThread sst = new ScreenshotThread(screenShotState,channel,guiViewPort,niftyDisplay,namesAnimations);
+        //sst.start();
     }
     
     public void changeSkin(int steep)
@@ -397,7 +397,10 @@ public class Model{
            control.getAttachmentsNode("Cabeza").attachChild(hairMesh);           
            hairMesh.rotate(FastMath.DEG_TO_RAD * 90,0.0f,0.0f);
            hairMesh.center(); 
-           hairMesh.move(0.0f,0.3f,0.0f);
+           //Para todos los pelos
+           //hairMesh.move(0.0f,0.3f,0.0f);
+           //Para el pelo goku
+           hairMesh.move(0.0f,0.5f,0.0f);
     }
     
     private void convertToJ3o(String pathMesh,String pathMaterial)
