@@ -20,13 +20,13 @@
 	</xs:element>
 	<xs:complexType name="textureType">
 		<xs:choice minOccurs="1" maxOccurs="unbounded">
-			<xs:element name="base-shadowTexture" type="base-shadowTextureType"/>
+			<xs:element name="baseShadowTexture" type="baseShadowTextureType"/>
 			<xs:element name="simpleTexture" type="simpleTextureType"/>
 			<xs:element name="doubleTexture" type="doubleTextureType"/>
-			<xs:element name="colorTexture" type="colorTextureType"/>
+			<xs:element name="multiOptionTexture" type="multiOptionTextureType"/>
 		</xs:choice>
 	</xs:complexType>
-	<xs:complexType name="base-shadowTextureType">
+	<xs:complexType name="baseShadowTextureType">
 		<xs:sequence>
 			<xs:element name="path" type="xs:string"/>
 			<xs:element name="iconPath" type="xs:string"/>
@@ -55,7 +55,7 @@
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
 		<xs:attribute name="default" type="xs:boolean" use="required"/>
 	</xs:complexType>
-	<xs:complexType name="colorTextureType">
+	<xs:complexType name="multiOptionTextureType">
 		<xs:sequence>
 			<xs:element name="texture" minOccurs="1" maxOccurs="unbounded">
 				<xs:complexType>
@@ -99,17 +99,17 @@
 		<xs:sequence>
 			<xs:element name="iconPath" type="xs:string"/>
 			<xs:element name="transformations" type="transformationsType" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>		
+		</xs:sequence>
 		<xs:attribute name="idPanel" type="xs:string" use="required"/>
 		<xs:attribute name="associatedBone" type="xs:string" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="transformationsType">
-		<xs:attribute name="type" use="required">
+		<xs:attribute name="transformationType" use="required">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:enumeration value="escalado"/>
-					<xs:enumeration value="rotación"/>
-					<xs:enumeration value="traslación"/>
+					<xs:enumeration value="scale"/>
+					<xs:enumeration value="rotate"/>
+					<xs:enumeration value="translate"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>

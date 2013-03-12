@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:40 AM CET 
+// Generado el: PM.03.12 a las 05:20:56 PM CET 
 //
 
 
@@ -19,12 +19,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para colorTextureType complex type.
+ * <p>Clase Java para multiOptionTextureType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="colorTextureType">
+ * &lt;complexType name="multiOptionTextureType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -52,13 +52,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "colorTextureType", propOrder = {
+@XmlType(name = "multiOptionTextureType", propOrder = {
     "texture"
 })
-public class ColorTextureType {
+public class MultiOptionTextureType {
 
     @XmlElement(required = true)
-    protected List<ColorTextureType.Texture> texture;
+    protected List<MultiOptionTextureType.Texture> texture;
     @XmlAttribute(name = "idPanel", required = true)
     protected String idPanel;
     @XmlAttribute(name = "layer", required = true)
@@ -82,13 +82,13 @@ public class ColorTextureType {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ColorTextureType.Texture }
+     * {@link MultiOptionTextureType.Texture }
      * 
      * 
      */
-    public List<ColorTextureType.Texture> getTexture() {
+    public List<MultiOptionTextureType.Texture> getTexture() {
         if (texture == null) {
-            texture = new ArrayList<ColorTextureType.Texture>();
+            texture = new ArrayList<MultiOptionTextureType.Texture>();
         }
         return this.texture;
     }

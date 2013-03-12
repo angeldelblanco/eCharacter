@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:53 AM CET 
+// Generado el: PM.03.12 a las 05:20:25 PM CET 
 //
 
 
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="qualityName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="FPSValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="fpsValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,7 +39,7 @@ public class FpsType {
 
     @XmlAttribute(name = "qualityName", required = true)
     protected String qualityName;
-    @XmlAttribute(name = "FPSValue", required = true)
+    @XmlAttribute(name = "fpsValue", required = true)
     protected BigInteger fpsValue;
 
     /**
@@ -74,7 +74,7 @@ public class FpsType {
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getFPSValue() {
+    public BigInteger getFpsValue() {
         return fpsValue;
     }
 
@@ -86,7 +86,7 @@ public class FpsType {
      *     {@link BigInteger }
      *     
      */
-    public void setFPSValue(BigInteger value) {
+    public void setFpsValue(BigInteger value) {
         this.fpsValue = value;
     }
 

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:53 AM CET 
+// Generado el: PM.03.12 a las 05:20:25 PM CET 
 //
 
 
@@ -19,18 +19,17 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * <p>Clase Java para meshStageType complex type.
+ * <p>Clase Java para meshSubStageType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="meshStageType">
+ * &lt;complexType name="meshSubStageType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="subStageName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="idPanel" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
- *       &lt;attribute name="meshChangeControl" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="multiselection" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="multiselection" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,8 +38,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "meshStageType")
-public class MeshStageType {
+@XmlType(name = "meshSubStageType")
+public class MeshSubStageType {
 
     @XmlAttribute(name = "subStageName", required = true)
     protected String subStageName;
@@ -49,10 +48,8 @@ public class MeshStageType {
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String idPanel;
-    @XmlAttribute(name = "meshChangeControl", required = true)
-    protected boolean meshChangeControl;
-    @XmlAttribute(name = "multiselection", required = true)
-    protected boolean multiselection;
+    @XmlAttribute(name = "multiselection")
+    protected Boolean multiselection;
 
     /**
      * Obtiene el valor de la propiedad subStageName.
@@ -103,34 +100,26 @@ public class MeshStageType {
     }
 
     /**
-     * Obtiene el valor de la propiedad meshChangeControl.
-     * 
-     */
-    public boolean isMeshChangeControl() {
-        return meshChangeControl;
-    }
-
-    /**
-     * Define el valor de la propiedad meshChangeControl.
-     * 
-     */
-    public void setMeshChangeControl(boolean value) {
-        this.meshChangeControl = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad multiselection.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isMultiselection() {
+    public Boolean isMultiselection() {
         return multiselection;
     }
 
     /**
      * Define el valor de la propiedad multiselection.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setMultiselection(boolean value) {
+    public void setMultiselection(Boolean value) {
         this.multiselection = value;
     }
 

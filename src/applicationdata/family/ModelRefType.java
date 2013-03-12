@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:53 AM CET 
+// Generado el: PM.03.12 a las 05:20:25 PM CET 
 //
 
 
@@ -15,12 +15,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para modelType complex type.
+ * <p>Clase Java para modelRefType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="modelType">
+ * &lt;complexType name="modelRefType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -36,12 +36,12 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "modelType", propOrder = {
+@XmlType(name = "modelRefType", propOrder = {
     "modelName",
     "iconPath",
     "modelPath"
 })
-public class ModelType {
+public class ModelRefType {
 
     @XmlElement(required = true)
     protected String modelName;

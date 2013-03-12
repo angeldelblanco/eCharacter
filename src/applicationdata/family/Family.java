@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:53 AM CET 
+// Generado el: PM.03.12 a las 05:20:25 PM CET 
 //
 
 
@@ -13,7 +13,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -33,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="license" type="{}licenseType"/>
+ *                   &lt;element name="license" type="{}licenseType" minOccurs="0"/>
  *                   &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -43,35 +42,25 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="properties">
+ *         &lt;element name="stages">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="stages">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;choice maxOccurs="21">
- *                             &lt;element name="multiStage" type="{}multiStageType" maxOccurs="10"/>
- *                             &lt;element name="scaleStage" type="{}scaleStageType" maxOccurs="10"/>
- *                             &lt;element name="animationStage" type="{}animationStageType"/>
- *                           &lt;/choice>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
+ *                   &lt;element name="multiStage" type="{}multiStageType" maxOccurs="10"/>
+ *                   &lt;element name="scaleStage" type="{}scaleStageType" maxOccurs="10"/>
+ *                   &lt;element name="animationStage" type="{}animationStageType"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="models">
+ *         &lt;element name="modelsRef">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="model" type="{}modelType" maxOccurs="unbounded"/>
+ *                   &lt;element name="modelRef" type="{}modelRefType" maxOccurs="unbounded"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -88,8 +77,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "metadata",
-    "properties",
-    "models"
+    "stages",
+    "modelsRef"
 })
 @XmlRootElement(name = "family")
 public class Family {
@@ -97,9 +86,9 @@ public class Family {
     @XmlElement(required = true)
     protected Family.Metadata metadata;
     @XmlElement(required = true)
-    protected Family.Properties properties;
+    protected Family.Stages stages;
     @XmlElement(required = true)
-    protected Family.Models models;
+    protected Family.ModelsRef modelsRef;
 
     /**
      * Obtiene el valor de la propiedad metadata.
@@ -126,51 +115,51 @@ public class Family {
     }
 
     /**
-     * Obtiene el valor de la propiedad properties.
+     * Obtiene el valor de la propiedad stages.
      * 
      * @return
      *     possible object is
-     *     {@link Family.Properties }
+     *     {@link Family.Stages }
      *     
      */
-    public Family.Properties getProperties() {
-        return properties;
+    public Family.Stages getStages() {
+        return stages;
     }
 
     /**
-     * Define el valor de la propiedad properties.
+     * Define el valor de la propiedad stages.
      * 
      * @param value
      *     allowed object is
-     *     {@link Family.Properties }
+     *     {@link Family.Stages }
      *     
      */
-    public void setProperties(Family.Properties value) {
-        this.properties = value;
+    public void setStages(Family.Stages value) {
+        this.stages = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad models.
+     * Obtiene el valor de la propiedad modelsRef.
      * 
      * @return
      *     possible object is
-     *     {@link Family.Models }
+     *     {@link Family.ModelsRef }
      *     
      */
-    public Family.Models getModels() {
-        return models;
+    public Family.ModelsRef getModelsRef() {
+        return modelsRef;
     }
 
     /**
-     * Define el valor de la propiedad models.
+     * Define el valor de la propiedad modelsRef.
      * 
      * @param value
      *     allowed object is
-     *     {@link Family.Models }
+     *     {@link Family.ModelsRef }
      *     
      */
-    public void setModels(Family.Models value) {
-        this.models = value;
+    public void setModelsRef(Family.ModelsRef value) {
+        this.modelsRef = value;
     }
 
 
@@ -184,7 +173,7 @@ public class Family {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="license" type="{}licenseType"/>
+     *         &lt;element name="license" type="{}licenseType" minOccurs="0"/>
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -207,7 +196,6 @@ public class Family {
     })
     public static class Metadata {
 
-        @XmlElement(required = true)
         protected LicenseType license;
         @XmlElement(required = true)
         protected String name;
@@ -351,7 +339,7 @@ public class Family {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="model" type="{}modelType" maxOccurs="unbounded"/>
+     *         &lt;element name="modelRef" type="{}modelRefType" maxOccurs="unbounded"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -362,40 +350,40 @@ public class Family {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "model"
+        "modelRef"
     })
-    public static class Models {
+    public static class ModelsRef {
 
         @XmlElement(required = true)
-        protected List<ModelType> model;
+        protected List<ModelRefType> modelRef;
 
         /**
-         * Gets the value of the model property.
+         * Gets the value of the modelRef property.
          * 
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the model property.
+         * This is why there is not a <CODE>set</CODE> method for the modelRef property.
          * 
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
-         *    getModel().add(newItem);
+         *    getModelRef().add(newItem);
          * </pre>
          * 
          * 
          * <p>
          * Objects of the following type(s) are allowed in the list
-         * {@link ModelType }
+         * {@link ModelRefType }
          * 
          * 
          */
-        public List<ModelType> getModel() {
-            if (model == null) {
-                model = new ArrayList<ModelType>();
+        public List<ModelRefType> getModelRef() {
+            if (modelRef == null) {
+                modelRef = new ArrayList<ModelRefType>();
             }
-            return this.model;
+            return this.modelRef;
         }
 
     }
@@ -411,19 +399,9 @@ public class Family {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="stages">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;choice maxOccurs="21">
-     *                   &lt;element name="multiStage" type="{}multiStageType" maxOccurs="10"/>
-     *                   &lt;element name="scaleStage" type="{}scaleStageType" maxOccurs="10"/>
-     *                   &lt;element name="animationStage" type="{}animationStageType"/>
-     *                 &lt;/choice>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
+     *         &lt;element name="multiStage" type="{}multiStageType" maxOccurs="10"/>
+     *         &lt;element name="scaleStage" type="{}scaleStageType" maxOccurs="10"/>
+     *         &lt;element name="animationStage" type="{}animationStageType"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -434,103 +412,99 @@ public class Family {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "stages"
+        "multiStage",
+        "scaleStage",
+        "animationStage"
     })
-    public static class Properties {
+    public static class Stages {
 
         @XmlElement(required = true)
-        protected Family.Properties.Stages stages;
+        protected List<MultiStageType> multiStage;
+        @XmlElement(required = true)
+        protected List<ScaleStageType> scaleStage;
+        @XmlElement(required = true)
+        protected AnimationStageType animationStage;
 
         /**
-         * Obtiene el valor de la propiedad stages.
+         * Gets the value of the multiStage property.
          * 
-         * @return
-         *     possible object is
-         *     {@link Family.Properties.Stages }
-         *     
-         */
-        public Family.Properties.Stages getStages() {
-            return stages;
-        }
-
-        /**
-         * Define el valor de la propiedad stages.
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the multiStage property.
          * 
-         * @param value
-         *     allowed object is
-         *     {@link Family.Properties.Stages }
-         *     
-         */
-        public void setStages(Family.Properties.Stages value) {
-            this.stages = value;
-        }
-
-
-        /**
-         * <p>Clase Java para anonymous complex type.
-         * 
-         * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
-         * 
+         * <p>
+         * For example, to add a new item, do as follows:
          * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;choice maxOccurs="21">
-         *         &lt;element name="multiStage" type="{}multiStageType" maxOccurs="10"/>
-         *         &lt;element name="scaleStage" type="{}scaleStageType" maxOccurs="10"/>
-         *         &lt;element name="animationStage" type="{}animationStageType"/>
-         *       &lt;/choice>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
+         *    getMultiStage().add(newItem);
          * </pre>
          * 
          * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link MultiStageType }
+         * 
+         * 
          */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "multiStageOrScaleStageOrAnimationStage"
-        })
-        public static class Stages {
-
-            @XmlElements({
-                @XmlElement(name = "multiStage", type = MultiStageType.class),
-                @XmlElement(name = "scaleStage", type = ScaleStageType.class),
-                @XmlElement(name = "animationStage", type = AnimationStageType.class)
-            })
-            protected List<Object> multiStageOrScaleStageOrAnimationStage;
-
-            /**
-             * Gets the value of the multiStageOrScaleStageOrAnimationStage property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the multiStageOrScaleStageOrAnimationStage property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getMultiStageOrScaleStageOrAnimationStage().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link MultiStageType }
-             * {@link ScaleStageType }
-             * {@link AnimationStageType }
-             * 
-             * 
-             */
-            public List<Object> getMultiStageOrScaleStageOrAnimationStage() {
-                if (multiStageOrScaleStageOrAnimationStage == null) {
-                    multiStageOrScaleStageOrAnimationStage = new ArrayList<Object>();
-                }
-                return this.multiStageOrScaleStageOrAnimationStage;
+        public List<MultiStageType> getMultiStage() {
+            if (multiStage == null) {
+                multiStage = new ArrayList<MultiStageType>();
             }
+            return this.multiStage;
+        }
 
+        /**
+         * Gets the value of the scaleStage property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the scaleStage property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getScaleStage().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link ScaleStageType }
+         * 
+         * 
+         */
+        public List<ScaleStageType> getScaleStage() {
+            if (scaleStage == null) {
+                scaleStage = new ArrayList<ScaleStageType>();
+            }
+            return this.scaleStage;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad animationStage.
+         * 
+         * @return
+         *     possible object is
+         *     {@link AnimationStageType }
+         *     
+         */
+        public AnimationStageType getAnimationStage() {
+            return animationStage;
+        }
+
+        /**
+         * Define el valor de la propiedad animationStage.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link AnimationStageType }
+         *     
+         */
+        public void setAnimationStage(AnimationStageType value) {
+            this.animationStage = value;
         }
 
     }

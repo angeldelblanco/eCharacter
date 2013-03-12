@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:53 AM CET 
+// Generado el: PM.03.12 a las 05:20:25 PM CET 
 //
 
 
@@ -53,14 +53,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Family.Properties }
-     * 
-     */
-    public Family.Properties createFamilyProperties() {
-        return new Family.Properties();
-    }
-
-    /**
      * Create an instance of {@link Family.Metadata }
      * 
      */
@@ -69,11 +61,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Family.Models }
+     * Create an instance of {@link Family.Stages }
      * 
      */
-    public Family.Models createFamilyModels() {
-        return new Family.Models();
+    public Family.Stages createFamilyStages() {
+        return new Family.Stages();
+    }
+
+    /**
+     * Create an instance of {@link Family.ModelsRef }
+     * 
+     */
+    public Family.ModelsRef createFamilyModelsRef() {
+        return new Family.ModelsRef();
     }
 
     /**
@@ -85,27 +85,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MeshStageType }
-     * 
-     */
-    public MeshStageType createMeshStageType() {
-        return new MeshStageType();
-    }
-
-    /**
-     * Create an instance of {@link ModelType }
-     * 
-     */
-    public ModelType createModelType() {
-        return new ModelType();
-    }
-
-    /**
      * Create an instance of {@link CameraType }
      * 
      */
     public CameraType createCameraType() {
         return new CameraType();
+    }
+
+    /**
+     * Create an instance of {@link ModelRefType }
+     * 
+     */
+    public ModelRefType createModelRefType() {
+        return new ModelRefType();
     }
 
     /**
@@ -117,11 +109,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TextureStageType }
+     * Create an instance of {@link TextureSubStageType }
      * 
      */
-    public TextureStageType createTextureStageType() {
-        return new TextureStageType();
+    public TextureSubStageType createTextureSubStageType() {
+        return new TextureSubStageType();
     }
 
     /**
@@ -130,6 +122,14 @@ public class ObjectFactory {
      */
     public FpsType createFpsType() {
         return new FpsType();
+    }
+
+    /**
+     * Create an instance of {@link MeshSubStageType }
+     * 
+     */
+    public MeshSubStageType createMeshSubStageType() {
+        return new MeshSubStageType();
     }
 
     /**
@@ -154,14 +154,6 @@ public class ObjectFactory {
      */
     public ScaleStageType.BoneController createScaleStageTypeBoneController() {
         return new ScaleStageType.BoneController();
-    }
-
-    /**
-     * Create an instance of {@link Family.Properties.Stages }
-     * 
-     */
-    public Family.Properties.Stages createFamilyPropertiesStages() {
-        return new Family.Properties.Stages();
     }
 
 }

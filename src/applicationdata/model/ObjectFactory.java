@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:40 AM CET 
+// Generado el: PM.03.12 a las 05:20:56 PM CET 
 //
 
 
@@ -45,11 +45,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ColorTextureType }
+     * Create an instance of {@link MultiOptionTextureType }
      * 
      */
-    public ColorTextureType createColorTextureType() {
-        return new ColorTextureType();
+    public MultiOptionTextureType createMultiOptionTextureType() {
+        return new MultiOptionTextureType();
     }
 
     /**
@@ -93,6 +93,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link BaseShadowTextureType }
+     * 
+     */
+    public BaseShadowTextureType createBaseShadowTextureType() {
+        return new BaseShadowTextureType();
+    }
+
+    /**
      * Create an instance of {@link TextureType }
      * 
      */
@@ -106,14 +114,6 @@ public class ObjectFactory {
      */
     public SubMeshesType createSubMeshesType() {
         return new SubMeshesType();
-    }
-
-    /**
-     * Create an instance of {@link BaseShadowTextureType }
-     * 
-     */
-    public BaseShadowTextureType createBaseShadowTextureType() {
-        return new BaseShadowTextureType();
     }
 
     /**
@@ -141,11 +141,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ColorTextureType.Texture }
+     * Create an instance of {@link MultiOptionTextureType.Texture }
      * 
      */
-    public ColorTextureType.Texture createColorTextureTypeTexture() {
-        return new ColorTextureType.Texture();
+    public MultiOptionTextureType.Texture createMultiOptionTextureTypeTexture() {
+        return new MultiOptionTextureType.Texture();
     }
 
 }

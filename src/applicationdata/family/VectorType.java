@@ -2,13 +2,12 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:53 AM CET 
+// Generado el: PM.03.12 a las 05:20:25 PM CET 
 //
 
 
 package applicationdata.family;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -24,9 +23,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="vectorType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="valueX" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="valueY" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="valueZ" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="valueX" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="valueY" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="valueZ" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,81 +38,57 @@ import javax.xml.bind.annotation.XmlType;
 public class VectorType {
 
     @XmlAttribute(name = "valueX", required = true)
-    protected BigInteger valueX;
+    protected float valueX;
     @XmlAttribute(name = "valueY", required = true)
-    protected BigInteger valueY;
+    protected float valueY;
     @XmlAttribute(name = "valueZ", required = true)
-    protected BigInteger valueZ;
+    protected float valueZ;
 
     /**
      * Obtiene el valor de la propiedad valueX.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
      */
-    public BigInteger getValueX() {
+    public float getValueX() {
         return valueX;
     }
 
     /**
      * Define el valor de la propiedad valueX.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
      */
-    public void setValueX(BigInteger value) {
+    public void setValueX(float value) {
         this.valueX = value;
     }
 
     /**
      * Obtiene el valor de la propiedad valueY.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
      */
-    public BigInteger getValueY() {
+    public float getValueY() {
         return valueY;
     }
 
     /**
      * Define el valor de la propiedad valueY.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
      */
-    public void setValueY(BigInteger value) {
+    public void setValueY(float value) {
         this.valueY = value;
     }
 
     /**
      * Obtiene el valor de la propiedad valueZ.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
      */
-    public BigInteger getValueZ() {
+    public float getValueZ() {
         return valueZ;
     }
 
     /**
      * Define el valor de la propiedad valueZ.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
      */
-    public void setValueZ(BigInteger value) {
+    public void setValueZ(float value) {
         this.valueZ = value;
     }
 

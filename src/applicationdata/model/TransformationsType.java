@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:40 AM CET 
+// Generado el: PM.03.12 a las 05:20:56 PM CET 
 //
 
 
@@ -23,12 +23,12 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="transformationsType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="type" use="required">
+ *       &lt;attribute name="transformationType" use="required">
  *         &lt;simpleType>
  *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *             &lt;enumeration value="escalado"/>
- *             &lt;enumeration value="rotación"/>
- *             &lt;enumeration value="traslación"/>
+ *             &lt;enumeration value="scale"/>
+ *             &lt;enumeration value="rotate"/>
+ *             &lt;enumeration value="translate"/>
  *           &lt;/restriction>
  *         &lt;/simpleType>
  *       &lt;/attribute>
@@ -46,8 +46,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "transformationsType")
 public class TransformationsType {
 
-    @XmlAttribute(name = "type", required = true)
-    protected String type;
+    @XmlAttribute(name = "transformationType", required = true)
+    protected String transformationType;
     @XmlAttribute(name = "valueX", required = true)
     protected float valueX;
     @XmlAttribute(name = "valueY", required = true)
@@ -56,27 +56,27 @@ public class TransformationsType {
     protected float valueZ;
 
     /**
-     * Obtiene el valor de la propiedad type.
+     * Obtiene el valor de la propiedad transformationType.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getType() {
-        return type;
+    public String getTransformationType() {
+        return transformationType;
     }
 
     /**
-     * Define el valor de la propiedad type.
+     * Define el valor de la propiedad transformationType.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setType(String value) {
-        this.type = value;
+    public void setTransformationType(String value) {
+        this.transformationType = value;
     }
 
     /**

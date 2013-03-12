@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:40 AM CET 
+// Generado el: PM.03.12 a las 05:20:56 PM CET 
 //
 
 
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice maxOccurs="unbounded">
- *         &lt;element name="base-shadowTexture" type="{}base-shadowTextureType"/>
+ *         &lt;element name="baseShadowTexture" type="{}baseShadowTextureType"/>
  *         &lt;element name="simpleTexture" type="{}simpleTextureType"/>
  *         &lt;element name="doubleTexture" type="{}doubleTextureType"/>
- *         &lt;element name="colorTexture" type="{}colorTextureType"/>
+ *         &lt;element name="multiOptionTexture" type="{}multiOptionTextureType"/>
  *       &lt;/choice>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -46,10 +46,10 @@ import javax.xml.bind.annotation.XmlType;
 public class TextureType {
 
     @XmlElements({
-        @XmlElement(name = "base-shadowTexture", type = BaseShadowTextureType.class),
+        @XmlElement(name = "baseShadowTexture", type = BaseShadowTextureType.class),
         @XmlElement(name = "simpleTexture", type = SimpleTextureType.class),
         @XmlElement(name = "doubleTexture", type = DoubleTextureType.class),
-        @XmlElement(name = "colorTexture", type = ColorTextureType.class)
+        @XmlElement(name = "multiOptionTexture", type = MultiOptionTextureType.class)
     })
     protected List<Object> baseShadowTextureOrSimpleTextureOrDoubleTexture;
 
@@ -74,7 +74,7 @@ public class TextureType {
      * {@link BaseShadowTextureType }
      * {@link SimpleTextureType }
      * {@link DoubleTextureType }
-     * {@link ColorTextureType }
+     * {@link MultiOptionTextureType }
      * 
      * 
      */

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:53 AM CET 
+// Generado el: PM.03.12 a las 05:20:25 PM CET 
 //
 
 
@@ -28,8 +28,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice maxOccurs="unbounded">
- *         &lt;element name="meshStage" type="{}meshStageType"/>
- *         &lt;element name="textureStage" type="{}textureStageType"/>
+ *         &lt;element name="meshSubStage" type="{}meshSubStageType"/>
+ *         &lt;element name="textureSubStage" type="{}textureSubStageType"/>
  *       &lt;/choice>
  *       &lt;attribute name="stageName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -41,46 +41,46 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "multiStageType", propOrder = {
-    "meshStageOrTextureStage"
+    "meshSubStageOrTextureSubStage"
 })
 public class MultiStageType {
 
     @XmlElements({
-        @XmlElement(name = "meshStage", type = MeshStageType.class),
-        @XmlElement(name = "textureStage", type = TextureStageType.class)
+        @XmlElement(name = "meshSubStage", type = MeshSubStageType.class),
+        @XmlElement(name = "textureSubStage", type = TextureSubStageType.class)
     })
-    protected List<Object> meshStageOrTextureStage;
+    protected List<Object> meshSubStageOrTextureSubStage;
     @XmlAttribute(name = "stageName", required = true)
     protected String stageName;
 
     /**
-     * Gets the value of the meshStageOrTextureStage property.
+     * Gets the value of the meshSubStageOrTextureSubStage property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the meshStageOrTextureStage property.
+     * This is why there is not a <CODE>set</CODE> method for the meshSubStageOrTextureSubStage property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getMeshStageOrTextureStage().add(newItem);
+     *    getMeshSubStageOrTextureSubStage().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link MeshStageType }
-     * {@link TextureStageType }
+     * {@link MeshSubStageType }
+     * {@link TextureSubStageType }
      * 
      * 
      */
-    public List<Object> getMeshStageOrTextureStage() {
-        if (meshStageOrTextureStage == null) {
-            meshStageOrTextureStage = new ArrayList<Object>();
+    public List<Object> getMeshSubStageOrTextureSubStage() {
+        if (meshSubStageOrTextureSubStage == null) {
+            meshSubStageOrTextureSubStage = new ArrayList<Object>();
         }
-        return this.meshStageOrTextureStage;
+        return this.meshSubStageOrTextureSubStage;
     }
 
     /**

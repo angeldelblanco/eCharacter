@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.03.11 a las 10:45:53 AM CET 
+// Generado el: PM.03.12 a las 05:20:25 PM CET 
 //
 
 
@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="labelController" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="controllerName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="idController" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -153,7 +154,8 @@ public class ScaleStageType {
      * &lt;complexType>
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;attribute name="labelController" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="controllerName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="idController" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -165,31 +167,60 @@ public class ScaleStageType {
     @XmlType(name = "")
     public static class BoneController {
 
-        @XmlAttribute(name = "labelController", required = true)
-        protected String labelController;
+        @XmlAttribute(name = "controllerName", required = true)
+        protected String controllerName;
+        @XmlAttribute(name = "idController", required = true)
+        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+        @XmlID
+        @XmlSchemaType(name = "ID")
+        protected String idController;
 
         /**
-         * Obtiene el valor de la propiedad labelController.
+         * Obtiene el valor de la propiedad controllerName.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getLabelController() {
-            return labelController;
+        public String getControllerName() {
+            return controllerName;
         }
 
         /**
-         * Define el valor de la propiedad labelController.
+         * Define el valor de la propiedad controllerName.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setLabelController(String value) {
-            this.labelController = value;
+        public void setControllerName(String value) {
+            this.controllerName = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad idController.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getIdController() {
+            return idController;
+        }
+
+        /**
+         * Define el valor de la propiedad idController.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setIdController(String value) {
+            this.idController = value;
         }
 
     }
