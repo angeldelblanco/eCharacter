@@ -39,6 +39,7 @@ import applicationdata.family.*;
 import applicationdata.model.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,7 +52,7 @@ public class XMLReaderJAXB
     private ArrayList<Family> families;
     private ArrayList<Model> models;
     
-    public XMLReaderJAXB()
+    public XMLReaderJAXB() throws JAXBException, FileNotFoundException
     {
         families = new ArrayList<Family>();
         models = new ArrayList<Model>();
@@ -61,7 +62,7 @@ public class XMLReaderJAXB
     private void readFamiliesPath(String path)
     {
         File dirPath = new File(path);
-        String[] list = dirPath.list();
+        /*String[] list = dirPath.list();
         for(int i=0; i<list.length;i++)
         {
             try 
@@ -74,6 +75,23 @@ public class XMLReaderJAXB
             {
                 Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }*/
+        File[] ficheros = dirPath.listFiles();
+        for (int x=0;x<ficheros.length;x++)
+        {
+            File file = ficheros[x];
+            if (! file.isDirectory() && ! file.getName().equals("family.xsd")) {
+                System.out.println(file.getPath());
+                try {
+                    try {
+                        families.add(unmarshal(Family.class, new FileInputStream(file.getPath())));
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (JAXBException ex) {
+                    Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }
     
@@ -82,11 +100,12 @@ public class XMLReaderJAXB
         String packageName = docClass.getPackage().getName();
         JAXBContext jc = JAXBContext.newInstance( packageName );
         Unmarshaller u = jc.createUnmarshaller();
-        JAXBElement<T> doc = (JAXBElement<T>)u.unmarshal( inputStream );
-        return doc.getValue();
+        //JAXBElement<T> doc = (JAXBElement<T>)u.unmarshal( inputStream );
+        T doc = (T)u.unmarshal( inputStream );
+        return doc;
     } 
     
-    public static void main(String args[])
+    public static void main(String args[]) throws JAXBException, FileNotFoundException
     {
         XMLReaderJAXB aux = new XMLReaderJAXB();
         Iterator<Family> it = aux.families.iterator();
@@ -96,7 +115,5 @@ public class XMLReaderJAXB
             System.out.println(fam.getMetadata().getName());
             System.out.println(fam.getMetadata().getDescription());
         }
-        
-    }
-    
+    }   
 }
