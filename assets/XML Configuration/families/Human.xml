@@ -51,12 +51,12 @@
 	<modelsRef>
 		<modelRef>
 			<modelName>Chico</modelName>
-			<iconPath>assets/Interface/man.png</iconPath>
+			<iconPath>Interface/man.png</iconPath>
 			<modelPath>assets/XML Configuration/models/Man.xml</modelPath>
 		</modelRef> 
 		<modelRef>
 			<modelName>Chica</modelName>
-			<iconPath>assets/Interface/woman.png</iconPath>
+			<iconPath>Interface/woman.png</iconPath>
 			<modelPath>assets/XML Configuration/models/Woman.xml</modelPath>
 		</modelRef> 
 	</modelsRef>

@@ -62,6 +62,11 @@ import de.lessvoid.nifty.tools.Color;
 import java.io.IOException;
 import types.Age;
 import types.Gender;
+import java.util.ArrayList;
+import applicationdata.family.*;
+import de.lessvoid.nifty.elements.render.TextRenderer;
+import java.util.Iterator;
+import java.util.List;
 
 public class StartScreen extends AbstractAppState implements ScreenController {
     
@@ -76,7 +81,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private float red, green, blue;
     private String pantallas[];
     private String screenType[];
-    private String models[], modelIcons[], familyName[];
+    private ArrayList<Family> families;
+    private List<ModelRefType> models;
+    //private String models[], modelIcons[], familyName[];
     private int index;
     
     public StartScreen(Gui gui){
@@ -85,24 +92,16 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        models = new String[4];
-        modelIcons = new String[4];
-        familyName = new String[1];
-        models[0] = "Man"; modelIcons[0] = "Interface/man.png";
-        models[1] = "Woman"; modelIcons[1] = "Interface/woman.png";
-        models[2] = "Boy"; modelIcons[2] = "Interface/children.png";
-        models[3] = "Girl"; modelIcons[3] = "Interface/children.png";
-        familyName[0] = "Basicfamily";
+        families = gui.getFamilies();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").disable();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(false);
         nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(false);
-        new TextBuilder(){{
-            color(Color.BLACK);
-            font("Interface/Fonts/Default.fnt");
-            text("Modelos básicos disenados para la aplicación que está usted usando.\nEsta familia está compuesta por cuatro modelos: hombre, mujer, nino y nina.");
-            width("100%");
-            wrap(true);
-            
+        new TextBuilder("descriptionText"){{
+               color(Color.BLACK);
+               font("Interface/Fonts/Default.fnt");
+               width("100%");
+               height("100%");
+               wrap(true);
         }}.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("descriptionPanel"));
         new PanelBuilder() {{
             width("40%");
@@ -121,22 +120,32 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }});
         }}.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("familyPanel"));
         DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
-        for(int j=0; j<familyName.length;j++){
-            for(int i=0; i<models.length; i++){
+        Iterator<Family> it = families.iterator();
+        while(it.hasNext()){
+            final Family f = it.next();
+            models = f.getModelsRef().getModelRef();
+            Iterator<ModelRefType> itm = models.iterator();
+            int i = 0;
+            while(itm.hasNext()){
+                ModelRefType m = itm.next();
                 ImageBuilder image = new ImageBuilder(){{
                     width("0%");
                     height("0%");
+                    childLayoutOverlay();
+                    text("Man");
                 }};
-                image.id(familyName[j]+"model"+Integer.toString(i));
-                image.filename(modelIcons[i]);
-                image.interactOnClick("selectModel("+models[i]+")");
+                image.id(f.getMetadata().getName()+"model"+Integer.toString(i));
+                image.filename(m.getIconPath());
+                image.interactOnClick("selectModel(Man)");
+                image.onHoverEffect(new HoverEffectBuilder("Man"));
                 image.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
+                i++;
             }
-            family.addItem(familyName[j]);
+            family.addItem(f.getMetadata().getName());
         }
-        familySelection = familyName[0];
+        familySelection = families.get(0).getMetadata().getName();
         modelspage = 0;
-        changeCharacterPage("0");
+        changeCharacterPage("0",familySelection);
     }
 
     public void quitGame() {
@@ -169,14 +178,15 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         popupFin = null;
         popupFin();
         index = 0;
+        familySelection = "";
         panelSelection = null;
-        pantallas = new String[4];
-        screenType = new String[4];
+        pantallas = new String[5];
+        screenType = new String[5];
         pantallas[0] = "bones"; screenType[0] = "basicScreen";
         pantallas[1] = "skinScreen"; screenType[1] = "singleTextureScreen";
         pantallas[2] = "tshirtScreen"; screenType[2] = "singleTextureScreen";
         pantallas[3] = "trousersScreen"; screenType[3] = "singleTextureScreen";
-        //pantallas[4] = "shoesScreen"; screenType[4] = "singleTextureScreen";
+        pantallas[4] = "shoesScreen"; screenType[4] = "singleTextureScreen";
     }
     
     public void creaMenu(){
@@ -379,18 +389,18 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }}.registerPopup(nifty);
     }
     
-    public void changeCharacterPage(String steep){
-            for(int i=modelspage*TEXTURES_PAGE; i<models.length; i++){
+    public void changeCharacterPage(String steep, String familyAnt){
+            for(int i=modelspage*TEXTURES_PAGE; i<models.size(); i++){
                 if(i<((modelspage+1)*TEXTURES_PAGE)){
-                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setVisible(false);
-                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setHeight(0);
-                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setWidth(0);
+                    nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setVisible(false);
+                    nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setHeight(0);
+                    nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setWidth(0);
                 }
             }
             if(steep.equals("+")){modelspage++;}
             if(steep.equals("-")){modelspage--;}
             if(steep.equals("0")){modelspage = 0;}
-            for(int i=modelspage*TEXTURES_PAGE; i<models.length; i++){
+            for(int i=modelspage*TEXTURES_PAGE; i<models.size(); i++){
                 if(i<((modelspage+1)*TEXTURES_PAGE)){
                     nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setVisible(true);
                     nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setHeight(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
@@ -405,13 +415,22 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 nifty.getScreen("modelScreen").findElementByName("leftT").disable();
                 nifty.getScreen("modelScreen").findElementByName("leftT").setVisible(false);
             }
-            if((((double)models.length/(double)TEXTURES_PAGE) - modelspage) > 1){
+            if((((double)models.size()/(double)TEXTURES_PAGE) - modelspage) > 1){
                 nifty.getScreen("modelScreen").findElementByName("rightT").enable();
                 nifty.getScreen("modelScreen").findElementByName("rightT").setVisible(true);
             }
             else{
                 nifty.getScreen("modelScreen").findElementByName("rightT").disable();
                 nifty.getScreen("modelScreen").findElementByName("rightT").setVisible(false);
+            }
+            Iterator<Family> it = families.iterator();
+            while(it.hasNext()){
+                final Family f = it.next();
+                if(f.getMetadata().getName().equals(familySelection)){
+                    String url = "";
+                    if(f.getMetadata().getURL()!=null){url = f.getMetadata().getURL();}
+                    nifty.getScreen("modelScreen").findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(f.getMetadata().getDescription()+f.getMetadata().getAuthor()+url);
+                }
             }
     }
     
@@ -693,9 +712,10 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="familyDropDown")
   public void onDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
-    if (event.getSelection() != null) {
+    if (event.getSelection() != null && (!familySelection.equals(""))) {
+        String familyAnt = familySelection;
         familySelection = event.getSelection();
-        changeCharacterPage("0");
+        changeCharacterPage("0", familyAnt);
     }
   }
     

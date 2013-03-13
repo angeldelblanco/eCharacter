@@ -51,12 +51,12 @@
 	<modelsRef>
 		<modelRef>
 			<modelName>Yorkshire</modelName>
-			<iconPath>assets/Interface/yorkshire.jpeg</iconPath>
+			<iconPath>Interface/yorkshire.png</iconPath>
 			<modelPath></modelPath>
 		</modelRef> 
 		<modelRef>
 			<modelName>Samoyedo</modelName>
-			<iconPath>assets/Interface/samoyedo.jpg</iconPath>
+			<iconPath>Interface/samoyedo.png</iconPath>
 			<modelPath></modelPath>
 		</modelRef> 
 	</modelsRef>

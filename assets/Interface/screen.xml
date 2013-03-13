@@ -112,7 +112,7 @@
 				<panel height="100%" width="5%">
 					<!-- Space -->
 				</panel>
-				<panel id="descriptionPanel" height="100%" width="30%" childLayout="vertical" backgroundColor="#FFFFFFAA">
+				<panel id="descriptionPanel" height="100%" width="30%" childLayout="vertical" wrap = "true" backgroundColor="#FFFFFFAA">
 				</panel>
 				<panel height="100%" width="30%" childLayout="center">
 					<panel id="loadPopupPanel" height="10%" width="50%" childLayout="center" backgroundColor="#00FF00AA">
