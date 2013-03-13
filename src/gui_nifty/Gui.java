@@ -38,6 +38,8 @@ package gui_nifty;
 
 import Model.Model;
 import XML.XMLReader;
+import XML.XMLReaderJAXB;
+import applicationdata.family.Family;
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.animation.SkeletonControl;
@@ -56,6 +58,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import types.Age;
 import types.Gender;
 import types.TypeObject;
@@ -67,6 +70,8 @@ public class Gui extends SimpleApplication{
     private NiftyJmeDisplay niftyDisplay;
     private Model model;
     private Material mat;
+    private static ArrayList<Family> families;
+    private static XMLReaderJAXB xmlReader;
     
     private int indexImage = 0;
     
@@ -76,6 +81,10 @@ public class Gui extends SimpleApplication{
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         System.out.println("Tu resolución es de " + screenSize.width + "x" + screenSize.height);*/
         
+        //Read the XML's with all families.
+        xmlReader = new XMLReaderJAXB<Family>("assets/XML Configuration/families");
+        families = xmlReader.readXML(Family.class);
+
         AppSettings settings = new AppSettings(true);
         settings.setResolution(1024, 768);
         //settings.setFullscreen(true);
@@ -83,6 +92,7 @@ public class Gui extends SimpleApplication{
         app.setShowSettings(false);
         app.setSettings(settings);
         app.start();
+        
     }
     
     @Override
@@ -116,6 +126,10 @@ public class Gui extends SimpleApplication{
  
     public void onAnimChange(AnimControl control, AnimChannel channel, String animName) 
     {
+    }
+
+    public ArrayList<Family> getFamilies() {
+        return families;
     }
     
     public int length(String param){
@@ -346,12 +360,12 @@ public class Gui extends SimpleApplication{
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));
         model.setModel(assetManager.loadModel(model.getModelPath()), mat);
-        Spatial hairMesh = assetManager.loadModel("Models/eAdventure/HairBoy/goku haircut.mesh.xml");
+        Spatial hairMesh = assetManager.loadModel("Models/eAdventure/Hair Boy/goku haircut.mesh.xml");
         Material hairMat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        hairMat.setTexture("DiffuseMap",assetManager.loadTexture("Models/eAdventure/HairBoy/hairtexture.png"));
+        hairMat.setTexture("DiffuseMap",assetManager.loadTexture("Models/eAdventure/Hair Boy/hairtexture.png"));
         hairMesh.setMaterial(hairMat);
         model.setHair(hairMesh);
-        //model.setHair("assets/Models/eAdventure/HairBoy/pasted__pasted__pasted__polySurfaceShape2.mesh.xml", "assets/Models/eAdventure/HairBoy/pasted__pasted__pasted__polySurfaceShape2.material");
+        //model.setHair("assets/Models/eAdventure/Hair Boy/pasted__pasted__pasted__polySurfaceShape2.mesh.xml", "assets/Models/eAdventure/Hair Boy/pasted__pasted__pasted__polySurfaceShape2.material");
         rootNode.attachChild(model.getModel());
         model.setPositionModel();
         

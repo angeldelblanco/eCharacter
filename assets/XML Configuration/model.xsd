@@ -77,7 +77,7 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="boneControllerType">
-		<xs:attribute name="labelController" type="xs:string" use="required"/>
+		<xs:attribute name="idController" type="xs:ID" use="required"/>
 		<xs:attribute name="defaultValue" type="xs:integer" use="required"/>
 		<xs:attribute name="minValue" type="xs:integer" use="required"/>
 		<xs:attribute name="maxValue" type="xs:integer" use="required"/>

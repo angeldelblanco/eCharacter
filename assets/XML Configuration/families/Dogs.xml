@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <family xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../family.xsd">
 	<metadata>
-		<name>Human</name>
-		<description>Esta familia está compuesta por 2 humanos: un chico y una chica.</description>
-		<author>Alex, David y Sergio.</author>
+		<name>Dogs</name>
+		<description>Esta familia está compuesta por 2 perros: un yorkshire y un samoyedo.</description>
+		<author>Sergio.</author>
 	</metadata>
 	<stages>
 		<scaleStage stageName="Escalado" idPanel="panelEscalado">
@@ -50,14 +50,14 @@
 	</stages>
 	<modelsRef>
 		<modelRef>
-			<modelName>Chico</modelName>
-			<iconPath>assets/Interface/man.png</iconPath>
-			<modelPath>assets/XML Configuration/models/Man.xml</modelPath>
+			<modelName>Yorkshire</modelName>
+			<iconPath>assets/Interface/yorkshire.jpeg</iconPath>
+			<modelPath></modelPath>
 		</modelRef> 
 		<modelRef>
-			<modelName>Chica</modelName>
-			<iconPath>assets/Interface/woman.png</iconPath>
-			<modelPath>assets/XML Configuration/models/Woman.xml</modelPath>
+			<modelName>Samoyedo</modelName>
+			<iconPath>assets/Interface/samoyedo.jpg</iconPath>
+			<modelPath></modelPath>
 		</modelRef> 
 	</modelsRef>
 </family>

@@ -47,19 +47,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.*;
 
-public class XMLReaderJAXB 
+public class XMLReaderJAXB<T> 
 {
-    private ArrayList<Family> families;
-    private ArrayList<Model> models;
+    private ArrayList<T> list;
+    private String path;
     
-    public XMLReaderJAXB() throws JAXBException, FileNotFoundException
+    public XMLReaderJAXB(String path)
     {
-        families = new ArrayList<Family>();
-        models = new ArrayList<Model>();
-        readFamiliesPath("assets/XML Configuration/families");
+        this.path = path;
+
+        list = new ArrayList<T>();
+        //readFamiliesPath(path);
     }
     
-    private void readFamiliesPath(String path)
+    public ArrayList<T> readXML(Class<T> docClass)
     {
         File dirPath = new File(path);
         /*String[] list = dirPath.list();
@@ -80,11 +81,13 @@ public class XMLReaderJAXB
         for (int x=0;x<ficheros.length;x++)
         {
             File file = ficheros[x];
+            //Hay que hacer más comprobaciones(que no sea model.xsd y q sean XML)
             if (! file.isDirectory() && ! file.getName().equals("family.xsd")) {
                 System.out.println(file.getPath());
                 try {
                     try {
-                        families.add(unmarshal(Family.class, new FileInputStream(file.getPath())));
+                        
+                        list.add(unmarshal(docClass, new FileInputStream(file.getPath())));
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -93,6 +96,7 @@ public class XMLReaderJAXB
                 }
             }
         }
+        return list;
     }
     
     private <T> T unmarshal( Class<T> docClass, InputStream inputStream )throws JAXBException 
@@ -107,8 +111,9 @@ public class XMLReaderJAXB
     
     public static void main(String args[]) throws JAXBException, FileNotFoundException
     {
-        XMLReaderJAXB aux = new XMLReaderJAXB();
-        Iterator<Family> it = aux.families.iterator();
+        XMLReaderJAXB<Family> aux = new XMLReaderJAXB<Family>("assets/XML Configuration/families");
+        ArrayList<Family> families = aux.readXML(Family.class);
+        Iterator<Family> it = families.iterator();
         while(it.hasNext())
         {
             Family fam = it.next();

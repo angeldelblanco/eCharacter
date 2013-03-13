@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.12 a las 05:20:56 PM CET 
+// Generado el: PM.03.13 a las 05:23:37 PM CET 
 //
 
 
@@ -12,7 +12,11 @@ import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -24,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="boneControllerType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="labelController" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="idController" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *       &lt;attribute name="defaultValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="minValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="maxValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -40,8 +44,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "boneControllerType")
 public class BoneControllerType {
 
-    @XmlAttribute(name = "labelController", required = true)
-    protected String labelController;
+    @XmlAttribute(name = "idController", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlID
+    @XmlSchemaType(name = "ID")
+    protected String idController;
     @XmlAttribute(name = "defaultValue", required = true)
     protected BigInteger defaultValue;
     @XmlAttribute(name = "minValue", required = true)
@@ -52,27 +59,27 @@ public class BoneControllerType {
     protected String boneName;
 
     /**
-     * Obtiene el valor de la propiedad labelController.
+     * Obtiene el valor de la propiedad idController.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getLabelController() {
-        return labelController;
+    public String getIdController() {
+        return idController;
     }
 
     /**
-     * Define el valor de la propiedad labelController.
+     * Define el valor de la propiedad idController.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setLabelController(String value) {
-        this.labelController = value;
+    public void setIdController(String value) {
+        this.idController = value;
     }
 
     /**
