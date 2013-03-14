@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.13 a las 05:23:37 PM CET 
+// Generado el: PM.03.14 a las 06:34:47 PM CET 
 //
 
 
@@ -37,11 +37,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Model }
+     * Create an instance of {@link MeshType }
      * 
      */
-    public Model createModel() {
-        return new Model();
+    public MeshType createMeshType() {
+        return new MeshType();
     }
 
     /**
@@ -53,11 +53,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Model.Mesh }
+     * Create an instance of {@link Model }
      * 
      */
-    public Model.Mesh createModelMesh() {
-        return new Model.Mesh();
+    public Model createModel() {
+        return new Model();
+    }
+
+    /**
+     * Create an instance of {@link MainMeshType }
+     * 
+     */
+    public MainMeshType createMainMeshType() {
+        return new MainMeshType();
+    }
+
+    /**
+     * Create an instance of {@link SubMeshType }
+     * 
+     */
+    public SubMeshType createSubMeshType() {
+        return new SubMeshType();
+    }
+
+    /**
+     * Create an instance of {@link ComplexionType }
+     * 
+     */
+    public ComplexionType createComplexionType() {
+        return new ComplexionType();
     }
 
     /**
@@ -69,27 +93,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TransformationsType }
+     * Create an instance of {@link BoneType }
      * 
      */
-    public TransformationsType createTransformationsType() {
-        return new TransformationsType();
-    }
-
-    /**
-     * Create an instance of {@link BoneControllerType }
-     * 
-     */
-    public BoneControllerType createBoneControllerType() {
-        return new BoneControllerType();
-    }
-
-    /**
-     * Create an instance of {@link BonesType }
-     * 
-     */
-    public BonesType createBonesType() {
-        return new BonesType();
+    public BoneType createBoneType() {
+        return new BoneType();
     }
 
     /**
@@ -109,27 +117,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SubMeshesType }
+     * Create an instance of {@link EscalationType }
      * 
      */
-    public SubMeshesType createSubMeshesType() {
-        return new SubMeshesType();
-    }
-
-    /**
-     * Create an instance of {@link EscalationsType }
-     * 
-     */
-    public EscalationsType createEscalationsType() {
-        return new EscalationsType();
-    }
-
-    /**
-     * Create an instance of {@link BasicModeType }
-     * 
-     */
-    public BasicModeType createBasicModeType() {
-        return new BasicModeType();
+    public EscalationType createEscalationType() {
+        return new EscalationType();
     }
 
     /**
@@ -138,6 +130,22 @@ public class ObjectFactory {
      */
     public DoubleTextureType createDoubleTextureType() {
         return new DoubleTextureType();
+    }
+
+    /**
+     * Create an instance of {@link TransformationType }
+     * 
+     */
+    public TransformationType createTransformationType() {
+        return new TransformationType();
+    }
+
+    /**
+     * Create an instance of {@link MeshType.Textures }
+     * 
+     */
+    public MeshType.Textures createMeshTypeTextures() {
+        return new MeshType.Textures();
     }
 
     /**

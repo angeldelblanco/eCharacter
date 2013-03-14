@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.12 a las 05:20:25 PM CET 
+// Generado el: PM.03.14 a las 06:34:31 PM CET 
 //
 
 
@@ -35,14 +35,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="controllerName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="controllerLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="idController" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
  *       &lt;/sequence>
- *       &lt;attribute name="stageName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="stageLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="idPanel" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -59,8 +59,8 @@ public class ScaleStageType {
 
     @XmlElement(required = true)
     protected List<ScaleStageType.BoneController> boneController;
-    @XmlAttribute(name = "stageName", required = true)
-    protected String stageName;
+    @XmlAttribute(name = "stageLabel", required = true)
+    protected String stageLabel;
     @XmlAttribute(name = "idPanel", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -97,27 +97,27 @@ public class ScaleStageType {
     }
 
     /**
-     * Obtiene el valor de la propiedad stageName.
+     * Obtiene el valor de la propiedad stageLabel.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getStageName() {
-        return stageName;
+    public String getStageLabel() {
+        return stageLabel;
     }
 
     /**
-     * Define el valor de la propiedad stageName.
+     * Define el valor de la propiedad stageLabel.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setStageName(String value) {
-        this.stageName = value;
+    public void setStageLabel(String value) {
+        this.stageLabel = value;
     }
 
     /**
@@ -154,7 +154,7 @@ public class ScaleStageType {
      * &lt;complexType>
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;attribute name="controllerName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="controllerLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
      *       &lt;attribute name="idController" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -167,8 +167,8 @@ public class ScaleStageType {
     @XmlType(name = "")
     public static class BoneController {
 
-        @XmlAttribute(name = "controllerName", required = true)
-        protected String controllerName;
+        @XmlAttribute(name = "controllerLabel", required = true)
+        protected String controllerLabel;
         @XmlAttribute(name = "idController", required = true)
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         @XmlID
@@ -176,27 +176,27 @@ public class ScaleStageType {
         protected String idController;
 
         /**
-         * Obtiene el valor de la propiedad controllerName.
+         * Obtiene el valor de la propiedad controllerLabel.
          * 
          * @return
          *     possible object is
          *     {@link String }
          *     
          */
-        public String getControllerName() {
-            return controllerName;
+        public String getControllerLabel() {
+            return controllerLabel;
         }
 
         /**
-         * Define el valor de la propiedad controllerName.
+         * Define el valor de la propiedad controllerLabel.
          * 
          * @param value
          *     allowed object is
          *     {@link String }
          *     
          */
-        public void setControllerName(String value) {
-            this.controllerName = value;
+        public void setControllerLabel(String value) {
+            this.controllerLabel = value;
         }
 
         /**

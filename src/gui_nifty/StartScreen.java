@@ -36,6 +36,7 @@
 
 package gui_nifty;
 
+import applicationdata.family.*;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
@@ -56,17 +57,16 @@ import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.controls.slider.builder.SliderBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
+import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import de.lessvoid.nifty.tools.Color;
 import java.io.IOException;
-import types.Age;
-import types.Gender;
 import java.util.ArrayList;
-import applicationdata.family.*;
-import de.lessvoid.nifty.elements.render.TextRenderer;
 import java.util.Iterator;
 import java.util.List;
+import types.Age;
+import types.Gender;
 
 public class StartScreen extends AbstractAppState implements ScreenController {
     

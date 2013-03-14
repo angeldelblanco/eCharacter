@@ -1,87 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../model.xsd">
-	<mesh>
+	<mainMesh>
 		<path>Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml</path>
 		<textures>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="true">
-				<path>assets/Textures/eAdventure/Textures Girl/CamisetaSinMangasSolidoGirl.png</path>
 				<iconPath>Interface/Icons/IconoCamisetaSinMangasGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/CamisetaSinMangasSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaSinMangasSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<path>assets/Textures/eAdventure/Textures Girl/CamisetaSolidoGirl.png</path>
 				<iconPath>Interface/Icons/IconoCamisetaGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/CamisetaSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<path>assets/Textures/eAdventure/Textures Girl/CamisetaTirantesSolidoGirl.png</path>
 				<iconPath>Interface/Icons/IconoCamisetaTirantesSolidoGirl.pn</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/CamisetaTirantesSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaTirantesSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<path>assets/Textures/eAdventure/Textures Girl/TopSolidoGirl.png</path>
 				<iconPath>Interface/Icons/IconoTopSolidoGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/TopSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/TopSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelPantalones" layer="1" default="false">
-				<path>assets/Textures/eAdventure/Textures Girl/PantalonCortoSolidoGirl.png</path>
 				<iconPath>Interface/Icons/IconoPantalonCortoGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/PantalonCortoSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PantalonCortoSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelPantalones" layer="1" default="true">
-				<path>assets/Textures/eAdventure/Textures Girl/PantalonLargoSolidoGirl.png</path>
 				<iconPath>Interface/Icons/IconoPantalonLargoGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/PantalonLargoSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PantalonLargoSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelZapatos" layer="1" default="true">
-				<path>assets/Textures/eAdventure/Textures Girl/ZapatosSolidoGirl.png</path>
 				<iconPath>Interface/Icons/IconoZapatosGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/ZapatosSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/ZapatosSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="true">
-				<path>assets/Textures/eAdventure/Textures Girl/PielAmarillaClaraGirl.png</path>
 				<iconPath>Interface/Icons/IconoPielAmarillaClaraGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/PielAmarillaClaraGirl.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<path>assets/Textures/eAdventure/Textures Girl/PielAmarillaOscuraGirl.png</path>
 				<iconPath>Interface/Icons/IconoPielAmarillaOscuraGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/PielAmarillaOscuraGirl.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<path>assets/Textures/eAdventure/Textures Girl/PielBlancaGirl.png</path>
 				<iconPath>Interface/Icons/IconoPielBlancaGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/PielBlancaGirl.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<path>assets/Textures/eAdventure/Textures Girl/PielNegraGirl.png</path>
 				<iconPath>Interface/Icons/IconoPielNegraGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/PielNegraGirl.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<path>assets/Textures/eAdventure/Textures Girl/PielRojaGirl.png</path>
 				<iconPath>Interface/Icons/IconoPielRojaGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/PielRojaGirl.png</path>
 			</simpleTexture>
 			<!--Falta añadir los paths de los ojos -->
 			<doubleTexture idPanel="panelOjos" layer="1" default="true">
+				<iconPath></iconPath>
 				<basePath></basePath>
 				<detailsPath></detailsPath>
-				<iconPath></iconPath>
 			</doubleTexture>
 		</textures>
-		<bones>
-			<!-- Dar valores a los huesos, Los que hay son aleatorios -->
-			<boneController idController="cabeza" defaultValue="5" minValue="1" maxValue="10" boneName="Cabeza"/>
-			<boneController idController="torax" defaultValue="5" minValue="1" maxValue="10" boneName="Torax"/>
-			<boneController idController="muniecaIzq" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaIz"/>
-			<boneController idController="muniecaDer" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaDer"/>
-			<boneController idController="tobilloIzq" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloIz"/>
-			<boneController idController="tobilloDer" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloDer"/>
-			<boneController idController="femurIzq" defaultValue="5" minValue="1" maxValue="10" boneName="FemurIz"/>
-			<boneController idController="femurDer" defaultValue="5" minValue="1" maxValue="10" boneName="FemurDer"/>
-			<boneController idController="claviculaIzq" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaIz"/>
-			<boneController idController="claviculaDer" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaDer"/>
-			<!-- Falta rellenar todas las complexiones -->
-			<basicMode name="Gorda">
-				<escalations nameBone="Torax" valueX="2" valueY="2" valueZ="3"/>
-				<escalations nameBone="FemurIz" valueX="2" valueY="2" valueZ="2"/>
-			</basicMode>
-		</bones>
-	</mesh>
+		<!-- Dar valores a los huesos, Los que hay son aleatorios -->
+		<bone idControllerRef="cabeza" defaultValue="5" minValue="1" maxValue="10" boneName="Cabeza"/>
+		<bone idControllerRef="torax" defaultValue="5" minValue="1" maxValue="10" boneName="Torax"/>
+		<bone idControllerRef="muniecaIzq" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaIz"/>
+		<bone idControllerRef="muniecaDer" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaDer"/>
+		<bone idControllerRef="tobilloIzq" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloIz"/>
+		<bone idControllerRef="tobilloDer" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloDer"/>
+		<bone idControllerRef="femurIzq" defaultValue="5" minValue="1" maxValue="10" boneName="FemurIz"/>
+		<bone idControllerRef="femurDer" defaultValue="5" minValue="1" maxValue="10" boneName="FemurDer"/>
+		<bone idControllerRef="claviculaIzq" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaIz"/>
+		<bone idControllerRef="claviculaDer" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaDer"/>
+		<!-- Falta rellenar todas las complexiones -->
+		<complexion label="Gorda">
+			<escalation boneName="Torax" valueX="2" valueY="2" valueZ="3"/>
+			<escalation boneName="FemurIz" valueX="2" valueY="2" valueZ="2"/>
+		</complexion>
+	</mainMesh>
 </model>

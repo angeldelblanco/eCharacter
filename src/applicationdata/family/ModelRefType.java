@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.12 a las 05:20:25 PM CET 
+// Generado el: PM.03.14 a las 06:34:31 PM CET 
 //
 
 
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="modelName" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="modelLabel" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="iconPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="modelPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
@@ -37,41 +37,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "modelRefType", propOrder = {
-    "modelName",
+    "modelLabel",
     "iconPath",
     "modelPath"
 })
 public class ModelRefType {
 
     @XmlElement(required = true)
-    protected String modelName;
+    protected String modelLabel;
     @XmlElement(required = true)
     protected String iconPath;
     @XmlElement(required = true)
     protected String modelPath;
 
     /**
-     * Obtiene el valor de la propiedad modelName.
+     * Obtiene el valor de la propiedad modelLabel.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getModelName() {
-        return modelName;
+    public String getModelLabel() {
+        return modelLabel;
     }
 
     /**
-     * Define el valor de la propiedad modelName.
+     * Define el valor de la propiedad modelLabel.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setModelName(String value) {
-        this.modelName = value;
+    public void setModelLabel(String value) {
+        this.modelLabel = value;
     }
 
     /**

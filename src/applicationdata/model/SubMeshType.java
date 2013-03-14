@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.13 a las 05:23:37 PM CET 
+// Generado el: PM.03.14 a las 06:34:47 PM CET 
 //
 
 
@@ -18,21 +18,21 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para subMeshesType complex type.
+ * <p>Clase Java para subMeshType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="subMeshesType">
+ * &lt;complexType name="subMeshType">
  *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     &lt;extension base="{}meshType">
  *       &lt;sequence>
  *         &lt;element name="iconPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="transformations" type="{}transformationsType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="transformation" type="{}transformationType" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="idPanel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="associatedBone" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *     &lt;/restriction>
+ *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -40,15 +40,17 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "subMeshesType", propOrder = {
+@XmlType(name = "subMeshType", propOrder = {
     "iconPath",
-    "transformations"
+    "transformation"
 })
-public class SubMeshesType {
+public class SubMeshType
+    extends MeshType
+{
 
     @XmlElement(required = true)
     protected String iconPath;
-    protected List<TransformationsType> transformations;
+    protected List<TransformationType> transformation;
     @XmlAttribute(name = "idPanel", required = true)
     protected String idPanel;
     @XmlAttribute(name = "associatedBone", required = true)
@@ -79,32 +81,32 @@ public class SubMeshesType {
     }
 
     /**
-     * Gets the value of the transformations property.
+     * Gets the value of the transformation property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the transformations property.
+     * This is why there is not a <CODE>set</CODE> method for the transformation property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getTransformations().add(newItem);
+     *    getTransformation().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link TransformationsType }
+     * {@link TransformationType }
      * 
      * 
      */
-    public List<TransformationsType> getTransformations() {
-        if (transformations == null) {
-            transformations = new ArrayList<TransformationsType>();
+    public List<TransformationType> getTransformation() {
+        if (transformation == null) {
+            transformation = new ArrayList<TransformationType>();
         }
-        return this.transformations;
+        return this.transformation;
     }
 
     /**

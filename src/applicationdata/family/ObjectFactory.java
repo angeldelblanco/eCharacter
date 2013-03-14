@@ -2,13 +2,16 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.12 a las 05:20:25 PM CET 
+// Generado el: PM.03.14 a las 06:34:31 PM CET 
 //
 
 
 package applicationdata.family;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -28,6 +31,8 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _MultiStageTypeMeshSubStage_QNAME = new QName("", "meshSubStage");
+    private final static QName _MultiStageTypeTextureSubStage_QNAME = new QName("", "textureSubStage");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: applicationdata.family
@@ -109,11 +114,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TextureSubStageType }
+     * Create an instance of {@link SubStageType }
      * 
      */
-    public TextureSubStageType createTextureSubStageType() {
-        return new TextureSubStageType();
+    public SubStageType createSubStageType() {
+        return new SubStageType();
     }
 
     /**
@@ -122,14 +127,6 @@ public class ObjectFactory {
      */
     public FpsType createFpsType() {
         return new FpsType();
-    }
-
-    /**
-     * Create an instance of {@link MeshSubStageType }
-     * 
-     */
-    public MeshSubStageType createMeshSubStageType() {
-        return new MeshSubStageType();
     }
 
     /**
@@ -154,6 +151,24 @@ public class ObjectFactory {
      */
     public ScaleStageType.BoneController createScaleStageTypeBoneController() {
         return new ScaleStageType.BoneController();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SubStageType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "meshSubStage", scope = MultiStageType.class)
+    public JAXBElement<SubStageType> createMultiStageTypeMeshSubStage(SubStageType value) {
+        return new JAXBElement<SubStageType>(_MultiStageTypeMeshSubStage_QNAME, SubStageType.class, MultiStageType.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SubStageType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "textureSubStage", scope = MultiStageType.class)
+    public JAXBElement<SubStageType> createMultiStageTypeTextureSubStage(SubStageType value) {
+        return new JAXBElement<SubStageType>(_MultiStageTypeTextureSubStage_QNAME, SubStageType.class, MultiStageType.class, value);
     }
 
 }

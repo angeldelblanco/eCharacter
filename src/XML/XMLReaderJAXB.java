@@ -36,7 +36,6 @@
 package XML;
 
 import applicationdata.family.*;
-import applicationdata.model.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

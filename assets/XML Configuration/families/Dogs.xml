@@ -6,42 +6,42 @@
 		<author>Sergio.</author>
 	</metadata>
 	<stages>
-		<scaleStage stageName="Escalado" idPanel="panelEscalado">
-			<boneController controllerName="Cabeza" idController="cabeza"/>
-			<boneController controllerName="Torax" idController="torax"/>
-			<boneController controllerName="Muñeca Izquierda" idController="muniecaIzq"/>
-			<boneController controllerName="Muñeca Derecha" idController="muniecaDer"/>
-			<boneController controllerName="Tobillo Izquierdo" idController="tobilloIzq"/>
-			<boneController controllerName="Tobillo Derecho" idController="tobilloDer"/>
-			<boneController controllerName="Fémur Izquierdo" idController="femurIzq"/>
-			<boneController controllerName="Fémur Derecho" idController="femurDer"/>
-			<boneController controllerName="Clavícula Izquierda" idController="claviculaIzq"/>
-			<boneController controllerName="Clavícula Derecha" idController="claviculaDer"/>
+		<scaleStage stageLabel="Escalado" idPanel="panelEscalado">
+			<boneController controllerLabel="Cabeza" idController="cabeza"/>
+			<boneController controllerLabel="Torax" idController="torax"/>
+			<boneController controllerLabel="Muñeca Izquierda" idController="muniecaIzq"/>
+			<boneController controllerLabel="Muñeca Derecha" idController="muniecaDer"/>
+			<boneController controllerLabel="Tobillo Izquierdo" idController="tobilloIzq"/>
+			<boneController controllerLabel="Tobillo Derecho" idController="tobilloDer"/>
+			<boneController controllerLabel="Fémur Izquierdo" idController="femurIzq"/>
+			<boneController controllerLabel="Fémur Derecho" idController="femurDer"/>
+			<boneController controllerLabel="Clavícula Izquierda" idController="claviculaIzq"/>
+			<boneController controllerLabel="Clavícula Derecha" idController="claviculaDer"/>
 		</scaleStage>
-		<multiStage stageName="Piel">
-			<textureSubStage subStageName="Pieles" idPanel="panelPieles" multiselection="false"/>
+		<multiStage stageLabel="Piel">
+			<textureSubStage subStageLabel="Pieles" idPanel="panelPieles" multiselection="false"/>
 		</multiStage>
-		<multiStage stageName="Ojos">
-			<textureSubStage subStageName="Ojos" idPanel="panelOjos" multiselection="false"/>
+		<multiStage stageLabel="Ojos">
+			<textureSubStage subStageLabel="Ojos" idPanel="panelOjos" multiselection="false"/>
 		</multiStage>
-		<multiStage stageName="Camiseta">
-			<textureSubStage subStageName="Camisetas" idPanel="panelCamisetas" multiselection="false"/>
+		<multiStage stageLabel="Camiseta">
+			<textureSubStage subStageLabel="Camisetas" idPanel="panelCamisetas" multiselection="false"/>
 		</multiStage>
-		<multiStage stageName="Pantalón">
-			<textureSubStage subStageName="Pantalones" idPanel="panelPantalones" multiselection="false"/>
+		<multiStage stageLabel="Pantalón">
+			<textureSubStage subStageLabel="Pantalones" idPanel="panelPantalones" multiselection="false"/>
 		</multiStage>
 		
-		<multiStage stageName="Zapatos">
-			<textureSubStage subStageName="Zapatos" idPanel="panelZapatos" multiselection="false"/>
+		<multiStage stageLabel="Zapatos">
+			<textureSubStage subStageLabel="Zapatos" idPanel="panelZapatos" multiselection="false"/>
 		</multiStage>
 
-		<multiStage stageName="Pelo">
-			<meshSubStage subStageName="Pelos" idPanel="panelPelos" multiselection="false"/>
+		<multiStage stageLabel="Pelo">
+			<meshSubStage subStageLabel="Pelos" idPanel="panelPelos" multiselection="false"/>
 		</multiStage>
 		<animationStage>
 			<!-- Dar valores. Los que hay son aleatorios -->
-			<fps qualityName="High" fpsValue="2"/>
-			<camera cameraName="Delante">
+			<fps qualityLabel="High" fpsValue="2"/>
+			<camera cameraLabel="Delante">
 				<upAxis valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<location valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<direction valueX="2.0" valueY="2.0" valueZ="2.0"/>
@@ -50,12 +50,12 @@
 	</stages>
 	<modelsRef>
 		<modelRef>
-			<modelName>Yorkshire</modelName>
+			<modelLabel>Yorkshire</modelLabel>
 			<iconPath>Interface/yorkshire.png</iconPath>
 			<modelPath></modelPath>
 		</modelRef> 
 		<modelRef>
-			<modelName>Samoyedo</modelName>
+			<modelLabel>Samoyedo</modelLabel>
 			<iconPath>Interface/samoyedo.png</iconPath>
 			<modelPath></modelPath>
 		</modelRef> 

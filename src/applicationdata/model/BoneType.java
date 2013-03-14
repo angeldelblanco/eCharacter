@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.13 a las 05:23:37 PM CET 
+// Generado el: PM.03.14 a las 06:34:47 PM CET 
 //
 
 
@@ -20,15 +20,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * <p>Clase Java para boneControllerType complex type.
+ * <p>Clase Java para boneType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="boneControllerType">
+ * &lt;complexType name="boneType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="idController" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
+ *       &lt;attribute name="idControllerRef" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *       &lt;attribute name="defaultValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="minValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="maxValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -41,14 +41,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "boneControllerType")
-public class BoneControllerType {
+@XmlType(name = "boneType")
+public class BoneType {
 
-    @XmlAttribute(name = "idController", required = true)
+    @XmlAttribute(name = "idControllerRef", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
     @XmlSchemaType(name = "ID")
-    protected String idController;
+    protected String idControllerRef;
     @XmlAttribute(name = "defaultValue", required = true)
     protected BigInteger defaultValue;
     @XmlAttribute(name = "minValue", required = true)
@@ -59,27 +59,27 @@ public class BoneControllerType {
     protected String boneName;
 
     /**
-     * Obtiene el valor de la propiedad idController.
+     * Obtiene el valor de la propiedad idControllerRef.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getIdController() {
-        return idController;
+    public String getIdControllerRef() {
+        return idControllerRef;
     }
 
     /**
-     * Define el valor de la propiedad idController.
+     * Define el valor de la propiedad idControllerRef.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setIdController(String value) {
-        this.idController = value;
+    public void setIdControllerRef(String value) {
+        this.idControllerRef = value;
     }
 
     /**

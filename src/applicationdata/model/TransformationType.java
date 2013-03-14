@@ -2,13 +2,12 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.13 a las 05:23:37 PM CET 
+// Generado el: PM.03.14 a las 06:34:47 PM CET 
 //
 
 
 package applicationdata.model;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -16,18 +15,26 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para escalationsType complex type.
+ * <p>Clase Java para transformationType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="escalationsType">
+ * &lt;complexType name="transformationType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="nameBone" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="valueX" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="valueY" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="valueZ" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="transformationType" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;enumeration value="scale"/>
+ *             &lt;enumeration value="rotate"/>
+ *             &lt;enumeration value="translate"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *       &lt;attribute name="valueX" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="valueY" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="valueZ" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -36,111 +43,87 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "escalationsType")
-public class EscalationsType {
+@XmlType(name = "transformationType")
+public class TransformationType {
 
-    @XmlAttribute(name = "nameBone", required = true)
-    protected String nameBone;
+    @XmlAttribute(name = "transformationType", required = true)
+    protected String transformationType;
     @XmlAttribute(name = "valueX", required = true)
-    protected BigInteger valueX;
+    protected float valueX;
     @XmlAttribute(name = "valueY", required = true)
-    protected BigInteger valueY;
+    protected float valueY;
     @XmlAttribute(name = "valueZ", required = true)
-    protected BigInteger valueZ;
+    protected float valueZ;
 
     /**
-     * Obtiene el valor de la propiedad nameBone.
+     * Obtiene el valor de la propiedad transformationType.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNameBone() {
-        return nameBone;
+    public String getTransformationType() {
+        return transformationType;
     }
 
     /**
-     * Define el valor de la propiedad nameBone.
+     * Define el valor de la propiedad transformationType.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setNameBone(String value) {
-        this.nameBone = value;
+    public void setTransformationType(String value) {
+        this.transformationType = value;
     }
 
     /**
      * Obtiene el valor de la propiedad valueX.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
      */
-    public BigInteger getValueX() {
+    public float getValueX() {
         return valueX;
     }
 
     /**
      * Define el valor de la propiedad valueX.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
      */
-    public void setValueX(BigInteger value) {
+    public void setValueX(float value) {
         this.valueX = value;
     }
 
     /**
      * Obtiene el valor de la propiedad valueY.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
      */
-    public BigInteger getValueY() {
+    public float getValueY() {
         return valueY;
     }
 
     /**
      * Define el valor de la propiedad valueY.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
      */
-    public void setValueY(BigInteger value) {
+    public void setValueY(float value) {
         this.valueY = value;
     }
 
     /**
      * Obtiene el valor de la propiedad valueZ.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
      */
-    public BigInteger getValueZ() {
+    public float getValueZ() {
         return valueZ;
     }
 
     /**
      * Define el valor de la propiedad valueZ.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
      */
-    public void setValueZ(BigInteger value) {
+    public void setValueZ(float value) {
         this.valueZ = value;
     }
 

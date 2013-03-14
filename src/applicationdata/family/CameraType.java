@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.12 a las 05:20:25 PM CET 
+// Generado el: PM.03.14 a las 06:34:31 PM CET 
 //
 
 
@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="location" type="{}vectorType"/>
  *         &lt;element name="direction" type="{}vectorType"/>
  *       &lt;/sequence>
- *       &lt;attribute name="cameraName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="cameraLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -51,8 +51,8 @@ public class CameraType {
     protected VectorType location;
     @XmlElement(required = true)
     protected VectorType direction;
-    @XmlAttribute(name = "cameraName", required = true)
-    protected String cameraName;
+    @XmlAttribute(name = "cameraLabel", required = true)
+    protected String cameraLabel;
 
     /**
      * Obtiene el valor de la propiedad upAxis.
@@ -127,27 +127,27 @@ public class CameraType {
     }
 
     /**
-     * Obtiene el valor de la propiedad cameraName.
+     * Obtiene el valor de la propiedad cameraLabel.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCameraName() {
-        return cameraName;
+    public String getCameraLabel() {
+        return cameraLabel;
     }
 
     /**
-     * Define el valor de la propiedad cameraName.
+     * Define el valor de la propiedad cameraLabel.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCameraName(String value) {
-        this.cameraName = value;
+    public void setCameraLabel(String value) {
+        this.cameraLabel = value;
     }
 
 }

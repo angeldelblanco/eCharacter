@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.12 a las 05:20:25 PM CET 
+// Generado el: PM.03.14 a las 06:34:31 PM CET 
 //
 
 
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="fpsType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="qualityName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="qualityLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="fpsValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,33 +37,33 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "fpsType")
 public class FpsType {
 
-    @XmlAttribute(name = "qualityName", required = true)
-    protected String qualityName;
+    @XmlAttribute(name = "qualityLabel", required = true)
+    protected String qualityLabel;
     @XmlAttribute(name = "fpsValue", required = true)
     protected BigInteger fpsValue;
 
     /**
-     * Obtiene el valor de la propiedad qualityName.
+     * Obtiene el valor de la propiedad qualityLabel.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getQualityName() {
-        return qualityName;
+    public String getQualityLabel() {
+        return qualityLabel;
     }
 
     /**
-     * Define el valor de la propiedad qualityName.
+     * Define el valor de la propiedad qualityLabel.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setQualityName(String value) {
-        this.qualityName = value;
+    public void setQualityLabel(String value) {
+        this.qualityLabel = value;
     }
 
     /**
