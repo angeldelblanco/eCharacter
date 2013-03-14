@@ -44,6 +44,7 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.ScreenshotAppState;
+import com.jme3.asset.plugins.FileLocator;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
@@ -97,6 +98,8 @@ public class Gui extends SimpleApplication{
     public void simpleInitApp() {
         setDisplayFps(false);
         setDisplayStatView(false);
+        // Register locator to assetManager
+        assetManager.registerLocator("./", FileLocator.class); 
         
         startScreen = new StartScreen(this);
         stateManager.attach(startScreen);
@@ -110,7 +113,7 @@ public class Gui extends SimpleApplication{
         niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
         Nifty nifty = niftyDisplay.getNifty();
         guiViewPort.addProcessor(niftyDisplay);
-        nifty.fromXml("Interface/screen.xml", "start", startScreen);
+        nifty.fromXml("assets/Interface/screen.xml", "start", startScreen);
         //nifty.setDebugOptionPanelColors(true);
 
         flyCam.setDragToRotate(true); // you need the mouse for clicking now
@@ -238,7 +241,7 @@ public class Gui extends SimpleApplication{
         indexImage++;
         model.setIndexImage(indexImage);
         model.changeSkin(steep);
-        mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png")); 
+        mat.setTexture("ColorMap", assetManager.loadTexture("assets/Textures/FinalTexture"+indexImage+".png")); 
         model.setMaterial(mat);
         //Delete the file                
         Path file = Paths.get("assets/Textures/FinalTexture"+indexImage+".png");                
@@ -254,7 +257,7 @@ public class Gui extends SimpleApplication{
         indexImage++;
         model.setIndexImage(indexImage);
         model.changeShoes(steep);
-        mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));                
+        mat.setTexture("ColorMap", assetManager.loadTexture("assets/Textures/FinalTexture"+indexImage+".png"));                
         model.setMaterial(mat);               
         //Delete the file               
         Path file = Paths.get("assets/Textures/FinalTexture"+indexImage+".png");               
@@ -270,7 +273,7 @@ public class Gui extends SimpleApplication{
         indexImage++; 
         model.setIndexImage(indexImage);
         model.changeTrousers(steep);
-        mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png")); 
+        mat.setTexture("ColorMap", assetManager.loadTexture("assets/Textures/FinalTexture"+indexImage+".png")); 
         model.setMaterial(mat);
         //Delete the file                
         Path file = Paths.get("assets/Textures/FinalTexture"+indexImage+".png");                
@@ -286,7 +289,7 @@ public class Gui extends SimpleApplication{
         indexImage++; 
         model.setIndexImage(indexImage);
         model.changeTShirt(steep);
-        mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png")); 
+        mat.setTexture("ColorMap", assetManager.loadTexture("assets/Textures/FinalTexture"+indexImage+".png")); 
         model.setMaterial(mat);
         //Delete the file                
         Path file = Paths.get("assets/Textures/FinalTexture"+indexImage+".png");                
@@ -302,7 +305,7 @@ public class Gui extends SimpleApplication{
         indexImage++; 
         model.setIndexImage(indexImage);
         model.changeEyes(steep);
-        mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png")); 
+        mat.setTexture("ColorMap", assetManager.loadTexture("assets/Textures/FinalTexture"+indexImage+".png")); 
         model.setMaterial(mat);
         //Delete the file                
         Path file = Paths.get("assets/Textures/FinalTexture"+indexImage+".png");                
@@ -319,7 +322,7 @@ public class Gui extends SimpleApplication{
         model.setIndexImage(indexImage);
         Color color = new Color(red, green, blue);
         model.changeColor(color);
-        mat.setTexture("ColorMap", assetManager.loadTexture("Textures/FinalTexture"+indexImage+".png"));     
+        mat.setTexture("ColorMap", assetManager.loadTexture("assets/Textures/FinalTexture"+indexImage+".png"));     
         model.setMaterial(mat);
         //Delete the file               
         Path file = Paths.get("assets/Textures/FinalTexture"+indexImage+".png");               
@@ -355,12 +358,14 @@ public class Gui extends SimpleApplication{
         model.readBuffers();
         
         //Cargar el modelo
+        //assetManager.registerLocator("./", FileLocator.class); // register locator to assetManager
+        
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setTexture("ColorMap",assetManager.loadTexture("Textures/OriginalTexture.png"));
-        model.setModel(assetManager.loadModel(model.getModelPath()), mat);
-        Spatial hairMesh = assetManager.loadModel("Models/eAdventure/Hair Boy/goku haircut.mesh.xml");
+        mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png"));   
+        model.setModel(assetManager.loadModel(model.getModelPath()), mat);       
+        Spatial hairMesh = assetManager.loadModel("assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml");
         Material hairMat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        hairMat.setTexture("DiffuseMap",assetManager.loadTexture("Models/eAdventure/Hair Boy/hairtexture.png"));
+        hairMat.setTexture("DiffuseMap",assetManager.loadTexture("assets/Models/eAdventure/Hair Boy/hairtexture.png"));
         hairMesh.setMaterial(hairMat);
         model.setHair(hairMesh);
         //model.setHair("assets/Models/eAdventure/Hair Boy/pasted__pasted__pasted__polySurfaceShape2.mesh.xml", "assets/Models/eAdventure/Hair Boy/pasted__pasted__pasted__polySurfaceShape2.material");

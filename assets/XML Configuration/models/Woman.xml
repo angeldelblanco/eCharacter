@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../model.xsd">
 	<mainMesh>
-		<path>Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml</path>
+		<path>assets/Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml</path>
 		<textures>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="true">
-				<iconPath>Interface/Icons/IconoCamisetaSinMangasGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoCamisetaSinMangasGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/CamisetaSinMangasSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaSinMangasSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<iconPath>Interface/Icons/IconoCamisetaGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoCamisetaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/CamisetaSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<iconPath>Interface/Icons/IconoCamisetaTirantesSolidoGirl.pn</iconPath>
+				<iconPath>assets/Interface/Icons/IconoCamisetaTirantesSolidoGirl.pn</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/CamisetaTirantesSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaTirantesSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<iconPath>Interface/Icons/IconoTopSolidoGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoTopSolidoGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/TopSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/TopSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelPantalones" layer="1" default="false">
-				<iconPath>Interface/Icons/IconoPantalonCortoGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPantalonCortoGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PantalonCortoSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PantalonCortoSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelPantalones" layer="1" default="true">
-				<iconPath>Interface/Icons/IconoPantalonLargoGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPantalonLargoGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PantalonLargoSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PantalonLargoSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelZapatos" layer="1" default="true">
-				<iconPath>Interface/Icons/IconoZapatosGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoZapatosGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/ZapatosSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/ZapatosSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="true">
-				<iconPath>Interface/Icons/IconoPielAmarillaClaraGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPielAmarillaClaraGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PielAmarillaClaraGirl.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>Interface/Icons/IconoPielAmarillaOscuraGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPielAmarillaOscuraGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PielAmarillaOscuraGirl.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>Interface/Icons/IconoPielBlancaGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPielBlancaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PielBlancaGirl.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>Interface/Icons/IconoPielNegraGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPielNegraGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PielNegraGirl.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>Interface/Icons/IconoPielRojaGirl.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPielRojaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PielRojaGirl.png</path>
 			</simpleTexture>
 			<!--Falta añadir los paths de los ojos -->

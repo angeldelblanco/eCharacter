@@ -119,8 +119,7 @@ public class XMLReader {
                                 }
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconSkinReaded = nValue.getNodeValue();
-                                String pathIconSkinReaded_aux = "assets/"+pathIconSkinReaded;
-                                if (pathOK(pathIconSkinReaded_aux)){
+                                if (pathOK(pathIconSkinReaded)){
                                     //Print the data readed
                                     System.out.println("Skin "+indexSkinReaded+": " + pathIconSkinReaded);
                                     //Save the path of this skin's icon
@@ -162,8 +161,7 @@ public class XMLReader {
 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconEyesReaded = nValue.getNodeValue();
-                                String pathIconEyesReaded_aux = "assets/"+pathIconEyesReaded;
-                                if (pathOK(pathIconEyesReaded_aux)){
+                                if (pathOK(pathIconEyesReaded)){
                                     //Print the data readed
                                     System.out.println("Eyes "+indexEyesReaded+": " + pathIconEyesReaded);           
                                     //Save the path of these eyes
@@ -243,8 +241,7 @@ public class XMLReader {
                                 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconTShirtReaded = nValue.getNodeValue();
-                                String pathIconTShirtReaded_aux = "assets/"+pathIconTShirtReaded;
-                                if (pathOK(pathIconTShirtReaded_aux)){
+                                if (pathOK(pathIconTShirtReaded)){
                                     //Print the data readed
                                     System.out.println("TShirt "+indexTShirtReaded+": " + pathIconTShirtReaded);
                                     //Save the path of this tshirt
@@ -325,8 +322,7 @@ public class XMLReader {
                                 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconTrouserReaded = nValue.getNodeValue();
-                                String pathIconTrouserReaded_aux = "assets/"+pathIconTrouserReaded;
-                                if (pathOK(pathIconTrouserReaded_aux)){
+                                if (pathOK(pathIconTrouserReaded)){
                                     //Print the data readed
                                     System.out.println("Trouser "+indexTrouserReaded+": " + pathIconTrouserReaded);
                                     //Save the path of this trouser
@@ -393,8 +389,7 @@ public class XMLReader {
 
                                 nValue = attributes.getNamedItem("pathIcon");
                                 String pathIconShoesReaded = nValue.getNodeValue();
-                                String pathIconShoesReaded_aux = "assets/"+pathIconShoesReaded;
-                                if (pathOK(pathIconShoesReaded_aux)){
+                                if (pathOK(pathIconShoesReaded)){
                                     //Print the data readed
                                     System.out.println("Shoes "+indexShoesReaded+": " + pathIconShoesReaded);
                                     //Save the path of this shoe
@@ -416,15 +411,14 @@ public class XMLReader {
                             NamedNodeMap attributes = nNode3.getAttributes();
                             Node nValue = attributes.getNamedItem("path");
                             String pathAnimationReaded = nValue.getNodeValue();
-                            String pathAnimation_aux = "assets/"+pathAnimationReaded;
-                            if (pathOK(pathAnimation_aux)){
+                            if (pathOK(pathAnimationReaded)){
                                 //Print the data readed
                                 System.out.println("Animation : " + pathAnimationReaded);
                                 //Save the path of this model
                                 model.setModelPath(pathAnimationReaded);
                             }
                             else{
-                                    System.out.println("El siguiente path de model es incorrecto: "+pathAnimation_aux);
+                                    System.out.println("El siguiente path de model es incorrecto: "+pathAnimationReaded);
                                     return;
                                 }
                             //In eElement2, we have the node model

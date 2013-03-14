@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../model.xsd">
 	<mainMesh>
-		<path>Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml</path>
+		<path>assets/Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml</path>
 		<textures>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="true">
-				<iconPath>Interface/Icons/IconoCamisaCortaBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoCamisaCortaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisaCortaSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisaCortaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<iconPath>Interface/Icons/IconoCamisaLargaBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoCamisaLargaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisaLargaSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisaLargaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<iconPath>Interface/Icons/IconoCamisetaCortaBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoCamisetaCortaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisetaCortaSolidoBoy.png</path>				
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaCortaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<iconPath>Interface/Icons/IconoCamisetaLargaSolidoBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoCamisetaLargaSolidoBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSolidoBoy.png</path>		
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="false">
-				<iconPath>Interface/Icons/IconoCamisetaTirantesBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoCamisetaTirantesBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisetaTirantesBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaTirantesSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelPantalones" layer="1" default="false">
-				<iconPath>Interface/Icons/IconoPantalonCortoBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPantalonCortoBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PantalonCortoSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PantalonCortoSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelPantalones" layer="1" default="true">
-				<iconPath>Interface/Icons/IconoPantalonLargoBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPantalonLargoBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PantalonLargoSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PantalonLargoSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanel="panelZapatos" layer="1" default="true">
-				<iconPath>Interface/Icons/IconoZapatosBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoZapatosBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/ZapatosSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/ZapatosSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="true">
-				<iconPath>Interface/Icons/IconoPielBlancaBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPielBlancaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PielBlancaBoy.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>Interface/Icons/IconoPielNegraBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPielNegraBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PielNegraBoy.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>Interface/Icons/IconoPielAmarillaBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPielAmarillaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PielAmarillaBoy.png</path>
 			</simpleTexture>
 			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>Interface/Icons/IconoPielRojaBoy.png</iconPath>
+				<iconPath>assets/Interface/Icons/IconoPielRojaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PielRojaBoy.png</path>
 			</simpleTexture>
 			<!--Falta añadir los paths de los ojos -->
@@ -84,8 +84,8 @@
 		</complexion>
 	</mainMesh>
 	<subMesh idPanel="panelPelos" associatedBone="Cabeza">
-		<path>Models/eAdventure/Hair Boy/goku haircut.mesh.xml</path>
-		<iconPath>Interface/Icons/IconoPeloChicoAfro.jpg</iconPath>
+		<path>assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml</path>
+		<iconPath>assets/Interface/Icons/IconoPeloChicoAfro.jpg</iconPath>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="0.0" valueY="0.5" valueZ="0.0"/>
 	</subMesh>

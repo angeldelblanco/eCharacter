@@ -219,7 +219,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 childLayoutCenter();
                 backgroundColor("#fffa");
                 panel(new PanelBuilder("popupPanel") {{
-                    backgroundImage("Interface/CuadroAzul.png");
+                    backgroundImage("assets/Interface/CuadroAzul.png");
                     height("25%");
                     width("25%");
                     childLayoutVertical();
@@ -313,7 +313,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             childLayoutCenter();
             backgroundColor("#fffa");
             panel(new PanelBuilder("popupPanelAnim") {{
-                backgroundImage("Interface/CuadroAzul.png");
+                backgroundImage("assets/Interface/CuadroAzul.png");
                 height("15%");
                 width("40%");
                 childLayoutVertical();
@@ -354,7 +354,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             childLayoutCenter();
             backgroundColor("#fffa");
             panel(new PanelBuilder("popupPanel") {{
-                backgroundImage("Interface/CuadroAzul.png");
+                backgroundImage("assets/Interface/CuadroAzul.png");
                 height("15%");
                 width("25%");
                 childLayoutVertical();
@@ -653,16 +653,16 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public String getMenu(String param)
     {
         if(param.equals("yes")){
-            return "Interface/MenuRojo.png";
+            return "assets/Interface/MenuRojo.png";
         }
         if(param.equals("no")){
-            return "Interface/MenuAzul.png";
+            return "assets/Interface/MenuAzul.png";
         }
         if(param.equals("an")){
-            return "Interface/MenuAzulAntiguo.png";
+            return "assets/Interface/MenuAzulAntiguo.png";
         }
         if(param.equals("ay")){
-            return "Interface/MenuRojoAntiguo.png";
+            return "assets/Interface/MenuRojoAntiguo.png";
         }
         return null;
     }
@@ -670,19 +670,19 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public String getButton(String param)
     {
         if(param.equals("left")){
-            return "Interface/ant.png";
+            return "assets/Interface/ant.png";
         }
         if(param.equals("right")){
-            return "Interface/sig.png";
+            return "assets/Interface/sig.png";
         }
         if(param.equals("color")){
-            return "Interface/ColorButton.png";
+            return "assets/Interface/ColorButton.png";
         }
         if(param.equals("next")){
-            return "Interface/next.png";
+            return "assets/Interface/next.png";
         }
         if(param.equals("previous")){
-            return "Interface/previous.png";
+            return "assets/Interface/previous.png";
         }
         return null;
     }
