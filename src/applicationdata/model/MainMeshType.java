@@ -2,14 +2,12 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.14 a las 06:34:47 PM CET 
+// Generado el: PM.03.16 a las 02:34:42 PM CET 
 //
 
 
 package applicationdata.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -26,8 +24,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{}meshType">
  *       &lt;sequence>
- *         &lt;element name="bone" type="{}boneType" maxOccurs="10"/>
- *         &lt;element name="complexion" type="{}complexionType" maxOccurs="10"/>
+ *         &lt;element name="bones" type="{}bonesType"/>
+ *         &lt;element name="physicalBuilds" type="{}physicalBuildsType"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -38,74 +36,64 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "mainMeshType", propOrder = {
-    "bone",
-    "complexion"
+    "bones",
+    "physicalBuilds"
 })
 public class MainMeshType
     extends MeshType
 {
 
     @XmlElement(required = true)
-    protected List<BoneType> bone;
+    protected BonesType bones;
     @XmlElement(required = true)
-    protected List<ComplexionType> complexion;
+    protected PhysicalBuildsType physicalBuilds;
 
     /**
-     * Gets the value of the bone property.
+     * Obtiene el valor de la propiedad bones.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the bone property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getBone().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link BoneType }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link BonesType }
+     *     
      */
-    public List<BoneType> getBone() {
-        if (bone == null) {
-            bone = new ArrayList<BoneType>();
-        }
-        return this.bone;
+    public BonesType getBones() {
+        return bones;
     }
 
     /**
-     * Gets the value of the complexion property.
+     * Define el valor de la propiedad bones.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the complexion property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getComplexion().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link ComplexionType }
-     * 
-     * 
+     * @param value
+     *     allowed object is
+     *     {@link BonesType }
+     *     
      */
-    public List<ComplexionType> getComplexion() {
-        if (complexion == null) {
-            complexion = new ArrayList<ComplexionType>();
-        }
-        return this.complexion;
+    public void setBones(BonesType value) {
+        this.bones = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad physicalBuilds.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PhysicalBuildsType }
+     *     
+     */
+    public PhysicalBuildsType getPhysicalBuilds() {
+        return physicalBuilds;
+    }
+
+    /**
+     * Define el valor de la propiedad physicalBuilds.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PhysicalBuildsType }
+     *     
+     */
+    public void setPhysicalBuilds(PhysicalBuildsType value) {
+        this.physicalBuilds = value;
     }
 
 }

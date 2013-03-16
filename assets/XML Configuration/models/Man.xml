@@ -66,22 +66,26 @@
 				<detailsPath></detailsPath>
 			</doubleTexture>
 		</textures>
-		<!-- Dar valores a los huesos, Los que hay son aleatorios -->
-		<bone idControllerRef="cabeza" defaultValue="5" minValue="1" maxValue="10" boneName="Cabeza"/>
-		<bone idControllerRef="torax" defaultValue="5" minValue="1" maxValue="10" boneName="Torax"/>
-		<bone idControllerRef="muniecaIzq" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaIz"/>
-		<bone idControllerRef="muniecaDer" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaDer"/>
-		<bone idControllerRef="tobilloIzq" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloIz"/>
-		<bone idControllerRef="tobilloDer" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloDer"/>
-		<bone idControllerRef="femurIzq" defaultValue="5" minValue="1" maxValue="10" boneName="FemurIz"/>
-		<bone idControllerRef="femurDer" defaultValue="5" minValue="1" maxValue="10" boneName="FemurDer"/>
-		<bone idControllerRef="claviculaIzq" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaIz"/>
-		<bone idControllerRef="claviculaDer" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaDer"/>
-		<!-- Falta rellenar todas las complexiones -->
-		<complexion label="Gorda">
-			<escalation boneName="Torax" valueX="2" valueY="2" valueZ="3"/>
+		<bones>
+			<!-- Dar valores a los huesos, Los que hay son aleatorios -->
+			<bone idControllerRef="cabeza" defaultValue="5" minValue="1" maxValue="10" boneName="Cabeza"/>
+			<bone idControllerRef="torax" defaultValue="5" minValue="1" maxValue="10" boneName="Torax"/>
+			<bone idControllerRef="muniecaIzq" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaIz"/>
+			<bone idControllerRef="muniecaDer" defaultValue="5" minValue="1" maxValue="10" boneName="MuniecaDer"/>
+			<bone idControllerRef="tobilloIzq" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloIz"/>
+			<bone idControllerRef="tobilloDer" defaultValue="5" minValue="1" maxValue="10" boneName="TobilloDer"/>
+			<bone idControllerRef="femurIzq" defaultValue="5" minValue="1" maxValue="10" boneName="FemurIz"/>
+			<bone idControllerRef="femurDer" defaultValue="5" minValue="1" maxValue="10" boneName="FemurDer"/>
+			<bone idControllerRef="claviculaIzq" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaIz"/>
+			<bone idControllerRef="claviculaDer" defaultValue="5" minValue="1" maxValue="10" boneName="ClaviculaDer"/>
+		</bones>
+		<physicalBuilds>
+			<!-- Falta rellenar todas las complexiones -->
+			<physicalBuild label="Gorda">
+				<escalation boneName="Torax" valueX="2" valueY="2" valueZ="3"/>
 			<escalation boneName="FemurIz" valueX="2" valueY="2" valueZ="2"/>
-		</complexion>
+			</physicalBuild>
+		</physicalBuilds>
 	</mainMesh>
 	<subMesh idPanel="panelPelos" associatedBone="Cabeza">
 		<path>assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml</path>

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.14 a las 06:34:47 PM CET 
+// Generado el: PM.03.16 a las 02:34:42 PM CET 
 //
 
 
@@ -18,12 +18,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para complexionType complex type.
+ * <p>Clase Java para physicalBuildType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="complexionType">
+ * &lt;complexType name="physicalBuildType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -38,10 +38,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "complexionType", propOrder = {
+@XmlType(name = "physicalBuildType", propOrder = {
     "escalation"
 })
-public class ComplexionType {
+public class PhysicalBuildType {
 
     @XmlElement(required = true)
     protected List<EscalationType> escalation;

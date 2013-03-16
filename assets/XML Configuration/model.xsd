@@ -10,11 +10,11 @@
 	</xs:element>
 	<xs:complexType name="meshType">
 		<xs:sequence>
-			<xs:element name="path" type="xs:string"/>		
+			<xs:element name="path" type="xs:string"/>
 			<xs:element name="textures" minOccurs="0" maxOccurs="1">
 				<xs:complexType>
 					<xs:choice minOccurs="1" maxOccurs="unbounded">
-						<xs:element name="baseShadowTexture" type="baseShadowTextureType" />
+						<xs:element name="baseShadowTexture" type="baseShadowTextureType"/>
 						<xs:element name="simpleTexture" type="simpleTextureType"/>
 						<xs:element name="doubleTexture" type="doubleTextureType"/>
 						<xs:element name="multiOptionTexture" type="multiOptionTextureType"/>
@@ -27,8 +27,8 @@
 		<xs:complexContent>
 			<xs:extension base="meshType">
 				<xs:sequence>
-					<xs:element name="bone" type="boneType" minOccurs="1" maxOccurs="10"/>
-					<xs:element name="complexion" type="complexionType" minOccurs="1" maxOccurs="10"/>
+					<xs:element name="bones" type="bonesType"/>
+					<xs:element name="physicalBuilds" type="physicalBuildsType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -101,6 +101,11 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="bonesType">
+		<xs:sequence>
+			<xs:element name="bone" type="boneType" minOccurs="1" maxOccurs="10"/>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="boneType">
 		<xs:attribute name="idControllerRef" type="xs:ID" use="required"/>
 		<xs:attribute name="defaultValue" type="xs:integer" use="required"/>
@@ -108,7 +113,12 @@
 		<xs:attribute name="maxValue" type="xs:integer" use="required"/>
 		<xs:attribute name="boneName" type="xs:string" use="required"/>
 	</xs:complexType>
-	<xs:complexType name="complexionType">
+	<xs:complexType name="physicalBuildsType">
+		<xs:sequence>
+			<xs:element name="physicalBuild" type="physicalBuildType"  minOccurs="1" maxOccurs="10"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="physicalBuildType">
 		<xs:sequence>
 			<xs:element name="escalation" type="escalationType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.14 a las 06:34:47 PM CET 
+// Generado el: PM.03.16 a las 02:34:42 PM CET 
 //
 
 
@@ -77,11 +77,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ComplexionType }
+     * Create an instance of {@link BoneType }
      * 
      */
-    public ComplexionType createComplexionType() {
-        return new ComplexionType();
+    public BoneType createBoneType() {
+        return new BoneType();
+    }
+
+    /**
+     * Create an instance of {@link TextureType }
+     * 
+     */
+    public TextureType createTextureType() {
+        return new TextureType();
+    }
+
+    /**
+     * Create an instance of {@link PhysicalBuildsType }
+     * 
+     */
+    public PhysicalBuildsType createPhysicalBuildsType() {
+        return new PhysicalBuildsType();
     }
 
     /**
@@ -93,11 +109,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BoneType }
+     * Create an instance of {@link BonesType }
      * 
      */
-    public BoneType createBoneType() {
-        return new BoneType();
+    public BonesType createBonesType() {
+        return new BonesType();
     }
 
     /**
@@ -106,14 +122,6 @@ public class ObjectFactory {
      */
     public BaseShadowTextureType createBaseShadowTextureType() {
         return new BaseShadowTextureType();
-    }
-
-    /**
-     * Create an instance of {@link TextureType }
-     * 
-     */
-    public TextureType createTextureType() {
-        return new TextureType();
     }
 
     /**
@@ -138,6 +146,14 @@ public class ObjectFactory {
      */
     public TransformationType createTransformationType() {
         return new TransformationType();
+    }
+
+    /**
+     * Create an instance of {@link PhysicalBuildType }
+     * 
+     */
+    public PhysicalBuildType createPhysicalBuildType() {
+        return new PhysicalBuildType();
     }
 
     /**
