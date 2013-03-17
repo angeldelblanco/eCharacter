@@ -55,6 +55,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
@@ -70,6 +71,7 @@ import types.TypeObject;
 public class Model{
 
     private Spatial model;
+    private HashMap<String,Spatial> subMeshes;
     private Material mat;
     private AnimChannel channel;
     private AnimControl control;
@@ -103,7 +105,10 @@ public class Model{
     
     private TypeObject typeObject;
     
-    public Model(){}
+    public Model()
+    {
+        subMeshes = new HashMap<String,Spatial>();
+    }
     
     public void setBodyType(int bodyType)
     {        
@@ -225,7 +230,7 @@ public class Model{
         //Creat the image             
         img = new ImagesProcessing(skin, trousers, tShirt, eyes, shoes);                
         destinationPath = "assets/Textures/FinalTexture"+indexImage+".png";                
-        img.fusionaImagenes(destinationPath);                              
+        img.fusionaImagenes(destinationPath);
     }
     
     public void changeShoes(int steep)
@@ -389,22 +394,43 @@ public class Model{
         }
     }
     
-    public void setHair(Spatial hairMesh)
+    public void addSubMeshes(String bone,Spatial subMesh)
     {
-           //convertToJ3o(pathMesh,pathMaterial);           
+           subMeshes.put(bone, subMesh);
            SkeletonControl control = this.model.getControl(SkeletonControl.class);
-           control.getAttachmentsNode("Cabeza").attachChild(hairMesh);           
-           hairMesh.rotate(FastMath.DEG_TO_RAD * 90,0.0f,0.0f);
-           hairMesh.center(); 
+           control.getAttachmentsNode(bone).attachChild(subMesh);           
+           subMesh.rotate(FastMath.DEG_TO_RAD * 90,0.0f,0.0f);
+           subMesh.center(); 
            //Para todos los pelos
            //hairMesh.move(0.0f,0.3f,0.0f);
            //Para el pelo goku
-           hairMesh.move(0.0f,0.5f,0.0f);
+           subMesh.move(0.0f,0.5f,0.0f);
     }
     
-    private void convertToJ3o(String pathMesh,String pathMaterial)
+    public void dettachAllChild()
     {
-       //Para convertir dinamicamente .material y .mesh.xml a .j3o 
+        SkeletonControl control = this.model.getControl(SkeletonControl.class);
+        Set<String> bones = subMeshes.keySet();
+        Iterator<String> it = bones.iterator();
+        while(it.hasNext())
+        {
+            String bone = it.next();
+            Spatial subMesh = subMeshes.get(bone); 
+            control.getAttachmentsNode(bone).detachChild(subMesh);
+        }
+    }
+    
+    public void attachAllChild()
+    {
+       SkeletonControl control = this.model.getControl(SkeletonControl.class);
+        Set<String> bones = subMeshes.keySet();
+        Iterator<String> it = bones.iterator();
+        while(it.hasNext())
+        {
+            String bone = it.next();
+            Spatial subMesh = subMeshes.get(bone); 
+            control.getAttachmentsNode(bone).attachChild(subMesh);
+        } 
     }
     
     public Material getMaterial() 
