@@ -309,13 +309,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void popupAnim()
     {
-        new PopupBuilder("popupAnim") {{
-            childLayoutCenter();
-            backgroundColor("#fffa");
-            panel(new PanelBuilder("popupPanelAnim") {{
-                backgroundImage("assets/Interface/CuadroAzul.png");
-                height("15%");
-                width("40%");
+            new PanelBuilder("popupPanelAnim") {{
+                height("100%");
+                width("100%");
                 childLayoutVertical();
                 panel(new PanelBuilder("panelTexto") {{
                     height("50%");
@@ -344,19 +340,14 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                         control(new ButtonBuilder("exportButton", "Export stage"));
                     }});
                 }});
-            }});
-        }}.registerPopup(nifty);
+            }}.build(nifty, nifty.getScreen("popupScreen"), nifty.getScreen("popupScreen").findElementByName("popup"));
     }
     
     public void popupFin()
     {
-	new PopupBuilder("popupFin") {{
-            childLayoutCenter();
-            backgroundColor("#fffa");
-            panel(new PanelBuilder("popupPanel") {{
-                backgroundImage("assets/Interface/CuadroAzul.png");
-                height("15%");
-                width("25%");
+            new PanelBuilder("popupPanel") {{
+                height("100%");
+                width("100%");
                 childLayoutVertical();
                 panel(new PanelBuilder("panelTexto") {{
                     height("50%");
@@ -385,8 +376,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                             control(new ButtonBuilder("noButton", "No"));
                         }});
                 }});
-            }});
-        }}.registerPopup(nifty);
+            }}.build(nifty, nifty.getScreen("popupScreen"), nifty.getScreen("popupfinScreen").findElementByName("popup"));
     }
     
     public void changeCharacterPage(String steep, String familyAnt){
@@ -471,33 +461,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         initIcons();
         cargaMenu(screenType[index]);
         nifty.gotoScreen(screenType[index]);
-    }
-    public void manSelected(String nextScreen) 
-    {
-        nifty.gotoScreen(nextScreen);  // switch to another screen
-        gui.setGender(Gender.Male);
-    }
-    
-    public void womanSelected(String nextScreen) 
-    {
-        nifty.gotoScreen(nextScreen);  // switch to another screen
-        gui.setGender(Gender.Female);
-    }
-    
-    public void adultSelected(String nextScreen) 
-    {
-        nifty.gotoScreen(nextScreen);  // switch to another screen
-        gui.setAgeModel(Age.Adult);
-        //gui.loadModel();
-        //initIcons();
-    }
-    
-    public void youngSelected(String nextScreen) 
-    {
-        nifty.gotoScreen(nextScreen);  // switch to another screen 
-        gui.setAgeModel(Age.Young);
-        //gui.loadModel();
-        //initIcons();
     }
     
     public void initIcons(){
@@ -732,32 +695,25 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="tweakButton")
     public void onTweakButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        nifty.closePopup(popupAnim.getId());
         //Lanza excepcion al cambiar de pantalla
         changeScreen("basicScreen");
     }
     
     @NiftyEventSubscriber(id="exportButton")
     public void onExportButtonClicked(final String id, final ButtonClickedEvent event) {
-        nifty.closePopup(popupAnim.getId());
+        nifty.gotoScreen("popupfinScreen");
         //gui.screenshot();
-        if(popupFin == null){
-                popupFin = nifty.createPopup("popupFin");
-        }
-        nifty.showPopup(nifty.getCurrentScreen(), popupFin.getId(), null);
     }
     
     @NiftyEventSubscriber(id="yesButton")
     public void onYesButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        //Lanza excepcion cuando intenta cambiar de pantalla
-        nifty.gotoScreen("start");
-        nifty.closePopup(popupFin.getId()); 
+        nifty.gotoScreen("start"); 
     }
     
     @NiftyEventSubscriber(id="noButton")
     public void onNoButtonClicked(final String id, final ButtonClickedEvent event) {
         //nifty.gotoScreen("finalScreen");
-        nifty.closePopup(popupFin.getId());
+        //nifty.closePopup(popupFin.getId());
     }
     
     @NiftyEventSubscriber(id="sliderR")
@@ -834,10 +790,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void screenshot() 
     {
-        //if(popupAnim == null){
-            popupAnim = nifty.createPopup("popupAnim");
-        //}
-        nifty.showPopup(nifty.getCurrentScreen(), popupAnim.getId(), null);
+        nifty.gotoScreen("popupScreen");
     }
     
     public void changeBodyType(String bodyType)
