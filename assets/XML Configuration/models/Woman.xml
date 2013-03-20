@@ -58,11 +58,11 @@
 				<iconPath>assets/Interface/Icons/IconoPielRojaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PielRojaGirl.png</path>
 			</simpleTexture>
-			<!--Falta añadir los paths de los ojos -->
+			<!--Falta mirar los path de los iconos de los ojos -->
 			<doubleTexture idPanel="panelOjos" layer="1" default="true">
-				<iconPath></iconPath>
-				<basePath></basePath>
-				<detailsPath></detailsPath>
+				<iconPath>assets/Interface/Icons/IconoOjosAzulGirl</iconPath>
+				<basePath>assets/Textures/eAdventure/Textures Girl/IrisChica.png</basePath>
+				<detailsPath>assets/Textures/eAdventure/Textures Girl/PupilaChica.png</detailsPath>
 			</doubleTexture>
 		</textures>
 		<bones>
@@ -86,4 +86,29 @@
 			</physicalBuild>
 		</physicalBuilds>
 	</mainMesh>
+	<!-- Falta cambiar los iconos, mirar las transformaciones que hay que hacer y añadir las texturas de los pelos -->
+	<subMesh idPanel="panelPelos" associatedBone="Cabeza">
+		<path>assets/Models/eAdventure/Hair Girl/long haircut.mesh.xml</path>
+		<iconPath>assets/Interface/Icons/IconoPeloChicaLargo.jpg</iconPath>
+		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
+		<transformation transformationType="translate" valueX="0.0" valueY="0.5" valueZ="0.0"/>
+	</subMesh>
+	<subMesh idPanel="panelPelos" associatedBone="Cabeza">
+		<path>assets/Models/eAdventure/Hair Girl/old haircut.mesh.xml</path>
+		<iconPath>assets/Interface/Icons/IconoPeloChicaViejo.jpg</iconPath>
+		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
+		<transformation transformationType="translate" valueX="0.0" valueY="0.5" valueZ="0.0"/>
+	</subMesh>
+	<subMesh idPanel="panelPelos" associatedBone="Cabeza">
+		<path>assets/Models/eAdventure/Hair Girl/ponytail haircut.mesh.xml</path>
+		<iconPath>assets/Interface/Icons/IconoPeloChicaColeta.jpg</iconPath>
+		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
+		<transformation transformationType="translate" valueX="0.0" valueY="0.5" valueZ="0.0"/>
+	</subMesh>
+	<subMesh idPanel="panelPelos" associatedBone="Cabeza">
+		<path>assets/Models/eAdventure/Hair Girl/short haircut.mesh</path>
+		<iconPath>assets/Interface/Icons/IconoPeloChicaCorto.jpg</iconPath>
+		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
+		<transformation transformationType="translate" valueX="0.0" valueY="0.5" valueZ="0.0"/>
+	</subMesh>
 </model>
