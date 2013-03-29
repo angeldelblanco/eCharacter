@@ -11,6 +11,7 @@
 	<xs:complexType name="meshType">
 		<xs:sequence>
 			<xs:element name="path" type="xs:string"/>
+			<xs:element name="transformation" type="transformationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="textures" minOccurs="0" maxOccurs="1">
 				<xs:complexType>
 					<xs:choice minOccurs="1" maxOccurs="unbounded">
@@ -38,7 +39,6 @@
 			<xs:extension base="meshType">
 				<xs:sequence>
 					<xs:element name="iconPath" type="xs:string"/>
-					<xs:element name="transformation" type="transformationType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="idPanel" type="xs:string" use="required"/>
 				<xs:attribute name="associatedBone" type="xs:string" use="required"/>
@@ -115,7 +115,7 @@
 	</xs:complexType>
 	<xs:complexType name="physicalBuildsType">
 		<xs:sequence>
-			<xs:element name="physicalBuild" type="physicalBuildType"  minOccurs="1" maxOccurs="10"/>
+			<xs:element name="physicalBuild" type="physicalBuildType" minOccurs="1" maxOccurs="10"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="physicalBuildType">
