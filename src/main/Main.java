@@ -33,48 +33,29 @@
  *      along with <eAdventure Character Configurator>. If not, 
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+package main;
 
-package loader;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
+import loader.Configuration;
+import loader.ResourceHandler;
 
 /**
- * This class allow resource searching in file system. 
+ * This class initializes the application resources and launch the GUI
  */
-public class ResourceHandler
-{
-    
-    public ResourceHandler(){}
-    
-    public InputStream getResource(String fileName, String directory)
-    {        
-        File dirPath = new File(directory);
-        File[] files = dirPath.listFiles();
-        InputStream stream = null;
-        for (int x=0;x<files.length;x++)
-        {
-            File file = files[x];
-            if (! file.isDirectory()) {
-                if (file.getName().equals(fileName)){
-                    String resource = dirPath+File.separator+file.getName();                    
-                    System.out.println("File found : " + resource);                    
-                    try {
-                        stream = new FileInputStream(resource);
-                    } catch (FileNotFoundException ex) {
-                        System.out.println(ex.getMessage());
-                    }
-                    //InputStream stream = this.getClass().getResourceAsStream(resource);
-                    return stream;
-                }   
-            }
-            else{
-                //file is a directory..
-                stream = getResource(fileName, directory+File.separator+file.getName());
-            }
+public class Main 
+{            
+    public static void main(String[] args)
+    {
+        //Initializes the resources and load the initial configuration
+        ResourceHandler resourceHandler = new ResourceHandler();
+        Configuration config = new Configuration();
+        InputStream stream = resourceHandler.getResource(Configuration.PROPERTIES_FILE_NAME,"./");
+        if(stream != null){
+            config.loadPropertiesFile(stream);
         }
-        return stream;
+        else{
+            config.loadDefaultProperties();
+        }
     }
+    
 }
