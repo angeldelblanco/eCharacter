@@ -5,7 +5,7 @@
   <useControls filename="nifty-default-controls.xml" />
   
   <!-- First Screen-->
-  <screen id="start" controller="gui_nifty.StartScreen">
+  <screen id="start" controller="gui.StartScreen">
     <layer id="background" childLayout="center">
       <image filename="Interface/start-background.jpg"></image>
     </layer>
@@ -30,7 +30,7 @@
   </screen>
   
   <!-- Second screen(Model selection)-->
-	<screen id="modelScreen" controller="gui_nifty.StartScreen">
+	<screen id="modelScreen" controller="gui.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <image filename="Interface/second-background.png"></image>   
         </layer>
@@ -124,7 +124,7 @@
     </screen>
   
   <!-- Third screen(basic)-->
-	<screen id="basicScreen" controller="gui_nifty.StartScreen">
+	<screen id="basicScreen" controller="gui.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -183,7 +183,7 @@
         </layer>
     </screen>
 	<!-- Fourth screen(custom)-->
-	<screen id="bonesScreen" controller="gui_nifty.StartScreen">
+	<screen id="bonesScreen" controller="gui.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -283,7 +283,7 @@
     </screen>
 	
 	<!-- Fifth screen(skin)-->
-	<screen id="singleTextureScreen" controller="gui_nifty.StartScreen">
+	<screen id="singleTextureScreen" controller="gui.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -375,7 +375,7 @@
     </screen>
 	
 	<!-- Sixth screen(accesories)-->
-	<screen id="multiTextureScreen" controller="gui_nifty.StartScreen">
+	<screen id="multiTextureScreen" controller="gui.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -514,7 +514,7 @@
     </screen>
 	
 	<!-- Eigthth screen(export)-->
-	<screen id="exportScreen" controller="gui_nifty.StartScreen">
+	<screen id="exportScreen" controller="gui.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -599,7 +599,7 @@
     </screen>
 	
 	<!-- Nineth screen(export)-->
-	<screen id="popupScreen" controller="gui_nifty.StartScreen">
+	<screen id="popupScreen" controller="gui.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -611,7 +611,7 @@
     </screen>
 	
 	<!-- Tenth screen(export)-->
-	<screen id="popupfinScreen" controller="gui_nifty.StartScreen">
+	<screen id="popupfinScreen" controller="gui.StartScreen">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
