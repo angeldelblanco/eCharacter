@@ -146,6 +146,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             family.addItem(f.getMetadata().getName());
         }
         modelsSize = families.get(0).getModelsRef().getModelRef().size();
+        modelsAntSize = 0;
         familySelection = families.get(0).getMetadata().getName();
         modelspage = 0;
         changeCharacterPage("0",familySelection);
