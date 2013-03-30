@@ -33,6 +33,7 @@
 		</multiStage>		
 		<multiStage stageLabel="Shoes">
 			<textureSubStage subStageLabel="Shoes" idPanel="shoesPanel" multiselection="false"/>
+			<textureSubStage subStageLabel="Socks" idPanel="socksPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="Hair">
 			<meshSubStage subStageLabel="Hairs" idPanel="hairsPanel" multiselection="false"/>

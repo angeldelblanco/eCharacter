@@ -32,14 +32,14 @@
 				<detailsPath>assets/Textures/eAdventure/Textures Boy/PupilaBoy.png</detailsPath>
 			</doubleTexture>
 			<!-- eyebrowsPanel textures-->
-			<simpleTexture idPanel="eyebrowsPanel" layer="2" default="false">
+			<baseShadowTexture idPanel="eyebrowsPanel" layer="2" default="false">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCejasBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CejasBoy.png</path>
-			</simpleTexture>
-			<simpleTexture idPanel="eyebrowsPanel" layer="2" default="false">
+			</baseShadowTexture>
+			<baseShadowTexture idPanel="eyebrowsPanel" layer="2" default="false">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPestanasBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PestanasBoy.png</path>
-			</simpleTexture>			
+			</baseShadowTexture>			
 			<!-- tshirtsPanel textures-->			
 			<baseShadowTexture idPanel="tshirtsPanel" layer="1" default="true">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaCortaBoy.png</iconPath>
@@ -78,10 +78,15 @@
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PantalonLargoSombrasBoy.png</shadowPath>
 			</baseShadowTexture>			
 			<!-- shoesPanel textures-->
-			<baseShadowTexture idPanel="shoesPanel" layer="1" default="true">
+			<baseShadowTexture idPanel="shoesPanel" layer="2" default="true">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoZapatosBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/ZapatosSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/ZapatosSombrasBoy.png</shadowPath>
+			</baseShadowTexture>
+			<!-- socksPanel textures-->
+			<baseShadowTexture idPanel="socksPanel" layer="1" default="false">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCalcetinesBoy.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Boy/CalcetinesBoy.png</path>
 			</baseShadowTexture>			
 			<!-- accesoriesPanel textures-->
 			<!-- facePanel textures-->
@@ -127,10 +132,10 @@
 				<path>assets/Textures/eAdventure/Textures Boy/TiritaIzqBoy.png</path>
 			</simpleTexture>
 			<!--otherAccesoriesPanel textures-->
-			<simpleTexture idPanel="otherAccesoriesPanel" layer="2" default="false">
+			<baseShadowTexture idPanel="otherAccesoriesPanel" layer="2" default="false">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CinturonBoy.png</path>
-			</simpleTexture>
+			</baseShadowTexture
 			<baseShadowTexture idPanel="otherAccesoriesPanel" layer="2" default="false">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoHebillaCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/HebillaCinturonSolidoBoy.png</path>
@@ -150,11 +155,6 @@
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoRelojBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/RelojBoy.png</path>
 			</simpleTexture>
-			<baseShadowTexture idPanel="otherAccesoriesPanel" layer="2" default="false">
-				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPajaritaBoy.png</iconPath>
-				<path>assets/Textures/eAdventure/Textures Boy/PajaritaSolidoBoy.png</path>
-				<shadowPath>assets/Textures/eAdventure/Textures Boy/PajaritaSombrasBoy.png</shadowPath>
-			</baseShadowTexture>
 			<baseShadowTexture idPanel="otherAccesoriesPanel" layer="2" default="false">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoMunequeraDchaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/MunequeraDchaSolidoBoy.png</path>
