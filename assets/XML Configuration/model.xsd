@@ -137,6 +137,7 @@
 					<xs:enumeration value="scale"/>
 					<xs:enumeration value="rotate"/>
 					<xs:enumeration value="translate"/>
+					<xs:enumeration value="center"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>

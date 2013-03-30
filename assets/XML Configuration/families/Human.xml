@@ -23,6 +23,7 @@
 		</multiStage>
 		<multiStage stageLabel="Eyes">
 			<textureSubStage subStageLabel="Eyes" idPanel="eyesPanel" multiselection="false"/>
+			<textureSubStage subStageLabel="Eyebrows and Eyelashes" idPanel="eyebrowsPanel" multiselection="true"/>
 		</multiStage>
 		<multiStage stageLabel="TShirt">
 			<textureSubStage subStageLabel="TShirts" idPanel="tshirtsPanel" multiselection="false"/>
