@@ -83,7 +83,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private String pantallas[];
     private String screenType[];
     private ArrayList<Family> families;
-    private List<ModelRefType> models;
+    private int modelsSize, modelsAntSize;
+    //private List<ModelRefType> models;
     //private String models[], modelIcons[], familyName[];
     private int index;
     
@@ -124,7 +125,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         Iterator<Family> it = families.iterator();
         while(it.hasNext()){
             final Family f = it.next();
-            models = f.getModelsRef().getModelRef();
+            List<ModelRefType> models = f.getModelsRef().getModelRef();
             Iterator<ModelRefType> itm = models.iterator();
             int i = 0;
             while(itm.hasNext()){
@@ -144,7 +145,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }
             family.addItem(f.getMetadata().getName());
         }
-        models = families.get(0).getModelsRef().getModelRef();
+        modelsSize = families.get(0).getModelsRef().getModelRef().size();
         familySelection = families.get(0).getMetadata().getName();
         modelspage = 0;
         changeCharacterPage("0",familySelection);
@@ -382,7 +383,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void changeCharacterPage(String steep, String familyAnt){
-            for(int i=modelspage*TEXTURES_PAGE; i<models.size(); i++){
+            for(int i=modelspage*TEXTURES_PAGE; i<modelsAntSize; i++){
                 if(i<((modelspage+1)*TEXTURES_PAGE)){
                     nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setVisible(false);
                     nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setHeight(0);
@@ -392,7 +393,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             if(steep.equals("+")){modelspage++;}
             if(steep.equals("-")){modelspage--;}
             if(steep.equals("0")){modelspage = 0;}
-            for(int i=modelspage*TEXTURES_PAGE; i<models.size(); i++){
+            for(int i=modelspage*TEXTURES_PAGE; i<modelsSize; i++){
                 if(i<((modelspage+1)*TEXTURES_PAGE)){
                     nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setVisible(true);
                     nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setHeight(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
@@ -407,7 +408,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 nifty.getScreen("modelScreen").findElementByName("leftT").disable();
                 nifty.getScreen("modelScreen").findElementByName("leftT").setVisible(false);
             }
-            if((((double)models.size()/(double)TEXTURES_PAGE) - modelspage) > 1){
+            if((((double)modelsSize/(double)TEXTURES_PAGE) - modelspage) > 1){
                 nifty.getScreen("modelScreen").findElementByName("rightT").enable();
                 nifty.getScreen("modelScreen").findElementByName("rightT").setVisible(true);
             }
@@ -680,14 +681,14 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     if (event.getSelection() != null && (!familySelection.equals(""))) {
         String familyAnt = familySelection;
         Iterator<Family> it = families.iterator();
-       while(it.hasNext()){
+        familySelection = event.getSelection();
+        while(it.hasNext()){
            final Family f = it.next();
            if(f.getMetadata().getName().equals(familySelection)){
-               models = f.getModelsRef().getModelRef();
+               modelsAntSize = modelsSize;
+               modelsSize = f.getModelsRef().getModelRef().size();
            }
-       }
-        familySelection = event.getSelection();
-        
+        }
         changeCharacterPage("0", familyAnt);
     }
   }
