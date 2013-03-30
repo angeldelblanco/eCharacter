@@ -36,8 +36,8 @@
 package loader;
 
 import data.family.Family;
+import data.model.Model;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -45,51 +45,46 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.*;
+import types.XMLType;
 
 public class XMLReaderJAXB<T> 
 {
     private ArrayList<T> list;
     private String path;
+    private ResourceHandler resourceHandler;
+    private XMLValidator xmlValidator;
     
     public XMLReaderJAXB(String path)
     {
         this.path = path;
 
         list = new ArrayList<T>();
+        resourceHandler = new ResourceHandler();
+        xmlValidator = new XMLValidator();
         //readFamiliesPath(path);
     }
     
     public ArrayList<T> readXML(Class<T> docClass)
     {
-        File dirPath = new File(path);
-        /*String[] list = dirPath.list();
-        for(int i=0; i<list.length;i++)
+        /** Check the type of the XML */
+        XMLType type = null;
+        if (docClass.equals(Family.class))
         {
-            try 
-            {
-                String filePath = path+"/"+list[i];
-                InputStream input = new FileInputStream(filePath);
-                families.add(unmarshal(Family.class,input));
-            } 
-            catch (Exception ex) 
-            {
-                Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }*/
+            type = XMLType.family;
+        }
+        else if (docClass.equals(Model.class))
+        {
+            type = XMLType.model;
+        }
+        File dirPath = new File(path);
         File[] ficheros = dirPath.listFiles();
         for (int x=0;x<ficheros.length;x++)
         {
             File file = ficheros[x];
-            //Hay que hacer más comprobaciones(que no sea model.xsd y q sean XML)
-            if (! file.isDirectory() && ! file.getName().equals("family.xsd")) {
-                System.out.println(file.getPath());
-                try {
-                    try {
-                        
-                        list.add(unmarshal(docClass, new FileInputStream(file.getPath())));
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
+            if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), type)) {
+                try {    
+                    list.add(unmarshal(docClass, resourceHandler.getResource(file.getPath())));
                 } catch (JAXBException ex) {
                     Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -103,10 +98,15 @@ public class XMLReaderJAXB<T>
         String packageName = docClass.getPackage().getName();
         JAXBContext jc = JAXBContext.newInstance( packageName );
         Unmarshaller u = jc.createUnmarshaller();
-        //JAXBElement<T> doc = (JAXBElement<T>)u.unmarshal( inputStream );
         T doc = (T)u.unmarshal( inputStream );
         return doc;
     } 
+    
+    private String getExtension(String filePath)
+    {
+        int dot = filePath.lastIndexOf(".");
+        return filePath.substring(dot + 1);
+    }
     
     public static void main(String args[]) throws JAXBException, FileNotFoundException
     {

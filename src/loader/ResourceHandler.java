@@ -40,6 +40,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.StringTokenizer;
 
 /**
  * This class allow resource searching in file system. 
@@ -52,13 +53,16 @@ public class ResourceHandler
     public InputStream getResource(String fileName, String directory)
     {        
         File dirPath = new File(directory);
+        /** List all the files of this directory */
         File[] files = dirPath.listFiles();
         InputStream stream = null;
         for (int x=0;x<files.length;x++)
         {
             File file = files[x];
             if (! file.isDirectory()) {
+                /** "file" is a file */
                 if (file.getName().equals(fileName)){
+                    /** We found the file. */
                     String resource = dirPath+File.separator+file.getName();                    
                     System.out.println("File found : " + resource);                    
                     try {
@@ -71,10 +75,37 @@ public class ResourceHandler
                 }   
             }
             else{
-                //file is a directory..
+                /** "file" is a directory. */
                 stream = getResource(fileName, directory+File.separator+file.getName());
             }
         }
         return stream;
+    }
+    
+    public InputStream getResource(String filePath)
+    {
+        try {
+            InputStream stream = new FileInputStream(filePath);  
+            /** The file exists */
+            return stream;
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(ResourceHandler.class.getName()).log(Level.SEVERE, null, ex);
+            /** The file don't exists. */
+            String fileName = getFileName(filePath);
+            /** Search this file in root directory. */
+            return getResource(fileName, "."+File.separator);
+        }     
+    }
+    
+    /** Get the name of the file */
+    private String getFileName(String filePath)
+    {
+        StringTokenizer tokens=new StringTokenizer(filePath, "/");
+        String fileName = "";
+        while (tokens.hasMoreTokens())
+        {
+            fileName = tokens.nextToken(); 
+        }
+        return fileName;
     }
 }

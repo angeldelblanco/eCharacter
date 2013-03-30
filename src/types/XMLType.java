@@ -33,30 +33,9 @@
  *      along with <eAdventure Character Configurator>. If not, 
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package main;
 
-import java.io.File;
-import java.io.InputStream;
-import loader.Configuration;
-import loader.ResourceHandler;
+package types;
 
-/**
- * This class initializes the application resources and launch the GUI
- */
-public class Main 
-{            
-    public static void main(String[] args)
-    {
-        //Initializes the resources and load the initial configuration
-        ResourceHandler resourceHandler = new ResourceHandler();
-        Configuration config = new Configuration();
-        InputStream stream = resourceHandler.getResource(Configuration.PROPERTIES_FILE_NAME,"."+File.separator);
-        if(stream != null){
-            config.loadPropertiesFile(stream);
-        }
-        else{
-            config.loadDefaultProperties();
-        }
-    }
-    
+public enum XMLType {
+    model, family
 }
