@@ -400,7 +400,7 @@ public class Model{
            SkeletonControl control = this.model.getControl(SkeletonControl.class);
            control.getAttachmentsNode(bone).attachChild(subMesh);           
            subMesh.rotate(FastMath.DEG_TO_RAD * 90,0.0f,0.0f);
-           subMesh.center(); 
+           subMesh.move(2.10f,-4.80f,0.63f);
            //Para todos los pelos
            //hairMesh.move(0.0f,0.3f,0.0f);
            //Para el pelo goku

@@ -6,42 +6,52 @@
 		<author>Alex, David y Sergio.</author>
 	</metadata>
 	<stages>
-		<scaleStage stageLabel="Escalado" idPanel="panelEscalado">
-			<boneController controllerLabel="Cabeza" idController="cabeza"/>
-			<boneController controllerLabel="Torax" idController="torax"/>
-			<boneController controllerLabel="Muñeca Izquierda" idController="muniecaIzq"/>
-			<boneController controllerLabel="Muñeca Derecha" idController="muniecaDer"/>
-			<boneController controllerLabel="Tobillo Izquierdo" idController="tobilloIzq"/>
-			<boneController controllerLabel="Tobillo Derecho" idController="tobilloDer"/>
-			<boneController controllerLabel="Fémur Izquierdo" idController="femurIzq"/>
-			<boneController controllerLabel="Fémur Derecho" idController="femurDer"/>
-			<boneController controllerLabel="Clavícula Izquierda" idController="claviculaIzq"/>
-			<boneController controllerLabel="Clavícula Derecha" idController="claviculaDer"/>
+		<scaleStage stageLabel="Scale" idPanel="ScalePanel">
+			<boneController controllerLabel="Head" idController="head"/>
+			<boneController controllerLabel="Torso" idController="torso"/>
+			<boneController controllerLabel="Left Arm" idController="leftArm"/>
+			<boneController controllerLabel="Righ Arm" idController="rightArm"/>
+			<boneController controllerLabel="Left Hand" idController="leftHand"/>
+			<boneController controllerLabel="Right Hand" idController="rightHand"/>
+			<boneController controllerLabel="Left Leg" idController="leftLeg"/>
+			<boneController controllerLabel="Right Leg" idController="rightLeg"/>
+			<boneController controllerLabel="Left Foot" idController="leftFoot"/>
+			<boneController controllerLabel="Right Foot" idController="rightFoot"/>			
 		</scaleStage>
-		<multiStage stageLabel="Piel">
-			<textureSubStage subStageLabel="Pieles" idPanel="panelPieles" multiselection="false"/>
+		<multiStage stageLabel="Skin">
+			<textureSubStage subStageLabel="Skins" idPanel="skinsPanel" multiselection="false"/>
 		</multiStage>
-		<multiStage stageLabel="Ojos">
-			<textureSubStage subStageLabel="Ojos" idPanel="panelOjos" multiselection="false"/>
+		<multiStage stageLabel="Eyes">
+			<textureSubStage subStageLabel="Eyes" idPanel="eyesPanel" multiselection="false"/>
 		</multiStage>
-		<multiStage stageLabel="Camiseta">
-			<textureSubStage subStageLabel="Camisetas" idPanel="panelCamisetas" multiselection="false"/>
+		<multiStage stageLabel="TShirt">
+			<textureSubStage subStageLabel="TShirts" idPanel="tshirtsPanel" multiselection="false"/>
 		</multiStage>
-		<multiStage stageLabel="Pantalón">
-			<textureSubStage subStageLabel="Pantalones" idPanel="panelPantalones" multiselection="false"/>
+		<multiStage stageLabel="Trousers">
+			<textureSubStage subStageLabel="Trousers" idPanel="trousersPanel" multiselection="false"/>
+		</multiStage>		
+		<multiStage stageLabel="Shoes">
+			<textureSubStage subStageLabel="Shoes" idPanel="shoesPanel" multiselection="false"/>
 		</multiStage>
-		
-		<multiStage stageLabel="Zapatos">
-			<textureSubStage subStageLabel="Zapatos" idPanel="panelZapatos" multiselection="false"/>
+		<multiStage stageLabel="Hair">
+			<meshSubStage subStageLabel="Hairs" idPanel="hairsPanel" multiselection="false"/>
 		</multiStage>
-
-		<multiStage stageLabel="Pelo">
-			<meshSubStage subStageLabel="Pelos" idPanel="panelPelos" multiselection="false"/>
+		<multiStage stageLabel="Accesories">
+			<textureSubStage subStageLabel="Face" idPanel="facePanel" multiselection="false"/>
+			<textureSubStage subStageLabel="Accesories Face" idPanel="accesoriesFacePanel" multiselection="true"/>
+			<textureSubStage subStageLabel="Other Accesories" idPanel="otherAccesoriesPanel" multiselection="true"/>
 		</multiStage>
 		<animationStage>
 			<!-- Dar valores. Los que hay son aleatorios -->
-			<fps qualityLabel="High" fpsValue="2"/>
-			<camera cameraLabel="Delante">
+			<fps qualityLabel="High" fpsValue="3"/>
+			<fps qualityLabel="Medium" fpsValue="2"/>
+			<fps qualityLabel="High" fpsValue="1"/>
+			<camera cameraLabel="Front">
+				<upAxis valueX="2.0" valueY="2.0" valueZ="2.0"/>
+				<location valueX="2.0" valueY="2.0" valueZ="2.0"/>
+				<direction valueX="2.0" valueY="2.0" valueZ="2.0"/>
+			</camera>
+			<camera cameraLabel="2D">
 				<upAxis valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<location valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<direction valueX="2.0" valueY="2.0" valueZ="2.0"/>
@@ -50,14 +60,24 @@
 	</stages>
 	<modelsRef>
 		<modelRef>
-			<modelLabel>Chico</modelLabel>
-			<iconPath>assets/Interface/man.png</iconPath>
+			<modelLabel>Boy</modelLabel>
+			<iconPath>assets/Interface/Icons/eAdventure/man.png</iconPath>
 			<modelPath>assets/XML Configuration/models/Man.xml</modelPath>
-		</modelRef> 
+		</modelRef>
 		<modelRef>
-			<modelLabel>Chica</modelLabel>
-			<iconPath>assets/Interface/woman.png</iconPath>
+			<modelLabel>Girl</modelLabel>
+			<iconPath>assets/Interface/Icons/eAdventure/woman.png</iconPath>
 			<modelPath>assets/XML Configuration/models/Woman.xml</modelPath>
-		</modelRef> 
+		</modelRef>	
+		<modelRef>
+			<modelLabel>Young Boy</modelLabel>
+			<iconPath>assets/Interface/Icons/eAdventure/young_boy.png</iconPath>
+			<modelPath>assets/XML Configuration/models/YoungBoy.xml</modelPath>
+		</modelRef>
+		<modelRef>
+			<modelLabel>Young Girl</modelLabel>
+			<iconPath>assets/Interface/Icons/eAdventure/young_girl.png</iconPath>
+			<modelPath>assets/XML Configuration/models/YoungWoman.xml</modelPath>
+		</modelRef>
 	</modelsRef>
 </family>

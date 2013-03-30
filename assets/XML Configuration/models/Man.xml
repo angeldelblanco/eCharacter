@@ -3,6 +3,22 @@
 	<mainMesh>
 		<path>assets/Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml</path>
 		<textures>
+			<simpleTexture idPanel="skinsPanel" layer="0" default="true">
+				<iconPath>assets/Interface/Icons/IconoPielBlancaBoy.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Boy/PielBlancaBoy.png</path>
+			</simpleTexture>
+			<simpleTexture idPanel="skinsPanel" layer="0" default="false">
+				<iconPath>assets/Interface/Icons/IconoPielNegraBoy.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Boy/PielNegraBoy.png</path>
+			</simpleTexture>
+			<simpleTexture idPanel="skinsPanel" layer="0" default="false">
+				<iconPath>assets/Interface/Icons/IconoPielAmarillaBoy.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Boy/PielAmarillaBoy.png</path>
+			</simpleTexture>
+			<simpleTexture idPanel="skinsPanel" layer="0" default="false">
+				<iconPath>assets/Interface/Icons/IconoPielRojaBoy.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Boy/PielRojaBoy.png</path>
+			</simpleTexture>
 			<baseShadowTexture idPanel="panelCamisetas" layer="1" default="true">
 				<iconPath>assets/Interface/Icons/IconoCamisaCortaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisaCortaSolidoBoy.png</path>
@@ -43,22 +59,7 @@
 				<path>assets/Textures/eAdventure/Textures Boy/ZapatosSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/ZapatosSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
-			<simpleTexture idPanel="panelPieles" layer="0" default="true">
-				<iconPath>assets/Interface/Icons/IconoPielBlancaBoy.png</iconPath>
-				<path>assets/Textures/eAdventure/Textures Boy/PielBlancaBoy.png</path>
-			</simpleTexture>
-			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>assets/Interface/Icons/IconoPielNegraBoy.png</iconPath>
-				<path>assets/Textures/eAdventure/Textures Boy/PielNegraBoy.png</path>
-			</simpleTexture>
-			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>assets/Interface/Icons/IconoPielAmarillaBoy.png</iconPath>
-				<path>assets/Textures/eAdventure/Textures Boy/PielAmarillaBoy.png</path>
-			</simpleTexture>
-			<simpleTexture idPanel="panelPieles" layer="0" default="false">
-				<iconPath>assets/Interface/Icons/IconoPielRojaBoy.png</iconPath>
-				<path>assets/Textures/eAdventure/Textures Boy/PielRojaBoy.png</path>
-			</simpleTexture>
+			
 			<!--Falta mirar los path de los iconos de los ojos -->
 			<doubleTexture idPanel="panelOjos" layer="1" default="true">
 				<iconPath>assets/Interface/Icons/IconoOjosAzulBoy</iconPath>

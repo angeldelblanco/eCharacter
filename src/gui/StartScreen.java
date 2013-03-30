@@ -144,6 +144,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }
             family.addItem(f.getMetadata().getName());
         }
+        models = families.get(0).getModelsRef().getModelRef();
         familySelection = families.get(0).getMetadata().getName();
         modelspage = 0;
         changeCharacterPage("0",familySelection);
@@ -678,7 +679,15 @@ public class StartScreen extends AbstractAppState implements ScreenController {
   public void onDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
     if (event.getSelection() != null && (!familySelection.equals(""))) {
         String familyAnt = familySelection;
+        Iterator<Family> it = families.iterator();
+       while(it.hasNext()){
+           final Family f = it.next();
+           if(f.getMetadata().getName().equals(familySelection)){
+               models = f.getModelsRef().getModelRef();
+           }
+       }
         familySelection = event.getSelection();
+        
         changeCharacterPage("0", familyAnt);
     }
   }
