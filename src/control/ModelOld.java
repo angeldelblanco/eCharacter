@@ -68,7 +68,7 @@ import types.TShirt;
 import types.Trouser;
 import types.TypeObject;
 
-public class Model{
+public class ModelOld{
 
     private Spatial model;
     private HashMap<String,Spatial> subMeshes;
@@ -105,7 +105,7 @@ public class Model{
     
     private TypeObject typeObject;
     
-    public Model()
+    public ModelOld()
     {
         subMeshes = new HashMap<String,Spatial>();
     }

@@ -35,7 +35,7 @@
  ******************************************************************************/
 package loader;
 
-import control.Model;
+import control.ModelOld;
 import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -50,11 +50,11 @@ import types.TShirt;
 import types.Trouser;
 
 public class XMLReader {
-    private Model model;
+    private ModelOld model;
     private String file;
     private Gender gender;
     
-    public XMLReader(Model model, String file, Gender gender)
+    public XMLReader(ModelOld model, String file, Gender gender)
     {
         this.model = model;
         this.file = file;

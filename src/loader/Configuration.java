@@ -38,10 +38,11 @@ package loader;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  * Loading of the initial configuration from the .properties file.
@@ -60,6 +61,9 @@ public class Configuration
  
     /** Assets paths */
     public final static String AssetsPath = "path";
+    
+    /**List of available languages*/
+    public final static String ListLanguage = "listLanguage";
     
     Properties properties;
     
@@ -100,9 +104,10 @@ public class Configuration
     public void loadDefaultProperties()
     {
         //Default configuration
-        this.properties.setProperty(Language, "en");
+        this.properties.setProperty(Language, "en_UK");
         this.properties.setProperty(Resolution, "1024x768");
         this.properties.setProperty(AssetsPath, "./assets");
+        this.properties.setProperty(ListLanguage,"en_UK es_ES");
         //Saves the changes in the .properties file
         try {            
             FileOutputStream output = new FileOutputStream(PROPERTIES_FILE_NAME); 
@@ -111,5 +116,16 @@ public class Configuration
         } catch (IOException ex) {
             Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public ArrayList<String> getListLanguagesAvailables()
+    {
+        ArrayList<String> listLanguages = new ArrayList<String>();
+        StringTokenizer st = new StringTokenizer(getProperty(ListLanguage));
+        while (st.hasMoreTokens())
+        {
+            listLanguages.add(st.nextToken());
+        }
+        return listLanguages;
     }
 }

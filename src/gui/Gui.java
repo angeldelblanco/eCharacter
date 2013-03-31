@@ -36,7 +36,7 @@
 
 package gui;
 
-import control.Model;
+import control.ModelOld;
 import loader.XMLReader;
 import loader.XMLReaderJAXB;
 import data.family.Family;
@@ -68,7 +68,7 @@ public class Gui extends SimpleApplication{
     private StartScreen startScreen;
     private ScreenshotAppState screenShotState;
     private NiftyJmeDisplay niftyDisplay;
-    private Model model;
+    private ModelOld model;
     private Material mat;
     private static ArrayList<Family> families;
     private static XMLReaderJAXB xmlReader;
@@ -110,7 +110,7 @@ public class Gui extends SimpleApplication{
         //nifty.setDebugOptionPanelColors(true);
 
         flyCam.setDragToRotate(true); // you need the mouse for clicking now
-        model = new Model();
+        model = new ModelOld();
     }
     
      public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
