@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="language.xsd">
+	<string id="idNameFamily">Humans</string>
+	<string id="idDescriptionFamily">Esta familia está compuesta por 2 humanos: un chico y una chica.</string>
+	<string id="idMultiStageLabel1">Scale</string>
+	<string id="idBoneControler1">Head</string>
+	<string id="idBoneControler2">Torso</string>
+	<string id="idBoneControler3">Left arm</string>
+	<string id="idBoneControler4">Right arm</string>
+	<string id="idBoneControler5">Left hand</string>
+	<string id="idBoneControler6">Right hand</string>
+	<string id="idBoneControler7">Left leg</string>
+	<string id="idBoneControler8">Right leg</string>
+	<string id="idBoneControler9">Left foot</string>
+	<string id="idBoneControler10">Right foot</string>
+	<string id="idMultiStageLabel2">Skin</string>
+	<string id="idTextureSubStageLabel1">Skins</string>
+	<string id="idMultiStageLabel3">Eyes</string>
+	<string id="idTextureSubStageLabel1">Eyes</string>
+	<string id="idTextureSubStageLabel2">Cejas</string>
+	<string id="idMultiStageLabel4">T-Shirts</string>
+	<string id="idTextureSubStageLabel1">T-Shirts</string>
+	<string id="idMultiStageLabel5">Trousers</string>
+	<string id="idTextureSubStageLabel1">Trousers</string>
+	<string id="idMultiStageLabel6">Shoes</string>
+	<string id="idTextureSubStageLabel1">Shoes</string>
+	<string id="idMultiStageLabel7">Hair</string>
+	<string id="idTextureSubStageLabel1">Hairs</string>
+	<string id="idMultiStageLabel8">Accesories</string>
+	<string id="idTextureSubStageLabel1">Face</string>
+	<string id="idTextureSubStageLabel2">Accesories face</string>
+	<string id="idTextureSubStageLabel3">Other accesories</string>
+	<string id="idQualityLabel1">High</string>
+	<string id="idQualityLabel2">Medium</string>
+	<string id="idQualityLabel3">Low</string>
+	<string id="idCameraLabel1">Front</string>
+	<string id="idCameraLabel2">2D</string>
+	<string id="idModelLabel1">Boy</string>
+	<string id="idModelLabel2">Girl</string>
+	<string id="idModelLabel3">Young boy</string>
+	<string id="idModelLabel4">Young girl</string>
+</metadata>
