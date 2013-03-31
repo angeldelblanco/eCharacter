@@ -57,11 +57,11 @@ public class XMLValidator {
             // crear y configurar la factory de parsers de documentos XML
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setNamespaceAware(true);  // activar soporte para namespaces
-
+            
             // cargar el documento XML
             DocumentBuilder parser = dbf.newDocumentBuilder();
             Document doc = parser.parse(new File(filePath));
-
+            
             // crear una SchemaFactory preparada para interpretar esquemas XML W3C
             SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 

@@ -61,7 +61,7 @@ public class Main
         }
         //Setting the GUI´s initial configuration
         StringTokenizer dimension = new StringTokenizer(config.getProperty(Configuration.Resolution));
-        int width = Integer.parseInt(dimension.nextToken());
+        int width = Integer.parseInt(dimension.nextToken("x"));
         int height = Integer.parseInt(dimension.nextToken());
         Gui app = new Gui(width,height);
         //Launch the GUI

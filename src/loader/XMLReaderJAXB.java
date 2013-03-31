@@ -41,7 +41,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.*;
@@ -108,16 +107,11 @@ public class XMLReaderJAXB<T>
         return filePath.substring(dot + 1);
     }
     
+    /*****Borra este main cuando hayas probado que los xml de los modelos funcionan correctamente
+        y cerramos esta clase  ***/
     public static void main(String args[]) throws JAXBException, FileNotFoundException
     {
-        XMLReaderJAXB<Family> aux = new XMLReaderJAXB<Family>("assets/XML Configuration/families");
-        ArrayList<Family> families = aux.readXML(Family.class);
-        Iterator<Family> it = families.iterator();
-        while(it.hasNext())
-        {
-            Family fam = it.next();
-            System.out.println(fam.getMetadata().getName());
-            System.out.println(fam.getMetadata().getDescription());
-        }
+        XMLReaderJAXB<Model> aux = new XMLReaderJAXB<Model>("assets/XML Configuration/models");
+        aux.readXML(Model.class);
     }   
 }

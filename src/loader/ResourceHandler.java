@@ -70,7 +70,6 @@ public class ResourceHandler
                     } catch (FileNotFoundException ex) {
                         System.out.println(ex.getMessage());
                     }
-                    //InputStream stream = this.getClass().getResourceAsStream(resource);
                     return stream;
                 }   
             }
@@ -89,7 +88,6 @@ public class ResourceHandler
             /** The file exists */
             return stream;
         } catch (FileNotFoundException ex) {
-            //Logger.getLogger(ResourceHandler.class.getName()).log(Level.SEVERE, null, ex);
             /** The file don't exists. */
             String fileName = getFileName(filePath);
             /** Search this file in root directory. */

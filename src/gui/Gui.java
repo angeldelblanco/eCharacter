@@ -92,7 +92,7 @@ public class Gui extends SimpleApplication{
         setDisplayFps(false);
         setDisplayStatView(false);
         // Register locator to assetManager
-        assetManager.registerLocator(File.separator, FileLocator.class); 
+        assetManager.registerLocator("."+File.separator, FileLocator.class); 
         
         startScreen = new StartScreen(this);
         stateManager.attach(startScreen);

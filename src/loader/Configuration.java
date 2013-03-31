@@ -101,7 +101,7 @@ public class Configuration
     {
         //Default configuration
         this.properties.setProperty(Language, "en");
-        this.properties.setProperty(Resolution, "1024 768");
+        this.properties.setProperty(Resolution, "1024x768");
         this.properties.setProperty(AssetsPath, "./assets");
         //Saves the changes in the .properties file
         try {            

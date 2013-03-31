@@ -135,7 +135,7 @@
 			<baseShadowTexture idPanel="otherAccesoriesPanel" layer="2" default="false">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CinturonBoy.png</path>
-			</baseShadowTexture
+                        </baseShadowTexture>
 			<baseShadowTexture idPanel="otherAccesoriesPanel" layer="2" default="false">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoHebillaCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/HebillaCinturonSolidoBoy.png</path>
