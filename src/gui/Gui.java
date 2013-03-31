@@ -53,6 +53,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.system.AppSettings;
 import de.lessvoid.nifty.Nifty;
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -74,24 +75,16 @@ public class Gui extends SimpleApplication{
     
     private int indexImage = 0;
     
-    public static void main(String[] args) {
-        //Averiguar la resolucion de pantalla del usuario
-        /*Toolkit t = Toolkit.getDefaultToolkit();
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        System.out.println("Tu resolución es de " + screenSize.width + "x" + screenSize.height);*/
-        
+    public Gui(int width,int height)
+    {
         //Read the XML's with all families.
         xmlReader = new XMLReaderJAXB<Family>("assets/XML Configuration/families");
         families = xmlReader.readXML(Family.class);
-
-        AppSettings settings = new AppSettings(true);
-        settings.setResolution(1024, 768);
-        //settings.setFullscreen(true);
-        Gui app = new Gui();
-        app.setShowSettings(false);
-        app.setSettings(settings);
-        app.start();
-        
+        //Creation of the new configuration
+        AppSettings newSettings = new AppSettings(true);
+        newSettings.setResolution(width,height);
+        this.setShowSettings(false);
+        this.setSettings(newSettings);
     }
     
     @Override
@@ -99,7 +92,7 @@ public class Gui extends SimpleApplication{
         setDisplayFps(false);
         setDisplayStatView(false);
         // Register locator to assetManager
-        assetManager.registerLocator("./", FileLocator.class); 
+        assetManager.registerLocator(File.separator, FileLocator.class); 
         
         startScreen = new StartScreen(this);
         stateManager.attach(startScreen);

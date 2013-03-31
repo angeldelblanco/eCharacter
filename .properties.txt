@@ -1,4 +1,4 @@
 #Fri Mar 29 20:10:15 CET 2013
-resolution=680x256
+resolution=1024 768
 path=./assets
-lang=es
+lang=en

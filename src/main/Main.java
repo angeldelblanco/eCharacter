@@ -35,8 +35,10 @@
  ******************************************************************************/
 package main;
 
+import gui.Gui;
 import java.io.File;
 import java.io.InputStream;
+import java.util.StringTokenizer;
 import loader.Configuration;
 import loader.ResourceHandler;
 
@@ -57,6 +59,13 @@ public class Main
         else{
             config.loadDefaultProperties();
         }
+        //Setting the GUI´s initial configuration
+        StringTokenizer dimension = new StringTokenizer(config.getProperty(Configuration.Resolution));
+        int width = Integer.parseInt(dimension.nextToken());
+        int height = Integer.parseInt(dimension.nextToken());
+        Gui app = new Gui(width,height);
+        //Launch the GUI
+        app.start();
     }
     
 }
