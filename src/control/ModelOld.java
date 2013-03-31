@@ -369,7 +369,8 @@ public class ModelOld{
     {
         return model;
     }
-
+    
+    /*ADAPTADO*/
     public void setModel(Spatial model,Material mat) 
     {
         this.model = model;
@@ -380,8 +381,8 @@ public class ModelOld{
         Iterator<String> it = this.control.getAnimationNames().iterator();
         this.channel.setAnim(it.next());
         this.channel.setLoopMode(LoopMode.Loop);       
-    }
-    
+    }    
+    /*ADAPTADO*/
     public void setPositionModel()
     {
         this.model.rotate(FastMath.DEG_TO_RAD * 90,0.0f,0.0f);
@@ -393,7 +394,7 @@ public class ModelOld{
             this.vectorScaleBase.set(0.65f,0.65f,0.65f);
         }
     }
-    
+    /*ADAPTADO*/
     public void addSubMeshes(String bone,Spatial subMesh)
     {
            subMeshes.put(bone, subMesh);
@@ -406,7 +407,7 @@ public class ModelOld{
            //Para el pelo goku
            subMesh.move(0.0f,0.5f,0.0f);
     }
-    
+    /*ADAPTADO*/
     public void dettachAllChild()
     {
         SkeletonControl control = this.model.getControl(SkeletonControl.class);
@@ -419,7 +420,7 @@ public class ModelOld{
             control.getAttachmentsNode(bone).detachChild(subMesh);
         }
     }
-    
+    /*ADAPTADO*/
     public void attachAllChild()
     {
        SkeletonControl control = this.model.getControl(SkeletonControl.class);

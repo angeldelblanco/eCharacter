@@ -137,4 +137,11 @@ public class ModelControl
         return listId;
     }
     
+    public ArrayList<TransformationType> getModelTransformations()
+    {
+        return (ArrayList<TransformationType>) model.getMainMesh().getTransformation();
+    }
+    
+    //public ArrayList<TransformationType> getSubMeshTransformation()
+    
 }
