@@ -50,7 +50,7 @@ public class FamilyControl
         this.family = family;
     }
     
-    public HashSet<String> getIdBonesController(String idPanel)
+    public HashSet<String> getIdBonesController(String idPanelRef)
     {
         HashSet<String> idBonesController = new HashSet<String>();
         ArrayList<ScaleStageType> listScaleStage = (ArrayList<ScaleStageType>) family.getStages().getScaleStage();
@@ -58,7 +58,7 @@ public class FamilyControl
         while(it.hasNext())
         {
             ScaleStageType s = it.next();
-            if(s.getIdPanel().equals(idPanel)){
+            if(s.getIdPanel().equals(idPanelRef)){
                 ArrayList<BoneController> listBoneController = (ArrayList<BoneController>) s.getBoneController();
                 Iterator<BoneController> it2 = listBoneController.iterator();
                 while(it2.hasNext())

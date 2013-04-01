@@ -110,6 +110,7 @@ public class ModelOld{
         subMeshes = new HashMap<String,Spatial>();
     }
     
+    /*ADAPTADO*/
     public void setBodyType(int bodyType)
     {        
         Vector3f inc;
