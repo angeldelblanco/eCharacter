@@ -37,12 +37,15 @@ package control;
 
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
+import com.jme3.animation.Bone;
 import com.jme3.animation.LoopMode;
 import com.jme3.animation.SkeletonControl;
 import com.jme3.material.Material;
 import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
-import data.model.TransformationType;
+import data.model.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -55,6 +58,7 @@ public class SceneControl
     private Material mat;
     private AnimChannel channel;
     private AnimControl control;
+    private Vector3f vectorScaleBase;
     
     public SceneControl(Spatial mainMesh,Material mat)
     {
@@ -62,6 +66,7 @@ public class SceneControl
         this.mat = mat;
         this.mainMesh.setMaterial(mat);
         this.subMeshes = new HashMap<String, Spatial>();
+        this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         this.control = mainMesh.getControl(AnimControl.class);
         this.channel = this.control.createChannel();
         ArrayList<String> animList = (ArrayList<String>) this.control.getAnimationNames();
@@ -76,6 +81,9 @@ public class SceneControl
         while (it.hasNext())
         {
             TransformationType t = it.next();
+            if(t.getTransformationType().equals("scale")){
+                vectorScaleBase = vectorScaleBase.multLocal(t.getValueX(),t.getValueY(),t.getValueZ());                
+            }
             applyTransformation(t,mainMesh);
         }
     }
@@ -95,13 +103,13 @@ public class SceneControl
         else if(transformation.equals("center")){
             s.center();
         }  
-    }
+    }    
     
      public void addSubMesh(String bone,Spatial subMesh,ArrayList<TransformationType> listTransformations)
     {
             subMeshes.put(bone,subMesh);
-            SkeletonControl control = this.mainMesh.getControl(SkeletonControl.class);
-            control.getAttachmentsNode(bone).attachChild(subMesh);           
+            SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
+            skeletonControl.getAttachmentsNode(bone).attachChild(subMesh);           
             Iterator<TransformationType> it = listTransformations.iterator();
             while (it.hasNext())
             {
@@ -112,27 +120,52 @@ public class SceneControl
      
     public void dettachAllChild()
     {
-        SkeletonControl control = this.mainMesh.getControl(SkeletonControl.class);
+        SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
         Set<String> bones = subMeshes.keySet();
         Iterator<String> it = bones.iterator();
         while(it.hasNext())
         {
             String bone = it.next();
             Spatial subMesh = subMeshes.get(bone); 
-            control.getAttachmentsNode(bone).detachChild(subMesh);
+            skeletonControl.getAttachmentsNode(bone).detachChild(subMesh);
         }
     }
     
     public void attachAllChild()
     {
-       SkeletonControl control = this.mainMesh.getControl(SkeletonControl.class);
+       SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
         Set<String> bones = subMeshes.keySet();
         Iterator<String> it = bones.iterator();
         while(it.hasNext())
         {
             String bone = it.next();
             Spatial subMesh = subMeshes.get(bone); 
-            control.getAttachmentsNode(bone).attachChild(subMesh);
+            skeletonControl.getAttachmentsNode(bone).attachChild(subMesh);
         } 
+    }
+    
+    public void setPhysicalBuild(ArrayList<EscalationType> listEscalations)
+    {
+        Iterator<EscalationType> it = listEscalations.iterator();
+        while(it.hasNext())
+        {
+            EscalationType escalation = it.next();
+            applyEscalation(mainMesh,escalation);
+        }
+    }
+    
+    private void applyEscalation(Spatial mesh,EscalationType escalation)
+    {
+        Vector3f scale = new Vector3f(escalation.getValueX(),escalation.getValueY(),escalation.getValueZ());
+        String boneName = escalation.getBoneName();
+        if(boneName.equals("ALL")){
+            scale.multLocal(vectorScaleBase);
+            mesh.setLocalScale(scale);
+        }
+        else{
+            Bone b = control.getSkeleton().getBone(boneName);
+            b.setUserControl(true);
+            b.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY,scale);
+        }
     }
 }

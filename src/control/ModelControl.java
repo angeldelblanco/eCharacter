@@ -49,79 +49,21 @@ public class ModelControl
         this.model = model;
     }
     
-    public int getNumTextures(String idPanel)
+    /**************************  MAIN MESH   **********************************/
+    
+    //--------------------- TRANSFORMATIONS AND BONES  ------------------------/
+    
+    //Return the list of transformation of the main mesh.
+    public ArrayList<TransformationType> getMainMeshTransformations()
     {
-        int n = 0;
-        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
-        Iterator<TextureType> it = listTextures.iterator();
-        while(it.hasNext())
-        {
-            TextureType texture = it.next();
-            if(texture.getIdPanel().equals(idPanel)){
-                n++;
-            }
-        }
-        return n;
+        return (ArrayList<TransformationType>) model.getMainMesh().getTransformation();
     }
     
-    public ArrayList<String> getIconsPaths(String idPanel)
-    {
-        ArrayList<String> listIcons = new ArrayList<String>();
-        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
-        Iterator<TextureType> it = listTextures.iterator();
-        while(it.hasNext())
-        {
-            TextureType texture = it.next();
-            if(texture.getIdPanel().equals(idPanel)){
-                listIcons.add(texture.getIconPath());
-            }            
-        }
-        return listIcons;
-    }
-    
-    public int getNumSubMeshes(String idPanel)
-    {
-        int n = 0;
-        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
-        Iterator<SubMeshType> it = listSubMeshes.iterator();
-        while(it.hasNext())
-        {
-            SubMeshType subMesh = it.next();
-            if(subMesh.getIdPanel().equals(idPanel)){
-                n++;
-            }
-        }
-        return n;
-    }
-    
-    public ArrayList<String> getSubMeshIconPath(String idPanel)
-    {
-        ArrayList<String> listIcons = new ArrayList<String>();
-        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
-        Iterator<SubMeshType> it = listSubMeshes.iterator();
-        while(it.hasNext())
-        {
-            SubMeshType subMesh = it.next();
-            if(subMesh.getIdPanel().equals(idPanel)){
-                listIcons.add(subMesh.getIconPath());
-            }            
-        }
-        return listIcons; 
-    }
-    
-    public ArrayList<String> getPhysicalBuild()
-    {
-        ArrayList<String> listIdPhysicalBuild = new ArrayList<String>();
-        ArrayList<PhysicalBuildType> list = (ArrayList<PhysicalBuildType>) model.getMainMesh().getPhysicalBuilds().getPhysicalBuild();
-        Iterator<PhysicalBuildType> it = list.iterator();
-        while(it.hasNext())
-        {
-            PhysicalBuildType p = it.next();
-            listIdPhysicalBuild.add(p.getLabel());
-        }
-        return listIdPhysicalBuild;
-    }            
-    /**hay que llamar antes al metodo getIdBonesController(String idPanel) para obtener el conjunto de controladores*/
+    //hay que llamar antes al metodo getIdBonesController(String idPanel) para obtener el conjunto de controladores*/
+    /*
+     * Receives a input bonesController´s set and return a list 
+     * with the name of the bones associated.   
+     */
     public ArrayList<String> getBones(HashSet<String> idBonesController)
     {
         ArrayList<String> listId = new ArrayList<String>();
@@ -136,12 +78,206 @@ public class ModelControl
         }
         return listId;
     }
+    //-------------------    MAIN MESH´S TEXTURES   --------------------------/
     
-    public ArrayList<TransformationType> getModelTransformations()
+    //Return the numbers of main mesh´s textures.
+    public int getNumTextures(String idPanelRef)
     {
-        return (ArrayList<TransformationType>) model.getMainMesh().getTransformation();
+        int n = 0;
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        Iterator<TextureType> it = listTextures.iterator();
+        while(it.hasNext())
+        {
+            TextureType texture = it.next();
+            if(texture.getIdPanelRef().equals(idPanelRef)){
+                n++;
+            }
+        }
+        return n;
     }
     
-    //public ArrayList<TransformationType> getSubMeshTransformation()
+    /*
+     * Receives a input id panel and return a list with the id textures 
+     * which are associated with this panel.  
+     */
+    public ArrayList<String> getListIdsTextures(String idPanelRef)
+    {
+        ArrayList<String> listIdsTextures = new ArrayList<String>();
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        Iterator<TextureType> it = listTextures.iterator();
+        while(it.hasNext())
+        {
+            TextureType texture = it.next();
+            if(texture.getIdPanelRef().equals(idPanelRef)){
+                listIdsTextures.add(texture.getIdTexture());
+            }
+        }
+        return listIdsTextures;
+    }
+    
+    public TextureType getTexture(String idTexture)
+    {
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        Iterator<TextureType> it = listTextures.iterator();
+        while(it.hasNext())
+        {
+            TextureType texture = it.next();
+            if(texture.getIdTexture().equals(idTexture)){
+                return texture;
+            }
+        }
+        return null;
+    }
+    
+    /*
+     * Receives a input id panel and return a list with the texture´s icon path 
+     * which are associated with this panel. 
+     */
+    public ArrayList<String> getIconsPathsTextures(String idPanelRef)
+    {
+        ArrayList<String> listIcons = new ArrayList<String>();
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        Iterator<TextureType> it = listTextures.iterator();
+        while(it.hasNext())
+        {
+            TextureType texture = it.next();
+            if(texture.getIdPanelRef().equals(idPanelRef)){
+                listIcons.add(texture.getIconPath());
+            }            
+        }
+        return listIcons;
+    }
+    
+    /*public ArrayList<TextureType> getDefaultTextures()
+    {
+        ArrayList<TextureType> listDefaultTextures = new ArrayList<TextureType>();
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        Iterator<TextureType> it = listTextures.iterator();
+        while(it.hasNext())
+        {
+            TextureType texture = it.next();
+            if(texture.isDefault()){
+                listDefaultTextures.add(texture);
+            }
+        }
+        return listDefaultTextures;
+    }*/
+    
+    //------------------------ PHYSICAL BUILD ---------------------------------/
+    
+    /*
+     * Receives a input id panel and return a list with the name of physical build 
+     *which are asocciated with this panel.
+     */
+    public ArrayList<String> getPhysicalBuild(String idPanelRef)
+    {
+        ArrayList<String> listIdPhysicalBuild = new ArrayList<String>();
+        ArrayList<PhysicalBuildType> list = (ArrayList<PhysicalBuildType>) model.getMainMesh().getPhysicalBuilds().getPhysicalBuild();
+        Iterator<PhysicalBuildType> it = list.iterator();
+        while(it.hasNext())
+        {
+            PhysicalBuildType p = it.next();
+            if(p.getIdPanelRef().equals(idPanelRef)){
+                listIdPhysicalBuild.add(p.getLabel());
+            }
+        }
+        return listIdPhysicalBuild;
+    } 
+    
+    //Return a list of escalations associated to the physical build with id == idPhysicalBuild
+    public ArrayList<EscalationType> getPhysicalBuildEscalations(String idPhysicalBuild)
+    {
+        ArrayList<PhysicalBuildType> listPhysicalBuild = (ArrayList<PhysicalBuildType>) model.getMainMesh().getPhysicalBuilds().getPhysicalBuild();
+        Iterator<PhysicalBuildType> it = listPhysicalBuild.iterator();
+        while(it.hasNext())
+        {
+            PhysicalBuildType physicalBuild = it.next();
+            if(physicalBuild.getIdPhysicalBuild().equals(idPhysicalBuild)){
+                return (ArrayList<EscalationType>) physicalBuild.getEscalation();
+            }
+        }
+        return null;
+    }   
+    
+    /***************************   SUBMESHES   ********************************/
+    
+    //Return the number of subMeshes.
+    public int getNumSubMeshes(String idPanelRef)
+    {
+        int n = 0;
+        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
+        Iterator<SubMeshType> it = listSubMeshes.iterator();
+        while(it.hasNext())
+        {
+            SubMeshType subMesh = it.next();
+            if(subMesh.getIdPanelRef().equals(idPanelRef)){
+                n++;
+            }
+        }
+        return n;
+    }
+    
+    public SubMeshType getSubMesh(String idSubMesh)
+    {
+        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
+        Iterator<SubMeshType> it = listSubMeshes.iterator();
+        while(it.hasNext())
+        {
+            SubMeshType subMesh = it.next();
+            if(subMesh.getIdSubMesh().equals(idSubMesh)){
+                return subMesh;
+            }
+        }
+        return null;
+    }
+    
+    //Receives a input id panel and return a list with the submesh´s icon path which are associated with this panel
+    public ArrayList<String> getSubMeshIconPath(String idPanelRef)
+    {
+        ArrayList<String> listIcons = new ArrayList<String>();
+        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
+        Iterator<SubMeshType> it = listSubMeshes.iterator();
+        while(it.hasNext())
+        {
+            SubMeshType subMesh = it.next();
+            if(subMesh.getIdPanelRef().equals(idPanelRef)){
+                listIcons.add(subMesh.getIconPath());
+            }            
+        }
+        return listIcons; 
+    }
+    
+    //Return a list of textures associated to the submesh with id == idSubMesh.
+    public ArrayList<TextureType> getSubMeshTexture(String idSubMesh)
+    {
+        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
+        Iterator<SubMeshType> it = listSubMeshes.iterator();
+        while(it.hasNext())
+        {
+            SubMeshType subMesh = it.next();
+            if(subMesh.getIdSubMesh().equals(idSubMesh)){
+                return (ArrayList<TextureType>) subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+            }
+        }
+        return null;
+    }
+    
+    //Return a list of transformation for the submesh with id = idSubMesh.
+    public ArrayList<TransformationType> getSubMeshTransformation(String idSubMesh)
+    {
+        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
+        Iterator<SubMeshType> it = listSubMeshes.iterator();
+        while(it.hasNext())
+        {
+            SubMeshType subMesh = it.next();
+            if(subMesh.getIdSubMesh().equals(idSubMesh)){
+                return (ArrayList<TransformationType>)subMesh.getTransformation();
+            }
+        }
+        return null;
+    }       
+   
+    
+    
     
 }
