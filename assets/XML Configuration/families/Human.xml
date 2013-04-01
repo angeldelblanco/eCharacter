@@ -4,6 +4,7 @@
 		<name>Human</name>
 		<description>Esta familia está compuesta por 2 humanos: un chico y una chica.</description>
 		<author>Alex, David y Sergio.</author>
+		<languagesPath>assets/Locale/Humans</languagesPath>
 	</metadata>
 	<stages>
 		<scaleStage stageLabel="Scale" idPanel="ScalePanel">

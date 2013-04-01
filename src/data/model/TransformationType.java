@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.29 a las 12:58:59 PM CET 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: PM.04.01 a las 04:00:37 PM CEST 
 //
 
 
@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;enumeration value="scale"/>
  *             &lt;enumeration value="rotate"/>
  *             &lt;enumeration value="translate"/>
+ *             &lt;enumeration value="center"/>
  *           &lt;/restriction>
  *         &lt;/simpleType>
  *       &lt;/attribute>

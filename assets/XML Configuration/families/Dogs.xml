@@ -4,6 +4,7 @@
 		<name>Dogs</name>
 		<description>Esta familia está compuesta por 2 perros: un yorkshire y un samoyedo.</description>
 		<author>Sergio.</author>
+		<languagesPath>assets/Locale/Humans</languagesPath>
 	</metadata>
 	<stages>
 		<scaleStage stageLabel="Escalado" idPanel="panelEscalado">

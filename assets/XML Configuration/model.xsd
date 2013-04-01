@@ -5,6 +5,7 @@
 			<xs:sequence>
 				<xs:element name="mainMesh" type="mainMeshType"/>
 				<xs:element name="subMesh" type="subMeshType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="languagesPath" type="xs:string"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -40,8 +41,9 @@
 				<xs:sequence>
 					<xs:element name="iconPath" type="xs:string"/>
 				</xs:sequence>
-				<xs:attribute name="idPanel" type="xs:string" use="required"/>
+				<xs:attribute name="idPanelRef" type="xs:string" use="required"/>
 				<xs:attribute name="associatedBone" type="xs:string" use="required"/>
+				<xs:attribute name="idSubMesh" type="xs:ID" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -49,8 +51,9 @@
 		<xs:sequence>
 			<xs:element name="iconPath" type="xs:string"/>
 		</xs:sequence>
-		<xs:attribute name="idPanel" type="xs:string" use="required"/>
+		<xs:attribute name="idPanelRef" type="xs:string" use="required"/>
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
+		<xs:attribute name="idTexture" type="xs:ID" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="baseShadowTextureType">
 		<xs:complexContent>
@@ -122,7 +125,9 @@
 		<xs:sequence>
 			<xs:element name="escalation" type="escalationType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:attribute name="idPanelRef" type="xs:string" use="required"/>
 		<xs:attribute name="label" type="xs:string" use="required"/>
+		<xs:attribute name="idPhysicalBuild" type="xs:ID" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="escalationType">
 		<xs:attribute name="boneName" type="xs:string" use="required"/>

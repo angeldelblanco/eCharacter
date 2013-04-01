@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.29 a las 12:58:59 PM CET 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: PM.04.01 a las 04:00:37 PM CEST 
 //
 
 
@@ -14,7 +14,11 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -29,7 +33,9 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="escalation" type="{}escalationType" maxOccurs="unbounded"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="idPanelRef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="label" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="idPhysicalBuild" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -45,8 +51,15 @@ public class PhysicalBuildType {
 
     @XmlElement(required = true)
     protected List<EscalationType> escalation;
+    @XmlAttribute(name = "idPanelRef", required = true)
+    protected String idPanelRef;
     @XmlAttribute(name = "label", required = true)
     protected String label;
+    @XmlAttribute(name = "idPhysicalBuild", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlID
+    @XmlSchemaType(name = "ID")
+    protected String idPhysicalBuild;
 
     /**
      * Gets the value of the escalation property.
@@ -78,6 +91,30 @@ public class PhysicalBuildType {
     }
 
     /**
+     * Obtiene el valor de la propiedad idPanelRef.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdPanelRef() {
+        return idPanelRef;
+    }
+
+    /**
+     * Define el valor de la propiedad idPanelRef.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdPanelRef(String value) {
+        this.idPanelRef = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad label.
      * 
      * @return
@@ -99,6 +136,30 @@ public class PhysicalBuildType {
      */
     public void setLabel(String value) {
         this.label = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idPhysicalBuild.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdPhysicalBuild() {
+        return idPhysicalBuild;
+    }
+
+    /**
+     * Define el valor de la propiedad idPhysicalBuild.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdPhysicalBuild(String value) {
+        this.idPhysicalBuild = value;
     }
 
 }

@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.29 a las 12:58:59 PM CET 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: PM.04.01 a las 04:00:37 PM CEST 
 //
 
 
@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="mainMesh" type="{}mainMeshType"/>
  *         &lt;element name="subMesh" type="{}subMeshType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="languagesPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,7 +41,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "mainMesh",
-    "subMesh"
+    "subMesh",
+    "languagesPath"
 })
 @XmlRootElement(name = "model")
 public class Model {
@@ -48,6 +50,8 @@ public class Model {
     @XmlElement(required = true)
     protected MainMeshType mainMesh;
     protected List<SubMeshType> subMesh;
+    @XmlElement(required = true)
+    protected String languagesPath;
 
     /**
      * Obtiene el valor de la propiedad mainMesh.
@@ -100,6 +104,30 @@ public class Model {
             subMesh = new ArrayList<SubMeshType>();
         }
         return this.subMesh;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad languagesPath.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLanguagesPath() {
+        return languagesPath;
+    }
+
+    /**
+     * Define el valor de la propiedad languagesPath.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLanguagesPath(String value) {
+        this.languagesPath = value;
     }
 
 }

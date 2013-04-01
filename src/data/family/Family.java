@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.03.14 a las 06:34:31 PM CET 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: PM.04.01 a las 04:00:23 PM CEST 
 //
 
 
@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
  *                   &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="URL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                   &lt;element name="languagesPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -178,6 +179,7 @@ public class Family {
      *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="URL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *         &lt;element name="languagesPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -192,7 +194,8 @@ public class Family {
         "name",
         "description",
         "author",
-        "url"
+        "url",
+        "languagesPath"
     })
     public static class Metadata {
 
@@ -205,6 +208,8 @@ public class Family {
         protected String author;
         @XmlElement(name = "URL")
         protected String url;
+        @XmlElement(required = true)
+        protected String languagesPath;
 
         /**
          * Obtiene el valor de la propiedad license.
@@ -324,6 +329,30 @@ public class Family {
          */
         public void setURL(String value) {
             this.url = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad languagesPath.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getLanguagesPath() {
+            return languagesPath;
+        }
+
+        /**
+         * Define el valor de la propiedad languagesPath.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setLanguagesPath(String value) {
+            this.languagesPath = value;
         }
 
     }
