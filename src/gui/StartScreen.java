@@ -424,6 +424,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                     String url = "";
                     if(f.getMetadata().getURL()!=null){url = f.getMetadata().getURL();}
                     nifty.getScreen("modelScreen").findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(f.getMetadata().getDescription()+f.getMetadata().getAuthor()+url);
+                    nifty.getScreen("modelScreen").findElementByName("descriptionPanel").layoutElements();
                 }
             }
     }
