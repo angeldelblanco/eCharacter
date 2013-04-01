@@ -72,10 +72,11 @@ public class Gui extends SimpleApplication{
     private Material mat;
     private static ArrayList<Family> families;
     private static XMLReaderJAXB xmlReader;
+    public loader.Configuration config;
     
     private int indexImage = 0;
     
-    public Gui(int width,int height)
+    public Gui(int width,int height,loader.Configuration config)
     {
         //Read the XML's with all families.
         xmlReader = new XMLReaderJAXB<Family>("assets/XML Configuration/families");
@@ -85,6 +86,7 @@ public class Gui extends SimpleApplication{
         newSettings.setResolution(width,height);
         this.setShowSettings(false);
         this.setSettings(newSettings);
+        this.config = config;
     }
     
     @Override

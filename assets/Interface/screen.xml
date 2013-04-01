@@ -26,6 +26,9 @@
           </control>
         </panel>
       </panel>
+	  <panel id="panel_location" height="30%" width="75%" valign="center" align="center" childLayout="horizontal">
+		<text text="Languaje:" font="Interface/Fonts/Default.fnt" width="75%" height="100%" valign="center" align="right" wrap="true" />
+	  </panel>
     </layer>
   </screen>
   

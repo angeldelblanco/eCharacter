@@ -161,7 +161,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         this.screen = screen;
     }
 
-    public void onStartScreen() {}
+    public void onStartScreen() {
+        
+    }
 
     public void onEndScreen() {}
     
@@ -191,6 +193,18 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         pantallas[2] = "tshirtScreen"; screenType[2] = "singleTextureScreen";
         pantallas[3] = "trousersScreen"; screenType[3] = "singleTextureScreen";
         pantallas[4] = "shoesScreen"; screenType[4] = "singleTextureScreen";
+        new DropDownBuilder("localeDropDown") {{
+                valignCenter();
+                //alignRight();
+                width("100");
+        }}.build(nifty, nifty.getScreen("start"), nifty.getScreen("start").findElementByName("panel_location"));
+        DropDown locale = nifty.getScreen("start").findNiftyControl("localeDropDown", DropDown.class);
+        ArrayList<String> languajes = gui.config.getListLanguagesAvailables();
+        Iterator<String> it = languajes.iterator();
+        while(it.hasNext()){
+            final String l = it.next();
+            locale.addItem(l);
+        }
     }
     
     public void creaMenu(){
