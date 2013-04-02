@@ -188,7 +188,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         panelSelection = null;
         pantallas = new String[5];
         screenType = new String[5];
-        pantallas[0] = "bones"; screenType[0] = "basicScreen";
+        pantallas[0] = "bones"; screenType[0] = "scaleScreen";
         pantallas[1] = "skinScreen"; screenType[1] = "singleTextureScreen";
         pantallas[2] = "tshirtScreen"; screenType[2] = "singleTextureScreen";
         pantallas[3] = "trousersScreen"; screenType[3] = "singleTextureScreen";
@@ -208,7 +208,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void creaMenu(){
-        String types[] = {"singleTextureScreen","basicScreen"};
+        String types[] = {"singleTextureScreen","scaleScreen"};
         for(String type : types){
             for(int i = 0; i<pantallas.length; i++){
                 final String pant = pantallas[i];
@@ -478,7 +478,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         selection = pantallas[index];
         creaMenu();
         initIcons();
-        cargaMenu(screenType[index]);
+        cargaScreen(screenType[index],"","");
+        nifty.getScreen(screenType[index]).findElementByName("panel_screenleft").disable();
+        nifty.getScreen(screenType[index]).findElementByName("panel_screenleft").setVisible(false);
         nifty.gotoScreen(screenType[index]);
     }
     
@@ -499,23 +501,44 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
     }
     
+    public void changeTab(String param){
+        if(param.equals("basic")){
+            String names[] = {"Medium-height","Tall","Small/Petite","Heavy","Thin"};
+            for(int i=0; i<names.length; i++){
+                if(i<5){
+                    nifty.getScreen(screenType[index]).findElementByName("slider"+Integer.toString(i)).setVisible(false);
+                    nifty.getScreen(screenType[index]).findElementByName("slider"+Integer.toString(i)).disable();
+                    
+                    nifty.getScreen(screenType[index]).findElementByName("text"+Integer.toString(i)).getRenderer(TextRenderer.class).setText(names[i]);
+                    nifty.getScreen(screenType[index]).findElementByName("t"+Integer.toString(i)).layoutElements();
+                    nifty.getScreen(screenType[index]).findElementByName("cont"+Integer.toString(i)).enable();
+                }
+            }
+            nifty.getScreen(screenType[index]).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
+            nifty.getScreen(screenType[index]).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+        }
+        if(param.equals("advanced")){
+            String names[] = {"Head","Torso","Arms","Hands","Legs"};
+            for(int i=0; i<names.length; i++){
+                if(i<5){
+                    nifty.getScreen(screenType[index]).findElementByName("slider"+Integer.toString(i)).setVisible(true);
+                    nifty.getScreen(screenType[index]).findElementByName("slider"+Integer.toString(i)).enable();
+                    
+                    nifty.getScreen(screenType[index]).findElementByName("text"+Integer.toString(i)).getRenderer(TextRenderer.class).setText(names[i]);
+                    nifty.getScreen(screenType[index]).findElementByName("t"+Integer.toString(i)).layoutElements();
+                    nifty.getScreen(screenType[index]).findElementByName("cont"+Integer.toString(i)).disable();
+                }
+            }
+            nifty.getScreen(screenType[index]).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            nifty.getScreen(screenType[index]).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
+        }
+    }
+    
     public void changeScreen(String param)
     {
         String old = selection;
         int oldIndex = index;
         selection = param;
-        if(param.equals("bonesScreen")){
-            nifty.gotoScreen(param);
-            selection = pantallas[index];
-            cargaMenu(screenType[index]);
-            return;
-        }
-        if(param.equals("basicScreen")){
-            nifty.gotoScreen(param);
-            selection = pantallas[index];
-            cargaMenu(screenType[index]);
-            return;
-        }
         if(param.equals("+")){
             index++;
             selection = pantallas[index];
@@ -537,6 +560,14 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
         cargaScreen(screenType[index],screenType[oldIndex],old);
         gui.setTypeObject(selection);
+        if(index==0){
+            nifty.getScreen(screenType[index]).findElementByName("panel_screenleft").disable();
+            nifty.getScreen(screenType[index]).findElementByName("panel_screenleft").setVisible(false);
+        }
+        else{
+            nifty.getScreen(screenType[index]).findElementByName("panel_screenleft").enable();
+            nifty.getScreen(screenType[index]).findElementByName("panel_screenleft").setVisible(true);
+        }
     }
     
     public void cargaScreen(String type, String oldType, String param){
@@ -544,6 +575,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(type.equals("singleTextureScreen")){
             escondeTexturePage(oldType, param);
             changeTexturePage("0");
+        }
+        if(type.equals("scaleScreen")){
+            changeTab("basic");
         }
     }
     
@@ -773,21 +807,21 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         //}
     }
     
-    @NiftyEventSubscriber(id="head")
+    @NiftyEventSubscriber(id="slider0")
     public void onHeadSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         gui.scaleHead(inc);
     }
     
-    @NiftyEventSubscriber(id="torso")
+    @NiftyEventSubscriber(id="slider1")
     public void onTorsoSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         gui.scaleTorax(inc);
     }
     
-    @NiftyEventSubscriber(id="hands")
+    @NiftyEventSubscriber(id="slider3")
     public void onHandsSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
@@ -801,14 +835,14 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         gui.scaleFeet(inc);
     }
     
-    @NiftyEventSubscriber(id="legs")
+    @NiftyEventSubscriber(id="slider4")
     public void onLegsSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         gui.scaleLegs(inc);
     }
     
-    @NiftyEventSubscriber(id="arms")
+    @NiftyEventSubscriber(id="slider2")
     public void onArmsSliderChange(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
