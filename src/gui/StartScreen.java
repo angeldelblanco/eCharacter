@@ -69,6 +69,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import loader.Configuration;
 import types.Age;
 import types.Gender;
 import types.StageType;
@@ -198,6 +199,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             final String l = it.next();
             locale.addItem(l);
         }
+        locale.selectItem(gui.config.getProperty(Configuration.Language));
     }
     
     public void creaMenu(){
@@ -792,7 +794,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     @NiftyEventSubscriber(id="familyDropDown")
-  public void onDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
+  public void onFamilyDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
     if (event.getSelection() != null && (!familySelection.equals(""))) {
         String familyAnt = familySelection;
         Iterator<Family> it = families.iterator();
@@ -805,6 +807,19 @@ public class StartScreen extends AbstractAppState implements ScreenController {
            }
         }
         changeCharacterPage("0", familyAnt);
+    }
+  }
+    @NiftyEventSubscriber(id="localeDropDown")
+  public void onLocaleDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
+    if (event.getSelection() != null) {
+        if(event.getSelection().equals("en_UK")){
+            nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText("Inglis pitinglis soooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooomooooooooossss chekoslovakossssss");
+            nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
+        }
+        if(event.getSelection().equals("es_ES")){
+            nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText("Estoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo essssssssssssssssssssssssssssssss españoooooooooooooooooooooooooooooooooooooooooooooooooooooooooollllll");
+            nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
+        }
     }
   }
     

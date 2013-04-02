@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="language.xsd">
 	<string id="idDescription">Esto está en inglés</string>
+	<string id="idStart">Start</string>
+	<string id="idQuit">Quit</string>
+	<string id="idLanguage">Languaje</string>
+	<string id="idChose">Choose your model</string>
+	<string id="idFamily">Choose the family:</string>
+	<string id="idPrevious">Previous</string>
+	<string id="idNext">Next</string>
+	<string id="idExport">Export</string>
+	<string id="idPopup1">Do you want to tweak the model, or go to the export stage?</string>
+	<string id="idPopup2">Do you want to generate a new model?</string>
+	<string id="idPopupButton1">Tweak model</string>
+	<string id="idPopupButton2">Export</string>
+	<string id="idPopupButton3">Yes</string>
+	<string id="idPopupButton4">No</string>
 </metadata>
