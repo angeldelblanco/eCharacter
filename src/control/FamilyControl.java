@@ -117,20 +117,29 @@ public class FamilyControl
         return -1;       
     }
     
-    public ArrayList<String> getIdsSubStages(String multiStageLabel)
+    public ArrayList<String> getIdsSubStages(String stageLabel)
     {
         ArrayList<String> listSubStagesIds = new ArrayList<String>();
-        ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
-        Iterator<MultiStageType> it = listMultiStage.iterator();
+        ArrayList<ScaleStageType> listScaleStage = (ArrayList<ScaleStageType>) family.getStages().getScaleStage();
+        Iterator<ScaleStageType> it = listScaleStage.iterator();
         while(it.hasNext())
         {
-            MultiStageType mst = it.next();
-            if(mst.getStageLabel().equals(multiStageLabel)){
+            ScaleStageType sst = it.next();
+            if(sst.getStageLabel().equals(stageLabel)){
+                listSubStagesIds.add(sst.getIdPanel());
+            }
+        }        
+        ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
+        Iterator<MultiStageType> it2 = listMultiStage.iterator();
+        while(it2.hasNext())
+        {
+            MultiStageType mst = it2.next();
+            if(mst.getStageLabel().equals(stageLabel)){
                 ArrayList<JAXBElement<SubStageType>> listSubStages = (ArrayList<JAXBElement<SubStageType>>) mst.getMeshSubStageOrTextureSubStage();
-                Iterator<JAXBElement<SubStageType>> it2 = listSubStages.iterator();
+                Iterator<JAXBElement<SubStageType>> it3 = listSubStages.iterator();
                 while(it2.hasNext())
                 {
-                    JAXBElement<SubStageType> subStage = it2.next();
+                    JAXBElement<SubStageType> subStage = it3.next();
                     listSubStagesIds.add(subStage.getValue().getIdPanel());
                 }
             }
