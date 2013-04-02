@@ -514,8 +514,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                     nifty.getScreen(screenType[index]).findElementByName("cont"+Integer.toString(i)).enable();
                 }
             }
-            nifty.getScreen(screenType[index]).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-            nifty.getScreen(screenType[index]).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            nifty.getScreen(screenType[index]).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#0000000"));
+            nifty.getScreen(screenType[index]).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
         }
         if(param.equals("advanced")){
             String names[] = {"Head","Torso","Arms","Hands","Legs"};
@@ -529,8 +529,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                     nifty.getScreen(screenType[index]).findElementByName("cont"+Integer.toString(i)).disable();
                 }
             }
-            nifty.getScreen(screenType[index]).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-            nifty.getScreen(screenType[index]).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
+            nifty.getScreen(screenType[index]).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+            nifty.getScreen(screenType[index]).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
         }
     }
     
