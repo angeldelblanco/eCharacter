@@ -75,6 +75,10 @@ public class XMLValidator {
             {
                 schema = sf.newSchema(new File("assets/XML Configuration/model.xsd"));
             }
+            else if (type==XMLType.language)
+            {
+                schema = sf.newSchema(new File("assets/Locale/language.xsd"));
+            }
             // crear el objeto validator, que será el responsable de validar el XML
             Validator validator = schema.newValidator();
 

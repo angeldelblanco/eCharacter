@@ -37,6 +37,7 @@ package loader;
 
 import data.family.Family;
 import data.model.Model;
+import i18n.Metadata;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -75,6 +76,10 @@ public class XMLReaderJAXB<T>
         else if (docClass.equals(Model.class))
         {
             type = XMLType.model;
+        }
+        else if (docClass.equals(Metadata.class))
+        {
+            type = XMLType.language;
         }
         File dirPath = new File(path);
         if (dirPath.isDirectory())
@@ -126,7 +131,8 @@ public class XMLReaderJAXB<T>
         y cerramos esta clase  ***/
     public static void main(String args[]) throws JAXBException, FileNotFoundException
     {
-        XMLReaderJAXB<Model> aux = new XMLReaderJAXB<Model>("assets/XML Configuration/models/Man.xml");
-        ArrayList<Model> a = aux.readXML(Model.class);
+        XMLReaderJAXB<Metadata> aux = new XMLReaderJAXB<Metadata>("assets/Locale/Humans");
+        ArrayList<Metadata> a = aux.readXML(Metadata.class);
+        System.out.println(a.get(0).getLanguage());
     }   
 }

@@ -34,8 +34,53 @@
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package types;
+package i18n;
 
-public enum XMLType {
-    model, family, language
+import java.util.ArrayList;
+import java.util.Iterator;
+import loader.XMLReaderJAXB;
+
+public class I18N {
+    private Metadata language;
+    
+    
+   /* ESTA CLASE ESTÁ. FALTA LLAMARLA DESDE FUERA, Y UN OBJETO DE ESTA CLASE PARA LEER
+    * CADA DOCUMENTO DE INTERNACIONALIZACION DE FAMILIA, MODELO E INTERFAZ.
+    *
+    */
+    
+    public I18N(String languagesPath, String language)
+    {
+        XMLReaderJAXB<Metadata> xmlReader = new XMLReaderJAXB<Metadata>(languagesPath);
+        ArrayList<Metadata> listLanguages = xmlReader.readXML(Metadata.class);
+        Iterator<Metadata> it = listLanguages.iterator();
+        while(it.hasNext())
+        {
+            Metadata aux = it.next();
+            if (aux.getLanguage().equals(language))
+            {
+                this.language = aux;
+            }
+        }
+    }
+    
+    public String getString(String id)
+    {
+        ArrayList<StringType> listString = (ArrayList<StringType>) language.getString();
+        Iterator<StringType> it = listString.iterator();
+        while(it.hasNext())
+        {
+            StringType string = it.next();
+            if(string.getId().equals(id))
+            {
+                return string.getValue();
+            }
+        }
+        return null;
+    }
+    
+    public static void main (String args[]){
+        I18N i18n = new I18N("assets/Locale/Humans/Man", "es_ES");
+        System.out.println(i18n.getString("idPhysicalBuildLabel5"));
+    }
 }
