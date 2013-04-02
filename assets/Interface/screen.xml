@@ -422,14 +422,14 @@
 			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
 				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
 					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(shoesScreen)"/>
+					<interact onClick="changeScreen(-)"/>
 				</panel>
 				<panel height="66%" width="34%">
 					<!-- Space -->
 				</panel>
 				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
 					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(exportScreen)"/>
+					<interact onClick="changeScreen(+)"/>
 				</panel>
 			</panel>
         </layer>
@@ -443,54 +443,7 @@
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<!-- Option Panel -->
 			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
-				<panel height="100%" width="0.5%" childLayout="center">
-					<!-- Space -->
-				</panel>
-				<!-- Change Complexion Options Panel -->
-				<panel id="panel_option_complexion" height="100%" width="11%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
-					<text text="Complexion" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(basicScreen)"/>
-				</panel>
-				<!-- Change Skin Options Panel -->
-				<panel id="panel_option_skin" height="100%" width="11%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
-					<text text="Skin" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(skinScreen)"/>
-				</panel>
-				<!-- Change Hair Options Panel -->
-				<panel id="panel_option_hair" height="100%" width="11%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
-					<text text="Hair" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(hairScreen)"/>
-				</panel>
-				<!-- Change Eyes Options Panel -->
-				<panel id="panel_option_eyes" height="100%" width="11%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
-					<text text="Eyes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(eyesScreen)"/>
-				</panel>
-				<!-- Change T-Shirt Options Panel -->
-				<panel id="panel_option_tshirt" height="100%" width="11%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
-					<text text="T-Shirt" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(tshirtScreen)"/>
-				</panel>
-				<!-- Change Trousers Options Panel -->
-				<panel id="panel_option_trousers" height="100%" width="11%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
-					<text text="Trousers" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(trousersScreen)"/>
-				</panel>
-				<!-- Change Shoes Options Panel -->
-				<panel id="panel_option_shoes" height="100%" width="11%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
-					<text text="Shoes" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(shoesScreen)"/>
-				</panel>
-				<!-- Change Accesories Options Panel -->
-				<panel id="panel_option_accesories" height="100%" width="11%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
-					<text text="Accesories" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(accesoriesScreen)"/>
-				</panel>
-				<!-- Exportation Options Panel -->
-				<panel id="panel_option_export" height="100%" width="11%" childLayout="center" backgroundImage="${CALL.getMenu(yes)}">
-					<text text="Export" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(exportScreen)"/>
-				</panel>
+				
 			</panel>
 			<panel height="10%" width="100%">
 					<!-- Space -->
@@ -507,7 +460,7 @@
 			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
 				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
 					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="changeScreen(accesoriesScreen)"/>
+					<interact onClick="changeScreen(-)"/>
 				</panel>
 				<panel height="66%" width="34%">
 					<!-- Space -->

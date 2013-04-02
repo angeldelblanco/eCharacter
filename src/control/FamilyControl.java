@@ -137,7 +137,7 @@ public class FamilyControl
             if(mst.getStageLabel().equals(stageLabel)){
                 ArrayList<JAXBElement<SubStageType>> listSubStages = (ArrayList<JAXBElement<SubStageType>>) mst.getMeshSubStageOrTextureSubStage();
                 Iterator<JAXBElement<SubStageType>> it3 = listSubStages.iterator();
-                while(it2.hasNext())
+                while(it3.hasNext())
                 {
                     JAXBElement<SubStageType> subStage = it3.next();
                     listSubStagesIds.add(subStage.getValue().getIdPanel());
