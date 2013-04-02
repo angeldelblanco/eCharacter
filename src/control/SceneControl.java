@@ -168,4 +168,18 @@ public class SceneControl
             b.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY,scale);
         }
     }
+    
+    public void scaleBone(ArrayList<String> bonesNames,float inc)
+    {
+        
+        Iterator<String> it = bonesNames.iterator();
+        while(it.hasNext())
+        {
+            String idBone = it.next();
+            Bone b = control.getSkeleton().getBone(idBone);
+            b.setUserControl(true);
+            b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,new Vector3f(inc,inc,inc));
+        }
+        
+    }
 }

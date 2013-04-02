@@ -236,5 +236,5 @@
 		<transformation transformationType="translate" valueX="0.0" valueY="0.3" valueZ="0.0"/>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoPunta.jpg</iconPath>
 	</subMesh>
-	<languagesPath>assets/Locale/Humans/Boy</languagesPath>
+	<languagesPath>assets/Locale/Humans/Young Boy</languagesPath>
 </model>

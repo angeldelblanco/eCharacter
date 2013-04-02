@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="language.xsd">
+<metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../language.xsd">
 	<string id="idNameFamily">Humans</string>
-	<string id="idDescriptionFamily">Esta familia está compuesta por 2 humanos: un chico y una chica.</string>
+	<string id="idDescriptionFamily">Esta familia estï¿½ compuesta por 2 humanos: un chico y una chica.</string>
 	<string id="idMultiStageLabel1">Scale</string>
 	<string id="idBoneControler1">Head</string>
 	<string id="idBoneControler2">Torso</string>
@@ -16,20 +16,21 @@
 	<string id="idMultiStageLabel2">Skin</string>
 	<string id="idTextureSubStageLabel1">Skins</string>
 	<string id="idMultiStageLabel3">Eyes</string>
-	<string id="idTextureSubStageLabel1">Eyes</string>
-	<string id="idTextureSubStageLabel2">Cejas</string>
+	<string id="idTextureSubStageLabel2">Eyes</string>
+	<string id="idTextureSubStageLabel3">Eyebrows and Eyelashes</string>
 	<string id="idMultiStageLabel4">T-Shirts</string>
-	<string id="idTextureSubStageLabel1">T-Shirts</string>
+	<string id="idTextureSubStageLabel4">T-Shirts</string>
 	<string id="idMultiStageLabel5">Trousers</string>
-	<string id="idTextureSubStageLabel1">Trousers</string>
+	<string id="idTextureSubStageLabel5">Trousers</string>
 	<string id="idMultiStageLabel6">Shoes</string>
-	<string id="idTextureSubStageLabel1">Shoes</string>
+	<string id="idTextureSubStageLabel6">Shoes</string>
+	<string id="idTextureSubStageLabel7">Socks</string>
 	<string id="idMultiStageLabel7">Hair</string>
-	<string id="idTextureSubStageLabel1">Hairs</string>
+	<string id="idTextureSubStageLabel8">Hairs</string>
 	<string id="idMultiStageLabel8">Accesories</string>
-	<string id="idTextureSubStageLabel1">Face</string>
-	<string id="idTextureSubStageLabel2">Accesories face</string>
-	<string id="idTextureSubStageLabel3">Other accesories</string>
+	<string id="idTextureSubStageLabel9">Face</string>
+	<string id="idTextureSubStageLabel10">Accesories face</string>
+	<string id="idTextureSubStageLabel11">Other accesories</string>
 	<string id="idQualityLabel1">High</string>
 	<string id="idQualityLabel2">Medium</string>
 	<string id="idQualityLabel3">Low</string>

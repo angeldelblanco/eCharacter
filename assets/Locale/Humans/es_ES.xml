@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="language.xsd">
+<metadata language="es_ES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../language.xsd">
 	<string id="idNameFamily">Humanos</string>
 	<string id="idDescriptionFamily">Esta familia está compuesta por 2 humanos: un chico y una chica.</string>
 	<string id="idMultiStageLabel1">Escalado</string>
@@ -16,20 +16,21 @@
 	<string id="idMultiStageLabel2">Piel</string>
 	<string id="idTextureSubStageLabel1">Pieles</string>
 	<string id="idMultiStageLabel3">Ojos</string>
-	<string id="idTextureSubStageLabel1">Ojos</string>
-	<string id="idTextureSubStageLabel2">Cejas</string>
+	<string id="idTextureSubStageLabel2">Ojos</string>
+	<string id="idTextureSubStageLabel3">Cejas y pestañas</string>
 	<string id="idMultiStageLabel4">Camisetas</string>
-	<string id="idTextureSubStageLabel1">Camisetas</string>
+	<string id="idTextureSubStageLabel4">Camisetas</string>
 	<string id="idMultiStageLabel5">Pantalones</string>
-	<string id="idTextureSubStageLabel1">Pantalones</string>
+	<string id="idTextureSubStageLabel5">Pantalones</string>
 	<string id="idMultiStageLabel6">Zapatos</string>
-	<string id="idTextureSubStageLabel1">Zapatos</string>
+	<string id="idTextureSubStageLabel6">Zapatos</string>
+	<string id="idTextureSubStageLabel7">Calcetines</string>
 	<string id="idMultiStageLabel7">Pelo</string>
-	<string id="idTextureSubStageLabel1">Pelos</string>
+	<string id="idTextureSubStageLabel8">Pelos</string>
 	<string id="idMultiStageLabel8">Accesorios</string>
-	<string id="idTextureSubStageLabel1">Cara</string>
-	<string id="idTextureSubStageLabel2">Accesorios de la cara</string>
-	<string id="idTextureSubStageLabel3">Otros accesorios</string>
+	<string id="idTextureSubStageLabel9">Cara</string>
+	<string id="idTextureSubStageLabel10">Accesorios de la cara</string>
+	<string id="idTextureSubStageLabel11">Otros accesorios</string>
 	<string id="idQualityLabel1">Alto</string>
 	<string id="idQualityLabel2">Medio</string>
 	<string id="idQualityLabel3">Bajo</string>
