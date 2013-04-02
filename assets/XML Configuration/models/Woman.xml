@@ -234,5 +234,5 @@
 		<transformation transformationType="translate" valueX="0.0" valueY="0.3" valueZ="0.0"/>
 		<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPeloChicaCorto.jpg</iconPath>		
 	</subMesh>
-	<languagesPath>assets/Locale/Humans/Girl</languagesPath>
+	<languagesPath>assets/Locale/Humans/Woman</languagesPath>
 </model>
