@@ -74,29 +74,34 @@ public class FamilyControl
         return listStagesLabels;
     }
     
-    public ArrayList<StageType> getStagesTypes()
+    public StageType getStagesTypes(String idStage)
     {
-        ArrayList<StageType> listStagesTypes = new ArrayList<StageType>();
         ArrayList<ScaleStageType> listScaleStage = (ArrayList<ScaleStageType>) family.getStages().getScaleStage();
         Iterator<ScaleStageType> it = listScaleStage.iterator();
         while(it.hasNext())
         {
             ScaleStageType sst = it.next();
-            listStagesTypes.add(StageType.scaleStage);
+            if(sst.getStageLabel().equals(idStage)){
+                return StageType.scaleStage;
+            }
         }
+        
         ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
         Iterator<MultiStageType> it2 = listMultiStage.iterator();
         while(it2.hasNext())
         {
             MultiStageType mst = it2.next();
-            if(mst.getMeshSubStageOrTextureSubStage().size() == 1){
-                listStagesTypes.add(StageType.singleStage);
+            if(mst.getStageLabel().equals(idStage)){
+                if(mst.getMeshSubStageOrTextureSubStage().size() == 1){
+                    return StageType.singleStage;
+                }
+                else{
+                    return StageType.multiStage;                
+                }
             }
-            else{
-                listStagesTypes.add(StageType.multiStage);                
-            }            
         }
-        return listStagesTypes;
+        
+        return null;
     }
     
     public int getNumSubStage(String idMultiStage)
@@ -134,25 +139,25 @@ public class FamilyControl
         return listSubStagesLabels; 
     }
     /**************************************************************************/
-    public HashSet<String> getIdBonesController(String idPanelRef)
+    public ArrayList<String> getIdBonesController(String idStageLabel)
     {
-        HashSet<String> idBonesController = new HashSet<String>();
+        ArrayList<String> listIdBonesController = new ArrayList<String>();
         ArrayList<ScaleStageType> listScaleStage = (ArrayList<ScaleStageType>) family.getStages().getScaleStage();
         Iterator<ScaleStageType> it = listScaleStage.iterator();
         while(it.hasNext())
         {
             ScaleStageType s = it.next();
-            if(s.getIdPanel().equals(idPanelRef)){
+            if(s.getStageLabel().equals(idStageLabel)){
                 ArrayList<BoneController> listBoneController = (ArrayList<BoneController>) s.getBoneController();
                 Iterator<BoneController> it2 = listBoneController.iterator();
                 while(it2.hasNext())
                 {
                     BoneController bc = it2.next();
-                    idBonesController.add(bc.getIdController());
+                    listIdBonesController.add(bc.getIdController());
                 }                
             }
         }
-        return idBonesController;
+        return listIdBonesController;
     }
     
     
