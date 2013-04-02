@@ -42,6 +42,7 @@ import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import control.FamilyControl;
+import control.ModelControl;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.HoverEffectBuilder;
@@ -74,22 +75,21 @@ import types.StageType;
 public class StartScreen extends AbstractAppState implements ScreenController {
     
     private static final int TEXTURES_PAGE = 6;
+    private static final int BONES_PAGE = 5;
     private Nifty nifty;
     private Application app;
     private Screen screen;
     private Gui gui;
     private FamilyControl fc;
-    private String selection, familySelection, panelSelection;
-    private int skinspage, eyespage, tshirtspage, trouserspage, shoespage, modelspage;
+    private ModelControl mc;
+    private String selection, familySelection, panelSelection, modelSelection;
+    //private int skinspage, eyespage, tshirtspage, trouserspage, shoespage, modelspage;
+    private int page, modelsPage;
     private Element popupColor, popupAnim, popupFin;
     private float red, green, blue;
-    private ArrayList<String> stages,stagesTypes;
-    //private String pantallas[];
-    //private String screenType[];
+    private ArrayList<String> stages;
     private ArrayList<Family> families;
     private int modelsSize, modelsAntSize;
-    //private List<ModelRefType> models;
-    //private String models[], modelIcons[], familyName[];
     private int index;
     
     public StartScreen(Gui gui){
@@ -142,7 +142,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 }};
                 image.id(f.getMetadata().getName()+"model"+Integer.toString(i));
                 image.filename(m.getIconPath());
-                image.interactOnClick("selectModel(Man)");
+                image.interactOnClick("selectModel("+m.getModelPath()+",Man)");
                 image.onHoverEffect(new HoverEffectBuilder("Man"));
                 image.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
                 i++;
@@ -152,7 +152,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         modelsSize = families.get(0).getModelsRef().getModelRef().size();
         modelsAntSize = 0;
         familySelection = families.get(0).getMetadata().getName();
-        modelspage = 0;
+        modelsPage = 0;
         changeCharacterPage("0",familySelection);
     }
 
@@ -176,11 +176,12 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         selection = "";
         this.app = app;
-        skinspage = 0;
+        page = 0;
+        /*skinspage = 0;
         eyespage = 0;
         tshirtspage = 0; 
         trouserspage = 0; 
-        shoespage = 0;
+        shoespage = 0;*/
         popupColor = null;
         popupColor();
         popupAnim = null;
@@ -189,14 +190,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         popupFin();
         index = 0;
         familySelection = "";
-        panelSelection = null; 
-/*        pantallas = new String[5];
-        screenType = new String[5];
-        pantallas[0] = "bones"; screenType[0] = StageType.scaleStage.toString();
-        pantallas[1] = "skinScreen"; screenType[1] = StageType.singleStage.toString();
-        pantallas[2] = "tshirtScreen"; screenType[2] = StageType.singleStage.toString();
-        pantallas[3] = "trousersScreen"; screenType[3] = StageType.singleStage.toString();
-        pantallas[4] = "shoesScreen"; screenType[4] = StageType.singleStage.toString();*/
+        panelSelection = null;
         new DropDownBuilder("localeDropDown") {{
                 valignCenter();
                 //alignRight();
@@ -405,24 +399,28 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     public void changeCharacterPage(String steep, String familyAnt){
-            for(int i=modelspage*TEXTURES_PAGE; i<modelsAntSize; i++){
-                if(i<((modelspage+1)*TEXTURES_PAGE)){
+            for(int i=modelsPage*TEXTURES_PAGE; i<modelsAntSize; i++){
+                if(familyAnt.equals("same")){
+                    familyAnt = familySelection;
+                    modelsAntSize = modelsSize;
+                }
+                if(i<((modelsPage+1)*TEXTURES_PAGE)){
                     nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setVisible(false);
                     nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setHeight(0);
                     nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setWidth(0);
                 }
             }
-            if(steep.equals("+")){modelspage++;}
-            if(steep.equals("-")){modelspage--;}
-            if(steep.equals("0")){modelspage = 0;}
-            for(int i=modelspage*TEXTURES_PAGE; i<modelsSize; i++){
-                if(i<((modelspage+1)*TEXTURES_PAGE)){
+            if(steep.equals("+")){modelsPage++;}
+            if(steep.equals("-")){modelsPage--;}
+            if(steep.equals("0")){modelsPage = 0;}
+            for(int i=modelsPage*TEXTURES_PAGE; i<modelsSize; i++){
+                if(i<((modelsPage+1)*TEXTURES_PAGE)){
                     nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setVisible(true);
                     nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setHeight(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
                     nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setWidth(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
                 }
             }
-            if(modelspage > 0){
+            if(modelsPage > 0){
                 nifty.getScreen("modelScreen").findElementByName("leftT").enable();
                 nifty.getScreen("modelScreen").findElementByName("leftT").setVisible(true);
             }
@@ -430,7 +428,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 nifty.getScreen("modelScreen").findElementByName("leftT").disable();
                 nifty.getScreen("modelScreen").findElementByName("leftT").setVisible(false);
             }
-            if((((double)modelsSize/(double)TEXTURES_PAGE) - modelspage) > 1){
+            if((((double)modelsSize/(double)TEXTURES_PAGE) - modelsPage) > 1){
                 nifty.getScreen("modelScreen").findElementByName("rightT").enable();
                 nifty.getScreen("modelScreen").findElementByName("rightT").setVisible(true);
             }
@@ -450,26 +448,27 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }
     }
     
-    public void selectModel(String param){
+    public void selectModel(String param,String param2){
         if(panelSelection != null){
             nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF000000"));
         }
-        if(param.equals("Man")){
+        modelSelection = param;
+        if(param2.equals("Man")){
             gui.setGender(Gender.Male);
             gui.setAgeModel(Age.Adult);
             panelSelection = "t0";
         }
-        if(param.equals("Woman")){
+        if(param2.equals("Woman")){
             gui.setGender(Gender.Female);
             gui.setAgeModel(Age.Adult);
             panelSelection = "t1";
         }
-        if(param.equals("Boy")){
+        if(param2.equals("Boy")){
             gui.setGender(Gender.Male);
             gui.setAgeModel(Age.Young);
             panelSelection = "t2";
         }
-        if(param.equals("Girl")){
+        if(param2.equals("Girl")){
             gui.setGender(Gender.Female);
             gui.setAgeModel(Age.Young);
             panelSelection = "t3";
@@ -489,6 +488,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 fc = new FamilyControl(f);
             }
         }
+        mc = new ModelControl(gui.getModel(modelSelection));
         stages = fc.getStagesLabels();
         selection = stages.get(index);
         creaMenu();
@@ -501,20 +501,55 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void initIcons(){
         String stage = StageType.singleStage.toString();
-        for(int j = 0; j < stages.size(); j++){ 
+        //for(int j = 0; j < stages.size(); j++){
+        for(int j = 0; j < 6; j++){
             if(fc.getStagesTypes(stages.get(j)).toString().equals(stage)){
-                for(int i=0; i<gui.length(stages.get(j)); i++){
+                ArrayList<String> idSubStages = fc.getIdsSubStages(stages.get(j));
+                ArrayList<String> idsTextures = mc.getIdsTextures(idSubStages.get(0));
+                //ArrayList<String> idTexture = mc.getIdsTextures(stages.get(j));
+                for(int i=0; i<mc.getNumTextures(idSubStages.get(0)); i++){
                     ImageBuilder image = new ImageBuilder(){{
                         width("0%");
                         height("0%");
                     }};
                     image.id(stages.get(j)+"i"+Integer.toString(i));
-                    image.filename(gui.path(stages.get(j),i));
+                    image.filename(mc.getIconPathTexture(idsTextures.get(i)));
+                    //image.filename(gui.path(stages.get(j),i));
                     image.interactOnClick("changeTexture("+Integer.toString(i)+")");
                     image.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
                 }
             }
         }
+    }
+    
+    public void changeScalePage(String steep){
+            if(steep.equals("+")){page++;}
+            if(steep.equals("-")){page--;}
+            if(steep.equals("0")){page = 0;}
+            String stage = fc.getStagesTypes(selection).toString();
+            for(int i=page*BONES_PAGE; i<modelsSize; i++){
+                if(i<((page+1)*BONES_PAGE)){
+                   nifty.getScreen(stage).findElementByName("text"+Integer.toString(i)).getRenderer(TextRenderer.class).setText(names[i]);
+                    nifty.getScreen(stage).findElementByName("t"+Integer.toString(i)).layoutElements();
+                    nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i)).enable();
+                }
+            }
+            if(page > 0){
+                nifty.getScreen(stage).findElementByName("leftT").enable();
+                nifty.getScreen(stage).findElementByName("leftT").setVisible(true);
+            }
+            else{
+                nifty.getScreen(stage).findElementByName("leftT").disable();
+                nifty.getScreen(stage).findElementByName("leftT").setVisible(false);
+            }
+            if((((double)modelsSize/(double)BONES_PAGE) - page) > 1){
+                nifty.getScreen(stage).findElementByName("rightT").enable();
+                nifty.getScreen(stage).findElementByName("rightT").setVisible(true);
+            }
+            else{
+                nifty.getScreen(stage).findElementByName("rightT").disable();
+                nifty.getScreen(stage).findElementByName("rightT").setVisible(false);
+            }
     }
     
     public void changeTab(String param){
@@ -531,7 +566,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                     nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i)).enable();
                 }
             }
-            nifty.getScreen(stage).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#0000000"));
+            nifty.getScreen(stage).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
             nifty.getScreen(stage).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
         }
         if(param.equals("advanced")){
@@ -614,8 +649,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void escondeTexturePage(String type, String param){
         if(type.equals(StageType.singleStage.toString())){
-            for(int i=getPage()*TEXTURES_PAGE; i<gui.length(param); i++){
-                if(i<((getPage()+1)*TEXTURES_PAGE)){
+            ArrayList<String> idSubStages = fc.getIdsSubStages(param);
+            for(int i=page*TEXTURES_PAGE; i<mc.getNumTextures(idSubStages.get(0)); i++){
+                if(i<((page+1)*TEXTURES_PAGE)){
                     nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setVisible(false);
                     nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setHeight(0);
                     nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setWidth(0);
@@ -626,16 +662,19 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void changeTexturePage(String steep){
             String stage = StageType.singleStage.toString();
-            escondeTexturePage(stage,selection);
+            if(!steep.equals("0")){
+                escondeTexturePage(stage,selection);
+            }
             changePage(steep);
-            for(int i=getPage()*TEXTURES_PAGE; i<gui.length(selection); i++){
-                if(i<((getPage()+1)*TEXTURES_PAGE)){
+            ArrayList<String> idSubStages = fc.getIdsSubStages(selection);
+            for(int i=page*TEXTURES_PAGE; i<mc.getNumTextures(idSubStages.get(0)); i++){
+                if(i<((page+1)*TEXTURES_PAGE)){
                     nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setVisible(true);
                     nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setHeight(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
                     nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setWidth(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
                 }
             }
-            if(getPage() > 0){
+            if(page > 0){
                 nifty.getScreen(stage).findElementByName("leftT").enable();
                 nifty.getScreen(stage).findElementByName("leftT").setVisible(true);
             }
@@ -643,7 +682,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 nifty.getScreen(stage).findElementByName("leftT").disable();
                 nifty.getScreen(stage).findElementByName("leftT").setVisible(false);
             }
-            if((((double)gui.length(selection)/(double)TEXTURES_PAGE) - getPage()) > 1){
+            if((((double)mc.getNumTextures(idSubStages.get(0))/(double)TEXTURES_PAGE) - page) > 1){
                 nifty.getScreen(stage).findElementByName("rightT").enable();
                 nifty.getScreen(stage).findElementByName("rightT").setVisible(true);
             }
@@ -653,24 +692,21 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }
     }
     
-    public int getPage(){
+   /* public int getPage(){
         if(selection.equals("skinScreen")){return skinspage;}
         if(selection.equals("eyesScreen")){return eyespage;}
         if(selection.equals("tshirtScreen")){return tshirtspage;}
         if(selection.equals("trousersScreen")){return trouserspage;}
         if(selection.equals("shoesScreen")){return shoespage;}
         return -1;
-    }
+    }*/
     
     public void changePage(String steep){
-        int i = 0;
-        if(steep.equals("+")){i = 1;}
-        if(steep.equals("-")){i = -1;}
-        if(selection.equals("skinScreen")){
-            if(steep.equals("0")){skinspage = 0;}
-            else{skinspage = skinspage + i;}
-        }
-        if(selection.equals("eyesScreen")){
+        if(steep.equals("+")){page++;}
+        if(steep.equals("-")){page--;}
+        if(steep.equals("0")){page = 0;}
+        
+        /*if(selection.equals("eyesScreen")){
             if(steep.equals("0")){eyespage = 0;}
             else{eyespage = eyespage + i;}
         }
@@ -685,7 +721,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         if(selection.equals("shoesScreen")){
             if(steep.equals("0")){shoespage = 0;}
             else{shoespage = shoespage + i;}
-        }
+        }*/
     }
     
     public String getMenu(String param)

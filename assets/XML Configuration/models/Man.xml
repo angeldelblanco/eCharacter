@@ -57,8 +57,8 @@
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaCortaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaLarga">
-				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisetaLargaSolidoBoy.png</iconPath>
-				<path>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSolidoBoy.png</path>		
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisetaLargaBoy.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSolidoSolidoBoy.png</path>		
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaTirantes">
