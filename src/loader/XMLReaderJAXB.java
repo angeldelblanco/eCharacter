@@ -41,6 +41,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.*;
@@ -76,17 +77,31 @@ public class XMLReaderJAXB<T>
             type = XMLType.model;
         }
         File dirPath = new File(path);
-        File[] ficheros = dirPath.listFiles();
-        for (int x=0;x<ficheros.length;x++)
+        if (dirPath.isDirectory())
         {
-            File file = ficheros[x];
-            /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
-            if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), type)) {
-                try {    
-                    list.add(unmarshal(docClass, resourceHandler.getResource(file.getPath())));
-                } catch (JAXBException ex) {
-                    Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
+            File[] ficheros = dirPath.listFiles();
+            for (int x=0;x<ficheros.length;x++)
+            {
+                File file = ficheros[x];
+                /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
+                if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), type)) {
+                    try {    
+                        list.add(unmarshal(docClass, resourceHandler.getResource(file.getPath())));
+                    } catch (JAXBException ex) {
+                        Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+            }
+        }
+        else
+        {
+            if (getExtension(dirPath.getPath()).equals("xml") && xmlValidator.checkXML(dirPath.getPath(), type)) 
+            {
+                try {    
+                        list.add(unmarshal(docClass, resourceHandler.getResource(dirPath.getPath())));
+                    } catch (JAXBException ex) {
+                        Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
+                    }
             }
         }
         return list;
@@ -111,7 +126,7 @@ public class XMLReaderJAXB<T>
         y cerramos esta clase  ***/
     public static void main(String args[]) throws JAXBException, FileNotFoundException
     {
-        XMLReaderJAXB<Model> aux = new XMLReaderJAXB<Model>("assets/XML Configuration/models");
-        aux.readXML(Model.class);
+        XMLReaderJAXB<Model> aux = new XMLReaderJAXB<Model>("assets/XML Configuration/models/Man.xml");
+        ArrayList<Model> a = aux.readXML(Model.class);
     }   
 }

@@ -51,6 +51,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Spatial;
 import com.jme3.system.AppSettings;
+import data.model.Model;
 import de.lessvoid.nifty.Nifty;
 import java.awt.Color;
 import java.io.File;
@@ -416,5 +417,14 @@ public class Gui extends SimpleApplication{
 
     public void scaleArms(float inc) {
         model.scaleArms(inc);
+    }
+    
+    public Model getModel(String path){
+        XMLReaderJAXB xmlReader2 = new XMLReaderJAXB<Model>(path);
+        ArrayList<Model> models = xmlReader2.readXML(Model.class);
+        if (models.size()==1){
+            return models.get(0);
+        }
+        return null;
     }
 }
