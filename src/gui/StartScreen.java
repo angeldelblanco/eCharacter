@@ -522,7 +522,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
     }
     
-    public void changeScalePage(String steep){
+    /*public void changeScalePage(String steep){
             if(steep.equals("+")){page++;}
             if(steep.equals("-")){page--;}
             if(steep.equals("0")){page = 0;}
@@ -530,7 +530,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             for(int i=page*BONES_PAGE; i<modelsSize; i++){
                 if(i<((page+1)*BONES_PAGE)){
                    nifty.getScreen(stage).findElementByName("text"+Integer.toString(i)).getRenderer(TextRenderer.class).setText(names[i]);
-                    nifty.getScreen(stage).findElementByName("t"+Integer.toString(i)).layoutElements();
+                    nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i)).layoutElements();
                     nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i)).enable();
                 }
             }
@@ -551,6 +551,35 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 nifty.getScreen(stage).findElementByName("rightT").setVisible(false);
             }
     }
+    public void changeMultiTexture(String steep){
+        if(steep.equals("+")){page++;}
+        if(steep.equals("-")){page--;}
+        if(steep.equals("0")){page = 0;}
+        String stage = fc.getStagesTypes(selection).toString();
+        ArrayList<String> idSubStages = fc.getIdsSubStages(selection);
+        for(int i=page*BONES_PAGE; i<fc.getNumSubStage(selection); i++){
+            if(i<((page+1)*BONES_PAGE)){
+               nifty.getScreen(stage).findElementByName("text"+Integer.toString(i)).getRenderer(TextRenderer.class).setText(names[i]);
+               nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i)).layoutElements();
+            }
+        }
+        if(page > 0){
+            nifty.getScreen(stage).findElementByName("leftT").enable();
+            nifty.getScreen(stage).findElementByName("leftT").setVisible(true);
+        }
+        else{
+            nifty.getScreen(stage).findElementByName("leftT").disable();
+            nifty.getScreen(stage).findElementByName("leftT").setVisible(false);
+        }
+        if((((double)fc.getNumSubStage(selection)/(double)BONES_PAGE) - page) > 1){
+            nifty.getScreen(stage).findElementByName("rightT").enable();
+            nifty.getScreen(stage).findElementByName("rightT").setVisible(true);
+        }
+        else{
+            nifty.getScreen(stage).findElementByName("rightT").disable();
+            nifty.getScreen(stage).findElementByName("rightT").setVisible(false);
+        }
+    }*/
     
     public void changeTab(String param){
         String stage = fc.getStagesTypes(selection).toString();
@@ -632,6 +661,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
         if(type.equals(StageType.scaleStage.toString())){
             changeTab("basic");
+        }
+        if(type.equals(StageType.multiStage.toString())){
+            //changeMultiTexture("0");
         }
     }
     
