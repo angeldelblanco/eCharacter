@@ -116,7 +116,7 @@ public class FamilyControl
         return -1;       
     }
     
-    public ArrayList<String> getSubStagesIds(String multiStageLabel)
+    public ArrayList<String> getIdsSubStages(String multiStageLabel)
     {
         ArrayList<String> listSubStagesIds = new ArrayList<String>();
         ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
