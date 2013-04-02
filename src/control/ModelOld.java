@@ -161,18 +161,21 @@ public class ModelOld{
         
     }  
     
+    /*ADAPTADO*/
     public void scaleHead(float inc) {
         String[] arrayNameBones = new String[1];
         arrayNameBones[0] = this.namesBones[0];
         this.scale(arrayNameBones, inc);
     }
     
+    /*ADAPTADO*/
     public void scaleTorax(float inc) {
         String[] arrayNameBones = new String[1];
         arrayNameBones[0] = this.namesBones[1];
         this.scale(arrayNameBones, inc);
     }
     
+    /*ADAPTADO*/
     public void scaleHands(float inc) {
         String[] arrayNameBones = new String[2];
         arrayNameBones[0] = this.namesBones[2];
@@ -180,6 +183,7 @@ public class ModelOld{
         this.scale(arrayNameBones, inc);
     }
     
+    /*ADAPTADO*/
     public void scaleFeet(float inc) {
         String[] arrayNameBones = new String[2];
         arrayNameBones[0] = this.namesBones[4];
@@ -187,6 +191,7 @@ public class ModelOld{
         this.scale(arrayNameBones, inc);
     }
     
+    /*ADAPTADO*/
     public void scaleLegs(float inc) {
         String[] arrayNameBones = new String[2];
         arrayNameBones[0] = this.namesBones[6];
@@ -194,6 +199,7 @@ public class ModelOld{
         this.scale(arrayNameBones, inc);
     }
     
+    /*ADAPTADO*/
     public void scaleArms(float inc) {
         String[] arrayNameBones = new String[2];
         arrayNameBones[0] = this.namesBones[8];
@@ -201,6 +207,7 @@ public class ModelOld{
         this.scale(arrayNameBones, inc);
     }
     
+    /*ADAPTADO*/
     private void scale(String[] namesBones,float inc)
     {
         for(int i = 0; i < namesBones.length ; i++)

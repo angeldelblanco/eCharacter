@@ -48,7 +48,7 @@
 			<!-- Dar valores. Los que hay son aleatorios -->
 			<fps qualityLabel="High" fpsValue="3"/>
 			<fps qualityLabel="Medium" fpsValue="2"/>
-			<fps qualityLabel="High" fpsValue="1"/>
+			<fps qualityLabel="Low" fpsValue="1"/>
 			<camera cameraLabel="Front">
 				<upAxis valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<location valueX="2.0" valueY="2.0" valueZ="2.0"/>
