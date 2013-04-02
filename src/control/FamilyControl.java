@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.xml.bind.JAXBElement;
 import types.StageType;
+import types.SubStageTypeEnum;
 
 public class FamilyControl 
 {
@@ -158,6 +159,31 @@ public class FamilyControl
         }
         return null;         
     }
+    
+    public SubStageTypeEnum getSubStageType(String multiStageLabel,String idSubStage)
+    {
+        ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
+        Iterator<MultiStageType> it = listMultiStage.iterator();
+        while(it.hasNext())
+        {
+            MultiStageType mst = it.next();
+            if(mst.getStageLabel().equals(multiStageLabel)){
+                ArrayList<JAXBElement<SubStageType>> listSubStages = (ArrayList<JAXBElement<SubStageType>>) mst.getMeshSubStageOrTextureSubStage();
+                Iterator<JAXBElement<SubStageType>> it2 = listSubStages.iterator();
+                while(it2.hasNext())
+                {
+                    JAXBElement<SubStageType> subStage = it2.next();
+                    if(subStage.getValue().getIdPanel().equals(idSubStage)){
+                        
+                        //ACABAR
+                        return null;
+                    }
+                }
+            }
+        }
+        return null;         
+    }
+    
     /**************************************************************************/
     public ArrayList<String> getIdBonesController(String idStageLabel)
     {
