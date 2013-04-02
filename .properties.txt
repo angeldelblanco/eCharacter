@@ -1,5 +1,0 @@
-#Sun Mar 31 17:11:10 CEST 2013
-resolution=1024x768
-listLanguage=es_ES en_UK
-path=./assets
-lang=en_UK

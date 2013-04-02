@@ -35,6 +35,7 @@
  ******************************************************************************/
 package loader;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,7 +52,7 @@ import java.util.logging.Logger;
 public class Configuration 
 { 
     /** Properties file name */
-    public final static String PROPERTIES_FILE_NAME = ".properties.txt";
+    public final static String PROPERTIES_FILE_NAME = "initConfig.properties";
     
     /** Language */
     public final static String Language = "lang";
@@ -60,10 +61,13 @@ public class Configuration
     public final static String Resolution = "resolution";
  
     /** Assets paths */
-    public final static String AssetsPath = "path";
+    public final static String AssetsPath = "assetsPath";
     
     /**List of available languages*/
     public final static String ListLanguage = "listLanguage";
+    
+    /** Locale path */
+    public final static String LocalePath = "localePath";
     
     Properties properties;
     
@@ -106,8 +110,9 @@ public class Configuration
         //Default configuration
         this.properties.setProperty(Language, "en_UK");
         this.properties.setProperty(Resolution, "1024x768");
-        this.properties.setProperty(AssetsPath, "./assets");
+        this.properties.setProperty(AssetsPath, "assets");
         this.properties.setProperty(ListLanguage,"en_UK es_ES");
+        this.properties.setProperty(LocalePath,"assets"+File.separator+"Locale");
         //Saves the changes in the .properties file
         try {            
             FileOutputStream output = new FileOutputStream(PROPERTIES_FILE_NAME); 
@@ -128,4 +133,28 @@ public class Configuration
         }
         return listLanguages;
     }
+    
+    /*public static void main(String[] args)
+    {
+        ResourceHandler resourceHandler = new ResourceHandler();
+        Configuration config = new Configuration();
+        InputStream stream = resourceHandler.getResource(Configuration.PROPERTIES_FILE_NAME,"."+File.separator);
+        if(stream != null){
+            config.loadPropertiesFile(stream);
+        }
+        else{
+            config.loadDefaultProperties();
+        }
+        String path = config.getProperty(Configuration.LocalePath);
+        System.out.println(path);
+        File dirPath = new File(path);
+        File[] ficheros = dirPath.listFiles();
+        for (int x=0;x<ficheros.length;x++)
+        {
+            File file = ficheros[x];
+            /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
+            /*System.out.println(file.getName());
+        }
+        
+    }*/
 }

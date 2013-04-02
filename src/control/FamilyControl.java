@@ -50,6 +50,13 @@ public class FamilyControl
         this.family = family;
     }
     
+    public ArrayList<String> getScreens()
+    {
+        ArrayList<String> list
+        family.getStages().
+    }
+            
+            
     public HashSet<String> getIdBonesController(String idPanelRef)
     {
         HashSet<String> idBonesController = new HashSet<String>();
