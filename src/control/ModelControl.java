@@ -37,7 +37,6 @@ package control;
 
 import data.model.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 
 public class ModelControl 
@@ -59,25 +58,79 @@ public class ModelControl
         return (ArrayList<TransformationType>) model.getMainMesh().getTransformation();
     }
     
-    //hay que llamar antes al metodo getIdBonesController(String idPanel) para obtener el conjunto de controladores*/
     /*
-     * Receives a input bonesController´s set and return a list 
-     * with the name of the bones associated.   
+     * Receives a input bonesController and return a list 
+     * with the names of the bones associated.   
      */
-    public ArrayList<String> getBones(HashSet<String> idBonesController)
+    public ArrayList<String> getBones(String idBonesController)
     {
-        ArrayList<String> listId = new ArrayList<String>();
+        ArrayList<String> listBonesNames = new ArrayList<String>();
         ArrayList<BoneType> bones = (ArrayList<BoneType>) model.getMainMesh().getBones().getBone();
         Iterator<BoneType> it = bones.iterator();
         while(it.hasNext())
         {
             BoneType b = it.next();
-            if(idBonesController.contains(b.getIdControllerRef())){
-                listId.add(b.getBoneName());
+            if(b.getIdControllerRef().equals((idBonesController))){
+                listBonesNames.add(b.getBoneName());
             }
         }
-        return listId;
+        return listBonesNames;
     }
+    
+    /*
+     * Receives a input bone controller and return the minimum value associated 
+     * with this controller.
+     */
+    public int getMinValueBoneController(String idBoneController)
+    {
+        ArrayList<BoneType> listBones = (ArrayList<BoneType>) model.getMainMesh().getBones().getBone();
+        Iterator<BoneType> it = listBones.iterator();
+        while(it.hasNext())
+        {
+            BoneType bone = it.next();
+            if(bone.getIdControllerRef().equals(idBoneController)){
+                return bone.getMinValue().intValue();
+            }
+        }
+        return -1;
+    }
+    
+    /*
+     * Receives a input bone controller and return the maximum value associated 
+     * with this controller.
+     */
+    public int getMaxValueBoneController(String idBoneController)
+    {
+        ArrayList<BoneType> listBones = (ArrayList<BoneType>) model.getMainMesh().getBones().getBone();
+        Iterator<BoneType> it = listBones.iterator();
+        while(it.hasNext())
+        {
+            BoneType bone = it.next();
+            if(bone.getIdControllerRef().equals(idBoneController)){
+                return bone.getMaxValue().intValue();
+            }
+        }
+        return -1;
+    }
+    
+    /*
+     * Receives a input bone controller and return the default value associated 
+     * with this controller.
+     */
+    public int getDefaultValueBoneController(String idBoneController)
+    {
+        ArrayList<BoneType> listBones = (ArrayList<BoneType>) model.getMainMesh().getBones().getBone();
+        Iterator<BoneType> it = listBones.iterator();
+        while(it.hasNext())
+        {
+            BoneType bone = it.next();
+            if(bone.getIdControllerRef().equals(idBoneController)){
+                return bone.getDefaultValue().intValue();
+            }
+        }
+        return -1;
+    }
+    
     //-------------------    MAIN MESH´S TEXTURES   --------------------------/
     
     //Return the numbers of main mesh´s textures.
@@ -128,6 +181,8 @@ public class ModelControl
         }
         return null;
     }
+    
+    
     
     /*
      * Receives a input id panel and return a list with the texture´s icon path 

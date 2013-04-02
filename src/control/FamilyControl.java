@@ -38,9 +38,7 @@ package control;
 import data.family.*;
 import data.family.ScaleStageType.BoneController;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import javax.xml.bind.JAXBElement;
 import types.StageType;
 
@@ -104,39 +102,61 @@ public class FamilyControl
         return null;
     }
     
-    public int getNumSubStage(String idMultiStage)
+    public int getNumSubStage(String multiStageLabel)
     {
         ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
         Iterator<MultiStageType> it = listMultiStage.iterator();
         while(it.hasNext())
         {
             MultiStageType mst = it.next();
-            if(mst.getStageLabel().equals(idMultiStage)){
+            if(mst.getStageLabel().equals(multiStageLabel)){
                 return mst.getMeshSubStageOrTextureSubStage().size();
             }
         }
         return -1;       
     }
     
-    public ArrayList<String> getSubStagesLabels(String idMultiStage)
+    public ArrayList<String> getSubStagesIds(String multiStageLabel)
     {
-        ArrayList<String> listSubStagesLabels = new ArrayList<String>();
+        ArrayList<String> listSubStagesIds = new ArrayList<String>();
         ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
         Iterator<MultiStageType> it = listMultiStage.iterator();
         while(it.hasNext())
         {
             MultiStageType mst = it.next();
-            if(mst.getStageLabel().equals(idMultiStage)){
+            if(mst.getStageLabel().equals(multiStageLabel)){
                 ArrayList<JAXBElement<SubStageType>> listSubStages = (ArrayList<JAXBElement<SubStageType>>) mst.getMeshSubStageOrTextureSubStage();
                 Iterator<JAXBElement<SubStageType>> it2 = listSubStages.iterator();
                 while(it2.hasNext())
                 {
                     JAXBElement<SubStageType> subStage = it2.next();
-                    listSubStagesLabels.add(subStage.getValue().getSubStageLabel());
+                    listSubStagesIds.add(subStage.getValue().getIdPanel());
                 }
             }
         }
-        return listSubStagesLabels; 
+        return listSubStagesIds; 
+    }
+    
+    public String getSubStageLabel(String multiStageLabel,String idSubStage)
+    {
+        ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
+        Iterator<MultiStageType> it = listMultiStage.iterator();
+        while(it.hasNext())
+        {
+            MultiStageType mst = it.next();
+            if(mst.getStageLabel().equals(multiStageLabel)){
+                ArrayList<JAXBElement<SubStageType>> listSubStages = (ArrayList<JAXBElement<SubStageType>>) mst.getMeshSubStageOrTextureSubStage();
+                Iterator<JAXBElement<SubStageType>> it2 = listSubStages.iterator();
+                while(it2.hasNext())
+                {
+                    JAXBElement<SubStageType> subStage = it2.next();
+                    if(subStage.getValue().getIdPanel().equals(idSubStage)){
+                        return subStage.getValue().getSubStageLabel();
+                    }
+                }
+            }
+        }
+        return null;         
     }
     /**************************************************************************/
     public ArrayList<String> getIdBonesController(String idStageLabel)
@@ -158,6 +178,29 @@ public class FamilyControl
             }
         }
         return listIdBonesController;
+    }
+    
+    public String getBoneControllerLabel(String idStageLabel,String idBoneController)
+    {
+        ArrayList<ScaleStageType> listScaleStage = (ArrayList<ScaleStageType>) family.getStages().getScaleStage();
+        Iterator<ScaleStageType> it = listScaleStage.iterator();
+        while(it.hasNext())
+        {
+            ScaleStageType s = it.next();
+            if(s.getStageLabel().equals(idStageLabel)){
+                ArrayList<BoneController> listBoneController = (ArrayList<BoneController>) s.getBoneController();
+                Iterator<BoneController> it2 = listBoneController.iterator();
+                while(it2.hasNext())
+                {
+                    BoneController bc = it2.next();
+                    if(bc.getIdController().equals(idBoneController)){
+                        return bc.getControllerLabel();
+                    }
+                }                
+            }
+        }
+        return null;
+        
     }
     
     
