@@ -106,11 +106,11 @@
 	</xs:complexType>
 	<xs:complexType name="bonesType">
 		<xs:sequence>
-			<xs:element name="bone" type="boneType" minOccurs="1" maxOccurs="10"/>
+			<xs:element name="bone" type="boneType" minOccurs="1" maxOccurs="15"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="boneType">
-		<xs:attribute name="idControllerRef" type="xs:ID" use="required"/>
+		<xs:attribute name="idControllerRef" type="xs:string" use="required"/>
 		<xs:attribute name="defaultValue" type="xs:integer" use="required"/>
 		<xs:attribute name="minValue" type="xs:integer" use="required"/>
 		<xs:attribute name="maxValue" type="xs:integer" use="required"/>
