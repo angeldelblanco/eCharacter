@@ -36,15 +36,14 @@
 
 package gui;
 
-import data.family.Family;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import control.FamilyControl;
 import control.ModelControl;
+import data.family.Family;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
-import de.lessvoid.nifty.builder.HoverEffectBuilder;
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.PopupBuilder;
@@ -59,7 +58,6 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.checkbox.builder.CheckboxBuilder;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
-import de.lessvoid.nifty.controls.scrollpanel.builder.ScrollPanelBuilder;
 import de.lessvoid.nifty.controls.slider.builder.SliderBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
@@ -96,7 +94,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private ArrayList<Family> families;
     private int modelsSize, modelsAntSize;
     private int index;
-    private String languaje;
+    private String language;
     
     public StartScreen(Gui gui){
         this.gui = gui;
@@ -137,7 +135,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         Iterator<Family> it = families.iterator();
         while(it.hasNext()){
             fc = new FamilyControl(it.next());
-            i18nFamily = new I18N(fc.getLanguagePath(),languaje);
+            i18nFamily = new I18N(fc.getLanguagePath(),language);
             ArrayList<String> models = fc.getModelsLabels();
             Iterator<String> itm = models.iterator();
             int i = 0;
@@ -209,9 +207,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             final String l = it.next();
             locale.addItem(l);
         }
-        languaje = gui.config.getProperty(Configuration.Language);
-        locale.selectItem(languaje);
-        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),languaje);
+        language = gui.config.getProperty(Configuration.Language);
+        locale.selectItem(language);
+        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),language);
     }
     
     public void creaMenu(){
@@ -508,7 +506,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 fc = new FamilyControl(f);
             }
         }*/
-        i18nModel = new I18N(gui.getModel(modelSelection).getLanguagesPath(),languaje);
+        i18nModel = new I18N(gui.getModel(modelSelection).getLanguagesPath(),language);
         mc = new ModelControl(gui.getModel(modelSelection));
         stages = fc.getStagesLabels();
         selection = stages.get(index);
@@ -872,7 +870,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
            if(i18nFamily.getString(fc.getMetadataName()).equals(familySelection)){
                modelsAntSize = modelsSize;
                modelsSize = fc.getNumModels();
-               i18nFamily = new I18N(fc.getLanguagePath(),languaje);
+               i18nFamily = new I18N(fc.getLanguagePath(),language);
            }
         }
         changeCharacterPage("0", familyAnt);
@@ -883,9 +881,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     if (event.getSelection() != null) {
         Button startb = nifty.getScreen("start").findNiftyControl("startButton", Button.class);
         Button quitb = nifty.getScreen("start").findNiftyControl("quitButton", Button.class);
-        languaje = event.getSelection();
-        gui.config.setProperty(Configuration.Language, languaje);
-        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),languaje);
+        language = event.getSelection();
+        gui.config.setProperty(Configuration.Language, language);
+        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),language);
         nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDescription"));
         nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
         nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idLanguage"));
