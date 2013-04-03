@@ -38,8 +38,8 @@
             <image filename="Interface/second-background.png"></image>   
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-			<panel height="5%" width="100%" childLayout="center"> 
-				<text text="Choose your model" font="Interface/Fonts/Default.fnt" width="100%" height="100%" valign="center"/>
+			<panel id="choosePanel" height="5%" width="100%" childLayout="center"> 
+				<text id="chooseText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" valign="center"/>
 			</panel>
 			<panel id="familyPanel" height="10%" width="100%" childLayout="horizontal"> 
 				<panel height="100%" width="25%">
@@ -119,7 +119,7 @@
 			<!-- Change screen Panel -->
 			<panel id="panel_change_screen" height="15%" width="30%" childLayout="center" align="right">
 				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text id="nextText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="loadFirstScreen()"/>
 				</panel>
 			</panel>
@@ -219,14 +219,14 @@
 			<!-- Change screen Panel -->
 			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
 				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text id="previousText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(-)"/>
 				</panel>
 				<panel height="66%" width="34%">
 					<!-- Space -->
 				</panel>
 				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text id="nextText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(+)"/>
 				</panel>
 			</panel>
@@ -311,14 +311,14 @@
 			<!-- Change screen Panel -->
 			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
 				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text id="previousText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(-)"/>
 				</panel>
 				<panel height="66%" width="34%">
 					<!-- Space -->
 				</panel>
 				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text id="nextText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(+)"/>
 				</panel>
 			</panel>
@@ -382,14 +382,14 @@
 			<!-- Change screen Panel -->
 			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
 				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text id="previousText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(-)"/>
 				</panel>
 				<panel height="66%" width="34%">
 					<!-- Space -->
 				</panel>
 				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Next" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text id="nextText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(+)"/>
 				</panel>
 			</panel>
@@ -431,14 +431,14 @@
 			<!-- Change screen Panel -->
 			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
 				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text text="Previous" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text id="previousText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="changeScreen(-)"/>
 				</panel>
 				<panel height="66%" width="34%">
 					<!-- Space -->
 				</panel>
 				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text text="Finish" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<text id="finishText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
 					<interact onClick="screenshot()"/>
 				</panel>
 			</panel>

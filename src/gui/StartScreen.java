@@ -66,6 +66,7 @@ import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import de.lessvoid.nifty.tools.Color;
+import i18n.I18N;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -80,6 +81,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private static final int TEXTURES_PAGE = 6;
     private static final int BONES_PAGE = 5;
     private Nifty nifty;
+    private I18N i18nGui, i18nModel, i18nFamily; 
     private Application app;
     private Screen screen;
     private Gui gui;
@@ -93,6 +95,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private ArrayList<Family> families;
     private int modelsSize, modelsAntSize;
     private int index;
+    private String languaje;
     
     public StartScreen(Gui gui){
         this.gui = gui;
@@ -100,6 +103,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
+        nifty.getScreen("modelScreen").findElementByName("chooseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idChoose"));
+        nifty.getScreen("modelScreen").findElementByName("choosePanel").layoutElements();
         families = gui.getFamilies();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").disable();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(false);
@@ -118,7 +123,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 valignCenter();
                 color(Color.WHITE);
                 font("Interface/Fonts/Default.fnt");
-                text("Choose the family's model");
+                text(i18nGui.getString("idFamily"));
                 width("50%");
                 wrap(true);
             }});
@@ -156,6 +161,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         familySelection = families.get(0).getMetadata().getName();
         modelsPage = 0;
         changeCharacterPage("0",familySelection);
+        //i18nFamily = new I18N(,languaje);
     }
 
     public void quitGame() {
@@ -200,7 +206,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             final String l = it.next();
             locale.addItem(l);
         }
-        locale.selectItem(gui.config.getProperty(Configuration.Language));
+        languaje = gui.config.getProperty(Configuration.Language);
+        locale.selectItem(languaje);
+        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),languaje);
     }
     
     public void creaMenu(){
@@ -228,6 +236,15 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 menu.interactOnClick("changeScreen("+stages.get(i)+")");
                 menu.build(nifty, nifty.getScreen(type), nifty.getScreen(type).findElementByName("panel_options"));
             }
+            nifty.getScreen(type).findElementByName("previousText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPrevious"));
+            nifty.getScreen(type).findElementByName("panel_screenleft").layoutElements();
+            if(type.equals(StageType.animationStage.toString())){
+                nifty.getScreen(type).findElementByName("finishText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idFinish"));
+            }
+            else{
+                nifty.getScreen(type).findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
+            }
+            nifty.getScreen(type).findElementByName("panel_screenright").layoutElements();
         }
     }
     
@@ -472,6 +489,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             panelSelection = "t3";
         }
         nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
+        nifty.getScreen("modelScreen").findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
+        nifty.getScreen("modelScreen").findElementByName("panel_screenright").layoutElements();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").enable();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(true);
     }
@@ -486,6 +505,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 fc = new FamilyControl(f);
             }
         }
+        //i18nModel = new I18N(,languaje);
         mc = new ModelControl(gui.getModel(modelSelection));
         stages = fc.getStagesLabels();
         selection = stages.get(index);
@@ -797,6 +817,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     @NiftyEventSubscriber(id="familyDropDown")
   public void onFamilyDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
     if (event.getSelection() != null && (!familySelection.equals(""))) {
+        //i18nFamily = new I18N(,languaje);
         String familyAnt = familySelection;
         Iterator<Family> it = families.iterator();
         familySelection = event.getSelection();
@@ -815,22 +836,14 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     if (event.getSelection() != null) {
         Button startb = nifty.getScreen("start").findNiftyControl("startButton", Button.class);
         Button quitb = nifty.getScreen("start").findNiftyControl("quitButton", Button.class);
-        if(event.getSelection().equals("en_UK")){
-            nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText("Inglis pitinglis soooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooomooooooooossss chekoslovakossssss");
-            nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
-            nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText("Lenguage:");
-            nifty.getScreen("start").findElementByName("panel_location").layoutElements();
-            startb.setText("Start");
-            quitb.setText("Quit");
-        }
-        if(event.getSelection().equals("es_ES")){
-            nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText("Estoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo essssssssssssssssssssssssssssssss españoooooooooooooooooooooooooooooooooooooooooooooooooooooooooollllll");
-            nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
-            nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText("Idioma:");
-            nifty.getScreen("start").findElementByName("panel_location").layoutElements();
-            startb.setText("Inicio");
-            quitb.setText("Salir");
-        }
+        languaje = event.getSelection();
+        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),languaje);
+        nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDescription"));
+        nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
+        nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idLanguage"));
+        nifty.getScreen("start").findElementByName("panel_location").layoutElements();
+        startb.setText(i18nGui.getString("idStart"));
+        quitb.setText(i18nGui.getString("idQuit"));
     }
   }
     
