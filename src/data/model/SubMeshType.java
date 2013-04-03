@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.02 a las 09:03:00 AM CEST 
+// Generado el: PM.04.03 a las 05:48:55 PM CEST 
 //
 
 
@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="idPanelRef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="associatedBone" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="idSubMesh" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
+ *       &lt;attribute name="default" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -60,6 +61,8 @@ public class SubMeshType
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String idSubMesh;
+    @XmlAttribute(name = "default", required = true)
+    protected boolean _default;
 
     /**
      * Obtiene el valor de la propiedad iconPath.
@@ -155,6 +158,22 @@ public class SubMeshType
      */
     public void setIdSubMesh(String value) {
         this.idSubMesh = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad default.
+     * 
+     */
+    public boolean isDefault() {
+        return _default;
+    }
+
+    /**
+     * Define el valor de la propiedad default.
+     * 
+     */
+    public void setDefault(boolean value) {
+        this._default = value;
     }
 
 }
