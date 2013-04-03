@@ -4,7 +4,7 @@
 	<string id="idStart">Start</string>
 	<string id="idQuit">Quit</string>
 	<string id="idLanguage">Language</string>
-	<string id="idChose">Choose your model</string>
+	<string id="idChoose">Choose your model</string>
 	<string id="idFamily">Choose the family:</string>
 	<string id="idPrevious">Previous</string>
 	<string id="idNext">Next</string>
