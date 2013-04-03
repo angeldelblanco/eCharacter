@@ -499,19 +499,19 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void initIcons(){
         String stage = StageType.singleStage.toString();
-        //for(int j = 0; j < stages.size(); j++){
-        for(int j = 0; j < 6; j++){
+        for(int j = 0; j < stages.size(); j++){
+        //for(int j = 0; j < 6; j++){
             if(fc.getStagesTypes(stages.get(j)).toString().equals(stage)){
                 ArrayList<String> idSubStages = fc.getIdsSubStages(stages.get(j));
-                ArrayList<String> idsTextures = mc.getIdsTextures(idSubStages.get(0));
+                ArrayList<String> idsTextures = mc.getIdsTexturesORSubMeshes(idSubStages.get(0));
                 //ArrayList<String> idTexture = mc.getIdsTextures(stages.get(j));
-                for(int i=0; i<mc.getNumTextures(idSubStages.get(0)); i++){
+                for(int i=0; i<mc.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
                     ImageBuilder image = new ImageBuilder(){{
                         width("0%");
                         height("0%");
                     }};
                     image.id(stages.get(j)+"i"+Integer.toString(i));
-                    image.filename(mc.getIconPathTexture(idsTextures.get(i)));
+                    image.filename(mc.getIconPathTexturesORSubMeshes(idsTextures.get(i)));
                     //image.filename(gui.path(stages.get(j),i));
                     image.interactOnClick("changeTexture("+Integer.toString(i)+")");
                     image.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
@@ -686,7 +686,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void escondeTexturePage(String type, String param){
         if(type.equals(StageType.singleStage.toString())){
             ArrayList<String> idSubStages = fc.getIdsSubStages(param);
-            for(int i=page*TEXTURES_PAGE; i<mc.getNumTextures(idSubStages.get(0)); i++){
+            for(int i=page*TEXTURES_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
                 if(i<((page+1)*TEXTURES_PAGE)){
                     nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setVisible(false);
                     nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setHeight(0);
@@ -703,7 +703,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }
             changePage(steep);
             ArrayList<String> idSubStages = fc.getIdsSubStages(selection);
-            for(int i=page*TEXTURES_PAGE; i<mc.getNumTextures(idSubStages.get(0)); i++){
+            for(int i=page*TEXTURES_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
                 if(i<((page+1)*TEXTURES_PAGE)){
                     nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setVisible(true);
                     nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setHeight(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
@@ -718,7 +718,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 nifty.getScreen(stage).findElementByName("leftT").disable();
                 nifty.getScreen(stage).findElementByName("leftT").setVisible(false);
             }
-            if((((double)mc.getNumTextures(idSubStages.get(0))/(double)TEXTURES_PAGE) - page) > 1){
+            if((((double)mc.getNumTexturesORSubMeshes(idSubStages.get(0))/(double)TEXTURES_PAGE) - page) > 1){
                 nifty.getScreen(stage).findElementByName("rightT").enable();
                 nifty.getScreen(stage).findElementByName("rightT").setVisible(true);
             }

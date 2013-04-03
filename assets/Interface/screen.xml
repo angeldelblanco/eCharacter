@@ -343,66 +343,27 @@
 					<panel height="5%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t0" height="14%" width="100%" childLayout="horizontal">
-						<control id="i0" name="imageSelect" width="50%"/>
-						<panel id="cont0" height="100%" width="50%" childLayout="vertical">
-							<text id="text0" text="Head" font="Interface/Fonts/Default.fnt" height="50%" width="100%" wrap="true"/>
-							<panel id="panel_color0" height="50%" width="100%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-								<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-								<interact onClick="showWindowChangeColor()"/>
-							</panel>
+					<panel id="t0" height="50%" width="100%" childLayout="vertical">
+						<text id="text0" text="Head" font="Interface/Fonts/Default.fnt" height="5%" width="100%" wrap="true"/>
+						<control id="i0" name="scrollPanel" vertical="false" height="70%" width="100%">
+							<panel id="myScrollStuff" childLayout="vertical"/>
+						</control>
+						<panel id="panel_color0" height="25%" width="100%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+							<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+							<interact onClick="showWindowChangeColor()"/>
 						</panel>
 					</panel>
 					<panel height="5%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1" height="14%" width="100%" childLayout="horizontal">
-						<control id="i1" name="imageSelect" width="50%"/>
-						<panel id="cont1" height="100%" width="50%" childLayout="vertical">
-							<text id="text1" text="Head" font="Interface/Fonts/Default.fnt" height="50%" width="100%" wrap="true"/>
-							<panel id="panel_color1" height="50%" width="100%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-								<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-								<interact onClick="showWindowChangeColor()"/>
-							</panel>
-						</panel>
-					</panel>
-					<panel height="5%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t2" height="14%" width="100%" childLayout="horizontal">
-						<control id="i2" name="imageSelect" width="50%"/>
-						<panel id="cont2" height="100%" width="50%" childLayout="vertical">
-							<text id="text2" text="Head" font="Interface/Fonts/Default.fnt" height="50%" width="100%" wrap="true"/>
-							<panel id="panel_color2" height="50%" width="100%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-								<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-								<interact onClick="showWindowChangeColor()"/>
-							</panel>
-						</panel>
-					</panel>
-					<panel height="5%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t3" height="14%" width="100%" childLayout="horizontal">
-						<control id="i3" name="imageSelect" width="50%"/>
-						<panel id="cont3" height="100%" width="50%" childLayout="vertical">
-							<text id="text3" text="Head" font="Interface/Fonts/Default.fnt" height="50%" width="100%" wrap="true"/>
-							<panel id="panel_color3" height="50%" width="100%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-								<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-								<interact onClick="showWindowChangeColor()"/>
-							</panel>
-						</panel>
-					</panel>
-					<panel height="5%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t4" height="14%" width="100%" childLayout="horizontal">
-						<control id="i4" name="imageSelect" width="50%"/>
-						<panel id="cont4" height="100%" width="50%" childLayout="vertical">
-							<text id="text4" text="Head" font="Interface/Fonts/Default.fnt" height="50%" width="100%" wrap="true"/>
-							<panel id="panel_color4" height="50%" width="100%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-								<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-								<interact onClick="showWindowChangeColor()"/>
-							</panel>
+					<panel id="t1" height="50%" width="100%" childLayout="vertical">
+						<text id="text1" text="Head" font="Interface/Fonts/Default.fnt" height="50%" width="100%" wrap="true"/>
+						<control id="i1" name="scrollPanel" vertical="false" height="70%" width="100%">
+							<panel id="myScrollStuff" childLayout="vertical"/>
+						</control>
+						<panel id="panel_color1" height="25%" width="100%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+							<text text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+							<interact onClick="showWindowChangeColor()"/>
 						</panel>
 					</panel>
 				</panel>
@@ -445,15 +406,26 @@
 			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
 				
 			</panel>
-			<panel height="10%" width="100%">
+			<panel height="6%" width="100%">
 					<!-- Space -->
 			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
-				<panel id="panel_animation" height="50%" width="80%" align="center" childLayout="vertical">
-					<!-- Animations -->
+			<panel id="panel_options-complexion" height="4%" width="30%" align="right" childLayout="horizontal"> 
+				<!-- Change Basic Options Panel -->
+				<panel id="panel_basic" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
+					<text text="Basic" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="changeTab(basic)"/>
 				</panel>
-				<panel id="panel_capture_options" height="50%" width="80%" align="center" childLayout="horizontal">
-					<!-- Capture Options -->
+				<!-- Change Advanced Options Panel -->
+				<panel id="panel_advanced" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
+					<text text="Custom" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
+					<interact onClick="changeTab(advanced)"/>
+				</panel>
+			</panel>
+			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
+				<panel id="panel_image" height="80%" width="80%" align="center" childLayout="vertical">
+					<panel height="5%" width="100%">
+					<!-- Space -->
+					</panel>
 				</panel>
 			</panel>
 			<!-- Change screen Panel -->
