@@ -40,8 +40,11 @@ import data.family.Family;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.asset.AssetManager;
+import com.jme3.scene.Node;
 import control.FamilyControl;
 import control.ModelControl;
+import control.SceneControl;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.HoverEffectBuilder;
@@ -85,9 +88,12 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private I18N i18nGui, i18nModel, i18nFamily; 
     private Application app;
     private Screen screen;
+    private AssetManager assetManager;
+    private Node rootNode;
     private Gui gui;
     private FamilyControl fc;
     private ModelControl mc;
+    private SceneControl sc;
     private String selection, familySelection, panelSelection, modelSelection, tabSelected;
     private int page, modelsPage;
     private Element popupColor, popupAnim, popupFin;
@@ -96,10 +102,12 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private ArrayList<Family> families;
     private int modelsSize, modelsAntSize;
     private int index;
-    private String languaje;
+    private String language;
     
-    public StartScreen(Gui gui){
+    public StartScreen(Gui gui, AssetManager assetManager, Node rootNode){
         this.gui = gui;
+        this.assetManager = assetManager;
+        this.rootNode = rootNode;
     }
     
     public void startGame(String nextScreen) {
@@ -137,7 +145,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         Iterator<Family> it = families.iterator();
         while(it.hasNext()){
             fc = new FamilyControl(it.next());
-            i18nFamily = new I18N(fc.getLanguagePath(),languaje);
+            i18nFamily = new I18N(fc.getLanguagePath(),language);
             ArrayList<String> models = fc.getModelsLabels();
             Iterator<String> itm = models.iterator();
             int i = 0;
@@ -205,13 +213,14 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         DropDown locale = nifty.getScreen("start").findNiftyControl("localeDropDown", DropDown.class);
         ArrayList<String> languajes = gui.config.getListLanguagesAvailables();
         Iterator<String> it = languajes.iterator();
+        String defectLanguage = gui.config.getProperty(Configuration.Language);
         while(it.hasNext()){
             final String l = it.next();
             locale.addItem(l);
         }
-        languaje = gui.config.getProperty(Configuration.Language);
-        locale.selectItem(languaje);
-        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),languaje);
+        language = defectLanguage;
+        locale.selectItem(defectLanguage);
+        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),language);
     }
     
     public void creaMenu(){
@@ -501,15 +510,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void loadFirstScreen(){
         nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
         gui.loadModel();
-        /*Iterator<Family> it = families.iterator();
-        while(it.hasNext()){
-            Family f = it.next();
-            if(f.getMetadata().getName().equals(familySelection)){
-                fc = new FamilyControl(f);
-            }
-        }*/
-        i18nModel = new I18N(gui.getModel(modelSelection).getLanguagesPath(),languaje);
+        i18nModel = new I18N(gui.getModel(modelSelection).getLanguagesPath(),language);
         mc = new ModelControl(gui.getModel(modelSelection));
+        //sc = new SceneControl(rootNode,assetManager,mc);
         stages = fc.getStagesLabels();
         selection = stages.get(index);
         creaMenu();
@@ -872,7 +875,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
            if(i18nFamily.getString(fc.getMetadataName()).equals(familySelection)){
                modelsAntSize = modelsSize;
                modelsSize = fc.getNumModels();
-               i18nFamily = new I18N(fc.getLanguagePath(),languaje);
+               i18nFamily = new I18N(fc.getLanguagePath(),language);
            }
         }
         changeCharacterPage("0", familyAnt);
@@ -883,9 +886,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     if (event.getSelection() != null) {
         Button startb = nifty.getScreen("start").findNiftyControl("startButton", Button.class);
         Button quitb = nifty.getScreen("start").findNiftyControl("quitButton", Button.class);
-        languaje = event.getSelection();
-        gui.config.setProperty(Configuration.Language, languaje);
-        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),languaje);
+        language = event.getSelection();
+        gui.config.setProperty(Configuration.Language, language);
+        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),language);
         nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDescription"));
         nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
         nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idLanguage"));
@@ -960,45 +963,43 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     }
     
     @NiftyEventSubscriber(id="slider0")
-    public void onHeadSliderChange(final String id, final SliderChangedEvent event) 
+    public void Slider0Change(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        gui.scaleHead(inc);
+        sc.setBoneControllerValue(idBones.get(page*BONES_PAGE), inc);
+        //gui.scaleHead(inc);
     }
     
     @NiftyEventSubscriber(id="slider1")
-    public void onTorsoSliderChange(final String id, final SliderChangedEvent event) 
+    public void onSlider1Change(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        gui.scaleTorax(inc);
-    }
-    
-    @NiftyEventSubscriber(id="slider3")
-    public void onHandsSliderChange(final String id, final SliderChangedEvent event) 
-    {
-        float inc = 1.0f + event.getValue() * 0.01f;
-        gui.scaleHands(inc);
-    }
-    
-    @NiftyEventSubscriber(id="feet")
-    public void onFeetSliderChange(final String id, final SliderChangedEvent event) 
-    {
-        float inc = 1.0f + event.getValue() * 0.01f;
-        gui.scaleFeet(inc);
-    }
-    
-    @NiftyEventSubscriber(id="slider4")
-    public void onLegsSliderChange(final String id, final SliderChangedEvent event) 
-    {
-        float inc = 1.0f + event.getValue() * 0.01f;
-        gui.scaleLegs(inc);
+        sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+1), inc);
+        //gui.scaleTorax(inc);
     }
     
     @NiftyEventSubscriber(id="slider2")
-    public void onArmsSliderChange(final String id, final SliderChangedEvent event) 
+    public void onSlider2Change(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        gui.scaleArms(inc);
+        sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+2), inc);
+        //gui.scaleHands(inc);
+    }
+    
+    @NiftyEventSubscriber(id="slider3")
+    public void onSlider3Change(final String id, final SliderChangedEvent event) 
+    {
+        float inc = 1.0f + event.getValue() * 0.01f;
+        sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+3), inc);
+        //gui.scaleLegs(inc);
+    }
+    
+    @NiftyEventSubscriber(id="slider4")
+    public void onSlider4Change(final String id, final SliderChangedEvent event) 
+    {
+        float inc = 1.0f + event.getValue() * 0.01f;
+        sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+4), inc);
+        //gui.scaleArms(inc);
     }
     
     public void screenshot() 
@@ -1008,10 +1009,12 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void changeBodyType(String bodyType)
     {
-        if(bodyType.equals("Normal")){gui.setBodyType(0);}
+        
+       sc.setPhysicalBuild(idPhysicalBuild.get(page*BONES_PAGE+Integer.parseInt(bodyType)));
+        /*if(bodyType.equals("Normal")){gui.setBodyType(0);}
         if(bodyType.equals("Tall")){gui.setBodyType(1);}
         if(bodyType.equals("Small")) {gui.setBodyType(2);}
         if(bodyType.equals("Heavy")) {gui.setBodyType(3);}
-        if(bodyType.equals("Thin")) {gui.setBodyType(4);}
+        if(bodyType.equals("Thin")) {gui.setBodyType(4);}*/
     }
 }

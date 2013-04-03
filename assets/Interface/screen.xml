@@ -159,7 +159,7 @@
 					<panel id="t0" height="14%" width="100%" childLayout="vertical">
 						<panel id="cont0" height="50%" width="100%" childLayout="horizontal">
 							<text id="text0" text="Head" font="Interface/Fonts/Default.fnt" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(Normal)"/>
+							<interact onClick="changeBodyType(0)"/>
 						</panel>
 						<control id="slider0" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
 					</panel>
@@ -169,7 +169,7 @@
 					<panel id="t1" height="14%" width="100%" childLayout="vertical">
 						<panel id="cont1" height="50%" width="100%" childLayout="horizontal">
 							<text id="text1" text="Head" font="Interface/Fonts/Default.fnt" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(Tall)"/>
+							<interact onClick="changeBodyType(1)"/>
 						</panel>
 						<control id="slider1" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
 					</panel>
@@ -179,7 +179,7 @@
 					<panel id="t2" height="14%" width="100%" childLayout="vertical">
 						<panel id="cont2" height="50%" width="100%" childLayout="horizontal">
 							<text id="text2" text="Head" font="Interface/Fonts/Default.fnt" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(Small)"/>
+							<interact onClick="changeBodyType(2)"/>
 						</panel>
 						<control id="slider2" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
 					</panel>
@@ -189,7 +189,7 @@
 					<panel id="t3" height="14%" width="100%" childLayout="vertical">
 						<panel id="cont3" height="50%" width="100%" childLayout="horizontal">
 							<text id="text3" text="Head" font="Interface/Fonts/Default.fnt" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(Heavy)"/>
+							<interact onClick="changeBodyType(3)"/>
 						</panel>
 						<control id="slider3" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
 					</panel>
@@ -199,7 +199,7 @@
 					<panel id="t4" height="14%" width="100%" childLayout="vertical">
 						<panel id="cont4" height="50%" width="100%" childLayout="horizontal">
 							<text id="text4" text="Head" font="Interface/Fonts/Default.fnt" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(Thin)"/>
+							<interact onClick="changeBodyType(4)"/>
 						</panel>
 						<control id="slider4" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
 					</panel>

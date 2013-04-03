@@ -97,7 +97,7 @@ public class Gui extends SimpleApplication{
         // Register locator to assetManager
         assetManager.registerLocator("."+File.separator, FileLocator.class); 
         
-        startScreen = new StartScreen(this);
+        startScreen = new StartScreen(this,assetManager,rootNode);
         stateManager.attach(startScreen);
         
         screenShotState = new ScreenshotAppState();
