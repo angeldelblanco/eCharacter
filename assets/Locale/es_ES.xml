@@ -8,6 +8,7 @@
 	<string id="idFamily">Elige la familia:</string>
 	<string id="idPrevious">Anterior</string>
 	<string id="idNext">Siguiente</string>
+	<string id="idFinish">Finalizar</string>
 	<string id="idPopup1">¿Quiere retocar el modelo o continuar con la exportación?</string>
 	<string id="idPopup2">¿Quiere generar un nuevo modelo?</string>
 	<string id="idPopupButton1">Retocar modelo</string>
