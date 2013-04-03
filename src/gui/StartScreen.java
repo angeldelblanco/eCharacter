@@ -70,7 +70,6 @@ import i18n.I18N;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import loader.Configuration;
 import types.Age;
 import types.Gender;
@@ -135,33 +134,35 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
         Iterator<Family> it = families.iterator();
         while(it.hasNext()){
-            final Family f = it.next();
-            List<ModelRefType> models = f.getModelsRef().getModelRef();
-            Iterator<ModelRefType> itm = models.iterator();
+            fc = new FamilyControl(it.next());
+            i18nFamily = new I18N(fc.getLanguagePath(),languaje);
+            ArrayList<String> models = fc.getModelsLabels();
+            Iterator<String> itm = models.iterator();
             int i = 0;
             while(itm.hasNext()){
-                ModelRefType m = itm.next();
+                String m = itm.next();
                 ImageBuilder image = new ImageBuilder(){{
                     width("0%");
                     height("0%");
                     childLayoutOverlay();
                     text("Man");
                 }};
-                image.id(f.getMetadata().getName()+"model"+Integer.toString(i));
-                image.filename(m.getIconPath());
-                image.interactOnClick("selectModel("+m.getModelPath()+",Man)");
-                image.onHoverEffect(new HoverEffectBuilder("Man"));
+                image.id(fc.getMetadataName()+"model"+Integer.toString(i));
+                image.filename(fc.getModelIconPath(m));
+                image.interactOnClick("selectModel("+fc.getModelPath(m)+",Man)");
+                //image.onHoverEffect(new HoverEffectBuilder("Man"));
+                //Nombre de los modelos con el i18n
                 image.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
                 i++;
             }
-            family.addItem(f.getMetadata().getName());
+            family.addItem(i18nFamily.getString(fc.getMetadataName()));
         }
-        modelsSize = families.get(0).getModelsRef().getModelRef().size();
+        fc = new FamilyControl(families.get(0));
+        modelsSize = fc.getNumModels();
         modelsAntSize = 0;
-        familySelection = families.get(0).getMetadata().getName();
+        familySelection = fc.getMetadataName();
         modelsPage = 0;
         changeCharacterPage("0",familySelection);
-        //i18nFamily = new I18N(,languaje);
     }
 
     public void quitGame() {
@@ -453,11 +454,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }
             Iterator<Family> it = families.iterator();
             while(it.hasNext()){
-                final Family f = it.next();
-                if(f.getMetadata().getName().equals(familySelection)){
+                fc = new FamilyControl(it.next());
+                if(fc.getMetadataName().equals(familySelection)){
                     String url = "";
-                    if(f.getMetadata().getURL()!=null){url = f.getMetadata().getURL();}
-                    nifty.getScreen("modelScreen").findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(f.getMetadata().getDescription()+f.getMetadata().getAuthor()+url);
+                    if(fc.getMetadataURL()!=null){url = fc.getMetadataURL();}
+                    nifty.getScreen("modelScreen").findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(i18nFamily.getString(fc.getMetadataDescription())+"\n"+fc.getMetadataAuthor()+"\n"+url);
                     nifty.getScreen("modelScreen").findElementByName("descriptionPanel").layoutElements();
                 }
             }
@@ -498,14 +499,14 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void loadFirstScreen(){
         nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
         gui.loadModel();
-        Iterator<Family> it = families.iterator();
+        /*Iterator<Family> it = families.iterator();
         while(it.hasNext()){
             Family f = it.next();
             if(f.getMetadata().getName().equals(familySelection)){
                 fc = new FamilyControl(f);
             }
-        }
-        //i18nModel = new I18N(,languaje);
+        }*/
+        i18nModel = new I18N(gui.getModel(modelSelection).getLanguagesPath(),languaje);
         mc = new ModelControl(gui.getModel(modelSelection));
         stages = fc.getStagesLabels();
         selection = stages.get(index);
@@ -818,15 +819,15 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     @NiftyEventSubscriber(id="familyDropDown")
   public void onFamilyDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
     if (event.getSelection() != null && (!familySelection.equals(""))) {
-        //i18nFamily = new I18N(,languaje);
         String familyAnt = familySelection;
         Iterator<Family> it = families.iterator();
         familySelection = event.getSelection();
         while(it.hasNext()){
-           final Family f = it.next();
-           if(f.getMetadata().getName().equals(familySelection)){
+           fc = new FamilyControl(it.next());
+           if(i18nFamily.getString(fc.getMetadataName()).equals(familySelection)){
                modelsAntSize = modelsSize;
-               modelsSize = f.getModelsRef().getModelRef().size();
+               modelsSize = fc.getNumModels();
+               i18nFamily = new I18N(fc.getLanguagePath(),languaje);
            }
         }
         changeCharacterPage("0", familyAnt);
