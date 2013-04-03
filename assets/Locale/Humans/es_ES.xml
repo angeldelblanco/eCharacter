@@ -31,6 +31,7 @@
 	<string id="idTextureSubStageLabel9">Cara</string>
 	<string id="idTextureSubStageLabel10">Accesorios de la cara</string>
 	<string id="idTextureSubStageLabel11">Otros accesorios</string>
+	<string id="idAnimationStageLabel1">Exportación</string>
 	<string id="idQualityLabel1">Alto</string>
 	<string id="idQualityLabel2">Medio</string>
 	<string id="idQualityLabel3">Bajo</string>
@@ -41,4 +42,3 @@
 	<string id="idModelLabel3">Niño</string>
 	<string id="idModelLabel4">Niña</string>
 </metadata>
-	

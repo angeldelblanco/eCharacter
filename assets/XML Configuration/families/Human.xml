@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <family xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../family.xsd">
 	<metadata>
-		<name>Human</name>
-		<description>Esta familia está compuesta por 2 humanos: un chico y una chica.</description>
+		<name>idNameFamily</name>
+		<description>idDescriptionFamily</description>
 		<author>Alex, David y Sergio.</author>
 		<languagesPath>assets/Locale/Humans</languagesPath>
 	</metadata>
 	<stages>
-		<scaleStage stageLabel="Scale" idPanel="ScalePanel">
-			<boneController controllerLabel="Head" idController="head"/>
-			<boneController controllerLabel="Torso" idController="torso"/>
-			<boneController controllerLabel="Left Arm" idController="leftArm"/>
-			<boneController controllerLabel="Righ Arm" idController="rightArm"/>
-			<boneController controllerLabel="Left Hand" idController="leftHand"/>
-			<boneController controllerLabel="Right Hand" idController="rightHand"/>
-			<boneController controllerLabel="Left Leg" idController="leftLeg"/>
-			<boneController controllerLabel="Right Leg" idController="rightLeg"/>
-			<boneController controllerLabel="Left Foot" idController="leftFoot"/>
-			<boneController controllerLabel="Right Foot" idController="rightFoot"/>			
+		<scaleStage stageLabel="idMultiStageLabel1" idPanel="ScalePanel">
+			<boneController controllerLabel="idBoneControler1" idController="head"/>
+			<boneController controllerLabel="idBoneControler2" idController="torso"/>
+			<boneController controllerLabel="idBoneControler3" idController="leftArm"/>
+			<boneController controllerLabel="idBoneControler4" idController="rightArm"/>
+			<boneController controllerLabel="idBoneControler5" idController="leftHand"/>
+			<boneController controllerLabel="idBoneControler6" idController="rightHand"/>
+			<boneController controllerLabel="idBoneControler7" idController="leftLeg"/>
+			<boneController controllerLabel="idBoneControler8" idController="rightLeg"/>
+			<boneController controllerLabel="idBoneControler9" idController="leftFoot"/>
+			<boneController controllerLabel="idBoneControler10" idController="rightFoot"/>			
 		</scaleStage>
-		<multiStage stageLabel="Skin">
-			<textureSubStage subStageLabel="Skins" idPanel="skinsPanel" multiselection="false"/>
+		<multiStage stageLabel="idMultiStageLabel2">
+			<textureSubStage subStageLabel="idTextureSubStageLabel1" idPanel="skinsPanel" multiselection="false"/>
 		</multiStage>
-		<multiStage stageLabel="Eyes">
-			<textureSubStage subStageLabel="Eyes" idPanel="eyesPanel" multiselection="false"/>
-			<textureSubStage subStageLabel="Eyebrows and Eyelashes" idPanel="eyebrowsPanel" multiselection="true"/>
+		<multiStage stageLabel="idMultiStageLabel3">
+			<textureSubStage subStageLabel="idTextureSubStageLabel2" idPanel="eyesPanel" multiselection="false"/>
+			<textureSubStage subStageLabel="idTextureSubStageLabel3" idPanel="eyebrowsPanel" multiselection="true"/>
 		</multiStage>
-		<multiStage stageLabel="TShirt">
-			<textureSubStage subStageLabel="TShirts" idPanel="tshirtsPanel" multiselection="false"/>
+		<multiStage stageLabel="idMultiStageLabel4">
+			<textureSubStage subStageLabel="idTextureSubStageLabel4" idPanel="tshirtsPanel" multiselection="false"/>
 		</multiStage>
-		<multiStage stageLabel="Trousers">
-			<textureSubStage subStageLabel="Trousers" idPanel="trousersPanel" multiselection="false"/>
+		<multiStage stageLabel="idMultiStageLabel5">
+			<textureSubStage subStageLabel="idTextureSubStageLabel5" idPanel="trousersPanel" multiselection="false"/>
 		</multiStage>		
-		<multiStage stageLabel="Shoes">
-			<textureSubStage subStageLabel="Shoes" idPanel="shoesPanel" multiselection="false"/>
-			<textureSubStage subStageLabel="Socks" idPanel="socksPanel" multiselection="false"/>
+		<multiStage stageLabel="idMultiStageLabel6">
+			<textureSubStage subStageLabel="idTextureSubStageLabel6" idPanel="shoesPanel" multiselection="false"/>
+			<textureSubStage subStageLabel="idTextureSubStageLabel7" idPanel="socksPanel" multiselection="false"/>
 		</multiStage>
-		<multiStage stageLabel="Hair">
-			<meshSubStage subStageLabel="Hairs" idPanel="hairsPanel" multiselection="false"/>
+		<multiStage stageLabel="idMultiStageLabel7">
+			<meshSubStage subStageLabel="idTextureSubStageLabel8" idPanel="hairsPanel" multiselection="false"/>
 		</multiStage>
-		<multiStage stageLabel="Accesories">
-			<textureSubStage subStageLabel="Face" idPanel="facePanel" multiselection="false"/>
-			<textureSubStage subStageLabel="Accesories Face" idPanel="accesoriesFacePanel" multiselection="true"/>
-			<textureSubStage subStageLabel="Other Accesories" idPanel="otherAccesoriesPanel" multiselection="true"/>
+		<multiStage stageLabel="idMultiStageLabel8">
+			<textureSubStage subStageLabel="idTextureSubStageLabel9" idPanel="facePanel" multiselection="false"/>
+			<textureSubStage subStageLabel="idTextureSubStageLabel10" idPanel="accesoriesFacePanel" multiselection="true"/>
+			<textureSubStage subStageLabel="idTextureSubStageLabel11" idPanel="otherAccesoriesPanel" multiselection="true"/>
 		</multiStage>
-		<animationStage>
+		<animationStage stageLabel="idAnimationStageLabel1">
 			<!-- Dar valores. Los que hay son aleatorios -->
-			<fps qualityLabel="High" fpsValue="3"/>
-			<fps qualityLabel="Medium" fpsValue="2"/>
-			<fps qualityLabel="Low" fpsValue="1"/>
-			<camera cameraLabel="Front">
+			<fps qualityLabel="idQualityLabel1" fpsValue="3"/>
+			<fps qualityLabel="idQualityLabel2" fpsValue="2"/>
+			<fps qualityLabel="idQualityLabel3" fpsValue="1"/>
+			<camera cameraLabel="idCameraLabel1">
 				<upAxis valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<location valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<direction valueX="2.0" valueY="2.0" valueZ="2.0"/>
 			</camera>
-			<camera cameraLabel="2D">
+			<camera cameraLabel="idCameraLabel2">
 				<upAxis valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<location valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<direction valueX="2.0" valueY="2.0" valueZ="2.0"/>
@@ -63,22 +63,22 @@
 	</stages>
 	<modelsRef>
 		<modelRef>
-			<modelLabel>Boy</modelLabel>
+			<modelLabel>idModelLabel1</modelLabel>
 			<iconPath>assets/Interface/Icons/eAdventure/man.png</iconPath>
 			<modelPath>assets/XML Configuration/models/Man.xml</modelPath>
 		</modelRef>
 		<modelRef>
-			<modelLabel>Girl</modelLabel>
+			<modelLabel>idModelLabel2</modelLabel>
 			<iconPath>assets/Interface/Icons/eAdventure/woman.png</iconPath>
 			<modelPath>assets/XML Configuration/models/Woman.xml</modelPath>
 		</modelRef>	
 		<modelRef>
-			<modelLabel>Young Boy</modelLabel>
+			<modelLabel>idModelLabel3</modelLabel>
 			<iconPath>assets/Interface/Icons/eAdventure/young_boy.png</iconPath>
 			<modelPath>assets/XML Configuration/models/YoungBoy.xml</modelPath>
 		</modelRef>
 		<modelRef>
-			<modelLabel>Young Girl</modelLabel>
+			<modelLabel>idModelLabel4</modelLabel>
 			<iconPath>assets/Interface/Icons/eAdventure/young_girl.png</iconPath>
 			<modelPath>assets/XML Configuration/models/YoungWoman.xml</modelPath>
 		</modelRef>

@@ -31,6 +31,7 @@
 	<string id="idTextureSubStageLabel9">Face</string>
 	<string id="idTextureSubStageLabel10">Accesories face</string>
 	<string id="idTextureSubStageLabel11">Other accesories</string>
+	<string id="idAnimationStageLabel1">Export</string>
 	<string id="idQualityLabel1">High</string>
 	<string id="idQualityLabel2">Medium</string>
 	<string id="idQualityLabel3">Low</string>

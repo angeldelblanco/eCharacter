@@ -69,6 +69,9 @@ public class FamilyControl
             MultiStageType mst = it2.next();
             listStagesLabels.add(mst.getStageLabel());
         }
+        AnimationStageType as = family.getStages().getAnimationStage();
+        listStagesLabels.add(as.getStageLabel());
+            
         return listStagesLabels;
     }
     
@@ -98,6 +101,11 @@ public class FamilyControl
                 }
             }
         }
+        
+        AnimationStageType as = family.getStages().getAnimationStage();
+        if(as.getStageLabel().equals(idStage)){
+            return StageType.animationStage;
+        }     
         
         return null;
     }
@@ -209,11 +217,6 @@ public class FamilyControl
                 }                
             }
         }
-        return null;
-        
-    }
-    
-    
-    
-    
+        return null;       
+    } 
 }

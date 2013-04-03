@@ -186,22 +186,22 @@
 		</bones>		
 		<!--Physical Builds-->
 		<physicalBuilds>
-			<physicalBuild label="Medium-Built" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
+			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
 				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
-			<physicalBuild label="Heavy" idPanelRef="ScalePanel" idPhysicalBuild="idHeavy">
+			<physicalBuild label="idPhysicalBuildLabel2" idPanelRef="ScalePanel" idPhysicalBuild="idHeavy">
 				<escalation boneName="ALL" valueX="1.50" valueY="1.0" valueZ="1.0"/>
 				<escalation boneName="Cabeza" valueX="0.66" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
-			<physicalBuild label="Thin" idPanelRef="ScalePanel" idPhysicalBuild="idThin">
+			<physicalBuild label="idPhysicalBuildLabel3" idPanelRef="ScalePanel" idPhysicalBuild="idThin">
 				<escalation boneName="ALL" valueX="0.65" valueY="1.0" valueZ="1.0"/>
 				<escalation boneName="Cabeza" valueX="1.54" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
-			<physicalBuild label="Tall" idPanelRef="ScalePanel" idPhysicalBuild="idTall">
+			<physicalBuild label="idPhysicalBuildLabel4" idPanelRef="ScalePanel" idPhysicalBuild="idTall">
 				<escalation boneName="ALL" valueX="1.1" valueY="1.25" valueZ="1.25"/>
 				<escalation boneName="Cabeza" valueX="0.91" valueY="0.8" valueZ="0.8"/>
 			</physicalBuild>
-			<physicalBuild label="Small" idPanelRef="ScalePanel" idPhysicalBuild="idSmall">
+			<physicalBuild label="idPhysicalBuildLabel5" idPanelRef="ScalePanel" idPhysicalBuild="idSmall">
 				<escalation boneName="ALL" valueX="0.9" valueY="0.75" valueZ="0.75"/>
 				<escalation boneName="Cabeza" valueX="1.11" valueY="1.33" valueZ="1.33"/>
 			</physicalBuild>

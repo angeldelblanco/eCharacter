@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.04.01 a las 04:00:23 PM CEST 
+// Generado el: AM.04.03 a las 10:17:19 AM CEST 
 //
 
 
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -29,6 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="fps" type="{}fpsType" maxOccurs="unbounded"/>
  *         &lt;element name="camera" type="{}cameraType" maxOccurs="unbounded"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="stageLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -47,6 +49,8 @@ public class AnimationStageType {
     protected List<FpsType> fps;
     @XmlElement(required = true)
     protected List<CameraType> camera;
+    @XmlAttribute(name = "stageLabel", required = true)
+    protected String stageLabel;
 
     /**
      * Gets the value of the fps property.
@@ -104,6 +108,30 @@ public class AnimationStageType {
             camera = new ArrayList<CameraType>();
         }
         return this.camera;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad stageLabel.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStageLabel() {
+        return stageLabel;
+    }
+
+    /**
+     * Define el valor de la propiedad stageLabel.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStageLabel(String value) {
+        this.stageLabel = value;
     }
 
 }

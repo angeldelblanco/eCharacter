@@ -70,6 +70,7 @@
 			<xs:element name="fps" type="fpsType" minOccurs="1" maxOccurs="unbounded"/>
 			<xs:element name="camera" type="cameraType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:attribute name="stageLabel" type="xs:string" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="fpsType">
 		<xs:attribute name="qualityLabel" type="xs:string" use="required"/>
