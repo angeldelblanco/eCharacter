@@ -289,5 +289,39 @@ public class FamilyControl
             }
         }
         return null;       
-    } 
+    }
+    
+    /**************************** Animation Stage **************************/
+    public ArrayList<String> getCamerasLabels()
+    {
+        ArrayList<String> listCameraLabels = new ArrayList<String>();
+        AnimationStageType animationStage = family.getStages().getAnimationStage();
+        ArrayList<CameraType> listCameras = (ArrayList<CameraType>) animationStage.getCamera();
+        Iterator<CameraType> it = listCameras.iterator();
+        while(it.hasNext())
+        {
+            CameraType camera = it.next();
+            listCameraLabels.add(camera.getCameraLabel());
+        }
+        return listCameraLabels;
+    }
+    
+    public int getNumCameras()
+    {
+        return getCamerasLabels().size();
+    }
+    
+    public ArrayList<String> getQualityLabels()
+    {
+        ArrayList<String> listQualityLabels = new ArrayList<String>();
+        AnimationStageType animationStage = family.getStages().getAnimationStage();
+        ArrayList<FpsType> listQuality = (ArrayList<FpsType>) animationStage.getFps();
+        Iterator<FpsType> it = listQuality.iterator();
+        while(it.hasNext())
+        {
+            FpsType quality = it.next();
+            listQualityLabels.add(quality.getQualityLabel());
+        }
+        return listQualityLabels;
+    }
 }
