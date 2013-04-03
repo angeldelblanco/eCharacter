@@ -16,18 +16,18 @@
       </panel>
       <panel id="panel_bottom" height="30%" width="75%" align="center" childLayout="horizontal">  
         <panel id="panel_bottom_left" height="50%" width="50%" valign="center" childLayout="center">  
-          <control name="button" label="Start" id="StartButton" align="center" valign="center" visibleToMouse="true"> 
+          <control name="button" label="Start" id="startButton" align="center" valign="center" visibleToMouse="true"> 
             <interact onClick="startGame(modelScreen)" />
           </control>
         </panel>
         <panel id="panel_bottom_right" height="50%" width="50%" valign="center" childLayout="center">  
-          <control name="button" label="Quit" id="QuitButton" align="center" valign="center"  visibleToMouse="true" > 
+          <control name="button" label="Quit" id="quitButton" align="center" valign="center"  visibleToMouse="true" > 
             <interact onClick="quitGame()"/>
           </control>
         </panel>
       </panel>
 	  <panel id="panel_location" height="30%" width="75%" valign="center" align="center" childLayout="horizontal">
-		<text text="Language:" font="Interface/Fonts/Default.fnt" width="75%" height="100%" valign="center" align="right" wrap="true" />
+		<text id="languageText" text="Language:" font="Interface/Fonts/Default.fnt" width="75%" height="100%" valign="center" align="right" wrap="true" />
 	  </panel>
     </layer>
   </screen>

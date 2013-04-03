@@ -50,6 +50,7 @@ import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.PopupBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
+import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.ButtonClickedEvent;
 import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
@@ -812,13 +813,23 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     @NiftyEventSubscriber(id="localeDropDown")
   public void onLocaleDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
     if (event.getSelection() != null) {
+        Button startb = nifty.getScreen("start").findNiftyControl("startButton", Button.class);
+        Button quitb = nifty.getScreen("start").findNiftyControl("quitButton", Button.class);
         if(event.getSelection().equals("en_UK")){
             nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText("Inglis pitinglis soooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooomooooooooossss chekoslovakossssss");
             nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
+            nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText("Lenguage:");
+            nifty.getScreen("start").findElementByName("panel_location").layoutElements();
+            startb.setText("Start");
+            quitb.setText("Quit");
         }
         if(event.getSelection().equals("es_ES")){
             nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText("Estoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo essssssssssssssssssssssssssssssss españoooooooooooooooooooooooooooooooooooooooooooooooooooooooooollllll");
             nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
+            nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText("Idioma:");
+            nifty.getScreen("start").findElementByName("panel_location").layoutElements();
+            startb.setText("Inicio");
+            quitb.setText("Salir");
         }
     }
   }

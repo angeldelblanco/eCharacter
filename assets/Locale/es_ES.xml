@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="es_ES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="language.xsd">
 	<string id="idDescription">Bienvenido al configurador de personajes para eAdventure. Con este configurador de personajes podrás crear tu avatar para jugar a los juegos de la plataforma eAdventure.</string>
-	<string id="idStart">Comienzo</string>
+	<string id="idStart">Inicio</string>
 	<string id="idQuit">Salir</string>
-	<string id="idLanguage">Lenguaje</string>
+	<string id="idLanguage">Idioma</string>
 	<string id="idChose">Elige tu modelo</string>
 	<string id="idFamily">Elige la familia:</string>
 	<string id="idPrevious">Anterior</string>
