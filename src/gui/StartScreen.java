@@ -228,7 +228,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                     text(new TextBuilder(){{
                         color(Color.WHITE);
                         font("Interface/Fonts/Default.fnt");
-                        text(pant);
+                        text(i18nFamily.getString(pant));
                         width("100%");
                     }});
                 }};
@@ -432,8 +432,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             for(int i=modelsPage*TEXTURES_PAGE; i<modelsSize; i++){
                 if(i<((modelsPage+1)*TEXTURES_PAGE)){
                     nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setVisible(true);
-                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setHeight(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
-                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setWidth(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
+                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setHeight(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight()-5);
+                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setWidth(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth()-5);
                 }
             }
             if(modelsPage > 0){
@@ -554,7 +554,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 bonesSize = idPhysicalBuild.size();
                 for(int i=page*BONES_PAGE; i<bonesSize; i++){
                     if(i<((page+1)*BONES_PAGE)){
-                       nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%BONES_PAGE)).getRenderer(TextRenderer.class).setText(mc.getPhysicalBuildLabel(idPhysicalBuild.get(i)));
+                       nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%BONES_PAGE)).getRenderer(TextRenderer.class).setText(i18nModel.getString(mc.getPhysicalBuildLabel(idPhysicalBuild.get(i))));
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).layoutElements();
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).enable();
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).setVisible(true);
@@ -569,7 +569,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 bonesSize = idBones.size();
                 for(int i=page*BONES_PAGE; i<bonesSize; i++){
                     if(i<((page+1)*BONES_PAGE)){
-                       nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%BONES_PAGE)).getRenderer(TextRenderer.class).setText(fc.getBoneControllerLabel(selection, idBones.get(i)));
+                       nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%BONES_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(fc.getBoneControllerLabel(selection, idBones.get(i))));
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).layoutElements();
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).disable();
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).setVisible(true);
@@ -728,8 +728,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             for(int i=page*TEXTURES_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
                 if(i<((page+1)*TEXTURES_PAGE)){
                     nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setVisible(true);
-                    nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setHeight(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight());
-                    nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setWidth(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth());
+                    nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setHeight(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getHeight()-5);
+                    nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setWidth(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getWidth()-5);
                 }
             }
             if(page > 0){
