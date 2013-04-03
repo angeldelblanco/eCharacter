@@ -9,6 +9,7 @@
 	<string id="idPrevious">Previous</string>
 	<string id="idNext">Next</string>
 	<string id="idFinish">Finish</string>
+	<string id="idColor">Color</string>
 	<string id="idPopup1">Do you want to tweak the model, or go to the export stage?</string>
 	<string id="idPopup2">Do you want to generate a new model?</string>
 	<string id="idPopupButton1">Tweak model</string>

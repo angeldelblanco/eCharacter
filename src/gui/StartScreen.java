@@ -520,7 +520,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void initIcons(){
         String stage = StageType.singleStage.toString();
         for(int j = 0; j < stages.size(); j++){
-        //for(int j = 0; j < 6; j++){
             if(fc.getStagesTypes(stages.get(j)).toString().equals(stage)){
                 ArrayList<String> idSubStages = fc.getIdsSubStages(stages.get(j));
                 ArrayList<String> idsTextures = mc.getIdsTexturesORSubMeshes(idSubStages.get(0));
@@ -536,6 +535,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                     image.interactOnClick("changeTexture("+Integer.toString(i)+")");
                     image.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
                 }
+                nifty.getScreen(stage).findElementByName("colorText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
+                nifty.getScreen(stage).findElementByName("panel_color").layoutElements(); 
             }
         }
     }
