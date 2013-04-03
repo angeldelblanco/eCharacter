@@ -72,19 +72,30 @@ public class SceneControl
         this.rootNode = rootNode;
         this.assetManager = assetManager;
         this.modelControl = modelControl;
+        this.subMeshes = new HashMap<String, Spatial>();
+        this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
         this.rootNode.addLight(dl);
-        
         mainMesh = this.assetManager.loadModel(this.modelControl.getMainMeshPath());        
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         //Aqui deberia ir cargar Texturas por Defecto
-        mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png"));         
+        mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png"));
+        mainMesh.setMaterial(mat);
         setDefaultSubMeshes();
         attachAllChild();
         rootNode.attachChild(mainMesh);
         setPositionModel(modelControl.getMainMeshTransformations());
+        
+       
+        this.control = mainMesh.getControl(AnimControl.class);
+        this.channel = this.control.createChannel();
+        Set<String> animList = (Set<String>) this.control.getAnimationNames();
+        if(animList.size() > 0){
+            this.channel.setAnim(animList.iterator().next());
+            this.channel.setLoopMode(LoopMode.Loop); 
+        }
        
         /*
         //Borrar la imagen
@@ -95,22 +106,6 @@ public class SceneControl
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
         } */      
-    }
-    
-    public SceneControl(Spatial mainMesh,Material mat)
-    {
-        this.mainMesh = mainMesh;
-        this.mat = mat;
-        this.mainMesh.setMaterial(mat);
-        this.subMeshes = new HashMap<String, Spatial>();
-        this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
-        this.control = mainMesh.getControl(AnimControl.class);
-        this.channel = this.control.createChannel();
-        ArrayList<String> animList = (ArrayList<String>) this.control.getAnimationNames();
-        if(animList.size() > 0){
-            this.channel.setAnim(animList.get(0));
-            this.channel.setLoopMode(LoopMode.Loop); 
-        }
     }
     
     private void setDefaultSubMeshes()
@@ -158,7 +153,7 @@ public class SceneControl
         else if(transformation.equals("rotate")){
             s.rotate(FastMath.DEG_TO_RAD*t.getValueX(),FastMath.DEG_TO_RAD*t.getValueY(),FastMath.DEG_TO_RAD*t.getValueZ());
         }
-        else if(transformation.equals("transalate")){
+        else if(transformation.equals("translate")){
             s.move(t.getValueX(),t.getValueY(),t.getValueZ());
         }
         else if(transformation.equals("center")){
@@ -259,5 +254,15 @@ public class SceneControl
     public int getNumAnimations()
     {
         return control.getAnimationNames().size();
+    }
+    
+    public void changeTexture(String idPanel,String idTexture)
+    {
+        //POR HACER
+    }
+    
+    public void changeColor(float red,float green,float blue)
+    {
+        //POR HACER
     }
 }

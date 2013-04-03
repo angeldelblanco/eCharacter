@@ -32,7 +32,7 @@
 			<!-- eyes textures-->
 			<!-- eyesPanel textures-->			
 			<doubleTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idOjos">
-				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoOjosGirl</iconPath>
+				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoOjosGirl.png</iconPath>
 				<basePath>assets/Textures/eAdventure/Textures Girl/IrisGirl.png</basePath>
 				<detailsPath>assets/Textures/eAdventure/Textures Girl/PupilaGirl.png</detailsPath>
 			</doubleTexture>
@@ -188,6 +188,7 @@
 		<physicalBuilds>
 			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
 				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+                                <escalation boneName="Cabeza" valueX="1.0" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
 			<physicalBuild label="idPhysicalBuildLabel2" idPanelRef="ScalePanel" idPhysicalBuild="idHeavy">
 				<escalation boneName="ALL" valueX="1.50" valueY="1.0" valueZ="1.0"/>
