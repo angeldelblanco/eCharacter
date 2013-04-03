@@ -250,4 +250,14 @@ public class SceneControl
         }
         
     }
+    
+    public Set<String> getAnimationsName()
+    {
+        return (Set<String>) control.getAnimationNames();
+    }
+    
+    public int getNumAnimations()
+    {
+        return control.getAnimationNames().size();
+    }
 }
