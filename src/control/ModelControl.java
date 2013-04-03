@@ -36,6 +36,7 @@
 package control;
 
 import data.model.*;
+import data.model.MultiOptionTextureType.Texture;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -178,7 +179,6 @@ public class ModelControl
         return listIds;
     }
     
-    
     /*
      * Receives a input id texture and return a texture´s icon path 
      * which are associated with this texture. 
@@ -208,20 +208,48 @@ public class ModelControl
         return null; 
     }
     
-    /*public ArrayList<TextureType> getDefaultTextures()
+    /*
+     * Return the list of default textures.
+     */
+    public ArrayList<TextureType> getDefaultTextures()
     {
         ArrayList<TextureType> listDefaultTextures = new ArrayList<TextureType>();
         ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
         Iterator<TextureType> it = listTextures.iterator();
         while(it.hasNext())
         {
-            TextureType texture = it.next();
-            if(texture.isDefault()){
-                listDefaultTextures.add(texture);
+            TextureType textureType = it.next();
+            if(textureType instanceof BaseShadowTextureType){
+                if(((BaseShadowTextureType)textureType).isDefault()){
+                listDefaultTextures.add(textureType);
+                }
+            }
+            else if(textureType instanceof DoubleTextureType){
+                if(((DoubleTextureType)textureType).isDefault()){
+                    listDefaultTextures.add(textureType);
+                }
+            }
+            else if(textureType instanceof SimpleTextureType){
+                if(((SimpleTextureType)textureType).isDefault()){
+                    listDefaultTextures.add(textureType);
+                }
+            }
+            else if(textureType instanceof MultiOptionTextureType){
+                ArrayList<Texture> listMultiTextures = (ArrayList<Texture>) ((MultiOptionTextureType)textureType).getTexture();
+                Iterator<Texture> it2 = listMultiTextures.iterator();
+                boolean isDefault = false;
+                while(!isDefault && it2.hasNext())
+                {
+                    Texture texture = it2.next();
+                    if(texture.isDefault()){
+                        isDefault = true;
+                        listDefaultTextures.add(textureType);
+                    }
+                }
             }
         }
         return listDefaultTextures;
-    }*/
+    }
     
     /*public TextureType getTexture(String idTexture)
     {
@@ -292,44 +320,6 @@ public class ModelControl
     }   
     
     /***************************   SUBMESHES   ********************************/
-    
-    //Return the number of subMeshes.
-    /*public int getNumSubMeshes(String idPanelRef)
-    {
-        return getIdsSubMesh(idPanelRef).size();
-    }*/
-        
-    //Receives a input id panel and return a list with the ids sub mesh which are associated with this panel
-    /*public ArrayList<String> getIdsSubMesh(String idPanelRef)
-    {
-        ArrayList<String> listIdsSubMesh = new ArrayList<String>();
-        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
-        Iterator<SubMeshType> it = listSubMeshes.iterator();
-        while(it.hasNext())
-        {
-            SubMeshType subMesh = it.next();
-            if(subMesh.getIdPanelRef().equals(idPanelRef)){
-                listIdsSubMesh.add(subMesh.getIdSubMesh());
-            }            
-        }
-        return listIdsSubMesh; 
-    }*/
-    
-    //Receives a input id panel and return a list with the submesh´s icon path which are associated with this panel
-    /*public String getSubMeshIconPath(String idSubMesh)
-    {
-        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
-        Iterator<SubMeshType> it = listSubMeshes.iterator();
-        while(it.hasNext())
-        {
-            SubMeshType subMesh = it.next();
-            if(subMesh.getIdSubMesh().equals(idSubMesh)){
-                return subMesh.getIconPath();
-            }            
-        }
-        return null; 
-    }*/
-    
     
     //REVISAR ESTE METODO Y EL SIGUIENTE
     

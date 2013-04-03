@@ -40,10 +40,13 @@ import com.jme3.animation.AnimControl;
 import com.jme3.animation.Bone;
 import com.jme3.animation.LoopMode;
 import com.jme3.animation.SkeletonControl;
+import com.jme3.asset.AssetManager;
+import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import data.model.*;
 import java.util.ArrayList;
@@ -53,12 +56,50 @@ import java.util.Set;
 
 public class SceneControl 
 {
+    private Node rootNode;
+    private AssetManager assetManager;
     private Spatial mainMesh;
+    private HashMap<String,TexturesInPanel> textures;
     private HashMap<String,Spatial> subMeshes;
     private Material mat;
     private AnimChannel channel;
     private AnimControl control;
     private Vector3f vectorScaleBase;
+    
+   /* public SceneControl(Node rootNode,AssetManager assetManager,String modelPath)
+    {
+        this.rootNode = rootNode;
+        this.assetManager = assetManager;
+        
+        DirectionalLight dl = new DirectionalLight();
+        dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
+        this.rootNode.addLight(dl);
+        
+        mainMesh = this.assetManager.loadModel(modelPath);        
+        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");        
+        
+        
+        /*mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png"));   
+            
+        Spatial hairMesh = assetManager.loadModel("assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml");
+        Material hairMat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        hairMat.setTexture("DiffuseMap",assetManager.loadTexture("assets/Models/eAdventure/Hair Boy/hairtexture.png"));
+        hairMesh.setMaterial(hairMat);
+        model.addSubMeshes("Cabeza",hairMesh);
+        //model.setHair("assets/Models/eAdventure/Hair Boy/pasted__pasted__pasted__polySurfaceShape2.mesh.xml", "assets/Models/eAdventure/Hair Boy/pasted__pasted__pasted__polySurfaceShape2.material");
+        rootNode.attachChild(model.getModel());
+        model.setPositionModel();
+        
+        //Borrar la imagen
+        Path file = Paths.get("assets/Textures/OriginalTexture.png");
+        try {
+            Files.delete(file);
+        } 
+        catch (IOException ex) {
+            System.out.println("Error al borrar el fichero");
+        } */      
+        
+    
     
     public SceneControl(Spatial mainMesh,Material mat)
     {
