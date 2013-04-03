@@ -51,6 +51,77 @@ public class FamilyControl
         this.family = family;
     }
     
+    /**************************** FAMILIES SELECTOR **************************/
+    public ArrayList<String> getModelsLabels()
+    {
+        ArrayList<String> listModelsLables = new ArrayList<String>();
+        ArrayList<ModelRefType> listModelRefType = (ArrayList<ModelRefType>)family.getModelsRef().getModelRef();
+        Iterator<ModelRefType> it = listModelRefType.iterator();
+        while(it.hasNext())
+        {
+            ModelRefType modelRefType = it.next();
+            listModelsLables.add(modelRefType.getModelLabel());
+        }
+        return listModelsLables;
+    }
+    
+    public String getModelIconPath(String modelLabel)
+    {
+        ArrayList<ModelRefType> listModelRefType = (ArrayList<ModelRefType>)family.getModelsRef().getModelRef();
+        Iterator<ModelRefType> it = listModelRefType.iterator();
+        while(it.hasNext())
+        {
+            ModelRefType modelRefType = it.next();
+            if(modelRefType.getModelLabel().equals(modelLabel)){
+                return modelRefType.getIconPath();
+            }
+        }
+        return null;
+    }
+    
+    public String getModelPath(String modelLabel)
+    {
+        ArrayList<ModelRefType> listModelRefType = (ArrayList<ModelRefType>)family.getModelsRef().getModelRef();
+        Iterator<ModelRefType> it = listModelRefType.iterator();
+        while(it.hasNext())
+        {
+            ModelRefType modelRefType = it.next();
+            if(modelRefType.getModelLabel().equals(modelLabel)){
+                return modelRefType.getModelPath();
+            }
+        }
+        return null;
+    }
+    
+    public int getNumModels()
+    {
+        return getModelsLabels().size();
+    }
+    
+    public String getMetadataAuthor()
+    {
+        return family.getMetadata().getAuthor();
+    }
+    
+    public String getMetadataDescription()
+    {
+        return family.getMetadata().getDescription();
+    }
+    
+    public String getMetadataName()
+    {
+        return family.getMetadata().getName();
+    }
+    
+    public String getMetadataURL()
+    {
+        return family.getMetadata().getURL();
+    }
+    
+    public String getLanguagePath()
+    {
+        return family.getMetadata().getLanguagesPath();
+    }
     /**************************** STAGES *************************************/
     public ArrayList<String> getStagesLabels()
     {
@@ -176,7 +247,7 @@ public class FamilyControl
         return null;         
     }
     
-    /**************************************************************************/
+    /************************   BONES CONTROLLERS   ***************************/
     public ArrayList<String> getIdBonesController(String idStageLabel)
     {
         ArrayList<String> listIdBonesController = new ArrayList<String>();

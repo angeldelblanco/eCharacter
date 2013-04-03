@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.03 a las 10:17:19 AM CEST 
+// Generado el: AM.04.03 a las 11:47:25 AM CEST 
 //
 
 
@@ -11,7 +11,11 @@ package data.family;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -24,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="modelLabel" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="modelLabel" type="{http://www.w3.org/2001/XMLSchema}ID"/>
  *         &lt;element name="iconPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="modelPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
@@ -44,6 +48,9 @@ import javax.xml.bind.annotation.XmlType;
 public class ModelRefType {
 
     @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlID
+    @XmlSchemaType(name = "ID")
     protected String modelLabel;
     @XmlElement(required = true)
     protected String iconPath;

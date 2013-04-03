@@ -91,7 +91,7 @@
 	</xs:complexType>
 	<xs:complexType name="modelRefType">
 		<xs:sequence>
-			<xs:element name="modelLabel" type="xs:string"/>
+			<xs:element name="modelLabel" type="xs:ID"/>
 			<xs:element name="iconPath" type="xs:string"/>
 			<xs:element name="modelPath" type="xs:string"/>
 		</xs:sequence>

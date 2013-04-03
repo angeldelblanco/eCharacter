@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.03 a las 10:17:19 AM CEST 
+// Generado el: AM.04.03 a las 11:47:25 AM CEST 
 //
 
 
@@ -47,8 +47,8 @@ import javax.xml.bind.annotation.XmlType;
 public class MultiStageType {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "textureSubStage", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "meshSubStage", type = JAXBElement.class, required = false)
+        @XmlElementRef(name = "meshSubStage", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "textureSubStage", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<SubStageType>> meshSubStageOrTextureSubStage;
     @XmlAttribute(name = "stageLabel", required = true)

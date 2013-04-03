@@ -50,6 +50,12 @@ public class ModelControl
     
     /**************************  MAIN MESH   **********************************/
     
+    //--------------------------  LANGUAGE PATH   -----------------------------/
+    public String getLanguagePath()
+    {
+        return model.getLanguagesPath();
+    }
+    
     //--------------------- TRANSFORMATIONS AND BONES  ------------------------/
     
     //Return the list of transformation of the main mesh.
