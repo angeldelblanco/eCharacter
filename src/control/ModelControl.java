@@ -51,6 +51,11 @@ public class ModelControl
     
     /**************************  MAIN MESH   **********************************/
     
+    public String getMainMeshPath()
+    {
+        return model.getMainMesh().getPath();
+    }
+    
     //--------------------------  LANGUAGE PATH   -----------------------------/
     public String getLanguagePath()
     {
@@ -351,7 +356,23 @@ public class ModelControl
             }
         }
         return null;
-    }       
+    }
+    
+    public ArrayList<SubMeshType> getDefaultSubMeshes()
+    {
+        ArrayList<SubMeshType> listDefaultSubMeshes = new ArrayList<SubMeshType>();
+        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
+        Iterator<SubMeshType> it = listSubMeshes.iterator();
+        while(it.hasNext())
+        {
+            SubMeshType subMesh = it.next();
+            if(subMesh.isDefault())
+            {
+                listDefaultSubMeshes.add(subMesh);
+            }
+        }
+        return listDefaultSubMeshes;
+    }
     
      /*public SubMeshType getSubMesh(String idSubMesh)
     {

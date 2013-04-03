@@ -58,6 +58,7 @@ public class SceneControl
 {
     private Node rootNode;
     private AssetManager assetManager;
+    private ModelControl modelControl;
     private Spatial mainMesh;
     private HashMap<String,TexturesInPanel> textures;
     private HashMap<String,Spatial> subMeshes;
@@ -66,21 +67,28 @@ public class SceneControl
     private AnimControl control;
     private Vector3f vectorScaleBase;
     
-   /* public SceneControl(Node rootNode,AssetManager assetManager,String modelPath)
+    public SceneControl(Node rootNode,AssetManager assetManager,ModelControl modelControl)
     {
         this.rootNode = rootNode;
         this.assetManager = assetManager;
+        this.modelControl = modelControl;
         
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
         this.rootNode.addLight(dl);
         
-        mainMesh = this.assetManager.loadModel(modelPath);        
-        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");        
+        mainMesh = this.assetManager.loadModel(this.modelControl.getMainMeshPath());        
+        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
+        //Aqui deberia ir cargar Texturas por Defecto
+        mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png")); 
         
-        
-        /*mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png"));   
+        setDefaultSubMeshes();
             
+        
+        
+        
+        
+        
         Spatial hairMesh = assetManager.loadModel("assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml");
         Material hairMat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
         hairMat.setTexture("DiffuseMap",assetManager.loadTexture("assets/Models/eAdventure/Hair Boy/hairtexture.png"));
@@ -98,6 +106,7 @@ public class SceneControl
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
         } */      
+    }
         
     
     
@@ -116,6 +125,19 @@ public class SceneControl
             this.channel.setLoopMode(LoopMode.Loop); 
         }
     }
+    
+    private void setDefaultSubMeshes()
+    {
+        ArrayList<SubMeshType> listSubMeshes = modelControl.getDefaultSubMeshes();
+        Iterator<SubMeshType> it = listSubMeshes.iterator();
+        while(it.hasNext())
+        {
+            SubMeshType subMesh = it.next();
+            
+            
+        }
+    }
+    
     public void setPositionModel(ArrayList<TransformationType> listTransformations)
     {
         Iterator<TransformationType> it = listTransformations.iterator();
@@ -148,6 +170,7 @@ public class SceneControl
     
      public void addSubMesh(String bone,Spatial subMesh,ArrayList<TransformationType> listTransformations)
     {
+            if()
             subMeshes.put(bone,subMesh);
             SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
             skeletonControl.getAttachmentsNode(bone).attachChild(subMesh);           
@@ -185,8 +208,9 @@ public class SceneControl
         } 
     }
     
-    public void setPhysicalBuild(ArrayList<EscalationType> listEscalations)
+    public void setPhysicalBuild(String idPhysicalBuild)
     {
+        ArrayList<EscalationType> listEscalations = modelControl.getPhysicalBuildEscalations(idPhysicalBuild);
         Iterator<EscalationType> it = listEscalations.iterator();
         while(it.hasNext())
         {

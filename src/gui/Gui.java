@@ -380,14 +380,14 @@ public class Gui extends SimpleApplication{
         rootNode.attachChild(model.getModel());
         model.setPositionModel();
         
-        //Borrar la imagen
+        /*//Borrar la imagen
         Path file = Paths.get("assets/Textures/OriginalTexture.png");
         try {
             Files.delete(file);
         } 
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
-        }
+        }*/
     }
      
     public void setBodyType(int bodyType)
