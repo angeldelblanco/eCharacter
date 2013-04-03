@@ -219,6 +219,12 @@ public class SceneControl
         }
     }
     
+    public void setBoneControllerValue(String idBoneController, float inc)
+    {
+        ArrayList<String> listBones = modelControl.getBones(idBoneController);      
+        scaleBone(listBones, inc);
+    }
+    
     private void applyEscalation(Spatial mesh,EscalationType escalation)
     {
         Vector3f scale = new Vector3f(escalation.getValueX(),escalation.getValueY(),escalation.getValueZ());
