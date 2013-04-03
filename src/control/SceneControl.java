@@ -80,24 +80,13 @@ public class SceneControl
         mainMesh = this.assetManager.loadModel(this.modelControl.getMainMeshPath());        
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         //Aqui deberia ir cargar Texturas por Defecto
-        mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png")); 
-        
+        mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png"));         
         setDefaultSubMeshes();
-            
-        
-        
-        
-        
-        
-        /*Spatial hairMesh = assetManager.loadModel("assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml");
-        Material hairMat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        hairMat.setTexture("DiffuseMap",assetManager.loadTexture("assets/Models/eAdventure/Hair Boy/hairtexture.png"));
-        hairMesh.setMaterial(hairMat);
-        model.addSubMeshes("Cabeza",hairMesh);
-        //model.setHair("assets/Models/eAdventure/Hair Boy/pasted__pasted__pasted__polySurfaceShape2.mesh.xml", "assets/Models/eAdventure/Hair Boy/pasted__pasted__pasted__polySurfaceShape2.material");
-        rootNode.attachChild(model.getModel());
-        model.setPositionModel();
-        
+        attachAllChild();
+        rootNode.attachChild(mainMesh);
+        setPositionModel(modelControl.getMainMeshTransformations());
+       
+        /*
         //Borrar la imagen
         Path file = Paths.get("assets/Textures/OriginalTexture.png");
         try {
@@ -107,8 +96,6 @@ public class SceneControl
             System.out.println("Error al borrar el fichero");
         } */      
     }
-        
-    
     
     public SceneControl(Spatial mainMesh,Material mat)
     {
@@ -134,12 +121,22 @@ public class SceneControl
         {
             SubMeshType subMesh = it.next();
             Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
+            /******ÑAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*///
+            Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+            subMeshMaterial.setTexture("DiffuseMap",assetManager.loadTexture("assets/Textures/eAdventure/Textures Boy/PeloBoy.png"));
+            subMeshSpatial.setMaterial(subMeshMaterial);
+            /******FIN DE ÑAPAAAAAAAAA*/
+            //If texture are distinct null,the submesh has a texture´s list.
+            //Else have a .material and it load automatically 
+            /*if(subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture() != null){
+                //PORHACER
+            }*/
             ArrayList<TransformationType> listTransformation = modelControl.getSubMeshTransformation(subMesh.getIdSubMesh());
             addSubMesh(subMesh.getAssociatedBone(),subMeshSpatial,listTransformation);
         }
     }
     
-    public void setPositionModel(ArrayList<TransformationType> listTransformations)
+    private void setPositionModel(ArrayList<TransformationType> listTransformations)
     {
         Iterator<TransformationType> it = listTransformations.iterator();
         while (it.hasNext())
@@ -182,7 +179,7 @@ public class SceneControl
             }
     }
      
-    public void dettachAllChild()
+    private void dettachAllChild()
     {
         SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
         Set<String> bones = subMeshes.keySet();
@@ -195,9 +192,9 @@ public class SceneControl
         }
     }
     
-    public void attachAllChild()
+    private void attachAllChild()
     {
-       SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
+        SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
         Set<String> bones = subMeshes.keySet();
         Iterator<String> it = bones.iterator();
         while(it.hasNext())
