@@ -56,6 +56,9 @@ public class Configuration
     
     /** Language */
     public final static String Language = "lang";
+    
+    /**List of available languages*/
+    public final static String ListLanguage = "listLanguage";
  
     /** Resolution */
     public final static String Resolution = "resolution";
@@ -63,8 +66,8 @@ public class Configuration
     /** Assets paths */
     public final static String AssetsPath = "assetsPath";
     
-    /**List of available languages*/
-    public final static String ListLanguage = "listLanguage";
+    /** Families path*/
+    public final static String FamiliesPath = "familiesPath";    
     
     /** Locale path */
     public final static String LocalePath = "localePath";
@@ -109,9 +112,10 @@ public class Configuration
     {
         //Default configuration
         this.properties.setProperty(Language, "en_UK");
+        this.properties.setProperty(ListLanguage,"en_UK es_ES");
         this.properties.setProperty(Resolution, "1024x768");
         this.properties.setProperty(AssetsPath, "assets");
-        this.properties.setProperty(ListLanguage,"en_UK es_ES");
+        this.properties.setProperty(FamiliesPath,"assets"+File.separator+"XML Configuration"+File.separator+"families");
         this.properties.setProperty(LocalePath,"assets"+File.separator+"Locale");
         //Saves the changes in the .properties file
         try {            
@@ -145,7 +149,7 @@ public class Configuration
         else{
             config.loadDefaultProperties();
         }
-        String path = config.getProperty(Configuration.LocalePath);
+        String path = config.getProperty(Configuration.FamiliesPath);
         System.out.println(path);
         File dirPath = new File(path);
         File[] ficheros = dirPath.listFiles();
