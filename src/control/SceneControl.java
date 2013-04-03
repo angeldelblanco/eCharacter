@@ -89,7 +89,7 @@ public class SceneControl
         
         
         
-        Spatial hairMesh = assetManager.loadModel("assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml");
+        /*Spatial hairMesh = assetManager.loadModel("assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml");
         Material hairMat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
         hairMat.setTexture("DiffuseMap",assetManager.loadTexture("assets/Models/eAdventure/Hair Boy/hairtexture.png"));
         hairMesh.setMaterial(hairMat);
@@ -133,8 +133,9 @@ public class SceneControl
         while(it.hasNext())
         {
             SubMeshType subMesh = it.next();
-            
-            
+            Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
+            ArrayList<TransformationType> listTransformation = modelControl.getSubMeshTransformation(subMesh.getIdSubMesh());
+            addSubMesh(subMesh.getAssociatedBone(),subMeshSpatial,listTransformation);
         }
     }
     
@@ -170,7 +171,6 @@ public class SceneControl
     
      public void addSubMesh(String bone,Spatial subMesh,ArrayList<TransformationType> listTransformations)
     {
-            if()
             subMeshes.put(bone,subMesh);
             SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
             skeletonControl.getAttachmentsNode(bone).attachChild(subMesh);           
