@@ -112,9 +112,9 @@
 	</xs:complexType>
 	<xs:complexType name="boneType">
 		<xs:attribute name="idControllerRef" type="xs:string" use="required"/>
-		<xs:attribute name="defaultValue" type="xs:integer" use="required"/>
-		<xs:attribute name="minValue" type="xs:integer" use="required"/>
-		<xs:attribute name="maxValue" type="xs:integer" use="required"/>
+		<xs:attribute name="defaultValue" type="xs:float" use="required"/>
+		<xs:attribute name="minValue" type="xs:float" use="required"/>
+		<xs:attribute name="maxValue" type="xs:float" use="required"/>
 		<xs:attribute name="boneName" type="xs:string" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="physicalBuildsType">

@@ -1075,6 +1075,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE), inc);
+        mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE),event.getValue());
         //gui.scaleHead(inc);
     }
     
@@ -1083,6 +1084,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+1), inc);
+        mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+1),event.getValue());
         //gui.scaleTorax(inc);
     }
     
@@ -1091,6 +1093,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+2), inc);
+        mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+2),event.getValue());
         //gui.scaleHands(inc);
     }
     
@@ -1099,6 +1102,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+3), inc);
+        mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+3),event.getValue());
         //gui.scaleLegs(inc);
     }
     
@@ -1107,6 +1111,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+4), inc);
+        mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+4),event.getValue());
         //gui.scaleArms(inc);
     }
     

@@ -37,6 +37,7 @@ package control;
 
 import data.model.*;
 import data.model.MultiOptionTextureType.Texture;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -93,7 +94,7 @@ public class ModelControl
      * Receives a input bone controller and return the minimum value associated 
      * with this controller.
      */
-    public int getMinValueBoneController(String idBoneController)
+    public float getMinValueBoneController(String idBoneController)
     {
         ArrayList<BoneType> listBones = (ArrayList<BoneType>) model.getMainMesh().getBones().getBone();
         Iterator<BoneType> it = listBones.iterator();
@@ -101,7 +102,7 @@ public class ModelControl
         {
             BoneType bone = it.next();
             if(bone.getIdControllerRef().equals(idBoneController)){
-                return bone.getMinValue().intValue();
+                return bone.getMinValue();
             }
         }
         return -1;
@@ -111,7 +112,7 @@ public class ModelControl
      * Receives a input bone controller and return the maximum value associated 
      * with this controller.
      */
-    public int getMaxValueBoneController(String idBoneController)
+    public float getMaxValueBoneController(String idBoneController)
     {
         ArrayList<BoneType> listBones = (ArrayList<BoneType>) model.getMainMesh().getBones().getBone();
         Iterator<BoneType> it = listBones.iterator();
@@ -119,7 +120,7 @@ public class ModelControl
         {
             BoneType bone = it.next();
             if(bone.getIdControllerRef().equals(idBoneController)){
-                return bone.getMaxValue().intValue();
+                return bone.getMaxValue();
             }
         }
         return -1;
@@ -129,7 +130,7 @@ public class ModelControl
      * Receives a input bone controller and return the default value associated 
      * with this controller.
      */
-    public int getDefaultValueBoneController(String idBoneController)
+    public float getDefaultValueBoneController(String idBoneController)
     {
         ArrayList<BoneType> listBones = (ArrayList<BoneType>) model.getMainMesh().getBones().getBone();
         Iterator<BoneType> it = listBones.iterator();
@@ -137,10 +138,23 @@ public class ModelControl
         {
             BoneType bone = it.next();
             if(bone.getIdControllerRef().equals(idBoneController)){
-                return bone.getDefaultValue().intValue();
+                return bone.getDefaultValue();
             }
         }
         return -1;
+    }
+    
+    public void setDefaultValueBoneController(String idBoneController,float value)
+    {
+        ArrayList<BoneType> listBones = (ArrayList<BoneType>) model.getMainMesh().getBones().getBone();
+        Iterator<BoneType> it = listBones.iterator();
+        while(it.hasNext())
+        {
+            BoneType bone = it.next();
+            if(bone.getIdControllerRef().equals(idBoneController)){
+                bone.setDefaultValue(value);
+            }
+        }
     }
     
     //-------------------    MAIN MESH´S TEXTURES   --------------------------/
