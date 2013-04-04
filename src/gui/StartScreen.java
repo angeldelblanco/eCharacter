@@ -608,6 +608,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             if(fc.getStagesTypes(stages.get(j)).toString().equals(stage2)){
                 ArrayList<String> idSubStages = fc.getIdsSubStages(stages.get(j));
                 for(int i=0;i<fc.getNumSubStage(stages.get(j));i++){
+                    nifty.getScreen(stage2).findElementByName("text"+Integer.toString(i%MULTI_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(idSubStages.get(i)));
                     ArrayList<String> idsTextures = mc.getIdsTexturesORSubMeshes(idSubStages.get(i));
                     for(int k=0; k<mc.getNumTexturesORSubMeshes(idSubStages.get(i)); k++){
                         ImageBuilder image = new ImageBuilder(){{
