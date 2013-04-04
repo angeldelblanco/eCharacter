@@ -583,8 +583,12 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             if(fc.getStagesTypes(stages.get(j)).toString().equals(stage2)){
                 ArrayList<String> idSubStages = fc.getIdsSubStages(stages.get(j));
                 for(int i=0;i<fc.getNumSubStage(stages.get(j));i++){
+<<<<<<< HEAD
                     nifty.getScreen(stage2).findElementByName("text"+Integer.toString(i%MULTI_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(idSubStages.get(i)));
                     ArrayList<String> idsTexturesOrSubMeshes = mc.getIdsTexturesORSubMeshes(idSubStages.get(i));
+=======
+                    ArrayList<String> idsTextures = mc.getIdsTexturesORSubMeshes(idSubStages.get(i));
+>>>>>>> c17087f3cec0b4024d8ec59d829f1733bf914053
                     for(int k=0; k<mc.getNumTexturesORSubMeshes(idSubStages.get(i)); k++){
                         ImageBuilder image = new ImageBuilder(){{
                             width("0%");
@@ -1044,7 +1048,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE), inc);
+<<<<<<< HEAD
         mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE),event.getValue());
+=======
+        //gui.scaleHead(inc);
+>>>>>>> c17087f3cec0b4024d8ec59d829f1733bf914053
     }
     
     @NiftyEventSubscriber(id="slider1")
@@ -1052,7 +1060,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+1), inc);
+<<<<<<< HEAD
         mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+1),event.getValue());
+=======
+        //gui.scaleTorax(inc);
+>>>>>>> c17087f3cec0b4024d8ec59d829f1733bf914053
     }
     
     @NiftyEventSubscriber(id="slider2")
@@ -1060,7 +1072,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+2), inc);
+<<<<<<< HEAD
         mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+2),event.getValue());
+=======
+        //gui.scaleHands(inc);
+>>>>>>> c17087f3cec0b4024d8ec59d829f1733bf914053
     }
     
     @NiftyEventSubscriber(id="slider3")
@@ -1068,7 +1084,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+3), inc);
+<<<<<<< HEAD
         mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+3),event.getValue());
+=======
+        //gui.scaleLegs(inc);
+>>>>>>> c17087f3cec0b4024d8ec59d829f1733bf914053
     }
     
     @NiftyEventSubscriber(id="slider4")
@@ -1076,7 +1096,11 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     {
         float inc = 1.0f + event.getValue() * 0.01f;
         sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+4), inc);
+<<<<<<< HEAD
         mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+4),event.getValue());
+=======
+        //gui.scaleArms(inc);
+>>>>>>> c17087f3cec0b4024d8ec59d829f1733bf914053
     }
     
     public void screenshot() 

@@ -7,7 +7,7 @@
   <!-- First Screen-->
   <screen id="start" controller="gui.StartScreen">
     <layer id="background" childLayout="center">
-      <image filename="assets/Interface/start-background.jpg"></image>
+      <image filename="Interface/start-background.jpg"></image>
     </layer>
     <layer id="foreground" childLayout="vertical">
       <panel id="panel_mid" height="30%" width="75%" align="center" childLayout="center">       
