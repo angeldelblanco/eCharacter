@@ -163,7 +163,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 }};
                 image.id(i18nFamily.getString(fc.getMetadataName())+"model"+Integer.toString(i));
                 image.filename(fc.getModelIconPath(m));
-                image.interactOnClick("selectModel("+fc.getModelPath(m)+")");
+                image.interactOnClick("selectModel("+image.get("id")+","+fc.getModelPath(m)+")");
                 //image.onHoverEffect(new HoverEffectBuilder("Man"));
                 //Nombre de los modelos con el i18n
                 image.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%SINGLE_PAGE)));
@@ -492,7 +492,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         return null;
     }
     
-    public void selectModel(String param){
+    public void selectModel(String id, String param){
         if(panelSelection != null){
             nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF000000"));
         }
@@ -517,11 +517,18 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             gui.setAgeModel(Age.Young);
             panelSelection = "t3";
         }*/
-        //nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
+        unCheck(nifty.getCurrentScreen(),SINGLE_PAGE);
+        nifty.getScreen("modelScreen").findElementByName(id).getParent().getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
         nifty.getScreen("modelScreen").findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").layoutElements();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").enable();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(true);
+    }
+    
+    public void unCheck(Screen s, int num){
+        for(int i = 0; i < num; i++){
+            s.findElementByName("t"+Integer.toString(i)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+        }
     }
     
     public void loadFirstScreen(){
@@ -592,7 +599,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                     image.id(stages.get(j)+"i"+Integer.toString(i));
                     image.filename(mc.getIconPathTexturesORSubMeshes(idsTextures.get(i)));
                     //image.filename(gui.path(stages.get(j),i));
-                    image.interactOnClick("changeTexture("+Integer.toString(i)+")");
+                    image.interactOnClick("changeTextureOrSubMesh("+idsTextures.get(i)+")");
                     image.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%SINGLE_PAGE)));
                 }
                 nifty.getScreen(stage).findElementByName("colorText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
@@ -609,7 +616,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                         }};
                         image.id(idSubStages.get(i)+"i"+Integer.toString(k));
                         image.filename(mc.getIconPathTexturesORSubMeshes(idsTextures.get(k)));
-                        image.interactOnClick("changeTexture("+Integer.toString(k)+")");
+                        image.interactOnClick("changeTextureOrSubMesh("+idsTextures.get(k)+")");
                         image.build(nifty, nifty.getScreen(stage2), nifty.getScreen(stage2).findElementByName("t"+Integer.toString(i%MULTI_PAGE)+Integer.toString(k%MULTI_PAGE)));
                     }
                     nifty.getScreen(stage2).findElementByName("colorText"+Integer.toString(i%MULTI_PAGE)).getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
@@ -728,7 +735,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void cargaScreen(String type, String oldType, String param){
         cargaMenu(type);
-            escondeTexturePage(oldType, param);
+            hideTexturePage(oldType, param);
         if(type.equals(StageType.singleStage.toString())){
             changeTexturePage("0");
         }
@@ -752,7 +759,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         }
     }
     
-    public void escondeTexturePage(String type, String param){
+    public void hideTexturePage(String type, String param){
         if(type.equals(StageType.singleStage.toString())){
             ArrayList<String> idSubStages = fc.getIdsSubStages(param);
             for(int i=page*SINGLE_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
@@ -764,12 +771,12 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }
         }
         if(type.equals(StageType.multiStage.toString())){
-            escondeMultiTexturePage(0,type,param);
-            escondeMultiTexturePage(1,type,param);
+            hideMultiTexturePage(0,type,param);
+            hideMultiTexturePage(1,type,param);
         }
     }
     
-    public void escondeMultiTexturePage(int t,String type, String param){
+    public void hideMultiTexturePage(int t,String type, String param){
         ArrayList<String> idSubStages = fc.getIdsSubStages(param);
         if((page*MULTI_PAGE+t)<idSubStages.size()){
             for(int i=multiPage[t]*MULTI_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+t)); i++){
@@ -786,7 +793,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         String stage = StageType.multiStage.toString();
         int h = Integer.valueOf(t);
         if(!steep.equals("0")){
-            escondeMultiTexturePage(h,stage,selection);
+            hideMultiTexturePage(h,stage,selection);
         }
         changeMultiPage(h,steep);
         ArrayList<String> idSubStages = fc.getIdsSubStages(selection);
@@ -830,7 +837,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void changeTexturePage(String steep){
             String stage = StageType.singleStage.toString();
             if(!steep.equals("0")){
-                escondeTexturePage(stage,selection);
+                hideTexturePage(stage,selection);
             }
             changePage(steep);
             ArrayList<String> idSubStages = fc.getIdsSubStages(selection);
@@ -862,7 +869,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void changeMultiTexturePage(String steep){
             String stage = StageType.multiStage.toString();
             if(!steep.equals("0")){
-                escondeTexturePage(stage,selection);
+                hideTexturePage(stage,selection);
             }
             changePage(steep);
             changeTexturePage("0","0");
@@ -939,9 +946,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         return null;
     }
     
-    public void changeTexture(String idPanel, String idTexture)
+    public void changeTextureOrSubMesh(String idTexture)
     {
-        //sc.changeTextureOrMesh(idPanel,idTexture);
+        sc.changeTextureOrSubMesh(idTexture);
         /*if(selection.equals("skinScreen")){gui.changeSkin(Integer.parseInt(steep));}
         if(selection.equals("hairScreen")){}
         if(selection.equals("eyesScreen")){gui.changeEyes(Integer.parseInt(steep));}
