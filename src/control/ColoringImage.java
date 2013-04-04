@@ -45,7 +45,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
-import types.TypeObject;
 
 public class ColoringImage 
 {
@@ -55,7 +54,7 @@ public class ColoringImage
     private long tiempoInicio, totalTiempo;         
     private BufferedImage shadow, image;
     
-    public ColoringImage(String imagePath, String shadowPath, Color color, TypeObject estado) throws IOException
+    public ColoringImage(String imagePath, String shadowPath, Color color) throws IOException
     {
         this.imagePath = imagePath;
         this.shadowPath = shadowPath;
@@ -65,7 +64,7 @@ public class ColoringImage
         DOMConfigurator.configure("assets/Log/configuration_log.xml");
         //BasicConfigurator.configure();
         
-        switch(estado) {
+        /*switch(estado) {
             case t_shirt:
                 imageColoredPath = "assets/Textures/TShirtSombreada.png";
                 destinationPath = "assets/Textures/TShirtFinal.png";
@@ -78,7 +77,7 @@ public class ColoringImage
                 imageColoredPath = "assets/Textures/ShoesSombreada.png";
                 destinationPath = "assets/Textures/ShoesFinal.png";
             break;
-        }
+        }*/
     }        
 
     public BufferedImage coloringImage() throws IOException 
@@ -174,9 +173,9 @@ public class ColoringImage
         return finalImage;
     }
     
-    public static void main(String[] args) throws IOException 
+    /*public static void main(String[] args) throws IOException 
     {
         ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/ZapatosSolidoBoy.png", 
                 "assets/Textures/Textures Boy/ZapatosSombrasBoy.png", new Color(0, 255, 0), TypeObject.shoes);
-    } 
+    } */
 }

@@ -297,4 +297,19 @@ public class SceneControl
     {
         //POR HACER
     }
+    
+    public void screenShot()
+    {
+        //POR HACER
+    }
+    
+    /*
+     * public void screenShot(ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotAppState screenShotState)
+    {
+        guiViewPort.removeProcessor(niftyDisplay);
+        Set<String> namesAnimations = (Set<String>) control.getAnimationNames();
+        //ScreenshotThread sst = new ScreenshotThread(screenShotState,channel,guiViewPort,niftyDisplay,namesAnimations);
+        //sst.start();
+    }
+     */
 }
