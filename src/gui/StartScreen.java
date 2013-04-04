@@ -45,6 +45,7 @@ import control.FamilyControl;
 import control.ModelControl;
 import control.SceneControl;
 import data.family.Family;
+import data.model.Model;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.HoverEffectBuilder;
@@ -74,6 +75,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import loader.Configuration;
+import loader.XMLReaderJAXB;
 import types.Age;
 import types.Gender;
 import types.StageType;
@@ -89,7 +91,9 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private Screen screen;
     private AssetManager assetManager;
     private Node rootNode;
-    private Gui gui;
+    //private Gui gui;
+    private loader.Configuration config;
+    private XMLReaderJAXB<Family> xmlReader;
     private FamilyControl fc;
     private ModelControl mc;
     private SceneControl sc;
@@ -103,17 +107,18 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     private int index;
     private String language;
     
-    public StartScreen(Gui gui, AssetManager assetManager, Node rootNode){
-        this.gui = gui;
+    public StartScreen(loader.Configuration config, AssetManager assetManager, Node rootNode){
         this.assetManager = assetManager;
         this.rootNode = rootNode;
+        this.config = config;
+        xmlReader = new XMLReaderJAXB<Family>("assets/XML Configuration/families");
+        families = xmlReader.readXML(Family.class);
     }
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
         nifty.getScreen("modelScreen").findElementByName("chooseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idChoose"));
         nifty.getScreen("modelScreen").findElementByName("choosePanel").layoutElements();
-        families = gui.getFamilies();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").disable();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(false);
         nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(false);
@@ -158,7 +163,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 }};
                 image.id(i18nFamily.getString(fc.getMetadataName())+"model"+Integer.toString(i));
                 image.filename(fc.getModelIconPath(m));
-                image.interactOnClick("selectModel("+fc.getModelPath(m)+",Man)");
+                image.interactOnClick("selectModel("+fc.getModelPath(m)+")");
                 //image.onHoverEffect(new HoverEffectBuilder("Man"));
                 //Nombre de los modelos con el i18n
                 image.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%SINGLE_PAGE)));
@@ -214,16 +219,16 @@ public class StartScreen extends AbstractAppState implements ScreenController {
                 width("100");
         }}.build(nifty, nifty.getScreen("start"), nifty.getScreen("start").findElementByName("panel_location"));
         DropDown locale = nifty.getScreen("start").findNiftyControl("localeDropDown", DropDown.class);
-        ArrayList<String> languajes = gui.config.getListLanguagesAvailables();
+        ArrayList<String> languajes = config.getListLanguagesAvailables();
         Iterator<String> it = languajes.iterator();
-        String defectLanguage = gui.config.getProperty(Configuration.Language);
+        String defectLanguage = config.getProperty(Configuration.Language);
         while(it.hasNext()){
             final String l = it.next();
             locale.addItem(l);
         }
         language = defectLanguage;
         locale.selectItem(defectLanguage);
-        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),language);
+        i18nGui = new I18N(config.getProperty(Configuration.LocalePath),language);
     }
     
     public void creaMenu(){
@@ -478,12 +483,21 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             }
     }
     
-    public void selectModel(String param,String param2){
+    public Model getModel(String path){
+        XMLReaderJAXB xmlReader2 = new XMLReaderJAXB<Model>(path);
+        ArrayList<Model> models = xmlReader2.readXML(Model.class);
+        if (models.size()==1){
+            return models.get(0);
+        }
+        return null;
+    }
+    
+    public void selectModel(String param){
         if(panelSelection != null){
             nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF000000"));
         }
         modelSelection = param;
-        if(param2.equals("Man")){
+        /*if(param2.equals("Man")){
             gui.setGender(Gender.Male);
             gui.setAgeModel(Age.Adult);
             panelSelection = "t0";
@@ -502,8 +516,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             gui.setGender(Gender.Female);
             gui.setAgeModel(Age.Young);
             panelSelection = "t3";
-        }
-        nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
+        }*/
+        //nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
         nifty.getScreen("modelScreen").findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").layoutElements();
         nifty.getScreen("modelScreen").findElementByName("panel_screenright").enable();
@@ -513,8 +527,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     public void loadFirstScreen(){
         nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
         //gui.loadModel();
-        i18nModel = new I18N(gui.getModel(modelSelection).getLanguagesPath(),language);
-        mc = new ModelControl(gui.getModel(modelSelection));
+        i18nModel = new I18N(getModel(modelSelection).getLanguagesPath(),language);
+        mc = new ModelControl(getModel(modelSelection));
         sc = new SceneControl(rootNode,assetManager,mc);
         stages = fc.getStagesLabels();
         selection = stages.get(index);
@@ -701,7 +715,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             nifty.gotoScreen(stage);
         }
         cargaScreen(stage,oldStage,old);
-        gui.setTypeObject(selection);
+        //gui.setTypeObject(selection);
         if(index==0){
             nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
             nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);
@@ -925,15 +939,16 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         return null;
     }
     
-    public void changeTexture(String steep)
+    public void changeTexture(String idPanel, String idTexture)
     {
-        if(selection.equals("skinScreen")){gui.changeSkin(Integer.parseInt(steep));}
+        //sc.changeTextureOrMesh(idPanel,idTexture);
+        /*if(selection.equals("skinScreen")){gui.changeSkin(Integer.parseInt(steep));}
         if(selection.equals("hairScreen")){}
         if(selection.equals("eyesScreen")){gui.changeEyes(Integer.parseInt(steep));}
         if(selection.equals("tshirtScreen")){gui.changeTShirt(Integer.parseInt(steep));}
         if(selection.equals("trousersScreen")){gui.changeTrousers(Integer.parseInt(steep));}
         if(selection.equals("shoesScreen")){}
-        if(selection.equals("accesoriesScreen")){}
+        if(selection.equals("accesoriesScreen")){}*/
     }
     
     public void showWindowChangeColor() throws InterruptedException
@@ -971,8 +986,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
         Button startb = nifty.getScreen("start").findNiftyControl("startButton", Button.class);
         Button quitb = nifty.getScreen("start").findNiftyControl("quitButton", Button.class);
         language = event.getSelection();
-        gui.config.setProperty(Configuration.Language, language);
-        i18nGui = new I18N(gui.config.getProperty(Configuration.LocalePath),language);
+        config.setProperty(Configuration.Language, language);
+        i18nGui = new I18N(config.getProperty(Configuration.LocalePath),language);
         nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDescription"));
         nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
         nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idLanguage"));
@@ -984,7 +999,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        gui.changeColor(red / 255.f, green / 255.f, blue / 255.f);
+        sc.changeColor(red / 255.f, green / 255.f, blue / 255.f);
+        //gui.changeColor(red / 255.f, green / 255.f, blue / 255.f);
         nifty.closePopup(popupColor.getId()); 
     }
     
