@@ -256,12 +256,44 @@ public class SceneControl
         return control.getAnimationNames().size();
     }
     
-    public void changeTexture(String idPanel,String idTexture)
+    public void changeTextureOrSubMesh(String idTextureOrSubMesh)
+    {
+        TextureType texture = modelControl.getTexture(idTextureOrSubMesh);
+        if (texture != null){
+            //Es una textura.
+            changeTexture(texture);
+        }
+        else{
+            SubMeshType subMesh = modelControl.getSubMesh(idTextureOrSubMesh);
+            if (subMesh != null){
+                changeSubMesh(subMesh);
+            }
+        }
+    }
+    
+    public void changeColor(float red,float green,float blue)
     {
         //POR HACER
     }
     
-    public void changeColor(float red,float green,float blue)
+    private void changeSubMesh(SubMeshType subMesh)
+    {
+        Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
+        /******ÑAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*///
+        Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        subMeshMaterial.setTexture("DiffuseMap",assetManager.loadTexture("assets/Textures/eAdventure/Textures Boy/PeloBoy.png"));
+        subMeshSpatial.setMaterial(subMeshMaterial);
+        /******FIN DE ÑAPAAAAAAAAA*/
+        //If texture are distinct null,the submesh has a texture´s list.
+        //Else have a .material and it load automatically 
+        /*if(subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture() != null){
+            //PORHACER
+        }*/
+        ArrayList<TransformationType> listTransformation = modelControl.getSubMeshTransformation(subMesh.getIdSubMesh());
+        addSubMesh(subMesh.getAssociatedBone(),subMeshSpatial,listTransformation);
+    }
+    
+    private void changeTexture(TextureType texture)
     {
         //POR HACER
     }

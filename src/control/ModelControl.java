@@ -256,7 +256,7 @@ public class ModelControl
         return listDefaultTextures;
     }
     
-    /*public TextureType getTexture(String idTexture)
+    public TextureType getTexture(String idTexture)
     {
         ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
         Iterator<TextureType> it = listTextures.iterator();
@@ -268,7 +268,7 @@ public class ModelControl
             }
         }
         return null;
-    }*/
+    }
     
     //------------------------ PHYSICAL BUILD ---------------------------------/
     
@@ -374,7 +374,7 @@ public class ModelControl
         return listDefaultSubMeshes;
     }
     
-     /*public SubMeshType getSubMesh(String idSubMesh)
+    public SubMeshType getSubMesh(String idSubMesh)
     {
         ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
         Iterator<SubMeshType> it = listSubMeshes.iterator();
@@ -386,9 +386,5 @@ public class ModelControl
             }
         }
         return null;
-    }*/
-   
-    
-    
-    
+    }
 }
