@@ -2,13 +2,12 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.04.03 a las 05:48:55 PM CEST 
+// Generado el: AM.04.04 a las 11:43:19 AM CEST 
 //
 
 
 package data.model;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -25,9 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="idControllerRef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="defaultValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="minValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="maxValue" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="defaultValue" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="minValue" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
+ *       &lt;attribute name="maxValue" use="required" type="{http://www.w3.org/2001/XMLSchema}float" />
  *       &lt;attribute name="boneName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,11 +42,11 @@ public class BoneType {
     @XmlAttribute(name = "idControllerRef", required = true)
     protected String idControllerRef;
     @XmlAttribute(name = "defaultValue", required = true)
-    protected BigInteger defaultValue;
+    protected float defaultValue;
     @XmlAttribute(name = "minValue", required = true)
-    protected BigInteger minValue;
+    protected float minValue;
     @XmlAttribute(name = "maxValue", required = true)
-    protected BigInteger maxValue;
+    protected float maxValue;
     @XmlAttribute(name = "boneName", required = true)
     protected String boneName;
 
@@ -78,72 +77,48 @@ public class BoneType {
     /**
      * Obtiene el valor de la propiedad defaultValue.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
      */
-    public BigInteger getDefaultValue() {
+    public float getDefaultValue() {
         return defaultValue;
     }
 
     /**
      * Define el valor de la propiedad defaultValue.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
      */
-    public void setDefaultValue(BigInteger value) {
+    public void setDefaultValue(float value) {
         this.defaultValue = value;
     }
 
     /**
      * Obtiene el valor de la propiedad minValue.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
      */
-    public BigInteger getMinValue() {
+    public float getMinValue() {
         return minValue;
     }
 
     /**
      * Define el valor de la propiedad minValue.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
      */
-    public void setMinValue(BigInteger value) {
+    public void setMinValue(float value) {
         this.minValue = value;
     }
 
     /**
      * Obtiene el valor de la propiedad maxValue.
      * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
      */
-    public BigInteger getMaxValue() {
+    public float getMaxValue() {
         return maxValue;
     }
 
     /**
      * Define el valor de la propiedad maxValue.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
      */
-    public void setMaxValue(BigInteger value) {
+    public void setMaxValue(float value) {
         this.maxValue = value;
     }
 
