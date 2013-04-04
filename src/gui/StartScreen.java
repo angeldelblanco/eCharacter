@@ -608,7 +608,6 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             if(fc.getStagesTypes(stages.get(j)).toString().equals(stage2)){
                 ArrayList<String> idSubStages = fc.getIdsSubStages(stages.get(j));
                 for(int i=0;i<fc.getNumSubStage(stages.get(j));i++){
-                    nifty.getScreen(stage2).findElementByName("text"+Integer.toString(i%MULTI_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(idSubStages.get(i)));
                     ArrayList<String> idsTextures = mc.getIdsTexturesORSubMeshes(idSubStages.get(i));
                     for(int k=0; k<mc.getNumTexturesORSubMeshes(idSubStages.get(i)); k++){
                         ImageBuilder image = new ImageBuilder(){{
@@ -803,6 +802,8 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             nifty.getScreen(stage).findElementByName("panel_color"+Integer.toString(h)).setVisible(true);
             for(int i=multiPage[h]*MULTI_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+h)); i++){
                 if(i<((multiPage[h]+1)*MULTI_PAGE)){
+                    nifty.getScreen(stage).findElementByName("text"+Integer.toString(h)).setVisible(true);
+                    nifty.getScreen(stage).findElementByName("text"+Integer.toString(h)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(fc.getSubStageLabel(selection,idSubStages.get(page*MULTI_PAGE+h))));
                     nifty.getScreen(stage).findElementByName(idSubStages.get(page*MULTI_PAGE+h)+"i"+Integer.toString(i)).setVisible(true);
                     nifty.getScreen(stage).findElementByName(idSubStages.get(page*MULTI_PAGE+h)+"i"+Integer.toString(i)).setHeight(nifty.getScreen(stage).findElementByName("t"+Integer.toString(h)+Integer.toString(i%MULTI_PAGE)).getHeight()-5);
                     nifty.getScreen(stage).findElementByName(idSubStages.get(page*MULTI_PAGE+h)+"i"+Integer.toString(i)).setWidth(nifty.getScreen(stage).findElementByName("t"+Integer.toString(h)+Integer.toString(i%MULTI_PAGE)).getWidth()-5);
@@ -831,6 +832,7 @@ public class StartScreen extends AbstractAppState implements ScreenController {
             nifty.getScreen(stage).findElementByName("rightT"+Integer.toString(h)).setVisible(false);
             nifty.getScreen(stage).findElementByName("panel_color"+Integer.toString(h)).disable();
             nifty.getScreen(stage).findElementByName("panel_color"+Integer.toString(h)).setVisible(false);
+            nifty.getScreen(stage).findElementByName("text"+Integer.toString(h)).setVisible(false);
             
         }
     }
