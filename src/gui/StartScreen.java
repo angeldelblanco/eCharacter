@@ -512,10 +512,10 @@ public class StartScreen extends AbstractAppState implements ScreenController {
     
     public void loadFirstScreen(){
         nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
-        gui.loadModel();
+        //gui.loadModel();
         i18nModel = new I18N(gui.getModel(modelSelection).getLanguagesPath(),language);
         mc = new ModelControl(gui.getModel(modelSelection));
-        //sc = new SceneControl(rootNode,assetManager,mc);
+        sc = new SceneControl(rootNode,assetManager,mc);
         stages = fc.getStagesLabels();
         selection = stages.get(index);
         creaMenu();
