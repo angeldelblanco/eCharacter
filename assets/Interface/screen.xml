@@ -5,7 +5,7 @@
   <useControls filename="nifty-default-controls.xml" />
   
   <!-- First Screen-->
-  <screen id="start" controller="gui.StartScreen">
+  <screen id="start" controller="gui.Gui">
     <layer id="background" childLayout="center">
       <image filename="Interface/start-background.jpg"></image>
     </layer>
@@ -33,7 +33,7 @@
   </screen>
   
   <!-- Second screen(Model selection)-->
-	<screen id="modelScreen" controller="gui.StartScreen">
+	<screen id="modelScreen" controller="gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <image filename="Interface/second-background.png"></image>   
         </layer>
@@ -127,7 +127,7 @@
     </screen>
   
   <!-- Third screen(basic)-->
-	<screen id="scaleStage" controller="gui.StartScreen">
+	<screen id="scaleStage" controller="gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -234,7 +234,7 @@
     </screen>
 	
 	<!-- Fifth screen(skin)-->
-	<screen id="singleStage" controller="gui.StartScreen">
+	<screen id="singleStage" controller="gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -326,7 +326,7 @@
     </screen>
 	
 	<!-- Sixth screen(accesories)-->
-	<screen id="multiStage" controller="gui.StartScreen">
+	<screen id="multiStage" controller="gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -435,7 +435,7 @@
     </screen>
 	
 	<!-- Eigthth screen(export)-->
-	<screen id="animationStage" controller="gui.StartScreen">
+	<screen id="animationStage" controller="gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -500,7 +500,7 @@
     </screen>
 	
 	<!-- Nineth screen(export)-->
-	<screen id="popupScreen" controller="gui.StartScreen">
+	<screen id="popupScreen" controller="gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -512,7 +512,7 @@
     </screen>
 	
 	<!-- Tenth screen(export)-->
-	<screen id="popupfinScreen" controller="gui.StartScreen">
+	<screen id="popupfinScreen" controller="gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>

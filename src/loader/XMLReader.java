@@ -47,14 +47,14 @@ import java.util.logging.Logger;
 import javax.xml.bind.*;
 import types.XMLType;
 
-public class XMLReaderJAXB<T> 
+public class XMLReader<T> 
 {
     private ArrayList<T> list;
     private String path;
     private ResourceHandler resourceHandler;
     private XMLValidator xmlValidator;
     
-    public XMLReaderJAXB(String path)
+    public XMLReader(String path)
     {
         this.path = path;
 
@@ -92,7 +92,7 @@ public class XMLReaderJAXB<T>
                     try {    
                         list.add(unmarshal(docClass, resourceHandler.getResource(file.getPath())));
                     } catch (JAXBException ex) {
-                        Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -104,7 +104,7 @@ public class XMLReaderJAXB<T>
                 try {    
                         list.add(unmarshal(docClass, resourceHandler.getResource(dirPath.getPath())));
                     } catch (JAXBException ex) {
-                        Logger.getLogger(XMLReaderJAXB.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
                     }
             }
         }
@@ -130,7 +130,7 @@ public class XMLReaderJAXB<T>
         y cerramos esta clase  ***/
     public static void main(String args[]) throws JAXBException, FileNotFoundException
     {
-        XMLReaderJAXB<Metadata> aux = new XMLReaderJAXB<Metadata>("assets/Locale/Humans");
+        XMLReader<Metadata> aux = new XMLReader<Metadata>("assets/Locale/Humans");
         ArrayList<Metadata> a = aux.readXML(Metadata.class);
         System.out.println(a.get(0).getLanguage());
     }   

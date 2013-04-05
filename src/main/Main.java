@@ -35,7 +35,6 @@
  ******************************************************************************/
 package main;
 
-import gui.Gui;
 import java.io.File;
 import java.io.InputStream;
 import java.util.StringTokenizer;
@@ -63,7 +62,7 @@ public class Main
         StringTokenizer dimension = new StringTokenizer(config.getProperty(Configuration.Resolution));
         int width = Integer.parseInt(dimension.nextToken("x"));
         int height = Integer.parseInt(dimension.nextToken());
-        Gui app = new Gui(width,height,config);
+        Application app = new Application(width,height,config);
         //Launch the GUI
         app.start();
     }

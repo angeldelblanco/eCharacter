@@ -38,7 +38,7 @@ package i18n;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import loader.XMLReaderJAXB;
+import loader.XMLReader;
 
 public class I18N {
     private Metadata language;
@@ -51,7 +51,7 @@ public class I18N {
     
     public I18N(String languagesPath, String language)
     {
-        XMLReaderJAXB<Metadata> xmlReader = new XMLReaderJAXB<Metadata>(languagesPath);
+        XMLReader<Metadata> xmlReader = new XMLReader<Metadata>(languagesPath);
         ArrayList<Metadata> listLanguages = xmlReader.readXML(Metadata.class);
         Iterator<Metadata> it = listLanguages.iterator();
         while(it.hasNext())
