@@ -55,7 +55,7 @@ public class Control {
         families = xmlReader.readXML(Family.class);
     }
     
-    public void setFamily(String nameFamily)
+    public void selectFamily(String nameFamily)
     {
         Iterator<Family> it = families.iterator();
         while(it.hasNext())

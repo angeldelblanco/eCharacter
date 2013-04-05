@@ -142,7 +142,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
         Iterator<String> it = families.iterator();
         while(it.hasNext()){
-            control.setFamily(it.next());
+            control.selectFamily(it.next());
             i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
             ArrayList<String> models = control.getModelsLabel();
             Iterator<String> itm = models.iterator();
@@ -165,7 +165,7 @@ public class Gui extends AbstractAppState implements ScreenController {
             }
             family.addItem(i18nFamily.getString(control.getMetadataFamilyName()));
         }
-        control.setFamily(families.get(0));
+        control.selectFamily(families.get(0));
         modelsSize = control.getNumModels();
         modelsAntSize = 0;
         familySelection = i18nFamily.getString(control.getMetadataFamilyName());
@@ -467,7 +467,7 @@ public class Gui extends AbstractAppState implements ScreenController {
             }
             Iterator<String> it = families.iterator();
             while(it.hasNext()){
-                control.setFamily(it.next());
+                control.selectFamily(it.next());
                 if(i18nFamily.getString(control.getMetadataFamilyName()).equals(familySelection)){
                     String url = "";
                     if(control.getMetadataFamilyURL()!=null){url = control.getMetadataFamilyURL();}
@@ -946,7 +946,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         Iterator<String> it = families.iterator();
         familySelection = event.getSelection();
         while(it.hasNext()){
-           control.setFamily(it.next());
+           control.selectFamily(it.next());
            if(i18nFamily.getString(control.getMetadataFamilyName()).equals(familySelection)){
                modelsAntSize = modelsSize;
                modelsSize = control.getNumModels();
