@@ -58,7 +58,6 @@ public class SceneControl
 {
     private Node rootNode;
     private AssetManager assetManager;
-    //private ModelControl modelControl;
     private Spatial mainMesh;
     private HashMap<String,Spatial> subMeshes;
     private Material mat;
@@ -71,24 +70,21 @@ public class SceneControl
     {
         this.rootNode = rootNode;
         this.assetManager = assetManager;
-        //this.modelControl = modelControl;
         this.subMeshes = new HashMap<String, Spatial>();
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
         this.rootNode.addLight(dl);
-        //mainMesh = this.assetManager.loadModel(this.modelControl.getMainMeshPath()); 
         mainMesh = this.assetManager.loadModel(mainMeshPath); 
         
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         //Aqui deberia ir cargar Texturas por Defecto
         mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png"));
         mainMesh.setMaterial(mat);
-        setDefaultSubMeshes();
-        attachAllChild();
+        //setDefaultSubMeshes();
+        //attachAllChild();
         rootNode.attachChild(mainMesh);
-        //setPositionModel(modelControl.getMainMeshTransformations());
         setPositionModel(listTransformationMainMesh);
         
        
@@ -111,7 +107,7 @@ public class SceneControl
         } */      
     }
     
-    private void setDefaultSubMeshes()
+    /*private void setDefaultSubMeshes()
     {
         ArrayList<SubMeshType> listSubMeshes = modelControl.getDefaultSubMeshes();
         Iterator<SubMeshType> it = listSubMeshes.iterator();
@@ -119,20 +115,20 @@ public class SceneControl
         {
             SubMeshType subMesh = it.next();
             Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
-            /******ÑAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*///
+            //ÑAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
             subMeshMaterial.setTexture("DiffuseMap",assetManager.loadTexture("assets/Textures/eAdventure/Textures Boy/PeloBoy.png"));
             subMeshSpatial.setMaterial(subMeshMaterial);
-            /******FIN DE ÑAPAAAAAAAAA*/
+            //FIN DE ÑAPAAAAAAAAA
             //If texture are distinct null,the submesh has a texture´s list.
             //Else have a .material and it load automatically 
-            /*if(subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture() != null){
+            //if(subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture() != null){
                 //PORHACER
-            }*/
+            //}
             ArrayList<TransformationType> listTransformation = modelControl.getSubMeshTransformation(subMesh.getIdSubMesh());
             addSubMesh(subMesh.getAssociatedBone(),subMeshSpatial,listTransformation);
         }
-    }
+    }*/
     
     private void setPositionModel(ArrayList<TransformationType> listTransformations)
     {
@@ -203,17 +199,6 @@ public class SceneControl
         } 
     }
     
-    /*public void setPhysicalBuild(String idPhysicalBuild)
-    {
-        ArrayList<EscalationType> listEscalations = modelControl.getPhysicalBuildEscalations(idPhysicalBuild);
-        Iterator<EscalationType> it = listEscalations.iterator();
-        while(it.hasNext())
-        {
-            EscalationType escalation = it.next();
-            applyEscalation(mainMesh,escalation);
-        }
-    }*/
-    
     public void applyEscalations(ArrayList<EscalationType> listEscalations)
     {
         Iterator<EscalationType> it = listEscalations.iterator();
@@ -223,12 +208,6 @@ public class SceneControl
             applyEscalation(mainMesh,escalation);
         }
     }
-    
-    /*public void setBoneControllerValue(String idBoneController, float inc)
-    {
-        ArrayList<String> listBones = modelControl.getBones(idBoneController);      
-        scaleBone(listBones, inc);
-    }*/
     
     private void applyEscalation(Spatial mesh,EscalationType escalation)
     {
@@ -268,21 +247,6 @@ public class SceneControl
     {
         return control.getAnimationNames().size();
     }
-    
-    /*public void changeTextureOrSubMesh(String idTextureOrSubMesh)
-    {
-        TextureType texture = modelControl.getTexture(idTextureOrSubMesh);
-        if (texture != null){
-            //Es una textura.
-            changeTexture(texture);
-        }
-        else{
-            SubMeshType subMesh = modelControl.getSubMesh(idTextureOrSubMesh);
-            if (subMesh != null){
-                changeSubMesh(subMesh);
-            }
-        }
-    }*/
     
     public void changeColor(float red,float green,float blue)
     {

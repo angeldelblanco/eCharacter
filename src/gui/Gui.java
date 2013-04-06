@@ -42,9 +42,6 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
 import com.jme3.scene.Node;
 import control.Control;
-import control.ModelControl;
-import control.SceneControl;
-import data.model.Model;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.ImageBuilder;
@@ -73,7 +70,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import loader.Configuration;
-import loader.XMLReader;
 import types.StageType;
 
 public class Gui extends AbstractAppState implements ScreenController {
@@ -89,8 +85,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     private AssetManager assetManager;
     private Node rootNode;
     private Configuration config;
-    //private ModelControl mc;
-    //private SceneControl sc;
     private String selection, familySelection, panelSelection, modelSelection, tabSelected;
     private int page, modelsPage, multiPage[];
     private Element popupColor, popupAnim, popupFin;
@@ -477,15 +471,6 @@ public class Gui extends AbstractAppState implements ScreenController {
             }
     }
     
-    /*public Model getModel(String path){
-        XMLReader xmlReader2 = new XMLReader<Model>(path);
-        ArrayList<Model> models = xmlReader2.readXML(Model.class);
-        if (models.size()==1){
-            return models.get(0);
-        }
-        return null;
-    }*/
-    
     public void selectModel(String id, String param){
         if(panelSelection != null){
             nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF000000"));
@@ -508,12 +493,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void loadFirstScreen(){
         nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
         control.selectModel(modelSelection, rootNode, assetManager);
-        //i18nModel = new I18N(getModel(modelSelection).getLanguagesPath(),language);
         i18nModel = new I18N(control.getLanguageModelPath(),language);
-        
-        //mc = new ModelControl(getModel(modelSelection));
-        
-        //sc = new SceneControl(rootNode,assetManager,mc);
         stages = control.getStagesLabels();
         selection = stages.get(index);
         creaMenu();
@@ -566,17 +546,14 @@ public class Gui extends AbstractAppState implements ScreenController {
         for(int j = 0; j < stages.size(); j++){
             if(control.getStagesTypes(stages.get(j)).toString().equals(stage)){
                 ArrayList<String> idSubStages = control.getIdsSubStages(stages.get(j));
-                //ArrayList<String> idsTexturesOrSubMeshes = mc.getIdsTexturesORSubMeshes(idSubStages.get(0));
                 ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(0));
                 //ArrayList<String> idTexture = mc.getIdsTextures(stages.get(j));
-                //for(int i=0; i<mc.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
                 for(int i=0; i<control.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
                     ImageBuilder image = new ImageBuilder(){{
                         width("0%");
                         height("0%");
                     }};
                     image.id(stages.get(j)+"i"+Integer.toString(i));
-                    //image.filename(mc.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)));
                     image.filename(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)));
                     image.interactOnClick("changeTextureOrSubMesh("+idsTexturesOrSubMeshes.get(i)+")");
                     image.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%SINGLE_PAGE)));
@@ -588,16 +565,13 @@ public class Gui extends AbstractAppState implements ScreenController {
                 ArrayList<String> idSubStages = control.getIdsSubStages(stages.get(j));
                 for(int i=0;i<control.getNumSubStages(stages.get(j));i++){
                     nifty.getScreen(stage2).findElementByName("text"+Integer.toString(i%MULTI_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(idSubStages.get(i)));
-                    //ArrayList<String> idsTexturesOrSubMeshes = mc.getIdsTexturesORSubMeshes(idSubStages.get(i));
                     ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(i));
-                    //for(int k=0; k<mc.getNumTexturesORSubMeshes(idSubStages.get(i)); k++){
                     for(int k=0; k<control.getNumTexturesORSubMeshes(idSubStages.get(i)); k++){
                         ImageBuilder image = new ImageBuilder(){{
                             width("0%");
                             height("0%");
                         }};
                         image.id(idSubStages.get(i)+"i"+Integer.toString(k));
-                        //image.filename(mc.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(k)));
                         image.filename(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(k)));
                         image.interactOnClick("changeTextureOrSubMesh("+idsTexturesOrSubMeshes.get(k)+")");
                         image.build(nifty, nifty.getScreen(stage2), nifty.getScreen(stage2).findElementByName("t"+Integer.toString(i%MULTI_PAGE)+Integer.toString(k%MULTI_PAGE)));
@@ -617,12 +591,10 @@ public class Gui extends AbstractAppState implements ScreenController {
             int bonesSize = 0;
             if(tabSelected.equals("basic")){
                 ArrayList<String> idPanel = control.getIdsSubStages(selection);
-                //idPhysicalBuild = mc.getIdsPhysicalBuild(idPanel.get(0));
                 idPhysicalBuild = control.getIdsPhysicalBuild(idPanel.get(0));
                 bonesSize = idPhysicalBuild.size();
                 for(int i=page*BONES_PAGE; i<bonesSize; i++){
                     if(i<((page+1)*BONES_PAGE)){
-                       //nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%BONES_PAGE)).getRenderer(TextRenderer.class).setText(i18nModel.getString(mc.getPhysicalBuildLabel(idPhysicalBuild.get(i))));
                        nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%BONES_PAGE)).getRenderer(TextRenderer.class).setText(i18nModel.getString(control.getPhysicalBuildLabel(idPhysicalBuild.get(i))));
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).layoutElements();
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).enable();
@@ -644,11 +616,8 @@ public class Gui extends AbstractAppState implements ScreenController {
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).setVisible(true);
                        nifty.getScreen(stage).findElementByName("slider"+Integer.toString(i%BONES_PAGE)).setVisible(true);
                        Slider s = nifty.getScreen(stage).findNiftyControl("slider"+Integer.toString(i%BONES_PAGE), Slider.class);
-                       //s.setMax(mc.getMaxValueBoneController(idBones.get(i)));
                        s.setMax(control.getMaxValueBoneController(idBones.get(i)));
-                       //s.setMin(mc.getMinValueBoneController(idBones.get(i)));s.setMin(mc.getMinValueBoneController(idBones.get(i)));
                        s.setMin(control.getMinValueBoneController(idBones.get(i)));
-                       //s.setValue(mc.getDefaultValueBoneController(idBones.get(i)));
                        s.setValue(control.getDefaultValueBoneController(idBones.get(i)));
                     }
                 }
@@ -749,7 +718,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void hideTexturePage(String type, String param){
         if(type.equals(StageType.singleStage.toString())){
             ArrayList<String> idSubStages = control.getIdsSubStages(param);
-            //for(int i=page*SINGLE_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
             for(int i=page*SINGLE_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
                 if(i<((page+1)*SINGLE_PAGE)){
                     nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setVisible(false);
@@ -767,7 +735,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void hideMultiTexturePage(int t,String type, String param){
         ArrayList<String> idSubStages = control.getIdsSubStages(param);
         if((page*MULTI_PAGE+t)<idSubStages.size()){
-            //for(int i=multiPage[t]*MULTI_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+t)); i++){
             for(int i=multiPage[t]*MULTI_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+t)); i++){
                 if(i<((multiPage[t]+1)*MULTI_PAGE)){
                     nifty.getScreen(type).findElementByName(idSubStages.get(page*MULTI_PAGE+t)+"i"+Integer.toString(i)).setVisible(false);
@@ -789,7 +756,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         if((page*MULTI_PAGE+h)<idSubStages.size()){
             nifty.getScreen(stage).findElementByName("panel_color"+Integer.toString(h)).enable();
             nifty.getScreen(stage).findElementByName("panel_color"+Integer.toString(h)).setVisible(true);
-            //for(int i=multiPage[h]*MULTI_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+h)); i++){
             for(int i=multiPage[h]*MULTI_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+h)); i++){
                 if(i<((multiPage[h]+1)*MULTI_PAGE)){
                     nifty.getScreen(stage).findElementByName("text"+Integer.toString(h)).setVisible(true);
@@ -807,7 +773,6 @@ public class Gui extends AbstractAppState implements ScreenController {
                 nifty.getScreen(stage).findElementByName("leftT"+Integer.toString(h)).disable();
                 nifty.getScreen(stage).findElementByName("leftT"+Integer.toString(h)).setVisible(false);
             }
-            //if((((double)mc.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+h))/(double)MULTI_PAGE) - multiPage[h]) > 1){
             if((((double)control.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+h))/(double)MULTI_PAGE) - multiPage[h]) > 1){
                 nifty.getScreen(stage).findElementByName("rightT"+Integer.toString(h)).enable();
                 nifty.getScreen(stage).findElementByName("rightT"+Integer.toString(h)).setVisible(true);
@@ -835,7 +800,6 @@ public class Gui extends AbstractAppState implements ScreenController {
             }
             changePage(steep);
             ArrayList<String> idSubStages = control.getIdsSubStages(selection);
-            //for(int i=page*SINGLE_PAGE; i<mc.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
             for(int i=page*SINGLE_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
                 if(i<((page+1)*SINGLE_PAGE)){
                     nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setVisible(true);
@@ -851,7 +815,6 @@ public class Gui extends AbstractAppState implements ScreenController {
                 nifty.getScreen(stage).findElementByName("leftT").disable();
                 nifty.getScreen(stage).findElementByName("leftT").setVisible(false);
             }
-            //if((((double)mc.getNumTexturesORSubMeshes(idSubStages.get(0))/(double)SINGLE_PAGE) - page) > 1){
             if((((double)control.getNumTexturesORSubMeshes(idSubStages.get(0))/(double)SINGLE_PAGE) - page) > 1){
                 nifty.getScreen(stage).findElementByName("rightT").enable();
                 nifty.getScreen(stage).findElementByName("rightT").setVisible(true);
@@ -944,7 +907,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void changeTextureOrSubMesh(String idTextureOrSubMesh)
     {
-        //sc.changeTextureOrSubMesh(idTextureOrSubMesh);
         control.changeTextureOrSubMesh(idTextureOrSubMesh);
     }
     
@@ -996,7 +958,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        //sc.changeColor(red / 255.f, green / 255.f, blue / 255.f);
         control.changeColor(red / 255.f, green / 255.f, blue / 255.f);
         nifty.closePopup(popupColor.getId()); 
     }
@@ -1015,7 +976,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     @NiftyEventSubscriber(id="exportButton")
     public void onExportButtonClicked(final String id, final ButtonClickedEvent event) {
         nifty.gotoScreen("popupfinScreen");
-        //sc.screenShot();
         control.screenShot();
     }
     
@@ -1064,9 +1024,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void Slider0Change(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        //sc.setBoneControllerValue(idBones.get(page*BONES_PAGE), inc);
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE), inc);
-        //mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE),event.getValue());
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE),event.getValue());
     }
     
@@ -1074,9 +1032,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void onSlider1Change(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        //sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+1), inc);
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+1), inc);
-        //mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+1),event.getValue());
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+1),event.getValue());
 
     }
@@ -1085,9 +1041,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void onSlider2Change(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        //sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+2), inc);
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+2), inc);
-        //mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+2),event.getValue());
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+2),event.getValue());
     }
     
@@ -1095,9 +1049,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void onSlider3Change(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        //sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+3), inc);
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+3), inc);
-        //mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+3),event.getValue());
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+3),event.getValue());
     }
     
@@ -1105,9 +1057,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void onSlider4Change(final String id, final SliderChangedEvent event) 
     {
         float inc = 1.0f + event.getValue() * 0.01f;
-        //sc.setBoneControllerValue(idBones.get(page*BONES_PAGE+4), inc);
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+4), inc);
-        //mc.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+4),event.getValue());
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+4),event.getValue());
     }
     
@@ -1118,7 +1068,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void changeBodyType(String bodyType)
     {
-       //sc.setPhysicalBuild(idPhysicalBuild.get(page*BONES_PAGE+Integer.parseInt(bodyType)));
         control.setPhysicalBuild(idPhysicalBuild.get(page*BONES_PAGE+Integer.parseInt(bodyType)));
     }
 }

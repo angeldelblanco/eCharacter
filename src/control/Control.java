@@ -48,6 +48,7 @@ import java.util.Iterator;
 import loader.Configuration;
 import loader.XMLReader;
 import types.StageType;
+import types.TexturesType;
 
 public class Control {
     
@@ -245,6 +246,11 @@ public class Control {
     public void setDefaultValueBoneController(String idBoneController, float value)
     {
         mc.setDefaultValueBoneController(idBoneController, value);
+    }
+    
+    public TexturesType getTextureType(String idTextureOrSubMesh)
+    {
+        return mc.getTextureType(idTextureOrSubMesh);
     }
     
     /*************************Scene******************************************/
