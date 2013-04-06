@@ -3,7 +3,7 @@
 	<metadata>
 		<name>idNameFamily</name>
 		<description>idDescriptionFamily</description>
-		<author>Alex, David y Sergio.</author>
+		<author>idAuthor.</author>
 		<languagesPath>assets/Locale/Humans</languagesPath>
 	</metadata>
 	<stages>
