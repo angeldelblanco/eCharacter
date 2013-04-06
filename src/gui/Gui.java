@@ -44,19 +44,14 @@ import com.jme3.scene.Node;
 import control.Control;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
-import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
-import de.lessvoid.nifty.builder.PopupBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.ButtonClickedEvent;
 import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
-import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
-import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
-import de.lessvoid.nifty.controls.slider.builder.SliderBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
@@ -139,7 +134,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         this.app = app;
         page = 0;
         popupColor = null;
-        popupColor();
         index = 0;
         popUpNum = 0;
         familySelection = "";
@@ -196,99 +190,6 @@ public class Gui extends AbstractAppState implements ScreenController {
             }
             nifty.getScreen(type).findElementByName("panel_screenright").layoutElements();
         }
-    }
-    
-    public void popupColor(){
-        new PopupBuilder("popupColor") {{
-                childLayoutCenter();
-                backgroundColor("#fffa");
-                panel(new PanelBuilder("popupPanel") {{
-                    backgroundImage("assets/Interface/CuadroAzul.png");
-                    height("25%");
-                    width("25%");
-                    childLayoutVertical();
-                    panel(new PanelBuilder("panelSelection") {{
-                        height("80%");
-                        childLayoutHorizontal();
-                        panel(new PanelBuilder("panelRed") {{
-                            childLayoutVertical();
-                            height("90%");
-                            width("25%");
-                            valignCenter();
-                            control(new SliderBuilder("sliderR", true){{
-                                max(255);
-                                min(0);
-                                initial(0);
-                            }});
-                            control(new LabelBuilder() {{
-                                alignCenter();
-                                text("Red");
-                                width("100%");
-                            }});
-                        }});
-                        panel(new PanelBuilder("panelGreen") {{
-                            childLayoutVertical();
-                            height("90%");
-                            width("25%");
-                            valignCenter();
-                            control(new SliderBuilder("sliderG", true){{
-                                max(255);
-                                min(0);
-                                initial(0);
-                            }});
-                            control(new LabelBuilder() {{
-                                alignCenter();
-                                text("Green");
-                                width("100%");
-                            }});
-                        }});
-                        panel(new PanelBuilder("panelBlue") {{
-                            childLayoutVertical();
-                            height("90%");
-                            width("25%");
-                            valignCenter();
-                            control(new SliderBuilder("sliderB", true){{
-                                max(255);
-                                min(0);
-                                initial(0);
-                            }});
-                            control(new LabelBuilder() {{
-                                alignCenter();
-                                text("Blue");
-                                width("100%");
-                            }});
-                        }});
-                        panel(new PanelBuilder("panelColor") {{
-                            backgroundColor("#000f");
-                            valignCenter();
-                            alignCenter();
-                            height("25%");
-                            width("15%");
-                        }});
-                    }});
-                    panel(new PanelBuilder("panelButton") {{
-                            childLayoutHorizontal();
-                            height("20%");
-                            panel(new PanelBuilder("panelAcept") {{
-                                height("90%");
-                                width("50%");
-                                valignCenter();
-                                childLayoutCenter();
-                                control(new ButtonBuilder("aceptButton", "Acept"));
-                            }});
-                            panel(new PanelBuilder("panelCancel") {{
-                                height("90%");
-                                width("50%");
-                                valignCenter();
-                                childLayoutCenter();
-                                control(new ButtonBuilder("cancelButton", "Cancel"));
-                            }});
-                    }});
-                }});
-        }}.registerPopup(nifty);
-        red = 0;
-        green = 0;
-        blue = 0;
     }
     
     public void changeCharacterPage(String steep, String familyAnt){
@@ -618,7 +519,7 @@ public class Gui extends AbstractAppState implements ScreenController {
   
     private void changeColor() {
         //if(popupColor != null){
-            popupColor.findElementByName("panelColor").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 1));
+            popupColor.findElementByName("colorPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 1));
         //}
     }
     
