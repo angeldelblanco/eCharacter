@@ -112,7 +112,7 @@ public class Configuration
     {
         //Default configuration
         this.properties.setProperty(Language, "en_UK");
-        this.properties.setProperty(ListLanguage,"en_UK es_ES");
+        this.properties.setProperty(ListLanguage,"en_UK es_ES fr_FR");
         this.properties.setProperty(Resolution, "1024x768");
         this.properties.setProperty(AssetsPath, "assets");
         this.properties.setProperty(FamiliesPath,"assets"+File.separator+"XML Configuration"+File.separator+"families");

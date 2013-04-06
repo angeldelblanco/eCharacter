@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="fr_FR" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="language.xsd">
+	<string id="idDescription">Bienvenue au configurateur des personages pour eAdventure. Avec cet configurateur des personages vous pouvez crèer votre avatar pour jouer aux jeux dans la platforme eAdventure.</string>
+	<string id="idAuthor">Alex,Sergio et David</string>
+	<string id="idStart">Démarrer</string>
+	<string id="idQuit">Sortir</string>
+	<string id="idLanguage">Langue</string>
+	<string id="idChoose">Choisi ton modéle</string>
+	<string id="idFamily">Choisi la famille:</string>
+	<string id="idPrevious">Précédent</string>
+	<string id="idNext">Suivant</string>
+	<string id="idFinish">Finaliser</string>
+	<string id="idColor">Coleur</string>
+	<string id="idQuality">Qualité</string>
+	<string id="idCamera">Caméra</string>
+	<string id="idPreview">Animations</string>
+	<string id="idPopup1">Est-ce que vous voulez retoucher le modéle ou contiuner l'exportation?</string>
+	<string id="idPopup2">Est-ce que vous voulez créer un nouveau modéle?</string>
+	<string id="idPopupButton1">Retoucher le modéle</string>
+	<string id="idPopupButton2">Exporter</string>
+	<string id="idPopupButton3">Oui</string>
+	<string id="idPopupButton4">Non</string>
+</metadata>
+	
