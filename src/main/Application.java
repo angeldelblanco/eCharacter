@@ -41,29 +41,20 @@ import com.jme3.animation.AnimControl;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.asset.plugins.FileLocator;
-import com.jme3.material.Material;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.system.AppSettings;
 import control.Control;
-import data.family.Family;
 import de.lessvoid.nifty.Nifty;
 import gui.Gui;
 import java.io.File;
-import java.util.ArrayList;
 import loader.Configuration;
-import loader.XMLReader;
 
 public class Application extends SimpleApplication{
 
     private Gui gui;
     private ScreenshotAppState screenShotState;
     private NiftyJmeDisplay niftyDisplay;
-    private Material mat;
-    private static ArrayList<Family> families;
-    private static XMLReader xmlReader;
     public loader.Configuration config;
-    
-    private int indexImage = 0;
     
     public Application(int width,int height,Configuration config)
     {
@@ -80,13 +71,10 @@ public class Application extends SimpleApplication{
         setDisplayFps(false);
         setDisplayStatView(false);
         // Register locator to assetManager
-        assetManager.registerLocator("."+File.separator, FileLocator.class); 
-        
+        assetManager.registerLocator("."+File.separator, FileLocator.class);      
         Control control = new Control(config);
-
         gui = new Gui(control,config,assetManager,rootNode);
         stateManager.attach(gui);
-        
         screenShotState = new ScreenshotAppState();
         stateManager.attach(screenShotState);
         
@@ -104,11 +92,8 @@ public class Application extends SimpleApplication{
     }
     
      public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
-    {
-        
-    }
+    {}
  
     public void onAnimChange(AnimControl control, AnimChannel channel, String animName) 
-    {
-    }
+    {}
 }

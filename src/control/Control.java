@@ -36,7 +36,13 @@
 
 package control;
 
+import com.jme3.asset.AssetManager;
+import com.jme3.scene.Node;
 import data.family.Family;
+import data.model.EscalationType;
+import data.model.Model;
+import data.model.SubMeshType;
+import data.model.TextureType;
 import java.util.ArrayList;
 import java.util.Iterator;
 import loader.Configuration;
@@ -46,7 +52,10 @@ import types.StageType;
 public class Control {
     
     private ArrayList<Family> families;
+    private Model model;
     private FamilyControl fc;
+    private ModelControl mc;
+    private SceneControl sc;
     
     public Control(Configuration config)
     {
@@ -54,7 +63,7 @@ public class Control {
         XMLReader<Family> xmlReader = new XMLReader<Family>(familiesPath);
         families = xmlReader.readXML(Family.class);
     }
-    
+    /*************************Family******************************************/
     public void selectFamily(String nameFamily)
     {
         Iterator<Family> it = families.iterator();
@@ -173,5 +182,108 @@ public class Control {
     public String getBoneControllerLabel(String idStageLabel,String idBoneController)
     {
         return fc.getBoneControllerLabel(idStageLabel, idBoneController);
+    }
+    
+    /*************************Models******************************************/
+    
+    public void selectModel(String pathModel, Node rootNode, AssetManager assetManager)
+    {
+        XMLReader xmlReader2 = new XMLReader<Model>(pathModel);
+        ArrayList<Model> models = xmlReader2.readXML(Model.class);
+        if (models.size()==1){
+            model = models.get(0);
+        }
+        mc = new ModelControl(model);
+        sc = new SceneControl(rootNode, assetManager, mc.getMainMeshPath(), mc.getMainMeshTransformations());
+    }
+    
+    public String getLanguageModelPath()
+    {
+        return mc.getLanguagePath();
+    }
+    
+    public ArrayList<String> getIdsTexturesORSubMeshes(String idPanelRef)
+    {
+        return mc.getIdsTexturesORSubMeshes(idPanelRef);
+    }
+    
+    public int getNumTexturesORSubMeshes(String idPanelRef)
+    {
+        return mc.getNumTexturesORSubMeshes(idPanelRef);
+    }
+    
+    public String getIconPathTexturesORSubMeshes(String idTexturesORSubMeshes)
+    {
+        return mc.getIconPathTexturesORSubMeshes(idTexturesORSubMeshes);
+    }
+    
+    public ArrayList<String> getIdsPhysicalBuild(String idPanelRef)
+    {
+        return mc.getIdsPhysicalBuild(idPanelRef);
+    }
+    
+    public String getPhysicalBuildLabel(String idPhysicalBuild)
+    {
+        return mc.getPhysicalBuildLabel(idPhysicalBuild);
+    }
+    
+    public float getMaxValueBoneController(String idBoneController)
+    {
+        return mc.getMaxValueBoneController(idBoneController);
+    }
+    
+    public float getMinValueBoneController(String idBoneController)
+    {
+        return mc.getMinValueBoneController(idBoneController);
+    }
+    
+    public float getDefaultValueBoneController(String idBoneController)
+    {
+        return mc.getDefaultValueBoneController(idBoneController);
+    }
+    
+    public void setDefaultValueBoneController(String idBoneController, float value)
+    {
+        mc.setDefaultValueBoneController(idBoneController, value);
+    }
+    
+    /*************************Scene******************************************/
+    
+    public void changeTextureOrSubMesh(String idTextureOrSubMesh)
+    {
+        TextureType texture = mc.getTexture(idTextureOrSubMesh);
+        if (texture != null){
+            //It's a texture.
+            sc.changeTexture(texture);
+        }
+        else{
+            //It's a submesh
+            SubMeshType subMesh = mc.getSubMesh(idTextureOrSubMesh);
+            if (subMesh != null){
+                sc.changeSubMesh(subMesh, mc.getSubMeshTransformation(subMesh.getIdSubMesh()));
+            }
+        }
+    }
+    
+    public void changeColor(float red,float green,float blue)
+    {
+        sc.changeColor(red, green, blue);
+    }
+    
+    public void screenShot()
+    {
+        sc.screenShot();
+    }
+    
+    public void setBoneControllerValue(String idBoneController, float inc)
+    {
+        ArrayList<String> listBones = mc.getBones(idBoneController);
+        sc.scaleBone(listBones, inc);
+    }
+    
+    public void setPhysicalBuild(String idPhysicalBuild)
+    {
+        ArrayList<EscalationType> listEscalations = mc.getPhysicalBuildEscalations(idPhysicalBuild);
+        sc.applyEscalations(listEscalations);
     }
 }
