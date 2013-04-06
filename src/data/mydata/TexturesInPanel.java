@@ -36,7 +36,10 @@
 package data.mydata;
 
 import data.model.TextureType;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 
 public class TexturesInPanel 
@@ -54,5 +57,28 @@ public class TexturesInPanel
     public void addTexture(TextureType texture, boolean isCheck)
     {
         textures.put(texture, isCheck);
+    }
+    
+    /*
+     * Return a list with the activated textures in this panel
+     */
+    public ArrayList<TextureType> getCheckedTextures()
+    {
+        ArrayList<TextureType> listCheckedTextures = new ArrayList<TextureType>();
+        Set<TextureType> setTextureType = textures.keySet();
+        Iterator<TextureType> it = setTextureType.iterator();
+        while(it.hasNext())
+        {
+            TextureType texture = it.next();
+            if (textures.get(texture)){
+               listCheckedTextures.add(texture);
+           } 
+        }
+        return listCheckedTextures;
+    }
+    
+    public void changeTexture(String idTexture)
+    {
+        
     }
 }

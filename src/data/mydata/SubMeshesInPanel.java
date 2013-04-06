@@ -36,12 +36,15 @@
 package data.mydata;
 
 import data.model.SubMeshType;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 public class SubMeshesInPanel 
 {
     private boolean multiSelection;
-    //HashMap<Texture, boolean = if this subMesh is selected>
+    //HashMap<submesh, boolean = if this subMesh is selected>
     private HashMap<SubMeshType,Boolean> subMeshes;
     
     public SubMeshesInPanel(boolean multiSelection)
@@ -53,5 +56,27 @@ public class SubMeshesInPanel
     public void addSubMesh(SubMeshType subMesh,boolean isCheck)
     {
         subMeshes.put(subMesh, isCheck);
+    }
+    
+    /*
+     * Return a list with the activated submeshes in this panel
+     */
+    public ArrayList<SubMeshType> getCheckedSubMeshes()
+    {
+        ArrayList<SubMeshType> listCheckedSubMeshes = new ArrayList<SubMeshType>();
+        Set<SubMeshType> setSubMeshesType = subMeshes.keySet();
+        Iterator<SubMeshType> it = setSubMeshesType.iterator();
+        while(it.hasNext())
+        {
+            SubMeshType subMesh = it.next();
+            if (subMeshes.get(subMesh)){
+               listCheckedSubMeshes.add(subMesh);
+           } 
+        }
+        return listCheckedSubMeshes;
+    }
+    
+    public void changeSubMesh(String idSubMesh)
+    {
     }
 }

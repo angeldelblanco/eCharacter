@@ -46,6 +46,7 @@ import data.model.TextureType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 
 public class MyData 
@@ -75,6 +76,9 @@ public class MyData
         fillSubMeshesData(listSubMeshes);        
     }
     
+    /*
+     * Create the keyset of the hashMaps with the idPanel of the substages
+     */
     private void createKeySet(ArrayList<SubStageType> listSubStages)
     {
         Iterator<SubStageType> it = listSubStages.iterator();
@@ -90,6 +94,9 @@ public class MyData
         }        
     }
     
+    /*
+     * Fill texturesData with the list of textures
+     */
     private void fillTexturesData(ArrayList<TextureType> listTextures)
     {
         Iterator<TextureType> it = listTextures.iterator();
@@ -124,6 +131,9 @@ public class MyData
         }
     }
     
+    /*
+     * Fill subMeshesData with the list of submeshes
+     */
     private void fillSubMeshesData(ArrayList<SubMeshType> listSubMeshes)
     {
         Iterator<SubMeshType> it = listSubMeshes.iterator();
@@ -133,5 +143,65 @@ public class MyData
             subMeshesData.get(subMesh.getIdPanelRef()).addSubMesh(subMesh, subMesh.isDefault());
         }
     }
+    
+    /*
+     * Return the list of textures activated
+     */
+    public ArrayList<TextureType> getCheckedTextures()
+    {
+        ArrayList<TextureType> listCheckedTextures = new ArrayList<TextureType>();
+        Set<String> keyIdPanels = texturesData.keySet();
+        Iterator<String> it = keyIdPanels.iterator();
+        while(it.hasNext())
+        {
+            TexturesInPanel texturesInPanel = texturesData.get(it.next());
+            ArrayList<TextureType> listCheckedTexturesInPanel = texturesInPanel.getCheckedTextures();
+            Iterator<TextureType> it2 = listCheckedTexturesInPanel.iterator();
+            while(it2.hasNext())
+            {
+                listCheckedTextures.add(it2.next());
+            }
+        }
+        return listCheckedTextures;
+    }
+    
+    /*
+     * Return the list of textures activated
+     */
+    public ArrayList<SubMeshType> getCheckedSubMeshes()
+    {
+        ArrayList<SubMeshType> listCheckedSubMeshes = new ArrayList<SubMeshType>();
+        Set<String> keyIdPanels = subMeshesData.keySet();
+        Iterator<String> it = keyIdPanels.iterator();
+        while(it.hasNext())
+        {
+            SubMeshesInPanel subMeshesInPanel = subMeshesData.get(it.next());
+            ArrayList<SubMeshType> listCheckedSubMeshesInPanel = subMeshesInPanel.getCheckedSubMeshes();
+            Iterator<SubMeshType> it2 = listCheckedSubMeshesInPanel.iterator();
+            while(it2.hasNext())
+            {
+                listCheckedSubMeshes.add(it2.next());
+            }
+        }
+        return listCheckedSubMeshes;
+    }
+    
+    /*
+     * Change the texture with idTexture in the panel with idPanel
+     */
+    public void changeTexture(String idPanel,String idTexture)
+    {
+        texturesData.get(idPanel).changeTexture(idTexture);
+    }
+    
+    /*
+     * Change the subMesh with idSubMesh in the panel with idPanel
+     */
+    public void changeSubMesh(String idPanel,String idSubMesh)
+    {
+        subMeshesData.get(idPanel).changeSubMesh(idSubMesh);
+    }
+    
+    
     
 }
