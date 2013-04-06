@@ -2,16 +2,13 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.03 a las 11:47:25 AM CEST 
+// Generado el: PM.04.06 a las 04:27:19 PM CEST 
 //
 
 
 package data.family;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
 
 
 /**
@@ -31,8 +28,6 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _MultiStageTypeMeshSubStage_QNAME = new QName("", "meshSubStage");
-    private final static QName _MultiStageTypeTextureSubStage_QNAME = new QName("", "textureSubStage");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: data.family
@@ -151,24 +146,6 @@ public class ObjectFactory {
      */
     public ScaleStageType.BoneController createScaleStageTypeBoneController() {
         return new ScaleStageType.BoneController();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SubStageType }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "meshSubStage", scope = MultiStageType.class)
-    public JAXBElement<SubStageType> createMultiStageTypeMeshSubStage(SubStageType value) {
-        return new JAXBElement<SubStageType>(_MultiStageTypeMeshSubStage_QNAME, SubStageType.class, MultiStageType.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SubStageType }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "textureSubStage", scope = MultiStageType.class)
-    public JAXBElement<SubStageType> createMultiStageTypeTextureSubStage(SubStageType value) {
-        return new JAXBElement<SubStageType>(_MultiStageTypeTextureSubStage_QNAME, SubStageType.class, MultiStageType.class, value);
     }
 
 }

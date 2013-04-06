@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.03 a las 11:47:25 AM CEST 
+// Generado el: PM.04.06 a las 04:27:19 PM CEST 
 //
 
 
@@ -10,12 +10,10 @@ package data.family;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -28,10 +26,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="multiStageType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice maxOccurs="unbounded">
- *         &lt;element name="meshSubStage" type="{}subStageType"/>
- *         &lt;element name="textureSubStage" type="{}subStageType"/>
- *       &lt;/choice>
+ *       &lt;sequence>
+ *         &lt;element name="subStage" type="{}subStageType" maxOccurs="unbounded"/>
+ *       &lt;/sequence>
  *       &lt;attribute name="stageLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -42,46 +39,42 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "multiStageType", propOrder = {
-    "meshSubStageOrTextureSubStage"
+    "subStage"
 })
 public class MultiStageType {
 
-    @XmlElementRefs({
-        @XmlElementRef(name = "meshSubStage", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "textureSubStage", type = JAXBElement.class, required = false)
-    })
-    protected List<JAXBElement<SubStageType>> meshSubStageOrTextureSubStage;
+    @XmlElement(required = true)
+    protected List<SubStageType> subStage;
     @XmlAttribute(name = "stageLabel", required = true)
     protected String stageLabel;
 
     /**
-     * Gets the value of the meshSubStageOrTextureSubStage property.
+     * Gets the value of the subStage property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the meshSubStageOrTextureSubStage property.
+     * This is why there is not a <CODE>set</CODE> method for the subStage property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getMeshSubStageOrTextureSubStage().add(newItem);
+     *    getSubStage().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link SubStageType }{@code >}
-     * {@link JAXBElement }{@code <}{@link SubStageType }{@code >}
+     * {@link SubStageType }
      * 
      * 
      */
-    public List<JAXBElement<SubStageType>> getMeshSubStageOrTextureSubStage() {
-        if (meshSubStageOrTextureSubStage == null) {
-            meshSubStageOrTextureSubStage = new ArrayList<JAXBElement<SubStageType>>();
+    public List<SubStageType> getSubStage() {
+        if (subStage == null) {
+            subStage = new ArrayList<SubStageType>();
         }
-        return this.meshSubStageOrTextureSubStage;
+        return this.subStage;
     }
 
     /**

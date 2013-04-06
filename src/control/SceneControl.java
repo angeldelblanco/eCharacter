@@ -59,7 +59,6 @@ public class SceneControl
     private Node rootNode;
     private AssetManager assetManager;
     private Spatial mainMesh;
-    private HashMap<String,TexturesInPanel> textures;
     private HashMap<String,Spatial> subMeshes;
     private Material mat;
     private AnimChannel channel;

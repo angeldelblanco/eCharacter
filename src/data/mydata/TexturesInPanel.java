@@ -33,21 +33,52 @@
  *      along with <eAdventure Character Configurator>. If not, 
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package control;
+package data.mydata;
 
 import data.model.TextureType;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 
 public class TexturesInPanel 
 {
     private boolean multiSelection;
-    private ArrayList<TextureType> textures;
-    private boolean[] checked;
+    //HashMap<Texture, boolean = if this texture is selected>
+    private HashMap<TextureType,Boolean> textures;
     
     public TexturesInPanel(boolean multiSelection)
     {
-        
+        this.multiSelection = multiSelection;
+        textures = new HashMap<TextureType,Boolean>();
+    }  
+    
+    public void addTexture(TextureType texture, boolean isCheck)
+    {
+        textures.put(texture, isCheck);
     }
     
+    /*
+     * Return a list with the activated textures in this panel
+     */
+    public ArrayList<TextureType> getCheckedTextures()
+    {
+        ArrayList<TextureType> listCheckedTextures = new ArrayList<TextureType>();
+        Set<TextureType> setTextureType = textures.keySet();
+        Iterator<TextureType> it = setTextureType.iterator();
+        while(it.hasNext())
+        {
+            TextureType texture = it.next();
+            if (textures.get(texture)){
+               listCheckedTextures.add(texture);
+           } 
+        }
+        return listCheckedTextures;
+    }
+    
+    public void changeTexture(String idTexture)
+    {
+        
+    }
 }

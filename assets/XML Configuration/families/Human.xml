@@ -20,29 +20,29 @@
 			<boneController controllerLabel="idBoneControler10" idController="rightFoot"/>			
 		</scaleStage>
 		<multiStage stageLabel="idMultiStageLabel2">
-			<textureSubStage subStageLabel="idTextureSubStageLabel1" idPanel="skinsPanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel1" idPanel="skinsPanel" 		multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel3">
-			<textureSubStage subStageLabel="idTextureSubStageLabel2" idPanel="eyesPanel" multiselection="false"/>
-			<textureSubStage subStageLabel="idTextureSubStageLabel3" idPanel="eyebrowsPanel" multiselection="true"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel2" idPanel="eyesPanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel3" idPanel="eyebrowsPanel" multiselection="true"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel4">
-			<textureSubStage subStageLabel="idTextureSubStageLabel4" idPanel="tshirtsPanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel4" idPanel="tshirtsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel5">
-			<textureSubStage subStageLabel="idTextureSubStageLabel5" idPanel="trousersPanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel5" idPanel="trousersPanel" multiselection="false"/>
 		</multiStage>		
 		<multiStage stageLabel="idMultiStageLabel6">
-			<textureSubStage subStageLabel="idTextureSubStageLabel6" idPanel="shoesPanel" multiselection="false"/>
-			<textureSubStage subStageLabel="idTextureSubStageLabel7" idPanel="socksPanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel6" idPanel="shoesPanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel7" idPanel="socksPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel7">
-			<meshSubStage subStageLabel="idTextureSubStageLabel8" idPanel="hairsPanel" multiselection="false"/>
+			<subStage subStageType="meshSubStage" subStageLabel="idTextureSubStageLabel8" idPanel="hairsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel8">
-			<textureSubStage subStageLabel="idTextureSubStageLabel9" idPanel="facePanel" multiselection="false"/>
-			<textureSubStage subStageLabel="idTextureSubStageLabel10" idPanel="accesoriesFacePanel" multiselection="true"/>
-			<textureSubStage subStageLabel="idTextureSubStageLabel11" idPanel="otherAccesoriesPanel" multiselection="true"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel9" idPanel="facePanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel10" idPanel="accesoriesFacePanel" multiselection="true"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel11" idPanel="otherAccesoriesPanel" multiselection="true"/>
 		</multiStage>
 		<animationStage stageLabel="idAnimationStageLabel1">
 			<!-- Dar valores. Los que hay son aleatorios -->

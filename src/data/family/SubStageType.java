@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.03 a las 11:47:25 AM CEST 
+// Generado el: PM.04.06 a las 04:27:19 PM CEST 
 //
 
 
@@ -27,6 +27,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * &lt;complexType name="subStageType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;attribute name="subStageType" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;enumeration value="meshSubStage"/>
+ *             &lt;enumeration value="textureSubStage"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
  *       &lt;attribute name="subStageLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="idPanel" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *       &lt;attribute name="multiselection" type="{http://www.w3.org/2001/XMLSchema}boolean" />
@@ -41,6 +49,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "subStageType")
 public class SubStageType {
 
+    @XmlAttribute(name = "subStageType", required = true)
+    protected String subStageType;
     @XmlAttribute(name = "subStageLabel", required = true)
     protected String subStageLabel;
     @XmlAttribute(name = "idPanel", required = true)
@@ -50,6 +60,30 @@ public class SubStageType {
     protected String idPanel;
     @XmlAttribute(name = "multiselection")
     protected Boolean multiselection;
+
+    /**
+     * Obtiene el valor de la propiedad subStageType.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSubStageType() {
+        return subStageType;
+    }
+
+    /**
+     * Define el valor de la propiedad subStageType.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSubStageType(String value) {
+        this.subStageType = value;
+    }
 
     /**
      * Obtiene el valor de la propiedad subStageLabel.
