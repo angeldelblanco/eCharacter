@@ -52,10 +52,8 @@ import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.ButtonClickedEvent;
 import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
-import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
-import de.lessvoid.nifty.controls.checkbox.builder.CheckboxBuilder;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.controls.slider.builder.SliderBuilder;
@@ -74,9 +72,7 @@ import types.StageType;
 
 public class Gui extends AbstractAppState implements ScreenController {
     
-    private static final int SINGLE_PAGE = 6;
     private static final int BONES_PAGE = 5;
-    private static final int MULTI_PAGE = 2;
     private Nifty nifty;
     private I18N i18nGui, i18nModel, i18nFamily; 
     private Control control;
@@ -85,15 +81,20 @@ public class Gui extends AbstractAppState implements ScreenController {
     private AssetManager assetManager;
     private Node rootNode;
     private Configuration config;
-    private String selection, familySelection, panelSelection, modelSelection, tabSelected;
-    private int page, modelsPage, multiPage[];
-    private Element popupColor, popupAnim, popupFin;
+    private String selection, familySelection, modelSelection;
+    private int page;
+    private Element popupColor;
     private float red, green, blue;
     private ArrayList<String> stages,idBones,idPhysicalBuild;
     private ArrayList<String> families;
     private int modelsSize, modelsAntSize;
-    private int index;
+    private int index, popUpNum;
     private String language;
+    private ModelStageBuilder modelsb;
+    private ScaleStageBuilder scalesb;
+    private SingleStageBuilder singlesb;
+    private MultiStageBuilder multisb;
+    private AnimationStageBuilder animationsb;
     
     public Gui(Control control,Configuration config, AssetManager assetManager, Node rootNode){
         this.control = control;
@@ -105,65 +106,14 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        nifty.getScreen("modelScreen").findElementByName("chooseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idChoose"));
-        nifty.getScreen("modelScreen").findElementByName("choosePanel").layoutElements();
-        nifty.getScreen("modelScreen").findElementByName("panel_screenright").disable();
-        nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(false);
-        nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(false);
-        new TextBuilder("descriptionText"){{
-               color(Color.BLACK);
-               font("Interface/Fonts/Default.fnt");
-               width("100%");
-               height("100%");
-               wrap(true);
-        }}.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("descriptionPanel"));
-        new PanelBuilder() {{
-            width("40%");
-            childLayoutHorizontal();
-            text(new TextBuilder(){{
-                valignCenter();
-                color(Color.WHITE);
-                font("Interface/Fonts/Default.fnt");
-                text(i18nGui.getString("idFamily"));
-                width("50%");
-                wrap(true);
-            }});
-            control(new DropDownBuilder("familyDropDown") {{
-                valignCenter();
-                width("50%");
-            }});
-        }}.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("familyPanel"));
-        DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
-        Iterator<String> it = families.iterator();
-        while(it.hasNext()){
-            control.selectFamily(it.next());
-            i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
-            ArrayList<String> models = control.getModelsLabel();
-            Iterator<String> itm = models.iterator();
-            int i = 0;
-            while(itm.hasNext()){
-                String m = itm.next();
-                ImageBuilder image = new ImageBuilder(){{
-                    width("0%");
-                    height("0%");
-                    childLayoutOverlay();
-                    text("Man");
-                }};
-                image.id(i18nFamily.getString(control.getMetadataFamilyName())+"model"+Integer.toString(i));
-                image.filename(control.getModelIconPath(m));
-                image.interactOnClick("selectModel("+image.get("id")+","+control.getModelFamilyPath(m) +")");
-                //image.onHoverEffect(new HoverEffectBuilder("Man"));
-                //Nombre de los modelos con el i18n
-                image.build(nifty, nifty.getScreen("modelScreen"), nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%SINGLE_PAGE)));
-                i++;
-            }
-            family.addItem(i18nFamily.getString(control.getMetadataFamilyName()));
-        }
+        modelsb = new ModelStageBuilder(nifty,control,i18nGui,language,families);
         control.selectFamily(families.get(0));
+        i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
         modelsSize = control.getNumModels();
         modelsAntSize = 0;
         familySelection = i18nFamily.getString(control.getMetadataFamilyName());
-        modelsPage = 0;
+        DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
+        family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
         changeCharacterPage("0",familySelection);
     }
 
@@ -190,17 +140,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         page = 0;
         popupColor = null;
         popupColor();
-        popupAnim = null;
-        popupAnim();
-        popupFin = null;
-        popupFin();
         index = 0;
-        multiPage = new int[MULTI_PAGE];
-        for(int i=0; i<MULTI_PAGE;i++){
-            multiPage[i]=0;
-        }
+        popUpNum = 0;
         familySelection = "";
-        panelSelection = null;
         new DropDownBuilder("localeDropDown") {{
                 valignCenter();
                 //alignRight();
@@ -349,307 +291,48 @@ public class Gui extends AbstractAppState implements ScreenController {
         blue = 0;
     }
     
-    public void popupAnim()
-    {
-            new PanelBuilder("popupPanelAnim") {{
-                height("100%");
-                width("100%");
-                childLayoutVertical();
-                panel(new PanelBuilder("panelTexto") {{
-                    height("50%");
-                    childLayoutCenter();
-                    control(new LabelBuilder() {{
-                            alignCenter();
-                            text("Do you want to tweak the model, or go to the export stage?");
-                            width("100%");
-                    }});
-                }});
-                panel(new PanelBuilder("panelButton") {{
-                    childLayoutHorizontal();
-                    height("50%");
-                    panel(new PanelBuilder("panelTweak") {{
-                        height("90%");
-                        width("50%");
-                        valignCenter();
-                        childLayoutCenter();
-                        control(new ButtonBuilder("tweakButton", "Tweak model"));
-                    }});
-                    panel(new PanelBuilder("panelExport") {{
-                        height("90%");
-                        width("50%");
-                        valignCenter();
-                        childLayoutCenter();
-                        control(new ButtonBuilder("exportButton", "Export stage"));
-                    }});
-                }});
-            }}.build(nifty, nifty.getScreen("popupScreen"), nifty.getScreen("popupScreen").findElementByName("popup"));
-    }
-    
-    public void popupFin()
-    {
-            new PanelBuilder("popupPanel") {{
-                height("100%");
-                width("100%");
-                childLayoutVertical();
-                panel(new PanelBuilder("panelTexto") {{
-                    height("50%");
-                    childLayoutCenter();
-                    control(new LabelBuilder() {{
-                            alignCenter();
-                            text("Do you want to generate a new model?");
-                            width("100%");
-                    }});
-                }});
-                panel(new PanelBuilder("panelButton") {{
-                        childLayoutHorizontal();
-                        height("50%");
-                        panel(new PanelBuilder("panelYes") {{
-                            height("90%");
-                            width("50%");
-                            valignCenter();
-                            childLayoutCenter();
-                            control(new ButtonBuilder("yesButton", "Yes"));
-                        }});
-                        panel(new PanelBuilder("panelNo") {{
-                            height("90%");
-                            width("50%");
-                            valignCenter();
-                            childLayoutCenter();
-                            control(new ButtonBuilder("noButton", "No"));
-                        }});
-                }});
-            }}.build(nifty, nifty.getScreen("popupScreen"), nifty.getScreen("popupfinScreen").findElementByName("popup"));
-    }
-    
     public void changeCharacterPage(String steep, String familyAnt){
-            for(int i=modelsPage*SINGLE_PAGE; i<modelsAntSize; i++){
-                if(familyAnt.equals("same")){
-                    familyAnt = familySelection;
-                    modelsAntSize = modelsSize;
-                }
-                if(i<((modelsPage+1)*SINGLE_PAGE)){
-                    nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setVisible(false);
-                    nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setHeight(0);
-                    nifty.getScreen("modelScreen").findElementByName(familyAnt+"model"+Integer.toString(i)).setWidth(0);
-                }
-            }
-            if(steep.equals("+")){modelsPage++;}
-            if(steep.equals("-")){modelsPage--;}
-            if(steep.equals("0")){modelsPage = 0;}
-            for(int i=modelsPage*SINGLE_PAGE; i<modelsSize; i++){
-                if(i<((modelsPage+1)*SINGLE_PAGE)){
-                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setVisible(true);
-                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setHeight(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%SINGLE_PAGE)).getHeight()-5);
-                    nifty.getScreen("modelScreen").findElementByName(familySelection+"model"+Integer.toString(i)).setWidth(nifty.getScreen("modelScreen").findElementByName("t"+Integer.toString(i%SINGLE_PAGE)).getWidth()-5);
-                }
-            }
-            if(modelsPage > 0){
-                nifty.getScreen("modelScreen").findElementByName("leftT").enable();
-                nifty.getScreen("modelScreen").findElementByName("leftT").setVisible(true);
-            }
-            else{
-                nifty.getScreen("modelScreen").findElementByName("leftT").disable();
-                nifty.getScreen("modelScreen").findElementByName("leftT").setVisible(false);
-            }
-            if((((double)modelsSize/(double)SINGLE_PAGE) - modelsPage) > 1){
-                nifty.getScreen("modelScreen").findElementByName("rightT").enable();
-                nifty.getScreen("modelScreen").findElementByName("rightT").setVisible(true);
-            }
-            else{
-                nifty.getScreen("modelScreen").findElementByName("rightT").disable();
-                nifty.getScreen("modelScreen").findElementByName("rightT").setVisible(false);
-            }
-            Iterator<String> it = families.iterator();
-            while(it.hasNext()){
-                control.selectFamily(it.next());
-                if(i18nFamily.getString(control.getMetadataFamilyName()).equals(familySelection)){
-                    String url = "";
-                    if(control.getMetadataFamilyURL()!=null){url = control.getMetadataFamilyURL();}
-                    nifty.getScreen("modelScreen").findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+control.getMetadataFamilyAuthor()+"\n"+url);
-                    nifty.getScreen("modelScreen").findElementByName("descriptionPanel").layoutElements();
-                }
-            }
+        if(familyAnt.equals("same")){
+            familyAnt = familySelection;
+            modelsAntSize = modelsSize;
+        }
+        modelsb.changeCharacterPage(i18nFamily,steep,familySelection,familyAnt,modelsSize,modelsAntSize);    
     }
     
     public void selectModel(String id, String param){
-        if(panelSelection != null){
-            nifty.getScreen("modelScreen").findElementByName(panelSelection).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF000000"));
-        }
         modelSelection = param;
-        unCheck(nifty.getCurrentScreen(),SINGLE_PAGE);
-        nifty.getScreen("modelScreen").findElementByName(id).getParent().getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-        nifty.getScreen("modelScreen").findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
-        nifty.getScreen("modelScreen").findElementByName("panel_screenright").layoutElements();
-        nifty.getScreen("modelScreen").findElementByName("panel_screenright").enable();
-        nifty.getScreen("modelScreen").findElementByName("panel_screenright").setVisible(true);
-    }
-    
-    public void unCheck(Screen s, int num){
-        for(int i = 0; i < num; i++){
-            s.findElementByName("t"+Integer.toString(i)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-        }
+        modelsb.selectModel(id);
     }
     
     public void loadFirstScreen(){
-        nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
+        //nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
         control.selectModel(modelSelection, rootNode, assetManager);
         i18nModel = new I18N(control.getLanguageModelPath(),language);
         stages = control.getStagesLabels();
         selection = stages.get(index);
+        scalesb = new ScaleStageBuilder(nifty,control,i18nFamily,i18nModel);
+        singlesb = new SingleStageBuilder(nifty,control,i18nGui,stages);
+        multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily,stages);
+        animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
+        ArrayList<String> idPanel = control.getIdsSubStages(selection);
+        idPhysicalBuild = control.getIdsPhysicalBuild(idPanel.get(0));
+        idBones = control.getIdBonesController(selection);
         creaMenu();
-        initIcons();
+        
         cargaScreen(control.getStagesTypes(selection).toString(),"","");
         nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").disable();
         nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").setVisible(false);
         nifty.gotoScreen(control.getStagesTypes(selection).toString());
-        String stage = StageType.animationStage.toString();
-        int limit = 0;
-        //if(fc.getNumCameras()<)
-        limit = control.getNumCameras();
-        for(int i = 0; i<limit;i++){
-            final int j = i;
-            new PanelBuilder() {{
-                width("40%");
-                childLayoutHorizontal();
-                text(new TextBuilder(){{
-                    valignCenter();
-                    color(Color.WHITE);
-                    font("Interface/Fonts/Default.fnt");
-                    text(i18nFamily.getString(control.getCamerasLabels().get(j)));
-                    width("80%");
-                    wrap(true);
-                }});
-                control(new CheckboxBuilder("CheckBox"+Integer.toString(j)) {{
-                    checked(false);
-                }});
-            }}.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("checkBoxPanel"));
-        }
-        new DropDownBuilder("qualityDropDown") {{
-                valignCenter();
-                //alignRight();
-                width("100");
-        }}.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("qualityPanel"));
-        ArrayList<String> q = control.getQualityLabels();
-        Iterator<String> it = q.iterator();
-        DropDown quality = nifty.getScreen(stage).findNiftyControl("qualityDropDown", DropDown.class);
-        while(it.hasNext()){
-            quality.addItem(i18nFamily.getString(it.next()));
-        }
-        nifty.getScreen(stage).findElementByName("previewText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPreview"));
-        nifty.getScreen(stage).findElementByName("qualityText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idQuality"));
-        nifty.getScreen(stage).findElementByName("checkBoxText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCamera"));
-    }
-    
-    public void initIcons(){
-        String stage = StageType.singleStage.toString();
-        String stage2 = StageType.multiStage.toString();
-        for(int j = 0; j < stages.size(); j++){
-            if(control.getStagesTypes(stages.get(j)).toString().equals(stage)){
-                ArrayList<String> idSubStages = control.getIdsSubStages(stages.get(j));
-                ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(0));
-                //ArrayList<String> idTexture = mc.getIdsTextures(stages.get(j));
-                for(int i=0; i<control.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
-                    ImageBuilder image = new ImageBuilder(){{
-                        width("0%");
-                        height("0%");
-                    }};
-                    image.id(stages.get(j)+"i"+Integer.toString(i));
-                    image.filename(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)));
-                    image.interactOnClick("changeTextureOrSubMesh("+idsTexturesOrSubMeshes.get(i)+")");
-                    image.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%SINGLE_PAGE)));
-                }
-                nifty.getScreen(stage).findElementByName("colorText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
-                nifty.getScreen(stage).findElementByName("panel_color").layoutElements(); 
-            }
-            if(control.getStagesTypes(stages.get(j)).toString().equals(stage2)){
-                ArrayList<String> idSubStages = control.getIdsSubStages(stages.get(j));
-                for(int i=0;i<control.getNumSubStages(stages.get(j));i++){
-                    nifty.getScreen(stage2).findElementByName("text"+Integer.toString(i%MULTI_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(idSubStages.get(i)));
-                    ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(i));
-                    for(int k=0; k<control.getNumTexturesORSubMeshes(idSubStages.get(i)); k++){
-                        ImageBuilder image = new ImageBuilder(){{
-                            width("0%");
-                            height("0%");
-                        }};
-                        image.id(idSubStages.get(i)+"i"+Integer.toString(k));
-                        image.filename(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(k)));
-                        image.interactOnClick("changeTextureOrSubMesh("+idsTexturesOrSubMeshes.get(k)+")");
-                        image.build(nifty, nifty.getScreen(stage2), nifty.getScreen(stage2).findElementByName("t"+Integer.toString(i%MULTI_PAGE)+Integer.toString(k%MULTI_PAGE)));
-                    }
-                    nifty.getScreen(stage2).findElementByName("colorText"+Integer.toString(i%MULTI_PAGE)).getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
-                    nifty.getScreen(stage2).findElementByName("panel_color"+Integer.toString(i%MULTI_PAGE)).layoutElements();
-                }
-            }          
-        }
     }
     
     public void changeScalePage(String steep){
-            if(steep.equals("+")){page++;}
-            if(steep.equals("-")){page--;}
-            if(steep.equals("0")){page = 0;}
-            String stage = control.getStagesTypes(selection).toString();
-            int bonesSize = 0;
-            if(tabSelected.equals("basic")){
-                ArrayList<String> idPanel = control.getIdsSubStages(selection);
-                idPhysicalBuild = control.getIdsPhysicalBuild(idPanel.get(0));
-                bonesSize = idPhysicalBuild.size();
-                for(int i=page*BONES_PAGE; i<bonesSize; i++){
-                    if(i<((page+1)*BONES_PAGE)){
-                       nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%BONES_PAGE)).getRenderer(TextRenderer.class).setText(i18nModel.getString(control.getPhysicalBuildLabel(idPhysicalBuild.get(i))));
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).layoutElements();
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).enable();
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).setVisible(true);
-                       nifty.getScreen(stage).findElementByName("slider"+Integer.toString(i%BONES_PAGE)).setVisible(false);
-                    }
-                }
-                nifty.getScreen(stage).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-                nifty.getScreen(stage).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
-            }
-            if(tabSelected.equals("advanced")){
-                idBones = control.getIdBonesController(selection);
-                bonesSize = idBones.size();
-                for(int i=page*BONES_PAGE; i<bonesSize; i++){
-                    if(i<((page+1)*BONES_PAGE)){
-                       nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%BONES_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getBoneControllerLabel(selection, idBones.get(i))));
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).layoutElements();
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).disable();
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).setVisible(true);
-                       nifty.getScreen(stage).findElementByName("slider"+Integer.toString(i%BONES_PAGE)).setVisible(true);
-                       Slider s = nifty.getScreen(stage).findNiftyControl("slider"+Integer.toString(i%BONES_PAGE), Slider.class);
-                       s.setMax(control.getMaxValueBoneController(idBones.get(i)));
-                       s.setMin(control.getMinValueBoneController(idBones.get(i)));
-                       s.setValue(control.getDefaultValueBoneController(idBones.get(i)));
-                    }
-                }
-                nifty.getScreen(stage).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
-                nifty.getScreen(stage).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-            }
-            for(int i=bonesSize;i<((page+1)*BONES_PAGE);i++){
-                nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).disable();
-                nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%BONES_PAGE)).setVisible(false);
-                nifty.getScreen(stage).findElementByName("slider"+Integer.toString(i%BONES_PAGE)).setVisible(false);
-            }
-            if(page > 0){
-                nifty.getScreen(stage).findElementByName("leftT").enable();
-                nifty.getScreen(stage).findElementByName("leftT").setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("leftT").disable();
-                nifty.getScreen(stage).findElementByName("leftT").setVisible(false);
-            }
-            if((((double)bonesSize/(double)BONES_PAGE) - page) > 1){
-                nifty.getScreen(stage).findElementByName("rightT").enable();
-                nifty.getScreen(stage).findElementByName("rightT").setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("rightT").disable();
-                nifty.getScreen(stage).findElementByName("rightT").setVisible(false);
-            }
+        changePage(steep);
+        scalesb.changeScalePage(page, selection);
     }
     
     public void changeTab(String param){
-        tabSelected = param;
-        changeScalePage("0");
+        changePage("0");
+        scalesb.changeTab(param, selection);
     }
     
     public void changeScreen(String param)
@@ -691,7 +374,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void cargaScreen(String type, String oldType, String param){
         cargaMenu(type);
-            hideTexturePage(oldType, param);
+        hideTexturePage(oldType, param);
         if(type.equals(StageType.singleStage.toString())){
             changeTexturePage("0");
         }
@@ -717,155 +400,49 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void hideTexturePage(String type, String param){
         if(type.equals(StageType.singleStage.toString())){
-            ArrayList<String> idSubStages = control.getIdsSubStages(param);
-            for(int i=page*SINGLE_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
-                if(i<((page+1)*SINGLE_PAGE)){
-                    nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setVisible(false);
-                    nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setHeight(0);
-                    nifty.getScreen(type).findElementByName(param+"i"+Integer.toString(i)).setWidth(0);
-                }
-            }
+            singlesb.hideTexturePage(param, page);
         }
         if(type.equals(StageType.multiStage.toString())){
-            hideMultiTexturePage(0,type,param);
-            hideMultiTexturePage(1,type,param);
-        }
-    }
-    
-    public void hideMultiTexturePage(int t,String type, String param){
-        ArrayList<String> idSubStages = control.getIdsSubStages(param);
-        if((page*MULTI_PAGE+t)<idSubStages.size()){
-            for(int i=multiPage[t]*MULTI_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+t)); i++){
-                if(i<((multiPage[t]+1)*MULTI_PAGE)){
-                    nifty.getScreen(type).findElementByName(idSubStages.get(page*MULTI_PAGE+t)+"i"+Integer.toString(i)).setVisible(false);
-                    nifty.getScreen(type).findElementByName(idSubStages.get(page*MULTI_PAGE+t)+"i"+Integer.toString(i)).setHeight(0);
-                    nifty.getScreen(type).findElementByName(idSubStages.get(page*MULTI_PAGE+t)+"i"+Integer.toString(i)).setWidth(0);
-                }
-            } 
+            multisb.hideSubTexturePage(0,page,param);
+            multisb.hideSubTexturePage(1,page,param);
         }
     }
 
     public void changeTexturePage(String t, String steep){
-        String stage = StageType.multiStage.toString();
         int h = Integer.valueOf(t);
         if(!steep.equals("0")){
-            hideMultiTexturePage(h,stage,selection);
+            multisb.hideSubTexturePage(h,page,selection);
         }
-        changeMultiPage(h,steep);
-        ArrayList<String> idSubStages = control.getIdsSubStages(selection);
-        if((page*MULTI_PAGE+h)<idSubStages.size()){
-            nifty.getScreen(stage).findElementByName("panel_color"+Integer.toString(h)).enable();
-            nifty.getScreen(stage).findElementByName("panel_color"+Integer.toString(h)).setVisible(true);
-            for(int i=multiPage[h]*MULTI_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+h)); i++){
-                if(i<((multiPage[h]+1)*MULTI_PAGE)){
-                    nifty.getScreen(stage).findElementByName("text"+Integer.toString(h)).setVisible(true);
-                    nifty.getScreen(stage).findElementByName("text"+Integer.toString(h)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getSubStageLabel(selection,idSubStages.get(page*MULTI_PAGE+h))));
-                    nifty.getScreen(stage).findElementByName(idSubStages.get(page*MULTI_PAGE+h)+"i"+Integer.toString(i)).setVisible(true);
-                    nifty.getScreen(stage).findElementByName(idSubStages.get(page*MULTI_PAGE+h)+"i"+Integer.toString(i)).setHeight(nifty.getScreen(stage).findElementByName("t"+Integer.toString(h)+Integer.toString(i%MULTI_PAGE)).getHeight()-5);
-                    nifty.getScreen(stage).findElementByName(idSubStages.get(page*MULTI_PAGE+h)+"i"+Integer.toString(i)).setWidth(nifty.getScreen(stage).findElementByName("t"+Integer.toString(h)+Integer.toString(i%MULTI_PAGE)).getWidth()-5);
-                }
-            }
-            if(multiPage[h] > 0){
-                nifty.getScreen(stage).findElementByName("leftT"+Integer.toString(h)).enable();
-                nifty.getScreen(stage).findElementByName("leftT"+Integer.toString(h)).setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("leftT"+Integer.toString(h)).disable();
-                nifty.getScreen(stage).findElementByName("leftT"+Integer.toString(h)).setVisible(false);
-            }
-            if((((double)control.getNumTexturesORSubMeshes(idSubStages.get(page*MULTI_PAGE+h))/(double)MULTI_PAGE) - multiPage[h]) > 1){
-                nifty.getScreen(stage).findElementByName("rightT"+Integer.toString(h)).enable();
-                nifty.getScreen(stage).findElementByName("rightT"+Integer.toString(h)).setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("rightT"+Integer.toString(h)).disable();
-                nifty.getScreen(stage).findElementByName("rightT"+Integer.toString(h)).setVisible(false);
-            }
-        }else{
-            nifty.getScreen(stage).findElementByName("leftT"+Integer.toString(h)).disable();
-            nifty.getScreen(stage).findElementByName("leftT"+Integer.toString(h)).setVisible(false);
-            nifty.getScreen(stage).findElementByName("rightT"+Integer.toString(h)).disable();
-            nifty.getScreen(stage).findElementByName("rightT"+Integer.toString(h)).setVisible(false);
-            nifty.getScreen(stage).findElementByName("panel_color"+Integer.toString(h)).disable();
-            nifty.getScreen(stage).findElementByName("panel_color"+Integer.toString(h)).setVisible(false);
-            nifty.getScreen(stage).findElementByName("text"+Integer.toString(h)).setVisible(false);
-            
-        }
+        multisb.showSubTexturePage(selection, h, page, steep);
     }
     
     public void changeTexturePage(String steep){
-            String stage = StageType.singleStage.toString();
-            if(!steep.equals("0")){
-                hideTexturePage(stage,selection);
-            }
-            changePage(steep);
-            ArrayList<String> idSubStages = control.getIdsSubStages(selection);
-            for(int i=page*SINGLE_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
-                if(i<((page+1)*SINGLE_PAGE)){
-                    nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setVisible(true);
-                    nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setHeight(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%SINGLE_PAGE)).getHeight()-5);
-                    nifty.getScreen(stage).findElementByName(selection+"i"+Integer.toString(i)).setWidth(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%SINGLE_PAGE)).getWidth()-5);
-                }
-            }
-            if(page > 0){
-                nifty.getScreen(stage).findElementByName("leftT").enable();
-                nifty.getScreen(stage).findElementByName("leftT").setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("leftT").disable();
-                nifty.getScreen(stage).findElementByName("leftT").setVisible(false);
-            }
-            if((((double)control.getNumTexturesORSubMeshes(idSubStages.get(0))/(double)SINGLE_PAGE) - page) > 1){
-                nifty.getScreen(stage).findElementByName("rightT").enable();
-                nifty.getScreen(stage).findElementByName("rightT").setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("rightT").disable();
-                nifty.getScreen(stage).findElementByName("rightT").setVisible(false);
-            }
+        if(!steep.equals("0")){
+            singlesb.hideTexturePage(selection,page);
+        }
+        changePage(steep);
+        singlesb.showTexturePage(selection,page);
     }
     
     public void changeMultiTexturePage(String steep){
-            String stage = StageType.multiStage.toString();
-            if(!steep.equals("0")){
-                hideTexturePage(stage,selection);
-            }
-            changePage(steep);
-            changeTexturePage("0","0");
-            changeTexturePage("1","0");
-            
-            if(page > 0){
-                nifty.getScreen(stage).findElementByName("leftT").enable();
-                nifty.getScreen(stage).findElementByName("leftT").setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("leftT").disable();
-                nifty.getScreen(stage).findElementByName("leftT").setVisible(false);
-            }
-            if((((double)control.getNumSubStages(selection) /(double)MULTI_PAGE) - page) > 1){
-                nifty.getScreen(stage).findElementByName("rightT").enable();
-                nifty.getScreen(stage).findElementByName("rightT").setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("rightT").disable();
-                nifty.getScreen(stage).findElementByName("rightT").setVisible(false);
-            }
-    }
-    
-    public void changeMultiPage(int t,String steep){
-        if(steep.equals("+")){
-            multiPage[t]++;
+        String stage = StageType.multiStage.toString();
+        if(!steep.equals("0")){
+            hideTexturePage(stage,selection);
         }
-        if(steep.equals("-")){multiPage[t]--;}
-        if(steep.equals("0")){multiPage[t] = 0;}
+        changePage(steep);
+        multisb.showTexturePage(selection, page);
     }
     
     public void changePage(String steep){
         if(steep.equals("+")){
             page++;
         }
-        if(steep.equals("-")){page--;}
-        if(steep.equals("0")){page = 0;}
+        if(steep.equals("-")){
+            page--;
+        }
+        if(steep.equals("0")){
+            page = 0;
+        }
     }
     
     public String getMenu(String param)
@@ -967,27 +544,52 @@ public class Gui extends AbstractAppState implements ScreenController {
         nifty.closePopup(popupColor.getId()); 
     }
     
-    @NiftyEventSubscriber(id="tweakButton")
-    public void onTweakButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        //Lanza excepcion al cambiar de pantalla
-        changeScreen("basicScreen");
+    public void export() 
+    {
+        String stage = "popupScreen";
+        nifty.gotoScreen(stage);
+        popUpNum = 1;
+        nifty.getScreen(stage).findElementByName("popUpText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopup1"));
+        nifty.getScreen(stage).findElementByName("popup").layoutElements();
+        nifty.getScreen(stage).findNiftyControl("popUpButton1", Button.class).setText(i18nGui.getString("idPopupButton1"));
+        nifty.getScreen(stage).findNiftyControl("popUpButton2", Button.class).setText(i18nGui.getString("idPopupButton2"));
     }
     
-    @NiftyEventSubscriber(id="exportButton")
-    public void onExportButtonClicked(final String id, final ButtonClickedEvent event) {
-        nifty.gotoScreen("popupfinScreen");
-        control.screenShot();
-    }
-    
-    @NiftyEventSubscriber(id="yesButton")
-    public void onYesButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        nifty.gotoScreen("start"); 
-    }
-    
-    @NiftyEventSubscriber(id="noButton")
-    public void onNoButtonClicked(final String id, final ButtonClickedEvent event) {
-        //nifty.gotoScreen("finalScreen");
-        //nifty.closePopup(popupFin.getId());
+    public void popUpButtonClicked(String id) {
+        String stage = "popupScreen";
+        if(id.equals("popUpButton1")){
+            if(popUpNum == 1){
+                index = 0;
+                selection = stages.get(index);
+                cargaScreen(control.getStagesTypes(selection).toString(),"","");
+                nifty.gotoScreen(control.getStagesTypes(selection).toString());
+            }
+            if(popUpNum == 2){
+                /*String familyAnt = familySelection;
+                DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
+                control.selectFamily(families.get(0));
+                modelsAntSize = modelsSize;
+                modelsSize = control.getNumModels();
+                i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
+                familySelection = i18nFamily.getString(control.getMetadataFamilyName());
+                family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
+                changeCharacterPage("0", familyAnt);*/
+                nifty.gotoScreen("modelScreen");
+            }
+        }
+        if(id.equals("popUpButton2")){
+            if(popUpNum == 1){
+                popUpNum = 2;
+                control.screenShot();
+                nifty.getScreen(stage).findElementByName("popUpText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopup2"));
+                nifty.getScreen(stage).findElementByName("popup").layoutElements();
+                nifty.getScreen(stage).findNiftyControl("popUpButton1", Button.class).setText(i18nGui.getString("idPopupButton3"));
+                nifty.getScreen(stage).findNiftyControl("popUpButton2", Button.class).setText(i18nGui.getString("idPopupButton4"));
+            }
+            if(popUpNum == 2){
+                //nifty.gotoScreen("finalScreen");
+            }
+        }
     }
     
     @NiftyEventSubscriber(id="sliderR")
@@ -1059,11 +661,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         float inc = 1.0f + event.getValue() * 0.01f;
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+4), inc);
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+4),event.getValue());
-    }
-    
-    public void screenshot() 
-    {
-        nifty.gotoScreen("popupScreen");
     }
     
     public void changeBodyType(String bodyType)
