@@ -39,6 +39,7 @@ import data.model.*;
 import data.model.MultiOptionTextureType.Texture;
 import java.util.ArrayList;
 import java.util.Iterator;
+import types.TexturesType;
 
 public class ModelControl 
 {
@@ -400,5 +401,32 @@ public class ModelControl
             }
         }
         return null;
+    }
+
+    public TexturesType getTextureType(String idTextureOrSubMesh)
+    {
+        TexturesType texturesType = null;
+        TextureType texture = getTexture(idTextureOrSubMesh);
+        if (texture != null)
+        {
+            //It's a texture.
+            if(texture instanceof BaseShadowTextureType)
+            {
+                texturesType = TexturesType.baseShadow;
+            }
+            else if(texture instanceof DoubleTextureType)
+            {
+                texturesType = TexturesType.doubleTexture;
+            }
+            else if(texture instanceof SimpleTextureType)
+            {
+                texturesType = TexturesType.simpleTexture;
+            }
+            else if(texture instanceof MultiOptionTextureType)
+            {
+                texturesType = TexturesType.multiOptionTexture;
+            }
+        }
+        return texturesType;
     }
 }
