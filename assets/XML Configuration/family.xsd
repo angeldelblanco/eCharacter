@@ -42,13 +42,20 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="multiStageType">
-		<xs:choice minOccurs="1" maxOccurs="unbounded">
-			<xs:element name="meshSubStage" type="subStageType"/>
-			<xs:element name="textureSubStage" type="subStageType"/>
-		</xs:choice>
+		<xs:sequence>
+			<xs:element name="subStage" type="subStageType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
 		<xs:attribute name="stageLabel" type="xs:string" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="subStageType">
+		<xs:attribute name="subStageType" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="meshSubStage"/>
+					<xs:enumeration value="textureSubStage"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
 		<xs:attribute name="subStageLabel" type="xs:string" use="required"/>
 		<xs:attribute name="idPanel" type="xs:ID" use="required"/>
 		<xs:attribute name="multiselection" type="xs:boolean" use="optional"/>

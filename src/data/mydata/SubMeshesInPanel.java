@@ -33,21 +33,25 @@
  *      along with <eAdventure Character Configurator>. If not, 
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package control;
+package data.mydata;
 
-import data.model.TextureType;
-import java.util.ArrayList;
+import data.model.SubMeshType;
+import java.util.HashMap;
 
-
-public class TexturesInPanel 
+public class SubMeshesInPanel 
 {
     private boolean multiSelection;
-    private ArrayList<TextureType> textures;
-    private boolean[] checked;
+    //HashMap<Texture, boolean = if this subMesh is selected>
+    private HashMap<SubMeshType,Boolean> subMeshes;
     
-    public TexturesInPanel(boolean multiSelection)
+    public SubMeshesInPanel(boolean multiSelection)
     {
-        
+        this.multiSelection = multiSelection;
+        subMeshes = new HashMap<SubMeshType,Boolean>();
     }
     
+    public void addSubMesh(SubMeshType subMesh,boolean isCheck)
+    {
+        subMeshes.put(subMesh, isCheck);
+    }
 }
