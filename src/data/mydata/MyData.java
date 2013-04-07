@@ -201,7 +201,4 @@ public class MyData
     {
         subMeshesData.get(idPanel).changeSubMesh(idSubMesh);
     }
-    
-    
-    
 }

@@ -48,7 +48,10 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import data.model.*;
+import data.model.EscalationType;
+import data.model.SubMeshType;
+import data.model.TextureType;
+import data.model.TransformationType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -64,6 +67,7 @@ public class SceneControl
     private AnimChannel channel;
     private AnimControl control;
     private Vector3f vectorScaleBase;
+    //private MyData myData;
     
     public SceneControl(Node rootNode, AssetManager assetManager, String mainMeshPath, 
             ArrayList<TransformationType> listTransformationMainMesh)

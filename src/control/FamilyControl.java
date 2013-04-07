@@ -323,4 +323,24 @@ public class FamilyControl
         }
         return listQualityLabels;
     }
+    
+    
+    /***********COMENTAR CON SERGIO****************************/
+    public ArrayList<SubStageType> getSubStages()
+    {
+        ArrayList<SubStageType> listSubStages = new ArrayList<SubStageType>();
+        ArrayList<MultiStageType> listMultiStages = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
+        Iterator<MultiStageType> it = listMultiStages.iterator();
+        while(it.hasNext())
+        {
+            MultiStageType multiStage = it.next();
+            ArrayList<SubStageType> listSubStagesType = (ArrayList<SubStageType>) multiStage.getSubStage();
+            Iterator<SubStageType> it2 = listSubStagesType.iterator();
+            while(it2.hasNext())
+            {
+                listSubStages.add(it2.next());
+            }
+        }
+        return listSubStages;
+    }
 }

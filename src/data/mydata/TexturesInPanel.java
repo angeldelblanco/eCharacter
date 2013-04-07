@@ -77,8 +77,31 @@ public class TexturesInPanel
         return listCheckedTextures;
     }
     
+    /*
+     * Change the texture with idTexture.
+     * If the panel has multiselection, swap the value of this texture.
+     * Else we set the value of the other textures to false
+     */
     public void changeTexture(String idTexture)
     {
-        
+        Set<TextureType> keySet = textures.keySet();
+        Iterator<TextureType> it = keySet.iterator();
+        while(it.hasNext())
+        {
+            TextureType texture = it.next();
+            if (texture.getIdTexture().equals(idTexture))
+            {
+                if (multiSelection){
+                    boolean b = textures.get(texture);
+                    textures.put(texture,!b);
+                }
+                else {
+                    textures.put(texture,true);
+                }
+            }
+            else if (!multiSelection) {
+                textures.put(texture,false);
+            }
+        }        
     }
 }

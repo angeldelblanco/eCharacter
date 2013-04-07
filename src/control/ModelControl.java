@@ -429,4 +429,16 @@ public class ModelControl
         }
         return texturesType;
     }
+    
+    
+    /**************************COMENTAR CON SERGIO*****************************/
+    public ArrayList<TextureType> getTextures()
+    {
+        return (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+    }
+    
+    public ArrayList<SubMeshType> getSubMeshes()
+    {
+        return (ArrayList<SubMeshType>) model.getSubMesh();
+    }
 }

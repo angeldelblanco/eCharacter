@@ -76,7 +76,30 @@ public class SubMeshesInPanel
         return listCheckedSubMeshes;
     }
     
+     /*
+     * Change the submeshes with idSubMesh.
+     * If the panel has multiselection, swap the value of this submesh.
+     * Else we set the value of the other submeshes to false
+     */
     public void changeSubMesh(String idSubMesh)
     {
+        Set<SubMeshType> keySet = subMeshes.keySet();
+        Iterator<SubMeshType> it = keySet.iterator();
+        while(it.hasNext())
+        {
+            SubMeshType subMesh = it.next();
+            if(subMesh.getIdSubMesh().equals(idSubMesh)){
+                if (multiSelection){
+                    boolean b = subMeshes.get(subMesh);
+                    subMeshes.put(subMesh,!b);
+                }
+                else {
+                    subMeshes.put(subMesh,true);
+                }
+            }
+            else if(!multiSelection){
+                subMeshes.put(subMesh,false);
+            }
+        }
     }
 }
