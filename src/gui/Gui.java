@@ -73,8 +73,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     private Control control;
     private Application app;
     private Screen screen;
-    private AssetManager assetManager;
-    private Node rootNode;
     private Configuration config;
     private String selection, familySelection, modelSelection;
     private int page;
@@ -91,10 +89,8 @@ public class Gui extends AbstractAppState implements ScreenController {
     private MultiStageBuilder multisb;
     private AnimationStageBuilder animationsb;
     
-    public Gui(Control control,Configuration config, AssetManager assetManager, Node rootNode){
+    public Gui(Control control,Configuration config){
         this.control = control;
-        this.assetManager = assetManager;
-        this.rootNode = rootNode;
         this.config = config;
         families = this.control.getFamiliesName();
     }
@@ -207,7 +203,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void loadFirstScreen(){
         //nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
-        control.selectModel(modelSelection, rootNode, assetManager);
+        control.selectModel(modelSelection);
         i18nModel = new I18N(control.getLanguageModelPath(),language);
         stages = control.getStagesLabels();
         selection = stages.get(index);

@@ -57,12 +57,16 @@ public class Control {
     private FamilyControl fc;
     private ModelControl mc;
     private SceneControl sc;
+    private AssetManager assetManager;
+    private Node rootNode;
     
-    public Control(Configuration config)
+    public Control(Configuration config, Node rootNode, AssetManager assetManager)
     {
         String familiesPath = config.getProperty(Configuration.FamiliesPath);
         XMLReader<Family> xmlReader = new XMLReader<Family>(familiesPath);
         families = xmlReader.readXML(Family.class);
+        this.assetManager = assetManager;
+        this.rootNode = rootNode;
     }
     /*************************Family******************************************/
     public void selectFamily(String nameFamily)
@@ -187,7 +191,7 @@ public class Control {
     
     /*************************Models******************************************/
     
-    public void selectModel(String pathModel, Node rootNode, AssetManager assetManager)
+    public void selectModel(String pathModel)
     {
         XMLReader xmlReader2 = new XMLReader<Model>(pathModel);
         ArrayList<Model> models = xmlReader2.readXML(Model.class);

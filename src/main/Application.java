@@ -72,8 +72,8 @@ public class Application extends SimpleApplication{
         setDisplayStatView(false);
         // Register locator to assetManager
         assetManager.registerLocator("."+File.separator, FileLocator.class);      
-        Control control = new Control(config);
-        gui = new Gui(control,config,assetManager,rootNode);
+        Control control = new Control(config,rootNode,assetManager);
+        gui = new Gui(control,config);
         stateManager.attach(gui);
         screenShotState = new ScreenshotAppState();
         stateManager.attach(screenShotState);
