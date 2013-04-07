@@ -69,6 +69,9 @@ public class ModelStageBuilder {
         initModels(language);
     }
     
+    /*receives as input the lenguaje of the aplication
+      and builds all the families and the pictures of models*/
+    
     private void initModels(String language){
         nifty.getScreen(stage).findElementByName("chooseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idChoose"));
         nifty.getScreen(stage).findElementByName("choosePanel").layoutElements();
@@ -118,6 +121,8 @@ public class ModelStageBuilder {
             family.addItem(i18nFamily.getString(control.getMetadataFamilyName()));
         }
     }
+    
+    //Change the model's page hiding pictures of previous models or previous family
     
     public void changeCharacterPage(I18N i18nFamily,String steep, String familySelection, String familyAnt, int modelsSize, int modelsAntSize){
             for(int i=modelsPage*MODELS_PAGE; i<modelsAntSize; i++){
@@ -172,6 +177,8 @@ public class ModelStageBuilder {
             }
     }
     
+    //Select the current model
+    
     public void selectModel(String id){
         unCheck();
         nifty.getScreen(stage).findElementByName(id).getParent().getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
@@ -180,6 +187,8 @@ public class ModelStageBuilder {
         nifty.getScreen(stage).findElementByName("panel_screenright").enable();
         nifty.getScreen(stage).findElementByName("panel_screenright").setVisible(true);
     } 
+    
+    //uncheck all the models
     
     private void unCheck(){
         for(int i = 0; i < MODELS_PAGE; i++){

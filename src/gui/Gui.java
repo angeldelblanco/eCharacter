@@ -151,7 +151,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         i18nGui = new I18N(config.getProperty(Configuration.LocalePath),language);
     }
     
-    public void creaMenu(){
+    public void buildMenu(){
         String types[] = {StageType.singleStage.toString(),
                           StageType.scaleStage.toString(),
                           StageType.multiStage.toString(),
@@ -214,9 +214,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         ArrayList<String> idPanel = control.getIdsSubStages(selection);
         idPhysicalBuild = control.getIdsPhysicalBuild(idPanel.get(0));
         idBones = control.getIdBonesController(selection);
-        creaMenu();
+        buildMenu();
         
-        cargaScreen(control.getStagesTypes(selection).toString(),"","");
+        loadScreen(control.getStagesTypes(selection).toString(),"","");
         nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").disable();
         nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").setVisible(false);
         nifty.gotoScreen(control.getStagesTypes(selection).toString());
@@ -258,7 +258,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(!oldStage.equals(stage)){
             nifty.gotoScreen(stage);
         }
-        cargaScreen(stage,oldStage,old);
+        loadScreen(stage,oldStage,old);
         if(index==0){
             nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
             nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);
@@ -269,8 +269,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
     }
     
-    public void cargaScreen(String type, String oldType, String param){
-        cargaMenu(type);
+    public void loadScreen(String type, String oldType, String param){
+        loadMenu(type);
         hideTexturePage(oldType, param);
         if(type.equals(StageType.singleStage.toString())){
             changeTexturePage("0");
@@ -283,7 +283,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
     }
     
-    public void cargaMenu(String type){
+    public void loadMenu(String type){
         String color = "#FF0000AA";
         Iterator<String> it = stages.iterator();
         while(it.hasNext()){
@@ -295,6 +295,16 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
     }
     
+    /******************************ChangePageImages*****************************/
+    
+    public void changeTexturePage(String steep){
+        if(!steep.equals("0")){
+            singlesb.hideTexturePage(selection,page);
+        }
+        changePage(steep);
+        singlesb.showTexturePage(selection,page);
+    }
+    
     public void hideTexturePage(String type, String param){
         if(type.equals(StageType.singleStage.toString())){
             singlesb.hideTexturePage(param, page);
@@ -303,22 +313,6 @@ public class Gui extends AbstractAppState implements ScreenController {
             multisb.hideSubTexturePage(0,page,param);
             multisb.hideSubTexturePage(1,page,param);
         }
-    }
-
-    public void changeTexturePage(String t, String steep){
-        int h = Integer.valueOf(t);
-        if(!steep.equals("0")){
-            multisb.hideSubTexturePage(h,page,selection);
-        }
-        multisb.showSubTexturePage(selection, h, page, steep);
-    }
-    
-    public void changeTexturePage(String steep){
-        if(!steep.equals("0")){
-            singlesb.hideTexturePage(selection,page);
-        }
-        changePage(steep);
-        singlesb.showTexturePage(selection,page);
     }
     
     public void changeMultiTexturePage(String steep){
@@ -329,6 +323,16 @@ public class Gui extends AbstractAppState implements ScreenController {
         changePage(steep);
         multisb.showTexturePage(selection, page);
     }
+    
+    public void changeTexturePage(String t, String steep){
+        int h = Integer.valueOf(t);
+        if(!steep.equals("0")){
+            multisb.hideSubTexturePage(h,page,selection);
+        }
+        multisb.showSubTexturePage(selection, h, page, steep);
+    }
+    
+    //Change page of textures or bones
     
     public void changePage(String steep){
         if(steep.equals("+")){
@@ -341,6 +345,8 @@ public class Gui extends AbstractAppState implements ScreenController {
             page = 0;
         }
     }
+    
+    /******************************LoadGuiImages*****************************/
     
     public String getMenu(String param)
     {
@@ -384,19 +390,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         control.changeTextureOrSubMesh(idTextureOrSubMesh);
     }
     
-    public void showWindowChangeColor() throws InterruptedException
-    {
-        red = 0;
-        blue = 0;
-        green = 0;
-        //Si lleva el if a los X cambios de color lanza excepcion
-        //if(popupColor == null){
-            popupColor = nifty.createPopup("popupColor");
-        //}
-        nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
-    }
+  /******************************FamilyDropDownControler*****************************/
     
-    @NiftyEventSubscriber(id="familyDropDown")
+  @NiftyEventSubscriber(id="familyDropDown")
   public void onFamilyDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
     if (event.getSelection() != null && (!familySelection.equals(""))) {
         String familyAnt = familySelection;
@@ -413,7 +409,10 @@ public class Gui extends AbstractAppState implements ScreenController {
         changeCharacterPage("0", familyAnt);
     }
   }
-    @NiftyEventSubscriber(id="localeDropDown")
+    
+  /******************************LocaleDropDownControler*****************************/  
+    
+  @NiftyEventSubscriber(id="localeDropDown")
   public void onLocaleDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
     if (event.getSelection() != null) {
         Button startb = nifty.getScreen("start").findNiftyControl("startButton", Button.class);
@@ -430,16 +429,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
   }
     
-    @NiftyEventSubscriber(id="aceptButton")
-    public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        control.changeColor(red / 255.f, green / 255.f, blue / 255.f);
-        nifty.closePopup(popupColor.getId()); 
-    }
-    
-    @NiftyEventSubscriber(id="cancelButton")
-    public void onCancelButtonClicked(final String id, final ButtonClickedEvent event) {
-        nifty.closePopup(popupColor.getId()); 
-    }
+    /******************************FinishButtonControler*****************************/
     
     public void export() 
     {
@@ -452,13 +442,15 @@ public class Gui extends AbstractAppState implements ScreenController {
         nifty.getScreen(stage).findNiftyControl("popUpButton2", Button.class).setText(i18nGui.getString("idPopupButton2"));
     }
     
+    /******************************PopUpsControler*****************************/
+    
     public void popUpButtonClicked(String id) {
         String stage = "popupScreen";
         if(id.equals("popUpButton1")){
             if(popUpNum == 1){
                 index = 0;
                 selection = stages.get(index);
-                cargaScreen(control.getStagesTypes(selection).toString(),"","");
+                loadScreen(control.getStagesTypes(selection).toString(),"","");
                 nifty.gotoScreen(control.getStagesTypes(selection).toString());
             }
             if(popUpNum == 2){
@@ -487,6 +479,20 @@ public class Gui extends AbstractAppState implements ScreenController {
                 //nifty.gotoScreen("finalScreen");
             }
         }
+    }
+    
+    /******************************PopUpColorControler*****************************/
+    
+    public void showWindowChangeColor() throws InterruptedException
+    {
+        red = 0;
+        blue = 0;
+        green = 0;
+        //Si lleva el if a los X cambios de color lanza excepcion
+        //if(popupColor == null){
+            popupColor = nifty.createPopup("popupColor");
+        //}
+        nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
     }
     
     @NiftyEventSubscriber(id="sliderR")
@@ -518,6 +524,19 @@ public class Gui extends AbstractAppState implements ScreenController {
             popupColor.findElementByName("colorPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 1));
         //}
     }
+    
+    @NiftyEventSubscriber(id="aceptButton")
+    public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
+        control.changeColor(red / 255.f, green / 255.f, blue / 255.f);
+        nifty.closePopup(popupColor.getId()); 
+    }
+    
+    @NiftyEventSubscriber(id="cancelButton")
+    public void onCancelButtonClicked(final String id, final ButtonClickedEvent event) {
+        nifty.closePopup(popupColor.getId()); 
+    }
+    
+    /******************************SliderControler*****************************/
     
     @NiftyEventSubscriber(id="slider0")
     public void Slider0Change(final String id, final SliderChangedEvent event) 
@@ -559,6 +578,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+4), inc);
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+4),event.getValue());
     }
+    
+    /******************************PhysicalBuildControler*****************************/
     
     public void changeBodyType(String bodyType)
     {

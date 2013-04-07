@@ -63,6 +63,8 @@ public class ScaleStageBuilder {
         
     }
     
+    //Change the bone's current page
+    
     public void changeScalePage(int page, String selection){
             int bonesSize = 0;
             if(tabSelected.equals("basic")){
@@ -123,7 +125,9 @@ public class ScaleStageBuilder {
             }
     }
     
-     public void changeTab(String param, String selection){
+    //Switches between Basic or Advanced tab
+    
+    public void changeTab(String param, String selection){
         tabSelected = param;
         changeScalePage(0, selection);
     }
