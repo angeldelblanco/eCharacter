@@ -124,8 +124,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void onEndScreen() {}
     
     @Override
-    public void initialize(AppStateManager stateManager, Application app) 
-    {
+    public void initialize(AppStateManager stateManager, Application app) {
         selection = "";
         this.app = app;
         page = 0;
@@ -232,8 +231,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         scalesb.changeTab(param, selection);
     }
     
-    public void changeScreen(String param)
-    {
+    public void changeScreen(String param){
         String old = selection;
         int oldIndex = index;
         selection = param;
@@ -348,8 +346,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     /******************************LoadGuiImages*****************************/
     
-    public String getMenu(String param)
-    {
+    public String getMenu(String param){
         if(param.equals("yes")){
             return "assets/Interface/MenuRojo.png";
         }
@@ -365,8 +362,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         return null;
     }
     
-    public String getButton(String param)
-    {
+    public String getButton(String param){
         if(param.equals("left")){
             return "assets/Interface/ant.png";
         }
@@ -385,8 +381,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         return null;
     }
     
-    public void changeTextureOrSubMesh(String idTextureOrSubMesh)
-    {
+    public void changeTextureOrSubMesh(String idTextureOrSubMesh){
         control.changeTextureOrSubMesh(idTextureOrSubMesh);
     }
     
@@ -431,8 +426,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     /******************************FinishButtonControler*****************************/
     
-    public void export() 
-    {
+    public void export() {
         String stage = "popupScreen";
         nifty.gotoScreen(stage);
         popUpNum = 1;
@@ -483,8 +477,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     /******************************PopUpColorControler*****************************/
     
-    public void showWindowChangeColor() throws InterruptedException
-    {
+    public void showWindowChangeColor() throws InterruptedException{
         red = 0;
         blue = 0;
         green = 0;
@@ -539,16 +532,14 @@ public class Gui extends AbstractAppState implements ScreenController {
     /******************************SliderControler*****************************/
     
     @NiftyEventSubscriber(id="slider0")
-    public void Slider0Change(final String id, final SliderChangedEvent event) 
-    {
+    public void onSlider0Change(final String id, final SliderChangedEvent event) {
         float inc = 1.0f + event.getValue() * 0.01f;
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE), inc);
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE),event.getValue());
     }
     
     @NiftyEventSubscriber(id="slider1")
-    public void onSlider1Change(final String id, final SliderChangedEvent event) 
-    {
+    public void onSlider1Change(final String id, final SliderChangedEvent event) {
         float inc = 1.0f + event.getValue() * 0.01f;
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+1), inc);
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+1),event.getValue());
@@ -556,24 +547,21 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     @NiftyEventSubscriber(id="slider2")
-    public void onSlider2Change(final String id, final SliderChangedEvent event) 
-    {
+    public void onSlider2Change(final String id, final SliderChangedEvent event) {
         float inc = 1.0f + event.getValue() * 0.01f;
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+2), inc);
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+2),event.getValue());
     }
     
     @NiftyEventSubscriber(id="slider3")
-    public void onSlider3Change(final String id, final SliderChangedEvent event) 
-    {
+    public void onSlider3Change(final String id, final SliderChangedEvent event) {
         float inc = 1.0f + event.getValue() * 0.01f;
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+3), inc);
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+3),event.getValue());
     }
     
     @NiftyEventSubscriber(id="slider4")
-    public void onSlider4Change(final String id, final SliderChangedEvent event) 
-    {
+    public void onSlider4Change(final String id, final SliderChangedEvent event) {
         float inc = 1.0f + event.getValue() * 0.01f;
         control.setBoneControllerValue(idBones.get(page*BONES_PAGE+4), inc);
         control.setDefaultValueBoneController(idBones.get(page*BONES_PAGE+4),event.getValue());
@@ -581,8 +569,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     /******************************PhysicalBuildControler*****************************/
     
-    public void changeBodyType(String bodyType)
-    {
+    public void changeBodyType(String bodyType){
         control.setPhysicalBuild(idPhysicalBuild.get(page*BONES_PAGE+Integer.parseInt(bodyType)));
     }
 }

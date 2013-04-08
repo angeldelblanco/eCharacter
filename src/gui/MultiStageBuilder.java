@@ -114,12 +114,14 @@ public class MultiStageBuilder {
         changeMultiPage(h,steep);
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
         if((page*SUBSTAGE_PAGE+h)<idSubStages.size()){
+            nifty.getScreen(stageType).findElementByName("text"+Integer.toString(h)).setVisible(true);
+            nifty.getScreen(stageType).findElementByName("text"+Integer.toString(h)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getSubStageLabel(selection,idSubStages.get(page*SUBSTAGE_PAGE+h))));
+            nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)).layoutElements();
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).enable();
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(true);
+            
             for(int i=multiPage[h]*TEXTURES_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(page*SUBSTAGE_PAGE+h)); i++){
                 if(i<((multiPage[h]+1)*TEXTURES_PAGE)){
-                    nifty.getScreen(stageType).findElementByName("text"+Integer.toString(h)).setVisible(true);
-                    nifty.getScreen(stageType).findElementByName("text"+Integer.toString(h)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getSubStageLabel(selection,idSubStages.get(page*SUBSTAGE_PAGE+h))));
                     nifty.getScreen(stageType).findElementByName(idSubStages.get(page*SUBSTAGE_PAGE+h)+"i"+Integer.toString(i)).setVisible(true);
                     nifty.getScreen(stageType).findElementByName(idSubStages.get(page*SUBSTAGE_PAGE+h)+"i"+Integer.toString(i)).setHeight(nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)+Integer.toString(i%TEXTURES_PAGE)).getHeight()-5);
                     nifty.getScreen(stageType).findElementByName(idSubStages.get(page*SUBSTAGE_PAGE+h)+"i"+Integer.toString(i)).setWidth(nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)+Integer.toString(i%TEXTURES_PAGE)).getWidth()-5);
