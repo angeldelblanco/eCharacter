@@ -43,12 +43,6 @@ import loader.XMLReader;
 public class I18N {
     private Metadata language;
     
-    
-   /* ESTA CLASE ESTÁ. FALTA LLAMARLA DESDE FUERA, Y UN OBJETO DE ESTA CLASE PARA LEER
-    * CADA DOCUMENTO DE INTERNACIONALIZACION DE FAMILIA, MODELO E INTERFAZ.
-    *
-    */
-    
     public I18N(String languagesPath, String language)
     {
         XMLReader<Metadata> xmlReader = new XMLReader<Metadata>(languagesPath);

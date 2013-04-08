@@ -49,9 +49,8 @@ public class Main
     public static void main(String[] args)
     {
         //Initializes the resources and load the initial configuration
-        ResourceHandler resourceHandler = new ResourceHandler();
         Configuration config = new Configuration();
-        InputStream stream = resourceHandler.getResource(Configuration.PROPERTIES_FILE_NAME,"."+File.separator);
+        InputStream stream = ResourceHandler.getResource(Configuration.PROPERTIES_FILE_NAME,"."+File.separator);
         if(stream != null){
             config.loadPropertiesFile(stream);
         }

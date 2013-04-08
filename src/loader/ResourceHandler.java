@@ -47,10 +47,7 @@ import java.util.StringTokenizer;
  */
 public class ResourceHandler
 {
-    
-    public ResourceHandler(){}
-    
-    public InputStream getResource(String fileName, String directory)
+    public static InputStream getResource(String fileName, String directory)
     {        
         File dirPath = new File(directory);
         /** List all the files of this directory */
@@ -81,7 +78,7 @@ public class ResourceHandler
         return stream;
     }
     
-    public InputStream getResource(String filePath)
+    public static InputStream getResource(String filePath)
     {
         try {
             InputStream stream = new FileInputStream(filePath);  
@@ -96,7 +93,7 @@ public class ResourceHandler
     }
     
     /** Get the name of the file */
-    private String getFileName(String filePath)
+    private static String getFileName(String filePath)
     {
         StringTokenizer tokens=new StringTokenizer(filePath, "/");
         String fileName = "";

@@ -54,6 +54,10 @@ import data.model.TextureType;
 import data.model.TransformationType;
 import data.texturessubmeshesdata.TexturesSubMeshesData;
 import imageprocessing.ImagesProcessing;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -107,7 +111,7 @@ public class SceneControl
             this.channel.setLoopMode(LoopMode.Loop); 
         }
        
-        /*
+        
         //Borrar la imagen
         Path file = Paths.get(tempPath);
         try {
@@ -115,7 +119,7 @@ public class SceneControl
         } 
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
-        } */      
+        }      
     }
     
     private void setActivatedSubMeshes()
@@ -287,7 +291,7 @@ public class SceneControl
         mainMesh.setMaterial(mat);
         attachAllChild();
         
-         /*
+         
         //Borrar la imagen
         Path file = Paths.get(tempPath);
         try {
@@ -295,7 +299,7 @@ public class SceneControl
         } 
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
-        } */   
+        }    
     }
     
     private HashMap<Integer,ArrayList<TextureType>> getImageProcessingHashMap(ArrayList<TextureType> textures){

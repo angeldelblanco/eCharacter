@@ -50,12 +50,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import loader.ResourceHandler;
 
 public class ImagesProcessing
 {
-    private ResourceHandler resourceHandler;
     private ArrayList<BufferedImage> images;
     private HashMap<Integer,ArrayList<TextureType>> mapTextures;
     private int width;
@@ -64,7 +65,6 @@ public class ImagesProcessing
     public ImagesProcessing(HashMap<Integer,ArrayList<TextureType>> mapTextures){
         this.mapTextures = mapTextures;
         this.images = new ArrayList<BufferedImage>();
-        this.resourceHandler = new ResourceHandler();
     }
     
     public void process(String destinationPath){
@@ -78,37 +78,41 @@ public class ImagesProcessing
     
     private void addToBufferedImage(ArrayList<TextureType> listTexturesLayer){
         Iterator<TextureType> it = listTexturesLayer.iterator();
+        BufferedImage bi = null;
         while(it.hasNext()){
             TextureType texture = it.next();
             try{
                 if(texture instanceof BaseShadowTextureType){
                     BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
-                    images.add(ImageIO.read(resourceHandler.getResource(baseShadowTexture.getPath())));
+                    bi = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getPath()));
+                    images.add(bi);
                     if(baseShadowTexture.getShadowPath() != null){
-                        images.add(ImageIO.read(resourceHandler.getResource(baseShadowTexture.getShadowPath())));
+                        images.add(ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath())));
                     }
                 }
                 else if(texture instanceof SimpleTextureType){
                     SimpleTextureType simpleTexture = ((SimpleTextureType)texture);
+                    bi = ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath()));
+                    images.add(bi);
+                    images.add(ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath())));
                 }
                 else if(texture instanceof DoubleTextureType){
                     DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
+                    bi = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
+                    images.add(bi);
+                    images.add(ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath())));
                 }
                 else if(texture instanceof MultiOptionTextureType){
                     MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
-                    ArrayList<Texture> listMultiOptionTexture = (ArrayList<Texture>) multiOptionTexture.getTexture();
-                    Iterator<Texture> it2 = listMultiOptionTexture.iterator();
-                    boolean isDefault = false;
-                    while(!isDefault && it2.hasNext())
-                    {
-                        if(it2.next().isDefault()){
-                            isDefault = true;
-                        }
-                    }
+                    //Mirar como hacer esta textura
                 }
             }
-            
+            catch (IOException ex) {
+                Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        width = bi.getWidth();
+        height = bi.getHeight();
     }
     
     private void pasteImages(String destinationPath)
@@ -139,6 +143,6 @@ public class ImagesProcessing
         catch (IOException e) 
         {
             System.out.println("Failed saving image");
-        }  
+        } 
     }
 }
