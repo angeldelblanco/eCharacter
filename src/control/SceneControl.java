@@ -53,6 +53,7 @@ import data.model.SubMeshType;
 import data.model.TextureType;
 import data.model.TransformationType;
 import data.texturessubmeshesdata.TexturesSubMeshesData;
+import imageprocessing.ImagesProcessing;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -90,7 +91,8 @@ public class SceneControl
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         //Aqui deberia ir cargar Texturas por Defecto
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        //llamar a imageprocessing
+        ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(texturesSubMeshesData.getCheckedTextures()));
+        imagesProcessing.process(tempPath);
         mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
         mainMesh.setMaterial(mat);
         rootNode.attachChild(mainMesh);
@@ -278,7 +280,8 @@ public class SceneControl
         dettachAllChild();
         cont++;
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        //Llamar a imageProcessing
+        ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(listTextures));
+        imagesProcessing.process(tempPath);
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
         mainMesh.setMaterial(mat);
@@ -294,6 +297,38 @@ public class SceneControl
             System.out.println("Error al borrar el fichero");
         } */   
     }
+    
+    private HashMap<Integer,ArrayList<TextureType>> getImageProcessingHashMap(ArrayList<TextureType> textures){
+        HashMap<Integer,ArrayList<TextureType>> mapTextures = new HashMap<Integer,ArrayList<TextureType>>();
+        Iterator<TextureType> it = textures.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            if(mapTextures.get(texture.getLayer().intValue()) != null){
+                mapTextures.get(texture.getLayer().intValue()).add(texture);
+            }
+            else{
+                ArrayList<TextureType> list = new ArrayList<TextureType>();
+                list.add(texture);
+                mapTextures.put(texture.getLayer().intValue(),list);
+            }
+        }
+        return mapTextures;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public void screenShot()
     {

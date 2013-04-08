@@ -36,6 +36,11 @@
 
 package imageprocessing;
 
+import data.model.BaseShadowTextureType;
+import data.model.DoubleTextureType;
+import data.model.MultiOptionTextureType;
+import data.model.SimpleTextureType;
+import data.model.TextureType;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -43,69 +48,72 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import javax.imageio.ImageIO;
+import loader.ResourceHandler;
 
 public class ImagesProcessing
 {
-    private BufferedImage skin, trousers, tShirt, eyes, shoes;
-    /*private BufferedImage socks;
-    private BufferedImage clock;
-    private BufferedImage tie;
-    private BufferedImage beard;*/
+    private ResourceHandler resourceHandler;
     private ArrayList<BufferedImage> images;
+    private HashMap<Integer,ArrayList<TextureType>> mapTextures;
+    private int width;
+    private int height;
     
-    public ImagesProcessing(BufferedImage skin, BufferedImage trousers, BufferedImage tShirt, BufferedImage eyes, 
-            BufferedImage shoes)
-    {
-        this.skin = skin;
-        this.trousers = trousers;
-        this.tShirt = tShirt;
-        this.eyes = eyes;
-        this.shoes = shoes;
-        images = new ArrayList<BufferedImage>();
-        images.add(this.skin);
-        images.add(this.trousers);
-        images.add(this.tShirt);
-        images.add(this.eyes);
-        images.add(this.shoes);		
+    public ImagesProcessing(HashMap<Integer,ArrayList<TextureType>> mapTextures){
+        this.mapTextures = mapTextures;
+        this.images = new ArrayList<BufferedImage>();
+        this.resourceHandler = new ResourceHandler();
     }
     
-    /*public ImagesProcessing(String skinPath, String trousersPath, String tShirtPath,
-            String eyesPath, String socksPath, String shoesPath, String clockPath, String tiePath, String beardPath)
-    {
-            images = new ArrayList<BufferedImage>();
-            try
-            {
-                skin = ImageIO.read(new File(skinPath));
-                trousers = ImageIO.read(new File(trousersPath));
-                tShirt = ImageIO.read(new File(tShirtPath));
-                eyes = ImageIO.read(new File(eyesPath));
-                shoes = ImageIO.read(new File(shoesPath));
-                socks = ImageIO.read(new File(socksPath));
-                clock = ImageIO.read(new File(clockPath));
-                tie = ImageIO.read(new File(tiePath));
-                beard = ImageIO.read(new File(beardPath));
-                images.add(skin);
-                images.add(socks);
-                images.add(trousers);
-                images.add(tShirt);
-                images.add(eyes);
-                images.add(shoes);
-                images.add(clock);
-                images.add(tie);
-                images.add(beard);
-            } 
-        catch (IOException e) 
-        {
-            System.out.println("Failed loading file");
-        }		
-    }*/
+    public void process(String destinationPath){
+        int numLayers = mapTextures.keySet().size();
+        for(int i=0; i<numLayers;i++){
+            ArrayList<TextureType> listTexturesLayer = mapTextures.get(i);
+            addToBufferedImage(listTexturesLayer);
+        }
+        pasteImages(destinationPath);
+    }
     
-    public void fusionaImagenes(String destinationPath)
+    private void addToBufferedImage(ArrayList<TextureType> listTexturesLayer){
+        Iterator<TextureType> it = listTexturesLayer.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            try{
+                if(texture instanceof BaseShadowTextureType){
+                    BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
+                    images.add(ImageIO.read(resourceHandler.getResource(baseShadowTexture.getPath())));
+                    if(baseShadowTexture.getShadowPath() != null){
+                        images.add(ImageIO.read(resourceHandler.getResource(baseShadowTexture.getShadowPath())));
+                    }
+                }
+                else if(texture instanceof SimpleTextureType){
+                    SimpleTextureType simpleTexture = ((SimpleTextureType)texture);
+                }
+                else if(texture instanceof DoubleTextureType){
+                    DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
+                }
+                else if(texture instanceof MultiOptionTextureType){
+                    MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
+                    ArrayList<Texture> listMultiOptionTexture = (ArrayList<Texture>) multiOptionTexture.getTexture();
+                    Iterator<Texture> it2 = listMultiOptionTexture.iterator();
+                    boolean isDefault = false;
+                    while(!isDefault && it2.hasNext())
+                    {
+                        if(it2.next().isDefault()){
+                            isDefault = true;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    private void pasteImages(String destinationPath)
     {
-        int w = skin.getWidth();
-        int h= skin.getHeight();  
-        BufferedImage finalImage = new BufferedImage(w,h,BufferedImage.TYPE_4BYTE_ABGR);
+        BufferedImage finalImage = new BufferedImage(width,height,BufferedImage.TYPE_4BYTE_ABGR);
         Graphics g = finalImage.getGraphics();
         for (int i = 0; i < images.size(); i++) 
         {
@@ -115,14 +123,14 @@ public class ImagesProcessing
 
         //Rotate 180 grades
         double rotationRequired = Math.toRadians(180);
-        double locationX = w / 2;
-        double locationY = h / 2;
+        double locationX = width / 2;
+        double locationY = height / 2;
         AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
         // Drawing the rotated image at the required drawing locations
         g.drawImage(op.filter(finalImage, null), 0, 0, null);        
         //Swaping the image
-        g.drawImage(finalImage, 0, 0, w, h, w, 0, 0, h, null);
+        g.drawImage(finalImage, 0, 0, width, height, width, 0, 0, height, null);
 
         try 
         {
