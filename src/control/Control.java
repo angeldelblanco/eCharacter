@@ -43,6 +43,7 @@ import data.model.EscalationType;
 import data.model.Model;
 import data.model.SubMeshType;
 import data.model.TextureType;
+import data.texturessubmeshesdata.TexturesSubMeshesData;
 import java.util.ArrayList;
 import java.util.Iterator;
 import loader.Configuration;
@@ -199,7 +200,8 @@ public class Control {
             model = models.get(0);
         }
         mc = new ModelControl(model);
-        sc = new SceneControl(rootNode, assetManager, mc.getMainMeshPath(), mc.getMainMeshTransformations());
+        TexturesSubMeshesData texturesSubMeshesData = new TexturesSubMeshesData(fc.getAllSubStages(), mc.getAllTextures(), mc.getAllSubMeshes());
+        sc = new SceneControl(rootNode, assetManager, mc.getMainMeshPath(), mc.getMainMeshTransformations(), texturesSubMeshesData);
     }
     
     public String getLanguageModelPath()

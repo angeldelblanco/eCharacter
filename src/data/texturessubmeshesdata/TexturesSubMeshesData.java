@@ -33,8 +33,10 @@
  *      along with <eAdventure Character Configurator>. If not, 
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package data.mydata;
+package data.texturessubmeshesdata;
 
+import data.texturessubmeshesdata.TexturesInPanel;
+import data.texturessubmeshesdata.SubMeshesInPanel;
 import data.family.SubStageType;
 import data.model.BaseShadowTextureType;
 import data.model.DoubleTextureType;
@@ -49,24 +51,25 @@ import java.util.Iterator;
 import java.util.Set;
 
 
-public class MyData 
+public class TexturesSubMeshesData 
 {
     //HashMap<idPanel,TexturesInPanel>
     private HashMap<String,TexturesInPanel> texturesData;
     //HashMap<idPanel,SubMeshesInPanel>
     private HashMap<String,SubMeshesInPanel> subMeshesData;
     
-    public MyData()
+    public TexturesSubMeshesData(ArrayList<SubStageType> listSubStages, ArrayList<TextureType> listTextures,ArrayList<SubMeshType> listSubMeshes)
     {
         texturesData = new HashMap<String,TexturesInPanel>();
-        subMeshesData = new HashMap<String,SubMeshesInPanel>();        
+        subMeshesData = new HashMap<String,SubMeshesInPanel>();
+        setData(listSubStages, listTextures, listSubMeshes);
     }
     
     /*
      * Input: A list of all substages,a list of all the texturesData who the model has 
      * and a list of all the submeshes who the model has. 
      */
-    public void setData(ArrayList<SubStageType> listSubStages, ArrayList<TextureType> listTextures,ArrayList<SubMeshType> listSubMeshes)
+    private void setData(ArrayList<SubStageType> listSubStages, ArrayList<TextureType> listTextures,ArrayList<SubMeshType> listSubMeshes)
     {
         //Create the keyset of the hashMaps with the idPanel of the substages
         createKeySet(listSubStages);        
@@ -156,11 +159,7 @@ public class MyData
         {
             TexturesInPanel texturesInPanel = texturesData.get(it.next());
             ArrayList<TextureType> listCheckedTexturesInPanel = texturesInPanel.getCheckedTextures();
-            Iterator<TextureType> it2 = listCheckedTexturesInPanel.iterator();
-            while(it2.hasNext())
-            {
-                listCheckedTextures.add(it2.next());
-            }
+            listCheckedTextures.addAll(listCheckedTexturesInPanel);
         }
         return listCheckedTextures;
     }
@@ -177,11 +176,7 @@ public class MyData
         {
             SubMeshesInPanel subMeshesInPanel = subMeshesData.get(it.next());
             ArrayList<SubMeshType> listCheckedSubMeshesInPanel = subMeshesInPanel.getCheckedSubMeshes();
-            Iterator<SubMeshType> it2 = listCheckedSubMeshesInPanel.iterator();
-            while(it2.hasNext())
-            {
-                listCheckedSubMeshes.add(it2.next());
-            }
+            listCheckedSubMeshes.addAll(listCheckedSubMeshesInPanel);
         }
         return listCheckedSubMeshes;
     }

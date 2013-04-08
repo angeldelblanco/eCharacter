@@ -52,6 +52,7 @@ import data.model.EscalationType;
 import data.model.SubMeshType;
 import data.model.TextureType;
 import data.model.TransformationType;
+import data.texturessubmeshesdata.TexturesSubMeshesData;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -67,13 +68,14 @@ public class SceneControl
     private AnimChannel channel;
     private AnimControl control;
     private Vector3f vectorScaleBase;
-    //private MyData myData;
+    private TexturesSubMeshesData texturesSubMeshesData;
     
     public SceneControl(Node rootNode, AssetManager assetManager, String mainMeshPath, 
-            ArrayList<TransformationType> listTransformationMainMesh)
+            ArrayList<TransformationType> listTransformationMainMesh, TexturesSubMeshesData texturesSubMeshesData)
     {
         this.rootNode = rootNode;
         this.assetManager = assetManager;
+        this.texturesSubMeshesData = texturesSubMeshesData;
         this.subMeshes = new HashMap<String, Spatial>();
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         

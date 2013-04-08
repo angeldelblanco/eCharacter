@@ -33,7 +33,7 @@
  *      along with <eAdventure Character Configurator>. If not, 
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package data.mydata;
+package data.texturessubmeshesdata;
 
 import data.model.SubMeshType;
 import java.util.ArrayList;

@@ -285,6 +285,38 @@ public class ModelControl
         return null;
     }
     
+    public TexturesType getTextureType(String idTextureOrSubMesh)
+    {
+        TexturesType texturesType = null;
+        TextureType texture = getTexture(idTextureOrSubMesh);
+        if (texture != null)
+        {
+            //It's a texture.
+            if(texture instanceof BaseShadowTextureType)
+            {
+                texturesType = TexturesType.baseShadow;
+            }
+            else if(texture instanceof DoubleTextureType)
+            {
+                texturesType = TexturesType.doubleTexture;
+            }
+            else if(texture instanceof SimpleTextureType)
+            {
+                texturesType = TexturesType.simpleTexture;
+            }
+            else if(texture instanceof MultiOptionTextureType)
+            {
+                texturesType = TexturesType.multiOptionTexture;
+            }
+        }
+        return texturesType;
+    }
+    
+    public ArrayList<TextureType> getAllTextures()
+    {
+        return (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+    }
+    
     //------------------------ PHYSICAL BUILD ---------------------------------/
     
     /*
@@ -402,42 +434,8 @@ public class ModelControl
         }
         return null;
     }
-
-    public TexturesType getTextureType(String idTextureOrSubMesh)
-    {
-        TexturesType texturesType = null;
-        TextureType texture = getTexture(idTextureOrSubMesh);
-        if (texture != null)
-        {
-            //It's a texture.
-            if(texture instanceof BaseShadowTextureType)
-            {
-                texturesType = TexturesType.baseShadow;
-            }
-            else if(texture instanceof DoubleTextureType)
-            {
-                texturesType = TexturesType.doubleTexture;
-            }
-            else if(texture instanceof SimpleTextureType)
-            {
-                texturesType = TexturesType.simpleTexture;
-            }
-            else if(texture instanceof MultiOptionTextureType)
-            {
-                texturesType = TexturesType.multiOptionTexture;
-            }
-        }
-        return texturesType;
-    }
     
-    
-    /**************************COMENTAR CON SERGIO*****************************/
-    public ArrayList<TextureType> getTextures()
-    {
-        return (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
-    }
-    
-    public ArrayList<SubMeshType> getSubMeshes()
+    public ArrayList<SubMeshType> getAllSubMeshes()
     {
         return (ArrayList<SubMeshType>) model.getSubMesh();
     }
