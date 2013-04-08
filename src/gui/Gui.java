@@ -381,8 +381,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         return null;
     }
     
-    public void changeTextureOrSubMesh(String idTextureOrSubMesh){
-        control.changeTextureOrSubMesh(idTextureOrSubMesh);
+    public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){
+        control.changeTextureOrSubMesh(substage, idTextureOrSubMesh);
     }
     
   /******************************FamilyDropDownControler*****************************/

@@ -83,7 +83,7 @@ public class MultiStageBuilder {
                         }};
                         image.id(idSubStages.get(i)+"i"+Integer.toString(k));
                         image.filename(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(k)));
-                        image.interactOnClick("changeTextureOrSubMesh("+idsTexturesOrSubMeshes.get(k)+")");
+                        image.interactOnClick("changeTextureOrSubMesh("+idSubStages.get(i)+","+idsTexturesOrSubMeshes.get(k)+")");
                         image.build(nifty, nifty.getScreen(stageType), nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i%SUBSTAGE_PAGE)+Integer.toString(k%TEXTURES_PAGE)));
                     }
                     nifty.getScreen(stageType).findElementByName("colorText"+Integer.toString(i%SUBSTAGE_PAGE)).getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
@@ -116,10 +116,11 @@ public class MultiStageBuilder {
         if((page*SUBSTAGE_PAGE+h)<idSubStages.size()){
             nifty.getScreen(stageType).findElementByName("text"+Integer.toString(h)).setVisible(true);
             nifty.getScreen(stageType).findElementByName("text"+Integer.toString(h)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getSubStageLabel(selection,idSubStages.get(page*SUBSTAGE_PAGE+h))));
-            nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)).layoutElements();
+            nifty.getScreen(stageType).findElementByName("textPanel"+Integer.toString(h)).layoutElements();
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).enable();
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(true);
-            
+            nifty.getScreen(stageType).findElementByName("colorText"+Integer.toString(h)).getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
+            nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).layoutElements();
             for(int i=multiPage[h]*TEXTURES_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(page*SUBSTAGE_PAGE+h)); i++){
                 if(i<((multiPage[h]+1)*TEXTURES_PAGE)){
                     nifty.getScreen(stageType).findElementByName(idSubStages.get(page*SUBSTAGE_PAGE+h)+"i"+Integer.toString(i)).setVisible(true);

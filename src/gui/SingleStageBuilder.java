@@ -75,7 +75,7 @@ public class SingleStageBuilder {
                     }};
                     image.id(stages.get(j)+"i"+Integer.toString(i));
                     image.filename(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)));
-                    image.interactOnClick("changeTextureOrSubMesh("+idsTexturesOrSubMeshes.get(i)+")");
+                    image.interactOnClick("changeTextureOrSubMesh("+idSubStages.get(0)+","+idsTexturesOrSubMeshes.get(i)+")");
                     image.build(nifty, nifty.getScreen(stageType), nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)));
                 }
                 nifty.getScreen(stageType).findElementByName("colorText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
