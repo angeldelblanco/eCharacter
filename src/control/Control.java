@@ -261,18 +261,18 @@ public class Control {
     
     /*************************Scene******************************************/
     
-    public void changeTextureOrSubMesh(String idTextureOrSubMesh)
+    public void changeTextureOrSubMesh(String idPanelRef, String idTextureOrSubMesh)
     {
         TextureType texture = mc.getTexture(idTextureOrSubMesh);
         if (texture != null){
             //It's a texture.
-            sc.changeTexture(texture);
+            sc.changeTexture(idPanelRef, texture);
         }
         else{
             //It's a submesh
             SubMeshType subMesh = mc.getSubMesh(idTextureOrSubMesh);
             if (subMesh != null){
-                sc.changeSubMesh(subMesh, mc.getSubMeshTransformation(subMesh.getIdSubMesh()));
+                sc.changeSubMesh(idPanelRef, subMesh);
             }
         }
     }

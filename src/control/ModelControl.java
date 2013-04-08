@@ -391,7 +391,7 @@ public class ModelControl
     }
     
     //Return a list of transformation for the submesh with id = idSubMesh.
-    public ArrayList<TransformationType> getSubMeshTransformation(String idSubMesh)
+    /*public ArrayList<TransformationType> getSubMeshTransformation(String idSubMesh)
     {
         ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
         Iterator<SubMeshType> it = listSubMeshes.iterator();
@@ -403,7 +403,7 @@ public class ModelControl
             }
         }
         return null;
-    }
+    }*/
     
     public ArrayList<SubMeshType> getDefaultSubMeshes()
     {
