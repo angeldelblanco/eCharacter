@@ -69,6 +69,7 @@ public class SceneControl
     private AnimControl control;
     private Vector3f vectorScaleBase;
     private TexturesSubMeshesData texturesSubMeshesData;
+    private int cont;
     
     public SceneControl(Node rootNode, AssetManager assetManager, String mainMeshPath, 
             ArrayList<TransformationType> listTransformationMainMesh, TexturesSubMeshesData texturesSubMeshesData)
@@ -84,14 +85,17 @@ public class SceneControl
         this.rootNode.addLight(dl);
         mainMesh = this.assetManager.loadModel(mainMeshPath); 
         
+        cont=1;
+        
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         //Aqui deberia ir cargar Texturas por Defecto
-        mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png"));
+        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
+        //llamar a imageprocessing
+        mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
         mainMesh.setMaterial(mat);
         rootNode.attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
         setActivatedSubMeshes();
-        attachAllChild();
        
         this.control = mainMesh.getControl(AnimControl.class);
         this.channel = this.control.createChannel();
@@ -103,7 +107,7 @@ public class SceneControl
        
         /*
         //Borrar la imagen
-        Path file = Paths.get("assets/Textures/OriginalTexture.png");
+        Path file = Paths.get(tempPath);
         try {
             Files.delete(file);
         } 
@@ -269,7 +273,26 @@ public class SceneControl
         
     public void changeTexture(String idPanel, String idTexture)
     {
-        //POR HACER
+        texturesSubMeshesData.changeTexture(idPanel, idTexture);
+        ArrayList<TextureType> listTextures = texturesSubMeshesData.getCheckedTextures();
+        dettachAllChild();
+        cont++;
+        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
+        //Llamar a imageProcessing
+        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
+        mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
+        mainMesh.setMaterial(mat);
+        attachAllChild();
+        
+         /*
+        //Borrar la imagen
+        Path file = Paths.get(tempPath);
+        try {
+            Files.delete(file);
+        } 
+        catch (IOException ex) {
+            System.out.println("Error al borrar el fichero");
+        } */   
     }
     
     public void screenShot()

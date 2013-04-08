@@ -34,7 +34,7 @@
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package control;
+package imageprocessing;
 
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
