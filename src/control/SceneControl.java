@@ -88,11 +88,10 @@ public class SceneControl
         //Aqui deberia ir cargar Texturas por Defecto
         mat.setTexture("ColorMap",assetManager.loadTexture("assets/Textures/OriginalTexture.png"));
         mainMesh.setMaterial(mat);
-        //setDefaultSubMeshes();
-        //attachAllChild();
         rootNode.attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
-        
+        setActivatedSubMeshes();
+        attachAllChild();
        
         this.control = mainMesh.getControl(AnimControl.class);
         this.channel = this.control.createChannel();
@@ -113,9 +112,9 @@ public class SceneControl
         } */      
     }
     
-    /*private void setDefaultSubMeshes()
+    private void setActivatedSubMeshes()
     {
-        ArrayList<SubMeshType> listSubMeshes = modelControl.getDefaultSubMeshes();
+        ArrayList<SubMeshType> listSubMeshes = texturesSubMeshesData.getCheckedSubMeshes();
         Iterator<SubMeshType> it = listSubMeshes.iterator();
         while(it.hasNext())
         {
@@ -131,10 +130,10 @@ public class SceneControl
             //if(subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture() != null){
                 //PORHACER
             //}
-            ArrayList<TransformationType> listTransformation = modelControl.getSubMeshTransformation(subMesh.getIdSubMesh());
-            addSubMesh(subMesh.getAssociatedBone(),subMeshSpatial,listTransformation);
+            ArrayList<TransformationType> listTransformation = (ArrayList<TransformationType>) subMesh.getTransformation();
+            applySubMesh(subMesh.getAssociatedBone(),subMeshSpatial,listTransformation);
         }
-    }*/
+    }
     
     private void setPositionModel(ArrayList<TransformationType> listTransformations)
     {
@@ -166,10 +165,13 @@ public class SceneControl
         }  
     }    
     
-     public void addSubMesh(String bone,Spatial subMesh,ArrayList<TransformationType> listTransformations)
+     private void applySubMesh(String bone,Spatial subMesh,ArrayList<TransformationType> listTransformations)
     {
-            subMeshes.put(bone,subMesh);
             SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
+            if(subMeshes.get(bone) != null){
+                skeletonControl.getAttachmentsNode(bone).detachAllChildren();
+            }
+            subMeshes.put(bone,subMesh);            
             skeletonControl.getAttachmentsNode(bone).attachChild(subMesh);           
             Iterator<TransformationType> it = listTransformations.iterator();
             while (it.hasNext())
@@ -259,24 +261,13 @@ public class SceneControl
         //POR HACER
     }
     
-    public void changeSubMesh(SubMeshType subMesh, ArrayList<TransformationType> listSubMeshTransformation)
+    public void changeSubMesh(String idPanel, String idSubMesh)
     {
-        Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
-        /******ÑAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*///
-        Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        subMeshMaterial.setTexture("DiffuseMap",assetManager.loadTexture("assets/Textures/eAdventure/Textures Boy/PeloBoy.png"));
-        subMeshSpatial.setMaterial(subMeshMaterial);
-        /******FIN DE ÑAPAAAAAAAAA*/
-        //If texture are distinct null,the submesh has a texture´s list.
-        //Else have a .material and it load automatically 
-        /*if(subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture() != null){
-            //PORHACER
-        }*/
-        //ArrayList<TransformationType> listTransformation = modelControl.getSubMeshTransformation(subMesh.getIdSubMesh());
-        addSubMesh(subMesh.getAssociatedBone(),subMeshSpatial,listSubMeshTransformation);
+        texturesSubMeshesData.changeSubMesh(idPanel,idSubMesh);
+        setActivatedSubMeshes();
     }
-    
-    public void changeTexture(TextureType texture)
+        
+    public void changeTexture(String idPanel, String idTexture)
     {
         //POR HACER
     }
