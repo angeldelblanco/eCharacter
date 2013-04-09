@@ -36,6 +36,10 @@
 package data.texturessubmeshesdata;
 
 import data.model.TextureType;
+import imageprocessing.ColoringImage;
+import imageprocessing.ImagesProcessing;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -46,17 +50,18 @@ public class TexturesInPanel
 {
     private boolean multiSelection;
     //HashMap<Texture, boolean = if this texture is selected>
-    private HashMap<TextureType,Boolean> textures;
+    //private HashMap<TextureType,Boolean> textures;
+    private HashMap<TextureType,AttrTexture> textures;
     
     public TexturesInPanel(boolean multiSelection)
     {
         this.multiSelection = multiSelection;
-        textures = new HashMap<TextureType,Boolean>();
+        textures = new HashMap<TextureType,AttrTexture>();
     }  
     
     public void addTexture(TextureType texture, boolean isCheck)
     {
-        textures.put(texture, isCheck);
+        textures.put(texture, new AttrTexture(isCheck));
     }
     
     /*
@@ -70,7 +75,7 @@ public class TexturesInPanel
         while(it.hasNext())
         {
             TextureType texture = it.next();
-            if (textures.get(texture)){
+            if (textures.get(texture).isSelected()){
                listCheckedTextures.add(texture);
            } 
         }
@@ -92,16 +97,49 @@ public class TexturesInPanel
             if (texture.getIdTexture().equals(idTexture))
             {
                 if (multiSelection){
-                    boolean b = textures.get(texture);
-                    textures.put(texture,!b);
+                    //boolean b = textures.get(texture).isSelected();
+                    //textures.put(texture,!b);
+                    AttrTexture attrTexture = textures.get(texture);
+                    attrTexture.setSelected(!attrTexture.isSelected());
+                    //textures.put(texture,attrTexture);
                 }
                 else {
-                    textures.put(texture,true);
+                    //textures.put(texture,true);
+                    AttrTexture attrTexture = textures.get(texture);
+                    attrTexture.setSelected(true);
+                    //textures.put(texture,attrTexture);
                 }
             }
             else if (!multiSelection) {
-                textures.put(texture,false);
+                //textures.put(texture,false);
+                AttrTexture attrTexture = textures.get(texture);
+                attrTexture.setSelected(false);
+                //textures.put(texture,attrTexture);
             }
         }        
+    }
+    
+    public void changeColor(String idTexture, float red, float green, float blue){
+        Set<TextureType> keySet = textures.keySet();
+        Iterator<TextureType> it = keySet.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            if (texture.getIdTexture().equals(idTexture)){
+                BufferedImage bi = ColoringImage.coloringImage(texture, new Color(red, green, blue));
+                AttrTexture attrTexture = textures.get(texture);
+                attrTexture.setBufferedImage(bi);
+            }
+        }        
+    }
+    
+    //Dada una textura, devuelvo el BufferedImage asociado  
+    
+    //Comprobar que si es null, hay que generarlo
+    public BufferedImage getBufferedImage(TextureType texture){
+        if (textures.get(texture).getBufferedImage() == null){
+            //Si el BufferedImage es null, es porque no se ha creado todavía. Hay que crearlo con imageProcessing.
+            textures.get(texture).setBufferedImage(ImagesProcessing.createBufferedImage(texture));
+        }
+        return textures.get(texture).getBufferedImage();
     }
 }

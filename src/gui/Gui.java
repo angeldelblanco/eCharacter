@@ -463,6 +463,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
                 changeCharacterPage("0", familyAnt);*/
                 nifty.gotoScreen("modelScreen");
+                control.deleteModel();
             }
         }
         if(id.equals("popUpButton2")){

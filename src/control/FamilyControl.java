@@ -164,7 +164,7 @@ public class FamilyControl
             MultiStageType mst = it2.next();
             if(mst.getStageLabel().equals(idStage)){
                 if(mst.getSubStage().size() == 1){
-                    return StageType.singleStage;
+                    return StageType.multiStage;
                 }
                 else{
                     return StageType.multiStage;                

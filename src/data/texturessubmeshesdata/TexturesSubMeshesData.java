@@ -45,6 +45,7 @@ import data.model.MultiOptionTextureType.Texture;
 import data.model.SimpleTextureType;
 import data.model.SubMeshType;
 import data.model.TextureType;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -150,7 +151,7 @@ public class TexturesSubMeshesData
     /*
      * Return the list of textures activated
      */
-    public ArrayList<TextureType> getCheckedTextures()
+    /*public ArrayList<TextureType> getCheckedTextures()
     {
         ArrayList<TextureType> listCheckedTextures = new ArrayList<TextureType>();
         Set<String> keyIdPanels = texturesData.keySet();
@@ -162,7 +163,37 @@ public class TexturesSubMeshesData
             listCheckedTextures.addAll(listCheckedTexturesInPanel);
         }
         return listCheckedTextures;
-    }
+    }*/
+    
+    public HashMap<Integer,ArrayList<BufferedImage>> getCheckedTextures()
+    {
+        HashMap<Integer,ArrayList<BufferedImage>> hashMapCheckedTextures = new HashMap<Integer,ArrayList<BufferedImage>>();
+        Set<String> keyIdPanels = texturesData.keySet();
+        Iterator<String> it = keyIdPanels.iterator();
+        while(it.hasNext())
+        {
+            TexturesInPanel texturesInPanel = texturesData.get(it.next());
+            //Obtener la lista de texturas seleccionadas en un panel en concreto
+            ArrayList<TextureType> listCheckedTexturesInPanel = texturesInPanel.getCheckedTextures();          
+            //Para cada textura, meterla en el hashmap con su layer correspondiente y su BufferedImage correspondiente
+            Iterator<TextureType> it2 = listCheckedTexturesInPanel.iterator();
+            while(it2.hasNext()){
+                TextureType texture = it2.next();
+                if(hashMapCheckedTextures.get(texture.getLayer().intValue()) != null){
+                    BufferedImage bi = texturesInPanel.getBufferedImage(texture);
+                    hashMapCheckedTextures.get(texture.getLayer().intValue()).add(bi);
+                }
+                else{
+                    //Si la textura no está, en el layer correspondiente hay que añadir el BufferedImage asociado a esa textura
+                    ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
+                    BufferedImage bi = texturesInPanel.getBufferedImage(texture);
+                    list.add(bi);
+                    hashMapCheckedTextures.put(texture.getLayer().intValue(),list);
+                }
+            }
+        }
+        return hashMapCheckedTextures;
+    } 
     
     /*
      * Return the list of textures activated
@@ -184,16 +215,18 @@ public class TexturesSubMeshesData
     /*
      * Change the texture with idTexture in the panel with idPanel
      */
-    public void changeTexture(String idPanel,String idTexture)
-    {
+    public void changeTexture(String idPanel,String idTexture){
         texturesData.get(idPanel).changeTexture(idTexture);
     }
     
     /*
      * Change the subMesh with idSubMesh in the panel with idPanel
      */
-    public void changeSubMesh(String idPanel,String idSubMesh)
-    {
+    public void changeSubMesh(String idPanel,String idSubMesh){
         subMeshesData.get(idPanel).changeSubMesh(idSubMesh);
+    }
+
+    public void changeColor(String idPanel, String idTexture, float red, float green, float blue) {
+        texturesData.get(idPanel).changeColor(idTexture, red, green, blue);
     }
 }

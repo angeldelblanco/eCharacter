@@ -277,25 +277,26 @@ public class Control {
         }
     }
     
-    public void changeColor(float red,float green,float blue)
+    public void changeColor(String idPanelRef, String idTexture, float red,float green,float blue)
     {
-        sc.changeColor(red, green, blue);
+        sc.changeColor(idPanelRef, idTexture, red, green, blue);
     }
     
-    public void screenShot()
-    {
+    public void screenShot(){
         sc.screenShot();
     }
     
-    public void setBoneControllerValue(String idBoneController, float inc)
-    {
+    public void setBoneControllerValue(String idBoneController, float inc){
         ArrayList<String> listBones = mc.getBones(idBoneController);
         sc.scaleBone(listBones, inc);
     }
     
-    public void setPhysicalBuild(String idPhysicalBuild)
-    {
+    public void setPhysicalBuild(String idPhysicalBuild){
         ArrayList<EscalationType> listEscalations = mc.getPhysicalBuildEscalations(idPhysicalBuild);
         sc.applyEscalations(listEscalations);
+    }
+    
+    public void deleteModel(){
+        sc.deleteModel();
     }
 }

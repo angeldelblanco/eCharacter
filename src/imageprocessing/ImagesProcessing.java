@@ -49,7 +49,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -58,25 +57,46 @@ import loader.ResourceHandler;
 public class ImagesProcessing
 {
     private ArrayList<BufferedImage> images;
-    private HashMap<Integer,ArrayList<TextureType>> mapTextures;
+    //private HashMap<Integer,ArrayList<TextureType>> mapTextures;
+    private HashMap<Integer,ArrayList<BufferedImage>> mapTextures;
     private int width;
     private int height;
     
-    public ImagesProcessing(HashMap<Integer,ArrayList<TextureType>> mapTextures){
+    /*public ImagesProcessing(HashMap<Integer,ArrayList<TextureType>> mapTextures){
+        this.mapTextures = mapTextures;
+        this.images = new ArrayList<BufferedImage>();
+    }*/
+    
+    public ImagesProcessing(HashMap<Integer,ArrayList<BufferedImage>> mapTextures){
         this.mapTextures = mapTextures;
         this.images = new ArrayList<BufferedImage>();
     }
     
-    public BufferedImage process(String destinationPath){
+    /*public BufferedImage process(String destinationPath){
         int numLayers = mapTextures.keySet().size();
         for(int i=0; i<numLayers;i++){
             ArrayList<TextureType> listTexturesLayer = mapTextures.get(i);
             addToBufferedImage(listTexturesLayer);
         }
         return pasteImages(destinationPath);
+    }*/
+    
+    public BufferedImage process(String destinationPath){
+        int numLayers = mapTextures.keySet().size();
+        BufferedImage bi = null;
+        for(int i=0; i<numLayers;i++){
+            ArrayList<BufferedImage> listBufferedImage = mapTextures.get(i);
+            //Es para obtener un BufferedImage en concreto para luego poder obtener el ancho y el alto
+            bi = listBufferedImage.get(0);
+            addToBufferedImage(listBufferedImage);
+        }
+        width = bi.getWidth();
+        height = bi.getHeight();
+        
+        return pasteBufferedImages(destinationPath);
     }
     
-    private void addToBufferedImage(ArrayList<TextureType> listTexturesLayer){
+    /*private void addToBufferedImage(ArrayList<TextureType> listTexturesLayer){
         Iterator<TextureType> it = listTexturesLayer.iterator();
         BufferedImage bi = null;
         while(it.hasNext()){
@@ -113,9 +133,13 @@ public class ImagesProcessing
         }
         width = bi.getWidth();
         height = bi.getHeight();
+    }*/
+    
+    private void addToBufferedImage(ArrayList<BufferedImage> listBufferedImage){
+        images.addAll(listBufferedImage);
     }
     
-    private BufferedImage pasteImages(String destinationPath)
+    private BufferedImage pasteBufferedImages(String destinationPath)
     {
         BufferedImage finalImage = new BufferedImage(width,height,BufferedImage.TYPE_4BYTE_ABGR);
         Graphics g = finalImage.getGraphics();
@@ -134,6 +158,7 @@ public class ImagesProcessing
         // Drawing the rotated image at the required drawing locations
         g.drawImage(op.filter(finalImage, null), 0, 0, null);        
         //Swaping the image
+        
         g.drawImage(finalImage, 0, 0, width, height, width, 0, 0, height, null);
 
         try 
@@ -144,6 +169,57 @@ public class ImagesProcessing
         {
             System.out.println("Failed saving image");
         } 
+        return finalImage;
+    }
+    
+    public static BufferedImage createBufferedImage(TextureType texture){
+        
+        BufferedImage bi = null;
+        int width;
+        int height;
+        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
+        try{
+            if(texture instanceof BaseShadowTextureType){
+                BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
+                bi = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getPath()));
+                images.add(bi);
+                if(baseShadowTexture.getShadowPath() != null){
+                    images.add(ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath())));
+                }
+            }
+            else if(texture instanceof SimpleTextureType){
+                SimpleTextureType simpleTexture = ((SimpleTextureType)texture);
+                bi = ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath()));
+                images.add(bi);
+                images.add(ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath())));
+            }
+            else if(texture instanceof DoubleTextureType){
+                DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
+                bi = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
+                images.add(bi);
+                images.add(ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath())));
+            }
+            else if(texture instanceof MultiOptionTextureType){
+                MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
+                //Mirar como hacer esta textura
+            }
+        }
+        catch (IOException ex) {
+            Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Ya está creado el array list de bufferedImage. Ahora hay que generarlo
+        return pasteImages(images, bi.getWidth(), bi.getHeight());
+    }
+    
+    private static BufferedImage pasteImages(ArrayList<BufferedImage> images, int width, int height){
+        BufferedImage finalImage = new BufferedImage(width,height,BufferedImage.TYPE_4BYTE_ABGR);
+        Graphics g = finalImage.getGraphics();
+        for (int i = 0; i < images.size(); i++) 
+        {
+            BufferedImage aux = images.get(i);
+            g.drawImage(aux, 0, 0, null);
+        }
+ 
         return finalImage;
     }
 }

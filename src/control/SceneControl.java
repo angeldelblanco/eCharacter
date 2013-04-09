@@ -99,7 +99,13 @@ public class SceneControl
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         //Aqui deberia ir cargar Texturas por Defecto
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(texturesSubMeshesData.getCheckedTextures()));
+        //ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(texturesSubMeshesData.getCheckedTextures()));
+        
+        HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
+        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);
+        
+        
+        
         BufferedImage bi = imagesProcessing.process(tempPath);
         
         AWTLoader loader = new AWTLoader();
@@ -113,7 +119,7 @@ public class SceneControl
         
         
         mainMesh.setMaterial(mat);
-        rootNode.attachChild(mainMesh);
+        this.rootNode.attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
         setActivatedSubMeshes();
        
@@ -127,13 +133,13 @@ public class SceneControl
        
         
         //Borrar la imagen
-        /*Path file = Paths.get(tempPath);
+        Path file = Paths.get(tempPath);
         try {
             Files.delete(file);
         } 
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
-        }  */    
+        }      
     }
     
     private void setActivatedSubMeshes()
@@ -280,9 +286,30 @@ public class SceneControl
         return control.getAnimationNames().size();
     }
     
-    public void changeColor(float red,float green,float blue)
+    public void changeColor(String idPanelRef, String idTexture, float red,float green,float blue)
     {
-        //POR HACER
+        texturesSubMeshesData.changeColor(idPanelRef, idTexture, red, green, blue);
+        
+        HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
+        dettachAllChild();
+        cont++;
+        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
+        
+        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);  
+        BufferedImage bi = imagesProcessing.process(tempPath);
+        
+        AWTLoader loader = new AWTLoader();
+        Image load = loader.load(bi, true);
+        Texture2D texture = new Texture2D(load);
+        
+        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
+        //mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
+        
+        mat.setTexture("ColorMap",texture);
+        
+        mainMesh.setMaterial(mat);
+        attachAllChild();
+        
     }
     
     public void changeSubMesh(String idPanel, String idSubMesh)
@@ -294,11 +321,19 @@ public class SceneControl
     public void changeTexture(String idPanel, String idTexture)
     {
         texturesSubMeshesData.changeTexture(idPanel, idTexture);
-        ArrayList<TextureType> listTextures = texturesSubMeshesData.getCheckedTextures();
+        //ArrayList<TextureType> listTextures = texturesSubMeshesData.getCheckedTextures();
+        
+        
+        HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
+                
+                
+                
         dettachAllChild();
         cont++;
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(listTextures));    
+        //ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(listTextures));  
+        
+        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);    
         
         BufferedImage bi = imagesProcessing.process(tempPath);
         
@@ -316,16 +351,16 @@ public class SceneControl
         
          
         //Borrar la imagen
-        /*Path file = Paths.get(tempPath);
+        Path file = Paths.get(tempPath);
         try {
             Files.delete(file);
         } 
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
-        }*/    
+        } 
     }
     
-    private HashMap<Integer,ArrayList<TextureType>> getImageProcessingHashMap(ArrayList<TextureType> textures){
+    /*private HashMap<Integer,ArrayList<TextureType>> getImageProcessingHashMap(ArrayList<TextureType> textures){
         HashMap<Integer,ArrayList<TextureType>> mapTextures = new HashMap<Integer,ArrayList<TextureType>>();
         Iterator<TextureType> it = textures.iterator();
         while(it.hasNext()){
@@ -340,9 +375,11 @@ public class SceneControl
             }
         }
         return mapTextures;
+    }*/
+    
+    public void deleteModel(){
+        this.rootNode.detachAllChildren();
     }
-    
-    
     
     
     
