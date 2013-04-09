@@ -25,8 +25,12 @@
 				<path>assets/Textures/eAdventure/Textures Boy/PielRojaBoy.png</path>
 			</simpleTexture>			
 			<!-- eyes textures-->
-			<!-- eyesPanel textures-->			
-			<doubleTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idOjos">
+			<!-- eyesPanel textures-->
+			<simpleTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idBlancoOjos">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoBlancoOjosBoy.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Boy/BlancoOjosBoy.png</path>
+			</simpleTexture>			
+			<doubleTexture idPanelRef="eyesPanel" layer="2" default="true" idTexture="idOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoOjosBoy.png</iconPath>
 				<basePath>assets/Textures/eAdventure/Textures Boy/IrisBoy.png</basePath>
 				<detailsPath>assets/Textures/eAdventure/Textures Boy/PupilaBoy.png</detailsPath>
@@ -58,21 +62,21 @@
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaLarga">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisetaLargaBoy.png</iconPath>
-				<path>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSolidoSolidoBoy.png</path>		
+				<path>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSolidoBoy.png</path>		
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaTirantes">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisetaTirantesBoy.png</iconPath>
-				<path>assets/Textures/eAdventure/Textures Boy/CamisetaTirantesBoy.png</path>
+				<path>assets/Textures/eAdventure/Textures Boy/CamisetaTirantesSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaTirantesSombrasBoy.png</shadowPath>
 			</baseShadowTexture>			
 			<!-- trousersPanel textures-->
-			<baseShadowTexture idPanelRef="trousersPanel" layer="1" default="false" idTexture="idPantalonCorto">
+			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="false" idTexture="idPantalonCorto">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPantalonCortoBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PantalonCortoSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PantalonCortoSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
-			<baseShadowTexture idPanelRef="trousersPanel" layer="1" default="true" idTexture="idPantalonLargo">
+			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="true" idTexture="idPantalonLargo">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPantalonLargoBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PantalonLargoSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PantalonLargoSombrasBoy.png</shadowPath>

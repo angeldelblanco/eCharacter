@@ -23,7 +23,7 @@
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel1" idPanel="skinsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel3">
-			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel2" idPanel="eyesPanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel2" idPanel="eyesPanel" multiselection="true"/>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel3" idPanel="eyebrowsPanel" multiselection="true"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel4">
@@ -34,13 +34,13 @@
 		</multiStage>		
 		<multiStage stageLabel="idMultiStageLabel6">
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel6" idPanel="shoesPanel" multiselection="false"/>
-			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel7" idPanel="socksPanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel7" idPanel="socksPanel" multiselection="true"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel7">
 			<subStage subStageType="meshSubStage" subStageLabel="idTextureSubStageLabel8" idPanel="hairsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel8">
-			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel9" idPanel="facePanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel9" idPanel="facePanel" multiselection="true"/>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel10" idPanel="accesoriesFacePanel" multiselection="true"/>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel11" idPanel="otherAccesoriesPanel" multiselection="true"/>
 		</multiStage>

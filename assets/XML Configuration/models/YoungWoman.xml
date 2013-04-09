@@ -30,8 +30,12 @@
 				<path>assets/Textures/eAdventure/Textures Girl/PielRojaGirl.png</path>
 			</simpleTexture>
 			<!-- eyes textures-->
-			<!-- eyesPanel textures-->			
-			<doubleTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idOjos">
+			<!-- eyesPanel textures-->
+			<simpleTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idBlancoOjos">
+				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoBlancoOjosGirl.png</iconPath>
+				<path>assets/Textures/eAdventure/Textures Girl/BlancoOjosGirl.png</path>
+			</simpleTexture>
+			<doubleTexture idPanelRef="eyesPanel" layer="2" default="true" idTexture="idOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoOjosGirl.png</iconPath>
 				<basePath>assets/Textures/eAdventure/Textures Girl/IrisGirl.png</basePath>
 				<detailsPath>assets/Textures/eAdventure/Textures Girl/PupilaGirl.png</detailsPath>
@@ -71,12 +75,12 @@
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/TopSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<!-- trousersPanel textures-->
-			<baseShadowTexture idPanelRef="trousersPanel" layer="1" default="true" idTexture="idPantalonCorto">
+			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="true" idTexture="idPantalonCorto">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPantalonCortoGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PantalonCortoSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PantalonCortoSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
-			<baseShadowTexture idPanelRef="trousersPanel" layer="1" default="false" idTexture="idPantalonLargo">
+			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="false" idTexture="idPantalonLargo">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPantalonLargoGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PantalonLargoSolidoGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PantalonLargoSombrasGirl.png</shadowPath>
