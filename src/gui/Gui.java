@@ -195,9 +195,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         modelsb.changeCharacterPage(i18nFamily,steep,familySelection,familyAnt,modelsSize,modelsAntSize);    
     }
     
-    public void selectModel(String id, String param){
-        modelSelection = param;
-        modelsb.selectModel(id);
+    public void selectModel(String id){
+        modelSelection = modelsb.selectModel(id);
     }
     
     public void loadFirstScreen(){
@@ -207,7 +206,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         stages = control.getStagesLabels();
         selection = stages.get(index);
         scalesb = new ScaleStageBuilder(nifty,control,i18nFamily,i18nModel);
-        singlesb = new SingleStageBuilder(nifty,control,i18nGui,stages);
+        //singlesb = new SingleStageBuilder(nifty,control,i18nGui,stages);
         multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily,stages);
         animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
         ArrayList<String> idPanel = control.getIdsSubStages(selection);
@@ -461,7 +460,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
                 familySelection = i18nFamily.getString(control.getMetadataFamilyName());
                 family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
-                changeCharacterPage("0", familyAnt);*/
+                */changeCharacterPage("0", "familyAnt");
                 nifty.gotoScreen("modelScreen");
                 control.deleteModel();
             }

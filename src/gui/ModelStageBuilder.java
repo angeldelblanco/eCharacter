@@ -43,6 +43,8 @@ import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
+import de.lessvoid.nifty.elements.Element;
+import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
@@ -55,12 +57,12 @@ public class ModelStageBuilder {
     private Nifty nifty;
     private I18N i18nGui; 
     private Control control;
-    private String stage;
+    private String stageType;
     private ArrayList<String> families;
     private int modelsPage;
     
     public ModelStageBuilder(Nifty nifty, Control control,I18N i18nGui, String language, ArrayList<String> families){
-        stage = "modelScreen";
+        stageType = "modelScreen";
         this.nifty = nifty;
         this.control = control;
         this.families = families;
@@ -73,11 +75,12 @@ public class ModelStageBuilder {
       and builds all the families and the pictures of models*/
     
     private void initModels(String language){
-        nifty.getScreen(stage).findElementByName("chooseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idChoose"));
-        nifty.getScreen(stage).findElementByName("choosePanel").layoutElements();
-        nifty.getScreen(stage).findElementByName("panel_screenright").disable();
-        nifty.getScreen(stage).findElementByName("panel_screenright").setVisible(false);
-        nifty.getScreen(stage).findElementByName("loadPopupPanel").setVisible(false);
+        nifty.getScreen(stageType).findElementByName("chooseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idChoose"));
+        nifty.getScreen(stageType).findElementByName("choosePanel").layoutElements();
+        nifty.getScreen(stageType).findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
+        nifty.getScreen(stageType).findElementByName("panel_screenright").layoutElements();
+        nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(false);
+        nifty.getScreen(stageType).findElementByName("loadPopupPanel").setVisible(false);
         new PanelBuilder() {{
             width("40%");
             childLayoutHorizontal();
@@ -93,31 +96,14 @@ public class ModelStageBuilder {
                 valignCenter();
                 width("50%");
             }});
-        }}.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("familyPanel"));
-        DropDown family = nifty.getScreen(stage).findNiftyControl("familyDropDown", DropDown.class);
+        }}.build(nifty, nifty.getScreen(stageType), nifty.getScreen(stageType).findElementByName("familyPanel"));
+        DropDown family = nifty.getScreen(stageType).findNiftyControl("familyDropDown", DropDown.class);
         Iterator<String> it = families.iterator();
         while(it.hasNext()){
             control.selectFamily(it.next());
             I18N i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
             ArrayList<String> models = control.getModelsLabel();
             Iterator<String> itm = models.iterator();
-            int i = 0;
-            while(itm.hasNext()){
-                String m = itm.next();
-                ImageBuilder image = new ImageBuilder(){{
-                    width("0%");
-                    height("0%");
-                    childLayoutOverlay();
-                    text("Man");
-                }};
-                image.id(i18nFamily.getString(control.getMetadataFamilyName())+"model"+Integer.toString(i));
-                image.filename(control.getModelIconPath(m));
-                image.interactOnClick("selectModel("+image.get("id")+","+control.getModelFamilyPath(m) +")");
-                //image.onHoverEffect(new HoverEffectBuilder("Man"));
-                //Nombre de los modelos con el i18n
-                image.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%MODELS_PAGE)));
-                i++;
-            }
             family.addItem(i18nFamily.getString(control.getMetadataFamilyName()));
         }
     }
@@ -125,75 +111,70 @@ public class ModelStageBuilder {
     //Change the model's page hiding pictures of previous models or previous family
     
     public void changeCharacterPage(I18N i18nFamily,String steep, String familySelection, String familyAnt, int modelsSize, int modelsAntSize){
-            for(int i=modelsPage*MODELS_PAGE; i<modelsAntSize; i++){
-                if(i<((modelsPage+1)*MODELS_PAGE)){
-                    nifty.getScreen(stage).findElementByName(familyAnt+"model"+Integer.toString(i)).setVisible(false);
-                    nifty.getScreen(stage).findElementByName(familyAnt+"model"+Integer.toString(i)).setHeight(0);
-                    nifty.getScreen(stage).findElementByName(familyAnt+"model"+Integer.toString(i)).setWidth(0);
-                }
+        if(steep.equals("+")){
+            modelsPage++;
+        }
+        if(steep.equals("-")){
+            modelsPage--;
+        }
+        if(steep.equals("0")){
+            modelsPage = 0;
+        }
+        unCheck();
+        for(int i=modelsPage*MODELS_PAGE; i<modelsSize; i++){
+            if(i<((modelsPage+1)*MODELS_PAGE)){
+                Element image = nifty.getScreen(stageType).findElementByName("m"+Integer.toString(i%MODELS_PAGE));
+                image.setVisible(true);
+                ImageRenderer imager = image.getRenderer(ImageRenderer.class);
+                imager.setImage(nifty.getRenderEngine().createImage(control.getModelIconPath(control.getModelsLabel().get(i)), false));
             }
-            if(steep.equals("+")){
-                modelsPage++;
+        }
+        for(int i=modelsSize;i<((modelsPage+1)*MODELS_PAGE);i++){
+            Element image = nifty.getScreen(stageType).findElementByName("m"+Integer.toString(i%MODELS_PAGE));
+            image.setVisible(false);
+        }
+        if(modelsPage > 0){
+            nifty.getScreen(stageType).findElementByName("leftT").setVisible(true);
+        }
+        else{
+            nifty.getScreen(stageType).findElementByName("leftT").setVisible(false);
+        }
+        if((((double)modelsSize/(double)MODELS_PAGE) - modelsPage) > 1){
+            nifty.getScreen(stageType).findElementByName("rightT").setVisible(true);
+        }
+        else{
+            nifty.getScreen(stageType).findElementByName("rightT").setVisible(false);
+        }
+        Iterator<String> it = families.iterator();
+        while(it.hasNext()){
+            control.selectFamily(it.next());
+            if(i18nFamily.getString(control.getMetadataFamilyName()).equals(familySelection)){
+                String url = "";
+                if(control.getMetadataFamilyURL()!=null){url = control.getMetadataFamilyURL();}
+                System.out.println(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
+                nifty.getScreen(stageType).findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
+                nifty.getScreen(stageType).findElementByName("descriptionPanel").layoutElements();
             }
-            if(steep.equals("-")){
-                modelsPage--;
-            }
-            if(steep.equals("0")){
-                unCheck();
-                modelsPage = 0;
-            }
-            for(int i=modelsPage*MODELS_PAGE; i<modelsSize; i++){
-                if(i<((modelsPage+1)*MODELS_PAGE)){
-                    nifty.getScreen(stage).findElementByName(familySelection+"model"+Integer.toString(i)).setVisible(true);
-                    nifty.getScreen(stage).findElementByName(familySelection+"model"+Integer.toString(i)).setHeight(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%MODELS_PAGE)).getHeight()-5);
-                    nifty.getScreen(stage).findElementByName(familySelection+"model"+Integer.toString(i)).setWidth(nifty.getScreen(stage).findElementByName("t"+Integer.toString(i%MODELS_PAGE)).getWidth()-5);
-                }
-            }
-            if(modelsPage > 0){
-                nifty.getScreen(stage).findElementByName("leftT").enable();
-                nifty.getScreen(stage).findElementByName("leftT").setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("leftT").disable();
-                nifty.getScreen(stage).findElementByName("leftT").setVisible(false);
-            }
-            if((((double)modelsSize/(double)MODELS_PAGE) - modelsPage) > 1){
-                nifty.getScreen(stage).findElementByName("rightT").enable();
-                nifty.getScreen(stage).findElementByName("rightT").setVisible(true);
-            }
-            else{
-                nifty.getScreen(stage).findElementByName("rightT").disable();
-                nifty.getScreen(stage).findElementByName("rightT").setVisible(false);
-            }
-            Iterator<String> it = families.iterator();
-            while(it.hasNext()){
-                control.selectFamily(it.next());
-                if(i18nFamily.getString(control.getMetadataFamilyName()).equals(familySelection)){
-                    String url = "";
-                    if(control.getMetadataFamilyURL()!=null){url = control.getMetadataFamilyURL();}
-                    System.out.println(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
-                    nifty.getScreen(stage).findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
-                    nifty.getScreen(stage).findElementByName("descriptionPanel").layoutElements();
-                }
-            }
+        }
     }
     
     //Select the current model
     
-    public void selectModel(String id){
+    public String selectModel(String id){
+        int i = modelsPage*MODELS_PAGE + Integer.valueOf(id);
+        control.getModelFamilyPath(control.getModelsLabel().get(i));
         unCheck();
-        nifty.getScreen(stage).findElementByName(id).getParent().getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-        nifty.getScreen(stage).findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
-        nifty.getScreen(stage).findElementByName("panel_screenright").layoutElements();
-        nifty.getScreen(stage).findElementByName("panel_screenright").enable();
-        nifty.getScreen(stage).findElementByName("panel_screenright").setVisible(true);
+        nifty.getScreen(stageType).findElementByName("m"+id).getParent().getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
+        nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(true);
+        return control.getModelFamilyPath(control.getModelsLabel().get(i));
     } 
     
     //uncheck all the models
     
     private void unCheck(){
         for(int i = 0; i < MODELS_PAGE; i++){
-            nifty.getScreen(stage).findElementByName("t"+Integer.toString(i)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
         }
+        nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(false);
     }
 }

@@ -74,7 +74,7 @@ public class MultiStageBuilder {
             if(control.getStagesTypes(stages.get(j)).toString().equals(stageType)){
                 ArrayList<String> idSubStages = control.getIdsSubStages(stages.get(j));
                 for(int i=0;i<control.getNumSubStages(stages.get(j));i++){
-                    nifty.getScreen(stageType).findElementByName("text"+Integer.toString(i%SUBSTAGE_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(idSubStages.get(i)));
+                    //nifty.getScreen(stageType).findElementByName("text"+Integer.toString(i%SUBSTAGE_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(idSubStages.get(i)));
                     ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(i));
                     for(int k=0; k<control.getNumTexturesORSubMeshes(idSubStages.get(i)); k++){
                         ImageBuilder image = new ImageBuilder(){{
