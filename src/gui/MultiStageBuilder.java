@@ -82,6 +82,7 @@ public class MultiStageBuilder {
     //displays the current subpage images of the selection stage
     
     public void showSubTexturePage(String selection, int h, int page, String steep){
+        unCheck(Integer.valueOf(h));
         changeMultiPage(h,steep);
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
         if((page*SUBSTAGE_PAGE+h)<idSubStages.size()){
@@ -125,8 +126,6 @@ public class MultiStageBuilder {
     //displays the current page images of the selection stage
     
     public void showTexturePage(String selection, int page){
-            unCheck(0);
-            unCheck(1);
             showSubTexturePage(selection, 0, page, "0");
             showSubTexturePage(selection, 1, page, "0");
             
@@ -165,6 +164,8 @@ public class MultiStageBuilder {
     }
     
     public String chanchangeTextureOrSubMesh(String selection,int page, String h, String i){
+        unCheck(Integer.valueOf(h));
+        nifty.getScreen(stageType).findElementByName("t"+h+i).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
         int j = Integer.valueOf(h);
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
         ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(j+page*TEXTURES_PAGE));
