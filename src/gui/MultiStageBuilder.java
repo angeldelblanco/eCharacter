@@ -39,7 +39,9 @@ import control.Control;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
+import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
+import de.lessvoid.nifty.tools.Color;
 import i18n.I18N;
 import java.util.ArrayList;
 import types.StageType;
@@ -93,6 +95,9 @@ public class MultiStageBuilder {
                     image.setVisible(true);
                     ImageRenderer imager = image.getRenderer(ImageRenderer.class);
                     imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)), false));
+                    if (control.isChecked(idSubStages.get(h+page*TEXTURES_PAGE), idsTexturesOrSubMeshes.get(i))){
+                        nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)+Integer.toString(i)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
+                    }
                 }
             }
             for(int i=control.getNumTexturesORSubMeshes(idSubStages.get(page*SUBSTAGE_PAGE+h));i<((multiPage[h]+1)*TEXTURES_PAGE);i++){
@@ -120,6 +125,8 @@ public class MultiStageBuilder {
     //displays the current page images of the selection stage
     
     public void showTexturePage(String selection, int page){
+            unCheck(0);
+            unCheck(1);
             showSubTexturePage(selection, 0, page, "0");
             showSubTexturePage(selection, 1, page, "0");
             
@@ -170,4 +177,12 @@ public class MultiStageBuilder {
         return idSubStages.get(j+page*TEXTURES_PAGE);
     }
     
+    //uncheck all the models
+    
+    private void unCheck(int h){
+        for(int i = 0; i < TEXTURES_PAGE; i++){
+            nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)+Integer.toString(i)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+        }
+        nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(false);
+    }
 }
