@@ -74,7 +74,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     private Application app;
     private Screen screen;
     private Configuration config;
-    private String selection, familySelection, modelSelection;
+    private String selection, familySelection, modelSelection,subStageSelected, textureOrSubMeshSelected;
     private int page;
     private Element popupColor;
     private float red, green, blue;
@@ -387,6 +387,8 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){
         control.changeTextureOrSubMesh(substage, idTextureOrSubMesh);
+        this.textureOrSubMeshSelected = idTextureOrSubMesh;
+        this.subStageSelected = substage;
     }
     
   /******************************FamilyDropDownControler*****************************/
@@ -525,7 +527,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        control.changeColor(red / 255.f, green / 255.f, blue / 255.f);
+        control.changeColor(subStageSelected,textureOrSubMeshSelected,red / 255.f, green / 255.f, blue / 255.f);
         nifty.closePopup(popupColor.getId()); 
     }
     
