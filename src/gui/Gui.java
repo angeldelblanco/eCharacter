@@ -243,11 +243,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 index--;
                 selection = stages.get(index);
             }else{
-                for(int i = 0; i < stages.size(); i++){
-                    if(selection.equals(stages.get(i))){
-                        index = i;
-                    }
-                }
+                index = stages.lastIndexOf(selection);
             }
         }
         String stage = control.getStagesTypes(selection).toString();
@@ -256,14 +252,14 @@ public class Gui extends AbstractAppState implements ScreenController {
             nifty.gotoScreen(stage);
         }
         loadScreen(stage,oldStage,old);
-        if(index==0){
+        /*if(index==0){
             //nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);
         }
         else{
-            nifty.getScreen(stage).findElementByName("panel_screenleft").enable();
-            nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(true);
-        }
+            //nifty.getScreen(stage).findElementByName("panel_screenleft").enable();
+            //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(true);
+        }*/
     }
     
     public void loadScreen(String type, String oldType, String param){
@@ -309,10 +305,10 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void changeMultiTexturePage(String steep){
-        String stage = StageType.multiStage.toString();
-        if(!steep.equals("0")){
-            hideTexturePage(stage,selection);
-        }
+        //String stage = StageType.multiStage.toString();
+        /*if(!steep.equals("0")){
+            //hideTexturePage(stage,selection);
+        }*/
         changePage(steep);
         multisb.showTexturePage(selection, page);
     }
