@@ -541,7 +541,7 @@
         </layer>
     </screen>
 	
-	<popup id="popupColor" childLayout="center" controller="gui.PopUpController" backgroundColor="#FFFA">
+	<popup id="popupColor" childLayout="center" controller="gui.Gui" backgroundColor="#FFFA">
 		<panel id="popupPanel" height="25%" width="25%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
 			<panel id="selectionPanel" height="80%" width="100%" childLayout="horizontal" valign="center">
 				<panel id="redPamel" height="90%" width="25%" childLayout="vertical" valign="center">
@@ -572,7 +572,7 @@
 			</panel>
 		</panel>
 	</popup>
-	<popup id="popupColor2" childLayout="center" controller="gui.PopUpController" backgroundColor="#FFFA">
+	<popup id="popupColor2" childLayout="center" controller="gui.Gui" backgroundColor="#FFFA">
 		<panel id="popupPanel" height="25%" width="50%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
 			<panel id="selectionPanel" height="80%" width="100%" childLayout="horizontal" valign="center">
 				<panel id="changeColorPanel" height="80%" width="50%" childLayout="horizontal" valign="center">

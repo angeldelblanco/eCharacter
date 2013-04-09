@@ -504,46 +504,62 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="sliderR")
     public void onRedSliderChange(final String id, final SliderChangedEvent event) {
-        red = event.getValue();
-        changeColor();
+        if(popupColor != null){
+            red = event.getValue();
+            changeColor();
+        }
     }
 
     @NiftyEventSubscriber(id="sliderG")
     public void onGreenSliderChange(final String id, final SliderChangedEvent event) {
-        green = event.getValue();
-        changeColor();
+        if(popupColor != null){
+            green = event.getValue();
+            changeColor();
+        }
     }
 
     @NiftyEventSubscriber(id="sliderB")
     public void onBlueSliderChange(final String id, final SliderChangedEvent event) {
-        blue = event.getValue();
-        changeColor();
+        if(popupColor != null){
+            blue = event.getValue();
+            changeColor();
+        }
     }
     
     @NiftyEventSubscriber(id="sliderR2")
     public void onRed2SliderChange(final String id, final SliderChangedEvent event) {
-        red2 = event.getValue();
-        changeColor();
+        if(popupColor != null){
+            red2 = event.getValue();
+            changeColor2();
+        }
     }
 
     @NiftyEventSubscriber(id="sliderG2")
     public void onGreen2SliderChange(final String id, final SliderChangedEvent event) {
-        green2 = event.getValue();
-        changeColor();
+        if(popupColor != null){
+            green2 = event.getValue();
+            changeColor2();
+        }
     }
 
     @NiftyEventSubscriber(id="sliderB2")
     public void onBlue2SliderChange(final String id, final SliderChangedEvent event) {
-        blue2 = event.getValue();
-        changeColor2();
+        if(popupColor != null){
+            blue2 = event.getValue();
+            changeColor2();
+        }
     }
   
     private void changeColor() {
+        if(popupColor != null){
             popupColor.findElementByName("colorPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 1));
+        }
     }
     
     private void changeColor2() {
+        if(popupColor != null){
             popupColor.findElementByName("color2Panel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red2 / 255.f, green2 / 255.f, blue2 / 255.f, 1));
+        }
     }
     
     @NiftyEventSubscriber(id="aceptButton")
