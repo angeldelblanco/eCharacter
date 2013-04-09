@@ -82,6 +82,17 @@ public class TexturesInPanel
         return listCheckedTextures;
     }
     
+    public boolean ischecked(String idTexture){
+        boolean checked = false;
+        Set<TextureType> setTextureType = textures.keySet();
+        Iterator<TextureType> it = setTextureType.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            checked = textures.get(texture).isSelected();
+        }
+        return checked;
+    }
+    
     /*
      * Change the texture with idTexture.
      * If the panel has multiselection, swap the value of this texture.

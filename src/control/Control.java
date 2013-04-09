@@ -299,4 +299,8 @@ public class Control {
     public void deleteModel(){
         sc.deleteModel();
     }
+    
+    public boolean isChecked(String idPanel, String idTexture){
+        return sc.isChecked(idPanel, idTexture);
+    }
 }
