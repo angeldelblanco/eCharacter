@@ -452,29 +452,30 @@
 			<panel height="6%" width="100%">
 					<!-- Space -->
 			</panel>
-			<panel id="panel_options-complexion" height="4%" width="30%" align="right" childLayout="horizontal"> 
+			<panel id="panel_options-animation" height="4%" width="30%" align="right" childLayout="horizontal"> 
 				<!-- Change Basic Options Panel -->
 				<panel id="panel_basic" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
 					<text text="Basic" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<!--<interact onClick="changeTab(basic)"/>-->
+					<interact onClick="changeTab(basic)"/>
 				</panel>
 				<!-- Change Advanced Options Panel -->
 				<panel id="panel_advanced" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
 					<text text="Custom" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<!--<interact onClick="changeTab(advanced)"/>-->
+					<interact onClick="changeTab(advanced)"/>
 				</panel>
 			</panel>
 			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
 				<panel id="panel_image" height="90%" width="80%" align="center" childLayout="vertical">
-					<panel id="previewPanel" height="10%" width="100%" childLayout="horizontal">
-						<text id="previewText" text="" font="Interface/Fonts/Default.fnt" width="40%" height="100%" wrap = "true"/>
-						<text id="qualityText" text="" font="Interface/Fonts/Default.fnt" width="40%" height="100%" wrap = "true"/>
+					<panel id="previewPanel" height="30%" width="100%" childLayout="horizontal">
+						<text id="previewText" text="" font="Interface/Fonts/Default.fnt" valign="center" width="40%" height="100%" wrap = "true"/>
 					</panel>
 					<panel height="5%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="qualityPanel" height="60%" width="100%" childLayout="horizontal">
-						
+					<panel id="qualityPanel" height="30%" width="100%" childLayout="vertical">
+						<text id="qualityText" text="" font="Interface/Fonts/Default.fnt" width="40%" height="100%" wrap = "true"/>
+						<control id="RadioGroupQuality" name="radioButtonGroup"/>
+						<panel id="qualityRadioButtons" height="60%" width="100%" childLayout="vertical"/>
 					</panel>
 					<panel height="5%" width="100%">
 					<!-- Space -->

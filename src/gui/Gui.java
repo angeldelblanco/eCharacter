@@ -227,8 +227,13 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void changeTab(String param){
-        changePage("0");
-        scalesb.changeTab(param, selection);
+        if(control.getStagesTypes(selection).toString().equals(StageType.scaleStage.toString())){
+            changePage("0");
+            scalesb.changeTab(param, selection);
+        }
+        if(control.getStagesTypes(selection).toString().equals(StageType.animationStage.toString())){
+            animationsb.changeTab(param, selection);
+        }
     }
     
     public void changeScreen(String param){
@@ -273,7 +278,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(type.equals(StageType.singleStage.toString())){
             changeTexturePage("0");
         }
-        if(type.equals(StageType.scaleStage.toString())){
+        if(type.equals(StageType.scaleStage.toString())||type.equals(StageType.animationStage.toString())){
             changeTab("basic");
         }
         if(type.equals(StageType.multiStage.toString())){
