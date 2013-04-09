@@ -48,12 +48,16 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.texture.Image;
+import com.jme3.texture.Texture2D;
+import com.jme3.texture.plugins.AWTLoader;
 import data.model.EscalationType;
 import data.model.SubMeshType;
 import data.model.TextureType;
 import data.model.TransformationType;
 import data.texturessubmeshesdata.TexturesSubMeshesData;
 import imageprocessing.ImagesProcessing;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -96,8 +100,18 @@ public class SceneControl
         //Aqui deberia ir cargar Texturas por Defecto
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
         ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(texturesSubMeshesData.getCheckedTextures()));
-        imagesProcessing.process(tempPath);
-        mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
+        BufferedImage bi = imagesProcessing.process(tempPath);
+        
+        AWTLoader loader = new AWTLoader();
+        Image load = loader.load(bi, true);
+        Texture2D texture = new Texture2D(load);
+                
+        
+        
+        //mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
+        mat.setTexture("ColorMap",texture);
+        
+        
         mainMesh.setMaterial(mat);
         rootNode.attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
@@ -113,13 +127,13 @@ public class SceneControl
        
         
         //Borrar la imagen
-        Path file = Paths.get(tempPath);
+        /*Path file = Paths.get(tempPath);
         try {
             Files.delete(file);
         } 
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
-        }      
+        }  */    
     }
     
     private void setActivatedSubMeshes()
@@ -284,22 +298,31 @@ public class SceneControl
         dettachAllChild();
         cont++;
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(listTextures));
-        imagesProcessing.process(tempPath);
+        ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(listTextures));    
+        
+        BufferedImage bi = imagesProcessing.process(tempPath);
+        
+        AWTLoader loader = new AWTLoader();
+        Image load = loader.load(bi, true);
+        Texture2D texture = new Texture2D(load);
+        
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
-        mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
+        //mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
+        
+        mat.setTexture("ColorMap",texture);
+        
         mainMesh.setMaterial(mat);
         attachAllChild();
         
          
         //Borrar la imagen
-        Path file = Paths.get(tempPath);
+        /*Path file = Paths.get(tempPath);
         try {
             Files.delete(file);
         } 
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
-        }    
+        }*/    
     }
     
     private HashMap<Integer,ArrayList<TextureType>> getImageProcessingHashMap(ArrayList<TextureType> textures){

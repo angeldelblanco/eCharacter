@@ -67,13 +67,13 @@ public class ImagesProcessing
         this.images = new ArrayList<BufferedImage>();
     }
     
-    public void process(String destinationPath){
+    public BufferedImage process(String destinationPath){
         int numLayers = mapTextures.keySet().size();
         for(int i=0; i<numLayers;i++){
             ArrayList<TextureType> listTexturesLayer = mapTextures.get(i);
             addToBufferedImage(listTexturesLayer);
         }
-        pasteImages(destinationPath);
+        return pasteImages(destinationPath);
     }
     
     private void addToBufferedImage(ArrayList<TextureType> listTexturesLayer){
@@ -115,7 +115,7 @@ public class ImagesProcessing
         height = bi.getHeight();
     }
     
-    private void pasteImages(String destinationPath)
+    private BufferedImage pasteImages(String destinationPath)
     {
         BufferedImage finalImage = new BufferedImage(width,height,BufferedImage.TYPE_4BYTE_ABGR);
         Graphics g = finalImage.getGraphics();
@@ -144,5 +144,6 @@ public class ImagesProcessing
         {
             System.out.println("Failed saving image");
         } 
+        return finalImage;
     }
 }
