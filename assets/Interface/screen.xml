@@ -353,22 +353,23 @@
 			</panel>
 			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right">
 				<panel id="panel_image" height="80%" width="100%" align="center" childLayout="vertical">
-					<panel height="5%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t0" height="45%" width="100%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
+					<panel id="t0" height="48%" width="100%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
 						<panel id="textPanel0" height="15%" width="100%" childLayout="center" align="center">
 							<text id="text0" text="Head" font="Interface/Fonts/Default.fnt" height="100%" width="100%" wrap="true"/>
 						</panel>
 						<panel id="p0" height="50%" width="80%" childLayout="horizontal" align="center">
-							<panel id="t00" height="100%" width="47.5%" childLayout="vertical">
-						
+							<panel id="t00" height="100%" width="47.5%" childLayout="center">
+								<image id = "i00" filename="Interface/x.png" height="95%" width="95%">
+									<interact onClick="changeTextureOrSubMesh(0,0)"/>
+								</image>
 							</panel>
 							<panel height="100%" width="5%">
 							<!-- Space -->
 							</panel>
-							<panel id="t01" height="100%" width="47.5%" childLayout="vertical">
-						
+							<panel id="t01" height="100%" width="47.5%" childLayout="center">
+								<image id = "i01" filename="Interface/x.png" height="95%" width="95%">
+									<interact onClick="changeTextureOrSubMesh(0,1)"/>
+								</image>
 							</panel>
 						</panel>
 						<panel id="panel_change0" height="10%" width="70%" align="center" childLayout="horizontal">
@@ -387,22 +388,26 @@
 							<interact onClick="showWindowChangeColor()"/>
 						</panel>
 					</panel>
-					<panel height="5%" width="100%">
+					<panel height="2%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1" height="45%" width="100%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
+					<panel id="t1" height="48%" width="100%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
 						<panel id="textPanel1" height="15%" width="100%" childLayout="center" align="center">
 							<text id="text1" text="Head" font="Interface/Fonts/Default.fnt" height="100%" width="100%" wrap="true"/>
 						</panel>
 						<panel id="p1" height="50%" width="80%" childLayout="horizontal" align="center">
-							<panel id="t10" height="100%" width="47.5%" childLayout="vertical">
-						
+							<panel id="t10" height="100%" width="47.5%" childLayout="center">
+								<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
+									<interact onClick="changeTextureOrSubMesh(1,0)"/>
+								</image>
 							</panel>
 							<panel height="100%" width="5%">
 							<!-- Space -->
 							</panel>
-							<panel id="t11" height="100%" width="47.5%" childLayout="vertical">
-						
+							<panel id="t11" height="100%" width="47.5%" childLayout="center">
+								<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
+									<interact onClick="changeTextureOrSubMesh(1,1)"/>
+								</image>
 							</panel>
 						</panel>
 						<panel id="panel_change1" height="10%" width="70%" align="center" childLayout="horizontal">
@@ -421,17 +426,22 @@
 							<interact onClick="showWindowChangeColor()"/>
 						</panel>
 					</panel>
-				</panel>
-				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal" backgroundImage="Interface/CuadroAzul.png">
-					<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
-							<interact onClick="changeMultiTexturePage(-)"/>
-					</image>
-					<panel height="50%" width="34%">
-					<!-- Space -->
+					<panel height="2%" width="100%">
+						<!-- Space -->
 					</panel>
-					<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
-							<interact onClick="changeMultiTexturePage(+)"/>
-					</image>
+				</panel>
+				<panel id="changePanel" height="20%" width="100%" align="center" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
+					<panel height="100%" width="80%" align="center" childLayout="horizontal">
+						<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
+								<interact onClick="changeMultiTexturePage(-)"/>
+						</image>
+						<panel height="50%" width="34%">
+						<!-- Space -->
+						</panel>
+						<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
+								<interact onClick="changeMultiTexturePage(+)"/>
+						</image>
+					</panel>
 				</panel>
 			</panel>
 			<!-- Change screen Panel -->

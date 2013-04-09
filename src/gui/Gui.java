@@ -159,7 +159,6 @@ public class Gui extends AbstractAppState implements ScreenController {
                 final String pant = stages.get(i);
                 PanelBuilder menu;
                 menu = new PanelBuilder(){{
-                    //width(Float.toString(100/stages.size())+"%");
                     height("100%");
                     childLayoutCenter();
                     text(new TextBuilder(){{
@@ -199,7 +198,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void loadFirstScreen(){
-        //nifty.getScreen("modelScreen").findElementByName("loadPopupPanel").setVisible(true);
         control.selectModel(modelSelection);
         i18nModel = new I18N(control.getLanguageModelPath(),language);
         stages = control.getStagesLabels();
@@ -214,8 +212,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         buildMenu();
         
         loadScreen(control.getStagesTypes(selection).toString(),"","");
-        //nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").disable();
-        //nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").setVisible(false);
         nifty.gotoScreen(control.getStagesTypes(selection).toString());
     }
     
@@ -310,10 +306,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(type.equals(StageType.singleStage.toString())){
             singlesb.hideTexturePage(param, page);
         }
-        if(type.equals(StageType.multiStage.toString())){
-            multisb.hideSubTexturePage(0,page,param);
-            multisb.hideSubTexturePage(1,page,param);
-        }
     }
     
     public void changeMultiTexturePage(String steep){
@@ -327,9 +319,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void changeTexturePage(String t, String steep){
         int h = Integer.valueOf(t);
-        if(!steep.equals("0")){
-            multisb.hideSubTexturePage(h,page,selection);
-        }
         multisb.showSubTexturePage(selection, h, page, steep);
     }
     
@@ -385,9 +374,9 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){
-        control.changeTextureOrSubMesh(substage, idTextureOrSubMesh);
-        this.textureOrSubMeshSelected = idTextureOrSubMesh;
-        this.subStageSelected = substage;
+        textureOrSubMeshSelected = multisb.chanchangeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
+        subStageSelected = multisb.getSubStage(selection, page, substage);
+        control.changeTextureOrSubMesh(subStageSelected, textureOrSubMeshSelected);
     }
     
   /******************************FamilyDropDownControler*****************************/
