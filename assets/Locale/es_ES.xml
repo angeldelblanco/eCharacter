@@ -19,5 +19,12 @@
 	<string id="idPopupButton2">Exportar</string>
 	<string id="idPopupButton3">Si</string>
 	<string id="idPopupButton4">No</string>
+	<string id="idRed">Rojo</string>
+	<string id="idGreen">Verde</string>
+	<string id="idBlue">Azul</string>
+	<string id="idAcept">Aceptar</string>
+	<string id="idCancel">Cancelar</string>
+	<string id="idBasic">Basico</string>
+	<string id="idCustom">Avanzado</string>
 </metadata>
 	

@@ -54,13 +54,16 @@ public class ScaleStageBuilder {
     private ArrayList<String> idBones, idPhysicalBuild;
     private Control control;
     
-    public ScaleStageBuilder(Nifty nifty, Control control, I18N i18nFamily, I18N i18nModel){
+    public ScaleStageBuilder(Nifty nifty, Control control, I18N i18nFamily, I18N i18nModel, I18N i18nGui){
         stage = StageType.scaleStage.toString();
         this.i18nFamily = i18nFamily;
         this.i18nModel = i18nModel;
         this.nifty = nifty;
         this.control = control;
-        
+        nifty.getScreen(stage).findElementByName("basicText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBasic"));
+        nifty.getScreen(stage).findElementByName("basicPanel").layoutElements();
+        nifty.getScreen(stage).findElementByName("customText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCustom"));
+        nifty.getScreen(stage).findElementByName("advancedPanel").layoutElements();
     }
     
     //Change the bone's current page
@@ -80,8 +83,8 @@ public class ScaleStageBuilder {
                        nifty.getScreen(stage).findElementByName("slider"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
                     }
                 }
-                nifty.getScreen(stage).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-                nifty.getScreen(stage).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+                nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+                nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
             }
             if(tabSelected.equals("advanced")){
                 idBones = control.getIdBonesController(selection);
@@ -99,8 +102,8 @@ public class ScaleStageBuilder {
                        s.setValue(control.getDefaultValueBoneController(idBones.get(i)));
                     }
                 }
-                nifty.getScreen(stage).findElementByName("panel_basic").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
-                nifty.getScreen(stage).findElementByName("panel_advanced").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+                nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+                nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
             }
             for(int i=bonesSize;i<((page+1)*SCALE_PAGE);i++){
                 nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).disable();

@@ -204,7 +204,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         i18nModel = new I18N(control.getLanguageModelPath(),language);
         stages = control.getStagesLabels();
         selection = stages.get(index);
-        scalesb = new ScaleStageBuilder(nifty,control,i18nFamily,i18nModel);
+        scalesb = new ScaleStageBuilder(nifty,control,i18nFamily,i18nModel,i18nGui);
         //singlesb = new SingleStageBuilder(nifty,control,i18nGui,stages);
         multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily,stages);
         animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
@@ -214,8 +214,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         buildMenu();
         
         loadScreen(control.getStagesTypes(selection).toString(),"","");
-        nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").disable();
-        nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").setVisible(false);
+        //nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").disable();
+        //nifty.getScreen(control.getStagesTypes(selection).toString()).findElementByName("panel_screenleft").setVisible(false);
         nifty.gotoScreen(control.getStagesTypes(selection).toString());
     }
     
@@ -261,8 +261,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         loadScreen(stage,oldStage,old);
         if(index==0){
-            nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
-            nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);
+            //nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
+            //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);
         }
         else{
             nifty.getScreen(stage).findElementByName("panel_screenleft").enable();
@@ -495,10 +495,24 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.doubleTexture)){
             popupColor = nifty.createPopup("popupColor2");
+            popupColor.findElementByName("red2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
+            popupColor.findElementByName("red2Panel").layoutElements();
+            popupColor.findElementByName("green2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
+            popupColor.findElementByName("green2Panel").layoutElements();
+            popupColor.findElementByName("blue2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
+            popupColor.findElementByName("blue2Panel").layoutElements();
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.multiOptionTexture)){
             popupColor = nifty.createPopup("");
         }
+        popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
+        popupColor.findElementByName("redPanel").layoutElements();
+        popupColor.findElementByName("greenText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
+        popupColor.findElementByName("greenPanel").layoutElements();
+        popupColor.findElementByName("blueText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
+        popupColor.findElementByName("bluePanel").layoutElements();
+        popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
+        popupColor.findNiftyControl("cancelButton", Button.class).setText(i18nGui.getString("idCancel"));
         nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
     }
     
