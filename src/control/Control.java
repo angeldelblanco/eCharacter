@@ -46,6 +46,7 @@ import data.model.TextureType;
 import data.texturessubmeshesdata.TexturesSubMeshesData;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Set;
 import loader.Configuration;
 import loader.XMLReader;
 import types.StageType;
@@ -260,6 +261,20 @@ public class Control {
     }
     
     /*************************Scene******************************************/
+    public Set<String> getAnimationNames()
+    {
+        return sc.getAnimationsName();
+    }
+    
+    public int getNumAnimations()
+    {
+        return sc.getNumAnimations();
+    }
+    
+    public void setAnimations(String animationName)
+    {
+        sc.setAnimation(animationName);
+    }
     
     public void changeTextureOrSubMesh(String idPanelRef, String idTextureOrSubMesh)
     {

@@ -53,7 +53,6 @@ import com.jme3.texture.Texture2D;
 import com.jme3.texture.plugins.AWTLoader;
 import data.model.EscalationType;
 import data.model.SubMeshType;
-import data.model.TextureType;
 import data.model.TransformationType;
 import data.texturessubmeshesdata.TexturesSubMeshesData;
 import imageprocessing.ImagesProcessing;
@@ -284,6 +283,19 @@ public class SceneControl
     public int getNumAnimations()
     {
         return control.getAnimationNames().size();
+    }
+    
+    public void setAnimation(String animationName)
+    {
+        Set<String> animList = (Set<String>) this.control.getAnimationNames();
+        Iterator<String> it = animList.iterator();
+        while(it.hasNext()){
+            String anim = it.next();
+            if(anim.equals(animationName)){
+                this.channel.setAnim(anim);
+                this.channel.setLoopMode(LoopMode.Loop);
+            }
+        }
     }
     
     public void changeColor(String idPanelRef, String idTexture, float red,float green,float blue)
