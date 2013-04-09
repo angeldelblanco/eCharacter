@@ -315,7 +315,20 @@ public class Control {
         sc.deleteModel();
     }
     
-    public boolean isChecked(String idPanel, String idTexture){
-        return sc.isChecked(idPanel, idTexture);
+    public boolean isChecked(String idPanel, String idTextureOrSubMesh){
+        boolean checked = false;
+        TextureType texture = mc.getTexture(idTextureOrSubMesh);
+        if (texture != null){
+            //It's a texture.
+            checked = sc.isCheckedTexture(idPanel, idTextureOrSubMesh);
+        }
+        else{
+            //It's a submesh
+            SubMeshType subMesh = mc.getSubMesh(idTextureOrSubMesh);
+            if (subMesh != null){
+                checked = sc.isCheckedSubMesh(idPanel, idTextureOrSubMesh);
+            }
+        }
+        return checked;
     }
 }

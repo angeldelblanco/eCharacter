@@ -360,8 +360,12 @@ public class SceneControl
         this.rootNode.detachAllChildren();
     }
     
-    public boolean isChecked(String idPanel, String idTexture){
-        return texturesSubMeshesData.isChecked(idPanel, idTexture);
+    public boolean isCheckedTexture(String idPanel, String idTexture){
+        return texturesSubMeshesData.isCheckedTexture(idPanel, idTexture);
+    }
+    
+    public boolean isCheckedSubMesh(String idPanel, String idSubMesh){
+        return texturesSubMeshesData.isCheckedSubMesh(idPanel, idSubMesh);
     }
     
     

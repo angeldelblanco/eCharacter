@@ -76,6 +76,19 @@ public class SubMeshesInPanel
         return listCheckedSubMeshes;
     }
     
+    public boolean ischecked(String idSubMesh){
+        boolean checked = false;
+        Set<SubMeshType> setSubMeshType = subMeshes.keySet();
+        Iterator<SubMeshType> it = setSubMeshType.iterator();
+        while(it.hasNext()){
+            SubMeshType subMesh = it.next();
+            if (subMesh.getIdSubMesh().equals(idSubMesh)){
+                checked = subMeshes.get(subMesh);
+            }
+        }
+        return checked;
+    }
+    
      /*
      * Change the submeshes with idSubMesh.
      * If the panel has multiselection, swap the value of this submesh.

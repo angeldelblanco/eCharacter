@@ -230,7 +230,11 @@ public class TexturesSubMeshesData
         texturesData.get(idPanel).changeColor(idTexture, red, green, blue);
     }
     
-    public boolean isChecked(String idPanel, String idTexture){
+    public boolean isCheckedTexture(String idPanel, String idTexture){
         return texturesData.get(idPanel).ischecked(idTexture);
+    }
+    
+    public boolean isCheckedSubMesh(String idPanel, String idSubMesh){
+        return subMeshesData.get(idPanel).ischecked(idSubMesh);
     }
 }

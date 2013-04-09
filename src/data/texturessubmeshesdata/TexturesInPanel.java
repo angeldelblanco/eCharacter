@@ -88,7 +88,9 @@ public class TexturesInPanel
         Iterator<TextureType> it = setTextureType.iterator();
         while(it.hasNext()){
             TextureType texture = it.next();
-            checked = textures.get(texture).isSelected();
+            if (texture.getIdTexture().equals(idTexture)){
+                checked = textures.get(texture).isSelected();
+            }
         }
         return checked;
     }
