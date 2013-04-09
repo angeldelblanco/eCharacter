@@ -55,11 +55,8 @@ import org.apache.log4j.xml.DOMConfigurator;
 
 public class ColoringImage 
 {
-    //private Color color;
-    //private String imagePath, shadowPath, imageColoredPath, destinationPath;
     private final static Logger logger = Logger.getLogger(ColoringImage.class);
     private long tiempoInicio, totalTiempo;         
-    //private BufferedImage shadow, image;
     
     
     public static BufferedImage coloringImage(TextureType texture, Color color){
@@ -72,11 +69,7 @@ public class ColoringImage
                 bi = coloringImageBaseShadow(biBase, biShadow, color);
             }
             //El simple texture aqui no tiene sentido
-            /*else if(texture instanceof SimpleTextureType){
-                SimpleTextureType simpleTexture = ((SimpleTextureType)texture);
-                BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath()));
-                
-            }*/
+            
             //HAY QUE VER COMO HACER PARA SABER SI SE ESTÁ CAMBIANDO EL COLOR AL BASE O AL DETAIL
             else if(texture instanceof DoubleTextureType){
                 DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
@@ -95,11 +88,6 @@ public class ColoringImage
                 bi = coloringImageDouble(biBase, color);
                 bi = pasteImage(bi, biDetails);
             }
-            //El multioption texture aqui no tiene sentido
-            /*else if(texture instanceof MultiOptionTextureType){
-                MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
-                //Mirar como hacer esta textura
-            }*/
         }
         catch (IOException ex) {
             java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);

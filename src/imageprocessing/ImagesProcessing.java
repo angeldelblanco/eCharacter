@@ -57,29 +57,14 @@ import loader.ResourceHandler;
 public class ImagesProcessing
 {
     private ArrayList<BufferedImage> images;
-    //private HashMap<Integer,ArrayList<TextureType>> mapTextures;
     private HashMap<Integer,ArrayList<BufferedImage>> mapTextures;
     private int width;
     private int height;
-    
-    /*public ImagesProcessing(HashMap<Integer,ArrayList<TextureType>> mapTextures){
-        this.mapTextures = mapTextures;
-        this.images = new ArrayList<BufferedImage>();
-    }*/
     
     public ImagesProcessing(HashMap<Integer,ArrayList<BufferedImage>> mapTextures){
         this.mapTextures = mapTextures;
         this.images = new ArrayList<BufferedImage>();
     }
-    
-    /*public BufferedImage process(String destinationPath){
-        int numLayers = mapTextures.keySet().size();
-        for(int i=0; i<numLayers;i++){
-            ArrayList<TextureType> listTexturesLayer = mapTextures.get(i);
-            addToBufferedImage(listTexturesLayer);
-        }
-        return pasteImages(destinationPath);
-    }*/
     
     public BufferedImage process(String destinationPath){
         int numLayers = mapTextures.keySet().size();
@@ -95,45 +80,6 @@ public class ImagesProcessing
         
         return pasteBufferedImages(destinationPath);
     }
-    
-    /*private void addToBufferedImage(ArrayList<TextureType> listTexturesLayer){
-        Iterator<TextureType> it = listTexturesLayer.iterator();
-        BufferedImage bi = null;
-        while(it.hasNext()){
-            TextureType texture = it.next();
-            try{
-                if(texture instanceof BaseShadowTextureType){
-                    BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
-                    bi = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getPath()));
-                    images.add(bi);
-                    if(baseShadowTexture.getShadowPath() != null){
-                        images.add(ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath())));
-                    }
-                }
-                else if(texture instanceof SimpleTextureType){
-                    SimpleTextureType simpleTexture = ((SimpleTextureType)texture);
-                    bi = ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath()));
-                    images.add(bi);
-                    images.add(ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath())));
-                }
-                else if(texture instanceof DoubleTextureType){
-                    DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
-                    bi = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
-                    images.add(bi);
-                    images.add(ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath())));
-                }
-                else if(texture instanceof MultiOptionTextureType){
-                    MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
-                    //Mirar como hacer esta textura
-                }
-            }
-            catch (IOException ex) {
-                Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        width = bi.getWidth();
-        height = bi.getHeight();
-    }*/
     
     private void addToBufferedImage(ArrayList<BufferedImage> listBufferedImage){
         images.addAll(listBufferedImage);
