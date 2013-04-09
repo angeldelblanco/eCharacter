@@ -303,10 +303,7 @@ public class SceneControl
         Texture2D texture = new Texture2D(load);
         
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
-        //mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
-        
         mat.setTexture("ColorMap",texture);
-        
         mainMesh.setMaterial(mat);
         attachAllChild();
         
@@ -321,20 +318,11 @@ public class SceneControl
     public void changeTexture(String idPanel, String idTexture)
     {
         texturesSubMeshesData.changeTexture(idPanel, idTexture);
-        //ArrayList<TextureType> listTextures = texturesSubMeshesData.getCheckedTextures();
-        
-        
         HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
-                
-                
-                
         dettachAllChild();
         cont++;
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        //ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(listTextures));  
-        
         ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);    
-        
         BufferedImage bi = imagesProcessing.process(tempPath);
         
         AWTLoader loader = new AWTLoader();
@@ -342,13 +330,9 @@ public class SceneControl
         Texture2D texture = new Texture2D(load);
         
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
-        //mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
-        
         mat.setTexture("ColorMap",texture);
-        
         mainMesh.setMaterial(mat);
         attachAllChild();
-        
          
         //Borrar la imagen
         Path file = Paths.get(tempPath);
@@ -360,23 +344,6 @@ public class SceneControl
         } 
     }
     
-    /*private HashMap<Integer,ArrayList<TextureType>> getImageProcessingHashMap(ArrayList<TextureType> textures){
-        HashMap<Integer,ArrayList<TextureType>> mapTextures = new HashMap<Integer,ArrayList<TextureType>>();
-        Iterator<TextureType> it = textures.iterator();
-        while(it.hasNext()){
-            TextureType texture = it.next();
-            if(mapTextures.get(texture.getLayer().intValue()) != null){
-                mapTextures.get(texture.getLayer().intValue()).add(texture);
-            }
-            else{
-                ArrayList<TextureType> list = new ArrayList<TextureType>();
-                list.add(texture);
-                mapTextures.put(texture.getLayer().intValue(),list);
-            }
-        }
-        return mapTextures;
-    }*/
-    
     public void deleteModel(){
         this.rootNode.detachAllChildren();
     }
@@ -384,16 +351,6 @@ public class SceneControl
     public boolean isChecked(String idPanel, String idTexture){
         return texturesSubMeshesData.isChecked(idPanel, idTexture);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
