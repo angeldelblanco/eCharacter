@@ -541,7 +541,7 @@
         </layer>
     </screen>
 	
-	<popup id="popupColor" childLayout="center" controller="gui.Gui" backgroundColor="#FFFA">
+	<popup id="popupColor" childLayout="center" controller="gui.PopUpController" backgroundColor="#FFFA">
 		<panel id="popupPanel" height="25%" width="25%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
 			<panel id="selectionPanel" height="80%" width="100%" childLayout="horizontal" valign="center">
 				<panel id="redPamel" height="90%" width="25%" childLayout="vertical" valign="center">
@@ -557,6 +557,54 @@
 					<text id="blueText" text="Blue" font="Interface/Fonts/Default.fnt" width="100%" align="center" wrap="true"/>
 				</panel>
 				<panel id="colorPanel" height="25%" width="15%" align="center" valign="center" backgroundColor="#000F"/>
+			</panel>
+			<panel id="buttonPanel" height="20%" width="100%" childLayout="horizontal" valign="center">
+				<panel id="acceptPanel" height="90%" width="50%" childLayout="center" valign="center">
+					<control name="button" label="Acept" id="aceptButton" align="center" valign="center" visibleToMouse="true"> 
+						<!--<interact onClick="popUpButtonClicked(popUpButton1)" />-->
+					</control>
+				</panel>
+				<panel id="button2" height="90%" width="50%" childLayout="center" valign="center">
+					<control name="button" label="Cancel" id="cancelButton" align="center" valign="center" visibleToMouse="true"> 
+						<!--<interact onClick="popUpButtonClicked(popUpButton2)" />-->
+					</control>
+				</panel>
+			</panel>
+		</panel>
+	</popup>
+	<popup id="popupColor2" childLayout="center" controller="gui.PopUpController" backgroundColor="#FFFA">
+		<panel id="popupPanel" height="25%" width="50%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
+			<panel id="selectionPanel" height="80%" width="100%" childLayout="horizontal" valign="center">
+				<panel id="changeColorPanel" height="80%" width="50%" childLayout="horizontal" valign="center">
+					<panel id="redPamel" height="90%" width="25%" childLayout="vertical" valign="center">
+						<control id="sliderR" name="verticalSlider" max="255" min="0" value="0" align="center"/>
+						<text id="redText" text="Red" font="Interface/Fonts/Default.fnt" width="100%" align="center" wrap="true"/>
+					</panel>
+					<panel id="greenPamel" height="90%" width="25%" childLayout="vertical" valign="center">
+						<control id="sliderG" name="verticalSlider" max="255" min="0" value="0" align="center"/>
+						<text id="greenText" text="Green" font="Interface/Fonts/Default.fnt" width="100%" align="center" wrap="true"/>
+					</panel>
+					<panel id="bluePamel" height="90%" width="25%" childLayout="vertical" valign="center">
+						<control id="sliderB" name="verticalSlider" max="255" min="0" value="0" align="center"/>
+						<text id="blueText" text="Blue" font="Interface/Fonts/Default.fnt" width="100%" align="center" wrap="true"/>
+					</panel>
+					<panel id="colorPanel" height="25%" width="15%" align="center" valign="center" backgroundColor="#000F"/>
+				</panel>
+				<panel id="changeColorPanel" height="80%" width="50%" childLayout="horizontal" valign="center">
+					<panel id="red2Pamel" height="90%" width="25%" childLayout="vertical" valign="center">
+						<control id="sliderR2" name="verticalSlider" max="255" min="0" value="0" align="center"/>
+						<text id="red2Text" text="Red" font="Interface/Fonts/Default.fnt" width="100%" align="center" wrap="true"/>
+					</panel>
+					<panel id="green2Pamel" height="90%" width="25%" childLayout="vertical" valign="center">
+						<control id="sliderG2" name="verticalSlider" max="255" min="0" value="0" align="center"/>
+						<text id="green2Text" text="Green" font="Interface/Fonts/Default.fnt" width="100%" align="center" wrap="true"/>
+					</panel>
+					<panel id="blue2Pamel" height="90%" width="25%" childLayout="vertical" valign="center">
+						<control id="sliderB2" name="verticalSlider" max="255" min="0" value="0" align="center"/>
+						<text id="blue2Text" text="Blue" font="Interface/Fonts/Default.fnt" width="100%" align="center" wrap="true"/>
+					</panel>
+					<panel id="color2Panel" height="25%" width="15%" align="center" valign="center" backgroundColor="#000F"/>
+				</panel>
 			</panel>
 			<panel id="buttonPanel" height="20%" width="100%" childLayout="horizontal" valign="center">
 				<panel id="acceptPanel" height="90%" width="50%" childLayout="center" valign="center">

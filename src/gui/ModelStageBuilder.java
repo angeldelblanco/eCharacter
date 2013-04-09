@@ -38,7 +38,6 @@ package gui;
 
 import control.Control;
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.DropDown;

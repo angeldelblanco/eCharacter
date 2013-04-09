@@ -39,8 +39,6 @@ package gui;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.asset.AssetManager;
-import com.jme3.scene.Node;
 import control.Control;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
@@ -64,6 +62,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import loader.Configuration;
 import types.StageType;
+import types.TexturesType;
 
 public class Gui extends AbstractAppState implements ScreenController {
     
@@ -77,7 +76,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     private String selection, familySelection, modelSelection,subStageSelected, textureOrSubMeshSelected;
     private int page;
     private Element popupColor;
-    private float red, green, blue;
+    private float red, green, blue, red2, green2, blue2;
     private ArrayList<String> stages,idBones,idPhysicalBuild;
     private ArrayList<String> families;
     private int modelsSize, modelsAntSize;
@@ -485,49 +484,73 @@ public class Gui extends AbstractAppState implements ScreenController {
     /******************************PopUpColorControler*****************************/
     
     public void showWindowChangeColor() throws InterruptedException{
-        red = 0;
-        blue = 0;
-        green = 0;
-        //Si lleva el if a los X cambios de color lanza excepcion
-        //if(popupColor == null){
+        red = 0; 
+        green = 0; 
+        blue = 0; 
+        red2 = 0; 
+        green2 = 0; 
+        blue2 = 0;
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
-        //}
+        }
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.doubleTexture)){
+            popupColor = nifty.createPopup("popupColor2");
+        }
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.multiOptionTexture)){
+            popupColor = nifty.createPopup("");
+        }
         nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
     }
     
     @NiftyEventSubscriber(id="sliderR")
     public void onRedSliderChange(final String id, final SliderChangedEvent event) {
-      if(popupColor != null){
         red = event.getValue();
         changeColor();
-      }
     }
 
     @NiftyEventSubscriber(id="sliderG")
     public void onGreenSliderChange(final String id, final SliderChangedEvent event) {
-      if(popupColor != null){
         green = event.getValue();
         changeColor();
-      }
     }
 
     @NiftyEventSubscriber(id="sliderB")
     public void onBlueSliderChange(final String id, final SliderChangedEvent event) {
-      if(popupColor != null){
         blue = event.getValue();
         changeColor();
-      }
+    }
+    
+    @NiftyEventSubscriber(id="sliderR2")
+    public void onRed2SliderChange(final String id, final SliderChangedEvent event) {
+        red2 = event.getValue();
+        changeColor();
+    }
+
+    @NiftyEventSubscriber(id="sliderG2")
+    public void onGreen2SliderChange(final String id, final SliderChangedEvent event) {
+        green2 = event.getValue();
+        changeColor();
+    }
+
+    @NiftyEventSubscriber(id="sliderB2")
+    public void onBlue2SliderChange(final String id, final SliderChangedEvent event) {
+        blue2 = event.getValue();
+        changeColor2();
     }
   
     private void changeColor() {
-        //if(popupColor != null){
             popupColor.findElementByName("colorPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 1));
-        //}
+    }
+    
+    private void changeColor2() {
+            popupColor.findElementByName("color2Panel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red2 / 255.f, green2 / 255.f, blue2 / 255.f, 1));
     }
     
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
         control.changeColor(subStageSelected,textureOrSubMeshSelected,red / 255.f, green / 255.f, blue / 255.f);
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.doubleTexture)){
+        }
         nifty.closePopup(popupColor.getId()); 
     }
     
