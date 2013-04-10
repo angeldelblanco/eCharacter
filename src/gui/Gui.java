@@ -150,7 +150,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void buildMenu(){
-        String types[] = {//StageType.singleStage.toString(),
+        String types[] = {StageType.singleStage.toString(),
                           StageType.scaleStage.toString(),
                           StageType.multiStage.toString(),
                           StageType.animationStage.toString()};
@@ -203,7 +203,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         stages = control.getStagesLabels();
         selection = stages.get(index);
         scalesb = new ScaleStageBuilder(nifty,control,i18nFamily,i18nModel,i18nGui);
-        //singlesb = new SingleStageBuilder(nifty,control,i18nGui,stages);
+        singlesb = new SingleStageBuilder(nifty,control,i18nGui);
         multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily);
         animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
         ArrayList<String> idPanel = control.getIdsSubStages(selection);
@@ -264,7 +264,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void loadScreen(String type, String oldType, String param){
         loadMenu(type);
-        hideTexturePage(oldType, param);
         if(type.equals(StageType.singleStage.toString())){
             changeTexturePage("0");
         }
@@ -291,24 +290,11 @@ public class Gui extends AbstractAppState implements ScreenController {
     /******************************ChangePageImages*****************************/
     
     public void changeTexturePage(String steep){
-        if(!steep.equals("0")){
-            singlesb.hideTexturePage(selection,page);
-        }
         changePage(steep);
         singlesb.showTexturePage(selection,page);
     }
     
-    public void hideTexturePage(String type, String param){
-        if(type.equals(StageType.singleStage.toString())){
-            singlesb.hideTexturePage(param, page);
-        }
-    }
-    
     public void changeMultiTexturePage(String steep){
-        //String stage = StageType.multiStage.toString();
-        /*if(!steep.equals("0")){
-            //hideTexturePage(stage,selection);
-        }*/
         changePage(steep);
         multisb.showTexturePage(selection, page);
     }
@@ -370,8 +356,14 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){
-        textureOrSubMeshSelected = multisb.chanchangeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
-        subStageSelected = multisb.getSubStage(selection, page, substage);
+        if(control.getStagesTypes(selection) == StageType.singleStage){
+            textureOrSubMeshSelected = singlesb.chanchangeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
+            subStageSelected = singlesb.getSubStage(selection, page, substage);
+        }
+        if(control.getStagesTypes(selection) == StageType.multiStage){
+            textureOrSubMeshSelected = multisb.chanchangeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
+            subStageSelected = multisb.getSubStage(selection, page, substage);
+        }
         control.changeTextureOrSubMesh(subStageSelected, textureOrSubMeshSelected);
     }
     
