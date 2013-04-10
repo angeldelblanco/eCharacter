@@ -358,14 +358,24 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){
         if(control.getStagesTypes(selection) == StageType.singleStage){
-            textureOrSubMeshSelected = singlesb.changeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
+            singlesb.changeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
+            textureOrSubMeshSelected = singlesb.getTextureOrSubMesh();
             subStageSelected = singlesb.getSubStage(selection, page, substage);
         }
         if(control.getStagesTypes(selection) == StageType.multiStage){
-            textureOrSubMeshSelected = multisb.changeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
+            multisb.changeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
+            textureOrSubMeshSelected = multisb.getTextureOrSubMesh(substage);
             subStageSelected = multisb.getSubStage(selection, page, substage);
         }
         control.changeTextureOrSubMesh(subStageSelected, textureOrSubMeshSelected);
+        if(control.isMultiSelection(selection, subStageSelected)){
+            if(control.getStagesTypes(selection) == StageType.singleStage){
+                singlesb.checkIn(page);
+            }
+            if(control.getStagesTypes(selection) == StageType.multiStage){
+                multisb.checkIn(Integer.valueOf(substage));
+            }
+        }
     }
     
   /******************************FamilyDropDownControler*****************************/
@@ -575,15 +585,15 @@ public class Gui extends AbstractAppState implements ScreenController {
             boolean base = popupColor.findNiftyControl("baseCheckBox", CheckBox.class).isChecked();
             boolean shadow = popupColor.findNiftyControl("shadowCheckBox", CheckBox.class).isChecked();
             if(base&&shadow){
-                control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,red,green,blue,red2,green2,blue2);
+                control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,red/ 255.f,green/ 255.f,blue/ 255.f,red2/ 255.f,green2/ 255.f,blue2/ 255.f);
             }
             else{
                 if(base){
-                    control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,red,green,blue,-1,-1,-1);
+                    control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,red/ 255.f,green/ 255.f,blue/ 255.f,-1,-1,-1);
                 }
                 else{
                     if(shadow){
-                        control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,-1,-1,-1,red2,green2,blue2);
+                        control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,-1,-1,-1,red2/ 255.f,green2/ 255.f,blue2/ 255.f);
                     }
                 }
             }
