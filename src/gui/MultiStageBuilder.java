@@ -56,7 +56,7 @@ public class MultiStageBuilder {
     private String stageType;
     private int multiPage[];
     
-    public MultiStageBuilder(Nifty nifty, Control control, I18N i18nGui, I18N i18nFamily, ArrayList<String> stages){
+    public MultiStageBuilder(Nifty nifty, Control control, I18N i18nGui, I18N i18nFamily){
         stageType = StageType.multiStage.toString();
         this.nifty = nifty;
         this.control = control;
@@ -66,13 +66,13 @@ public class MultiStageBuilder {
         for(int i=0; i<SUBSTAGE_PAGE;i++){
             multiPage[i]=0;
         }
-        initIcons(stages);
+        init();
     }
     
     /*receives as input a list of all the stages of the selected family 
       and builds all them of that are multistage*/
     
-    private void initIcons(ArrayList<String> stages){
+    private void init(){
         for(int i = 0 ; i<SUBSTAGE_PAGE; i++){
             nifty.getScreen(stageType).findElementByName("colorText"+Integer.toString(i)).getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(i)).layoutElements();
@@ -93,17 +93,18 @@ public class MultiStageBuilder {
             nifty.getScreen(stageType).findElementByName("textPanel"+Integer.toString(h)).layoutElements();
             //ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(h+page*TEXTURES_PAGE));
             ArrayList<String> idsTexturesOrSubMeshes = new ArrayList<String>();
-            idsTexturesOrSubMeshes.add("idPielBlanca");
-            idsTexturesOrSubMeshes.add("idPielNegra");
-            idsTexturesOrSubMeshes.add("idPielAmarilla");
-            idsTexturesOrSubMeshes.add("idPielRoja");
+            idsTexturesOrSubMeshes.add("assets/Interface/Icons/eAdventure/Boy/IconoPielBlancaBoy.png");
+            idsTexturesOrSubMeshes.add("assets/Interface/Icons/eAdventure/Boy/IconoPielNegraBoy.png");
+            idsTexturesOrSubMeshes.add("assets/Interface/Icons/eAdventure/Boy/IconoPielAmarillaBoy.png");
+            idsTexturesOrSubMeshes.add("assets/Interface/Icons/eAdventure/Boy/IconoPielRojaBoy.png");
             //for(int i=multiPage[h]*TEXTURES_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(page*SUBSTAGE_PAGE+h)); i++){
             for(int i=multiPage[h]*TEXTURES_PAGE; i<idsTexturesOrSubMeshes.size(); i++){
                 if(i<((multiPage[h]+1)*TEXTURES_PAGE)){
                     Element image = nifty.getScreen(stageType).findElementByName("i"+Integer.toString(h)+Integer.toString(i%TEXTURES_PAGE));
                     image.setVisible(true);
                     ImageRenderer imager = image.getRenderer(ImageRenderer.class);
-                    imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)), false));
+                    //imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)), false));
+                    imager.setImage(nifty.getRenderEngine().createImage(idsTexturesOrSubMeshes.get(i), false));
                     /*if (control.isChecked(idSubStages.get(h+page*TEXTURES_PAGE), idsTexturesOrSubMeshes.get(i))){
                         nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
                     }*/

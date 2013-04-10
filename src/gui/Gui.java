@@ -150,7 +150,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void buildMenu(){
-        String types[] = {StageType.singleStage.toString(),
+        String types[] = {//StageType.singleStage.toString(),
                           StageType.scaleStage.toString(),
                           StageType.multiStage.toString(),
                           StageType.animationStage.toString()};
@@ -204,7 +204,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         selection = stages.get(index);
         scalesb = new ScaleStageBuilder(nifty,control,i18nFamily,i18nModel,i18nGui);
         //singlesb = new SingleStageBuilder(nifty,control,i18nGui,stages);
-        multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily,stages);
+        multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily);
         animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
         ArrayList<String> idPanel = control.getIdsSubStages(selection);
         idPhysicalBuild = control.getIdsPhysicalBuild(idPanel.get(0));
@@ -313,7 +313,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         multisb.showTexturePage(selection, page);
     }
     
-    public void changeTexturePage(String t, String steep){
+    public void Hola(String t, String steep){
         int h = Integer.valueOf(t);
         multisb.showSubTexturePage(selection, h, page, steep);
     }
