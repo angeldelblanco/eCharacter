@@ -12,7 +12,8 @@
 	<string id="idColor">Color</string>
 	<string id="idQuality">Calidad</string>
 	<string id="idCamera">Cámara</string>
-	<string id="idPreview">Animaciones</string>
+	<string id="idAnimations">Animaciones</string>
+        <string id="idPreview">Ver</string>
 	<string id="idPopup1">¿Quiere retocar el modelo o continuar con la exportación?</string>
 	<string id="idPopup2">¿Quiere generar un nuevo modelo?</string>
 	<string id="idPopupButton1">Retocar modelo</string>

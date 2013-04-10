@@ -41,6 +41,9 @@ import com.jme3.animation.AnimControl;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.asset.plugins.FileLocator;
+import com.jme3.input.KeyInput;
+import com.jme3.input.controls.ActionListener;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.system.AppSettings;
 import control.Control;
@@ -54,7 +57,9 @@ public class Application extends SimpleApplication{
     private Gui gui;
     private ScreenshotAppState screenShotState;
     private NiftyJmeDisplay niftyDisplay;
-    public loader.Configuration config;
+    private Control control;
+    private Configuration config;
+    
     
     public Application(int width,int height,Configuration config)
     {
@@ -68,11 +73,12 @@ public class Application extends SimpleApplication{
     
     @Override
     public void simpleInitApp() {
+        initKeys();
         setDisplayFps(false);
         setDisplayStatView(false);
         // Register locator to assetManager
         assetManager.registerLocator("."+File.separator, FileLocator.class);      
-        Control control = new Control(config,rootNode,assetManager);
+        control = new Control(config,rootNode,assetManager);
         gui = new Gui(control,config);
         stateManager.attach(gui);
         screenShotState = new ScreenshotAppState();
@@ -96,4 +102,24 @@ public class Application extends SimpleApplication{
  
     public void onAnimChange(AnimControl control, AnimChannel channel, String animName) 
     {}
+    
+     /** Custom Keybindings: Mapping a named action to a key input. */
+    private void initKeys() {
+        inputManager.addMapping("RotateLeft", new KeyTrigger(KeyInput.KEY_LEFT));
+        inputManager.addMapping("RotateRigth", new KeyTrigger(KeyInput.KEY_RIGHT));
+        inputManager.addListener(actionListener, "RotateLeft");
+        inputManager.addListener(actionListener, "RotateRigth");
+  }
+
+    /** Definining the named action that can be triggered by key inputs. */
+    private ActionListener actionListener = new ActionListener() {
+        public void onAction(String name, boolean keyPressed, float tpf) {
+            if (name.equals("RotateLeft") && !keyPressed) {
+                //control.rotateModel();                    
+            }
+            if (name.equals("RotateRight") && !keyPressed){
+                //control.rotateModel();
+            }
+        }
+    };
 }

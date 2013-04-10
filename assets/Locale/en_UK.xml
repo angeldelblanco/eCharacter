@@ -12,7 +12,8 @@
 	<string id="idColor">Color</string>
 	<string id="idQuality">Quality</string>
 	<string id="idCamera">Camera</string>
-	<string id="idPreview">Animations</string>
+	<string id="idAnimations">Animations</string>
+        <string id="idPreview">Preview</string>
 	<string id="idPopup1">Do you want to tweak the model, or go to the export stage?</string>
 	<string id="idPopup2">Do you want to generate a new model?</string>
 	<string id="idPopupButton1">Tweak model</string>
