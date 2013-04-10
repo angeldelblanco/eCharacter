@@ -59,7 +59,7 @@ public class ColoringImage
     private long tiempoInicio, totalTiempo;         
     
     
-    public static ArrayList<BufferedImage> coloringImage(TextureType texture, Color color){
+    public static ArrayList<BufferedImage> coloringImageBaseShadow(TextureType texture, Color color){
         ArrayList<BufferedImage> listBi = null;
         try{
             if(texture instanceof BaseShadowTextureType){

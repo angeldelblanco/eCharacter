@@ -138,7 +138,7 @@ public class TexturesInPanel
         while(it.hasNext()){
             TextureType texture = it.next();
             if (texture.getIdTexture().equals(idTexture)){
-                ArrayList<BufferedImage> bi = ColoringImage.coloringImage(texture, new Color(red, green, blue));
+                ArrayList<BufferedImage> bi = ColoringImage.coloringImageBaseShadow(texture, new Color(red, green, blue));
                 textures.get(texture).setListBufferedImage(bi);
             }
         }        
