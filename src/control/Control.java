@@ -298,7 +298,21 @@ public class Control {
     
     public void changeColorDoubleTexture(String idPanelRef, String idTexture, float red1,float green1,float blue1, 
             float red2,float green2,float blue2){
-        
+        if (red1 == -1 && green1 == -1 && blue1 == -1){
+            //-1 representa que el usuario no ha cambiado la textura de base en este caso
+            //Cambiar solo los detalles
+            sc.changeColorDoubleTextureDetails(idPanelRef, idTexture, red1, green1, blue1);
+        }
+        else if(red2 == -1 && green2 == -1 && blue2 == -1){
+            //-1 representa que el usuario no ha cambiado la textura de detalles en este caso
+            //Cambiar solo la base
+            sc.changeColorDoubleTextureBase(idPanelRef, idTexture, red1, green1, blue1);
+        }
+        else{
+            //Cambiar base y detalles
+            sc.changeColorDoubleTextureBase(idPanelRef, idTexture, red1, green1, blue1);
+            sc.changeColorDoubleTextureDetails(idPanelRef, idTexture, red1, green1, blue1);
+        }
     }
     
     public void screenShot(){

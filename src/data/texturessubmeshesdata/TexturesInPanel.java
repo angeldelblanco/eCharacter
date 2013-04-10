@@ -132,7 +132,7 @@ public class TexturesInPanel
         }        
     }
     
-    public void changeColor(String idTexture, float red, float green, float blue){
+    public void changeColorBaseShadow(String idTexture, float red, float green, float blue){
         Set<TextureType> keySet = textures.keySet();
         Iterator<TextureType> it = keySet.iterator();
         while(it.hasNext()){
@@ -142,6 +142,30 @@ public class TexturesInPanel
                 textures.get(texture).setListBufferedImage(bi);
             }
         }        
+    }
+    
+    public void changeColorDoubleTextureDetails(String idTexture, float red, float green, float blue) {
+        Set<TextureType> keySet = textures.keySet();
+        Iterator<TextureType> it = keySet.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            if (texture.getIdTexture().equals(idTexture)){
+                ArrayList<BufferedImage> bi = ColoringImage.coloringImageDoubleTextureDetails(texture, new Color(red, green, blue));
+                textures.get(texture).setListBufferedImage(bi);
+            }
+        }
+    }
+    
+    public void changeColorDoubleTextureBase(String idTexture, float red, float green, float blue) {
+        Set<TextureType> keySet = textures.keySet();
+        Iterator<TextureType> it = keySet.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            if (texture.getIdTexture().equals(idTexture)){
+                ArrayList<BufferedImage> bi = ColoringImage.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
+                textures.get(texture).setListBufferedImage(bi);
+            }
+        }
     }
     
     //Dada una textura, devuelvo el BufferedImage asociado  

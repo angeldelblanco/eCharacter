@@ -262,8 +262,16 @@ public class TexturesSubMeshesData
         subMeshesData.get(idPanel).changeSubMesh(idSubMesh);
     }
 
-    public void changeColor(String idPanel, String idTexture, float red, float green, float blue) {
-        texturesData.get(idPanel).changeColor(idTexture, red, green, blue);
+    public void changeColorBaseShadow(String idPanel, String idTexture, float red, float green, float blue) {
+        texturesData.get(idPanel).changeColorBaseShadow(idTexture, red, green, blue);
+    }
+    
+    public void changeColorDoubleTextureDetails(String idPanel, String idTexture, float red, float green, float blue) {
+        texturesData.get(idPanel).changeColorDoubleTextureDetails(idTexture, red, green, blue);
+    }
+    
+    public void changeColorDoubleTextureBase(String idPanel, String idTexture, float red, float green, float blue) {
+        texturesData.get(idPanel).changeColorDoubleTextureBase(idTexture, red, green, blue);
     }
     
     public boolean isCheckedTexture(String idPanel, String idTexture){
@@ -273,4 +281,6 @@ public class TexturesSubMeshesData
     public boolean isCheckedSubMesh(String idPanel, String idSubMesh){
         return subMeshesData.get(idPanel).ischecked(idSubMesh);
     }
+
+    
 }

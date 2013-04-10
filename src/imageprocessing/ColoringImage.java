@@ -72,25 +72,23 @@ public class ColoringImage
                 listBi = new ArrayList<BufferedImage>();
                 listBi.add(coloringImageBaseShadow(biBase, biShadow, color));
             }
-            //El simple texture aqui no tiene sentido
-            
-            //HAY QUE VER COMO HACER PARA SABER SI SE ESTÁ CAMBIANDO EL COLOR AL BASE O AL DETAIL
-            else if(texture instanceof DoubleTextureType){
+        }
+        catch (IOException ex) {
+            java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listBi;
+    }
+    
+    public static ArrayList<BufferedImage> coloringImageDoubleTextureDetails(TextureType texture, Color color){
+        ArrayList<BufferedImage> listBi = null;
+        try{
+            if(texture instanceof DoubleTextureType){
                 DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
                 BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
                 BufferedImage biDetails = ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath()));
-                //Difenciar el función de a qué le estemos cambiando el color, pasarle el base o el details
-                /* if (cambiarBase){
-                       bi = coloringImageDouble(biBase, color);
-                       bi = pasteImage(bi, biDetails);
-                   }
-                   else{
-                       bi = coloringImageDouble(biDetails, color);
-                       bi = pasteImage(biBase, bi);
-                   }*/
-                
-                /*bi = coloringImageDouble(biBase, color);
-                bi = pasteImage(bi, biDetails);*/
+                listBi = new ArrayList<BufferedImage>();
+                listBi.add(biBase);
+                listBi.add(coloringImageDouble(biDetails, color));
             }
         }
         catch (IOException ex) {
@@ -98,93 +96,24 @@ public class ColoringImage
         }
         return listBi;
     }
-    /*public ColoringImage(String imagePath, String shadowPath, Color color) throws IOException
-    {
-        this.imagePath = imagePath;
-        this.shadowPath = shadowPath;
-        this.color = color;       
- 
-        //Configuration of Logger
-        DOMConfigurator.configure("assets/Log/configuration_log.xml");
-        //BasicConfigurator.configure();
-        
-        switch(estado) {
-            case t_shirt:
-                imageColoredPath = "assets/Textures/TShirtSombreada.png";
-                destinationPath = "assets/Textures/TShirtFinal.png";
-            break;
-            case trouser:
-                imageColoredPath = "assets/Textures/TrouserSombreada.png";
-                destinationPath = "assets/Textures/TrouserFinal.png";
-            break;
-            case shoes:
-                imageColoredPath = "assets/Textures/ShoesSombreada.png";
-                destinationPath = "assets/Textures/ShoesFinal.png";
-            break;
-        }
-    }    */    
-
-    /*public BufferedImage coloringImageBaseShadow() throws IOException 
-    {
-        tiempoInicio = System.currentTimeMillis();
-        
-        image = ImageIO.read(new File(imagePath)); 
-        if (shadowPath != null) {
-            shadow = ImageIO.read(new File(shadowPath));
-        }
-        
-        Color shadowColor;
-        double red;
-        double green;
-        double blue;
-        int alpha;
-        
-        int w = image.getWidth();
-        int h= image.getHeight();  
-        
-        for (int i=0;i<w;i++)
-        {
-            for (int j=0;j<h;j++)
-            {  
-                //if the pixel isn't transparent
-                if (image.getRGB(i, j) < 0)
-                {
-                    image.setRGB(i, j, color.getRGB());
-                }
-                if (shadow != null){
-                    if((shadow.getRGB(i,j)&0xFF000000) != 0){
-                            shadowColor = new Color(shadow.getRGB(i, j));
-                            if(!((shadowColor.getRed()<85)&&(shadowColor.getGreen()<85)&&(shadowColor.getBlue()<85))){
-                                                    red = color.getRed() - shadowColor.getRed()*0.5;
-                                                    green = color.getGreen() - shadowColor.getGreen()*0.5;
-                                                    blue = color.getBlue() - shadowColor.getBlue()*0.5;
-                            }
-                            else{
-                                    red=85;green=85;blue=85;
-                            }
-                            //Arreglar con maximos y minimos
-                            if(red < 0) red = 0;
-                            if(red > 255) red = 255;
-                            if(green < 0) green = 0;
-                            if(green > 255) green = 255;
-                            if(blue < 0) blue = 0;
-                            if(blue > 255) blue = 255;
-                            alpha = ((shadow.getRGB(i,j)&0xFF000000));
-                            //Quitar el new Color, trabajar con ints
-                            shadow.setRGB(i, j, new Color((int)red,(int)green,(int)blue).getRGB() + alpha);
-                    }
-                }
+    
+    public static ArrayList<BufferedImage> coloringImageDoubleTextureBase(TextureType texture, Color color){
+        ArrayList<BufferedImage> listBi = null;
+        try{
+            if(texture instanceof DoubleTextureType){
+                DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
+                BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
+                BufferedImage biDetails = ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath()));
+                listBi = new ArrayList<BufferedImage>();
+                listBi.add(coloringImageDouble(biBase, color));
+                listBi.add(biDetails);
             }
         }
-        totalTiempo = System.currentTimeMillis() - tiempoInicio;
-        logger.info("El tiempo de coloringImage() es :"  + totalTiempo + " miliseg");
-        
-        //Se escribe para probar el resultado. Luego hay que quitarlo.
-        //ImageIO.write(image, "png", new File(imageColoredPath));
-        
-        BufferedImage finalImage = pasteImage();
-        return finalImage;
-    }*/
+        catch (IOException ex) {
+            java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listBi;
+    }
     
     private static BufferedImage coloringImageBaseShadow(BufferedImage imageOriginal, BufferedImage shadowOriginal, Color color) throws IOException 
     {
@@ -289,41 +218,4 @@ public class ColoringImage
         //ImageIO.write(finalImage, "png", new File(destinationPath));
         return finalImage;
     }
-    
-    /*private BufferedImage pasteImage() throws IOException 
-    {     
-        tiempoInicio = System.currentTimeMillis();
-        
-        int w = image.getWidth();
-        int h= image.getHeight();
-        
-        BufferedImage finalImage = new BufferedImage(w,h,BufferedImage.TYPE_4BYTE_ABGR);
-        Graphics g = finalImage.getGraphics();
-        
-        if (shadow == null){
-            g.drawImage(image, 0, 0, null);
-        }
-        else{
-            ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-            images.add(image);
-            images.add(shadow);
-
-            for (int i = 0; i < images.size(); i++) 
-            {
-                BufferedImage aux = images.get(i);
-                g.drawImage(aux, 0, 0, null);
-            }           
-        }
-        //Se escribe para probar el resultado. Luego hay que quitarlo
-        //ImageIO.write(finalImage, "png", new File(destinationPath));
-        totalTiempo = System.currentTimeMillis() - tiempoInicio;
-        logger.info("El tiempo de pasteImage() es : " + totalTiempo + " miliseg");
-        return finalImage;
-    }*/
-    
-    /*public static void main(String[] args) throws IOException 
-    {
-        ColoringImage app = new ColoringImage("assets/Textures/Textures Boy/ZapatosSolidoBoy.png", 
-                "assets/Textures/Textures Boy/ZapatosSombrasBoy.png", new Color(0, 255, 0), TypeObject.shoes);
-    } */
 }
