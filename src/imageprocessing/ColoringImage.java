@@ -65,7 +65,10 @@ public class ColoringImage
             if(texture instanceof BaseShadowTextureType){
                 BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
                 BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getPath()));
-                BufferedImage biShadow = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath()));
+                BufferedImage biShadow = null;
+                if(baseShadowTexture.getShadowPath() != null){
+                    biShadow = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath()));
+                }
                 bi = coloringImageBaseShadow(biBase, biShadow, color);
             }
             //El simple texture aqui no tiene sentido
