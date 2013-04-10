@@ -40,6 +40,7 @@ import control.Control;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
+import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.checkbox.builder.CheckboxBuilder;
 import de.lessvoid.nifty.controls.radiobutton.builder.RadioButtonBuilder;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
@@ -48,6 +49,7 @@ import de.lessvoid.nifty.tools.Color;
 import i18n.I18N;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Set;
 import types.StageType;
 
 public class AnimationStageBuilder {
@@ -72,9 +74,41 @@ public class AnimationStageBuilder {
     
     private void init(){
       
-        nifty.getScreen(stage).findElementByName("previewText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPreview"));
+        nifty.getScreen(stage).findElementByName("previewText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAnimations"));
         nifty.getScreen(stage).findElementByName("qualityText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idQuality"));
         nifty.getScreen(stage).findElementByName("qualityPanel").layoutElements();
+        nifty.getScreen(stage).findElementByName("checkBoxText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCamera"));
+        Set<String> animations = control.getAnimationNames();
+        Iterator<String> it1 = animations.iterator();
+        int a = 0;
+        while(it1.hasNext()){
+            final String animation = it1.next();
+            final int j = a;
+            new PanelBuilder() {{
+                width("40%");
+                childLayoutHorizontal();
+                text(new TextBuilder("AnimationText"+Integer.toString(j)){{
+                    valignCenter();
+                    color(Color.WHITE);
+                    font("Interface/Fonts/Default.fnt");
+                    text(animation);
+                    width("80%");
+                    wrap(true);
+                }});
+                control(new CheckboxBuilder("CheckBoxAnimation"+Integer.toString(j)) {{
+                    checked(false);
+                }});
+                panel(new PanelBuilder() {{
+                    width("5%");
+                }});
+                control(new ButtonBuilder("AnimationButton"+Integer.toString(j)){{
+                    label(i18nGui.getString("idPreview"));
+                    interactOnClick("preview("+animation+")");
+                }});
+            }}.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("previewPanel"));
+            a++;
+        }
+        
         ArrayList<String> quality = control.getQualityLabels();
         Iterator<String> it = quality.iterator();
         int i = 0;
@@ -97,7 +131,7 @@ public class AnimationStageBuilder {
             }}.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("qualityRadioButtons"));
             i++;
         }
-        //if(fc.getNumCameras()<)
+        
         nifty.getScreen(stage).findElementByName("checkBoxText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCamera"));
         ArrayList<String> cameras = control.getCamerasLabels();
         Iterator<String> it2 = cameras.iterator();
@@ -128,35 +162,23 @@ public class AnimationStageBuilder {
     public void changeTab(String param, String selection){
         tabSelected = param;
         if(tabSelected.equals("basic")){
-                nifty.getScreen(stage).findElementByName("qualityText").setVisible(false);
-                nifty.getScreen(stage).findElementByName("checkBoxText").setVisible(false);
-                for(int i = 0; i<control.getQualityLabels().size();i++){
-                    nifty.getScreen(stage).findElementByName("RadioText"+Integer.toString(i)).setVisible(false);
-                    nifty.getScreen(stage).findElementByName("Radio"+Integer.toString(i)).setVisible(false);
-                }
-                for(int i = 0; i<control.getNumCameras();i++){
-                    nifty.getScreen(stage).findElementByName("CheckText"+Integer.toString(i)).setVisible(false);
-                    nifty.getScreen(stage).findElementByName("CheckBox"+Integer.toString(i)).setVisible(false);
-                }
-                nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-                nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+            nifty.getScreen(stage).findElementByName("qualityText").setVisible(false);
+            nifty.getScreen(stage).findElementByName("checkBoxText").setVisible(false);
+            nifty.getScreen(stage).findElementByName("previewPanel").setVisible(true);
+            nifty.getScreen(stage).findElementByName("Panel2").setVisible(false);
+            nifty.getScreen(stage).findElementByName("Panel3").setVisible(false);
+            nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
         }    
         if(tabSelected.equals("advanced")){
             nifty.getScreen(stage).findElementByName("qualityText").setVisible(true);
             nifty.getScreen(stage).findElementByName("checkBoxText").setVisible(true);
-            for(int i = 0; i<control.getQualityLabels().size();i++){
-                    nifty.getScreen(stage).findElementByName("RadioText"+Integer.toString(i)).setVisible(true);
-                    nifty.getScreen(stage).findElementByName("Radio"+Integer.toString(i)).setVisible(true);
-            }
-            for(int i = 0; i<control.getNumCameras();i++){
-                nifty.getScreen(stage).findElementByName("CheckText"+Integer.toString(i)).setVisible(true);
-                nifty.getScreen(stage).findElementByName("CheckBox"+Integer.toString(i)).setVisible(true);
-            }
+            nifty.getScreen(stage).findElementByName("previewPanel").setVisible(true);
+            nifty.getScreen(stage).findElementByName("Panel2").setVisible(true);
+            nifty.getScreen(stage).findElementByName("Panel3").setVisible(true);
             nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
             nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
         }
-        //for(int i=;i<;i++){ //Checkboxsobrantes ocultarlos
-
     }
     
 }

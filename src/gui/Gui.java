@@ -617,4 +617,8 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void changeBodyType(String bodyType){
         control.setPhysicalBuild(idPhysicalBuild.get(page*BONES_PAGE+Integer.parseInt(bodyType)));
     }
+    
+    public void preview(String animation){
+        control.setAnimations(animation);
+    }
 }
