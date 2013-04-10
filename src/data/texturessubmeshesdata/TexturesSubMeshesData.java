@@ -46,10 +46,13 @@ import data.model.SimpleTextureType;
 import data.model.SubMeshType;
 import data.model.TextureType;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+import javax.imageio.ImageIO;
 
 
 public class TexturesSubMeshesData 
@@ -151,20 +154,6 @@ public class TexturesSubMeshesData
     /*
      * Return the list of textures activated
      */
-    /*public ArrayList<TextureType> getCheckedTextures()
-    {
-        ArrayList<TextureType> listCheckedTextures = new ArrayList<TextureType>();
-        Set<String> keyIdPanels = texturesData.keySet();
-        Iterator<String> it = keyIdPanels.iterator();
-        while(it.hasNext())
-        {
-            TexturesInPanel texturesInPanel = texturesData.get(it.next());
-            ArrayList<TextureType> listCheckedTexturesInPanel = texturesInPanel.getCheckedTextures();
-            listCheckedTextures.addAll(listCheckedTexturesInPanel);
-        }
-        return listCheckedTextures;
-    }*/
-    
     public HashMap<Integer,ArrayList<BufferedImage>> getCheckedTextures()
     {
         HashMap<Integer,ArrayList<BufferedImage>> hashMapCheckedTextures = new HashMap<Integer,ArrayList<BufferedImage>>();
@@ -198,7 +187,8 @@ public class TexturesSubMeshesData
                     }
                     else{
                         //Las demas texturas, solo tiene un buffered image seguro.
-                        hashMapCheckedTextures.get(texture.getLayer().intValue()).add(listBi.get(0));
+                        ArrayList<BufferedImage> buf = hashMapCheckedTextures.get(texture.getLayer().intValue());
+                        buf.add(listBi.get(0));
                     }
                 }
                 //El hashmap, no tiene ningun valor para este layer
@@ -223,7 +213,9 @@ public class TexturesSubMeshesData
                     else{
                         //Las demas texturas, solo tiene un buffered image seguro.
                         ArrayList<BufferedImage> listBi = texturesInPanel.getListBufferedImage(texture);
-                        hashMapCheckedTextures.put(texture.getLayer().intValue(),listBi);
+                        ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
+                        list.addAll(listBi);
+                        hashMapCheckedTextures.put(texture.getLayer().intValue(),list);
                     }
                 }
             }

@@ -136,11 +136,11 @@
 				<path>assets/Textures/eAdventure/Textures Boy/TiritaIzqBoy.png</path>
 			</simpleTexture>
 			<!--otherAccesoriesPanel textures-->
-			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idCinturon">
+			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="3" default="false" idTexture="idCinturon">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CinturonBoy.png</path>
                         </baseShadowTexture>
-			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="3" default="false" idTexture="idHebillaCinturon">
+			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="4" default="false" idTexture="idHebillaCinturon">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoHebillaCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/HebillaCinturonSolidoBoy.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/HebillaCinturonSombrasBoy.png</shadowPath>

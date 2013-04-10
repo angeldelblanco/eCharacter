@@ -175,7 +175,10 @@ public class TexturesInPanel
         //Si el BufferedImage es null, es porque no se ha creado todavía. Hay que crearlo con imageProcessing.
         if(textures.get(texture).getListBufferedImage()== null){
             textures.get(texture).setListBufferedImage(ImagesProcessing.createBufferedImage(texture));
+            return textures.get(texture).getListBufferedImage();
         }
-        return textures.get(texture).getListBufferedImage();
+        else {
+            return textures.get(texture).getListBufferedImage();
+        }
     }
 }

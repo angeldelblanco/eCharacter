@@ -61,6 +61,6 @@ public class AttrTexture {
     }
 
     public void setListBufferedImage(ArrayList<BufferedImage> listBufferedImage) {
-        this.listBufferedImage = listBufferedImage;
+        this.listBufferedImage = listBufferedImage;        
     }
 }
