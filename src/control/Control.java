@@ -301,7 +301,7 @@ public class Control {
         if (red1 == -1 && green1 == -1 && blue1 == -1){
             //-1 representa que el usuario no ha cambiado la textura de base en este caso
             //Cambiar solo los detalles
-            sc.changeColorDoubleTextureDetails(idPanelRef, idTexture, red1, green1, blue1);
+            sc.changeColorDoubleTextureDetails(idPanelRef, idTexture, red2, green2, blue2);
         }
         else if(red2 == -1 && green2 == -1 && blue2 == -1){
             //-1 representa que el usuario no ha cambiado la textura de detalles en este caso
@@ -352,5 +352,13 @@ public class Control {
     
     public boolean isMultiSelection(String labelStage, String idPanel){
         return fc.isMultiSelection(labelStage,idPanel);
+    }
+    
+    public void rotateModel(float inc){
+        sc.rotateModel(inc);
+    }
+    
+    public void restartRotateModel(){
+        sc.restartRotateModel();
     }
 }

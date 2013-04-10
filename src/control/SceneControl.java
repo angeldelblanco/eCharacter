@@ -78,6 +78,7 @@ public class SceneControl
     private Vector3f vectorScaleBase;
     private TexturesSubMeshesData texturesSubMeshesData;
     private int cont;
+    private float angRotate;
     
     public SceneControl(Node rootNode, AssetManager assetManager, String mainMeshPath, 
             ArrayList<TransformationType> listTransformationMainMesh, TexturesSubMeshesData texturesSubMeshesData)
@@ -87,6 +88,7 @@ public class SceneControl
         this.texturesSubMeshesData = texturesSubMeshesData;
         this.subMeshes = new HashMap<String, Spatial>();
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
+        this.angRotate = 0.0f;
         
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
@@ -407,6 +409,17 @@ public class SceneControl
     
     public boolean isCheckedSubMesh(String idPanel, String idSubMesh){
         return texturesSubMeshesData.isCheckedSubMesh(idPanel, idSubMesh);
+    }
+    
+    public void rotateModel(float inc){
+        angRotate += inc;
+        mainMesh.rotate(0,0,FastMath.DEG_TO_RAD*inc);
+    }
+    
+    public void restartRotateModel(){
+        float ang = 360 - (angRotate % 360.0f);
+        mainMesh.rotate(0,0,FastMath.DEG_TO_RAD*ang);
+        angRotate = 0.0f;
     }
     
     

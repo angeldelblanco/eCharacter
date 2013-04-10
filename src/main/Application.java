@@ -106,19 +106,24 @@ public class Application extends SimpleApplication{
      /** Custom Keybindings: Mapping a named action to a key input. */
     private void initKeys() {
         inputManager.addMapping("RotateLeft", new KeyTrigger(KeyInput.KEY_LEFT));
-        inputManager.addMapping("RotateRigth", new KeyTrigger(KeyInput.KEY_RIGHT));
+        inputManager.addMapping("RotateRight", new KeyTrigger(KeyInput.KEY_RIGHT));
+        inputManager.addMapping("RestartRotate", new KeyTrigger(KeyInput.KEY_SPACE));
         inputManager.addListener(actionListener, "RotateLeft");
-        inputManager.addListener(actionListener, "RotateRigth");
+        inputManager.addListener(actionListener, "RotateRight");
+        inputManager.addListener(actionListener, "RestartRotate");
   }
 
     /** Definining the named action that can be triggered by key inputs. */
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
             if (name.equals("RotateLeft") && !keyPressed) {
-                //control.rotateModel();                    
+                control.rotateModel(-10.0f);                    
             }
             if (name.equals("RotateRight") && !keyPressed){
-                //control.rotateModel();
+                control.rotateModel(10.0f);
+            }
+            if (name.equals("RestartRotate") && !keyPressed){
+                control.restartRotateModel();
             }
         }
     };
