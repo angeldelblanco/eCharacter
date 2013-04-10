@@ -214,28 +214,24 @@
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idLongHair" default="true">
 		<path>assets/Models/eAdventure/Hair Girl/long haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
-		<transformation transformationType="center" valueX="0.0" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="0.0" valueY="0.3" valueZ="0.0"/>
 		<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPeloChicaLargo.jpg</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idOldHair" default="false">
 		<path>assets/Models/eAdventure/Hair Girl/old haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
-		<transformation transformationType="center" valueX="0.0" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="0.0" valueY="0.3" valueZ="0.0"/>
 		<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPeloChicaViejo.jpg</iconPath>	
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idPonyTailHair" default="false">
 		<path>assets/Models/eAdventure/Hair Girl/ponytail haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
-		<transformation transformationType="center" valueX="0.0" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="0.0" valueY="0.3" valueZ="0.0"/>
 		<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPeloChicaColeta.jpg</iconPath>		
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idShortHair" default="false">
 		<path>assets/Models/eAdventure/Hair Girl/short haircut.mesh</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
-		<transformation transformationType="center" valueX="0.0" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="0.0" valueY="0.3" valueZ="0.0"/>
 		<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPeloChicaCorto.jpg</iconPath>		
 	</subMesh>
