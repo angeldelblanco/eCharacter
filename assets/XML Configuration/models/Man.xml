@@ -212,7 +212,7 @@
 			</physicalBuild>
 		</physicalBuilds>
 	</mainMesh>	
-	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idGoku" default="false">
+	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idGoku" default="true">
 		<path>assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="2.10" valueY="-4.3" valueZ="0.7"/>
@@ -221,7 +221,7 @@
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idAfro" default="false">
 		<path>assets/Models/eAdventure/Hair Boy/afro haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
-		<transformation transformationType="translate" valueX="1.05" valueY="-4.42" valueZ="0.77"/>
+		<transformation transformationType="translate" valueX="1.05" valueY="-4.40" valueZ="0.77"/>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoAfro.jpg</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idBowl" default="false">
@@ -230,7 +230,7 @@
 		<transformation transformationType="translate" valueX="0.0" valueY="-4.30" valueZ="4.25"/>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoTazon.jpg</iconPath>
 	</subMesh>
-	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idPunta" default="true">
+	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idPunta" default="false">
 		<path>assets/Models/eAdventure/Hair Boy/punta haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="2.10" valueY="-4.30" valueZ="0.70"/>

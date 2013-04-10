@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="es_ES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../language.xsd">
 	<string id="idPhysicalBuildLabel1">Complexión media</string>
-	<string id="idPhysicalBuildLabel2">Gordo</string>
-	<string id="idPhysicalBuildLabel3">Delgado</string>
-	<string id="idPhysicalBuildLabel4">Alto</string>
-	<string id="idPhysicalBuildLabel5">Bajo</string>
+	<string id="idPhysicalBuildLabel2">Gorda</string>
+	<string id="idPhysicalBuildLabel3">Delgada</string>
+	<string id="idPhysicalBuildLabel4">Alta</string>
+	<string id="idPhysicalBuildLabel5">Baja</string>
 </metadata>
