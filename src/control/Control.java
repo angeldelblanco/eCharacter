@@ -292,9 +292,13 @@ public class Control {
         }
     }
     
-    public void changeColor(String idPanelRef, String idTexture, float red,float green,float blue)
-    {
-        sc.changeColor(idPanelRef, idTexture, red, green, blue);
+    public void changeColorBaseShadow(String idPanelRef, String idTexture, float red,float green,float blue){
+        sc.changeColorBaseShadow(idPanelRef, idTexture, red, green, blue);
+    }
+    
+    public void changeColorDoubleTexture(String idPanelRef, String idTexture, float red1,float green1,float blue1, 
+            float red2,float green2,float blue2){
+        
     }
     
     public void screenShot(){
@@ -330,5 +334,9 @@ public class Control {
             }
         }
         return checked;
+    }
+    
+    public boolean isMultiSelection(String labelStage, String idPanel){
+        return fc.isMultiSelection(labelStage,idPanel);
     }
 }

@@ -59,8 +59,8 @@ public class ColoringImage
     private long tiempoInicio, totalTiempo;         
     
     
-    public static BufferedImage coloringImage(TextureType texture, Color color){
-        BufferedImage bi = null;
+    public static ArrayList<BufferedImage> coloringImage(TextureType texture, Color color){
+        ArrayList<BufferedImage> listBi = null;
         try{
             if(texture instanceof BaseShadowTextureType){
                 BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
@@ -69,7 +69,8 @@ public class ColoringImage
                 if(baseShadowTexture.getShadowPath() != null){
                     biShadow = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath()));
                 }
-                bi = coloringImageBaseShadow(biBase, biShadow, color);
+                listBi = new ArrayList<BufferedImage>();
+                listBi.add(coloringImageBaseShadow(biBase, biShadow, color));
             }
             //El simple texture aqui no tiene sentido
             
@@ -88,14 +89,14 @@ public class ColoringImage
                        bi = pasteImage(biBase, bi);
                    }*/
                 
-                bi = coloringImageDouble(biBase, color);
-                bi = pasteImage(bi, biDetails);
+                /*bi = coloringImageDouble(biBase, color);
+                bi = pasteImage(bi, biDetails);*/
             }
         }
         catch (IOException ex) {
             java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return bi;
+        return listBi;
     }
     /*public ColoringImage(String imagePath, String shadowPath, Color color) throws IOException
     {
@@ -236,6 +237,7 @@ public class ColoringImage
         //ImageIO.write(image, "png", new File(imageColoredPath));
         
         BufferedImage finalImage = pasteImage(image, shadow);
+        //ImageIO.write(finalImage, "png", new File("assets/prueba.png"));
         return finalImage;
     }
     

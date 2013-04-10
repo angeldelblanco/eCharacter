@@ -298,7 +298,7 @@ public class SceneControl
         }
     }
     
-    public void changeColor(String idPanelRef, String idTexture, float red,float green,float blue)
+    public void changeColorBaseShadow(String idPanelRef, String idTexture, float red,float green,float blue)
     {
         texturesSubMeshesData.changeColor(idPanelRef, idTexture, red, green, blue);
         

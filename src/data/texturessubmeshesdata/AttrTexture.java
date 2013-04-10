@@ -37,11 +37,12 @@
 package data.texturessubmeshesdata;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class AttrTexture {
     
     private boolean selected;
-    private BufferedImage bufferedImage;
+    private ArrayList<BufferedImage> listBufferedImage;
 
     public AttrTexture(boolean selected){
         this.selected = selected;
@@ -55,11 +56,11 @@ public class AttrTexture {
         this.selected = selected;
     }
 
-    public BufferedImage getBufferedImage() {
-        return bufferedImage;
+    public ArrayList<BufferedImage> getListBufferedImage() {
+        return listBufferedImage;
     }
 
-    public void setBufferedImage(BufferedImage bufferedImage) {
-        this.bufferedImage = bufferedImage;
+    public void setListBufferedImage(ArrayList<BufferedImage> listBufferedImage) {
+        this.listBufferedImage = listBufferedImage;
     }
 }

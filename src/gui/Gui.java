@@ -563,7 +563,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        control.changeColor(subStageSelected,textureOrSubMeshSelected,red / 255.f, green / 255.f, blue / 255.f);
+        control.changeColorBaseShadow(subStageSelected,textureOrSubMeshSelected,red / 255.f, green / 255.f, blue / 255.f);
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.doubleTexture)){
         }
         nifty.closePopup(popupColor.getId()); 

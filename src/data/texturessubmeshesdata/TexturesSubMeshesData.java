@@ -179,16 +179,52 @@ public class TexturesSubMeshesData
             Iterator<TextureType> it2 = listCheckedTexturesInPanel.iterator();
             while(it2.hasNext()){
                 TextureType texture = it2.next();
+                //El hashmap tiene un valor para ese layer
                 if(hashMapCheckedTextures.get(texture.getLayer().intValue()) != null){
-                    BufferedImage bi = texturesInPanel.getBufferedImage(texture);
-                    hashMapCheckedTextures.get(texture.getLayer().intValue()).add(bi);
+                    //BufferedImage bi = texturesInPanel.getBufferedImage(texture);
+                    ArrayList<BufferedImage> listBi = texturesInPanel.getListBufferedImage(texture);
+                    if (texture instanceof DoubleTextureType){
+                        //En la posicion 0 siempre está la base
+                        hashMapCheckedTextures.get(texture.getLayer().intValue()).add(listBi.get(0));
+                        //Meter en layer +1 el details. Pero hay que comprobar antes si el hashmap esta relleno en ese layer
+                        if(hashMapCheckedTextures.get(texture.getLayer().intValue()+1) != null){
+                            hashMapCheckedTextures.get(texture.getLayer().intValue()+1).add(listBi.get(1));
+                        }
+                        else{
+                            ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
+                            list.add(listBi.get(1));
+                            hashMapCheckedTextures.put(texture.getLayer().intValue()+1,list);
+                        }
+                    }
+                    else{
+                        //Las demas texturas, solo tiene un buffered image seguro.
+                        hashMapCheckedTextures.get(texture.getLayer().intValue()).add(listBi.get(0));
+                    }
                 }
+                //El hashmap, no tiene ningun valor para este layer
                 else{
                     //Si la textura no está, en el layer correspondiente hay que añadir el BufferedImage asociado a esa textura
-                    ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
-                    BufferedImage bi = texturesInPanel.getBufferedImage(texture);
-                    list.add(bi);
-                    hashMapCheckedTextures.put(texture.getLayer().intValue(),list);
+                    if (texture instanceof DoubleTextureType){
+                        //En la posicion 0 siempre está la base
+                        ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
+                        ArrayList<BufferedImage> listBi = texturesInPanel.getListBufferedImage(texture);
+                        list.add(listBi.get(0));
+                        hashMapCheckedTextures.put(texture.getLayer().intValue(), list);
+                        //Meter en layer +1 el details. Pero hay que comprobar antes si el hashmap esta relleno en ese layer
+                        if(hashMapCheckedTextures.get(texture.getLayer().intValue()+1) != null){
+                            hashMapCheckedTextures.get(texture.getLayer().intValue()+1).add(listBi.get(1));
+                        }
+                        else{
+                            ArrayList<BufferedImage> list2 = new ArrayList<BufferedImage>();
+                            list.add(listBi.get(1));
+                            hashMapCheckedTextures.put(texture.getLayer().intValue()+1,list2);
+                        }
+                    }
+                    else{
+                        //Las demas texturas, solo tiene un buffered image seguro.
+                        ArrayList<BufferedImage> listBi = texturesInPanel.getListBufferedImage(texture);
+                        hashMapCheckedTextures.put(texture.getLayer().intValue(),listBi);
+                    }
                 }
             }
         }

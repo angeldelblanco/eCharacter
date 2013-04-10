@@ -337,4 +337,26 @@ public class FamilyControl
         }
         return listQualityLabels;
     }
+
+    public boolean isMultiSelection(String labelStage, String idPanel) {
+        boolean multiselection = false;
+        ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
+        Iterator<MultiStageType> it2 = listMultiStage.iterator();
+        while(it2.hasNext())
+        {
+            MultiStageType mst = it2.next();
+            if(mst.getStageLabel().equals(labelStage)){
+                ArrayList<SubStageType> listSubStages = (ArrayList<SubStageType>) mst.getSubStage();
+                Iterator<SubStageType> it3 = listSubStages.iterator();
+                while(it3.hasNext())
+                {
+                    SubStageType subStage = it3.next();
+                    if (subStage.getIdPanel().equals(idPanel)){
+                        multiselection = subStage.isMultiselection();
+                    }
+                }
+            }
+        }
+        return multiselection;
+    }
 }

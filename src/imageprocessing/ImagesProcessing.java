@@ -118,32 +118,40 @@ public class ImagesProcessing
         return finalImage;
     }
     
-    public static BufferedImage createBufferedImage(TextureType texture){
+    public static ArrayList<BufferedImage> createBufferedImage(TextureType texture){
         
-        BufferedImage bi = null;
+        ArrayList<BufferedImage> list = null;
         int width;
         int height;
         ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
         try{
             if(texture instanceof BaseShadowTextureType){
                 BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
-                bi = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getPath()));
+                BufferedImage bi = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getPath()));
                 images.add(bi);
                 if(baseShadowTexture.getShadowPath() != null){
                     images.add(ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath())));
                 }
+                BufferedImage finalBi = pasteImages(images, bi.getWidth(), bi.getHeight());
+                list = new ArrayList<BufferedImage>();
+                list.add(finalBi);
+                return list;
             }
             else if(texture instanceof SimpleTextureType){
                 SimpleTextureType simpleTexture = ((SimpleTextureType)texture);
-                bi = ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath()));
-                images.add(bi);
-                images.add(ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath())));
+                BufferedImage bi = ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath()));
+                list = new ArrayList<BufferedImage>();
+                list.add(bi);
+                return list;
             }
             else if(texture instanceof DoubleTextureType){
                 DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
-                bi = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
-                images.add(bi);
-                images.add(ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath())));
+                BufferedImage bi = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
+                BufferedImage bi2 = ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath()));
+                list = new ArrayList<BufferedImage>();
+                list.add(bi);
+                list.add(bi2);
+                return list;
             }
             else if(texture instanceof MultiOptionTextureType){
                 MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
@@ -153,8 +161,9 @@ public class ImagesProcessing
         catch (IOException ex) {
             Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
         //Ya está creado el array list de bufferedImage. Ahora hay que generarlo
-        return pasteImages(images, bi.getWidth(), bi.getHeight());
+        //return pasteImages(images, bi.getWidth(), bi.getHeight());
     }
     
     private static BufferedImage pasteImages(ArrayList<BufferedImage> images, int width, int height){
@@ -165,7 +174,6 @@ public class ImagesProcessing
             BufferedImage aux = images.get(i);
             g.drawImage(aux, 0, 0, null);
         }
- 
         return finalImage;
     }
 }

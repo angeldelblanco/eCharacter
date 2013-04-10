@@ -138,9 +138,8 @@ public class TexturesInPanel
         while(it.hasNext()){
             TextureType texture = it.next();
             if (texture.getIdTexture().equals(idTexture)){
-                BufferedImage bi = ColoringImage.coloringImage(texture, new Color(red, green, blue));
-                AttrTexture attrTexture = textures.get(texture);
-                attrTexture.setBufferedImage(bi);
+                ArrayList<BufferedImage> bi = ColoringImage.coloringImage(texture, new Color(red, green, blue));
+                textures.get(texture).setListBufferedImage(bi);
             }
         }        
     }
@@ -148,11 +147,11 @@ public class TexturesInPanel
     //Dada una textura, devuelvo el BufferedImage asociado  
     
     //Comprobar que si es null, hay que generarlo
-    public BufferedImage getBufferedImage(TextureType texture){
-        if (textures.get(texture).getBufferedImage() == null){
-            //Si el BufferedImage es null, es porque no se ha creado todavía. Hay que crearlo con imageProcessing.
-            textures.get(texture).setBufferedImage(ImagesProcessing.createBufferedImage(texture));
+    public ArrayList<BufferedImage> getListBufferedImage(TextureType texture){
+        //Si el BufferedImage es null, es porque no se ha creado todavía. Hay que crearlo con imageProcessing.
+        if(textures.get(texture).getListBufferedImage()== null){
+            textures.get(texture).setListBufferedImage(ImagesProcessing.createBufferedImage(texture));
         }
-        return textures.get(texture).getBufferedImage();
+        return textures.get(texture).getListBufferedImage();
     }
 }
