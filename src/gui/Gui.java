@@ -313,7 +313,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         multisb.showTexturePage(selection, page);
     }
     
-    public void Hola(String t, String steep){
+    public void changePageSubStage(String t, String steep){
         int h = Integer.valueOf(t);
         multisb.showSubTexturePage(selection, h, page, steep);
     }

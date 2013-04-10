@@ -374,13 +374,13 @@
 						</panel>
 						<panel id="panel_change0" height="10%" width="70%" align="center" childLayout="horizontal">
 							<image id="leftT0" filename="${CALL.getButton(left)}" height="100%" width="33%" valign="center" align="left">
-								<interact onClick="Hola(0,-)"/>
+								<interact onClick="changePageSubStage(0,-)"/>
 							</image>
 							<panel height="100%" width="34%">
 								<!-- Space -->
 							</panel>
 							<image id="rightT0" filename="${CALL.getButton(right)}" height="100%" width="33%" valign="center" align="right">
-								<interact onClick="Hola(0,+)"/>
+								<interact onClick="changePageSubStage(0,+)"/>
 							</image>
 						</panel>
 						<panel id="panel_color0" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
@@ -412,13 +412,13 @@
 						</panel>
 						<panel id="panel_change1" height="10%" width="70%" align="center" childLayout="horizontal">
 							<image id="leftT1" filename="${CALL.getButton(left)}" height="100%" width="33%" valign="center" align="left">
-								<interact onClick="Hola(1,-)"/>
+								<interact onClick="changePageSubStage(1,-)"/>
 							</image>
 							<panel height="100%" width="34%">
 								<!-- Space -->
 							</panel>
 							<image id="rightT1" filename="${CALL.getButton(right)}" height="100%" width="33%" valign="center" align="right">
-								<interact onClick="Hola(1,+)"/>
+								<interact onClick="changePageSubStage(1,+)"/>
 							</image>
 						</panel>
 						<panel id="panel_color1" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
