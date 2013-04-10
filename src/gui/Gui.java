@@ -357,11 +357,11 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){
         if(control.getStagesTypes(selection) == StageType.singleStage){
-            textureOrSubMeshSelected = singlesb.chanchangeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
+            textureOrSubMeshSelected = singlesb.changeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
             subStageSelected = singlesb.getSubStage(selection, page, substage);
         }
         if(control.getStagesTypes(selection) == StageType.multiStage){
-            textureOrSubMeshSelected = multisb.chanchangeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
+            textureOrSubMeshSelected = multisb.changeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
             subStageSelected = multisb.getSubStage(selection, page, substage);
         }
         control.changeTextureOrSubMesh(subStageSelected, textureOrSubMeshSelected);
@@ -467,6 +467,14 @@ public class Gui extends AbstractAppState implements ScreenController {
         red2 = 0; 
         green2 = 0; 
         blue2 = 0;
+        if(control.getStagesTypes(selection) == StageType.singleStage){
+            textureOrSubMeshSelected = singlesb.getTextureOrSubMesh();
+            subStageSelected = singlesb.getSubStage();
+        }
+        if(control.getStagesTypes(selection) == StageType.multiStage){
+            textureOrSubMeshSelected = multisb.getTextureOrSubMesh();
+            subStageSelected = multisb.getSubStage();
+        }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
         }

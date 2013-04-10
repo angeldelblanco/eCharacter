@@ -38,7 +38,6 @@ package gui;
 
 import control.Control;
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
@@ -47,6 +46,7 @@ import de.lessvoid.nifty.tools.Color;
 import i18n.I18N;
 import java.util.ArrayList;
 import types.StageType;
+import types.TexturesType;
 
 
 public class SingleStageBuilder {
@@ -54,11 +54,14 @@ public class SingleStageBuilder {
     private Nifty nifty;
     private Control control;
     private String stageType;
+    private String textureOrSubMeshSelected, subStageSelected;
     
     public SingleStageBuilder(Nifty nifty, Control control, I18N i18nGui){
         stageType = StageType.singleStage.toString();
         this.nifty = nifty;
         this.control = control;
+        textureOrSubMeshSelected = "";
+        subStageSelected = "";
         nifty.getScreen(stageType).findElementByName("colorText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
         nifty.getScreen(stageType).findElementByName("panel_color").layoutElements();
         nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
@@ -71,6 +74,7 @@ public class SingleStageBuilder {
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
         ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(0));
         unCheck();
+        nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
         for(int i=page*TEXTURES_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
             if(i<((page+1)*TEXTURES_PAGE)){
                 Element image = nifty.getScreen(stageType).findElementByName("i"+Integer.toString(i%TEXTURES_PAGE));
@@ -79,7 +83,11 @@ public class SingleStageBuilder {
                 imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)), false));
                 if (control.isChecked(idSubStages.get(0), idsTexturesOrSubMeshes.get(i))){
                         nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-                        nifty.getScreen(stageType).findElementByName("panel_color").setVisible(true);
+                        textureOrSubMeshSelected = idsTexturesOrSubMeshes.get(i);
+                        subStageSelected = idSubStages.get(0);
+                        if(!(control.getTextureType(textureOrSubMeshSelected) == TexturesType.simpleTexture)){
+                            nifty.getScreen(stageType).findElementByName("panel_color").setVisible(true);
+                        }
                 }
             }
         }
@@ -101,20 +109,31 @@ public class SingleStageBuilder {
         }
     }
     
-    public String chanchangeTextureOrSubMesh(String selection,int page, String h, String i){
+    public String changeTextureOrSubMesh(String selection,int page, String h, String i){
         int j = Integer.valueOf(h);
         unCheck();
         nifty.getScreen(stageType).findElementByName("t"+i).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-        nifty.getScreen(stageType).findElementByName("panel_color").setVisible(true);
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
         ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(j));
-        return idsTexturesOrSubMeshes.get(page*TEXTURES_PAGE+Integer.valueOf(i));
+        textureOrSubMeshSelected = idsTexturesOrSubMeshes.get(page*TEXTURES_PAGE+Integer.valueOf(i));
+        if(!(control.getTextureType(textureOrSubMeshSelected) == TexturesType.simpleTexture)){
+            nifty.getScreen(stageType).findElementByName("panel_color").setVisible(true);
+        }
+        return textureOrSubMeshSelected;
+    }
+    
+    public String getTextureOrSubMesh(){
+        return textureOrSubMeshSelected;
+    }
+    public String getSubStage(){
+        return subStageSelected;
     }
     
     public String getSubStage(String selection,int page, String h){
         int j = Integer.valueOf(h);
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
-        return idSubStages.get(j);
+        subStageSelected = idSubStages.get(j);
+        return subStageSelected;
     }
     
     //uncheck all textures
