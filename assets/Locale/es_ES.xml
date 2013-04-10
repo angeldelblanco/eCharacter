@@ -16,10 +16,12 @@
         <string id="idPreview">Ver</string>
 	<string id="idPopup1">¿Quiere retocar el modelo o continuar con la exportación?</string>
 	<string id="idPopup2">¿Quiere generar un nuevo modelo?</string>
-	<string id="idPopupButton1">Retocar modelo</string>
+	<string id="idPopupButton1">Retocar</string>
 	<string id="idPopupButton2">Exportar</string>
 	<string id="idPopupButton3">Si</string>
 	<string id="idPopupButton4">No</string>
+        <string id="idBase">Base</string>
+        <string id="idDetails">Detalles</string>
 	<string id="idRed">Rojo</string>
 	<string id="idGreen">Verde</string>
 	<string id="idBlue">Azul</string>

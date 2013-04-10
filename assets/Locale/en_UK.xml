@@ -20,6 +20,8 @@
 	<string id="idPopupButton2">Export</string>
 	<string id="idPopupButton3">Yes</string>
 	<string id="idPopupButton4">No</string>
+        <string id="idBase">Base</string>
+        <string id="idDetails">Details</string>
 	<string id="idRed">Red</string>
 	<string id="idGreen">Green</string>
 	<string id="idBlue">Blue</string>
