@@ -46,6 +46,7 @@ import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.ButtonClickedEvent;
+import de.lessvoid.nifty.controls.CheckBox;
 import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
@@ -460,7 +461,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     /******************************PopUpColorControler*****************************/
     
-    public void showWindowChangeColor() throws InterruptedException{
+    public void showWindowChangeColor(String h) throws InterruptedException{
         red = 0; 
         green = 0; 
         blue = 0; 
@@ -472,14 +473,18 @@ public class Gui extends AbstractAppState implements ScreenController {
             subStageSelected = singlesb.getSubStage();
         }
         if(control.getStagesTypes(selection) == StageType.multiStage){
-            textureOrSubMeshSelected = multisb.getTextureOrSubMesh();
-            subStageSelected = multisb.getSubStage();
+            textureOrSubMeshSelected = multisb.getTextureOrSubMesh(h);
+            subStageSelected = multisb.getSubStage(h);
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.doubleTexture)){
             popupColor = nifty.createPopup("popupColor2");
+            popupColor.findElementByName("baseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBase"));
+            popupColor.findElementByName("checkBasePanel").layoutElements();
+            popupColor.findElementByName("shadowText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDetails"));
+            popupColor.findElementByName("checkShadowPanel").layoutElements();
             popupColor.findElementByName("red2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
             popupColor.findElementByName("red2Panel").layoutElements();
             popupColor.findElementByName("green2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
@@ -563,8 +568,25 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        control.changeColorBaseShadow(subStageSelected,textureOrSubMeshSelected,red / 255.f, green / 255.f, blue / 255.f);
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.baseShadow)){
+            control.changeColorBaseShadow(subStageSelected,textureOrSubMeshSelected,red / 255.f, green / 255.f, blue / 255.f);
+        }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.doubleTexture)){
+            boolean base = popupColor.findNiftyControl("baseCheckBox", CheckBox.class).isChecked();
+            boolean shadow = popupColor.findNiftyControl("shadowCheckBox", CheckBox.class).isChecked();
+            if(base&&shadow){
+                control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,red,green,blue,red2,green2,blue2);
+            }
+            else{
+                if(base){
+                    control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,red,green,blue,-1,-1,-1);
+                }
+                else{
+                    if(shadow){
+                        control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,-1,-1,-1,red2,green2,blue2);
+                    }
+                }
+            }
         }
         nifty.closePopup(popupColor.getId()); 
     }

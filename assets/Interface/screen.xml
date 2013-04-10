@@ -330,7 +330,7 @@
 				</panel>
 				<panel id="panel_color" height="8%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
 					<text id="colorText" text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-					<interact onClick="showWindowChangeColor()"/>
+					<interact onClick="showWindowChangeColor(0)"/>
 				</panel>
 			</panel>
 			<!-- Change screen Panel -->
@@ -397,7 +397,7 @@
 						</panel>
 						<panel id="panel_color0" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
 							<text id="colorText0" text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-							<interact onClick="showWindowChangeColor()"/>
+							<interact onClick="showWindowChangeColor(0)"/>
 						</panel>
 					</panel>
 					<panel height="2%" width="100%">
@@ -435,7 +435,7 @@
 						</panel>
 						<panel id="panel_color1" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
 							<text id="colorText1" text="Color" font="Interface/Fonts/Default.fnt" width="100%" height="100%" />
-							<interact onClick="showWindowChangeColor()"/>
+							<interact onClick="showWindowChangeColor(1)"/>
 						</panel>
 					</panel>
 					<panel height="2%" width="100%">
@@ -605,8 +605,18 @@
 	</popup>
 	
 	<popup id="popupColor2" childLayout="center" controller="gui.Gui" backgroundColor="#FFFA">
-		<panel id="popupPanel" height="25%" width="50%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
-			<panel id="selectionPanel" height="80%" width="100%" childLayout="horizontal" valign="center">
+		<panel id="popupPanel" height="30%" width="50%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
+			<panel id="checkPanel" height="15%" width="100%" childLayout="horizontal" valign="center">
+				<panel id="checkBasePanel" height="90%" width="50%" childLayout="horizontal" valign="center">
+					<text id="baseText" text="Base" font="Interface/Fonts/Default.fnt" valign="center" width="70%" align="center" wrap="true"/>
+					<control id="baseCheckBox" name="checkbox" valign="center"/>
+				</panel>
+				<panel id="checkShadowPanel" height="90%" width="50%" childLayout="horizontal" valign="center">
+					<text id="shadowText" text="Shadow" font="Interface/Fonts/Default.fnt" valign="center" width="70%" align="center" wrap="true"/>
+					<control id="shadowCheckBox" name="checkbox" valign="center"/>
+				</panel>
+			</panel>
+			<panel id="selectionPanel" height="70%" width="100%" childLayout="horizontal" valign="center">
 				<panel id="changeColorPanel" height="80%" width="50%" childLayout="horizontal" valign="center">
 					<panel id="redPanel" height="90%" width="25%" childLayout="vertical" valign="center">
 						<control id="sliderR" name="verticalSlider" max="255" min="0" value="0" align="center"/>
@@ -638,7 +648,7 @@
 					<panel id="color2Panel" height="25%" width="15%" align="center" valign="center" backgroundColor="#000F"/>
 				</panel>
 			</panel>
-			<panel id="buttonPanel" height="20%" width="100%" childLayout="horizontal" valign="center">
+			<panel id="buttonPanel" height="15%" width="100%" childLayout="horizontal" valign="center">
 				<panel id="acceptPanel" height="90%" width="50%" childLayout="center" valign="center">
 					<control name="button" label="Acept" id="aceptButton" align="center" valign="center" visibleToMouse="true"> 
 						<!--<interact onClick="popUpButtonClicked(popUpButton1)" />-->

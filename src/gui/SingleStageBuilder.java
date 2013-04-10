@@ -139,6 +139,8 @@ public class SingleStageBuilder {
     //uncheck all textures
     
     private void unCheck(){
+        textureOrSubMeshSelected = "";
+        subStageSelected = "";
         for(int i = 0; i < TEXTURES_PAGE; i++){
             nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
         }
