@@ -41,18 +41,15 @@ import data.family.SubStageType;
 import data.model.BaseShadowTextureType;
 import data.model.DoubleTextureType;
 import data.model.MultiOptionTextureType;
-import data.model.MultiOptionTextureType.Texture;
+import data.model.MultiOptionTextureType.OptionTexture;
 import data.model.SimpleTextureType;
 import data.model.SubMeshType;
 import data.model.TextureType;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
-import javax.imageio.ImageIO;
 
 
 public class TexturesSubMeshesData 
@@ -124,8 +121,8 @@ public class TexturesSubMeshesData
             }
             else if(texture instanceof MultiOptionTextureType){
                 MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
-                ArrayList<Texture> listMultiOptionTexture = (ArrayList<Texture>) multiOptionTexture.getTexture();
-                Iterator<Texture> it2 = listMultiOptionTexture.iterator();
+                ArrayList<OptionTexture> listMultiOptionTexture = (ArrayList<OptionTexture>) multiOptionTexture.getOptionTexture();
+                Iterator<OptionTexture> it2 = listMultiOptionTexture.iterator();
                 boolean isDefault = false;
                 while(!isDefault && it2.hasNext())
                 {

@@ -36,7 +36,7 @@
 package control;
 
 import data.model.*;
-import data.model.MultiOptionTextureType.Texture;
+import data.model.MultiOptionTextureType.OptionTexture;
 import java.util.ArrayList;
 import java.util.Iterator;
 import types.TexturesType;
@@ -174,7 +174,7 @@ public class ModelControl
     {
         ArrayList<String> listIds = new ArrayList<String>();
         boolean found = false;
-        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getMainMeshTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
         Iterator<TextureType> it = listTextures.iterator();
         while(it.hasNext())
         {
@@ -206,7 +206,7 @@ public class ModelControl
     public String getIconPathTexturesORSubMeshes(String idTexturesORSubMeshes)
     {
         //Search in textures
-        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getMainMeshTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
         Iterator<TextureType> it = listTextures.iterator();
         while(it.hasNext())
         {
@@ -234,7 +234,7 @@ public class ModelControl
     public ArrayList<TextureType> getDefaultTextures()
     {
         ArrayList<TextureType> listDefaultTextures = new ArrayList<TextureType>();
-        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getMainMeshTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
         Iterator<TextureType> it = listTextures.iterator();
         while(it.hasNext())
         {
@@ -255,12 +255,12 @@ public class ModelControl
                 }
             }
             else if(textureType instanceof MultiOptionTextureType){
-                ArrayList<Texture> listMultiTextures = (ArrayList<Texture>) ((MultiOptionTextureType)textureType).getTexture();
-                Iterator<Texture> it2 = listMultiTextures.iterator();
+                ArrayList<OptionTexture> listMultiTextures = (ArrayList<OptionTexture>) ((MultiOptionTextureType)textureType).getOptionTexture();
+                Iterator<OptionTexture> it2 = listMultiTextures.iterator();
                 boolean isDefault = false;
                 while(!isDefault && it2.hasNext())
                 {
-                    Texture texture = it2.next();
+                    OptionTexture texture = it2.next();
                     if(texture.isDefault()){
                         isDefault = true;
                         listDefaultTextures.add(textureType);
@@ -273,7 +273,7 @@ public class ModelControl
     
     public TextureType getTexture(String idTexture)
     {
-        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getMainMeshTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
         Iterator<TextureType> it = listTextures.iterator();
         while(it.hasNext())
         {
@@ -314,7 +314,7 @@ public class ModelControl
     
     public ArrayList<TextureType> getAllTextures()
     {
-        return (ArrayList<TextureType>) model.getMainMesh().getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        return (ArrayList<TextureType>) model.getMainMesh().getMainMeshTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
     }
     
     //------------------------ PHYSICAL BUILD ---------------------------------/
@@ -384,7 +384,7 @@ public class ModelControl
         {
             SubMeshType subMesh = it.next();
             if(subMesh.getIdSubMesh().equals(idSubMesh)){
-                return (ArrayList<TextureType>) subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+                //return (ArrayList<TextureType>) subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
             }
         }
         return null;

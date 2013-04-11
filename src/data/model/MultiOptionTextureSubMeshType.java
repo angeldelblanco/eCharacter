@@ -22,14 +22,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * <p>Clase Java para multiOptionTextureType complex type.
+ * <p>Clase Java para multiOptionTextureSubMeshType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="multiOptionTextureType">
+ * &lt;complexType name="multiOptionTextureSubMeshType">
  *   &lt;complexContent>
- *     &lt;extension base="{}textureType">
+ *     &lt;extension base="{}textureSubMeshType">
  *       &lt;sequence>
  *         &lt;element name="optionTexture" maxOccurs="unbounded">
  *           &lt;complexType>
@@ -54,15 +54,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "multiOptionTextureType", propOrder = {
+@XmlType(name = "multiOptionTextureSubMeshType", propOrder = {
     "optionTexture"
 })
-public class MultiOptionTextureType
-    extends TextureType
+public class MultiOptionTextureSubMeshType
+    extends TextureSubMeshType
 {
 
     @XmlElement(required = true)
-    protected List<MultiOptionTextureType.OptionTexture> optionTexture;
+    protected List<MultiOptionTextureSubMeshType.OptionTexture> optionTexture;
 
     /**
      * Gets the value of the optionTexture property.
@@ -82,13 +82,13 @@ public class MultiOptionTextureType
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link MultiOptionTextureType.OptionTexture }
+     * {@link MultiOptionTextureSubMeshType.OptionTexture }
      * 
      * 
      */
-    public List<MultiOptionTextureType.OptionTexture> getOptionTexture() {
+    public List<MultiOptionTextureSubMeshType.OptionTexture> getOptionTexture() {
         if (optionTexture == null) {
-            optionTexture = new ArrayList<MultiOptionTextureType.OptionTexture>();
+            optionTexture = new ArrayList<MultiOptionTextureSubMeshType.OptionTexture>();
         }
         return this.optionTexture;
     }

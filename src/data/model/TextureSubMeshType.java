@@ -12,7 +12,6 @@ import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -22,18 +21,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * <p>Clase Java para textureType complex type.
+ * <p>Clase Java para textureSubMeshType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="textureType">
+ * &lt;complexType name="textureSubMeshType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="iconPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/sequence>
- *       &lt;attribute name="idPanelRef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="layer" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="idTexture" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *     &lt;/restriction>
@@ -44,21 +39,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "textureType", propOrder = {
-    "iconPath"
-})
+@XmlType(name = "textureSubMeshType")
 @XmlSeeAlso({
-    MultiOptionTextureType.class,
-    SimpleTextureType.class,
-    BaseShadowTextureType.class,
-    DoubleTextureType.class
+    MultiOptionTextureSubMeshType.class,
+    BaseShadowTextureSubMeshType.class,
+    SimpleTextureSubMeshType.class,
+    DoubleTextureSubMeshType.class
 })
-public class TextureType {
+public class TextureSubMeshType {
 
-    @XmlElement(required = true)
-    protected String iconPath;
-    @XmlAttribute(name = "idPanelRef", required = true)
-    protected String idPanelRef;
     @XmlAttribute(name = "layer", required = true)
     protected BigInteger layer;
     @XmlAttribute(name = "idTexture", required = true)
@@ -66,54 +55,6 @@ public class TextureType {
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String idTexture;
-
-    /**
-     * Obtiene el valor de la propiedad iconPath.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getIconPath() {
-        return iconPath;
-    }
-
-    /**
-     * Define el valor de la propiedad iconPath.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setIconPath(String value) {
-        this.iconPath = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad idPanelRef.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getIdPanelRef() {
-        return idPanelRef;
-    }
-
-    /**
-     * Define el valor de la propiedad idPanelRef.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setIdPanelRef(String value) {
-        this.idPanelRef = value;
-    }
 
     /**
      * Obtiene el valor de la propiedad layer.

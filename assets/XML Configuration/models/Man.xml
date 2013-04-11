@@ -6,7 +6,7 @@
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"></transformation>
 		<transformation transformationType="translate" valueX="0.0" valueY="-3.0" valueZ="0.0"></transformation>		
 		<!--Textures-->
-		<textures>
+		<mainMeshTextures>
 			<!-- skinPanel textures-->
 			<simpleTexture idPanelRef="skinsPanel" layer="0" default="true" idTexture="idPielBlanca">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPielBlancaBoy.png</iconPath>
@@ -173,7 +173,7 @@
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoLogoCamisetaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/LogoCamisetaBoy.png</path>
 			</simpleTexture>
-		</textures>		
+		</mainMeshTextures>		
 		<!--Bones-->
 		<bones>
 			<!-- Dar valores a los huesos, Los que hay son aleatorios -->
@@ -216,24 +216,44 @@
 		<path>assets/Models/eAdventure/Hair Boy/goku haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="2.10" valueY="-4.3" valueZ="0.60"/>
+		<subMeshTexture>
+			<baseShadowTextureSubMesh layer="0" idTexture="idTexturaPeloGoku">
+				<path>assets/Textures/eAdventure/Textures Boy/PeloBoy.png</path>
+			</baseShadowTextureSubMesh>
+		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoGoku.jpg</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idAfro" default="false">
 		<path>assets/Models/eAdventure/Hair Boy/afro haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="1.05" valueY="-4.30" valueZ="0.68"/>
+		<subMeshTexture>
+			<baseShadowTextureSubMesh layer="0" idTexture="idTexturaPeloAfro">
+				<path>assets/Textures/eAdventure/Textures Boy/PeloBoy.png</path>
+			</baseShadowTextureSubMesh>
+		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoAfro.jpg</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idBowl" default="false">
 		<path>assets/Models/eAdventure/Hair Boy/bowl haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="0.0" valueY="-4.29" valueZ="4.17"/>
+		<subMeshTexture>
+			<baseShadowTextureSubMesh layer="0" idTexture="idTexturaPeloBowl">
+				<path>assets/Textures/eAdventure/Textures Boy/PeloBoy.png</path>
+			</baseShadowTextureSubMesh>
+		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoTazon.jpg</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idPunta" default="false">
 		<path>assets/Models/eAdventure/Hair Boy/punta haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="2.10" valueY="-4.30" valueZ="0.60"/>
+		<subMeshTexture>
+			<baseShadowTextureSubMesh layer="0" idTexture="idTexturaPeloPunta">
+				<path>assets/Textures/eAdventure/Textures Boy/PeloBoy.png</path>
+			</baseShadowTextureSubMesh>
+		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoPunta.jpg</iconPath>
 	</subMesh>
 	<languagesPath>assets/Locale/Humans/Man</languagesPath>

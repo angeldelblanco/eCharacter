@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.10 a las 10:29:32 AM CEST 
+// Generado el: AM.04.11 a las 10:46:54 AM CEST 
 //
 
 
@@ -37,11 +37,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MeshType }
+     * Create an instance of {@link MultiOptionTextureSubMeshType }
      * 
      */
-    public MeshType createMeshType() {
-        return new MeshType();
+    public MultiOptionTextureSubMeshType createMultiOptionTextureSubMeshType() {
+        return new MultiOptionTextureSubMeshType();
     }
 
     /**
@@ -53,11 +53,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Model }
+     * Create an instance of {@link SubMeshType }
      * 
      */
-    public Model createModel() {
-        return new Model();
+    public SubMeshType createSubMeshType() {
+        return new SubMeshType();
     }
 
     /**
@@ -69,11 +69,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SubMeshType }
+     * Create an instance of {@link Model }
      * 
      */
-    public SubMeshType createSubMeshType() {
-        return new SubMeshType();
+    public Model createModel() {
+        return new Model();
     }
 
     /**
@@ -101,6 +101,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link TextureSubMeshType }
+     * 
+     */
+    public TextureSubMeshType createTextureSubMeshType() {
+        return new TextureSubMeshType();
+    }
+
+    /**
      * Create an instance of {@link SimpleTextureType }
      * 
      */
@@ -125,6 +133,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link MeshType }
+     * 
+     */
+    public MeshType createMeshType() {
+        return new MeshType();
+    }
+
+    /**
+     * Create an instance of {@link BaseShadowTextureSubMeshType }
+     * 
+     */
+    public BaseShadowTextureSubMeshType createBaseShadowTextureSubMeshType() {
+        return new BaseShadowTextureSubMeshType();
+    }
+
+    /**
+     * Create an instance of {@link SimpleTextureSubMeshType }
+     * 
+     */
+    public SimpleTextureSubMeshType createSimpleTextureSubMeshType() {
+        return new SimpleTextureSubMeshType();
+    }
+
+    /**
      * Create an instance of {@link EscalationType }
      * 
      */
@@ -138,6 +170,14 @@ public class ObjectFactory {
      */
     public DoubleTextureType createDoubleTextureType() {
         return new DoubleTextureType();
+    }
+
+    /**
+     * Create an instance of {@link DoubleTextureSubMeshType }
+     * 
+     */
+    public DoubleTextureSubMeshType createDoubleTextureSubMeshType() {
+        return new DoubleTextureSubMeshType();
     }
 
     /**
@@ -157,19 +197,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MeshType.Textures }
+     * Create an instance of {@link MultiOptionTextureSubMeshType.OptionTexture }
      * 
      */
-    public MeshType.Textures createMeshTypeTextures() {
-        return new MeshType.Textures();
+    public MultiOptionTextureSubMeshType.OptionTexture createMultiOptionTextureSubMeshTypeOptionTexture() {
+        return new MultiOptionTextureSubMeshType.OptionTexture();
     }
 
     /**
-     * Create an instance of {@link MultiOptionTextureType.Texture }
+     * Create an instance of {@link MultiOptionTextureType.OptionTexture }
      * 
      */
-    public MultiOptionTextureType.Texture createMultiOptionTextureTypeTexture() {
-        return new MultiOptionTextureType.Texture();
+    public MultiOptionTextureType.OptionTexture createMultiOptionTextureTypeOptionTexture() {
+        return new MultiOptionTextureType.OptionTexture();
+    }
+
+    /**
+     * Create an instance of {@link SubMeshType.SubMeshTexture }
+     * 
+     */
+    public SubMeshType.SubMeshTexture createSubMeshTypeSubMeshTexture() {
+        return new SubMeshType.SubMeshTexture();
+    }
+
+    /**
+     * Create an instance of {@link MainMeshType.MainMeshTextures }
+     * 
+     */
+    public MainMeshType.MainMeshTextures createMainMeshTypeMainMeshTextures() {
+        return new MainMeshType.MainMeshTextures();
     }
 
 }

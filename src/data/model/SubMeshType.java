@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.10 a las 10:29:32 AM CEST 
+// Generado el: AM.04.11 a las 10:46:54 AM CEST 
 //
 
 
@@ -29,6 +29,20 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent>
  *     &lt;extension base="{}meshType">
  *       &lt;sequence>
+ *         &lt;element name="subMeshTexture" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;choice>
+ *                   &lt;element name="baseShadowTextureSubMesh" type="{}baseShadowTextureSubMeshType"/>
+ *                   &lt;element name="simpleTextureSubMesh" type="{}simpleTextureSubMeshType"/>
+ *                   &lt;element name="doubleTextureSubMesh" type="{}doubleTextureSubMeshType"/>
+ *                   &lt;element name="multiOptionTextureSubMesh" type="{}multiOptionTextureSubMeshType"/>
+ *                 &lt;/choice>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
  *         &lt;element name="iconPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *       &lt;attribute name="idPanelRef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -44,12 +58,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "subMeshType", propOrder = {
+    "subMeshTexture",
     "iconPath"
 })
 public class SubMeshType
     extends MeshType
 {
 
+    protected SubMeshType.SubMeshTexture subMeshTexture;
     @XmlElement(required = true)
     protected String iconPath;
     @XmlAttribute(name = "idPanelRef", required = true)
@@ -63,6 +79,30 @@ public class SubMeshType
     protected String idSubMesh;
     @XmlAttribute(name = "default", required = true)
     protected boolean _default;
+
+    /**
+     * Obtiene el valor de la propiedad subMeshTexture.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SubMeshType.SubMeshTexture }
+     *     
+     */
+    public SubMeshType.SubMeshTexture getSubMeshTexture() {
+        return subMeshTexture;
+    }
+
+    /**
+     * Define el valor de la propiedad subMeshTexture.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SubMeshType.SubMeshTexture }
+     *     
+     */
+    public void setSubMeshTexture(SubMeshType.SubMeshTexture value) {
+        this.subMeshTexture = value;
+    }
 
     /**
      * Obtiene el valor de la propiedad iconPath.
@@ -174,6 +214,141 @@ public class SubMeshType
      */
     public void setDefault(boolean value) {
         this._default = value;
+    }
+
+
+    /**
+     * <p>Clase Java para anonymous complex type.
+     * 
+     * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="baseShadowTextureSubMesh" type="{}baseShadowTextureSubMeshType"/>
+     *         &lt;element name="simpleTextureSubMesh" type="{}simpleTextureSubMeshType"/>
+     *         &lt;element name="doubleTextureSubMesh" type="{}doubleTextureSubMeshType"/>
+     *         &lt;element name="multiOptionTextureSubMesh" type="{}multiOptionTextureSubMeshType"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "baseShadowTextureSubMesh",
+        "simpleTextureSubMesh",
+        "doubleTextureSubMesh",
+        "multiOptionTextureSubMesh"
+    })
+    public static class SubMeshTexture {
+
+        protected BaseShadowTextureSubMeshType baseShadowTextureSubMesh;
+        protected SimpleTextureSubMeshType simpleTextureSubMesh;
+        protected DoubleTextureSubMeshType doubleTextureSubMesh;
+        protected MultiOptionTextureSubMeshType multiOptionTextureSubMesh;
+
+        /**
+         * Obtiene el valor de la propiedad baseShadowTextureSubMesh.
+         * 
+         * @return
+         *     possible object is
+         *     {@link BaseShadowTextureSubMeshType }
+         *     
+         */
+        public BaseShadowTextureSubMeshType getBaseShadowTextureSubMesh() {
+            return baseShadowTextureSubMesh;
+        }
+
+        /**
+         * Define el valor de la propiedad baseShadowTextureSubMesh.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link BaseShadowTextureSubMeshType }
+         *     
+         */
+        public void setBaseShadowTextureSubMesh(BaseShadowTextureSubMeshType value) {
+            this.baseShadowTextureSubMesh = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad simpleTextureSubMesh.
+         * 
+         * @return
+         *     possible object is
+         *     {@link SimpleTextureSubMeshType }
+         *     
+         */
+        public SimpleTextureSubMeshType getSimpleTextureSubMesh() {
+            return simpleTextureSubMesh;
+        }
+
+        /**
+         * Define el valor de la propiedad simpleTextureSubMesh.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link SimpleTextureSubMeshType }
+         *     
+         */
+        public void setSimpleTextureSubMesh(SimpleTextureSubMeshType value) {
+            this.simpleTextureSubMesh = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad doubleTextureSubMesh.
+         * 
+         * @return
+         *     possible object is
+         *     {@link DoubleTextureSubMeshType }
+         *     
+         */
+        public DoubleTextureSubMeshType getDoubleTextureSubMesh() {
+            return doubleTextureSubMesh;
+        }
+
+        /**
+         * Define el valor de la propiedad doubleTextureSubMesh.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link DoubleTextureSubMeshType }
+         *     
+         */
+        public void setDoubleTextureSubMesh(DoubleTextureSubMeshType value) {
+            this.doubleTextureSubMesh = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad multiOptionTextureSubMesh.
+         * 
+         * @return
+         *     possible object is
+         *     {@link MultiOptionTextureSubMeshType }
+         *     
+         */
+        public MultiOptionTextureSubMeshType getMultiOptionTextureSubMesh() {
+            return multiOptionTextureSubMesh;
+        }
+
+        /**
+         * Define el valor de la propiedad multiOptionTextureSubMesh.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link MultiOptionTextureSubMeshType }
+         *     
+         */
+        public void setMultiOptionTextureSubMesh(MultiOptionTextureSubMeshType value) {
+            this.multiOptionTextureSubMesh = value;
+        }
+
     }
 
 }

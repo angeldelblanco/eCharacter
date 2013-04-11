@@ -45,17 +45,17 @@ public class SubMeshesInPanel
 {
     private boolean multiSelection;
     //HashMap<submesh, boolean = if this subMesh is selected>
-    private HashMap<SubMeshType,Boolean> subMeshes;
+    private HashMap<SubMeshType,AttrTexture> subMeshes;
     
     public SubMeshesInPanel(boolean multiSelection)
     {
         this.multiSelection = multiSelection;
-        subMeshes = new HashMap<SubMeshType,Boolean>();
+        subMeshes = new HashMap<SubMeshType,AttrTexture>();
     }
     
     public void addSubMesh(SubMeshType subMesh,boolean isCheck)
     {
-        subMeshes.put(subMesh, isCheck);
+        subMeshes.put(subMesh, new AttrTexture(isCheck));
     }
     
     /*
@@ -69,7 +69,7 @@ public class SubMeshesInPanel
         while(it.hasNext())
         {
             SubMeshType subMesh = it.next();
-            if (subMeshes.get(subMesh)){
+            if (subMeshes.get(subMesh).isSelected()){
                listCheckedSubMeshes.add(subMesh);
            } 
         }
@@ -83,7 +83,7 @@ public class SubMeshesInPanel
         while(it.hasNext()){
             SubMeshType subMesh = it.next();
             if (subMesh.getIdSubMesh().equals(idSubMesh)){
-                checked = subMeshes.get(subMesh);
+                checked = subMeshes.get(subMesh).isSelected();
             }
         }
         return checked;
@@ -103,15 +103,21 @@ public class SubMeshesInPanel
             SubMeshType subMesh = it.next();
             if(subMesh.getIdSubMesh().equals(idSubMesh)){
                 if (multiSelection){
-                    boolean b = subMeshes.get(subMesh);
-                    subMeshes.put(subMesh,!b);
+                    /*boolean b = subMeshes.get(subMesh);
+                    subMeshes.put(subMesh,!b);*/
+                    AttrTexture attrTexture = subMeshes.get(subMesh);
+                    attrTexture.setSelected(!attrTexture.isSelected());
                 }
                 else {
-                    subMeshes.put(subMesh,true);
+                    //subMeshes.put(subMesh,true);
+                    AttrTexture attrTexture = subMeshes.get(subMesh);
+                    attrTexture.setSelected(true);
                 }
             }
             else if(!multiSelection){
-                subMeshes.put(subMesh,false);
+                //subMeshes.put(subMesh,false);
+                AttrTexture attrTexture = subMeshes.get(subMesh);
+                attrTexture.setSelected(false);
             }
         }
     }

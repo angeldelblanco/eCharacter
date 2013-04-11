@@ -10,24 +10,23 @@ package data.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para simpleTextureType complex type.
+ * <p>Clase Java para baseShadowTextureSubMeshType complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="simpleTextureType">
+ * &lt;complexType name="baseShadowTextureSubMeshType">
  *   &lt;complexContent>
- *     &lt;extension base="{}textureType">
+ *     &lt;extension base="{}textureSubMeshType">
  *       &lt;sequence>
  *         &lt;element name="path" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="shadowPath" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
- *       &lt;attribute name="default" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -36,17 +35,17 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simpleTextureType", propOrder = {
-    "path"
+@XmlType(name = "baseShadowTextureSubMeshType", propOrder = {
+    "path",
+    "shadowPath"
 })
-public class SimpleTextureType
-    extends TextureType
+public class BaseShadowTextureSubMeshType
+    extends TextureSubMeshType
 {
 
     @XmlElement(required = true)
     protected String path;
-    @XmlAttribute(name = "default", required = true)
-    protected boolean _default;
+    protected String shadowPath;
 
     /**
      * Obtiene el valor de la propiedad path.
@@ -73,19 +72,27 @@ public class SimpleTextureType
     }
 
     /**
-     * Obtiene el valor de la propiedad default.
+     * Obtiene el valor de la propiedad shadowPath.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public boolean isDefault() {
-        return _default;
+    public String getShadowPath() {
+        return shadowPath;
     }
 
     /**
-     * Define el valor de la propiedad default.
+     * Define el valor de la propiedad shadowPath.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setDefault(boolean value) {
-        this._default = value;
+    public void setShadowPath(String value) {
+        this.shadowPath = value;
     }
 
 }

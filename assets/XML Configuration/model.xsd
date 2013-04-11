@@ -13,22 +13,22 @@
 		<xs:sequence>
 			<xs:element name="path" type="xs:string"/>
 			<xs:element name="transformation" type="transformationType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="textures" minOccurs="0" maxOccurs="1">
-				<xs:complexType>
-					<xs:choice minOccurs="1" maxOccurs="unbounded">
-						<xs:element name="baseShadowTexture" type="baseShadowTextureType"/>
-						<xs:element name="simpleTexture" type="simpleTextureType"/>
-						<xs:element name="doubleTexture" type="doubleTextureType"/>
-						<xs:element name="multiOptionTexture" type="multiOptionTextureType"/>
-					</xs:choice>
-				</xs:complexType>
-			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="mainMeshType">
 		<xs:complexContent>
 			<xs:extension base="meshType">
 				<xs:sequence>
+					<xs:element name="mainMeshTextures" minOccurs="0" maxOccurs="1">
+						<xs:complexType>
+							<xs:choice minOccurs="1" maxOccurs="unbounded">
+								<xs:element name="baseShadowTexture" type="baseShadowTextureType"/>
+								<xs:element name="simpleTexture" type="simpleTextureType"/>
+								<xs:element name="doubleTexture" type="doubleTextureType"/>
+								<xs:element name="multiOptionTexture" type="multiOptionTextureType"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
 					<xs:element name="bones" type="bonesType"/>
 					<xs:element name="physicalBuilds" type="physicalBuildsType"/>
 				</xs:sequence>
@@ -39,6 +39,16 @@
 		<xs:complexContent>
 			<xs:extension base="meshType">
 				<xs:sequence>
+					<xs:element name="subMeshTexture" minOccurs="0" maxOccurs="1">
+						<xs:complexType>
+							<xs:choice>
+								<xs:element name="baseShadowTextureSubMesh" type="baseShadowTextureSubMeshType"/>
+								<xs:element name="simpleTextureSubMesh" type="simpleTextureSubMeshType"/>
+								<xs:element name="doubleTextureSubMesh" type="doubleTextureSubMeshType"/>
+								<xs:element name="multiOptionTextureSubMesh" type="multiOptionTextureSubMeshType"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
 					<xs:element name="iconPath" type="xs:string"/>
 				</xs:sequence>
 				<xs:attribute name="idPanelRef" type="xs:string" use="required"/>
@@ -92,12 +102,65 @@
 		<xs:complexContent>
 			<xs:extension base="textureType">
 				<xs:sequence>
-					<xs:element name="texture" minOccurs="1" maxOccurs="unbounded">
+					<xs:element name="optionTexture" minOccurs="1" maxOccurs="unbounded">
 						<xs:complexType>
 							<xs:sequence>
 								<xs:element name="path" type="xs:string"/>
 								<xs:element name="iconPath" type="xs:string"/>
 							</xs:sequence>
+							<xs:attribute name="idSubTexture" type="xs:ID" use="required"/>
+							<xs:attribute name="default" type="xs:boolean" use="required"/>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Textures SubMeshes -->
+	<xs:complexType name="textureSubMeshType">
+		<xs:attribute name="layer" type="xs:integer" use="required"/>
+		<xs:attribute name="idTexture" type="xs:ID" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="baseShadowTextureSubMeshType">
+		<xs:complexContent>
+			<xs:extension base="textureSubMeshType">
+				<xs:sequence>
+					<xs:element name="path" type="xs:string"/>
+					<xs:element name="shadowPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="simpleTextureSubMeshType">
+		<xs:complexContent>
+			<xs:extension base="textureSubMeshType">
+				<xs:sequence>
+					<xs:element name="path" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="doubleTextureSubMeshType">
+		<xs:complexContent>
+			<xs:extension base="textureSubMeshType">
+				<xs:sequence>
+					<xs:element name="basePath" type="xs:string"/>
+					<xs:element name="detailsPath" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="multiOptionTextureSubMeshType">
+		<xs:complexContent>
+			<xs:extension base="textureSubMeshType">
+				<xs:sequence>
+					<xs:element name="optionTexture" minOccurs="1" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="path" type="xs:string"/>
+								<xs:element name="iconPath" type="xs:string"/>
+							</xs:sequence>
+							<xs:attribute name="idSubTexture" type="xs:ID" use="required"/>
 							<xs:attribute name="default" type="xs:boolean" use="required"/>
 						</xs:complexType>
 					</xs:element>
