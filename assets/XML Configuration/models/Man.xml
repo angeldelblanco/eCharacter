@@ -26,10 +26,10 @@
 			</simpleTexture>			
 			<!-- eyes textures-->
 			<!-- eyesPanel textures-->
-			<simpleTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idBlancoOjos">
+			<baseShadowTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idBlancoOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoBlancoOjosBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/BlancoOjosBoy.png</path>
-			</simpleTexture>			
+			</baseShadowTexture>			
 			<doubleTexture idPanelRef="eyesPanel" layer="2" default="true" idTexture="idOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoOjosBoy.png</iconPath>
 				<basePath>assets/Textures/eAdventure/Textures Boy/IrisBoy.png</basePath>

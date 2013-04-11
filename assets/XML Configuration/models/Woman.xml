@@ -30,10 +30,10 @@
 			</simpleTexture>
 			<!-- eyes textures-->
 			<!-- eyesPanel textures-->
-			<simpleTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idBlancoOjos">
+			<baseShadowTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idBlancoOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoBlancoOjosGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/BlancoOjosGirl.png</path>
-			</simpleTexture>
+			</baseShadowTexture>
 			<doubleTexture idPanelRef="eyesPanel" layer="2" default="true" idTexture="idOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoOjosGirl.png</iconPath>
 				<basePath>assets/Textures/eAdventure/Textures Girl/IrisGirl.png</basePath>
