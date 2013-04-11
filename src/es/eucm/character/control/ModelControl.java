@@ -47,9 +47,11 @@ import es.eucm.character.data.model.BoneType;
 import es.eucm.character.data.model.DoubleTextureType;
 import es.eucm.character.data.model.TransformationType;
 import es.eucm.character.data.model.MultiOptionTextureType.OptionTexture;
+import es.eucm.character.data.model.SubMeshType.SubMeshTexture;
+import es.eucm.character.data.model.TextureSubMeshType;
 import java.util.ArrayList;
 import java.util.Iterator;
-import es.eucm.character.types.TexturesType;
+import es.eucm.character.types.TexturesMeshType;
 
 public class ModelControl 
 {
@@ -285,8 +287,7 @@ public class ModelControl
     {
         ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getMainMeshTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
         Iterator<TextureType> it = listTextures.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             TextureType texture = it.next();
             if(texture.getIdTexture().equals(idTexture)){
                 return texture;
@@ -295,31 +296,67 @@ public class ModelControl
         return null;
     }
     
-    public TexturesType getTextureType(String idTextureOrSubMesh)
+    private TexturesMeshType getTextureMainMeshType(String idTexture)
     {
-        TexturesType texturesType = null;
-        TextureType texture = getTexture(idTextureOrSubMesh);
-        if (texture != null)
-        {
-            //It's a texture.
-            if(texture instanceof BaseShadowTextureType)
-            {
-                texturesType = TexturesType.baseShadow;
-            }
-            else if(texture instanceof DoubleTextureType)
-            {
-                texturesType = TexturesType.doubleTexture;
-            }
-            else if(texture instanceof SimpleTextureType)
-            {
-                texturesType = TexturesType.simpleTexture;
-            }
-            else if(texture instanceof MultiOptionTextureType)
-            {
-                texturesType = TexturesType.multiOptionTexture;
+        TexturesMeshType texturesType = null;
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getMainMeshTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        Iterator<TextureType> it = listTextures.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            if(texture.getIdTexture().equals(idTexture)){
+                if(texture instanceof BaseShadowTextureType)
+                {
+                    texturesType = TexturesMeshType.baseShadow;
+                }
+                else if(texture instanceof DoubleTextureType)
+                {
+                    texturesType = TexturesMeshType.doubleTexture;
+                }
+                else if(texture instanceof SimpleTextureType)
+                {
+                    texturesType = TexturesMeshType.simpleTexture;
+                }
+                else if(texture instanceof MultiOptionTextureType)
+                {
+                    texturesType = TexturesMeshType.multiOptionTexture;
+                }
             }
         }
         return texturesType;
+    }
+    
+    private TexturesMeshType getTextureSubMeshtype(String idSubMesh)
+    {
+        SubMeshType subMesh = getSubMesh(idSubMesh);
+        SubMeshTexture textureSubMesh = subMesh.getSubMeshTexture();
+        if (textureSubMesh != null){
+            if(textureSubMesh.getBaseShadowTextureSubMesh() != null){
+                return TexturesMeshType.baseShadow;
+            }
+            else if(textureSubMesh.getSimpleTextureSubMesh() != null){
+                return TexturesMeshType.simpleTexture;
+            }
+            else if(textureSubMesh.getDoubleTextureSubMesh()!= null){
+                return TexturesMeshType.doubleTexture;
+            }
+            else if(textureSubMesh.getMultiOptionTextureSubMesh() != null){
+                return TexturesMeshType.multiOptionTexture;
+            }
+        }
+        return null;
+    }
+    
+    public TexturesMeshType getTextureType(String idTextureOrSubMesh)
+    {
+        TexturesMeshType texturesType = getTextureMainMeshType(idTextureOrSubMesh);
+        if (texturesType != null)
+        {
+            //It's a texture.
+            return texturesType;
+        }
+        else{
+            return getTextureSubMeshtype(idTextureOrSubMesh);
+        }
     }
     
     public ArrayList<TextureType> getAllTextures()

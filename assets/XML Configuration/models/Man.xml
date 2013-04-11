@@ -239,7 +239,7 @@
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="1.05" valueY="-4.30" valueZ="0.68"/>
 		<subMeshTexture>
-			<baseShadowTextureSubMesh layer="0" idTexture="idTexturaPeloAfro">
+			<baseShadowTextureSubMesh layer="0" idTexture="idTexturaPeloBowl">
 				<path>assets/Textures/eAdventure/Textures Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>

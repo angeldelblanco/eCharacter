@@ -46,7 +46,7 @@ import es.eucm.character.i18n.I18N;
 import java.util.ArrayList;
 import java.util.Iterator;
 import es.eucm.character.types.StageType;
-import es.eucm.character.types.TexturesType;
+import es.eucm.character.types.TexturesMeshType;
 
 
 public class MultiStageBuilder {
@@ -99,7 +99,7 @@ public class MultiStageBuilder {
                         nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
                         textureOrSubMeshSelected[h] = idsTexturesOrSubMeshes.get(i);
                         subStageSelected[h] = idSubStages.get(h+page*TEXTURES_PAGE);
-                        if(!(control.getTextureType(textureOrSubMeshSelected[h]) == TexturesType.simpleTexture)){
+                        if(!(control.getTextureType(textureOrSubMeshSelected[h]) == TexturesMeshType.simpleTexture)){
                             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(true);
                         }
                         else{
@@ -179,7 +179,7 @@ public class MultiStageBuilder {
         subStageSelected[j] = idSubStages.get(j+page*TEXTURES_PAGE);
         textureOrSubMeshSelected[j] = idsTexturesOrSubMeshes.get(multiPage[j]*TEXTURES_PAGE+Integer.valueOf(i));
         nifty.getScreen(stageType).findElementByName("t"+h+i).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-        if(!(control.getTextureType(textureOrSubMeshSelected[j]) == TexturesType.simpleTexture)){
+        if(!(control.getTextureType(textureOrSubMeshSelected[j]) == TexturesMeshType.simpleTexture)){
             nifty.getScreen(stageType).findElementByName("panel_color"+h).setVisible(true);
         }
         else{
@@ -218,7 +218,7 @@ public class MultiStageBuilder {
                 if (control.isChecked(subStageSelected[j], idsTexturesOrSubMeshes.get(i))){
                      textureOrSubMeshSelected[j] = idsTexturesOrSubMeshes.get(i);
                      nifty.getScreen(stageType).findElementByName("t"+Integer.toString(j)+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-                     if(!(control.getTextureType(textureOrSubMeshSelected[j]) == TexturesType.simpleTexture)){
+                     if(!(control.getTextureType(textureOrSubMeshSelected[j]) == TexturesMeshType.simpleTexture)){
                          nifty.getScreen(stageType).findElementByName("panel_color"+j).setVisible(true);
                      }
                      else{

@@ -60,7 +60,7 @@ import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.types.StageType;
-import es.eucm.character.types.TexturesType;
+import es.eucm.character.types.TexturesMeshType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -486,10 +486,10 @@ public class Gui extends AbstractAppState implements ScreenController {
             textureOrSubMeshSelected = multisb.getTextureOrSubMesh(h);
             subStageSelected = multisb.getSubStage(h);
         }
-        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.baseShadow)){
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
         }
-        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.doubleTexture)){
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.doubleTexture)){
             popupColor = nifty.createPopup("popupColor2");
             popupColor.findElementByName("baseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBase"));
             popupColor.findElementByName("checkBasePanel").layoutElements();
@@ -502,7 +502,7 @@ public class Gui extends AbstractAppState implements ScreenController {
             popupColor.findElementByName("blue2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
             popupColor.findElementByName("blue2Panel").layoutElements();
         }
-        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.multiOptionTexture)){
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.multiOptionTexture)){
             popupColor = nifty.createPopup("");
         }
         popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
@@ -578,10 +578,10 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
-        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.baseShadow)){
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.baseShadow)){
             control.changeColorBaseShadow(subStageSelected,textureOrSubMeshSelected,red / 255.f, green / 255.f, blue / 255.f);
         }
-        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesType.doubleTexture)){
+        if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.doubleTexture)){
             boolean base = popupColor.findNiftyControl("baseCheckBox", CheckBox.class).isChecked();
             boolean shadow = popupColor.findNiftyControl("shadowCheckBox", CheckBox.class).isChecked();
             if(base&&shadow){

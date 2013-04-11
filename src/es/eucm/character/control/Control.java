@@ -47,7 +47,7 @@ import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.XMLReader;
 import es.eucm.character.types.StageType;
-import es.eucm.character.types.TexturesType;
+import es.eucm.character.types.TexturesMeshType;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
@@ -264,7 +264,7 @@ public class Control {
         mc.setDefaultValueBoneController(idBoneController, value);
     }
     
-    public TexturesType getTextureType(String idTextureOrSubMesh)
+    public TexturesMeshType getTextureType(String idTextureOrSubMesh)
     {
         return mc.getTextureType(idTextureOrSubMesh);
     }

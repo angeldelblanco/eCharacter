@@ -37,6 +37,6 @@
 package es.eucm.character.types;
 
 
-public enum TexturesType {
+public enum TexturesMeshType {
    baseShadow, simpleTexture, doubleTexture, multiOptionTexture
 }

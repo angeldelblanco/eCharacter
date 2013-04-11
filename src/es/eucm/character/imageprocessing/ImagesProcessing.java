@@ -161,13 +161,18 @@ public class ImagesProcessing
                 MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
                 ArrayList<OptionTexture> listTextures = (ArrayList<OptionTexture>) multiOptionTexture.getOptionTexture();
                 Iterator<OptionTexture> it = listTextures.iterator();
-                boolean isDefault = false;
+                boolean isDefault = false;               
+                OptionTexture optionTexture = null;               
                 while(!isDefault && it.hasNext()){
-                    OptionTexture optionTexture = it.next();
+                    optionTexture = it.next();
                     if (optionTexture.isDefault()){
                         isDefault = true;
                         bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
                     }
+                }
+                if (!isDefault){
+                    //No ha encontrado ninguna subtextura en dafault
+                    bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
                 }
                 list = new ArrayList<BufferedImage>();
                 list.add(bi);

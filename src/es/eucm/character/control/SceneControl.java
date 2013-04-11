@@ -110,10 +110,19 @@ public class SceneControl
         while(it.hasNext()){
             SubMeshType subMesh = it.next();
             Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
+            
+            if (subMesh.getSubMeshTexture()!= null){
+                Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+                subMeshMaterial.setTexture("DiffuseMap",assetManager.loadTexture("assets/Textures/eAdventure/Textures Boy/PeloBoy.png"));
+                subMeshSpatial.setMaterial(subMeshMaterial);
+            }
+            else{
+                System.out.println("ENTROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            }
             //ÑAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+            /*Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
             subMeshMaterial.setTexture("DiffuseMap",assetManager.loadTexture("assets/Textures/eAdventure/Textures Boy/PeloBoy.png"));
-            subMeshSpatial.setMaterial(subMeshMaterial);
+            subMeshSpatial.setMaterial(subMeshMaterial);*/
             //FIN DE ÑAPAAAAAAAAA
             //If texture are distinct null,the submesh has a texture´s list.
             //Else have a .material and it load automatically 
