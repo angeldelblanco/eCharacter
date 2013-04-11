@@ -36,7 +36,7 @@
 				<detailsPath>assets/Textures/eAdventure/Textures Boy/PupilaBoy.png</detailsPath>
 			</doubleTexture>
 			<!-- eyebrowsPanel textures-->
-			<baseShadowTexture idPanelRef="eyebrowsPanel" layer="2" default="false" idTexture="idCejas">
+			<baseShadowTexture idPanelRef="eyebrowsPanel" layer="2" default="true" idTexture="idCejas">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCejasBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CejasBoy.png</path>
 			</baseShadowTexture>

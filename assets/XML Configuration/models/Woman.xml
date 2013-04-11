@@ -40,7 +40,7 @@
 				<detailsPath>assets/Textures/eAdventure/Textures Girl/PupilaGirl.png</detailsPath>
 			</doubleTexture>
 			<!-- eyebrowsPanel textures-->
-			<baseShadowTexture idPanelRef="eyebrowsPanel" layer="2" default="false" idTexture="idCejas1">
+			<baseShadowTexture idPanelRef="eyebrowsPanel" layer="2" default="true" idTexture="idCejas1">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoCejas1Girl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/Cejas1Girl.png</path>
 			</baseShadowTexture>
@@ -124,11 +124,11 @@
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPendientesGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PendientesGirl.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idTiritaDcha">
+			<simpleTexture idPanelRef="accesoriesFacePanel" layer="3" default="false" idTexture="idTiritaDcha">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoTiritaDchaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/TiritaDchaGirl.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idTiritaIzq">
+			<simpleTexture idPanelRef="accesoriesFacePanel" layer="3" default="false" idTexture="idTiritaIzq">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoTiritaIzqGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/TiritaIzqGirl.png</path>
 			</simpleTexture>
@@ -136,11 +136,11 @@
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPearcingBarbillaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PearcingBarbillaGirl.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idPearcingDcho">
+			<simpleTexture idPanelRef="accesoriesFacePanel" layer="3" default="false" idTexture="idPearcingDcho">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPearcingDerechoGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PearcingDerechoGirl.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idPearcingIzq">
+			<simpleTexture idPanelRef="accesoriesFacePanel" layer="3" default="false" idTexture="idPearcingIzq">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPearcingIzquierdoGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PearcingIzquierdoGirl.png</path>
 			</simpleTexture>
