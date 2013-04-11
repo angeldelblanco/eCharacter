@@ -262,7 +262,10 @@ public class TexturesSubMeshesData
     public void changeColorDoubleTextureBase(String idPanel, String idTexture, float red, float green, float blue) {
         texturesData.get(idPanel).changeColorDoubleTextureBase(idTexture, red, green, blue);
     }
-    
+        
+    public void changeColorMultiOptionTexture(String idPanel, String idMultiOption,String idSubTexture) {
+        texturesData.get(idPanel).changeColorMultiOptionTexture(idMultiOption, idSubTexture);
+    }
     public boolean isCheckedTexture(String idPanel, String idTexture){
         return texturesData.get(idPanel).ischecked(idTexture);
     }

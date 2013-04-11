@@ -39,6 +39,7 @@ package es.eucm.character.imageprocessing;
 import es.eucm.character.data.model.BaseShadowTextureType;
 import es.eucm.character.data.model.DoubleTextureType;
 import es.eucm.character.data.model.MultiOptionTextureType;
+import es.eucm.character.data.model.MultiOptionTextureType.OptionTexture;
 import es.eucm.character.data.model.SimpleTextureType;
 import es.eucm.character.data.model.TextureType;
 import java.awt.Graphics;
@@ -53,6 +54,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import es.eucm.character.loader.ResourceHandler;
+import java.util.Iterator;
 
 public class ImagesProcessing
 {
@@ -154,8 +156,22 @@ public class ImagesProcessing
                 return list;
             }
             else if(texture instanceof MultiOptionTextureType){
+                //Mirar si funciona esta textura
+                BufferedImage bi = null;
                 MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
-                //Mirar como hacer esta textura
+                ArrayList<OptionTexture> listTextures = (ArrayList<OptionTexture>) multiOptionTexture.getOptionTexture();
+                Iterator<OptionTexture> it = listTextures.iterator();
+                boolean isDefault = false;
+                while(!isDefault && it.hasNext()){
+                    OptionTexture optionTexture = it.next();
+                    if (optionTexture.isDefault()){
+                        isDefault = true;
+                        bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
+                    }
+                }
+                list = new ArrayList<BufferedImage>();
+                list.add(bi);
+                return list;
             }
         }
         catch (IOException ex) {

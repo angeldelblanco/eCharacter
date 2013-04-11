@@ -95,29 +95,18 @@ public class SceneControl
         this.rootNode.addLight(dl);
         mainMesh = this.assetManager.loadModel(mainMeshPath); 
         
-        cont=1;
-        
-        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
+        mat = new Material(this.assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         //Aqui deberia ir cargar Texturas por Defecto
+        HashMap<Integer,ArrayList<BufferedImage>> listTextures = this.texturesSubMeshesData.getCheckedTextures();
+         cont=1;
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        //ImagesProcessing imagesProcessing = new ImagesProcessing(getImageProcessingHashMap(texturesSubMeshesData.getCheckedTextures()));
-        
-        HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
         ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);
-        
-        
-        
         BufferedImage bi = imagesProcessing.process(tempPath);
         
         AWTLoader loader = new AWTLoader();
         Image load = loader.load(bi, true);
         Texture2D texture = new Texture2D(load);
-                
-        
-        
-        //mat.setTexture("ColorMap",assetManager.loadTexture(tempPath));
         mat.setTexture("ColorMap",texture);
-        
         
         mainMesh.setMaterial(mat);
         this.rootNode.attachChild(mainMesh);
@@ -362,6 +351,28 @@ public class SceneControl
         mat.setTexture("ColorMap",texture);
         mainMesh.setMaterial(mat);
         attachAllChild(); 
+    }
+    
+    public void changeColorMultiOptionTexture(String idPanel, String idMultiOption,String idSubTexture)
+    {
+        texturesSubMeshesData.changeColorMultiOptionTexture(idPanel, idMultiOption, idSubTexture);
+        
+        HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
+        dettachAllChild();
+        cont++;
+        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
+        
+        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);  
+        BufferedImage bi = imagesProcessing.process(tempPath);
+        
+        AWTLoader loader = new AWTLoader();
+        Image load = loader.load(bi, true);
+        Texture2D texture = new Texture2D(load);
+        
+        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
+        mat.setTexture("ColorMap",texture);
+        mainMesh.setMaterial(mat);
+        attachAllChild();  
     }
     
     public void changeSubMesh(String idPanel, String idSubMesh)

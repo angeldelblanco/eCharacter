@@ -44,13 +44,13 @@ import es.eucm.character.data.model.Model;
 import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.TextureType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.XMLReader;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesType;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Control {
     
@@ -322,6 +322,10 @@ public class Control {
             sc.changeColorDoubleTextureBase(idPanelRef, idTexture, red1, green1, blue1);
             sc.changeColorDoubleTextureDetails(idPanelRef, idTexture, red2, green2, blue2);
         }
+    }
+    
+    public void changeColorMultiOptionTexture(String idPanelRef, String idMultiOption,String idSubTexture){
+        sc.changeColorMultiOptionTexture(idPanelRef, idMultiOption, idSubTexture);
     }
     
     public void screenShot(){

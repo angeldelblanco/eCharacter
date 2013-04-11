@@ -39,6 +39,7 @@ package es.eucm.character.imageprocessing;
 import es.eucm.character.data.model.BaseShadowTextureType;
 import es.eucm.character.data.model.DoubleTextureType;
 import es.eucm.character.data.model.MultiOptionTextureType;
+import es.eucm.character.data.model.MultiOptionTextureType.OptionTexture;
 import es.eucm.character.data.model.SimpleTextureType;
 import es.eucm.character.data.model.TextureType;
 import java.awt.Color;
@@ -50,6 +51,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import es.eucm.character.loader.ResourceHandler;
+import java.util.Iterator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
@@ -94,24 +96,6 @@ public class ColoringImage
         return bi;
     }
     
-    /*public static ArrayList<BufferedImage> coloringImageDoubleTextureBase(TextureType texture, Color color){
-        ArrayList<BufferedImage> listBi = null;
-        try{
-            if(texture instanceof DoubleTextureType){
-                DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
-                BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
-                BufferedImage biDetails = ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath()));
-                listBi = new ArrayList<BufferedImage>();
-                listBi.add(coloringImageDouble(biBase, color));
-                listBi.add(biDetails);
-            }
-        }
-        catch (IOException ex) {
-            java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return listBi;
-    }*/
-    
     public static BufferedImage coloringImageDoubleTextureBase(TextureType texture, Color color){
         BufferedImage bi = null;
         try{
@@ -125,6 +109,30 @@ public class ColoringImage
             java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
         }
         return bi;
+    }
+    
+    public static ArrayList<BufferedImage> coloringImageMultiOption(TextureType texture, String idSubTexture){
+        ArrayList<BufferedImage> listBi = null;
+        try{
+            if(texture instanceof MultiOptionTextureType){
+                MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
+                ArrayList<OptionTexture> listMultiOptionTexture = (ArrayList<OptionTexture>) multiOptionTexture.getOptionTexture();
+                Iterator<OptionTexture> it2 = listMultiOptionTexture.iterator();
+                while(it2.hasNext())
+                {
+                    OptionTexture optionTexture = it2.next();
+                    if(optionTexture.getIdSubTexture().equals(idSubTexture)){
+                        BufferedImage bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
+                        listBi = new ArrayList<BufferedImage>();
+                        listBi.add(bi);
+                    }
+                }
+            }
+        }
+        catch (IOException ex) {
+            java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listBi;
     }
     
     private static BufferedImage coloringImageBaseShadow(BufferedImage imageOriginal, BufferedImage shadowOriginal, Color color) throws IOException 
@@ -174,9 +182,6 @@ public class ColoringImage
                 }
             }
         }
-        //Se escribe para probar el resultado. Luego hay que quitarlo.
-        //ImageIO.write(image, "png", new File(imageColoredPath));
-        
         BufferedImage finalImage = pasteImage(image, shadow);
         //ImageIO.write(finalImage, "png", new File("assets/prueba.png"));
         return finalImage;
@@ -200,8 +205,6 @@ public class ColoringImage
                 }
             }
         }
-        //Se escribe para probar el resultado. Luego hay que quitarlo.
-        //ImageIO.write(image, "png", new File(imageColoredPath));
         return image;
     }
     
@@ -226,8 +229,6 @@ public class ColoringImage
                 g.drawImage(aux, 0, 0, null);
             }           
         }
-        //Se escribe para probar el resultado. Luego hay que quitarlo
-        //ImageIO.write(finalImage, "png", new File(destinationPath));
         return finalImage;
     }
 }

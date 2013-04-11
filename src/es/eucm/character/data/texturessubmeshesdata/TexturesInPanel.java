@@ -184,7 +184,17 @@ public class TexturesInPanel
         }
     }
     
-    //Dada una textura, devuelvo el BufferedImage asociado  
+    public void changeColorMultiOptionTexture(String idMultiOption, String idSubTexture) {
+        Set<TextureType> keySet = textures.keySet();
+        Iterator<TextureType> it = keySet.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            if (texture.getIdTexture().equals(idMultiOption)){
+                ArrayList<BufferedImage> bi = ColoringImage.coloringImageMultiOption(texture, idSubTexture);
+                textures.get(texture).setListBufferedImage(bi);
+            }
+        }
+    }
     
     //Comprobar que si es null, hay que generarlo
     public ArrayList<BufferedImage> getListBufferedImage(TextureType texture){
