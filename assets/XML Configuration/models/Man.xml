@@ -173,6 +173,17 @@
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoLogoCamisetaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/LogoCamisetaBoy.png</path>
 			</simpleTexture>
+			<multiOptionTexture idPanelRef="tshirtsPanel" layer="1" idTexture="idMultiCamisetas">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoMulti.png</iconPath>
+				<optionTexture idSubTexture="idMultiCamisaCorta" default="false">
+					<path>assets/Textures/eAdventure/Textures Boy/CamisaCortaSolidoBoy.png</path>
+					<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaCortaBoy.png</iconPath>			
+				</optionTexture>
+				<optionTexture idSubTexture="idMultiCamisaLarga" default="false">
+					<path>assets/Textures/eAdventure/Textures Boy/CamisaLargaSolidoBoy.png</path>
+					<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaLargaBoy.png</iconPath>
+				</optionTexture>
+			</multiOptionTexture>
 		</mainMeshTextures>		
 		<!--Bones-->
 		<bones>
