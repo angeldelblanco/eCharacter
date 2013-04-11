@@ -113,10 +113,10 @@
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/LabiosSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<!-- accesoriesFace textures-->
-			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes">
+			<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoDientesGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/DientesGirl.png</path>
-			</simpleTexture>
+			</baseShadowTexture>
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idLengua">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoLenguaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/LenguaGirl.png</path>

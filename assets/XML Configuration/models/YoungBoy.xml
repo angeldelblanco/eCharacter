@@ -112,10 +112,10 @@
 				<path>assets/Textures/eAdventure/Textures Boy/PerillaInferiorBoy.png</path>
 			</simpleTexture>
 			<!-- accesoriesFace textures-->
-			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes">
+			<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoDientesBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/DientesBoy.png</path>
-			</simpleTexture>
+			</baseShadowTexture>
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idLengua">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoLenguaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/LenguaBoy.png</path>
@@ -140,7 +140,7 @@
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="3" default="false" idTexture="idCinturon">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CinturonBoy.png</path>
-                        </baseShadowTexture>
+            </baseShadowTexture>
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="4" default="false" idTexture="idHebillaCinturon">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoHebillaCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/HebillaCinturonSolidoBoy.png</path>
@@ -174,7 +174,7 @@
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoLogoCamisetaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/LogoCamisetaBoy.png</path>
 			</simpleTexture>
-		</mainMeshTextures>		
+		</mainMeshTextures>				
 		<!--Bones-->
 		<bones>
 			<!-- Dar valores a los huesos, Los que hay son aleatorios -->

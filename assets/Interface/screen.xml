@@ -5,7 +5,7 @@
   <useControls filename="nifty-default-controls.xml" />
   
   <!-- First Screen-->
-  <screen id="start" controller="gui.Gui">
+  <screen id="start" controller="es.eucm.character.gui.Gui">
     <layer id="background" childLayout="center">
       <image filename="Interface/start-background.jpg"></image>
     </layer>
@@ -33,7 +33,7 @@
   </screen>
   
   <!-- Second screen(Model selection)-->
-	<screen id="modelScreen" controller="gui.Gui">
+	<screen id="modelScreen" controller="es.eucm.character.gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <image filename="Interface/second-background.png"></image>   
         </layer>
@@ -140,7 +140,7 @@
     </screen>
   
   <!-- Third screen(basic)-->
-	<screen id="scaleStage" controller="gui.Gui">
+	<screen id="scaleStage" controller="es.eucm.character.gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -247,7 +247,7 @@
     </screen>
 	
 	<!-- Fifth screen(skin)-->
-	<screen id="singleStage" controller="gui.Gui">
+	<screen id="singleStage" controller="es.eucm.character.gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -351,7 +351,7 @@
     </screen>
 	
 	<!-- Sixth screen(accesories)-->
-	<screen id="multiStage" controller="gui.Gui">
+	<screen id="multiStage" controller="es.eucm.character.gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -474,7 +474,7 @@
     </screen>
 	
 	<!-- Eigthth screen(export)-->
-	<screen id="animationStage" controller="gui.Gui">
+	<screen id="animationStage" controller="es.eucm.character.gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
             <!-- Option Panel -->    
         </layer>
@@ -549,7 +549,7 @@
     </screen>
 	
 	<!-- Nineth screen(export)-->
-	<screen id="popupScreen" controller="gui.Gui">
+	<screen id="popupScreen" controller="es.eucm.character.gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
                
         </layer>
@@ -572,7 +572,7 @@
         </layer>
     </screen>
 	
-	<popup id="popupColor" childLayout="center" controller="gui.Gui" backgroundColor="#FFFA">
+	<popup id="popupColor" childLayout="center" controller="es.eucm.character.gui.Gui" backgroundColor="#FFFA">
 		<panel id="popupPanel" height="25%" width="25%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
 			<panel id="selectionPanel" height="80%" width="100%" childLayout="horizontal" valign="center">
 				<panel id="redPanel" height="90%" width="25%" childLayout="vertical" valign="center">
@@ -604,7 +604,7 @@
 		</panel>
 	</popup>
 	
-	<popup id="popupColor2" childLayout="center" controller="gui.Gui" backgroundColor="#FFFA">
+	<popup id="popupColor2" childLayout="center" controller="es.eucm.character.gui.Gui" backgroundColor="#FFFA">
 		<panel id="popupPanel" height="30%" width="50%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
 			<panel id="checkPanel" height="15%" width="100%" childLayout="horizontal" valign="center">
 				<panel id="checkBasePanel" height="90%" width="50%" childLayout="horizontal" valign="center">
