@@ -11,8 +11,8 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/C:/Users/Alex/jMonkeyProjects/eAdventure-Character-Configurator-Tool/src/control/ModelControl.java</file>
         <file>file:/C:/Users/Alex/jMonkeyProjects/eAdventure-Character-Configurator-Tool/assets/XML%20Configuration/models/Man.xml</file>
-        <file>file:/C:/Users/Alex/jMonkeyProjects/eAdventure-Character-Configurator-Tool/src/gui/MultiStageBuilder.java</file>
+        <file>file:/C:/Users/Alex/jMonkeyProjects/eAdventure-Character-Configurator-Tool/src/es/eucm/character/control/Control.java</file>
+        <file>file:/C:/Users/Alex/jMonkeyProjects/eAdventure-Character-Configurator-Tool/src/es/eucm/character/types/TexturesType.java</file>
     </open-files>
 </project-private>
