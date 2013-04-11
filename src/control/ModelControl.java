@@ -317,6 +317,36 @@ public class ModelControl
         return (ArrayList<TextureType>) model.getMainMesh().getMainMeshTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
     }
     
+    public ArrayList<String> getIdsTexturesInMultiOption(String idMultiOption){
+        ArrayList<String> listIdTexturesMultiOption = new ArrayList<String>();
+        MultiOptionTextureType multiOptionTexture = (MultiOptionTextureType) getTexture(idMultiOption);
+        ArrayList<OptionTexture> listOptionTexture = (ArrayList<OptionTexture>) multiOptionTexture.getOptionTexture();
+        Iterator<OptionTexture> it = listOptionTexture.iterator();
+        while(it.hasNext()){
+            OptionTexture optionTexture = it.next();
+            listIdTexturesMultiOption.add(optionTexture.getIdSubTexture());
+        }
+        return listIdTexturesMultiOption;   
+    }
+    
+    public int getNumTexturesInMultiOption(String idMultiOption){
+        MultiOptionTextureType multiOptionTexture = (MultiOptionTextureType) getTexture(idMultiOption);
+        return multiOptionTexture.getOptionTexture().size();
+    }
+    
+    public String getIconPathTextureInMultiOption(String idMultiOption,String idSubTexture){
+        MultiOptionTextureType multiOptionTexture = (MultiOptionTextureType) getTexture(idMultiOption);
+        ArrayList<OptionTexture> listOptionTexture = (ArrayList<OptionTexture>) multiOptionTexture.getOptionTexture();
+        Iterator<OptionTexture> it = listOptionTexture.iterator();
+        while(it.hasNext()){
+            OptionTexture optionTexture = it.next();
+            if(optionTexture.getIdSubTexture().equals(idSubTexture)){
+                return optionTexture.getIconPath();
+            }
+        }
+        return null;
+    }
+    
     //------------------------ PHYSICAL BUILD ---------------------------------/
     
     /*

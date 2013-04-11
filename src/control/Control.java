@@ -210,19 +210,28 @@ public class Control {
         return mc.getLanguagePath();
     }
     
-    public ArrayList<String> getIdsTexturesORSubMeshes(String idPanelRef)
-    {
+    public ArrayList<String> getIdsTexturesORSubMeshes(String idPanelRef){
         return mc.getIdsTexturesORSubMeshes(idPanelRef);
     }
     
-    public int getNumTexturesORSubMeshes(String idPanelRef)
-    {
+    public int getNumTexturesORSubMeshes(String idPanelRef){
         return mc.getNumTexturesORSubMeshes(idPanelRef);
     }
     
-    public String getIconPathTexturesORSubMeshes(String idTexturesORSubMeshes)
-    {
+    public String getIconPathTexturesORSubMeshes(String idTexturesORSubMeshes){
         return mc.getIconPathTexturesORSubMeshes(idTexturesORSubMeshes);
+    }
+    
+    public ArrayList<String> getIdsTexturesInMultiOption(String idMultiOption){
+        return mc.getIdsTexturesInMultiOption(idMultiOption);
+    }
+    
+    public int getNumTexturesInMultiOption(String idMultiOption){
+        return mc.getNumTexturesInMultiOption(idMultiOption);
+    }
+    
+    public String getIconPathInMultiOption(String idMultiOption,String idSubTexture){
+        return mc.getIconPathTextureInMultiOption(idMultiOption, idSubTexture);
     }
     
     public ArrayList<String> getIdsPhysicalBuild(String idPanelRef)
