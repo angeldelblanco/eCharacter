@@ -79,25 +79,22 @@ public class ColoringImage
         return listBi;
     }
     
-    public static ArrayList<BufferedImage> coloringImageDoubleTextureDetails(TextureType texture, Color color){
-        ArrayList<BufferedImage> listBi = null;
+    public static BufferedImage coloringImageDoubleTextureDetails(TextureType texture, Color color){
+        BufferedImage bi = null;
         try{
             if(texture instanceof DoubleTextureType){
                 DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
-                BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
                 BufferedImage biDetails = ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath()));
-                listBi = new ArrayList<BufferedImage>();
-                listBi.add(biBase);
-                listBi.add(coloringImageDouble(biDetails, color));
+                bi = coloringImageDouble(biDetails, color);
             }
         }
         catch (IOException ex) {
             java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listBi;
+        return bi;
     }
     
-    public static ArrayList<BufferedImage> coloringImageDoubleTextureBase(TextureType texture, Color color){
+    /*public static ArrayList<BufferedImage> coloringImageDoubleTextureBase(TextureType texture, Color color){
         ArrayList<BufferedImage> listBi = null;
         try{
             if(texture instanceof DoubleTextureType){
@@ -113,6 +110,21 @@ public class ColoringImage
             java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listBi;
+    }*/
+    
+    public static BufferedImage coloringImageDoubleTextureBase(TextureType texture, Color color){
+        BufferedImage bi = null;
+        try{
+            if(texture instanceof DoubleTextureType){
+                DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
+                BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
+                bi = coloringImageDouble(biBase, color);
+            }
+        }
+        catch (IOException ex) {
+            java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bi;
     }
     
     private static BufferedImage coloringImageBaseShadow(BufferedImage imageOriginal, BufferedImage shadowOriginal, Color color) throws IOException 

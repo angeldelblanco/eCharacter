@@ -150,8 +150,15 @@ public class TexturesInPanel
         while(it.hasNext()){
             TextureType texture = it.next();
             if (texture.getIdTexture().equals(idTexture)){
-                ArrayList<BufferedImage> bi = ColoringImage.coloringImageDoubleTextureDetails(texture, new Color(red, green, blue));
-                textures.get(texture).setListBufferedImage(bi);
+                //Obtener el buffer image de los detalles coloreados.
+                BufferedImage bi = ColoringImage.coloringImageDoubleTextureDetails(texture, new Color(red, green, blue));
+                //Obtener el buffer image de la base que había guardada
+                BufferedImage biBaseOriginal = textures.get(texture).getListBufferedImage().get(0);
+                //Crear la nueva lista de buffer image y guardarla
+                ArrayList<BufferedImage> listBi = new ArrayList<BufferedImage>();
+                listBi.add(biBaseOriginal);
+                listBi.add(bi);
+                textures.get(texture).setListBufferedImage(listBi);
             }
         }
     }
@@ -162,8 +169,17 @@ public class TexturesInPanel
         while(it.hasNext()){
             TextureType texture = it.next();
             if (texture.getIdTexture().equals(idTexture)){
-                ArrayList<BufferedImage> bi = ColoringImage.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
-                textures.get(texture).setListBufferedImage(bi);
+                /*ArrayList<BufferedImage> bi = ColoringImage.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
+                textures.get(texture).setListBufferedImage(bi);*/
+                //Obtener el buffer image de la base coloreada.
+                BufferedImage bi = ColoringImage.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
+                //Obtener el buffer image de los detalles que había guardado
+                BufferedImage biDetailsOriginal = textures.get(texture).getListBufferedImage().get(1);
+                //Crear la nueva lista de buffer image y guardarla
+                ArrayList<BufferedImage> listBi = new ArrayList<BufferedImage>();
+                listBi.add(bi);
+                listBi.add(biDetailsOriginal);
+                textures.get(texture).setListBufferedImage(listBi);
             }
         }
     }

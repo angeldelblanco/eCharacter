@@ -311,7 +311,7 @@ public class Control {
         else{
             //Cambiar base y detalles
             sc.changeColorDoubleTextureBase(idPanelRef, idTexture, red1, green1, blue1);
-            sc.changeColorDoubleTextureDetails(idPanelRef, idTexture, red1, green1, blue1);
+            sc.changeColorDoubleTextureDetails(idPanelRef, idTexture, red2, green2, blue2);
         }
     }
     
