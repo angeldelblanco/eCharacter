@@ -134,13 +134,13 @@ public class SceneControl
        
         
         //Borrar la imagen
-        Path file = Paths.get(tempPath);
+        /*Path file = Paths.get(tempPath);
         try {
             Files.delete(file);
         } 
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
-        }      
+        } */     
     }
     
     private void setActivatedSubMeshes()
@@ -390,13 +390,13 @@ public class SceneControl
         attachAllChild();
          
         //Borrar la imagen
-        Path file = Paths.get(tempPath);
+        /*Path file = Paths.get(tempPath);
         try {
             Files.delete(file);
         } 
         catch (IOException ex) {
             System.out.println("Error al borrar el fichero");
-        } 
+        } */
     }
     
     public void deleteModel(){

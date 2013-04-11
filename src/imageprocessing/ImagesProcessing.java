@@ -107,14 +107,14 @@ public class ImagesProcessing
         
         g.drawImage(finalImage, 0, 0, width, height, width, 0, 0, height, null);
 
-        try 
+        /*try 
         {
             ImageIO.write(finalImage, "png", new File(destinationPath));
         } 
         catch (IOException e) 
         {
             System.out.println("Failed saving image");
-        } 
+        } */
         return finalImage;
     }
     
