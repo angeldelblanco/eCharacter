@@ -39,7 +39,6 @@ package es.eucm.character.gui;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import es.eucm.character.control.Control;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.PanelBuilder;
@@ -57,13 +56,14 @@ import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import de.lessvoid.nifty.tools.Color;
+import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesType;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Gui extends AbstractAppState implements ScreenController {
     

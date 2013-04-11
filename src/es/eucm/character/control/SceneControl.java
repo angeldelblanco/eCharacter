@@ -57,10 +57,6 @@ import es.eucm.character.data.model.TransformationType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.imageprocessing.ImagesProcessing;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -81,8 +77,7 @@ public class SceneControl
     private float angRotate;
     
     public SceneControl(Node rootNode, AssetManager assetManager, String mainMeshPath, 
-            ArrayList<TransformationType> listTransformationMainMesh, TexturesSubMeshesData texturesSubMeshesData)
-    {
+            ArrayList<TransformationType> listTransformationMainMesh, TexturesSubMeshesData texturesSubMeshesData){
         this.rootNode = rootNode;
         this.assetManager = assetManager;
         this.texturesSubMeshesData = texturesSubMeshesData;
@@ -95,20 +90,7 @@ public class SceneControl
         this.rootNode.addLight(dl);
         mainMesh = this.assetManager.loadModel(mainMeshPath); 
         
-        mat = new Material(this.assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
-        //Aqui deberia ir cargar Texturas por Defecto
-        HashMap<Integer,ArrayList<BufferedImage>> listTextures = this.texturesSubMeshesData.getCheckedTextures();
-         cont=1;
-        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);
-        BufferedImage bi = imagesProcessing.process(tempPath);
-        
-        AWTLoader loader = new AWTLoader();
-        Image load = loader.load(bi, true);
-        Texture2D texture = new Texture2D(load);
-        mat.setTexture("ColorMap",texture);
-        
-        mainMesh.setMaterial(mat);
+        loadTexture();
         this.rootNode.attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
         setActivatedSubMeshes();
@@ -119,25 +101,13 @@ public class SceneControl
         if(animList.size() > 0){
             this.channel.setAnim(animList.iterator().next());
             this.channel.setLoopMode(LoopMode.Loop); 
-        }
-       
-        
-        //Borrar la imagen
-        /*Path file = Paths.get(tempPath);
-        try {
-            Files.delete(file);
-        } 
-        catch (IOException ex) {
-            System.out.println("Error al borrar el fichero");
-        } */     
+        }   
     }
     
-    private void setActivatedSubMeshes()
-    {
+    private void setActivatedSubMeshes(){
         ArrayList<SubMeshType> listSubMeshes = texturesSubMeshesData.getCheckedSubMeshes();
         Iterator<SubMeshType> it = listSubMeshes.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             SubMeshType subMesh = it.next();
             Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
             //ÑAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -155,11 +125,9 @@ public class SceneControl
         }
     }
     
-    private void setPositionModel(ArrayList<TransformationType> listTransformations)
-    {
+    private void setPositionModel(ArrayList<TransformationType> listTransformations){
         Iterator<TransformationType> it = listTransformations.iterator();
-        while (it.hasNext())
-        {
+        while (it.hasNext()){
             TransformationType t = it.next();
             if(t.getTransformationType().equals("scale")){
                 vectorScaleBase = vectorScaleBase.multLocal(t.getValueX(),t.getValueY(),t.getValueZ());                
@@ -168,8 +136,7 @@ public class SceneControl
         }
     }
     
-    private void applyTransformation(TransformationType t,Spatial s)
-    {
+    private void applyTransformation(TransformationType t,Spatial s){
         String transformation = t.getTransformationType();
         if(transformation.equals("scale")){
             s.scale(t.getValueX(),t.getValueY(),t.getValueZ());
@@ -185,8 +152,7 @@ public class SceneControl
         }  
     }    
     
-     private void applySubMesh(String bone,Spatial subMesh,ArrayList<TransformationType> listTransformations)
-    {
+    private void applySubMesh(String bone,Spatial subMesh,ArrayList<TransformationType> listTransformations){
             SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
             if(subMeshes.get(bone) != null){
                 skeletonControl.getAttachmentsNode(bone).detachAllChildren();
@@ -194,51 +160,43 @@ public class SceneControl
             subMeshes.put(bone,subMesh);            
             skeletonControl.getAttachmentsNode(bone).attachChild(subMesh);           
             Iterator<TransformationType> it = listTransformations.iterator();
-            while (it.hasNext())
-            {
+            while (it.hasNext()){
                 TransformationType t = it.next();
                 applyTransformation(t,subMesh);
             }
     }
      
-    private void dettachAllChild()
-    {
+    private void dettachAllChild(){
         SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
         Set<String> bones = subMeshes.keySet();
         Iterator<String> it = bones.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             String bone = it.next();
             Spatial subMesh = subMeshes.get(bone); 
             skeletonControl.getAttachmentsNode(bone).detachChild(subMesh);
         }
     }
     
-    private void attachAllChild()
-    {
+    private void attachAllChild(){
         SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
         Set<String> bones = subMeshes.keySet();
         Iterator<String> it = bones.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             String bone = it.next();
             Spatial subMesh = subMeshes.get(bone); 
             skeletonControl.getAttachmentsNode(bone).attachChild(subMesh);
         } 
     }
     
-    public void applyEscalations(ArrayList<EscalationType> listEscalations)
-    {
+    public void applyEscalations(ArrayList<EscalationType> listEscalations){
         Iterator<EscalationType> it = listEscalations.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             EscalationType escalation = it.next();
             applyEscalation(mainMesh,escalation);
         }
     }
     
-    private void applyEscalation(Spatial mesh,EscalationType escalation)
-    {
+    private void applyEscalation(Spatial mesh,EscalationType escalation){
         Vector3f scale = new Vector3f(escalation.getValueX(),escalation.getValueY(),escalation.getValueZ());
         String boneName = escalation.getBoneName();
         if(boneName.equals("ALL")){
@@ -252,32 +210,25 @@ public class SceneControl
         }
     }
     
-    public void scaleBone(ArrayList<String> bonesNames,float inc)
-    {
-        
+    public void scaleBone(ArrayList<String> bonesNames,float inc){
         Iterator<String> it = bonesNames.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             String idBone = it.next();
             Bone b = control.getSkeleton().getBone(idBone);
             b.setUserControl(true);
             b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,new Vector3f(inc,inc,inc));
         }
-        
     }
     
-    public Set<String> getAnimationsName()
-    {
+    public Set<String> getAnimationsName(){
         return (Set<String>) control.getAnimationNames();
     }
     
-    public int getNumAnimations()
-    {
+    public int getNumAnimations(){
         return control.getAnimationNames().size();
     }
     
-    public void setAnimation(String animationName)
-    {
+    public void setAnimation(String animationName){
         Set<String> animList = (Set<String>) this.control.getAnimationNames();
         Iterator<String> it = animList.iterator();
         while(it.hasNext()){
@@ -289,76 +240,33 @@ public class SceneControl
         }
     }
     
-    public void changeColorBaseShadow(String idPanelRef, String idTexture, float red,float green,float blue)
-    {
+    public void changeColorBaseShadow(String idPanelRef, String idTexture, float red,float green,float blue){
         texturesSubMeshesData.changeColorBaseShadow(idPanelRef, idTexture, red, green, blue);
-        
-        HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
-        dettachAllChild();
-        cont++;
-        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        
-        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);  
-        BufferedImage bi = imagesProcessing.process(tempPath);
-        
-        AWTLoader loader = new AWTLoader();
-        Image load = loader.load(bi, true);
-        Texture2D texture = new Texture2D(load);
-        
-        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
-        mat.setTexture("ColorMap",texture);
-        mainMesh.setMaterial(mat);
+        loadTexture();
         attachAllChild();  
     }
     
     public void changeColorDoubleTextureDetails(String idPanel, String idTexture, float red, float green, float blue) {
         texturesSubMeshesData.changeColorDoubleTextureDetails(idPanel, idTexture, red, green, blue);
-        
-        HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
         dettachAllChild();
-        cont++;
-        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        
-        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);  
-        BufferedImage bi = imagesProcessing.process(tempPath);
-        
-        AWTLoader loader = new AWTLoader();
-        Image load = loader.load(bi, true);
-        Texture2D texture = new Texture2D(load);
-        
-        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
-        mat.setTexture("ColorMap",texture);
-        mainMesh.setMaterial(mat);
+        loadTexture();
         attachAllChild();  
     }
     
     public void changeColorDoubleTextureBase(String idPanel, String idTexture, float red, float green, float blue) {
         texturesSubMeshesData.changeColorDoubleTextureBase(idPanel, idTexture, red, green, blue);
-        
-        HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
-        dettachAllChild();
-        cont++;
-        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        
-        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);  
-        BufferedImage bi = imagesProcessing.process(tempPath);
-        
-        AWTLoader loader = new AWTLoader();
-        Image load = loader.load(bi, true);
-        Texture2D texture = new Texture2D(load);
-        
-        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
-        mat.setTexture("ColorMap",texture);
-        mainMesh.setMaterial(mat);
+        loadTexture();
         attachAllChild(); 
     }
     
-    public void changeColorMultiOptionTexture(String idPanel, String idMultiOption,String idSubTexture)
-    {
+    public void changeColorMultiOptionTexture(String idPanel, String idMultiOption,String idSubTexture){
         texturesSubMeshesData.changeColorMultiOptionTexture(idPanel, idMultiOption, idSubTexture);
-        
+        loadTexture();
+        attachAllChild();  
+    }
+    
+    private void loadTexture(){
         HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
-        dettachAllChild();
         cont++;
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
         
@@ -372,42 +280,18 @@ public class SceneControl
         mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         mat.setTexture("ColorMap",texture);
         mainMesh.setMaterial(mat);
-        attachAllChild();  
     }
     
-    public void changeSubMesh(String idPanel, String idSubMesh)
-    {
+    public void changeSubMesh(String idPanel, String idSubMesh){
         texturesSubMeshesData.changeSubMesh(idPanel,idSubMesh);
         setActivatedSubMeshes();
     }
         
-    public void changeTexture(String idPanel, String idTexture)
-    {
+    public void changeTexture(String idPanel, String idTexture){
         texturesSubMeshesData.changeTexture(idPanel, idTexture);
-        HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
         dettachAllChild();
-        cont++;
-        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);    
-        BufferedImage bi = imagesProcessing.process(tempPath);
-        
-        AWTLoader loader = new AWTLoader();
-        Image load = loader.load(bi, true);
-        Texture2D texture = new Texture2D(load);
-        
-        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
-        mat.setTexture("ColorMap",texture);
-        mainMesh.setMaterial(mat);
+        loadTexture();
         attachAllChild();
-         
-        //Borrar la imagen
-        /*Path file = Paths.get(tempPath);
-        try {
-            Files.delete(file);
-        } 
-        catch (IOException ex) {
-            System.out.println("Error al borrar el fichero");
-        } */
     }
     
     public void deleteModel(){
@@ -435,8 +319,7 @@ public class SceneControl
     
     
     
-    public void screenShot()
-    {
+    public void screenShot(){
         //POR HACER
     }
     
