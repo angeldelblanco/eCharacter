@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../model.xsd">
+	<mainMesh>
+		<path>assets/Models/Medieval/Male/CubixStudioMaleNPC.mesh.xml</path>		
+		<!--Transformations-->
+		<transformation transformationType="rotate" valueX="0.0" valueY="-90" valueZ="0.0"></transformation>
+		<!--Textures-->
+		<mainMeshTextures>
+			<!-- skinPanel textures-->
+			<simpleTexture idPanelRef="skinsPanel" layer="0" default="true" idTexture="idPielCasual">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPielBlancaBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/SkinMaleCasual.png</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="skinsPanel" layer="0" default="false" idTexture="idPielMedieval">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPielNegraBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/SkinMaleMedieval.png</path>
+			</simpleTexture>
+			<!-- hairs textures -->
+			<simpleTexture idPanelRef="hairsPanel" layer="0" idTexture="idPeloCasual" default="true">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPielNegraBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/HairMaleCasual.png</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="hairsPanel" layer="0" idTexture="idPeloMedieval" default="false">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPielBlancaBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/HairMaleMedieval.png</path>
+			</simpleTexture>
+			<!-- eyes textures-->
+			<simpleTexture idPanelRef="eyesPanel" layer="1" idTexture="idOjosCasual" default="true">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoOjosBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/EyesMaleCasual.png</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="eyesPanel" layer="1" idTexture="idOjosMedieval" default="false">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoOjosBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/EyesMaleMedieval.png</path>
+			</simpleTexture>
+			<!-- tshirtsPanel textures-->	
+			<simpleTexture idPanelRef="shirtsPanel" layer="0" idTexture="idCamisetaCasual" default="true"	>
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaCortaBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/ShirtSolidMaleCasual.png</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="shirtsPanel" layer="0" idTexture="idCamisetaMedieval" default="false"	>
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaLargaBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/ClothSolidMaleMedieval.png</path>
+			</simpleTexture>
+			<!-- trousersPanel textures-->
+			<simpleTexture idPanelRef="trousersPanel" layer="0" idTexture="idPantalonCasual" default="true"	>
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPantalonCortoBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/TrousersSolidMaleCasual.png</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="trousersPanel" layer="0" idTexture="idPantalonMedieval" default="false"	>
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPantalonLargoBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/TrousersMaleMedieval.png</path>
+			</simpleTexture>		
+			<!-- shoesPanel textures-->
+			<simpleTexture idPanelRef="shoesPanel" layer="0" idTexture="idZapatosCasual" default="true">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoZapatosBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/ShoesSolidMaleCasual.png</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="shoesPanel" layer="0" idTexture="idZapatosMedieval" default="false">
+				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoZapatosBoy.png</iconPath>
+				<path>assets/Textures/Medieval/Male/ShoesMaleMedieval.png</path>
+			</simpleTexture>
+			<!-- accesoriesPanel textures-->
+			<simpleTexture idPanelRef="accesoriesPanel" layer="1" idTexture="idGuantes" default="false">
+				<iconPath>assets/Textures/Medieval/Male/GlovesMaleMedieval.png</iconPath>
+				<path>assets/Textures/Medieval/Male/GlovesMaleMedieval.png</path>
+			</simpleTexture>
+		</mainMeshTextures>		
+		<!--Bones-->
+		<bones>
+			<!-- Dar valores a los huesos, Los que hay son aleatorios -->
+			<bone idControllerRef="head" defaultValue="0" minValue="-50" maxValue="100" boneName="Cabeza"/>
+			<bone idControllerRef="torso" defaultValue="0" minValue="-50" maxValue="100" boneName="Torax"/>
+			<bone idControllerRef="leftArm" defaultValue="0" minValue="-50" maxValue="100" boneName="ClaviculaIz"/>
+			<bone idControllerRef="rightArm" defaultValue="0" minValue="-50" maxValue="100" boneName="ClaviculaDer"/>
+			<bone idControllerRef="leftHand" defaultValue="0" minValue="-50" maxValue="100" boneName="MuniecaIz"/>
+			<bone idControllerRef="rightHand" defaultValue="0" minValue="-50" maxValue="100" boneName="MuniecaDer"/>
+			<bone idControllerRef="leftLeg" defaultValue="0" minValue="-50" maxValue="100" boneName="FemurIz"/>
+			<bone idControllerRef="rightLeg" defaultValue="0" minValue="-50" maxValue="100" boneName="FemurDer"/>
+			<bone idControllerRef="leftFoot" defaultValue="0" minValue="-50" maxValue="100" boneName="TobilloIz"/>
+			<bone idControllerRef="rightFoot" defaultValue="0" minValue="-50" maxValue="100" boneName="TobilloDer"/>
+		</bones>		
+		<!--Physical Builds-->
+		<physicalBuilds>
+			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
+				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+                                <escalation boneName="Cabeza" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+			</physicalBuild>
+			<physicalBuild label="idPhysicalBuildLabel2" idPanelRef="ScalePanel" idPhysicalBuild="idHeavy">
+				<escalation boneName="ALL" valueX="1.50" valueY="1.0" valueZ="1.0"/>
+				<escalation boneName="Cabeza" valueX="0.66" valueY="1.0" valueZ="1.0"/>
+			</physicalBuild>
+			<physicalBuild label="idPhysicalBuildLabel3" idPanelRef="ScalePanel" idPhysicalBuild="idThin">
+				<escalation boneName="ALL" valueX="0.65" valueY="1.0" valueZ="1.0"/>
+				<escalation boneName="Cabeza" valueX="1.54" valueY="1.0" valueZ="1.0"/>
+			</physicalBuild>
+			<physicalBuild label="idPhysicalBuildLabel4" idPanelRef="ScalePanel" idPhysicalBuild="idTall">
+				<escalation boneName="ALL" valueX="1.1" valueY="1.25" valueZ="1.25"/>
+				<escalation boneName="Cabeza" valueX="0.91" valueY="0.8" valueZ="0.8"/>
+			</physicalBuild>
+			<physicalBuild label="idPhysicalBuildLabel5" idPanelRef="ScalePanel" idPhysicalBuild="idSmall">
+				<escalation boneName="ALL" valueX="0.9" valueY="0.75" valueZ="0.75"/>
+				<escalation boneName="Cabeza" valueX="1.11" valueY="1.33" valueZ="1.33"/>
+			</physicalBuild>
+		</physicalBuilds>
+	</mainMesh>	
+	<languagesPath>assets/Locale/Humans 2/Man</languagesPath>
+</model>

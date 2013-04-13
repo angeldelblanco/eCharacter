@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="es_ES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../language.xsd">
+	<string id="idNameFamily2">Humanos 2</string>
+	<string id="idDescriptionFamily">Esta familia está compuesta por 2 humanos: un chico y una chica. Cada humano se puede vestir de casual o medieval.</string>
+	<string id="idAuthor">???</string>
+	<!-- Revisar los nombres de los bone controller -->
+	<string id="idMultiStageLabel1">Escalado</string>
+	<string id="idBoneControler1">Cabeza</string>
+	<string id="idBoneControler2">Torso</string>
+	<string id="idBoneControler3">Brazo izquierdo</string>
+	<string id="idBoneControler4">Brazo derecho</string>
+	<string id="idBoneControler5">Mano izquierda</string>
+	<string id="idBoneControler6">Mano derecha</string>
+	<string id="idBoneControler7">Pierna izquierda</string>
+	<string id="idBoneControler8">Pierna derecha</string>
+	<string id="idBoneControler9">Pie izquierdo</string>
+	<string id="idBoneControler10">Pie derecho</string>
+	<string id="idMultiStageLabel2">Piel</string>
+	<string id="idTextureSubStageLabel1">Pieles</string>
+	<string id="idMultiStageLabel3">Pelo</string>
+	<string id="idTextureSubStageLabel2">Pelos</string>
+	<string id="idMultiStageLabel4">Ojos</string>
+	<string id="idTextureSubStageLabel3">Ojos</string>
+	<string id="idMultiStageLabel5">Ropa</string>
+	<string id="idTextureSubStageLabel4">Camisetas</string>
+	<string id="idTextureSubStageLabel5">Pantalones o faldas</string>
+	<string id="idMultiStageLabel6">Zapatos</string>
+	<string id="idTextureSubStageLabel6">Zapatos</string>
+	<string id="idMultiStageLabel7">Accesorios</string>
+	<string id="idTextureSubStageLabel7">Accesorios</string>
+	<string id="idAnimationStageLabel1">Exportación</string>
+	<string id="idQualityLabel1">Alto</string>
+	<string id="idQualityLabel2">Medio</string>
+	<string id="idQualityLabel3">Bajo</string>
+	<string id="idCameraLabel1">Frontal</string>
+	<string id="idCameraLabel2">2D</string>
+	<string id="idModelLabel1">Hombre</string>
+	<string id="idModelLabel2">Mujer</string>
+</metadata>

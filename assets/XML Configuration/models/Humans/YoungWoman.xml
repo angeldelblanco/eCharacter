@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../model.xsd">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../model.xsd">
 	<mainMesh>
 		<path>assets/Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml</path>
 		<!--Transformations-->
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"></transformation>
-		<transformation transformationType="translate" valueX="0.0" valueY="-3.0" valueZ="0.0"></transformation>		
+		<transformation transformationType="translate" valueX="0.0" valueY="-3.0" valueZ="0.0"></transformation>
+		<transformation transformationType="scale" valueX="0.65" valueY="0.65" valueZ="0.65"></transformation>			
 		<!--Textures-->
 		<mainMeshTextures>
 			<!-- skinPanel textures-->
@@ -255,5 +256,5 @@
 		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPeloChicaCorto.jpg</iconPath>		
 	</subMesh>
-	<languagesPath>assets/Locale/Humans/Woman</languagesPath>
+	<languagesPath>assets/Locale/Humans/Young Woman</languagesPath>
 </model>

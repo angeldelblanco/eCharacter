@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../model.xsd">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../model.xsd">
 	<mainMesh>
 		<path>assets/Models/eAdventure/Animation Boy/polySurfaceShape4.mesh.xml</path>		
 		<!--Transformations-->
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"></transformation>
-		<transformation transformationType="translate" valueX="0.0" valueY="-3.0" valueZ="0.0"></transformation>		
+		<transformation transformationType="translate" valueX="0.0" valueY="-3.0" valueZ="0.0"></transformation>
+		<transformation transformationType="scale" valueX="0.65" valueY="0.65" valueZ="0.65"></transformation>		
 		<!--Textures-->
 		<mainMeshTextures>
 			<!-- skinPanel textures-->
@@ -173,18 +174,7 @@
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoLogoCamisetaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/LogoCamisetaBoy.png</path>
 			</simpleTexture>
-			<multiOptionTexture idPanelRef="tshirtsPanel" layer="1" idTexture="idMultiCamisetas">
-				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoMulti.png</iconPath>
-				<optionTexture idSubTexture="idMultiCamisaCorta" default="false">
-					<path>assets/Textures/eAdventure/Textures Boy/CamisaCortaSolidoBoy.png</path>
-					<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaCortaBoy.png</iconPath>			
-				</optionTexture>
-				<optionTexture idSubTexture="idMultiCamisaLarga" default="false">
-					<path>assets/Textures/eAdventure/Textures Boy/CamisaLargaSolidoBoy.png</path>
-					<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaLargaBoy.png</iconPath>
-				</optionTexture>
-			</multiOptionTexture>
-		</mainMeshTextures>		
+		</mainMeshTextures>					
 		<!--Bones-->
 		<bones>
 			<!-- Dar valores a los huesos, Los que hay son aleatorios -->
@@ -239,7 +229,7 @@
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="1.05" valueY="-4.30" valueZ="0.68"/>
 		<subMeshTexture>
-			<baseShadowTextureSubMesh layer="0" idTexture="idTexturaPeloBowl">
+			<baseShadowTextureSubMesh layer="0" idTexture="idTexturaPeloAfro">
 				<path>assets/Textures/eAdventure/Textures Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
@@ -267,5 +257,5 @@
 		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoPunta.jpg</iconPath>
 	</subMesh>
-	<languagesPath>assets/Locale/Humans/Man</languagesPath>
+	<languagesPath>assets/Locale/Humans/Young Boy</languagesPath>
 </model>
