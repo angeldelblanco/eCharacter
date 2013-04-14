@@ -74,13 +74,12 @@ public class Gui extends AbstractAppState implements ScreenController {
     private Application app;
     private Screen screen;
     private Configuration config;
-    private String selection, familySelection, modelSelection,subStageSelected, textureOrSubMeshSelected;
+    private String selection, modelSelection,subStageSelected, textureOrSubMeshSelected;
     private int page;
     private Element popupColor;
     private float red, green, blue, red2, green2, blue2;
     private ArrayList<String> stages,idBones,idPhysicalBuild;
     private ArrayList<String> families;
-    private int modelsSize, modelsAntSize;
     private int index, popUpNum;
     private String language;
     private ModelStageBuilder modelsb;
@@ -100,12 +99,14 @@ public class Gui extends AbstractAppState implements ScreenController {
         modelsb = new ModelStageBuilder(nifty,control,i18nGui,language,families);
         control.selectFamily(families.get(0));
         i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
-        modelsSize = control.getNumModels();
-        modelsAntSize = 0;
-        familySelection = i18nFamily.getString(control.getMetadataFamilyName());
         DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
+        Iterator<String> it = families.iterator();
+        while(it.hasNext()){
+            control.selectFamily(it.next());
+            I18N i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
+            family.addItem(i18nFamily.getString(control.getMetadataFamilyName()));
+        }
         family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
-        changeCharacterPage("0",familySelection);
     }
 
     public void quitGame() {
@@ -131,10 +132,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         popupColor = null;
         index = 0;
         popUpNum = 0;
-        familySelection = "";
         new DropDownBuilder("localeDropDown") {{
                 valignCenter();
-                //alignRight();
                 width("100");
         }}.build(nifty, nifty.getScreen("start"), nifty.getScreen("start").findElementByName("panel_location"));
         DropDown locale = nifty.getScreen("start").findNiftyControl("localeDropDown", DropDown.class);
@@ -186,12 +185,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
     }
     
-    public void changeCharacterPage(String steep, String familyAnt){
-        if(familyAnt.equals("same")){
-            familyAnt = familySelection;
-            modelsAntSize = modelsSize;
-        }
-        modelsb.changeCharacterPage(i18nFamily,steep,familySelection,familyAnt,modelsSize,modelsAntSize);    
+    public void changeCharacterPage(String steep){
+        modelsb.changeCharacterPage(i18nFamily,steep);    
     }
     
     public void selectModel(String id){
@@ -382,19 +377,10 @@ public class Gui extends AbstractAppState implements ScreenController {
     
   @NiftyEventSubscriber(id="familyDropDown")
   public void onFamilyDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
-    if (event.getSelection() != null && (!familySelection.equals(""))) {
-        String familyAnt = familySelection;
-        Iterator<String> it = families.iterator();
-        familySelection = event.getSelection();
-        while(it.hasNext()){
-           control.selectFamily(it.next());
-           if(i18nFamily.getString(control.getMetadataFamilyName()).equals(familySelection)){
-               modelsAntSize = modelsSize;
-               modelsSize = control.getNumModels();
-               i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
-           }
-        }
-        changeCharacterPage("0", familyAnt);
+    if (event.getSelection() != null) {
+        control.selectFamily(families.get(event.getSelectionItemIndex()));
+        i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
+        changeCharacterPage("0");
     }
   }
     
@@ -449,7 +435,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
                 familySelection = i18nFamily.getString(control.getMetadataFamilyName());
                 family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
-                */changeCharacterPage("0", "familyAnt");
+                */changeCharacterPage("0");
                 nifty.gotoScreen("modelScreen");
                 control.deleteModel();
             }

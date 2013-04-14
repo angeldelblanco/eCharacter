@@ -96,20 +96,11 @@ public class ModelStageBuilder {
                 width("50%");
             }});
         }}.build(nifty, nifty.getScreen(stageType), nifty.getScreen(stageType).findElementByName("familyPanel"));
-        DropDown family = nifty.getScreen(stageType).findNiftyControl("familyDropDown", DropDown.class);
-        Iterator<String> it = families.iterator();
-        while(it.hasNext()){
-            control.selectFamily(it.next());
-            I18N i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
-            ArrayList<String> models = control.getModelsLabel();
-            Iterator<String> itm = models.iterator();
-            family.addItem(i18nFamily.getString(control.getMetadataFamilyName()));
-        }
     }
     
     //Change the model's page hiding pictures of previous models or previous family
     
-    public void changeCharacterPage(I18N i18nFamily,String steep, String familySelection, String familyAnt, int modelsSize, int modelsAntSize){
+    public void changeCharacterPage(I18N i18nFamily,String steep){
         if(steep.equals("+")){
             modelsPage++;
         }
@@ -120,7 +111,7 @@ public class ModelStageBuilder {
             modelsPage = 0;
         }
         unCheck();
-        for(int i=modelsPage*MODELS_PAGE; i<modelsSize; i++){
+        for(int i=modelsPage*MODELS_PAGE; i<control.getNumModels(); i++){
             if(i<((modelsPage+1)*MODELS_PAGE)){
                 Element image = nifty.getScreen(stageType).findElementByName("m"+Integer.toString(i%MODELS_PAGE));
                 image.setVisible(true);
@@ -128,7 +119,7 @@ public class ModelStageBuilder {
                 imager.setImage(nifty.getRenderEngine().createImage(control.getModelIconPath(control.getModelsLabel().get(i)), false));
             }
         }
-        for(int i=modelsSize;i<((modelsPage+1)*MODELS_PAGE);i++){
+        for(int i=control.getNumModels();i<((modelsPage+1)*MODELS_PAGE);i++){
             Element image = nifty.getScreen(stageType).findElementByName("m"+Integer.toString(i%MODELS_PAGE));
             image.setVisible(false);
         }
@@ -138,23 +129,17 @@ public class ModelStageBuilder {
         else{
             nifty.getScreen(stageType).findElementByName("leftT").setVisible(false);
         }
-        if((((double)modelsSize/(double)MODELS_PAGE) - modelsPage) > 1){
+        if((((double)control.getNumModels()/(double)MODELS_PAGE) - modelsPage) > 1){
             nifty.getScreen(stageType).findElementByName("rightT").setVisible(true);
         }
         else{
             nifty.getScreen(stageType).findElementByName("rightT").setVisible(false);
         }
-        Iterator<String> it = families.iterator();
-        while(it.hasNext()){
-            control.selectFamily(it.next());
-            if(i18nFamily.getString(control.getMetadataFamilyName()).equals(familySelection)){
-                String url = "";
-                if(control.getMetadataFamilyURL()!=null){url = control.getMetadataFamilyURL();}
-                System.out.println(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
-                nifty.getScreen(stageType).findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
-                nifty.getScreen(stageType).findElementByName("descriptionPanel").layoutElements();
-            }
-        }
+        String url = "";
+        if(control.getMetadataFamilyURL()!=null){url = control.getMetadataFamilyURL();}
+        System.out.println(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
+        nifty.getScreen(stageType).findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
+        nifty.getScreen(stageType).findElementByName("descriptionPanel").layoutElements();
     }
     
     //Select the current model
