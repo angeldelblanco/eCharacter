@@ -6,15 +6,10 @@
 	<!-- Revisar los nombres de los bone controller -->
 	<string id="idMultiStageLabel1">Scale</string>
 	<string id="idBoneControler1">Head</string>
-	<string id="idBoneControler2">Torso</string>
-	<string id="idBoneControler3">Left arm</string>
-	<string id="idBoneControler4">Right arm</string>
-	<string id="idBoneControler5">Left hand</string>
-	<string id="idBoneControler6">Right hand</string>
-	<string id="idBoneControler7">Left leg</string>
-	<string id="idBoneControler8">Right leg</string>
-	<string id="idBoneControler9">Left foot</string>
-	<string id="idBoneControler10">Right foot</string>
+	<string id="idBoneControler2">Arms</string>
+	<string id="idBoneControler3">Hands</string>
+	<string id="idBoneControler4">Legs</string>
+	<string id="idBoneControler5">Feet</string>
 	<string id="idMultiStageLabel2">Skin</string>
 	<string id="idTextureSubStageLabel1">Skins</string>
 	<string id="idMultiStageLabel3">Hair</string>

@@ -4,7 +4,9 @@
 		<path>assets/Models/Medieval/Female/CubixStudioFemaleNPC.mesh.xml</path>		
 		<!--Transformations-->
 		<transformation transformationType="rotate" valueX="0.0" valueY="-90" valueZ="0.0"></transformation>
-		<!--Textures-->
+                <transformation transformationType="scale" valueX="2.25" valueY="2.25" valueZ="2.25"></transformation>
+                <transformation transformationType="translate" valueX="-0.25" valueY="-2.5" valueZ="0.0"></transformation>
+                <!--Textures-->
 		<mainMeshTextures>
 			<!-- skinPanel textures-->
 			<simpleTexture idPanelRef="skinsPanel" layer="0" default="true" idTexture="idPielCasual">
@@ -76,16 +78,15 @@
 		<!--Bones-->
 		<bones>
 			<!-- Dar valores a los huesos, Los que hay son aleatorios -->
-			<bone idControllerRef="head" defaultValue="0" minValue="-50" maxValue="100" boneName="Cabeza"/>
-			<bone idControllerRef="torso" defaultValue="0" minValue="-50" maxValue="100" boneName="Torax"/>
-			<bone idControllerRef="leftArm" defaultValue="0" minValue="-50" maxValue="100" boneName="ClaviculaIz"/>
-			<bone idControllerRef="rightArm" defaultValue="0" minValue="-50" maxValue="100" boneName="ClaviculaDer"/>
-			<bone idControllerRef="leftHand" defaultValue="0" minValue="-50" maxValue="100" boneName="MuniecaIz"/>
-			<bone idControllerRef="rightHand" defaultValue="0" minValue="-50" maxValue="100" boneName="MuniecaDer"/>
-			<bone idControllerRef="leftLeg" defaultValue="0" minValue="-50" maxValue="100" boneName="FemurIz"/>
-			<bone idControllerRef="rightLeg" defaultValue="0" minValue="-50" maxValue="100" boneName="FemurDer"/>
-			<bone idControllerRef="leftFoot" defaultValue="0" minValue="-50" maxValue="100" boneName="TobilloIz"/>
-			<bone idControllerRef="rightFoot" defaultValue="0" minValue="-50" maxValue="100" boneName="TobilloDer"/>
+			<bone idControllerRef="head" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 Head"/>
+			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 L Clavicle"/>
+			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 R Clavicle"/>
+			<bone idControllerRef="hands" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 L Hand"/>
+			<bone idControllerRef="hands" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 R Hand"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 L Thigh"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 R Thigh"/>
+			<bone idControllerRef="feet" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 L Foot"/>
+			<bone idControllerRef="feet" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 R Foot"/>
 		</bones>		
 		<!--Physical Builds-->
 		<physicalBuilds>

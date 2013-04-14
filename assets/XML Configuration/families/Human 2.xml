@@ -10,15 +10,10 @@
 	<!-- Revisar que controladores poner -->
 		<scaleStage stageLabel="idMultiStageLabel1" idPanel="ScalePanel">
 			<boneController controllerLabel="idBoneControler1" idController="head"/>
-			<boneController controllerLabel="idBoneControler2" idController="torso"/>
-			<boneController controllerLabel="idBoneControler3" idController="leftArm"/>
-			<boneController controllerLabel="idBoneControler4" idController="rightArm"/>
-			<boneController controllerLabel="idBoneControler5" idController="leftHand"/>
-			<boneController controllerLabel="idBoneControler6" idController="rightHand"/>
-			<boneController controllerLabel="idBoneControler7" idController="leftLeg"/>
-			<boneController controllerLabel="idBoneControler8" idController="rightLeg"/>
-			<boneController controllerLabel="idBoneControler9" idController="leftFoot"/>
-			<boneController controllerLabel="idBoneControler10" idController="rightFoot"/>			
+			<boneController controllerLabel="idBoneControler2" idController="arms"/>
+			<boneController controllerLabel="idBoneControler3" idController="hands"/>
+			<boneController controllerLabel="idBoneControler4" idController="legs"/>
+			<boneController controllerLabel="idBoneControler5" idController="feet"/>
 		</scaleStage>
 		<multiStage stageLabel="idMultiStageLabel2">
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel1" idPanel="skinsPanel" multiselection="false"/>

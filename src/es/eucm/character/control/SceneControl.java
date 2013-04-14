@@ -251,6 +251,7 @@ public class SceneControl
     
     public void changeColorBaseShadow(String idPanelRef, String idTexture, float red,float green,float blue){
         texturesSubMeshesData.changeColorBaseShadow(idPanelRef, idTexture, red, green, blue);
+        dettachAllChild();
         loadTexture();
         attachAllChild();  
     }
@@ -264,12 +265,14 @@ public class SceneControl
     
     public void changeColorDoubleTextureBase(String idPanel, String idTexture, float red, float green, float blue) {
         texturesSubMeshesData.changeColorDoubleTextureBase(idPanel, idTexture, red, green, blue);
+        dettachAllChild();
         loadTexture();
         attachAllChild(); 
     }
     
     public void changeColorMultiOptionTexture(String idPanel, String idMultiOption,String idSubTexture){
         texturesSubMeshesData.changeColorMultiOptionTexture(idPanel, idMultiOption, idSubTexture);
+        dettachAllChild();
         loadTexture();
         attachAllChild();  
     }
