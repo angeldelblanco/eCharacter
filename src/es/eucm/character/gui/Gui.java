@@ -97,15 +97,15 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
         modelsb = new ModelStageBuilder(nifty,control,i18nGui,language,families);
-        control.selectFamily(families.get(0));
-        i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
         DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
         Iterator<String> it = families.iterator();
         while(it.hasNext()){
             control.selectFamily(it.next());
-            I18N i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
-            family.addItem(i18nFamily.getString(control.getMetadataFamilyName()));
+            I18N i18nAux = new I18N(control.getLanguageFamilyPath(),language);
+            family.addItem(i18nAux.getString(control.getMetadataFamilyName()));
         }
+        control.selectFamily(families.get(0));
+        i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
         family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
     }
 
