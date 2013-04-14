@@ -51,6 +51,7 @@ import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import de.lessvoid.nifty.elements.Element;
+import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
@@ -68,6 +69,7 @@ import java.util.Iterator;
 public class Gui extends AbstractAppState implements ScreenController {
     
     private static final int BONES_PAGE = 5;
+    private static final int TEXTURES_POPUP = 6;
     private Nifty nifty;
     private I18N i18nGui, i18nModel, i18nFamily; 
     private Control control;
@@ -75,7 +77,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     private Screen screen;
     private Configuration config;
     private String selection, modelSelection,subStageSelected, textureOrSubMeshSelected;
-    private int page;
+    private int page, popUpPage;
     private Element popupColor;
     private float red, green, blue, red2, green2, blue2;
     private ArrayList<String> stages,idBones,idPhysicalBuild;
@@ -96,7 +98,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        modelsb = new ModelStageBuilder(nifty,control,i18nGui,language,families);
+        modelsb = new ModelStageBuilder(nifty,control,i18nGui);
         DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
         Iterator<String> it = families.iterator();
         while(it.hasNext()){
@@ -474,9 +476,23 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
+            popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
+            popupColor.findElementByName("redPanel").layoutElements();
+            popupColor.findElementByName("greenText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
+            popupColor.findElementByName("greenPanel").layoutElements();
+            popupColor.findElementByName("blueText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
+            popupColor.findElementByName("bluePanel").layoutElements();
+            popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.doubleTexture)){
             popupColor = nifty.createPopup("popupColor2");
+            popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
+            popupColor.findElementByName("redPanel").layoutElements();
+            popupColor.findElementByName("greenText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
+            popupColor.findElementByName("greenPanel").layoutElements();
+            popupColor.findElementByName("blueText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
+            popupColor.findElementByName("bluePanel").layoutElements();
+            popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
             popupColor.findElementByName("baseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBase"));
             popupColor.findElementByName("checkBasePanel").layoutElements();
             popupColor.findElementByName("shadowText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDetails"));
@@ -489,17 +505,55 @@ public class Gui extends AbstractAppState implements ScreenController {
             popupColor.findElementByName("blue2Panel").layoutElements();
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.multiOptionTexture)){
-            popupColor = nifty.createPopup("");
+            popupColor = nifty.createPopup("popupColor3");
+            changePopUpPage("0");
         }
-        popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
-        popupColor.findElementByName("redPanel").layoutElements();
-        popupColor.findElementByName("greenText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
-        popupColor.findElementByName("greenPanel").layoutElements();
-        popupColor.findElementByName("blueText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
-        popupColor.findElementByName("bluePanel").layoutElements();
-        popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
         popupColor.findNiftyControl("cancelButton", Button.class).setText(i18nGui.getString("idCancel"));
         nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
+    }
+    
+    public void changePopUpPage(String steep){
+        if(steep.equals("+")){
+            popUpPage++;
+        }
+        if(steep.equals("-")){
+            popUpPage--;
+        }
+        if(steep.equals("0")){
+            popUpPage = 0;
+        }
+        for(int i=popUpPage*TEXTURES_POPUP; i<control.getNumTexturesInMultiOption(textureOrSubMeshSelected); i++){
+            if(i<((popUpPage+1)*TEXTURES_POPUP)){
+                Element image = popupColor.findElementByName("i"+Integer.toString(i%TEXTURES_POPUP));
+                image.setVisible(true);
+                ImageRenderer imager = image.getRenderer(ImageRenderer.class);
+                imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathInMultiOption(textureOrSubMeshSelected, control.getIdsTexturesInMultiOption(textureOrSubMeshSelected).get(i)), false));
+            }
+        }
+        for(int i=control.getNumTexturesInMultiOption(textureOrSubMeshSelected);i<((popUpPage+1)*TEXTURES_POPUP);i++){
+            Element image = popupColor.findElementByName("i"+Integer.toString(i%TEXTURES_POPUP));
+            image.setVisible(false);
+        }
+        if(popUpPage > 0){
+            popupColor.findElementByName("leftT").setVisible(true);
+        }
+        else{
+            popupColor.findElementByName("leftT").setVisible(false);
+        }
+        if((((double)control.getNumTexturesInMultiOption(textureOrSubMeshSelected) /(double)TEXTURES_POPUP) - popUpPage) > 1){
+            popupColor.findElementByName("rightT").setVisible(true);
+        }
+        else{
+            popupColor.findElementByName("rightT").setVisible(false);
+        }
+    }
+    
+    public void changePopUpColor(String im){
+        ArrayList<String> mul = control.getIdsTexturesInMultiOption(textureOrSubMeshSelected);
+        int j = Integer.parseInt(im)+popUpPage*TEXTURES_POPUP;
+        String sel = mul.get(j);
+        control.changeColorMultiOptionTexture(subStageSelected,textureOrSubMeshSelected,sel);
+        nifty.closePopup(popupColor.getId());
     }
     
     @NiftyEventSubscriber(id="sliderR")

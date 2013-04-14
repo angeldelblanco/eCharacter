@@ -40,7 +40,6 @@ import es.eucm.character.control.Control;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
-import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
@@ -49,7 +48,6 @@ import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
 import es.eucm.character.i18n.I18N;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ModelStageBuilder {
     private static final int MODELS_PAGE = 6;
@@ -57,23 +55,21 @@ public class ModelStageBuilder {
     private I18N i18nGui; 
     private Control control;
     private String stageType;
-    private ArrayList<String> families;
     private int modelsPage;
     
-    public ModelStageBuilder(Nifty nifty, Control control,I18N i18nGui, String language, ArrayList<String> families){
+    public ModelStageBuilder(Nifty nifty, Control control,I18N i18nGui){
         stageType = "modelScreen";
         this.nifty = nifty;
         this.control = control;
-        this.families = families;
         modelsPage = 0;
         this.i18nGui = i18nGui;
-        initModels(language);
+        initModels();
     }
     
     /*receives as input the lenguaje of the aplication
       and builds all the families and the pictures of models*/
     
-    private void initModels(String language){
+    private void initModels(){
         nifty.getScreen(stageType).findElementByName("chooseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idChoose"));
         nifty.getScreen(stageType).findElementByName("choosePanel").layoutElements();
         nifty.getScreen(stageType).findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
