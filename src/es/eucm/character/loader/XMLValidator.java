@@ -35,6 +35,7 @@
  ******************************************************************************/
 package es.eucm.character.loader;
 
+import es.eucm.character.types.XMLType;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.XMLConstants;
@@ -47,7 +48,6 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-import es.eucm.character.types.XMLType;
 
 public class XMLValidator {
     public boolean checkXML(String filePath, XMLType type)

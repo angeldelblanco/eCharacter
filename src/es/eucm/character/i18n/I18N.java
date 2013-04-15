@@ -36,9 +36,9 @@
 
 package es.eucm.character.i18n;
 
+import es.eucm.character.loader.XMLReader;
 import java.util.ArrayList;
 import java.util.Iterator;
-import es.eucm.character.loader.XMLReader;
 
 public class I18N {
     private Metadata language;
@@ -71,10 +71,5 @@ public class I18N {
             }
         }
         return null;
-    }
-    
-    public static void main (String args[]){
-        I18N i18n = new I18N("assets/Locale/Humans/Man", "es_ES");
-        System.out.println(i18n.getString("idPhysicalBuildLabel5"));
     }
 }

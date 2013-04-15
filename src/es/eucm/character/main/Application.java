@@ -46,11 +46,11 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.system.AppSettings;
-import es.eucm.character.control.Control;
 import de.lessvoid.nifty.Nifty;
+import es.eucm.character.control.Control;
 import es.eucm.character.gui.Gui;
-import java.io.File;
 import es.eucm.character.loader.Configuration;
+import java.io.File;
 
 public class Application extends SimpleApplication{
 
@@ -78,7 +78,7 @@ public class Application extends SimpleApplication{
         setDisplayStatView(false);
         // Register locator to assetManager
         assetManager.registerLocator("."+File.separator, FileLocator.class);      
-        control = new Control(config,rootNode,assetManager);
+        control = new Control(config,rootNode,assetManager,this);
         gui = new Gui(control,config);
         stateManager.attach(gui);
         screenShotState = new ScreenshotAppState();
@@ -87,14 +87,26 @@ public class Application extends SimpleApplication{
         /**
         * Åctivate the Nifty-JME integration: 
         */
-        niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
+        /*niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
         Nifty nifty = niftyDisplay.getNifty();
         guiViewPort.addProcessor(niftyDisplay);
-        nifty.fromXml("assets/Interface/screen.xml", "start", gui);
+        nifty.fromXml("assets/Interface/screen.xml", "start", gui);*/
+        activateNifty("start");
         //nifty.setDebugOptionPanelColors(true);
 
         flyCam.setDragToRotate(true); // you need the mouse for clicking now
         flyCam.setEnabled(false);
+    }
+    
+    public void activateNifty(String screen){
+        /**
+        * Åctivate the Nifty-JME integration: 
+        */
+        niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
+        Nifty nifty = niftyDisplay.getNifty();
+        guiViewPort.addProcessor(niftyDisplay);
+        nifty.fromXml("assets/Interface/screen.xml", screen, gui);
+        //nifty.setDebugOptionPanelColors(true);
     }
     
      public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 

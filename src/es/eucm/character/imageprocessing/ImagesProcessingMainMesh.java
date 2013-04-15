@@ -164,19 +164,8 @@ public class ImagesProcessingMainMesh extends ImagesProcessing{
         catch (IOException ex) {
             Logger.getLogger(ImagesProcessingMainMesh.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return list;
         //Ya está creado el array list de bufferedImage. Ahora hay que generarlo
         //return pasteImages(images, bi.getWidth(), bi.getHeight());
     }
-    
-    /*public static BufferedImage pasteImages(ArrayList<BufferedImage> images, int width, int height){
-        BufferedImage finalImage = new BufferedImage(width,height,BufferedImage.TYPE_4BYTE_ABGR);
-        Graphics g = finalImage.getGraphics();
-        for (int i = 0; i < images.size(); i++) 
-        {
-            BufferedImage aux = images.get(i);
-            g.drawImage(aux, 0, 0, null);
-        }
-        return finalImage;
-    }*/
 }

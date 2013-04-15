@@ -42,7 +42,6 @@ import es.eucm.character.data.model.MultiOptionTextureSubMeshType;
 import es.eucm.character.data.model.MultiOptionTextureSubMeshType.OptionTexture;
 import es.eucm.character.data.model.SimpleTextureSubMeshType;
 import es.eucm.character.data.model.SubMeshType.SubMeshTexture;
-import es.eucm.character.data.model.TextureSubMeshType;
 import es.eucm.character.loader.ResourceHandler;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -113,6 +112,6 @@ public class ImagesProcessingSubMesh extends ImagesProcessing{
         catch (IOException ex) {
             Logger.getLogger(ImagesProcessingMainMesh.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return list;
     }
 }

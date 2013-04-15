@@ -122,13 +122,4 @@ public class XMLReader<T>
         int dot = filePath.lastIndexOf(".");
         return filePath.substring(dot + 1);
     }
-    
-    /*****Borra este main cuando hayas probado que los xml de los modelos funcionan correctamente
-        y cerramos esta clase  ***/
-    public static void main(String args[]) throws JAXBException, FileNotFoundException
-    {
-        XMLReader<Metadata> aux = new XMLReader<Metadata>("assets/Locale/Humans");
-        ArrayList<Metadata> a = aux.readXML(Metadata.class);
-        System.out.println(a.get(0).getLanguage());
-    }   
 }

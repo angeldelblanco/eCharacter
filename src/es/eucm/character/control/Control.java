@@ -48,6 +48,7 @@ import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.FamilyWithPath;
 import es.eucm.character.loader.XMLFamilyReader;
 import es.eucm.character.loader.XMLReader;
+import es.eucm.character.main.Application;
 import es.eucm.character.types.ElementType;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
@@ -65,8 +66,9 @@ public class Control {
     private SceneControl sc;
     private AssetManager assetManager;
     private Node rootNode;
+    private Application app;
     
-    public Control(Configuration config, Node rootNode, AssetManager assetManager)
+    public Control(Configuration config, Node rootNode, AssetManager assetManager, Application app)
     {
         String familiesPath = config.getProperty(Configuration.FamiliesPath);
         /*XMLReader<Family> xmlReader = new XMLReader<Family>(familiesPath);
@@ -75,6 +77,7 @@ public class Control {
         families = xmlReader.readXML();
         this.assetManager = assetManager;
         this.rootNode = rootNode;
+        this.app = app;
     }
     /*************************Family******************************************/
     public void selectFamily(String idFamily){
@@ -313,7 +316,9 @@ public class Control {
         else if (mc.getSubMesh(idTextureOrSubmesh) != null){
             return ElementType.SubMesh;
         }
-        else return null;
+        else{
+            return null;
+        }
     }
     
     public void changeColorBaseShadow(String idPanelRef, String idTextureOrSubMesh, float red,float green,float blue){
@@ -366,8 +371,9 @@ public class Control {
         sc.applyEscalations(listEscalations);
     }
     
-    public void deleteModel(){
+    public void restartApplication(){
         sc.deleteModel();
+        app.initialize();
     }
     
     public boolean isChecked(String idPanel, String idTextureOrSubMesh){

@@ -137,28 +137,4 @@ public class Configuration
         }
         return listLanguages;
     }
-    
-    /*public static void main(String[] args)
-    {
-        ResourceHandler resourceHandler = new ResourceHandler();
-        Configuration config = new Configuration();
-        InputStream stream = resourceHandler.getResource(Configuration.PROPERTIES_FILE_NAME,"."+File.separator);
-        if(stream != null){
-            config.loadPropertiesFile(stream);
-        }
-        else{
-            config.loadDefaultProperties();
-        }
-        String path = config.getProperty(Configuration.FamiliesPath);
-        System.out.println(path);
-        File dirPath = new File(path);
-        File[] ficheros = dirPath.listFiles();
-        for (int x=0;x<ficheros.length;x++)
-        {
-            File file = ficheros[x];
-            /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
-            /*System.out.println(file.getName());
-        }
-        
-    }*/
 }
