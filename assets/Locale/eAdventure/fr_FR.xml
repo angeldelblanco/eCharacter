@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="fr_FR" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../language.xsd">
-	<string id="idNameFamily">Humain</string>
+	<string id="idNameFamily">eAdventure</string>
 	<string id="idDescriptionFamily">Cette famille est composée par 2 humains: un garçon et une fille.</string>
 	<string id="idAuthor">Alex,Sergio et David</string>
 	<string id="idMultiStageLabel1">Scalaire</string>

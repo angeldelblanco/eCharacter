@@ -4,7 +4,7 @@
 		<name>idNameFamily2</name>
 		<description>idDescriptionFamily</description>
 		<author>idAuthor</author>
-		<languagesPath>assets/Locale/Humans 2</languagesPath>
+		<languagesPath>assets/Locale/Medieval</languagesPath>
 	</metadata>
 	<stages>
 	<!-- Revisar que controladores poner -->
@@ -56,12 +56,12 @@
 		<modelRef>
 			<modelLabel>idModelLabel1</modelLabel>	
 			<iconPath>assets/Interface/Icons/Medieval/IconMale.png</iconPath>
-			<modelPath>assets/XML Configuration/models/Humans 2/Man.xml</modelPath>
+			<modelPath>assets/XML Configuration/models/Medieval/Male.xml</modelPath>
 		</modelRef>
 		<modelRef>
 			<modelLabel>idModelLabel2</modelLabel>
 			<iconPath>assets/Interface/Icons/Medieval/IconFemale.png</iconPath>
-			<modelPath>assets/XML Configuration/models/Humans 2/Woman.xml</modelPath>
+			<modelPath>assets/XML Configuration/models/Medieval/Female.xml</modelPath>
 		</modelRef>	
 	</modelsRef>
 </family>

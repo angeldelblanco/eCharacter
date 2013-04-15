@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../language.xsd">
-	<string id="idNameFamily2">Humans 2</string>
+	<string id="idNameFamily2">Medieval</string>
 	<string id="idDescriptionFamily">This family has composed by two humans: a man and a woman. Every human can dress casual or medieval.</string>
 	<string id="idAuthor">???</string>
 	<!-- Revisar los nombres de los bone controller -->

@@ -267,5 +267,5 @@
 		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoPunta.jpg</iconPath>
 	</subMesh>
-	<languagesPath>assets/Locale/Humans/Man</languagesPath>
+	<languagesPath>assets/Locale/eAdventure/Man</languagesPath>
 </model>
