@@ -48,6 +48,7 @@ import de.lessvoid.nifty.controls.ButtonClickedEvent;
 import de.lessvoid.nifty.controls.CheckBox;
 import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
+import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import de.lessvoid.nifty.elements.Element;
@@ -554,6 +555,13 @@ public class Gui extends AbstractAppState implements ScreenController {
         String sel = mul.get(j);
         control.changeColorMultiOptionTexture(subStageSelected,textureOrSubMeshSelected,sel);
         nifty.closePopup(popupColor.getId());
+    }
+    
+    public void changeSliderColor(String color){
+        Color c = new Color(color);
+        popupColor.findNiftyControl("sliderR", Slider.class).setValue(c.getRed()*255);
+        popupColor.findNiftyControl("sliderG", Slider.class).setValue(c.getGreen()*255);
+        popupColor.findNiftyControl("sliderB", Slider.class).setValue(c.getBlue()*255);
     }
     
     @NiftyEventSubscriber(id="sliderR")
