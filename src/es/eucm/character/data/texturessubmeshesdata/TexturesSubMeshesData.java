@@ -250,14 +250,14 @@ public class TexturesSubMeshesData
      * Change the texture with idTexture in the panel with idPanel
      */
     public void changeTexture(String idPanel,String idTexture){
-        texturesData.get(idPanel).changeTexture(idTexture);
+        texturesData.get(idPanel).changeElement(idTexture);
     }
     
     /*
      * Change the subMesh with idSubMesh in the panel with idPanel
      */
     public void changeSubMesh(String idPanel,String idSubMesh){
-        subMeshesData.get(idPanel).changeSubMesh(idSubMesh);
+        subMeshesData.get(idPanel).changeElement(idSubMesh);
     }
 
     public void changeColorBaseShadow(String idPanel, String idTextureOrSubmesh, ElementType type, float red, float green, float blue) {

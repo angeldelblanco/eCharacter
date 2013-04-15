@@ -46,8 +46,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 
-public class TexturesInPanel 
-{
+public class TexturesInPanel implements ElementInPanel {
     private boolean multiSelection;
     //HashMap<Texture, boolean = if this texture is selected>
     //private HashMap<TextureType,Boolean> textures;
@@ -82,6 +81,7 @@ public class TexturesInPanel
         return listCheckedTextures;
     }
     
+    @Override
     public boolean ischecked(String idTexture){
         boolean checked = false;
         Set<TextureType> setTextureType = textures.keySet();
@@ -100,7 +100,8 @@ public class TexturesInPanel
      * If the panel has multiselection, swap the value of this texture.
      * Else we set the value of the other textures to false
      */
-    public void changeTexture(String idTexture)
+    @Override
+    public void changeElement(String idTexture)
     {
         Set<TextureType> keySet = textures.keySet();
         Iterator<TextureType> it = keySet.iterator();
@@ -132,6 +133,7 @@ public class TexturesInPanel
         }        
     }
     
+    @Override
     public void changeColorBaseShadow(String idTexture, float red, float green, float blue){
         Set<TextureType> keySet = textures.keySet();
         Iterator<TextureType> it = keySet.iterator();
@@ -144,6 +146,7 @@ public class TexturesInPanel
         }        
     }
     
+    @Override
     public void changeColorDoubleTextureDetails(String idTexture, float red, float green, float blue) {
         Set<TextureType> keySet = textures.keySet();
         Iterator<TextureType> it = keySet.iterator();
@@ -163,6 +166,7 @@ public class TexturesInPanel
         }
     }
     
+    @Override
     public void changeColorDoubleTextureBase(String idTexture, float red, float green, float blue) {
         Set<TextureType> keySet = textures.keySet();
         Iterator<TextureType> it = keySet.iterator();
@@ -184,6 +188,7 @@ public class TexturesInPanel
         }
     }
     
+    @Override
     public void changeColorMultiOptionTexture(String idTexture, String idSubTexture) {
         Set<TextureType> keySet = textures.keySet();
         Iterator<TextureType> it = keySet.iterator();

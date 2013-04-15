@@ -36,9 +36,7 @@
 package es.eucm.character.data.texturessubmeshesdata;
 
 import es.eucm.character.data.model.SubMeshType;
-import es.eucm.character.data.model.TextureType;
 import es.eucm.character.imageprocessing.ColoringTextureSubMesh;
-import es.eucm.character.imageprocessing.ColoringTextureMainMesh;
 import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
 import es.eucm.character.imageprocessing.ImagesProcessingSubMesh;
 import java.awt.Color;
@@ -48,8 +46,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-public class SubMeshesInPanel 
-{
+public class SubMeshesInPanel implements ElementInPanel{
     private boolean multiSelection;
     //HashMap<submesh, boolean = if this subMesh is selected>
     private HashMap<SubMeshType,AttrTexture> subMeshes;
@@ -83,6 +80,7 @@ public class SubMeshesInPanel
         return listCheckedSubMeshes;
     }
     
+    @Override
     public boolean ischecked(String idSubMesh){
         boolean checked = false;
         Set<SubMeshType> setSubMeshType = subMeshes.keySet();
@@ -101,7 +99,8 @@ public class SubMeshesInPanel
      * If the panel has multiselection, swap the value of this submesh.
      * Else we set the value of the other submeshes to false
      */
-    public void changeSubMesh(String idSubMesh)
+    @Override
+    public void changeElement(String idSubMesh)
     {
         Set<SubMeshType> keySet = subMeshes.keySet();
         Iterator<SubMeshType> it = keySet.iterator();
@@ -129,6 +128,7 @@ public class SubMeshesInPanel
         }
     }
     
+    @Override
     public void changeColorBaseShadow(String idSubMesh, float red, float green, float blue){
         Set<SubMeshType> keySet = subMeshes.keySet();
         Iterator<SubMeshType> it = keySet.iterator();
@@ -141,6 +141,7 @@ public class SubMeshesInPanel
         }        
     }
     
+    @Override
     public void changeColorDoubleTextureDetails(String idSubMesh, float red, float green, float blue) {
         Set<SubMeshType> keySet = subMeshes.keySet();
         Iterator<SubMeshType> it = keySet.iterator();
@@ -160,6 +161,7 @@ public class SubMeshesInPanel
         }
     }
     
+    @Override
     public void changeColorDoubleTextureBase(String idSubMesh, float red, float green, float blue) {
         Set<SubMeshType> keySet = subMeshes.keySet();
         Iterator<SubMeshType> it = keySet.iterator();
@@ -181,6 +183,7 @@ public class SubMeshesInPanel
         }
     }
     
+    @Override
     public void changeColorMultiOptionTexture(String idSubMesh, String idSubTexture) {
         Set<SubMeshType> keySet = subMeshes.keySet();
         Iterator<SubMeshType> it = keySet.iterator();
