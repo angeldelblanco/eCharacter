@@ -46,6 +46,7 @@ import es.eucm.character.data.model.TextureType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.XMLReader;
+import es.eucm.character.types.ElementType;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
 import java.util.ArrayList;
@@ -301,31 +302,50 @@ public class Control {
         }
     }
     
-    public void changeColorBaseShadow(String idPanelRef, String idTextureOrSubmesh, float red,float green,float blue){
-        sc.changeColorBaseShadow(idPanelRef, idTextureOrSubmesh, red, green, blue);
+    private ElementType getElementType(String idTextureOrSubmesh){
+        if (mc.getTexture(idTextureOrSubmesh) != null){
+            return ElementType.Texture;
+        }
+        else if (mc.getSubMesh(idTextureOrSubmesh) != null){
+            return ElementType.SubMesh;
+        }
+        else return null;
+    }
+    
+    public void changeColorBaseShadow(String idPanelRef, String idTextureOrSubMesh, float red,float green,float blue){
+        ElementType type = getElementType(idTextureOrSubMesh);
+        if (type != null){
+            sc.changeColorBaseShadow(idPanelRef, idTextureOrSubMesh, type, red, green, blue);
+        }
     }
     
     public void changeColorDoubleTexture(String idPanelRef, String idTextureOrSubMesh, float red1,float green1,float blue1, 
             float red2,float green2,float blue2){
-        if (red1 == -1 && green1 == -1 && blue1 == -1){
-            //-1 representa que el usuario no ha cambiado la textura de base en este caso
-            //Cambiar solo los detalles
-            sc.changeColorDoubleTextureDetails(idPanelRef, idTextureOrSubMesh, red2, green2, blue2);
-        }
-        else if(red2 == -1 && green2 == -1 && blue2 == -1){
-            //-1 representa que el usuario no ha cambiado la textura de detalles en este caso
-            //Cambiar solo la base
-            sc.changeColorDoubleTextureBase(idPanelRef, idTextureOrSubMesh, red1, green1, blue1);
-        }
-        else{
-            //Cambiar base y detalles
-            sc.changeColorDoubleTextureBase(idPanelRef, idTextureOrSubMesh, red1, green1, blue1);
-            sc.changeColorDoubleTextureDetails(idPanelRef, idTextureOrSubMesh, red2, green2, blue2);
+        ElementType type = getElementType(idTextureOrSubMesh);
+        if (type != null){
+            if (red1 == -1 && green1 == -1 && blue1 == -1){
+                //-1 representa que el usuario no ha cambiado la textura de base en este caso
+                //Cambiar solo los detalles
+                sc.changeColorDoubleTextureDetails(idPanelRef, idTextureOrSubMesh, type, red2, green2, blue2);
+            }
+            else if(red2 == -1 && green2 == -1 && blue2 == -1){
+                //-1 representa que el usuario no ha cambiado la textura de detalles en este caso
+                //Cambiar solo la base
+                sc.changeColorDoubleTextureBase(idPanelRef, idTextureOrSubMesh, type, red1, green1, blue1);
+            }
+            else{
+                //Cambiar base y detalles
+                sc.changeColorDoubleTextureBase(idPanelRef, idTextureOrSubMesh, type, red1, green1, blue1);
+                sc.changeColorDoubleTextureDetails(idPanelRef, idTextureOrSubMesh, type, red2, green2, blue2);
+            }
         }
     }
     
     public void changeColorMultiOptionTexture(String idPanelRef, String idTextureOrSubMesh,String idSubTexture){
-        sc.changeColorMultiOptionTexture(idPanelRef, idTextureOrSubMesh, idSubTexture);
+        ElementType type = getElementType(idTextureOrSubMesh);
+        if (type != null){
+            sc.changeColorMultiOptionTexture(idPanelRef, idTextureOrSubMesh, type, idSubTexture);
+        }
     }
     
     public void screenShot(){

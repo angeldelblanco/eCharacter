@@ -36,107 +36,14 @@
 
 package es.eucm.character.imageprocessing;
 
-import es.eucm.character.data.model.BaseShadowTextureType;
-import es.eucm.character.data.model.DoubleTextureType;
-import es.eucm.character.data.model.MultiOptionTextureType;
-import es.eucm.character.data.model.MultiOptionTextureType.OptionTexture;
-import es.eucm.character.data.model.SimpleTextureType;
-import es.eucm.character.data.model.TextureType;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import javax.imageio.ImageIO;
-import es.eucm.character.loader.ResourceHandler;
-import java.util.Iterator;
-import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 
-public class ColoringImage 
-{
-    private final static Logger logger = Logger.getLogger(ColoringImage.class);
-    private long tiempoInicio, totalTiempo;         
-    
-    
-    public static ArrayList<BufferedImage> coloringImageBaseShadow(TextureType texture, Color color){
-        ArrayList<BufferedImage> listBi = null;
-        try{
-            if(texture instanceof BaseShadowTextureType){
-                BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
-                BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getPath()));
-                BufferedImage biShadow = null;
-                if(baseShadowTexture.getShadowPath() != null){
-                    biShadow = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath()));
-                }
-                listBi = new ArrayList<BufferedImage>();
-                listBi.add(coloringImageBaseShadow(biBase, biShadow, color));
-            }
-        }
-        catch (IOException ex) {
-            java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return listBi;
-    }
-    
-    public static BufferedImage coloringImageDoubleTextureDetails(TextureType texture, Color color){
-        BufferedImage bi = null;
-        try{
-            if(texture instanceof DoubleTextureType){
-                DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
-                BufferedImage biDetails = ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath()));
-                bi = coloringImageDouble(biDetails, color);
-            }
-        }
-        catch (IOException ex) {
-            java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return bi;
-    }
-    
-    public static BufferedImage coloringImageDoubleTextureBase(TextureType texture, Color color){
-        BufferedImage bi = null;
-        try{
-            if(texture instanceof DoubleTextureType){
-                DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
-                BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
-                bi = coloringImageDouble(biBase, color);
-            }
-        }
-        catch (IOException ex) {
-            java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return bi;
-    }
-    
-    public static ArrayList<BufferedImage> coloringImageMultiOption(TextureType texture, String idSubTexture){
-        ArrayList<BufferedImage> listBi = null;
-        try{
-            if(texture instanceof MultiOptionTextureType){
-                MultiOptionTextureType multiOptionTexture = ((MultiOptionTextureType)texture);
-                ArrayList<OptionTexture> listMultiOptionTexture = (ArrayList<OptionTexture>) multiOptionTexture.getOptionTexture();
-                Iterator<OptionTexture> it2 = listMultiOptionTexture.iterator();
-                while(it2.hasNext())
-                {
-                    OptionTexture optionTexture = it2.next();
-                    if(optionTexture.getIdSubTexture().equals(idSubTexture)){
-                        BufferedImage bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
-                        listBi = new ArrayList<BufferedImage>();
-                        listBi.add(bi);
-                    }
-                }
-            }
-        }
-        catch (IOException ex) {
-            java.util.logging.Logger.getLogger(ImagesProcessing.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return listBi;
-    }
-    
-    private static BufferedImage coloringImageBaseShadow(BufferedImage imageOriginal, BufferedImage shadowOriginal, Color color) throws IOException 
-    {
+public class ColoringImage {
+    public static BufferedImage coloringImageBaseShadow(BufferedImage imageOriginal, BufferedImage shadowOriginal, Color color) throws IOException {
         BufferedImage image = imageOriginal;
         BufferedImage shadow = shadowOriginal;
         Color shadowColor;
@@ -187,8 +94,7 @@ public class ColoringImage
         return finalImage;
     }
     
-    private static BufferedImage coloringImageDouble(BufferedImage imageOriginal, Color color) throws IOException 
-    {
+    public static BufferedImage coloringImageDouble(BufferedImage imageOriginal, Color color) throws IOException {
         BufferedImage image = imageOriginal;
         
         int w = image.getWidth();

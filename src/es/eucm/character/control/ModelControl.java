@@ -49,6 +49,7 @@ import es.eucm.character.data.model.TransformationType;
 import es.eucm.character.data.model.MultiOptionTextureType.OptionTexture;
 import es.eucm.character.data.model.SubMeshType.SubMeshTexture;
 import es.eucm.character.data.model.TextureSubMeshType;
+import es.eucm.character.loader.ResourceHandler;
 import java.util.ArrayList;
 import java.util.Iterator;
 import es.eucm.character.types.TexturesMeshType;
@@ -224,7 +225,12 @@ public class ModelControl
         {
             TextureType texture = it.next();
             if(texture.getIdTexture().equals(idTexturesORSubMeshes)){
-                return texture.getIconPath();
+                if (ResourceHandler.getResource(texture.getIconPath()) != null){
+                    return texture.getIconPath();
+                }
+                else{ 
+                    return null;
+                }
             }            
         }
         //Search in submeshes
@@ -234,7 +240,10 @@ public class ModelControl
         {
             SubMeshType subMesh = it2.next();
             if(subMesh.getIdSubMesh().equals(idTexturesORSubMeshes)){
-                return subMesh.getIconPath();
+                if (ResourceHandler.getResource(subMesh.getIconPath()) != null){
+                    return subMesh.getIconPath();
+                }
+                else return null;
             }            
         }
         return null; 
@@ -388,7 +397,12 @@ public class ModelControl
         while(it.hasNext()){
             OptionTexture optionTexture = it.next();
             if(optionTexture.getIdSubTexture().equals(idSubTexture)){
-                return optionTexture.getIconPath();
+                if (ResourceHandler.getResource(optionTexture.getIconPath()) != null){
+                    return optionTexture.getIconPath();
+                }
+                else{ 
+                    return null;
+                }
             }
         }
         return null;

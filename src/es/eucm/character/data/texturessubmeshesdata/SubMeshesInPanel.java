@@ -36,6 +36,13 @@
 package es.eucm.character.data.texturessubmeshesdata;
 
 import es.eucm.character.data.model.SubMeshType;
+import es.eucm.character.data.model.TextureType;
+import es.eucm.character.imageprocessing.ColoringTextureSubMesh;
+import es.eucm.character.imageprocessing.ColoringTextureMainMesh;
+import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
+import es.eucm.character.imageprocessing.ImagesProcessingSubMesh;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -120,5 +127,90 @@ public class SubMeshesInPanel
                 attrTexture.setSelected(false);
             }
         }
+    }
+    
+    public void changeColorBaseShadow(String idSubMesh, float red, float green, float blue){
+        Set<SubMeshType> keySet = subMeshes.keySet();
+        Iterator<SubMeshType> it = keySet.iterator();
+        while(it.hasNext()){
+            SubMeshType subMesh = it.next();
+            if (subMesh.getIdSubMesh().equals(idSubMesh)){
+                ArrayList<BufferedImage> bi = ColoringTextureSubMesh.coloringImageBaseShadow(subMesh.getSubMeshTexture().getBaseShadowTextureSubMesh(), new Color(red, green, blue));
+                subMeshes.get(subMesh).setListBufferedImage(bi);
+            }
+        }        
+    }
+    
+    public void changeColorDoubleTextureDetails(String idSubMesh, float red, float green, float blue) {
+        Set<SubMeshType> keySet = subMeshes.keySet();
+        Iterator<SubMeshType> it = keySet.iterator();
+        while(it.hasNext()){
+            SubMeshType subMesh = it.next();
+            if (subMesh.getIdSubMesh().equals(idSubMesh)){
+                //Obtener el buffer image de los detalles coloreados.
+                BufferedImage bi = ColoringTextureSubMesh.coloringImageDoubleTextureDetails(subMesh.getSubMeshTexture().getDoubleTextureSubMesh(), new Color(red, green, blue));
+                //Obtener el buffer image de la base que había guardada
+                BufferedImage biBaseOriginal = subMeshes.get(subMesh).getListBufferedImage().get(0);
+                //Crear la nueva lista de buffer image y guardarla
+                ArrayList<BufferedImage> listBi = new ArrayList<BufferedImage>();
+                listBi.add(biBaseOriginal);
+                listBi.add(bi);
+                subMeshes.get(subMesh).setListBufferedImage(listBi);
+            }
+        }
+    }
+    
+    public void changeColorDoubleTextureBase(String idSubMesh, float red, float green, float blue) {
+        Set<SubMeshType> keySet = subMeshes.keySet();
+        Iterator<SubMeshType> it = keySet.iterator();
+        while(it.hasNext()){
+            SubMeshType subMesh = it.next();
+            if (subMesh.getIdSubMesh().equals(idSubMesh)){
+                /*ArrayList<BufferedImage> bi = ColoringImage.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
+                textures.get(texture).setListBufferedImage(bi);*/
+                //Obtener el buffer image de la base coloreada.
+                BufferedImage bi = ColoringTextureSubMesh.coloringImageDoubleTextureBase(subMesh.getSubMeshTexture().getDoubleTextureSubMesh(), new Color(red, green, blue));
+                //Obtener el buffer image de los detalles que había guardado
+                BufferedImage biDetailsOriginal = subMeshes.get(subMesh).getListBufferedImage().get(1);
+                //Crear la nueva lista de buffer image y guardarla
+                ArrayList<BufferedImage> listBi = new ArrayList<BufferedImage>();
+                listBi.add(bi);
+                listBi.add(biDetailsOriginal);
+                subMeshes.get(subMesh).setListBufferedImage(listBi);
+            }
+        }
+    }
+    
+    public void changeColorMultiOptionTexture(String idSubMesh, String idSubTexture) {
+        Set<SubMeshType> keySet = subMeshes.keySet();
+        Iterator<SubMeshType> it = keySet.iterator();
+        while(it.hasNext()){
+            SubMeshType subMesh = it.next();
+            if (subMesh.getIdSubMesh().equals(idSubMesh)){
+                ArrayList<BufferedImage> bi = ColoringTextureSubMesh.coloringImageMultiOption(subMesh.getSubMeshTexture().getMultiOptionTextureSubMesh(), idSubTexture);
+                subMeshes.get(subMesh).setListBufferedImage(bi);
+            }
+        }
+    }
+
+    public BufferedImage getSubMeshTexture(String idSubMesh) {
+        Set<SubMeshType> keySet = subMeshes.keySet();
+        Iterator<SubMeshType> it = keySet.iterator();
+        while(it.hasNext()){
+            SubMeshType subMesh = it.next();
+            if (subMesh.getIdSubMesh().equals(idSubMesh)){
+                ArrayList<BufferedImage> listBi = subMeshes.get(subMesh).getListBufferedImage();
+                if (listBi == null){
+                    //Crear el BufferedImage
+                    ArrayList<BufferedImage> list = ImagesProcessingSubMesh.createBufferedImage(subMesh.getSubMeshTexture());
+                    subMeshes.get(subMesh).setListBufferedImage(list);
+                    return ImagesProcessingMainMesh.pasteImages(list, list.get(0).getWidth(), list.get(0).getHeight());
+                }
+                else{
+                    return ImagesProcessingMainMesh.pasteImages(listBi, listBi.get(0).getWidth(), listBi.get(0).getHeight());
+                }
+            }
+        }
+        return null;
     }
 }

@@ -36,8 +36,8 @@
 package es.eucm.character.data.texturessubmeshesdata;
 
 import es.eucm.character.data.model.TextureType;
-import es.eucm.character.imageprocessing.ColoringImage;
-import es.eucm.character.imageprocessing.ImagesProcessing;
+import es.eucm.character.imageprocessing.ColoringTextureMainMesh;
+import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -138,7 +138,7 @@ public class TexturesInPanel
         while(it.hasNext()){
             TextureType texture = it.next();
             if (texture.getIdTexture().equals(idTexture)){
-                ArrayList<BufferedImage> bi = ColoringImage.coloringImageBaseShadow(texture, new Color(red, green, blue));
+                ArrayList<BufferedImage> bi = ColoringTextureMainMesh.coloringImageBaseShadow(texture, new Color(red, green, blue));
                 textures.get(texture).setListBufferedImage(bi);
             }
         }        
@@ -151,7 +151,7 @@ public class TexturesInPanel
             TextureType texture = it.next();
             if (texture.getIdTexture().equals(idTexture)){
                 //Obtener el buffer image de los detalles coloreados.
-                BufferedImage bi = ColoringImage.coloringImageDoubleTextureDetails(texture, new Color(red, green, blue));
+                BufferedImage bi = ColoringTextureMainMesh.coloringImageDoubleTextureDetails(texture, new Color(red, green, blue));
                 //Obtener el buffer image de la base que había guardada
                 BufferedImage biBaseOriginal = textures.get(texture).getListBufferedImage().get(0);
                 //Crear la nueva lista de buffer image y guardarla
@@ -172,7 +172,7 @@ public class TexturesInPanel
                 /*ArrayList<BufferedImage> bi = ColoringImage.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
                 textures.get(texture).setListBufferedImage(bi);*/
                 //Obtener el buffer image de la base coloreada.
-                BufferedImage bi = ColoringImage.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
+                BufferedImage bi = ColoringTextureMainMesh.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
                 //Obtener el buffer image de los detalles que había guardado
                 BufferedImage biDetailsOriginal = textures.get(texture).getListBufferedImage().get(1);
                 //Crear la nueva lista de buffer image y guardarla
@@ -184,13 +184,13 @@ public class TexturesInPanel
         }
     }
     
-    public void changeColorMultiOptionTexture(String idMultiOption, String idSubTexture) {
+    public void changeColorMultiOptionTexture(String idTexture, String idSubTexture) {
         Set<TextureType> keySet = textures.keySet();
         Iterator<TextureType> it = keySet.iterator();
         while(it.hasNext()){
             TextureType texture = it.next();
-            if (texture.getIdTexture().equals(idMultiOption)){
-                ArrayList<BufferedImage> bi = ColoringImage.coloringImageMultiOption(texture, idSubTexture);
+            if (texture.getIdTexture().equals(idTexture)){
+                ArrayList<BufferedImage> bi = ColoringTextureMainMesh.coloringImageMultiOption(texture, idSubTexture);
                 textures.get(texture).setListBufferedImage(bi);
             }
         }
@@ -200,7 +200,7 @@ public class TexturesInPanel
     public ArrayList<BufferedImage> getListBufferedImage(TextureType texture){
         //Si el BufferedImage es null, es porque no se ha creado todavía. Hay que crearlo con imageProcessing.
         if(textures.get(texture).getListBufferedImage()== null){
-            textures.get(texture).setListBufferedImage(ImagesProcessing.createBufferedImage(texture));
+            textures.get(texture).setListBufferedImage(ImagesProcessingMainMesh.createBufferedImage(texture));
             return textures.get(texture).getListBufferedImage();
         }
         else {

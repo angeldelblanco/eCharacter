@@ -44,6 +44,7 @@ import es.eucm.character.data.family.FpsType;
 import es.eucm.character.data.family.AnimationStageType;
 import es.eucm.character.data.family.ScaleStageType;
 import es.eucm.character.data.family.ScaleStageType.BoneController;
+import es.eucm.character.loader.ResourceHandler;
 import java.util.ArrayList;
 import java.util.Iterator;
 import es.eucm.character.types.StageType;
@@ -79,7 +80,12 @@ public class FamilyControl
         {
             ModelRefType modelRefType = it.next();
             if(modelRefType.getModelLabel().equals(modelLabel)){
-                return modelRefType.getIconPath();
+                if (ResourceHandler.getResource(modelRefType.getIconPath()) != null){
+                    return modelRefType.getIconPath();
+                }
+                else{ 
+                    return null;
+                }
             }
         }
         return null;

@@ -35,8 +35,6 @@
  ******************************************************************************/
 package es.eucm.character.data.texturessubmeshesdata;
 
-import es.eucm.character.data.texturessubmeshesdata.TexturesInPanel;
-import es.eucm.character.data.texturessubmeshesdata.SubMeshesInPanel;
 import es.eucm.character.data.family.SubStageType;
 import es.eucm.character.data.model.BaseShadowTextureType;
 import es.eucm.character.data.model.DoubleTextureType;
@@ -45,6 +43,7 @@ import es.eucm.character.data.model.MultiOptionTextureType.OptionTexture;
 import es.eucm.character.data.model.SimpleTextureType;
 import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.TextureType;
+import es.eucm.character.types.ElementType;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -223,18 +222,28 @@ public class TexturesSubMeshesData
     /*
      * Return the list of textures activated
      */
-    public ArrayList<SubMeshType> getCheckedSubMeshes()
-    {
+    public ArrayList<SubMeshType> getCheckedSubMeshes(){
         ArrayList<SubMeshType> listCheckedSubMeshes = new ArrayList<SubMeshType>();
         Set<String> keyIdPanels = subMeshesData.keySet();
         Iterator<String> it = keyIdPanels.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             SubMeshesInPanel subMeshesInPanel = subMeshesData.get(it.next());
             ArrayList<SubMeshType> listCheckedSubMeshesInPanel = subMeshesInPanel.getCheckedSubMeshes();
             listCheckedSubMeshes.addAll(listCheckedSubMeshesInPanel);
         }
         return listCheckedSubMeshes;
+    }
+    
+    public BufferedImage getSubMeshTexture(String idSubMesh) {
+        BufferedImage bi = null;
+        Set<String> keyIdPanels = subMeshesData.keySet();
+        Iterator<String> it = keyIdPanels.iterator();
+        while(bi == null && it.hasNext()){
+            SubMeshesInPanel subMeshesInPanel = subMeshesData.get(it.next());
+            bi = subMeshesInPanel.getSubMeshTexture(idSubMesh);
+            
+        }
+        return bi;
     }
     
     /*
@@ -251,20 +260,40 @@ public class TexturesSubMeshesData
         subMeshesData.get(idPanel).changeSubMesh(idSubMesh);
     }
 
-    public void changeColorBaseShadow(String idPanel, String idTexture, float red, float green, float blue) {
-        texturesData.get(idPanel).changeColorBaseShadow(idTexture, red, green, blue);
+    public void changeColorBaseShadow(String idPanel, String idTextureOrSubmesh, ElementType type, float red, float green, float blue) {
+        if (type == ElementType.Texture){
+            texturesData.get(idPanel).changeColorBaseShadow(idTextureOrSubmesh, red, green, blue);
+        }
+        else if(type == ElementType.SubMesh){
+            subMeshesData.get(idPanel).changeColorBaseShadow(idTextureOrSubmesh, red, green, blue);
+        }
     }
     
-    public void changeColorDoubleTextureDetails(String idPanel, String idTexture, float red, float green, float blue) {
-        texturesData.get(idPanel).changeColorDoubleTextureDetails(idTexture, red, green, blue);
+    public void changeColorDoubleTextureDetails(String idPanel, String idTextureOrSubmesh, ElementType type, float red, float green, float blue) {
+        if (type == ElementType.Texture){
+            texturesData.get(idPanel).changeColorDoubleTextureDetails(idTextureOrSubmesh, red, green, blue);
+        }
+        else if(type == ElementType.SubMesh){
+            subMeshesData.get(idPanel).changeColorDoubleTextureDetails(idTextureOrSubmesh, red, green, blue);
+        }
     }
     
-    public void changeColorDoubleTextureBase(String idPanel, String idTexture, float red, float green, float blue) {
-        texturesData.get(idPanel).changeColorDoubleTextureBase(idTexture, red, green, blue);
+    public void changeColorDoubleTextureBase(String idPanel, String idTextureOrSubmesh, ElementType type, float red, float green, float blue) {
+        if (type == ElementType.Texture){
+            texturesData.get(idPanel).changeColorDoubleTextureBase(idTextureOrSubmesh, red, green, blue);
+        }
+        else if(type == ElementType.SubMesh){
+            subMeshesData.get(idPanel).changeColorDoubleTextureBase(idTextureOrSubmesh, red, green, blue);
+        }
     }
         
-    public void changeColorMultiOptionTexture(String idPanel, String idMultiOption,String idSubTexture) {
-        texturesData.get(idPanel).changeColorMultiOptionTexture(idMultiOption, idSubTexture);
+    public void changeColorMultiOptionTexture(String idPanel, String idTextureOrSubmesh, ElementType type, String idSubTexture) {
+        if (type == ElementType.Texture){
+            texturesData.get(idPanel).changeColorMultiOptionTexture(idTextureOrSubmesh, idSubTexture);
+        }
+        else if(type == ElementType.SubMesh){
+            subMeshesData.get(idPanel).changeColorMultiOptionTexture(idTextureOrSubmesh, idSubTexture);
+        }
     }
     public boolean isCheckedTexture(String idPanel, String idTexture){
         return texturesData.get(idPanel).ischecked(idTexture);
@@ -273,6 +302,4 @@ public class TexturesSubMeshesData
     public boolean isCheckedSubMesh(String idPanel, String idSubMesh){
         return subMeshesData.get(idPanel).ischecked(idSubMesh);
     }
-
-    
 }

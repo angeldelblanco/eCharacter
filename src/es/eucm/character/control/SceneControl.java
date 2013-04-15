@@ -55,7 +55,8 @@ import es.eucm.character.data.model.EscalationType;
 import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.TransformationType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
-import es.eucm.character.imageprocessing.ImagesProcessing;
+import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
+import es.eucm.character.types.ElementType;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,7 +94,7 @@ public class SceneControl
         loadTexture();
         this.rootNode.attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
-        setActivatedSubMeshes();
+        loadSubMeshes();
        
         this.control = mainMesh.getControl(AnimControl.class);
         this.channel = this.control.createChannel();
@@ -102,36 +103,6 @@ public class SceneControl
             this.channel.setAnim(animList.iterator().next());
             this.channel.setLoopMode(LoopMode.Loop); 
         }   
-    }
-    
-    private void setActivatedSubMeshes(){
-        ArrayList<SubMeshType> listSubMeshes = texturesSubMeshesData.getCheckedSubMeshes();
-        Iterator<SubMeshType> it = listSubMeshes.iterator();
-        while(it.hasNext()){
-            SubMeshType subMesh = it.next();
-            Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
-            
-            if (subMesh.getSubMeshTexture()!= null){
-                Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-                subMeshMaterial.setTexture("DiffuseMap",assetManager.loadTexture("assets/Textures/eAdventure/Textures Boy/PeloBoy.png"));
-                subMeshSpatial.setMaterial(subMeshMaterial);
-            }
-            else{
-                System.out.println("ENTROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-            }
-            //ÑAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            /*Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-            subMeshMaterial.setTexture("DiffuseMap",assetManager.loadTexture("assets/Textures/eAdventure/Textures Boy/PeloBoy.png"));
-            subMeshSpatial.setMaterial(subMeshMaterial);*/
-            //FIN DE ÑAPAAAAAAAAA
-            //If texture are distinct null,the submesh has a texture´s list.
-            //Else have a .material and it load automatically 
-            //if(subMesh.getTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture() != null){
-                //PORHACER
-            //}
-            ArrayList<TransformationType> listTransformation = (ArrayList<TransformationType>) subMesh.getTransformation();
-            applySubMesh(subMesh.getAssociatedBone(),subMeshSpatial,listTransformation);
-        }
     }
     
     private void setPositionModel(ArrayList<TransformationType> listTransformations){
@@ -249,31 +220,35 @@ public class SceneControl
         }
     }
     
-    public void changeColorBaseShadow(String idPanelRef, String idTexture, float red,float green,float blue){
-        texturesSubMeshesData.changeColorBaseShadow(idPanelRef, idTexture, red, green, blue);
+    public void changeColorBaseShadow(String idPanelRef, String idTextureOrSubmesh, ElementType type, float red,float green,float blue){
+        texturesSubMeshesData.changeColorBaseShadow(idPanelRef, idTextureOrSubmesh, type, red, green, blue);
         dettachAllChild();
         loadTexture();
+        loadSubMeshes();
         attachAllChild();  
     }
     
-    public void changeColorDoubleTextureDetails(String idPanel, String idTexture, float red, float green, float blue) {
-        texturesSubMeshesData.changeColorDoubleTextureDetails(idPanel, idTexture, red, green, blue);
+    public void changeColorDoubleTextureDetails(String idPanel, String idTextureOrSubmesh, ElementType type, float red, float green, float blue) {
+        texturesSubMeshesData.changeColorDoubleTextureDetails(idPanel, idTextureOrSubmesh, type, red, green, blue);
         dettachAllChild();
         loadTexture();
+        loadSubMeshes();
         attachAllChild();  
     }
     
-    public void changeColorDoubleTextureBase(String idPanel, String idTexture, float red, float green, float blue) {
-        texturesSubMeshesData.changeColorDoubleTextureBase(idPanel, idTexture, red, green, blue);
+    public void changeColorDoubleTextureBase(String idPanel, String idTextureOrSubmesh, ElementType type, float red, float green, float blue) {
+        texturesSubMeshesData.changeColorDoubleTextureBase(idPanel, idTextureOrSubmesh, type, red, green, blue);
         dettachAllChild();
         loadTexture();
+        loadSubMeshes();
         attachAllChild(); 
     }
     
-    public void changeColorMultiOptionTexture(String idPanel, String idMultiOption,String idSubTexture){
-        texturesSubMeshesData.changeColorMultiOptionTexture(idPanel, idMultiOption, idSubTexture);
+    public void changeColorMultiOptionTexture(String idPanel, String idTextureOrSubmesh, ElementType type, String idSubTexture){
+        texturesSubMeshesData.changeColorMultiOptionTexture(idPanel, idTextureOrSubmesh, type, idSubTexture);
         dettachAllChild();
         loadTexture();
+        loadSubMeshes();
         attachAllChild();  
     }
     
@@ -282,8 +257,7 @@ public class SceneControl
         cont++;
         String tempPath = "assets/Textures/FinalTexture"+cont+".png";
         
-        ImagesProcessing imagesProcessing = new ImagesProcessing(listTextures);  
-        BufferedImage bi = imagesProcessing.process(tempPath);
+        BufferedImage bi = ImagesProcessingMainMesh.process(listTextures);
         
         AWTLoader loader = new AWTLoader();
         Image load = loader.load(bi, true);
@@ -294,9 +268,35 @@ public class SceneControl
         mainMesh.setMaterial(mat);
     }
     
+    private void loadSubMeshes(){
+        ArrayList<SubMeshType> listSubMeshes = texturesSubMeshesData.getCheckedSubMeshes();
+        Iterator<SubMeshType> it = listSubMeshes.iterator();
+        while(it.hasNext()){
+            SubMeshType subMesh = it.next();
+            Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
+            if (subMesh.getSubMeshTexture()!= null){
+                //Obtener la textura de esa submalla
+                BufferedImage bi = texturesSubMeshesData.getSubMeshTexture(subMesh.getIdSubMesh());
+                AWTLoader loader = new AWTLoader();
+                Image load = loader.load(bi, true);
+                Texture2D texture = new Texture2D(load);
+                
+                Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+                subMeshMaterial.setTexture("DiffuseMap", texture);
+                subMeshSpatial.setMaterial(subMeshMaterial);
+            }
+            else{
+                //No hacer 
+                System.out.println("ENTROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            }
+            ArrayList<TransformationType> listTransformation = (ArrayList<TransformationType>) subMesh.getTransformation();
+            applySubMesh(subMesh.getAssociatedBone(),subMeshSpatial,listTransformation);
+        }
+    }
+    
     public void changeSubMesh(String idPanel, String idSubMesh){
         texturesSubMeshesData.changeSubMesh(idPanel,idSubMesh);
-        setActivatedSubMeshes();
+        loadSubMeshes();
     }
         
     public void changeTexture(String idPanel, String idTexture){
