@@ -36,7 +36,6 @@
 
 package es.eucm.character.gui;
 
-import es.eucm.character.control.Control;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
@@ -46,8 +45,8 @@ import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
+import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
-import java.util.ArrayList;
 
 public class ModelStageBuilder {
     private static final int MODELS_PAGE = 6;

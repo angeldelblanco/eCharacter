@@ -83,8 +83,8 @@
 			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 R Clavicle"/>
 			<bone idControllerRef="hands" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 L Hand"/>
 			<bone idControllerRef="hands" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 R Hand"/>
-			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 L Thigh"/>
-			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 R Thigh"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 L Calf"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 R Calf"/>
 			<bone idControllerRef="feet" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 L Foot"/>
 			<bone idControllerRef="feet" defaultValue="0" minValue="-50" maxValue="100" boneName="Bip01 R Foot"/>
 		</bones>		
