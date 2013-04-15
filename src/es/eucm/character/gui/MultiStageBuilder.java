@@ -179,7 +179,13 @@ public class MultiStageBuilder {
         subStageSelected[j] = idSubStages.get(j+page*TEXTURES_PAGE);
         textureOrSubMeshSelected[j] = idsTexturesOrSubMeshes.get(multiPage[j]*TEXTURES_PAGE+Integer.valueOf(i));
         nifty.getScreen(stageType).findElementByName("t"+h+i).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-        if(!(control.getTextureType(textureOrSubMeshSelected[j]) == TexturesMeshType.simpleTexture)){
+        
+        TexturesMeshType texturesMeshType = control.getTextureType(textureOrSubMeshSelected[j]);
+
+        if (texturesMeshType == null){
+            nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(j)).setVisible(false);
+        }
+        else if(!(texturesMeshType == TexturesMeshType.simpleTexture)){
             nifty.getScreen(stageType).findElementByName("panel_color"+h).setVisible(true);
         }
         else{

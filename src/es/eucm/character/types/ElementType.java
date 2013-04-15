@@ -37,7 +37,7 @@
 package es.eucm.character.types;
 
 
-public enum StageType{
-   scaleStage, singleStage, multiStage, animationStage
+public enum ElementType {
+   Texture, SubMesh
 }
 
