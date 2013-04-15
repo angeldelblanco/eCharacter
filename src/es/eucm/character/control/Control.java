@@ -45,6 +45,8 @@ import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.TextureType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.loader.Configuration;
+import es.eucm.character.loader.FamilyWithPath;
+import es.eucm.character.loader.XMLFamilyReader;
 import es.eucm.character.loader.XMLReader;
 import es.eucm.character.types.ElementType;
 import es.eucm.character.types.StageType;
@@ -55,7 +57,8 @@ import java.util.Set;
 
 public class Control {
     
-    private ArrayList<Family> families;
+    //private ArrayList<Family> families;
+    private ArrayList<FamilyWithPath> families;
     private Model model;
     private FamilyControl fc;
     private ModelControl mc;
@@ -66,35 +69,36 @@ public class Control {
     public Control(Configuration config, Node rootNode, AssetManager assetManager)
     {
         String familiesPath = config.getProperty(Configuration.FamiliesPath);
-        XMLReader<Family> xmlReader = new XMLReader<Family>(familiesPath);
-        families = xmlReader.readXML(Family.class);
+        /*XMLReader<Family> xmlReader = new XMLReader<Family>(familiesPath);
+        families = xmlReader.readXML(Family.class);*/
+        XMLFamilyReader xmlReader = new XMLFamilyReader(familiesPath);
+        families = xmlReader.readXML();
         this.assetManager = assetManager;
         this.rootNode = rootNode;
     }
     /*************************Family******************************************/
-    public void selectFamily(String nameFamily)
-    {
-        Iterator<Family> it = families.iterator();
-        while(it.hasNext())
-        {
-            Family family = it.next();
-            if (family.getMetadata().getName().equals(nameFamily))
-            {
-                fc = new FamilyControl(family);
+    public void selectFamily(String idFamily){
+        //Iterator<Family> it = families.iterator();
+        Iterator<FamilyWithPath> it = families.iterator();
+        while(it.hasNext()){
+            //Family family = it.next();
+            FamilyWithPath family = it.next();
+            if (family.getPath().equals(idFamily)){
+                fc = new FamilyControl(family.getFamily());
             }
         }
     }
     
-    public ArrayList<String> getFamiliesName()
-    {
-        ArrayList<String> listNames = new ArrayList<String>();
-        Iterator<Family> it = families.iterator();
-        while(it.hasNext())
-        {
-            Family family = it.next();
-            listNames.add(family.getMetadata().getName());
+    public ArrayList<String> getFamiliesID(){
+        ArrayList<String> listID = new ArrayList<String>();
+        //Iterator<Family> it = families.iterator();
+        Iterator<FamilyWithPath> it = families.iterator();
+        while(it.hasNext()){
+            //Family family = it.next();
+            FamilyWithPath family = it.next();
+            listID.add(family.getPath());
         }
-        return listNames;
+        return listID;
     }
     
     public String getLanguageFamilyPath()

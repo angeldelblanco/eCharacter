@@ -94,7 +94,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public Gui(Control control,Configuration config){
         this.control = control;
         this.config = config;
-        families = this.control.getFamiliesName();
+        families = this.control.getFamiliesID();
     }
     
     public void startGame(String nextScreen) {
