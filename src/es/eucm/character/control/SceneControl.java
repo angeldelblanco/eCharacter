@@ -76,6 +76,7 @@ public class SceneControl
     private TexturesSubMeshesData texturesSubMeshesData;
     private int cont;
     private float angRotate;
+    private DirectionalLight directionalLight;
     
     public SceneControl(Node rootNode, AssetManager assetManager, String mainMeshPath, 
             ArrayList<TransformationType> listTransformationMainMesh, TexturesSubMeshesData texturesSubMeshesData){
@@ -86,17 +87,17 @@ public class SceneControl
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         this.angRotate = 0.0f;
         
-        DirectionalLight dl = new DirectionalLight();
-        dl.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
-        this.rootNode.addLight(dl);
-        mainMesh = this.assetManager.loadModel(mainMeshPath); 
+        this.directionalLight = new DirectionalLight();
+        this.directionalLight.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
+        this.rootNode.addLight(this.directionalLight);
+        this.mainMesh = this.assetManager.loadModel(mainMeshPath); 
         
         loadTexture();
         this.rootNode.attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
         loadSubMeshes();
        
-        this.control = mainMesh.getControl(AnimControl.class);
+        this.control = this.mainMesh.getControl(AnimControl.class);
         this.channel = this.control.createChannel();
         Set<String> animList = (Set<String>) this.control.getAnimationNames();
         if(animList.size() > 0){
@@ -307,6 +308,7 @@ public class SceneControl
     }
     
     public void deleteModel(){
+        this.rootNode.removeLight(directionalLight);
         this.rootNode.detachAllChildren();
     }
     
