@@ -44,7 +44,9 @@ import com.jme3.asset.plugins.FileLocator;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.renderer.Camera;
 import com.jme3.system.AppSettings;
 import de.lessvoid.nifty.Nifty;
 import es.eucm.character.control.Control;
@@ -76,6 +78,7 @@ public class Application extends SimpleApplication{
         initKeys();
         setDisplayFps(false);
         setDisplayStatView(false);
+        
         // Register locator to assetManager
         assetManager.registerLocator("."+File.separator, FileLocator.class);      
         control = new Control(config,rootNode,assetManager,this);
@@ -83,6 +86,19 @@ public class Application extends SimpleApplication{
         stateManager.attach(gui);
         screenShotState = new ScreenshotAppState();
         stateManager.attach(screenShotState);
+        
+        // Camera
+        /*System.out.println("Eye :"+cam.getLocation().getX()+" "+cam.getLocation().getY()+" "+cam.getLocation().getZ());
+        System.out.println("Look :"+cam.getLeft().getX()+" "+cam.getLeft().getY()+" "+cam.getLeft().getZ());
+        System.out.println("Up :"+cam.getUp().getX()+" "+cam.getUp().getY()+" "+cam.getUp().getZ());
+        
+        Vector3f newLocation = new Vector3f(cam.getLocation().getX(),1.0f,cam.getLocation().getZ());
+        Vector3f newUp = new Vector3f(0.0f,0.5f,-1.0f);
+        cam.setFrame(newLocation, cam.getLeft(),newUp,cam.getDirection());
+       
+        System.out.println("Eye :"+cam.getLocation().getX()+" "+cam.getLocation().getY()+" "+cam.getLocation().getZ());
+        System.out.println("Look :"+cam.getLeft().getX()+" "+cam.getLeft().getY()+" "+cam.getLeft().getZ());
+        System.out.println("Up :"+cam.getUp().getX()+" "+cam.getUp().getY()+" "+cam.getUp().getZ());*/
         
         /**
         * Åctivate the Nifty-JME integration: 
@@ -117,9 +133,25 @@ public class Application extends SimpleApplication{
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
             if (name.equals("RotateLeft") && !keyPressed) {
-                control.rotateModel(-10.0f);                    
+                
+                /*float nx = (float) (cam.getLocation().getX() * Math.cos(0.1f) +
+                                    cam.getLocation().getZ() * Math.sin(0.1f));
+                float ny = cam.getLocation().getY();
+                float nz = (float) (-cam.getLocation().getX() * Math.sin(0.1f) +
+                                    cam.getLocation().getZ() * Math.cos(0.1f));
+                
+                cam.setLocation(new Vector3f(nx,ny,nz));*/
+                control.rotateModel(-10.0f);
             }
             if (name.equals("RotateRight") && !keyPressed){
+                
+                /*float nx = (float) (cam.getLocation().getX() * Math.cos(-1.0f) +
+                                    cam.getLocation().getZ() * Math.sin(-1.0f));
+                float nz = (float) (-cam.getLocation().getX() * Math.sin(-1.0f) +
+                                    cam.getLocation().getZ() * Math.cos(-1.0f));
+                
+                cam.setLocation(new Vector3f(nx,cam.getLocation().getY(),nz));*/
+                
                 control.rotateModel(10.0f);
             }
             if (name.equals("RestartRotate") && !keyPressed){
