@@ -43,25 +43,24 @@ import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ScreenshotThread extends Thread
 {
-    static final int numScreenshot = 9;
+    static final int quality = 10;
     
-    private ScreenshotAppState screenShotState;
+    private ScreenshotMyAppState screenShotState;
     private AnimChannel channel;
     private ViewPort guiViewPort;
     private NiftyJmeDisplay niftyDisplay;    
-    private Set<String> namesAnimations;
-    private long stepAnimationTime;
+    private ArrayList<String> namesAnimations;
+    private float stepAnimationTime;
     
     private ArrayList<String> imagesNames;
     
-    public ScreenshotThread(ScreenshotAppState screeShotState,AnimChannel channel,
-            ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,Set<String> namesAnimations)
+    public ScreenshotThread(ScreenshotMyAppState screeShotState,AnimChannel channel,
+            ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,ArrayList<String> namesAnimations)
     {
         super();
         this.screenShotState = screeShotState;
@@ -88,14 +87,20 @@ public class ScreenshotThread extends Thread
                 imagesNames = new ArrayList<String>();                
                 channel.setAnim(nameAnimation);
                 channel.setLoopMode(LoopMode.DontLoop);
-                stepAnimationTime = (long) (channel.getAnimMaxTime() * 1000 / numScreenshot);
-                sleep(100);
-                for(int j= 1 ; j<=numScreenshot; j++)
+                //Redondeo
+                int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
+                stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
+                System.out.println(stepAnimationTime);
+                //sleep(100);
+                float time = 0.0f;
+                for(int j= 1 ; j<=numScreenShots; j++)
                 {
+                    channel.setTime(time);
                     screenShotState.takeScreenshot();
                     imagesNames.add(nameAnimation+"Gui"+cont+".png");
                     cont++;
-                    sleep(stepAnimationTime);
+                    sleep((long)stepAnimationTime);
+                    time = channel.getTime();
                 }
                 generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }

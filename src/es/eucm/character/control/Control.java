@@ -36,7 +36,10 @@
 
 package es.eucm.character.control;
 
+import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.asset.AssetManager;
+import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import es.eucm.character.data.family.Family;
 import es.eucm.character.data.model.EscalationType;
@@ -44,6 +47,7 @@ import es.eucm.character.data.model.Model;
 import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.TextureType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
+import es.eucm.character.export.ScreenshotMyAppState;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.FamilyWithPath;
 import es.eucm.character.loader.XMLFamilyReader;
@@ -66,9 +70,13 @@ public class Control {
     private SceneControl sc;
     private AssetManager assetManager;
     private Node rootNode;
+    private ViewPort guiViewPort;
+    private NiftyJmeDisplay niftyDisplay;
+    private ScreenshotMyAppState screenShotState;
     private Application app;
     
-    public Control(Configuration config, Node rootNode, AssetManager assetManager, Application app)
+    public Control(Configuration config, Node rootNode, AssetManager assetManager, Application app, 
+            ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState)
     {
         String familiesPath = config.getProperty(Configuration.FamiliesPath);
         /*XMLReader<Family> xmlReader = new XMLReader<Family>(familiesPath);
@@ -78,7 +86,11 @@ public class Control {
         this.assetManager = assetManager;
         this.rootNode = rootNode;
         this.app = app;
+        this.guiViewPort = guiViewPort;
+        this.niftyDisplay = niftyDisplay;
+        this.screenShotState = screenShotState;
     }
+
     /*************************Family******************************************/
     public void selectFamily(String idFamily){
         //Iterator<Family> it = families.iterator();
@@ -210,7 +222,7 @@ public class Control {
         }
         mc = new ModelControl(model);
         TexturesSubMeshesData texturesSubMeshesData = new TexturesSubMeshesData(fc.getAllSubStages(), mc.getAllTextures(), mc.getAllSubMeshes());
-        sc = new SceneControl(rootNode, assetManager, mc.getMainMeshPath(), mc.getMainMeshTransformations(), texturesSubMeshesData);
+        sc = new SceneControl(rootNode, assetManager, guiViewPort, niftyDisplay, screenShotState, mc.getMainMeshPath(), mc.getMainMeshTransformations(), texturesSubMeshesData);
     }
     
     public String getLanguageModelPath()
@@ -403,5 +415,9 @@ public class Control {
     
     public void restartRotateModel(){
         sc.restartRotateModel();
+    }
+    
+    public void clickAnimation(String animationName){
+        sc.clickAnimation(animationName);
     }
 }

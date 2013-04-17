@@ -40,12 +40,15 @@ import com.jme3.animation.AnimControl;
 import com.jme3.animation.Bone;
 import com.jme3.animation.LoopMode;
 import com.jme3.animation.SkeletonControl;
+import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.asset.AssetManager;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
+import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Image;
@@ -55,6 +58,8 @@ import es.eucm.character.data.model.EscalationType;
 import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.TransformationType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
+import es.eucm.character.export.ScreenshotMyAppState;
+import es.eucm.character.export.ScreenshotThread;
 import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
 import es.eucm.character.types.ElementType;
 import java.awt.image.BufferedImage;
@@ -67,23 +72,32 @@ public class SceneControl
 {
     private Node rootNode;
     private AssetManager assetManager;
+    private ViewPort guiViewPort;
+    private NiftyJmeDisplay niftyDisplay;
+    private ScreenshotMyAppState screenShotState;
     private Spatial mainMesh;
     private HashMap<String,Spatial> subMeshes;
+    private HashMap<String,Boolean> animations;
     private Material mat;
     private AnimChannel channel;
     private AnimControl control;
     private Vector3f vectorScaleBase;
     private TexturesSubMeshesData texturesSubMeshesData;
-    private int cont;
     private float angRotate;
     private DirectionalLight directionalLight;
     
-    public SceneControl(Node rootNode, AssetManager assetManager, String mainMeshPath, 
-            ArrayList<TransformationType> listTransformationMainMesh, TexturesSubMeshesData texturesSubMeshesData){
+    public SceneControl(Node rootNode, AssetManager assetManager, ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, 
+            ScreenshotMyAppState screenShotState, String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh, 
+            TexturesSubMeshesData texturesSubMeshesData){
         this.rootNode = rootNode;
         this.assetManager = assetManager;
+        this.guiViewPort = guiViewPort;
+        this.niftyDisplay = niftyDisplay;
+        this.screenShotState = screenShotState;
         this.texturesSubMeshesData = texturesSubMeshesData;
+        
         this.subMeshes = new HashMap<String, Spatial>();
+        this.animations = new HashMap<String,Boolean>();
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         this.angRotate = 0.0f;
         
@@ -104,6 +118,7 @@ public class SceneControl
             this.channel.setAnim(animList.iterator().next());
             this.channel.setLoopMode(LoopMode.Loop); 
         }   
+        fillAnimations(animList);
     }
     
     private void setPositionModel(ArrayList<TransformationType> listTransformations){
@@ -255,9 +270,6 @@ public class SceneControl
     
     private void loadTexture(){
         HashMap<Integer,ArrayList<BufferedImage>> listTextures = texturesSubMeshesData.getCheckedTextures();
-        cont++;
-        String tempPath = "assets/Textures/FinalTexture"+cont+".png";
-        
         BufferedImage bi = ImagesProcessingMainMesh.process(listTextures);
         
         AWTLoader loader = new AWTLoader();
@@ -331,23 +343,33 @@ public class SceneControl
         angRotate = 0.0f;
     }
     
-    
-    
     public void screenShot(){
-        //POR HACER
+        animations.put("Hablar", Boolean.TRUE);
+        ArrayList<String> listAnimationsChecked = new ArrayList<String>();
+        Iterator<String> it = animations.keySet().iterator();
+        while(it.hasNext()){
+            String animationName = it.next();
+            if(animations.get(animationName)){
+                listAnimationsChecked.add(animationName);
+            }
+        }
+        if(listAnimationsChecked.size() > 0){
+            guiViewPort.removeProcessor(niftyDisplay);
+            ScreenshotThread sst = new ScreenshotThread(screenShotState,channel,guiViewPort,niftyDisplay,listAnimationsChecked);
+            sst.start();
+        }
     }
     
-    /*
-     * public void screenShot(ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotAppState screenShotState)
-    {
-        guiViewPort.removeProcessor(niftyDisplay);
-        Set<String> namesAnimations = (Set<String>) control.getAnimationNames();
-        //ScreenshotThread sst = new ScreenshotThread(screenShotState,channel,guiViewPort,niftyDisplay,namesAnimations);
-        //sst.start();
+    private void fillAnimations(Set<String> listAnimations){
+        Iterator<String> it = listAnimations.iterator();
+        while(it.hasNext()){
+            String animation = it.next();
+            animations.put(animation, false);
+        }
     }
-     */
 
-    
-
-    
+    public void clickAnimation(String animationName) {
+        boolean b = animations.get(animationName);
+        animations.put(animationName, !b);
+    }
 }

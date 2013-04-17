@@ -50,6 +50,7 @@ import com.jme3.renderer.Camera;
 import com.jme3.system.AppSettings;
 import de.lessvoid.nifty.Nifty;
 import es.eucm.character.control.Control;
+import es.eucm.character.export.ScreenshotMyAppState;
 import es.eucm.character.gui.Gui;
 import es.eucm.character.loader.Configuration;
 import java.io.File;
@@ -57,7 +58,7 @@ import java.io.File;
 public class Application extends SimpleApplication{
 
     private Gui gui;
-    private ScreenshotAppState screenShotState;
+    private ScreenshotMyAppState screenShotState;
     private NiftyJmeDisplay niftyDisplay;
     private Control control;
     private Configuration config;
@@ -81,12 +82,26 @@ public class Application extends SimpleApplication{
         setDisplayStatView(false);
         
         // Register locator to assetManager
-        assetManager.registerLocator("."+File.separator, FileLocator.class);      
-        control = new Control(config,rootNode,assetManager,this);
+        assetManager.registerLocator("."+File.separator, FileLocator.class);
+        
+        niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
+        guiViewPort.addProcessor(niftyDisplay);
+        screenShotState = new ScreenshotMyAppState();
+        
+        control = new Control(config,rootNode,assetManager,this, guiViewPort, niftyDisplay, screenShotState);
         gui = new Gui(control,config);
+        
+        /**
+        * Åctivate the Nifty-JME integration: 
+        */
+        nifty = niftyDisplay.getNifty();
+        nifty.fromXml("assets/Interface/screen.xml", "start", gui);
+        //nifty.setDebugOptionPanelColors(true);
+
         stateManager.attach(gui);
-        screenShotState = new ScreenshotAppState();
         stateManager.attach(screenShotState);
+        
+        
         
         // Camera
         /*System.out.println("Eye :"+cam.getLocation().getX()+" "+cam.getLocation().getY()+" "+cam.getLocation().getZ());
@@ -101,15 +116,9 @@ public class Application extends SimpleApplication{
         System.out.println("Look :"+cam.getLeft().getX()+" "+cam.getLeft().getY()+" "+cam.getLeft().getZ());
         System.out.println("Up :"+cam.getUp().getX()+" "+cam.getUp().getY()+" "+cam.getUp().getZ());*/
         
-        /**
-        * Åctivate the Nifty-JME integration: 
-        */
-        niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
-        nifty = niftyDisplay.getNifty();
-        guiViewPort.addProcessor(niftyDisplay);
-        nifty.fromXml("assets/Interface/screen.xml", "start", gui);
-        //nifty.setDebugOptionPanelColors(true);
+        //cam.lookAtDirection(new Vector3f(0.0f, 1.0f, 0.0f), new Vector3f(0.0f, 1.0f, 10.0f));
 
+        
         flyCam.setDragToRotate(true); // you need the mouse for clicking now
         flyCam.setEnabled(false);
     }
