@@ -111,7 +111,13 @@ public class ModelStageBuilder {
                 Element image = nifty.getScreen(stageType).findElementByName("m"+Integer.toString(i%MODELS_PAGE));
                 image.setVisible(true);
                 ImageRenderer imager = image.getRenderer(ImageRenderer.class);
-                imager.setImage(nifty.getRenderEngine().createImage(control.getModelIconPath(control.getModelsLabel().get(i)), false));
+                String imagePath = control.getModelIconPath(control.getModelsLabel().get(i));
+                if(imagePath!=null){
+                    imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
+                }
+                else{
+                    imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
+                }
             }
         }
         for(int i=control.getNumModels();i<((modelsPage+1)*MODELS_PAGE);i++){

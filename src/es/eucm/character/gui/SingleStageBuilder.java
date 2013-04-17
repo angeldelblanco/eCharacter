@@ -36,18 +36,17 @@
 
 package es.eucm.character.gui;
 
-import es.eucm.character.control.Control;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
+import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
-import java.util.ArrayList;
-import java.util.Iterator;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
+import java.util.ArrayList;
 
 
 public class SingleStageBuilder {
@@ -83,7 +82,13 @@ public class SingleStageBuilder {
                 Element image = nifty.getScreen(stageType).findElementByName("i"+Integer.toString(i%TEXTURES_PAGE));
                 image.setVisible(true);
                 ImageRenderer imager = image.getRenderer(ImageRenderer.class);
-                imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)), false));
+                String imagePath = control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i));
+                if(imagePath!=null){
+                    imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
+                }
+                else{
+                    imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
+                }
                 if (control.isChecked(idSubStages.get(0), idsTexturesOrSubMeshes.get(i))){
                     nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
                     textureOrSubMeshSelected = idsTexturesOrSubMeshes.get(i);
