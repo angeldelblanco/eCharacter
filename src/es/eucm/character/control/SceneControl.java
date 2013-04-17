@@ -40,16 +40,11 @@ import com.jme3.animation.AnimControl;
 import com.jme3.animation.Bone;
 import com.jme3.animation.LoopMode;
 import com.jme3.animation.SkeletonControl;
-import com.jme3.app.state.ScreenshotAppState;
-import com.jme3.asset.AssetManager;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
-import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.renderer.ViewPort;
-import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture2D;
@@ -58,7 +53,6 @@ import es.eucm.character.data.model.EscalationType;
 import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.TransformationType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
-import es.eucm.character.export.ScreenshotMyAppState;
 import es.eucm.character.export.ScreenshotThread;
 import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
 import es.eucm.character.types.ElementType;
@@ -68,57 +62,52 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-public class SceneControl 
-{
-    private Node rootNode;
-    private AssetManager assetManager;
-    private ViewPort guiViewPort;
-    private NiftyJmeDisplay niftyDisplay;
-    private ScreenshotMyAppState screenShotState;
+public class SceneControl {
+    private Control control;
     private Spatial mainMesh;
     private HashMap<String,Spatial> subMeshes;
     private HashMap<String,Boolean> animations;
+    private HashMap<String,Boolean> cameras;
+    private HashMap<String,Boolean> qualities;
     private Material mat;
-    private AnimChannel channel;
-    private AnimControl control;
+    private AnimChannel animChannel;
+    private AnimControl animControl;
     private Vector3f vectorScaleBase;
     private TexturesSubMeshesData texturesSubMeshesData;
     private float angRotate;
     private DirectionalLight directionalLight;
     
-    public SceneControl(Node rootNode, AssetManager assetManager, ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, 
-            ScreenshotMyAppState screenShotState, String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh, 
-            TexturesSubMeshesData texturesSubMeshesData){
-        this.rootNode = rootNode;
-        this.assetManager = assetManager;
-        this.guiViewPort = guiViewPort;
-        this.niftyDisplay = niftyDisplay;
-        this.screenShotState = screenShotState;
-        this.texturesSubMeshesData = texturesSubMeshesData;
-        
+    public SceneControl(Control control,String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh,
+                TexturesSubMeshesData texturesSubMeshesData){
+        this.control = control;
+        this.texturesSubMeshesData = texturesSubMeshesData;        
         this.subMeshes = new HashMap<String, Spatial>();
         this.animations = new HashMap<String,Boolean>();
+        this.cameras = new HashMap<String,Boolean>();
+        this.qualities = new HashMap<String,Boolean>();
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         this.angRotate = 0.0f;
         
         this.directionalLight = new DirectionalLight();
         this.directionalLight.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
-        this.rootNode.addLight(this.directionalLight);
-        this.mainMesh = this.assetManager.loadModel(mainMeshPath); 
+        this.control.getRootNode().addLight(this.directionalLight);
+        this.mainMesh = this.control.getAssetManager().loadModel(mainMeshPath); 
         
         loadTexture();
-        this.rootNode.attachChild(mainMesh);
+        this.control.getRootNode().attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
         loadSubMeshes();
        
-        this.control = this.mainMesh.getControl(AnimControl.class);
-        this.channel = this.control.createChannel();
-        Set<String> animList = (Set<String>) this.control.getAnimationNames();
+        this.animControl = this.mainMesh.getControl(AnimControl.class);
+        this.animChannel = this.animControl.createChannel();
+        Set<String> animList = (Set<String>) this.animControl.getAnimationNames();
         if(animList.size() > 0){
-            this.channel.setAnim(animList.iterator().next());
-            this.channel.setLoopMode(LoopMode.Loop); 
+            this.animChannel.setAnim(animList.iterator().next());
+            this.animChannel.setLoopMode(LoopMode.Loop); 
         }   
         fillAnimations(animList);
+        fillCameras(control.getCamerasLabels());
+        fillQualities(control.getQualityLabels());
     }
     
     private void setPositionModel(ArrayList<TransformationType> listTransformations){
@@ -200,7 +189,7 @@ public class SceneControl
             mesh.setLocalScale(scale);
         }
         else{
-            Bone b = control.getSkeleton().getBone(boneName);
+            Bone b = animControl.getSkeleton().getBone(boneName);
             b.setUserControl(true);
             b.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY,scale);
         }
@@ -210,28 +199,28 @@ public class SceneControl
         Iterator<String> it = bonesNames.iterator();
         while(it.hasNext()){
             String idBone = it.next();
-            Bone b = control.getSkeleton().getBone(idBone);
+            Bone b = animControl.getSkeleton().getBone(idBone);
             b.setUserControl(true);
             b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,new Vector3f(inc,inc,inc));
         }
     }
     
     public Set<String> getAnimationsName(){
-        return (Set<String>) control.getAnimationNames();
+        return (Set<String>) animControl.getAnimationNames();
     }
     
     public int getNumAnimations(){
-        return control.getAnimationNames().size();
+        return animControl.getAnimationNames().size();
     }
     
     public void setAnimation(String animationName){
-        Set<String> animList = (Set<String>) this.control.getAnimationNames();
+        Set<String> animList = (Set<String>) this.animControl.getAnimationNames();
         Iterator<String> it = animList.iterator();
         while(it.hasNext()){
             String anim = it.next();
             if(anim.equals(animationName)){
-                this.channel.setAnim(anim);
-                this.channel.setLoopMode(LoopMode.Loop);
+                this.animChannel.setAnim(anim);
+                this.animChannel.setLoopMode(LoopMode.Loop);
             }
         }
     }
@@ -276,7 +265,7 @@ public class SceneControl
         Image load = loader.load(bi, true);
         Texture2D texture = new Texture2D(load);
         
-        mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
+        mat = new Material(control.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md"); 
         mat.setTexture("ColorMap",texture);
         mainMesh.setMaterial(mat);
     }
@@ -286,7 +275,7 @@ public class SceneControl
         Iterator<SubMeshType> it = listSubMeshes.iterator();
         while(it.hasNext()){
             SubMeshType subMesh = it.next();
-            Spatial subMeshSpatial = assetManager.loadModel(subMesh.getPath());
+            Spatial subMeshSpatial = control.getAssetManager().loadModel(subMesh.getPath());
             if (subMesh.getSubMeshTexture()!= null){
                 //Obtener la textura de esa submalla
                 BufferedImage bi = texturesSubMeshesData.getSubMeshTexture(subMesh.getIdSubMesh());
@@ -294,7 +283,7 @@ public class SceneControl
                 Image load = loader.load(bi, true);
                 Texture2D texture = new Texture2D(load);
                 
-                Material subMeshMaterial = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+                Material subMeshMaterial = new Material(control.getAssetManager(), "Common/MatDefs/Light/Lighting.j3md");
                 subMeshMaterial.setTexture("DiffuseMap", texture);
                 subMeshSpatial.setMaterial(subMeshMaterial);
             }
@@ -320,8 +309,8 @@ public class SceneControl
     }
     
     public void deleteModel(){
-        this.rootNode.removeLight(directionalLight);
-        this.rootNode.detachAllChildren();
+        this.control.getRootNode().removeLight(directionalLight);
+        this.control.getRootNode().detachAllChildren();
     }
     
     public boolean isCheckedTexture(String idPanel, String idTexture){
@@ -354,8 +343,9 @@ public class SceneControl
             }
         }
         if(listAnimationsChecked.size() > 0){
-            guiViewPort.removeProcessor(niftyDisplay);
-            ScreenshotThread sst = new ScreenshotThread(screenShotState,channel,guiViewPort,niftyDisplay,listAnimationsChecked);
+            control.getGuiViewPort().removeProcessor(control.getNiftyDisplay());
+            ScreenshotThread sst = new ScreenshotThread(control.getScreenShotState(),animChannel,
+                    control.getGuiViewPort(),control.getNiftyDisplay(),listAnimationsChecked);
             sst.start();
         }
     }
@@ -367,9 +357,71 @@ public class SceneControl
             animations.put(animation, false);
         }
     }
+    
+    private void fillCameras(ArrayList<String> listCameras){
+        Iterator<String> it = listCameras.iterator();
+        while(it.hasNext()){
+            String camera = it.next();
+            cameras.put(camera, false);
+        } 
+    }
+    
+    private void fillQualities(ArrayList<String> listQualities){
+        Iterator<String> it = listQualities.iterator();
+        while(it.hasNext()){
+            String quality = it.next();
+            cameras.put(quality, false);
+        } 
+    }
 
     public void clickAnimation(String animationName) {
         boolean b = animations.get(animationName);
         animations.put(animationName, !b);
+    }
+    
+    public boolean isCheckedAnimation(String animationName) {
+        return animations.get(animationName);
+    }
+    
+    public void clickAllAnimations(){
+        Set<String> keySet = animations.keySet();
+        Iterator<String> it = keySet.iterator();
+        while(it.hasNext()){
+            animations.put(it.next(),true);
+        }
+    }
+    
+    public void clickCamera(String cameraLabel) {
+        boolean b = cameras.get(cameraLabel);
+        cameras.put(cameraLabel, !b);
+    }
+    
+    public boolean isCheckedCamera(String cameraLabel) {
+        return cameras.get(cameraLabel);
+    }
+    
+    public void clickAllCameras(){
+        Set<String> keySet = cameras.keySet();
+        Iterator<String> it = keySet.iterator();
+        while(it.hasNext()){
+            cameras.put(it.next(),true);
+        }
+    }
+     
+    public void clickQuality(String qualityLabel) {
+        boolean b = qualities.get(qualityLabel);
+        qualities.put(qualityLabel, !b);
+    }
+    
+    public boolean isCheckedQuality(String qualityLabel) {
+        return qualities.get(qualityLabel);
+    }
+    
+    public void clickAllQualities(){
+        Set<String> keySet = qualities.keySet();
+        Iterator<String> it = keySet.iterator();
+        while(it.hasNext()){
+            qualities.put(it.next(),true);
+        }
     }
 }

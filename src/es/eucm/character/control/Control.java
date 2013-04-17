@@ -36,12 +36,10 @@
 
 package es.eucm.character.control;
 
-import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.asset.AssetManager;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
-import es.eucm.character.data.family.Family;
 import es.eucm.character.data.model.EscalationType;
 import es.eucm.character.data.model.Model;
 import es.eucm.character.data.model.SubMeshType;
@@ -90,7 +88,26 @@ public class Control {
         this.niftyDisplay = niftyDisplay;
         this.screenShotState = screenShotState;
     }
+    /*************************Getter******************************************/
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
 
+    public Node getRootNode() {
+        return rootNode;
+    }
+
+    public ViewPort getGuiViewPort() {
+        return guiViewPort;
+    }
+
+    public NiftyJmeDisplay getNiftyDisplay() {
+        return niftyDisplay;
+    }
+
+    public ScreenshotMyAppState getScreenShotState() {
+        return screenShotState;
+    }
     /*************************Family******************************************/
     public void selectFamily(String idFamily){
         //Iterator<Family> it = families.iterator();
@@ -222,7 +239,7 @@ public class Control {
         }
         mc = new ModelControl(model);
         TexturesSubMeshesData texturesSubMeshesData = new TexturesSubMeshesData(fc.getAllSubStages(), mc.getAllTextures(), mc.getAllSubMeshes());
-        sc = new SceneControl(rootNode, assetManager, guiViewPort, niftyDisplay, screenShotState, mc.getMainMeshPath(), mc.getMainMeshTransformations(), texturesSubMeshesData);
+        sc = new SceneControl(this, mc.getMainMeshPath(), mc.getMainMeshTransformations(),texturesSubMeshesData);
     }
     
     public String getLanguageModelPath()
@@ -419,5 +436,37 @@ public class Control {
     
     public void clickAnimation(String animationName){
         sc.clickAnimation(animationName);
+    }
+    
+    public boolean isCheckedAnimation(String animationName){
+        return sc.isCheckedAnimation(animationName);
+    }
+    
+    public void clickAllAnimations(){
+        sc.clickAllAnimations();
+    }
+            
+    public void clickCamera(String cameraLabel){
+        sc.clickCamera(cameraLabel);
+    }
+    
+    public boolean isCheckedCamera(String cameraLabel){
+        return sc.isCheckedCamera(cameraLabel);
+    }
+    
+    public void clickAllCameras(){
+        sc.clickAllCameras();
+    }
+    
+    public void clickQuality(String qualityLabel){
+        sc.clickQuality(qualityLabel);
+    }
+    
+    public boolean isCheckedQuality(String qualityLabel){
+        return sc.isCheckedQuality(qualityLabel);
+    }
+    
+    public void clickAllQualities(){
+        sc.clickAllQualities();
     }
 }
