@@ -59,6 +59,7 @@ public class Application extends SimpleApplication{
     private NiftyJmeDisplay niftyDisplay;
     private Control control;
     private Configuration config;
+    private Nifty nifty;
     
     
     public Application(int width,int height,Configuration config)
@@ -88,7 +89,7 @@ public class Application extends SimpleApplication{
         * Åctivate the Nifty-JME integration: 
         */
         niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
-        Nifty nifty = niftyDisplay.getNifty();
+        nifty = niftyDisplay.getNifty();
         guiViewPort.addProcessor(niftyDisplay);
         nifty.fromXml("assets/Interface/screen.xml", "start", gui);
         //nifty.setDebugOptionPanelColors(true);
