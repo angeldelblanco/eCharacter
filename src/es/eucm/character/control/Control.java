@@ -307,7 +307,7 @@ public class Control {
     }
     
     /*************************Scene******************************************/
-    public Set<String> getAnimationNames()
+    public ArrayList<String> getAnimationNames()
     {
         return sc.getAnimationsName();
     }
