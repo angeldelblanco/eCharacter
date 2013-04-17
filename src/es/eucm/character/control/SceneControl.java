@@ -205,8 +205,10 @@ public class SceneControl {
         }
     }
     
-    public Set<String> getAnimationsName(){
-        return (Set<String>) animControl.getAnimationNames();
+    public ArrayList<String> getAnimationsName(){
+        ArrayList<String> listAnimationsName = new ArrayList<String>();
+        listAnimationsName.addAll(animControl.getAnimationNames());
+        return listAnimationsName;
     }
     
     public int getNumAnimations(){
