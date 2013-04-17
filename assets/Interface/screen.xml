@@ -501,10 +501,81 @@
 			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right">
 				<panel id="panel_image" height="90%" width="100%" align="center" childLayout="vertical">
 					<panel height="33%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
-						<panel id="previewPanel" height="100%" width="80%" childLayout="vertical">
-							<text id="previewText" text="" font="Interface/Fonts/Default.fnt" align="center" width="40%" height="100%" wrap = "true"/>
+						<panel id="animationsPanel" height="100%" width="80%" childLayout="vertical">
+							<text id="animationsText" text="" font="Interface/Fonts/Default.fnt" align="center" width="100%" height="10%" wrap = "true"/>
 							<panel height="5%" width="100%">
 								<!-- Space -->
+							</panel>
+							<panel id="a0" height="15%" width="100%" childLayout="horizontal">
+								<text id="aText0" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="55%" wrap = "true"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control id="aCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control name="button" label="ver" id="aButton0" width="25%" align="center" valign="center" visibleToMouse="true"> 
+									<interact onClick="showAnimation(0)" />
+								</control>
+							</panel>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="a1" height="15%" width="100%" childLayout="horizontal">
+								<text id="aText1" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="55%" wrap = "true"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control id="aCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control name="button" label="ver" id="aButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
+									<interact onClick="showAnimation(0)" />
+								</control>
+							</panel>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="a2" height="15%" width="100%" childLayout="horizontal">
+								<text id="aText2" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="55%" wrap = "true"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control id="aCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control name="button" label="ver" id="aButton2" width="25%" align="center" valign="center" visibleToMouse="true"> 
+									<interact onClick="showAnimation(0)" />
+								</control>
+							</panel>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="aChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
+									<image id="aleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
+										<interact onClick="changePage(a,-)"/>
+									</image>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="All" id="aAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="checkAll(a,true)" />
+									</control>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="No" id="aNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="checkAll(a,false)" />
+									</control>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<image id="arightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
+										<interact onClick="changePage(a,+)"/>
+									</image>
 							</panel>
 						</panel>
 					</panel>
@@ -513,19 +584,126 @@
 					</panel>
 					<panel id="Panel2" height="30%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
 						<panel id="qualityPanel" height="100%" width="80%" childLayout="vertical">
-							<text id="qualityText" text="" font="Interface/Fonts/Default.fnt" align="center" width="40%" height="100%" wrap = "true"/>
-							<control id="RadioGroupQuality" name="radioButtonGroup"/>
-							<panel id="qualityRadioButtons" height="60%" width="100%" childLayout="vertical"/>
+							<text id="qualityText" text="" font="Interface/Fonts/Default.fnt" align="center" width="100%" height="10%" wrap = "true"/>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="q0" height="15%" width="100%" childLayout="horizontal">
+								<text id="qText0" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control id="qCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+							</panel>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="q1" height="15%" width="100%" childLayout="horizontal">
+								<text id="qText1" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control id="qCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+							</panel>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="q2" height="15%" width="100%" childLayout="horizontal">
+								<text id="qText2" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control id="qCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+							</panel>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="qChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
+									<image id="qleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
+										<interact onClick="changePage(q,-)"/>
+									</image>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="All" id="qAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="checkAll(q,true)" />
+									</control>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="No" id="qNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="checkAll(q,false)" />
+									</control>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<image id="qrightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
+										<interact onClick="changePage(q,+)"/>
+									</image>
+							</panel>
 						</panel>
 					</panel>
 					<panel height="2%" width="100%">
 					<!-- Space -->
 					</panel>
 					<panel id="Panel3" height="33%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
-						<panel id="checkBoxPanel" height="100%" width="80%" childLayout="vertical">
-							<text id="checkBoxText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="100%" wrap = "true"/>
+						<panel id="cameraPanel" height="100%" width="80%" childLayout="vertical">
+							<text id="cameraText" text="" font="Interface/Fonts/Default.fnt" width="100%" height="10%" wrap = "true"/>
 							<panel height="5%" width="100%">
 								<!-- Space -->
+							</panel>
+							<panel id="c0" height="15%" width="100%" childLayout="horizontal">
+								<text id="cText0" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control id="cCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+							</panel>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="c1" height="15%" width="100%" childLayout="horizontal">
+								<text id="cText1" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control id="cCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+							</panel>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="c2" height="15%" width="100%" childLayout="horizontal">
+								<text id="cText2" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control id="cCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+							</panel>
+							<panel height="5%" width="100%">
+								<!-- Space -->
+							</panel>
+							<panel id="cChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
+									<image id="cleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
+										<interact onClick="changePage(c,-)"/>
+									</image>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="All" id="cAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="checkAll(c,true)" />
+									</control>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="No" id="cNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="checkAll(c,false)" />
+									</control>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<image id="crightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
+										<interact onClick="changePage(c,+)"/>
+									</image>
 							</panel>
 						</panel>
 					</panel>

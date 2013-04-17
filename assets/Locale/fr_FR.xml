@@ -29,5 +29,7 @@
 	<string id="idCancel">Annuler</string>
 	<string id="idBasic">De base</string>
 	<string id="idCustom">Personnalisée</string>
+	<string id="idAll">Tous</string>
+	<string id="idNothing">Aucun</string>
 </metadata>
 	

@@ -29,4 +29,6 @@
 	<string id="idCancel">Cancel</string>
 	<string id="idBasic">Basic</string>
 	<string id="idCustom">Custom</string>
+	<string id="idAll">All</string>
+	<string id="idNothing">Nothing</string>
 </metadata>
