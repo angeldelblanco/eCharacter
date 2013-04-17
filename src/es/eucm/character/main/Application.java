@@ -54,6 +54,10 @@ import es.eucm.character.export.ScreenshotMyAppState;
 import es.eucm.character.gui.Gui;
 import es.eucm.character.loader.Configuration;
 import java.io.File;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Application extends SimpleApplication{
 
@@ -78,6 +82,15 @@ public class Application extends SimpleApplication{
     @Override
     public void simpleInitApp() {
         initKeys();
+        //Disable log of nifty
+        Logger root = Logger.getLogger("");
+        Handler[] handlers = root.getHandlers();
+        for (int i = 0; i < handlers.length; i++) {
+            if (handlers[i] instanceof ConsoleHandler) {
+                ((ConsoleHandler) handlers[i]).setLevel(Level.WARNING);
+            }
+        }
+                
         setDisplayFps(false);
         setDisplayStatView(false);
         

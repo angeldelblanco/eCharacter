@@ -90,21 +90,21 @@ public class ScreenshotThread extends Thread
                 //Redondeo
                 int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
                 stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
-                System.out.println(stepAnimationTime);
                 //sleep(100);
                 float time = 0.0f;
-                for(int j= 1 ; j<=numScreenShots; j++)
-                {
+                for(int j= 1 ; j<=numScreenShots; j++){
+                    System.out.println("Captura antes "+j+" con tiempo "+System.currentTimeMillis());
                     channel.setTime(time);
                     screenShotState.takeScreenshot();
-                    imagesNames.add(nameAnimation+"Gui"+cont+".png");
+                    System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
                     cont++;
                     sleep((long)stepAnimationTime);
                     time = channel.getTime();
                 }
-                generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
+                screenShotState.writeFiles();
+                //generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }
-            generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
+            //generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
             
             it = namesAnimations.iterator();
             channel.setAnim(it.next());
