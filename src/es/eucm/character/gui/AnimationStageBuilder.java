@@ -235,21 +235,15 @@ public class AnimationStageBuilder {
     
     public void checkAll(String id, boolean b){
         if(id.equals("a")){
-            if(b){
-                control.clickAllAnimations();
-            }
+            control.clickAllAnimations(b);
         }
         else{
             if(id.equals("q")){
-                if(b){
-                    control.clickAllQualities();
-                }
+                control.clickAllQualities(b);
             }
             else{
                 if(id.equals("c")){
-                    if(b){
-                        control.clickAllCameras();
-                    }
+                    control.clickAllCameras(b);
                 }
             }
         }

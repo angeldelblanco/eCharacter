@@ -507,7 +507,7 @@
 								<!-- Space -->
 							</panel>
 							<panel id="a0" height="15%" width="100%" childLayout="horizontal">
-								<text id="aText0" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="55%" wrap = "true"/>
+								<text id="aText0" text="" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="55%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
@@ -523,7 +523,7 @@
 								<!-- Space -->
 							</panel>
 							<panel id="a1" height="15%" width="100%" childLayout="horizontal">
-								<text id="aText1" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="55%" wrap = "true"/>
+								<text id="aText1" text="" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="55%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
@@ -539,7 +539,7 @@
 								<!-- Space -->
 							</panel>
 							<panel id="a2" height="15%" width="100%" childLayout="horizontal">
-								<text id="aText2" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="55%" wrap = "true"/>
+								<text id="aText2" text="" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="55%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
@@ -589,7 +589,7 @@
 								<!-- Space -->
 							</panel>
 							<panel id="q0" height="15%" width="100%" childLayout="horizontal">
-								<text id="qText0" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<text id="qText0" text="" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
@@ -599,7 +599,7 @@
 								<!-- Space -->
 							</panel>
 							<panel id="q1" height="15%" width="100%" childLayout="horizontal">
-								<text id="qText1" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<text id="qText1" text="" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
@@ -609,7 +609,7 @@
 								<!-- Space -->
 							</panel>
 							<panel id="q2" height="15%" width="100%" childLayout="horizontal">
-								<text id="qText2" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<text id="qText2" text="" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
@@ -653,7 +653,7 @@
 								<!-- Space -->
 							</panel>
 							<panel id="c0" height="15%" width="100%" childLayout="horizontal">
-								<text id="cText0" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<text id="cText0" text="" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
@@ -663,7 +663,7 @@
 								<!-- Space -->
 							</panel>
 							<panel id="c1" height="15%" width="100%" childLayout="horizontal">
-								<text id="cText1" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<text id="cText1" text="" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
@@ -673,7 +673,7 @@
 								<!-- Space -->
 							</panel>
 							<panel id="c2" height="15%" width="100%" childLayout="horizontal">
-								<text id="cText2" text="hola" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
+								<text id="cText2" text="" font="Interface/Fonts/Default.fnt" align="center" valign="center" width="85%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>

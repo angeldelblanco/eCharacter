@@ -249,10 +249,11 @@ public class Gui extends AbstractAppState implements ScreenController {
             nifty.gotoScreen(stage);
         }
         loadScreen(stage,oldStage,old);
-        /*if(index==0){
+        if(index==-1){
+            control.restartApplication();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);
-        }
+        }/*
         else{
             //nifty.getScreen(stage).findElementByName("panel_screenleft").enable();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(true);
