@@ -45,15 +45,11 @@ import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.ButtonClickedEvent;
-import de.lessvoid.nifty.controls.CheckBox;
 import de.lessvoid.nifty.controls.CheckBoxStateChangedEvent;
 import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
-import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
-import de.lessvoid.nifty.elements.Element;
-import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
@@ -63,7 +59,6 @@ import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.types.StageType;
-import es.eucm.character.types.TexturesMeshType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -238,18 +233,25 @@ public class Gui extends AbstractAppState implements ScreenController {
         }else{
             if(param.equals("-")){
                 index--;
-                selection = stages.get(index);
+                if(index>=0){
+                    selection = stages.get(index);
+                }
+                else{
+                    selection= "";
+                }
             }else{
                 index = stages.lastIndexOf(selection);
             }
         }
-        String stage = control.getStagesTypes(selection).toString();
-        String oldStage = control.getStagesTypes(stages.get(oldIndex)).toString();
-        if(!oldStage.equals(stage)){
-            nifty.gotoScreen(stage);
+        if(!selection.equals("")){
+            String stage = control.getStagesTypes(selection).toString();
+            String oldStage = control.getStagesTypes(stages.get(oldIndex)).toString();
+            if(!oldStage.equals(stage)){
+                nifty.gotoScreen(stage);
+            }
+            loadScreen(stage,oldStage,old);
         }
-        loadScreen(stage,oldStage,old);
-        if(index==-1){
+        else{
             control.restartApplication();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);

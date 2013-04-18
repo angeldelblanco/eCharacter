@@ -138,7 +138,6 @@ public class ModelStageBuilder {
         }
         String url = "";
         if(control.getMetadataFamilyURL()!=null){url = control.getMetadataFamilyURL();}
-        System.out.println(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
         nifty.getScreen(stageType).findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
         nifty.getScreen(stageType).findElementByName("descriptionPanel").layoutElements();
     }
