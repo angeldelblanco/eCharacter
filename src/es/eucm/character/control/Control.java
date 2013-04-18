@@ -198,6 +198,11 @@ public class Control {
         return fc.getCamerasLabels();
     }
     
+    public int getNumQualities()
+    {
+        return fc.getNumQualities();
+    }
+    
     public ArrayList<String> getQualityLabels()
     {
         return fc.getQualityLabels();

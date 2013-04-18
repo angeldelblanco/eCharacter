@@ -337,6 +337,11 @@ public class FamilyControl
         return getCamerasLabels().size();
     }
     
+    public int getNumQualities()
+    {
+        return getQualityLabels().size();
+    }
+    
     public ArrayList<String> getQualityLabels()
     {
         ArrayList<String> listQualityLabels = new ArrayList<String>();
