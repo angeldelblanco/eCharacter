@@ -46,6 +46,7 @@ import es.eucm.character.i18n.I18N;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MultiStageBuilder {
@@ -54,23 +55,23 @@ public class MultiStageBuilder {
     private Nifty nifty;
     private I18N i18nFamily; 
     private Control control;
-    private String stageType, subStageSelected[], textureOrSubMeshSelected[];
+    private String stageType, subStageSelected[];
     private int multiPage[];
+    private HashMap<String,String> seleccionado;
     
     public MultiStageBuilder(Nifty nifty, Control control, I18N i18nGui, I18N i18nFamily){
         stageType = StageType.multiStage.toString();
         this.nifty = nifty;
         this.control = control;
         this.i18nFamily = i18nFamily;
-        subStageSelected = new String[SUBSTAGE_PAGE]; 
-        textureOrSubMeshSelected = new String[SUBSTAGE_PAGE];
+        subStageSelected = new String[SUBSTAGE_PAGE];
+        seleccionado = new HashMap<String,String>();
         multiPage = new int[SUBSTAGE_PAGE];
         for(int i=0; i<SUBSTAGE_PAGE;i++){
             nifty.getScreen(stageType).findElementByName("colorText"+Integer.toString(i)).getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(i)).layoutElements();
             multiPage[i]=0;
             subStageSelected[i]=""; 
-            textureOrSubMeshSelected[i]=""; 
         }
     }
 
@@ -81,7 +82,6 @@ public class MultiStageBuilder {
         if((page*SUBSTAGE_PAGE+h)<idSubStages.size()){
             unCheck(h);
             subStageSelected[h]=""; 
-            textureOrSubMeshSelected[h]="";
             nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)).setVisible(true);
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(false);
             changeMultiPage(h,steep);
@@ -102,17 +102,25 @@ public class MultiStageBuilder {
                     }
                     if (control.isChecked(idSubStages.get(h+page*TEXTURES_PAGE), idsTexturesOrSubMeshes.get(i))){
                         nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-                        textureOrSubMeshSelected[h] = idsTexturesOrSubMeshes.get(i);
                         subStageSelected[h] = idSubStages.get(h+page*TEXTURES_PAGE);
-                        if(!(control.getTextureType(textureOrSubMeshSelected[h]) == TexturesMeshType.simpleTexture)){
-                            nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(true);
-                        }
-                        else{
-                            nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(false);
+                        if(!seleccionado.containsKey(subStageSelected[h])){
+                            seleccionado.put(subStageSelected[h], idsTexturesOrSubMeshes.get(i));
                         }
                     }
                 }
             }
+            if(seleccionado.containsKey(subStageSelected[h])){
+                if(!(control.getTextureType(seleccionado.get(subStageSelected[h])) == TexturesMeshType.simpleTexture)){
+                    nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(true);
+                }
+                else{
+                    nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(false);
+                }
+            }
+            else{
+                nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(false);
+            }
+            
             for(int i=control.getNumTexturesORSubMeshes(idSubStages.get(page*SUBSTAGE_PAGE+h));i<((multiPage[h]+1)*TEXTURES_PAGE);i++){
                 Element image = nifty.getScreen(stageType).findElementByName("i"+Integer.toString(h)+Integer.toString(i%TEXTURES_PAGE));
                 image.setVisible(false);
@@ -182,10 +190,10 @@ public class MultiStageBuilder {
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
         ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(j+page*TEXTURES_PAGE));
         subStageSelected[j] = idSubStages.get(j+page*TEXTURES_PAGE);
-        textureOrSubMeshSelected[j] = idsTexturesOrSubMeshes.get(multiPage[j]*TEXTURES_PAGE+Integer.valueOf(i));
+        seleccionado.put(subStageSelected[j], idsTexturesOrSubMeshes.get(multiPage[j]*TEXTURES_PAGE+Integer.valueOf(i)));
         nifty.getScreen(stageType).findElementByName("t"+h+i).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
         
-        TexturesMeshType texturesMeshType = control.getTextureType(textureOrSubMeshSelected[j]);
+        TexturesMeshType texturesMeshType = control.getTextureType(seleccionado.get(subStageSelected[j]));
 
         if (texturesMeshType == null){
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(j)).setVisible(false);
@@ -199,7 +207,7 @@ public class MultiStageBuilder {
     }
     
     public String getTextureOrSubMesh(String h){
-        return textureOrSubMeshSelected[Integer.valueOf(h)];
+        return seleccionado.get(subStageSelected[Integer.valueOf(h)]);//textureOrSubMeshSelected[Integer.valueOf(h)];
     }
     public String getSubStage(String h){
         return subStageSelected[Integer.valueOf(h)];
@@ -227,16 +235,20 @@ public class MultiStageBuilder {
         for(int i=multiPage[j]*TEXTURES_PAGE; i<control.getNumTexturesORSubMeshes(subStageSelected[j]); i++){
             if(i<((multiPage[j]+1)*TEXTURES_PAGE)){
                 if (control.isChecked(subStageSelected[j], idsTexturesOrSubMeshes.get(i))){
-                     textureOrSubMeshSelected[j] = idsTexturesOrSubMeshes.get(i);
                      nifty.getScreen(stageType).findElementByName("t"+Integer.toString(j)+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-                     if(!(control.getTextureType(textureOrSubMeshSelected[j]) == TexturesMeshType.simpleTexture)){
-                         nifty.getScreen(stageType).findElementByName("panel_color"+j).setVisible(true);
-                     }
-                     else{
-                        nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(j)).setVisible(false);
-                    }
                 }
             }
+        }
+        if(seleccionado.containsKey(subStageSelected[j])){
+            if(!(control.getTextureType(seleccionado.get(subStageSelected[j])) == TexturesMeshType.simpleTexture)){
+                nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(j)).setVisible(true);
+            }
+            else{
+                nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(j)).setVisible(false);
+            }
+        }
+        else{
+            nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(j)).setVisible(false);
         }
     }
 }

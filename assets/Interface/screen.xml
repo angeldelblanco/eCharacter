@@ -516,7 +516,7 @@
 									<!-- Space -->
 								</panel>
 								<control name="button" label="ver" id="aButton0" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="showAnimation(0)" />
+									<interact onClick="preview(0)" />
 								</control>
 							</panel>
 							<panel height="5%" width="100%">
@@ -532,7 +532,7 @@
 									<!-- Space -->
 								</panel>
 								<control name="button" label="ver" id="aButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="showAnimation(0)" />
+									<interact onClick="preview(1)" />
 								</control>
 							</panel>
 							<panel height="5%" width="100%">
@@ -548,7 +548,7 @@
 									<!-- Space -->
 								</panel>
 								<control name="button" label="ver" id="aButton2" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="showAnimation(0)" />
+									<interact onClick="preview(2)" />
 								</control>
 							</panel>
 							<panel height="5%" width="100%">
@@ -556,7 +556,7 @@
 							</panel>
 							<panel id="aChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
 									<image id="aleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
-										<interact onClick="changePage(a,-)"/>
+										<interact onClick="changePageAnimations(a,-)"/>
 									</image>
 									<panel width="5%">
 										<!-- Space -->
@@ -574,7 +574,7 @@
 										<!-- Space -->
 									</panel>
 									<image id="arightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
-										<interact onClick="changePage(a,+)"/>
+										<interact onClick="changePageAnimations(a,+)"/>
 									</image>
 							</panel>
 						</panel>
@@ -620,7 +620,7 @@
 							</panel>
 							<panel id="qChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
 									<image id="qleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
-										<interact onClick="changePage(q,-)"/>
+										<interact onClick="changePageAnimations(q,-)"/>
 									</image>
 									<panel width="5%">
 										<!-- Space -->
@@ -638,7 +638,7 @@
 										<!-- Space -->
 									</panel>
 									<image id="qrightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
-										<interact onClick="changePage(q,+)"/>
+										<interact onClick="changePageAnimations(q,+)"/>
 									</image>
 							</panel>
 						</panel>
@@ -684,7 +684,7 @@
 							</panel>
 							<panel id="cChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
 									<image id="cleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
-										<interact onClick="changePage(c,-)"/>
+										<interact onClick="changePageAnimations(c,-)"/>
 									</image>
 									<panel width="5%">
 										<!-- Space -->
@@ -702,7 +702,7 @@
 										<!-- Space -->
 									</panel>
 									<image id="crightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
-										<interact onClick="changePage(c,+)"/>
+										<interact onClick="changePageAnimations(c,+)"/>
 									</image>
 							</panel>
 						</panel>
@@ -774,7 +774,7 @@
 						<!-- Space -->
 						</panel>
 						<panel id="t2" height="100%" width="20%" childLayout="center" backgroundColor="#808080FF">
-							<interact onClick="cchangeSliderColor(#808080FF)"/>
+							<interact onClick="changeSliderColor(#808080FF)"/>
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
@@ -936,7 +936,7 @@
 						<!-- Space -->
 						</panel>
 						<panel id="t2" height="100%" width="20%" childLayout="center" backgroundColor="#808080FF">
-							<interact onClick="cchangeSliderColor(#808080FF)"/>
+							<interact onClick="changeSliderColor(#808080FF)"/>
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->
@@ -1054,7 +1054,7 @@
 						<!-- Space -->
 						</panel>
 						<panel id="t21" height="100%" width="20%" childLayout="center" backgroundColor="#808080FF">
-							<interact onClick="cchangeSliderColor2(#808080FF)"/>
+							<interact onClick="changeSliderColor2(#808080FF)"/>
 						</panel>
 						<panel height="100%" width="5%">
 						<!-- Space -->

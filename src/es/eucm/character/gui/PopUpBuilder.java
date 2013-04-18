@@ -187,17 +187,21 @@ public class PopUpBuilder {
     }
     
     public void changeSliderColor(String color){
-        Color c = new Color(color);
-        popupColor.findNiftyControl("sliderR", Slider.class).setValue(c.getRed()*255);
-        popupColor.findNiftyControl("sliderG", Slider.class).setValue(c.getGreen()*255);
-        popupColor.findNiftyControl("sliderB", Slider.class).setValue(c.getBlue()*255);
-    }
+        if(popupColor != null){
+            Color c = new Color(color);
+            popupColor.findNiftyControl("sliderR", Slider.class).setValue(c.getRed()*255);
+            popupColor.findNiftyControl("sliderG", Slider.class).setValue(c.getGreen()*255);
+            popupColor.findNiftyControl("sliderB", Slider.class).setValue(c.getBlue()*255);
+        }
+    }    
     
     public void changeSliderColor2(String color){
-        Color c = new Color(color);
-        popupColor.findNiftyControl("sliderR2", Slider.class).setValue(c.getRed()*255);
-        popupColor.findNiftyControl("sliderG2", Slider.class).setValue(c.getGreen()*255);
-        popupColor.findNiftyControl("sliderB2", Slider.class).setValue(c.getBlue()*255);
+        if(popupColor != null){
+            Color c = new Color(color);
+            popupColor.findNiftyControl("sliderR2", Slider.class).setValue(c.getRed()*255);
+            popupColor.findNiftyControl("sliderG2", Slider.class).setValue(c.getGreen()*255);
+            popupColor.findNiftyControl("sliderB2", Slider.class).setValue(c.getBlue()*255);
+        }
     }
     
     public void onRedSliderChange(float value) {

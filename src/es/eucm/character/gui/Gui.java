@@ -46,6 +46,7 @@ import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.ButtonClickedEvent;
 import de.lessvoid.nifty.controls.CheckBox;
+import de.lessvoid.nifty.controls.CheckBoxStateChangedEvent;
 import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.Slider;
@@ -551,7 +552,65 @@ public class Gui extends AbstractAppState implements ScreenController {
         control.setPhysicalBuild(idPhysicalBuild.get(page*BONES_PAGE+Integer.parseInt(bodyType)));
     }
     
+    /******************************AnimationsControler*****************************/
+    
     public void preview(String animation){
-        control.setAnimations(animation);
+        animationsb.showAnimation(animation);
+    }
+    public void changePageAnimations(String selection, String steep){
+        animationsb.showPage(selection, steep);
+    }
+    
+    @NiftyEventSubscriber(id="aCheckBox0")
+    public void aCheckBox0Changed(final String id, final CheckBoxStateChangedEvent event){
+        animationsb.checkOrUncheck("a",0,event.isChecked());
+    }
+    
+    @NiftyEventSubscriber(id="aCheckBox1")
+    public void aCheckBox1Changed(final String id, final CheckBoxStateChangedEvent event){
+        animationsb.checkOrUncheck("a",1,event.isChecked());
+    }
+    
+    @NiftyEventSubscriber(id="aCheckBox2")
+    public void aCheckBox2Changed(final String id, final CheckBoxStateChangedEvent event){
+        animationsb.checkOrUncheck("a",2,event.isChecked());
+    }
+    
+    @NiftyEventSubscriber(id="qCheckBox0")
+    public void qCheckBox0Changed(final String id, final CheckBoxStateChangedEvent event){
+        animationsb.checkOrUncheck("q",0,event.isChecked());
+    }
+    
+    @NiftyEventSubscriber(id="qCheckBox1")
+    public void qCheckBox1Changed(final String id, final CheckBoxStateChangedEvent event){
+        animationsb.checkOrUncheck("q",1,event.isChecked());
+    }
+    
+    @NiftyEventSubscriber(id="qCheckBox2")
+    public void qCheckBox2Changed(final String id, final CheckBoxStateChangedEvent event){
+        animationsb.checkOrUncheck("q",2,event.isChecked());
+    }
+    
+    @NiftyEventSubscriber(id="cCheckBox0")
+    public void cCheckBox0Changed(final String id, final CheckBoxStateChangedEvent event){
+        animationsb.checkOrUncheck("c",0,event.isChecked());
+    }
+    
+    @NiftyEventSubscriber(id="cCheckBox1")
+    public void cCheckBox1Changed(final String id, final CheckBoxStateChangedEvent event){
+        animationsb.checkOrUncheck("c",1,event.isChecked());
+    }
+    
+    @NiftyEventSubscriber(id="cCheckBox2")
+    public void cCheckBox2Changed(final String id, final CheckBoxStateChangedEvent event){
+        animationsb.checkOrUncheck("c",2,event.isChecked());
+    }
+    
+    public void checkAll(String id, String bool){
+        boolean b = false;
+        if(bool.equals("true")){
+            b = true;
+        }
+        animationsb.checkAll(id,b);
     }
 }

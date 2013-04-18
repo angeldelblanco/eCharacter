@@ -37,24 +37,15 @@
 package es.eucm.character.gui;
 
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.PanelBuilder;
-import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.Button;
-import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
-import de.lessvoid.nifty.controls.checkbox.builder.CheckboxBuilder;
-import de.lessvoid.nifty.controls.radiobutton.builder.RadioButtonBuilder;
-import de.lessvoid.nifty.elements.Element;
-import de.lessvoid.nifty.elements.render.ImageRenderer;
+import de.lessvoid.nifty.controls.CheckBox;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
 import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
 import es.eucm.character.types.StageType;
-import es.eucm.character.types.TexturesMeshType;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
 
 public class AnimationStageBuilder {
     private static final int CHECKBOX_PAGE = 3;
@@ -88,87 +79,9 @@ public class AnimationStageBuilder {
         for(String type : types){
             nifty.getScreen(stageType).findNiftyControl(type+"AllButton", Button.class).setText(i18nGui.getString("idAll"));
             nifty.getScreen(stageType).findNiftyControl(type+"NoButton", Button.class).setText(i18nGui.getString("idNothing"));
-        }*/
-    } 
-    
-    private void init(){
-      
-        /*Set<String> animations = control.getAnimationNames();
-        Iterator<String> it1 = animations.iterator();
-        int a = 0;
-        while(it1.hasNext()){
-            final String animation = it1.next();
-            final int j = a;
-            new PanelBuilder() {{
-                width("40%");
-                childLayoutHorizontal();
-                text(new TextBuilder("AnimationText"+Integer.toString(j)){{
-                    valignCenter();
-                    color(Color.WHITE);
-                    font("Interface/Fonts/Default.fnt");
-                    text(animation);
-                    width("80%");
-                    wrap(true);
-                }});
-                control(new CheckboxBuilder("CheckBoxAnimation"+Integer.toString(j)) {{
-                    checked(false);
-                }});
-                panel(new PanelBuilder() {{
-                    width("5%");
-                }});
-                control(new ButtonBuilder("AnimationButton"+Integer.toString(j)){{
-                    label(i18nGui.getString("idPreview"));
-                    interactOnClick("preview("+animation+")");
-                }});
-            }}.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("previewPanel"));
-            a++;
         }
-        
-        ArrayList<String> quality = control.getQualityLabels();
-        Iterator<String> it = quality.iterator();
-        int i = 0;
-        while(it.hasNext()){
-            final String q = it.next();
-            final int j = i;
-            new PanelBuilder() {{
-                childLayoutHorizontal();
-                text(new TextBuilder("RadioText"+Integer.toString(j)){{
-                    valignCenter();
-                    color(Color.WHITE);
-                    font("Interface/Fonts/Default.fnt");
-                    text(i18nFamily.getString(q));
-                    width("70%");
-                    wrap(true);
-                }});
-                control(new RadioButtonBuilder("Radio"+Integer.toString(j)) {{
-                    group("RadioGroupQuality");
-                }});
-            }}.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("qualityRadioButtons"));
-            i++;
-        }
-        
-        ArrayList<String> cameras = control.getCamerasLabels();
-        Iterator<String> it2 = cameras.iterator();
-        i = 0;
-        while(it2.hasNext()){
-            final String camera = it2.next();
-            final int j = i;
-            new PanelBuilder() {{
-                width("40%");
-                childLayoutHorizontal();
-                text(new TextBuilder("CheckText"+Integer.toString(j)){{
-                    valignCenter();
-                    color(Color.WHITE);
-                    font("Interface/Fonts/Default.fnt");
-                    text(i18nFamily.getString(camera));
-                    width("80%");
-                    wrap(true);
-                }});
-                control(new CheckboxBuilder("CheckBox"+Integer.toString(j)) {{
-                    checked(false);
-                }});
-            }}.build(nifty, nifty.getScreen(stage), nifty.getScreen(stage).findElementByName("cameraPanel"));
-            i++;
+        for(int i = 0; i<CHECKBOX_PAGE; i++){
+            nifty.getScreen(stageType).findNiftyControl("aButton"+Integer.toString(i), Button.class).setText(i18nGui.getString("idPreview"));
         }*/
     }
     
@@ -193,7 +106,7 @@ public class AnimationStageBuilder {
                 animationPage+=page;
             }
             page = animationPage;
-            //labels = control.getAnimationNames();
+            labels = control.getAnimationNames();
             size = control.getNumAnimations();
         }
         else{
@@ -225,18 +138,40 @@ public class AnimationStageBuilder {
         for(int i=page*CHECKBOX_PAGE; i<size; i++){
             if(i<((page+1)*CHECKBOX_PAGE)){
                 nifty.getScreen(stageType).findElementByName(selection+Integer.toString(i%CHECKBOX_PAGE)).setVisible(true);
-                nifty.getScreen(stageType).findElementByName(selection+"Text"+Integer.toString(i%CHECKBOX_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(labels.get(i)));
-                nifty.getScreen(stageType).findElementByName(selection+Integer.toString(i%CHECKBOX_PAGE)).layoutElements();
                 if(selection.equals("a")){
+                    nifty.getScreen(stageType).findElementByName(selection+"Text"+Integer.toString(i%CHECKBOX_PAGE)).getRenderer(TextRenderer.class).setText(labels.get(i));
+                    CheckBox a;
+                    if(control.isCheckedAnimation(labels.get(i))){
+                        a = nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class);
+                        a.check();
+                    }
+                    else{
+                        a = nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class);
+                        a.uncheck();
+                    }
                 }
                 else{
+                    nifty.getScreen(stageType).findElementByName(selection+"Text"+Integer.toString(i%CHECKBOX_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(labels.get(i)));
                     if(selection.equals("q")){
+                        if(control.isCheckedQuality(labels.get(i))){
+                            nifty.getScreen(stageType).findNiftyControl("qCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).check();
+                        }
+                        else{
+                            nifty.getScreen(stageType).findNiftyControl("qCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).uncheck();
+                        }
                     }
                     else{
                         if(selection.equals("c")){
+                            if(control.isCheckedCamera(labels.get(i))){
+                                nifty.getScreen(stageType).findNiftyControl("cCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).check();
+                            }
+                            else{
+                                nifty.getScreen(stageType).findNiftyControl("cCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).uncheck();
+                            }
                         }
                     }
                 }
+                nifty.getScreen(stageType).findElementByName(selection+Integer.toString(i%CHECKBOX_PAGE)).layoutElements();
             }
         }
         for(int i=size;i<((page+1)*CHECKBOX_PAGE);i++){
@@ -264,16 +199,59 @@ public class AnimationStageBuilder {
             nifty.getScreen(stageType).findElementByName("Panel3").setVisible(false);
             nifty.getScreen(stageType).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
             nifty.getScreen(stageType).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
-            
+            showPage("a","0");
         }    
         if(tabSelected.equals("advanced")){
             nifty.getScreen(stageType).findElementByName("Panel2").setVisible(true);
             nifty.getScreen(stageType).findElementByName("Panel3").setVisible(true);
             nifty.getScreen(stageType).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
             nifty.getScreen(stageType).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            showPage("a","0");
             showPage("q","0");
             showPage("c","0");
         }
     }
     
+    public void showAnimation(String animation){
+        String a = control.getAnimationNames().get(Integer.valueOf(animation) + animationPage*CHECKBOX_PAGE);
+        control.setAnimations(a);
+    }
+    
+    public void checkOrUncheck(String selection, int pos, boolean checkedState){
+        if(selection.equals("a")){
+            control.clickAnimation(control.getAnimationNames().get(pos+animationPage*CHECKBOX_PAGE));
+        }
+        else{
+            if(selection.equals("q")){
+                control.clickQuality(control.getQualityLabels().get(pos+qualityPage*CHECKBOX_PAGE));
+            }
+            else{
+                if(selection.equals("c")){
+                    control.clickCamera(control.getCamerasLabels().get(pos+cameraPage*CHECKBOX_PAGE));
+                }
+            }
+        }
+    }
+    
+    public void checkAll(String id, boolean b){
+        if(id.equals("a")){
+            if(b){
+                control.clickAllAnimations();
+            }
+        }
+        else{
+            if(id.equals("q")){
+                if(b){
+                    control.clickAllQualities();
+                }
+            }
+            else{
+                if(id.equals("c")){
+                    if(b){
+                        control.clickAllCameras();
+                    }
+                }
+            }
+        }
+    }
 }

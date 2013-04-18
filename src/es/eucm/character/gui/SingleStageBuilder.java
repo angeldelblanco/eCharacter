@@ -47,6 +47,7 @@ import es.eucm.character.i18n.I18N;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class SingleStageBuilder {
@@ -54,13 +55,14 @@ public class SingleStageBuilder {
     private Nifty nifty;
     private Control control;
     private String stageType;
-    private String textureOrSubMeshSelected, subStageSelected;
+    private String subStageSelected;
+    private HashMap<String,String> seleccionado;
     
     public SingleStageBuilder(Nifty nifty, Control control, I18N i18nGui){
         stageType = StageType.singleStage.toString();
         this.nifty = nifty;
         this.control = control;
-        textureOrSubMeshSelected = "";
+        seleccionado = new HashMap<String,String>();
         subStageSelected = "";
         nifty.getScreen(stageType).findElementByName("colorText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
         nifty.getScreen(stageType).findElementByName("panel_color").layoutElements();
@@ -74,7 +76,6 @@ public class SingleStageBuilder {
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
         ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(0));
         unCheck();
-        textureOrSubMeshSelected = "";
         subStageSelected = "";
         nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
         for(int i=page*TEXTURES_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
@@ -91,16 +92,23 @@ public class SingleStageBuilder {
                 }
                 if (control.isChecked(idSubStages.get(0), idsTexturesOrSubMeshes.get(i))){
                     nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-                    textureOrSubMeshSelected = idsTexturesOrSubMeshes.get(i);
                     subStageSelected = idSubStages.get(0);
-                    if(!(control.getTextureType(textureOrSubMeshSelected) == TexturesMeshType.simpleTexture)){
-                        nifty.getScreen(stageType).findElementByName("panel_color").setVisible(true);
-                    }
-                    else{
-                        nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
+                    if(!seleccionado.containsKey(subStageSelected)){
+                        seleccionado.put(subStageSelected, idsTexturesOrSubMeshes.get(i));
                     }
                 }
             }
+        }
+        if(seleccionado.containsKey(subStageSelected)){
+            if(!(control.getTextureType(seleccionado.get(subStageSelected)) == TexturesMeshType.simpleTexture)){
+                nifty.getScreen(stageType).findElementByName("panel_color").setVisible(true);
+            }
+            else{
+                nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
+            }
+        }
+        else{
+            nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
         }
         for(int i=control.getNumTexturesORSubMeshes(idSubStages.get(0));i<((page+1)*TEXTURES_PAGE);i++){
             Element image = nifty.getScreen(stageType).findElementByName("i"+Integer.toString(i%TEXTURES_PAGE));
@@ -126,10 +134,10 @@ public class SingleStageBuilder {
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
         ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(j));
         subStageSelected = idSubStages.get(j);
-        textureOrSubMeshSelected = idsTexturesOrSubMeshes.get(page*TEXTURES_PAGE+Integer.valueOf(i));
+        seleccionado.put(subStageSelected, idsTexturesOrSubMeshes.get(page*TEXTURES_PAGE+Integer.valueOf(i)));
         nifty.getScreen(stageType).findElementByName("t"+i).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
         
-        TexturesMeshType texturesMeshType = control.getTextureType(textureOrSubMeshSelected);
+        TexturesMeshType texturesMeshType = control.getTextureType(seleccionado.get(subStageSelected));
 
         if (texturesMeshType == null){
             nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
@@ -143,7 +151,7 @@ public class SingleStageBuilder {
     }
     
     public String getTextureOrSubMesh(){
-        return textureOrSubMeshSelected;
+        return seleccionado.get(subStageSelected);
     }
     public String getSubStage(){
         return subStageSelected;
@@ -171,17 +179,20 @@ public class SingleStageBuilder {
         for(int i=page*TEXTURES_PAGE; i<control.getNumTexturesORSubMeshes(subStageSelected); i++){
             if(i<((page+1)*TEXTURES_PAGE)){
                 if (control.isChecked(subStageSelected, idsTexturesOrSubMeshes.get(i))){
-                     textureOrSubMeshSelected = idsTexturesOrSubMeshes.get(i);
                      nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-                     if(!(control.getTextureType(textureOrSubMeshSelected) == TexturesMeshType.simpleTexture)){
-                         nifty.getScreen(stageType).findElementByName("panel_color").setVisible(true);
-                     }
-                     else{
-                        nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
-                    }
                 }
             }
-            i++;
+        }
+        if(seleccionado.containsKey(subStageSelected)){
+            if(!(control.getTextureType(seleccionado.get(subStageSelected)) == TexturesMeshType.simpleTexture)){
+                nifty.getScreen(stageType).findElementByName("panel_color").setVisible(true);
+            }
+            else{
+                nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
+            }
+        }
+        else{
+            nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
         }
     }
 }
