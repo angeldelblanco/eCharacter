@@ -366,15 +366,6 @@ public class Gui extends AbstractAppState implements ScreenController {
             textureOrSubMeshSelected = multisb.getTextureOrSubMesh(substage);
             subStageSelected = multisb.getSubStage(selection, page, substage);
         }
-        //control.changeTextureOrSubMesh(subStageSelected, textureOrSubMeshSelected);
-        if(control.isMultiSelection(selection, subStageSelected)){
-            if(control.getStagesTypes(selection) == StageType.singleStage){
-                singlesb.checkIn(page);
-            }
-            if(control.getStagesTypes(selection) == StageType.multiStage){
-                multisb.checkIn(Integer.valueOf(substage));
-            }
-        }
     }
     
   /******************************FamilyDropDownControler*****************************/
