@@ -52,6 +52,7 @@ import de.lessvoid.nifty.Nifty;
 import es.eucm.character.control.Control;
 import es.eucm.character.export.ScreenshotMyAppState;
 import es.eucm.character.gui.Gui;
+import es.eucm.character.gui.Tooltip;
 import es.eucm.character.loader.Configuration;
 import java.io.File;
 import java.util.logging.ConsoleHandler;
@@ -62,6 +63,7 @@ import java.util.logging.Logger;
 public class Application extends SimpleApplication{
 
     private Gui gui;
+    private Tooltip tooltip;
     private ScreenshotMyAppState screenShotState;
     private NiftyJmeDisplay niftyDisplay;
     private Control control;
@@ -103,6 +105,7 @@ public class Application extends SimpleApplication{
         
         control = new Control(config,rootNode,assetManager,this, guiViewPort, niftyDisplay, screenShotState);
         gui = new Gui(control,config);
+        tooltip = new Tooltip();
         
         /**
         * Åctivate the Nifty-JME integration: 
