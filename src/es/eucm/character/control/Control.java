@@ -442,8 +442,8 @@ public class Control {
         return sc.isCheckedAnimation(animationName);
     }
     
-    public void clickAllAnimations(){
-        sc.clickAllAnimations();
+    public void clickAllAnimations(boolean check){
+        sc.clickAllAnimations(check);
     }
             
     public void clickCamera(String cameraLabel, boolean check){
@@ -454,8 +454,8 @@ public class Control {
         return sc.isCheckedCamera(cameraLabel);
     }
     
-    public void clickAllCameras(){
-        sc.clickAllCameras();
+    public void clickAllCameras(boolean check){
+        sc.clickAllCameras(check);
     }
     
     public void clickQuality(String qualityLabel, boolean check){
@@ -466,7 +466,7 @@ public class Control {
         return sc.isCheckedQuality(qualityLabel);
     }
     
-    public void clickAllQualities(){
-        sc.clickAllQualities();
+    public void clickAllQualities(boolean check){
+        sc.clickAllQualities(check);
     }
 }

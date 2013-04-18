@@ -385,11 +385,11 @@ public class SceneControl {
         return animations.get(animationName);
     }
     
-    public void clickAllAnimations(){
+    public void clickAllAnimations(boolean check){
         Set<String> keySet = animations.keySet();
         Iterator<String> it = keySet.iterator();
         while(it.hasNext()){
-            animations.put(it.next(),true);
+            animations.put(it.next(),check);
         }
     }
     
@@ -402,11 +402,11 @@ public class SceneControl {
         return cameras.get(cameraLabel);
     }
     
-    public void clickAllCameras(){
+    public void clickAllCameras(boolean check){
         Set<String> keySet = cameras.keySet();
         Iterator<String> it = keySet.iterator();
         while(it.hasNext()){
-            cameras.put(it.next(),true);
+            cameras.put(it.next(),check);
         }
     }
      
@@ -419,11 +419,11 @@ public class SceneControl {
         return qualities.get(qualityLabel);
     }
     
-    public void clickAllQualities(){
+    public void clickAllQualities(boolean check){
         Set<String> keySet = qualities.keySet();
         Iterator<String> it = keySet.iterator();
         while(it.hasNext()){
-            qualities.put(it.next(),true);
+            qualities.put(it.next(),check);
         }
     }
 }
