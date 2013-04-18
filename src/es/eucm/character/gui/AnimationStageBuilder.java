@@ -219,15 +219,15 @@ public class AnimationStageBuilder {
     
     public void checkOrUncheck(String selection, int pos, boolean checkedState){
         if(selection.equals("a")){
-            control.clickAnimation(control.getAnimationNames().get(pos+animationPage*CHECKBOX_PAGE));
+            control.clickAnimation(control.getAnimationNames().get(pos+animationPage*CHECKBOX_PAGE), checkedState);
         }
         else{
             if(selection.equals("q")){
-                control.clickQuality(control.getQualityLabels().get(pos+qualityPage*CHECKBOX_PAGE));
+                control.clickQuality(control.getQualityLabels().get(pos+qualityPage*CHECKBOX_PAGE), checkedState);
             }
             else{
                 if(selection.equals("c")){
-                    control.clickCamera(control.getCamerasLabels().get(pos+cameraPage*CHECKBOX_PAGE));
+                    control.clickCamera(control.getCamerasLabels().get(pos+cameraPage*CHECKBOX_PAGE), checkedState);
                 }
             }
         }

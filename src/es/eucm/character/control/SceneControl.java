@@ -376,9 +376,9 @@ public class SceneControl {
         } 
     }
 
-    public void clickAnimation(String animationName) {
-        boolean b = animations.get(animationName);
-        animations.put(animationName, !b);
+    public void clickAnimation(String animationName, boolean check) {
+        //boolean b = animations.get(animationName);
+        animations.put(animationName, check);
     }
     
     public boolean isCheckedAnimation(String animationName) {
@@ -393,9 +393,9 @@ public class SceneControl {
         }
     }
     
-    public void clickCamera(String cameraLabel) {
-        boolean b = cameras.get(cameraLabel);
-        cameras.put(cameraLabel, !b);
+    public void clickCamera(String cameraLabel, boolean check) {
+        //boolean b = cameras.get(cameraLabel);
+        cameras.put(cameraLabel, check);
     }
     
     public boolean isCheckedCamera(String cameraLabel) {
@@ -410,9 +410,9 @@ public class SceneControl {
         }
     }
      
-    public void clickQuality(String qualityLabel) {
-        boolean b = qualities.get(qualityLabel);
-        qualities.put(qualityLabel, !b);
+    public void clickQuality(String qualityLabel, boolean check) {
+        //boolean b = qualities.get(qualityLabel);
+        qualities.put(qualityLabel, check);
     }
     
     public boolean isCheckedQuality(String qualityLabel) {

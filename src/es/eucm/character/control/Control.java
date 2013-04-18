@@ -434,8 +434,8 @@ public class Control {
         sc.restartRotateModel();
     }
     
-    public void clickAnimation(String animationName){
-        sc.clickAnimation(animationName);
+    public void clickAnimation(String animationName, boolean check){
+        sc.clickAnimation(animationName, check);
     }
     
     public boolean isCheckedAnimation(String animationName){
@@ -446,8 +446,8 @@ public class Control {
         sc.clickAllAnimations();
     }
             
-    public void clickCamera(String cameraLabel){
-        sc.clickCamera(cameraLabel);
+    public void clickCamera(String cameraLabel, boolean check){
+        sc.clickCamera(cameraLabel, check);
     }
     
     public boolean isCheckedCamera(String cameraLabel){
@@ -458,8 +458,8 @@ public class Control {
         sc.clickAllCameras();
     }
     
-    public void clickQuality(String qualityLabel){
-        sc.clickQuality(qualityLabel);
+    public void clickQuality(String qualityLabel, boolean check){
+        sc.clickQuality(qualityLabel, check);
     }
     
     public boolean isCheckedQuality(String qualityLabel){
