@@ -119,7 +119,7 @@ public class AnimationStageBuilder {
                 }
                 page = qualityPage;
                 labels = control.getQualityLabels();
-                size = labels.size();
+                size = control.getNumQualities();
             }
             else{
                 if(selection.equals("c")){
@@ -142,12 +142,10 @@ public class AnimationStageBuilder {
                     nifty.getScreen(stageType).findElementByName(selection+"Text"+Integer.toString(i%CHECKBOX_PAGE)).getRenderer(TextRenderer.class).setText(labels.get(i));
                     CheckBox a;
                     if(control.isCheckedAnimation(labels.get(i))){
-                        a = nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class);
-                        a.check();
+                        nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).check();
                     }
                     else{
-                        a = nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class);
-                        a.uncheck();
+                        nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).uncheck();
                     }
                 }
                 else{
@@ -234,17 +232,31 @@ public class AnimationStageBuilder {
     }
     
     public void checkAll(String id, boolean b){
+        int size = 0;
         if(id.equals("a")){
             control.clickAllAnimations(b);
+            size = control.getNumAnimations();
         }
         else{
             if(id.equals("q")){
                 control.clickAllQualities(b);
+                size = control.getNumQualities();
             }
             else{
                 if(id.equals("c")){
                     control.clickAllCameras(b);
+                    size = control.getNumCameras();
                 }
+            }
+        }
+        if(b){
+            for(int i=0;i<size;i++){
+                nifty.getScreen(stageType).findNiftyControl(id+"CheckBox"+i, CheckBox.class).check();
+            }
+        }
+        else{
+            for(int i=0;i<size;i++){
+                nifty.getScreen(stageType).findNiftyControl(id+"CheckBox"+i, CheckBox.class).uncheck();
             }
         }
     }
