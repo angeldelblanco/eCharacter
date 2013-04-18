@@ -44,6 +44,7 @@ import com.jme3.asset.plugins.FileLocator;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.Camera;
@@ -132,8 +133,9 @@ public class Application extends SimpleApplication{
         System.out.println("Look :"+cam.getLeft().getX()+" "+cam.getLeft().getY()+" "+cam.getLeft().getZ());
         System.out.println("Up :"+cam.getUp().getX()+" "+cam.getUp().getY()+" "+cam.getUp().getZ());*/
         
-        //cam.lookAtDirection(new Vector3f(0.0f, 1.0f, 0.0f), new Vector3f(0.0f, 1.0f, 10.0f));
-
+        //cam.setLocation(new Vector3f(0.0f, 3.0f, 10.0f));
+        //cam.setAxes(cam.getLeft(), new Vector3f(0.0f, 0.7f, 0.0f), new Vector3f(0.0f, -0.7f, -0.7f));
+        //cam.setRotation(new Quaternion(0.0f, 0.75f, 0.0f, 0.0f));
         
         flyCam.setDragToRotate(true); // you need the mouse for clicking now
         flyCam.setEnabled(false);

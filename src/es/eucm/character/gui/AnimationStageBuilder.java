@@ -140,12 +140,11 @@ public class AnimationStageBuilder {
                 nifty.getScreen(stageType).findElementByName(selection+Integer.toString(i%CHECKBOX_PAGE)).setVisible(true);
                 if(selection.equals("a")){
                     nifty.getScreen(stageType).findElementByName(selection+"Text"+Integer.toString(i%CHECKBOX_PAGE)).getRenderer(TextRenderer.class).setText(labels.get(i));
-                    CheckBox a;
                     if(control.isCheckedAnimation(labels.get(i))){
-                        nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).check();
+                        nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).setChecked(true);
                     }
                     else{
-                        nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).uncheck();
+                        nifty.getScreen(stageType).findNiftyControl("aCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).setChecked(false);
                     }
                 }
                 else{
@@ -251,12 +250,12 @@ public class AnimationStageBuilder {
         }
         if(b){
             for(int i=0;i<size;i++){
-                nifty.getScreen(stageType).findNiftyControl(id+"CheckBox"+i, CheckBox.class).check();
+                nifty.getScreen(stageType).findNiftyControl(id+"CheckBox"+i, CheckBox.class).setChecked(b);
             }
         }
         else{
             for(int i=0;i<size;i++){
-                nifty.getScreen(stageType).findNiftyControl(id+"CheckBox"+i, CheckBox.class).uncheck();
+                nifty.getScreen(stageType).findNiftyControl(id+"CheckBox"+i, CheckBox.class).setChecked(b);
             }
         }
     }
