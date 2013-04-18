@@ -134,6 +134,7 @@ public class SingleStageBuilder {
         ArrayList<String> idSubStages = control.getIdsSubStages(selection);
         ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(j));
         subStageSelected = idSubStages.get(j);
+        control.changeTextureOrSubMesh(subStageSelected, idsTexturesOrSubMeshes.get(page*TEXTURES_PAGE+Integer.valueOf(i)));
         if(seleccionado.containsValue(idsTexturesOrSubMeshes.get(page*TEXTURES_PAGE+Integer.valueOf(i)))){
             seleccionado.remove(subStageSelected);
         }
@@ -142,7 +143,7 @@ public class SingleStageBuilder {
         }
         nifty.getScreen(stageType).findElementByName("t"+i).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
         
-        TexturesMeshType texturesMeshType = control.getTextureType(seleccionado.get(subStageSelected));
+        TexturesMeshType texturesMeshType = control.getTextureType(idsTexturesOrSubMeshes.get(page*TEXTURES_PAGE+Integer.valueOf(i)));
 
         if (texturesMeshType == null){
             nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
