@@ -372,7 +372,7 @@ public class SceneControl {
         Iterator<String> it = listQualities.iterator();
         while(it.hasNext()){
             String quality = it.next();
-            cameras.put(quality, false);
+            qualities.put(quality, false);
         } 
     }
 
