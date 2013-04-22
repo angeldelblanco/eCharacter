@@ -73,6 +73,8 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     private int width, height;
     
     private ArrayList<ByteBuffer> list;
+    
+    private ScreenshotThread st;
 
     /**
      * Using this constructor, the screenshot files will be written sequentially to the system
@@ -134,6 +136,11 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     public void takeScreenshot() {
         capture = true;
     }
+    
+    public void takeScreenshot(ScreenshotThread st) {
+        this.st = st;
+        capture = true;
+    }
 
     @Override
     public void initialize(RenderManager rm, ViewPort vp) {
@@ -177,10 +184,12 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             renderer.setViewPort(0, 0, width, height);
             renderer.readFrameBuffer(out, outBuf);
             renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
-            
             list.add(outBuf);
             System.out.println("Añadido Nº "+shotIndex);
             System.out.println("Tamaño actual "+list.size());
+            synchronized(st){
+                st.notify();
+            }
         }
     }
     

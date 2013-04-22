@@ -335,7 +335,7 @@ public class SceneControl {
     }
     
     public void screenShot(){
-        animations.put("Hablar", Boolean.TRUE);
+        animations.put("Andar", Boolean.TRUE);
         ArrayList<String> listAnimationsChecked = new ArrayList<String>();
         Iterator<String> it = animations.keySet().iterator();
         while(it.hasNext()){
