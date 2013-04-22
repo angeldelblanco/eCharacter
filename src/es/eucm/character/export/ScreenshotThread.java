@@ -48,7 +48,7 @@ import java.util.logging.Logger;
 
 public class ScreenshotThread extends Thread
 {
-    static final int quality = 20;
+    static final int quality = 24;
     
     private ScreenshotMyAppState screenShotState;
     private AnimChannel channel;
@@ -94,6 +94,7 @@ public class ScreenshotThread extends Thread
                 float time = 0.0f;
                 for(int j= 1 ; j<=numScreenShots; j++){
                     System.out.println("Captura antes "+j+" con tiempo "+System.currentTimeMillis());
+                    time = time+(stepAnimationTime/1000);
                     channel.setTime(time);
                     
                     //long tAntes = System.currentTimeMillis();
@@ -108,7 +109,7 @@ public class ScreenshotThread extends Thread
                     System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
                     cont++;
                     sleep((long)stepAnimationTime);
-                    time = channel.getTime();
+                    //time = channel.getTime();
                     //time = channel.getTime()-desfaseSegundos;
                 }
                 screenShotState.writeFiles();
