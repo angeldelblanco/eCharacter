@@ -50,10 +50,8 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class XMLValidator {
-    public boolean checkXML(String filePath, XMLType type)
-    {
-        try 
-        {
+    public boolean checkXML(String filePath, XMLType type){
+        try {
             // crear y configurar la factory de parsers de documentos XML
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setNamespaceAware(true);  // activar soporte para namespaces
@@ -67,16 +65,13 @@ public class XMLValidator {
 
             // cargar el esquema XSD
             Schema schema = null;
-            if (type==XMLType.family)
-            {
+            if (type==XMLType.family){
                 schema = sf.newSchema(new File("assets/XML Configuration/family.xsd"));
             }
-            else if (type==XMLType.model)
-            {
+            else if (type==XMLType.model){
                 schema = sf.newSchema(new File("assets/XML Configuration/model.xsd"));
             }
-            else if (type==XMLType.language)
-            {
+            else if (type==XMLType.language){
                 schema = sf.newSchema(new File("assets/Locale/language.xsd"));
             }
             // crear el objeto validator, que será el responsable de validar el XML
@@ -89,19 +84,16 @@ public class XMLValidator {
             System.out.println("DOCUMENTO VÁLIDO");
             return true;
         }
-        catch (SAXException e)
-        {
+        catch (SAXException e){
             // esta excepción indica fallo de validación
             System.err.println("DOCUMENTO INVÁLIDO");
             return false;
         }
-        catch (ParserConfigurationException e)
-        {
+        catch (ParserConfigurationException e){
             // errores en la configuración del parser
             return false;
         }
-        catch (IOException e)
-        {
+        catch (IOException e){
             // errores de lectura
             return false;
         }

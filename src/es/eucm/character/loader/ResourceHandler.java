@@ -45,16 +45,13 @@ import java.util.StringTokenizer;
 /**
  * This class allow resource searching in file system. 
  */
-public class ResourceHandler
-{
-    public static InputStream getResource(String fileName, String directory)
-    {        
+public class ResourceHandler{
+    public static InputStream getResource(String fileName, String directory){        
         File dirPath = new File(directory);
         /** List all the files of this directory */
         File[] files = dirPath.listFiles();
         InputStream stream = null;
-        for (int x=0;x<files.length;x++)
-        {
+        for (int x=0;x<files.length;x++){
             File file = files[x];
             if (! file.isDirectory()) {
                 /** "file" is a file */
@@ -78,8 +75,7 @@ public class ResourceHandler
         return stream;
     }
     
-    public static InputStream getResource(String filePath)
-    {
+    public static InputStream getResource(String filePath){
         try {
             InputStream stream = new FileInputStream(filePath);  
             /** The file exists */
@@ -93,12 +89,10 @@ public class ResourceHandler
     }
     
     /** Get the name of the file */
-    private static String getFileName(String filePath)
-    {
+    private static String getFileName(String filePath){
         StringTokenizer tokens=new StringTokenizer(filePath, "/");
         String fileName = "";
-        while (tokens.hasMoreTokens())
-        {
+        while (tokens.hasMoreTokens()){
             fileName = tokens.nextToken(); 
         }
         return fileName;

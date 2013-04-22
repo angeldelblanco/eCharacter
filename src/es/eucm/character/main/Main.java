@@ -35,19 +35,17 @@
  ******************************************************************************/
 package es.eucm.character.main;
 
+import es.eucm.character.loader.Configuration;
+import es.eucm.character.loader.ResourceHandler;
 import java.io.File;
 import java.io.InputStream;
 import java.util.StringTokenizer;
-import es.eucm.character.loader.Configuration;
-import es.eucm.character.loader.ResourceHandler;
 
 /**
  * This class initializes the application resources and launch the GUI
  */
-public class Main 
-{            
-    public static void main(String[] args)
-    {
+public class Main {            
+    public static void main(String[] args){
         //Initializes the resources and load the initial configuration
         Configuration config = new Configuration();
         InputStream stream = ResourceHandler.getResource(Configuration.PROPERTIES_FILE_NAME,"."+File.separator);
@@ -64,6 +62,5 @@ public class Main
         Application app = new Application(width,height,config);
         //Launch the GUI
         app.start();
-    }
-    
+    }  
 }

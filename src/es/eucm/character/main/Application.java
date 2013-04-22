@@ -69,8 +69,7 @@ public class Application extends SimpleApplication{
     private Nifty nifty;
     
     
-    public Application(int width,int height,Configuration config)
-    {
+    public Application(int width,int height,Configuration config){
         //Creation of the new configuration
         AppSettings newSettings = new AppSettings(true);
         newSettings.setResolution(width,height);
@@ -140,8 +139,7 @@ public class Application extends SimpleApplication{
         flyCam.setEnabled(false);
     }
     
-    private void setCamera(float ang)
-    {
+    private void setCamera(float ang){
         Vector3f look = new Vector3f(0.0f,0.0f,0.0f);
         Vector3f eye = new Vector3f(0.0f,0.0f,10.0f);
         Vector3f direction = look.subtract(eye).normalize();

@@ -77,10 +77,8 @@ public class ScreenshotThread extends Thread{
     }
     
     @Override
-    public void run()
-    {
-        try 
-        {
+    public void run(){
+        try {
             String dirScreenshots = "assets/Textures/screenshots";
             int cont = 1;
             GenerateAnimation generateAnimation = new GenerateAnimation();
@@ -121,8 +119,7 @@ public class ScreenshotThread extends Thread{
             System.out.println("ScreenshotThread OK");
             guiViewPort.addProcessor(niftyDisplay);            
          } 
-        catch (InterruptedException ex) 
-        {
+        catch (InterruptedException ex) {
                 Logger.getLogger(ScreenshotThread.class.getName()).log(Level.SEVERE, null, ex);
         }      
     }

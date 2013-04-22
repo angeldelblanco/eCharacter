@@ -75,8 +75,7 @@ public class Control {
     private SceneControl sc;
     
     public Control(Configuration config, Node rootNode, AssetManager assetManager, Application app, 
-            ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState)
-    {
+            ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState){
         this.config = config;
         String familiesPath = this.config.getProperty(Configuration.FamiliesPath);
         XMLFamilyReader xmlReader = new XMLFamilyReader(familiesPath);
@@ -129,68 +128,55 @@ public class Control {
         return listID;
     }
     
-    public String getLanguageFamilyPath()
-    {
+    public String getLanguageFamilyPath(){
         return fc.getLanguagePath();
     }
     
-    public ArrayList<String> getModelsLabel()
-    {
+    public ArrayList<String> getModelsLabel(){
         return fc.getModelsLabels();
     }
     
-    public String getModelIconPath(String modelLabel)
-    {
+    public String getModelIconPath(String modelLabel){
         return fc.getModelIconPath(modelLabel);
     }
     
-    public String getModelFamilyPath(String modelLabel)
-    {
+    public String getModelFamilyPath(String modelLabel){
         return fc.getModelPath(modelLabel);
     }
     
-    public int getNumModels()
-    {
+    public int getNumModels(){
         return fc.getNumModels();
     }
     
-    public String getMetadataFamilyName()
-    {
+    public String getMetadataFamilyName(){
         return fc.getMetadataName();
     }
     
-    public String getMetadataFamilyURL()
-    {
+    public String getMetadataFamilyURL(){
         return fc.getMetadataURL();
     }
     
-    public String getMetadataFamilyDescription()
-    {
+    public String getMetadataFamilyDescription(){
         return fc.getMetadataDescription();
     }
     
-    public String getMetadataFamilyAuthor()
-    {
+    public String getMetadataFamilyAuthor(){
         return fc.getMetadataAuthor();
     }
     
-    public ArrayList<String> getStagesLabels()
-    {
+    public ArrayList<String> getStagesLabels(){
         return fc.getStagesLabels();
     }
     
-    public StageType getStagesTypes(String idStage)
-    {
+    public StageType getStagesTypes(String idStage){
         return fc.getStagesTypes(idStage);
     }
     
-    public int getNumCameras()
-    {
+    public int getNumCameras(){
         return fc.getNumCameras();
     }
     
-    public ArrayList<String> getCamerasLabels()
-    {
+    public ArrayList<String> getCamerasLabels(){
         return fc.getCamerasLabels();
     }
     
@@ -198,13 +184,11 @@ public class Control {
         return fc.getCameraValues(cameraLabel);
     }
     
-    public int getNumQualities()
-    {
+    public int getNumQualities(){
         return fc.getNumQualities();
     }
     
-    public ArrayList<String> getQualityLabels()
-    {
+    public ArrayList<String> getQualityLabels(){
         return fc.getQualityLabels();
     }
     
@@ -212,35 +196,29 @@ public class Control {
         return fc.getQualityValue(qualityLabel);
     }
     
-    public ArrayList<String> getIdsSubStages(String stageLabel)
-    {
+    public ArrayList<String> getIdsSubStages(String stageLabel){
         return fc.getIdsSubStages(stageLabel);
     }
     
-    public int getNumSubStages(String stageLabel)
-    {
+    public int getNumSubStages(String stageLabel){
         return fc.getNumSubStage(stageLabel);
     }
     
-    public String getSubStageLabel(String multiStageLabel,String idSubStage)
-    {
+    public String getSubStageLabel(String multiStageLabel,String idSubStage){
         return fc.getSubStageLabel(multiStageLabel, idSubStage);
     }
     
-    public ArrayList<String> getIdBonesController(String idStageLabel)
-    {
+    public ArrayList<String> getIdBonesController(String idStageLabel){
         return fc.getIdBonesController(idStageLabel);
     }
     
-    public String getBoneControllerLabel(String idStageLabel,String idBoneController)
-    {
+    public String getBoneControllerLabel(String idStageLabel,String idBoneController){
         return fc.getBoneControllerLabel(idStageLabel, idBoneController);
     }
     
     /*************************Models******************************************/
     
-    public void selectModel(String pathModel)
-    {
+    public void selectModel(String pathModel){
         XMLReader xmlReader2 = new XMLReader<Model>(pathModel);
         ArrayList<Model> models = xmlReader2.readXML(Model.class);
         if (models.size()==1){
@@ -251,8 +229,7 @@ public class Control {
         sc = new SceneControl(this, config, mc.getMainMeshPath(), mc.getMainMeshTransformations(),texturesSubMeshesData);
     }
     
-    public String getLanguageModelPath()
-    {
+    public String getLanguageModelPath(){
         return mc.getLanguagePath();
     }
     
@@ -280,59 +257,48 @@ public class Control {
         return mc.getIconPathTextureInMultiOption(idMultiOption, idSubTexture);
     }
     
-    public ArrayList<String> getIdsPhysicalBuild(String idPanelRef)
-    {
+    public ArrayList<String> getIdsPhysicalBuild(String idPanelRef){
         return mc.getIdsPhysicalBuild(idPanelRef);
     }
     
-    public String getPhysicalBuildLabel(String idPhysicalBuild)
-    {
+    public String getPhysicalBuildLabel(String idPhysicalBuild){
         return mc.getPhysicalBuildLabel(idPhysicalBuild);
     }
     
-    public float getMaxValueBoneController(String idBoneController)
-    {
+    public float getMaxValueBoneController(String idBoneController){
         return mc.getMaxValueBoneController(idBoneController);
     }
     
-    public float getMinValueBoneController(String idBoneController)
-    {
+    public float getMinValueBoneController(String idBoneController){
         return mc.getMinValueBoneController(idBoneController);
     }
     
-    public float getDefaultValueBoneController(String idBoneController)
-    {
+    public float getDefaultValueBoneController(String idBoneController){
         return mc.getDefaultValueBoneController(idBoneController);
     }
     
-    public void setDefaultValueBoneController(String idBoneController, float value)
-    {
+    public void setDefaultValueBoneController(String idBoneController, float value){
         mc.setDefaultValueBoneController(idBoneController, value);
     }
     
-    public TexturesMeshType getTextureType(String idTextureOrSubMesh)
-    {
+    public TexturesMeshType getTextureType(String idTextureOrSubMesh){
         return mc.getTextureType(idTextureOrSubMesh);
     }
     
     /*************************Scene******************************************/
-    public ArrayList<String> getAnimationNames()
-    {
+    public ArrayList<String> getAnimationNames(){
         return sc.getAnimationsName();
     }
     
-    public int getNumAnimations()
-    {
+    public int getNumAnimations(){
         return sc.getNumAnimations();
     }
     
-    public void setAnimations(String animationName)
-    {
+    public void setAnimations(String animationName){
         sc.setAnimation(animationName);
     }
     
-    public void changeTextureOrSubMesh(String idPanelRef, String idTextureOrSubMesh)
-    {
+    public void changeTextureOrSubMesh(String idPanelRef, String idTextureOrSubMesh){
         TextureType texture = mc.getTexture(idTextureOrSubMesh);
         if (texture != null){
             //It's a texture.

@@ -142,17 +142,17 @@ public class SceneControl {
     }    
     
     private void applySubMesh(String bone,Spatial subMesh,ArrayList<TransformationType> listTransformations){
-            SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
-            if(subMeshes.get(bone) != null){
-                skeletonControl.getAttachmentsNode(bone).detachAllChildren();
-            }
-            subMeshes.put(bone,subMesh);            
-            skeletonControl.getAttachmentsNode(bone).attachChild(subMesh);           
-            Iterator<TransformationType> it = listTransformations.iterator();
-            while (it.hasNext()){
-                TransformationType t = it.next();
-                applyTransformation(t,subMesh);
-            }
+        SkeletonControl skeletonControl = this.mainMesh.getControl(SkeletonControl.class);
+        if(subMeshes.get(bone) != null){
+            skeletonControl.getAttachmentsNode(bone).detachAllChildren();
+        }
+        subMeshes.put(bone,subMesh);            
+        skeletonControl.getAttachmentsNode(bone).attachChild(subMesh);           
+        Iterator<TransformationType> it = listTransformations.iterator();
+        while (it.hasNext()){
+            TransformationType t = it.next();
+            applyTransformation(t,subMesh);
+        }
     }
      
     private void dettachAllChild(){
@@ -405,7 +405,6 @@ public class SceneControl {
     }
 
     public void clickAnimation(String animationName, boolean check) {
-        //boolean b = animations.get(animationName);
         animations.put(animationName, check);
     }
     
@@ -422,7 +421,6 @@ public class SceneControl {
     }
     
     public void clickCamera(String cameraLabel, boolean check) {
-        //boolean b = cameras.get(cameraLabel);
         cameras.put(cameraLabel, check);
     }
     
@@ -439,7 +437,6 @@ public class SceneControl {
     }
      
     public void clickQuality(String qualityLabel, boolean check) {
-        //boolean b = qualities.get(qualityLabel);
         qualities.put(qualityLabel, check);
     }
     

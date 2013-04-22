@@ -52,23 +52,19 @@ public class XMLFamilyReader {
     private String path;
     private XMLValidator xmlValidator;
     
-    public XMLFamilyReader(String path)
-    {
+    public XMLFamilyReader(String path){
         this.path = path;
 
         list = new ArrayList<FamilyWithPath>();
         xmlValidator = new XMLValidator();
     }
     
-    public ArrayList<FamilyWithPath> readXML()
-    {
+    public ArrayList<FamilyWithPath> readXML(){
         /** Check the type of the XML */
         File dirPath = new File(path);
-        if (dirPath.isDirectory())
-        {
+        if (dirPath.isDirectory()){
             File[] ficheros = dirPath.listFiles();
-            for (int x=0;x<ficheros.length;x++)
-            {
+            for (int x=0;x<ficheros.length;x++){
                 File file = ficheros[x];
                 /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
                 if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), XMLType.family)) {
@@ -81,10 +77,8 @@ public class XMLFamilyReader {
                 }
             }
         }
-        else
-        {
-            if (getExtension(dirPath.getPath()).equals("xml") && xmlValidator.checkXML(dirPath.getPath(), XMLType.family)) 
-            {
+        else{
+            if (getExtension(dirPath.getPath()).equals("xml") && xmlValidator.checkXML(dirPath.getPath(), XMLType.family)) {
                 try {    
                     FamilyWithPath family = new FamilyWithPath(dirPath.getPath(), unmarshal(ResourceHandler.getResource(dirPath.getPath())));    
                     list.add(family);
@@ -96,8 +90,7 @@ public class XMLFamilyReader {
         return list;
     }
     
-    private Family unmarshal(InputStream inputStream )throws JAXBException 
-    {
+    private Family unmarshal(InputStream inputStream )throws JAXBException {
         String packageName = Family.class.getPackage().getName();
         JAXBContext jc = JAXBContext.newInstance( packageName );
         Unmarshaller u = jc.createUnmarshaller();
@@ -105,8 +98,7 @@ public class XMLFamilyReader {
         return doc;
     } 
     
-    private String getExtension(String filePath)
-    {
+    private String getExtension(String filePath){
         int dot = filePath.lastIndexOf(".");
         return filePath.substring(dot + 1);
     }

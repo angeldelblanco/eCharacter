@@ -38,51 +38,42 @@ package es.eucm.character.loader;
 import es.eucm.character.data.family.Family;
 import es.eucm.character.data.model.Model;
 import es.eucm.character.i18n.Metadata;
+import es.eucm.character.types.XMLType;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.*;
-import es.eucm.character.types.XMLType;
 
-public class XMLReader<T> 
-{
+public class XMLReader<T> {
     private ArrayList<T> list;
     private String path;
     private XMLValidator xmlValidator;
     
-    public XMLReader(String path)
-    {
+    public XMLReader(String path){
         this.path = path;
 
         list = new ArrayList<T>();
         xmlValidator = new XMLValidator();
     }
     
-    public ArrayList<T> readXML(Class<T> docClass)
-    {
+    public ArrayList<T> readXML(Class<T> docClass){
         /** Check the type of the XML */
         XMLType type = null;
-        if (docClass.equals(Family.class))
-        {
+        if (docClass.equals(Family.class)){
             type = XMLType.family;
         }
-        else if (docClass.equals(Model.class))
-        {
+        else if (docClass.equals(Model.class)){
             type = XMLType.model;
         }
-        else if (docClass.equals(Metadata.class))
-        {
+        else if (docClass.equals(Metadata.class)){
             type = XMLType.language;
         }
         File dirPath = new File(path);
-        if (dirPath.isDirectory())
-        {
+        if (dirPath.isDirectory()){
             File[] ficheros = dirPath.listFiles();
-            for (int x=0;x<ficheros.length;x++)
-            {
+            for (int x=0;x<ficheros.length;x++){
                 File file = ficheros[x];
                 /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
                 if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), type)) {
@@ -94,10 +85,8 @@ public class XMLReader<T>
                 }
             }
         }
-        else
-        {
-            if (getExtension(dirPath.getPath()).equals("xml") && xmlValidator.checkXML(dirPath.getPath(), type)) 
-            {
+        else{
+            if (getExtension(dirPath.getPath()).equals("xml") && xmlValidator.checkXML(dirPath.getPath(), type)) {
                 try {    
                         list.add(unmarshal(docClass, ResourceHandler.getResource(dirPath.getPath())));
                     } catch (JAXBException ex) {
@@ -108,8 +97,7 @@ public class XMLReader<T>
         return list;
     }
     
-    private <T> T unmarshal( Class<T> docClass, InputStream inputStream )throws JAXBException 
-    {
+    private <T> T unmarshal( Class<T> docClass, InputStream inputStream )throws JAXBException {
         String packageName = docClass.getPackage().getName();
         JAXBContext jc = JAXBContext.newInstance( packageName );
         Unmarshaller u = jc.createUnmarshaller();
@@ -117,8 +105,7 @@ public class XMLReader<T>
         return doc;
     } 
     
-    private String getExtension(String filePath)
-    {
+    private String getExtension(String filePath){
         int dot = filePath.lastIndexOf(".");
         return filePath.substring(dot + 1);
     }

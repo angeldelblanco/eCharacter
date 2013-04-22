@@ -49,8 +49,7 @@ public class ZIPCreator {
     
     public ZIPCreator(){}
     
-    public void createZIP(String filename, String folder)
-    {
+    public void createZIP(String filename, String folder){
         try {
             //Nuestro InputStream
             BufferedInputStream origin = null;

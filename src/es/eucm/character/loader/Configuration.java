@@ -49,8 +49,7 @@ import java.util.logging.Logger;
  * Loading of the initial configuration from the .properties file.
  * In case the .properties file doesn´t exist, loading of a default configuration.
  */
-public class Configuration 
-{ 
+public class Configuration { 
     /** Properties file name */
     public final static String PROPERTIES_FILE_NAME = "initConfig.properties";
     
@@ -78,18 +77,15 @@ public class Configuration
     Properties properties;
     
     
-    public Configuration()
-    {
+    public Configuration(){
         properties = new Properties();
     }
     
-    public String getProperty(String Key)
-    {
+    public String getProperty(String Key){
         return this.properties.getProperty(Key); 
     }
     
-    public void setProperty(String Key,String value)
-    {
+    public void setProperty(String Key,String value){
         this.properties.setProperty(Key, value);
         //Saves the changes in the .properties file
         try {            
@@ -101,8 +97,7 @@ public class Configuration
         }
     }
     
-    public void loadPropertiesFile(InputStream input)
-    {
+    public void loadPropertiesFile(InputStream input){
         try {
             properties.load(input);
             input.close();
@@ -111,8 +106,7 @@ public class Configuration
         }
     }
     
-    public void loadDefaultProperties()
-    {
+    public void loadDefaultProperties(){
         //Default configuration
         this.properties.setProperty(Language, "en_UK");
         this.properties.setProperty(ListLanguage,"en_UK es_ES fr_FR");
@@ -132,8 +126,7 @@ public class Configuration
         }
     }
     
-    public ArrayList<String> getListLanguagesAvailables()
-    {
+    public ArrayList<String> getListLanguagesAvailables(){
         ArrayList<String> listLanguages = new ArrayList<String>();
         StringTokenizer st = new StringTokenizer(getProperty(ListLanguage));
         while (st.hasMoreTokens())

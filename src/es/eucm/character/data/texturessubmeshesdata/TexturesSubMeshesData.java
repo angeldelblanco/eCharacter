@@ -51,15 +51,13 @@ import java.util.Iterator;
 import java.util.Set;
 
 
-public class TexturesSubMeshesData 
-{
+public class TexturesSubMeshesData{
     //HashMap<idPanel,TexturesInPanel>
     private HashMap<String,TexturesInPanel> texturesData;
     //HashMap<idPanel,SubMeshesInPanel>
     private HashMap<String,SubMeshesInPanel> subMeshesData;
     
-    public TexturesSubMeshesData(ArrayList<SubStageType> listSubStages, ArrayList<TextureType> listTextures,ArrayList<SubMeshType> listSubMeshes)
-    {
+    public TexturesSubMeshesData(ArrayList<SubStageType> listSubStages, ArrayList<TextureType> listTextures,ArrayList<SubMeshType> listSubMeshes){
         texturesData = new HashMap<String,TexturesInPanel>();
         subMeshesData = new HashMap<String,SubMeshesInPanel>();
         setData(listSubStages, listTextures, listSubMeshes);
@@ -69,8 +67,7 @@ public class TexturesSubMeshesData
      * Input: A list of all substages,a list of all the texturesData who the model has 
      * and a list of all the submeshes who the model has. 
      */
-    private void setData(ArrayList<SubStageType> listSubStages, ArrayList<TextureType> listTextures,ArrayList<SubMeshType> listSubMeshes)
-    {
+    private void setData(ArrayList<SubStageType> listSubStages, ArrayList<TextureType> listTextures,ArrayList<SubMeshType> listSubMeshes){
         //Create the keyset of the hashMaps with the idPanel of the substages
         createKeySet(listSubStages);        
         //Fill texturesData with the list of textures
@@ -82,11 +79,9 @@ public class TexturesSubMeshesData
     /*
      * Create the keyset of the hashMaps with the idPanel of the substages
      */
-    private void createKeySet(ArrayList<SubStageType> listSubStages)
-    {
+    private void createKeySet(ArrayList<SubStageType> listSubStages){
         Iterator<SubStageType> it = listSubStages.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             SubStageType subStage = it.next();
             if(subStage.getSubStageType().equals("meshSubStage")){
                 subMeshesData.put(subStage.getIdPanel(),new SubMeshesInPanel(subStage.isMultiselection()));
@@ -100,11 +95,9 @@ public class TexturesSubMeshesData
     /*
      * Fill texturesData with the list of textures
      */
-    private void fillTexturesData(ArrayList<TextureType> listTextures)
-    {
+    private void fillTexturesData(ArrayList<TextureType> listTextures){
         Iterator<TextureType> it = listTextures.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             TextureType texture = it.next();
             if(texture instanceof BaseShadowTextureType){
                 BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
@@ -123,8 +116,7 @@ public class TexturesSubMeshesData
                 ArrayList<OptionTexture> listMultiOptionTexture = (ArrayList<OptionTexture>) multiOptionTexture.getOptionTexture();
                 Iterator<OptionTexture> it2 = listMultiOptionTexture.iterator();
                 boolean isDefault = false;
-                while(!isDefault && it2.hasNext())
-                {
+                while(!isDefault && it2.hasNext()){
                     if(it2.next().isDefault()){
                         isDefault = true;
                     }
@@ -137,11 +129,9 @@ public class TexturesSubMeshesData
     /*
      * Fill subMeshesData with the list of submeshes
      */
-    private void fillSubMeshesData(ArrayList<SubMeshType> listSubMeshes)
-    {
+    private void fillSubMeshesData(ArrayList<SubMeshType> listSubMeshes){
         Iterator<SubMeshType> it = listSubMeshes.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             SubMeshType subMesh = it.next();
             subMeshesData.get(subMesh.getIdPanelRef()).addSubMesh(subMesh, subMesh.isDefault());
         }
@@ -150,13 +140,11 @@ public class TexturesSubMeshesData
     /*
      * Return the list of textures activated
      */
-    public HashMap<Integer,ArrayList<BufferedImage>> getCheckedTextures()
-    {
+    public HashMap<Integer,ArrayList<BufferedImage>> getCheckedTextures(){
         HashMap<Integer,ArrayList<BufferedImage>> hashMapCheckedTextures = new HashMap<Integer,ArrayList<BufferedImage>>();
         Set<String> keyIdPanels = texturesData.keySet();
         Iterator<String> it = keyIdPanels.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             TexturesInPanel texturesInPanel = texturesData.get(it.next());
             //Obtener la lista de texturas seleccionadas en un panel en concreto
             ArrayList<TextureType> listCheckedTexturesInPanel = texturesInPanel.getCheckedTextures();          

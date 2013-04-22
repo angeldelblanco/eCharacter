@@ -36,7 +36,6 @@
 
 package es.eucm.character.export;
 
-import es.eucm.character.export.ZIPCreator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -54,16 +53,13 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class GenerateAnimation 
-{
+public class GenerateAnimation {
 
     public GenerateAnimation() {}
 
-    public void createAnimation(String folderPath, String nameAnimation, ArrayList<String> imagesNames) 
-    {
+    public void createAnimation(String folderPath, String nameAnimation, ArrayList<String> imagesNames) {
         String animationPath = folderPath + "/" + nameAnimation + ".eaa";
-        try
-        {
+        try{
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance( );
             TransformerFactory tf = TransformerFactory.newInstance( );
             DocumentBuilder db = dbf.newDocumentBuilder( );
@@ -76,8 +72,7 @@ public class GenerateAnimation
             mainNode.setAttribute("slides", "no");
 
             Iterator<String> it = imagesNames.iterator();      
-            while (it.hasNext())
-            {                
+            while (it.hasNext()){                
                 //Creat the node "transition"
                 Element transitionNode = doc.createElement("transition");
                 transitionNode.setAttribute("type", "none");
@@ -114,25 +109,20 @@ public class GenerateAnimation
         }
     }
     
-    public void saveZIP(String filename, String folder)
-    {
+    public void saveZIP(String filename, String folder){
         ZIPCreator zipCreator = new ZIPCreator();
         zipCreator.createZIP(filename, folder);
     }
     
-    public void cleanDirectory(String folder)
-    {        
+    public void cleanDirectory(String folder){        
         File f = new File(folder);
         clean(f);
-        //f.delete();
     }
     
-    private void clean(File directorio)
-    {
+    private void clean(File directorio){
          File[] ficheros = directorio.listFiles();
  
-         for (int x=0;x<ficheros.length;x++)
-         {
+         for (int x=0;x<ficheros.length;x++){
              if (ficheros[x].isDirectory()) {
                 clean(ficheros[x]);
              }

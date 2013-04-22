@@ -43,30 +43,24 @@ import java.util.Iterator;
 public class I18N {
     private Metadata language;
     
-    public I18N(String languagesPath, String language)
-    {
+    public I18N(String languagesPath, String language){
         XMLReader<Metadata> xmlReader = new XMLReader<Metadata>(languagesPath);
         ArrayList<Metadata> listLanguages = xmlReader.readXML(Metadata.class);
         Iterator<Metadata> it = listLanguages.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             Metadata aux = it.next();
-            if (aux.getLanguage().equals(language))
-            {
+            if (aux.getLanguage().equals(language)){
                 this.language = aux;
             }
         }
     }
     
-    public String getString(String id)
-    {
+    public String getString(String id){
         ArrayList<StringType> listString = (ArrayList<StringType>) language.getString();
         Iterator<StringType> it = listString.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             StringType string = it.next();
-            if(string.getId().equals(id))
-            {
+            if(string.getId().equals(id)){
                 return string.getValue();
             }
         }

@@ -51,31 +51,27 @@ public class SubMeshesInPanel implements ElementInPanel{
     //HashMap<submesh, boolean = if this subMesh is selected>
     private HashMap<SubMeshType,AttrTexture> subMeshes;
     
-    public SubMeshesInPanel(boolean multiSelection)
-    {
+    public SubMeshesInPanel(boolean multiSelection){
         this.multiSelection = multiSelection;
         subMeshes = new HashMap<SubMeshType,AttrTexture>();
     }
     
-    public void addSubMesh(SubMeshType subMesh,boolean isCheck)
-    {
+    public void addSubMesh(SubMeshType subMesh,boolean isCheck){
         subMeshes.put(subMesh, new AttrTexture(isCheck));
     }
     
     /*
      * Return a list with the activated submeshes in this panel
      */
-    public ArrayList<SubMeshType> getCheckedSubMeshes()
-    {
+    public ArrayList<SubMeshType> getCheckedSubMeshes(){
         ArrayList<SubMeshType> listCheckedSubMeshes = new ArrayList<SubMeshType>();
         Set<SubMeshType> setSubMeshesType = subMeshes.keySet();
         Iterator<SubMeshType> it = setSubMeshesType.iterator();
-        while(it.hasNext())
-        {
-            SubMeshType subMesh = it.next();
+        while(it.hasNext()){
+        SubMeshType subMesh = it.next();
             if (subMeshes.get(subMesh).isSelected()){
                listCheckedSubMeshes.add(subMesh);
-           } 
+            } 
         }
         return listCheckedSubMeshes;
     }
@@ -100,28 +96,22 @@ public class SubMeshesInPanel implements ElementInPanel{
      * Else we set the value of the other submeshes to false
      */
     @Override
-    public void changeElement(String idSubMesh)
-    {
+    public void changeElement(String idSubMesh){
         Set<SubMeshType> keySet = subMeshes.keySet();
         Iterator<SubMeshType> it = keySet.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             SubMeshType subMesh = it.next();
             if(subMesh.getIdSubMesh().equals(idSubMesh)){
                 if (multiSelection){
-                    /*boolean b = subMeshes.get(subMesh);
-                    subMeshes.put(subMesh,!b);*/
                     AttrTexture attrTexture = subMeshes.get(subMesh);
                     attrTexture.setSelected(!attrTexture.isSelected());
                 }
-                else {
-                    //subMeshes.put(subMesh,true);
+                else{
                     AttrTexture attrTexture = subMeshes.get(subMesh);
                     attrTexture.setSelected(true);
                 }
             }
             else if(!multiSelection){
-                //subMeshes.put(subMesh,false);
                 AttrTexture attrTexture = subMeshes.get(subMesh);
                 attrTexture.setSelected(false);
             }
@@ -168,8 +158,6 @@ public class SubMeshesInPanel implements ElementInPanel{
         while(it.hasNext()){
             SubMeshType subMesh = it.next();
             if (subMesh.getIdSubMesh().equals(idSubMesh)){
-                /*ArrayList<BufferedImage> bi = ColoringImage.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
-                textures.get(texture).setListBufferedImage(bi);*/
                 //Obtener el buffer image de la base coloreada.
                 BufferedImage bi = ColoringTextureSubMesh.coloringImageDoubleTextureBase(subMesh.getSubMeshTexture().getDoubleTextureSubMesh(), new Color(red, green, blue));
                 //Obtener el buffer image de los detalles que había guardado

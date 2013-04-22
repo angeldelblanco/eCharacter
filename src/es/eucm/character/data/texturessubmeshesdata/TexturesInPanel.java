@@ -49,30 +49,25 @@ import java.util.Set;
 public class TexturesInPanel implements ElementInPanel {
     private boolean multiSelection;
     //HashMap<Texture, boolean = if this texture is selected>
-    //private HashMap<TextureType,Boolean> textures;
     private HashMap<TextureType,AttrTexture> textures;
     
-    public TexturesInPanel(boolean multiSelection)
-    {
+    public TexturesInPanel(boolean multiSelection){
         this.multiSelection = multiSelection;
         textures = new HashMap<TextureType,AttrTexture>();
     }  
     
-    public void addTexture(TextureType texture, boolean isCheck)
-    {
+    public void addTexture(TextureType texture, boolean isCheck){
         textures.put(texture, new AttrTexture(isCheck));
     }
     
     /*
      * Return a list with the activated textures in this panel
      */
-    public ArrayList<TextureType> getCheckedTextures()
-    {
+    public ArrayList<TextureType> getCheckedTextures(){
         ArrayList<TextureType> listCheckedTextures = new ArrayList<TextureType>();
         Set<TextureType> setTextureType = textures.keySet();
         Iterator<TextureType> it = setTextureType.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             TextureType texture = it.next();
             if (textures.get(texture).isSelected()){
                listCheckedTextures.add(texture);
@@ -101,34 +96,24 @@ public class TexturesInPanel implements ElementInPanel {
      * Else we set the value of the other textures to false
      */
     @Override
-    public void changeElement(String idTexture)
-    {
+    public void changeElement(String idTexture){
         Set<TextureType> keySet = textures.keySet();
         Iterator<TextureType> it = keySet.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             TextureType texture = it.next();
-            if (texture.getIdTexture().equals(idTexture))
-            {
+            if (texture.getIdTexture().equals(idTexture)){
                 if (multiSelection){
-                    //boolean b = textures.get(texture).isSelected();
-                    //textures.put(texture,!b);
                     AttrTexture attrTexture = textures.get(texture);
                     attrTexture.setSelected(!attrTexture.isSelected());
-                    //textures.put(texture,attrTexture);
                 }
                 else {
-                    //textures.put(texture,true);
                     AttrTexture attrTexture = textures.get(texture);
                     attrTexture.setSelected(true);
-                    //textures.put(texture,attrTexture);
                 }
             }
             else if (!multiSelection) {
-                //textures.put(texture,false);
                 AttrTexture attrTexture = textures.get(texture);
                 attrTexture.setSelected(false);
-                //textures.put(texture,attrTexture);
             }
         }        
     }
@@ -173,8 +158,6 @@ public class TexturesInPanel implements ElementInPanel {
         while(it.hasNext()){
             TextureType texture = it.next();
             if (texture.getIdTexture().equals(idTexture)){
-                /*ArrayList<BufferedImage> bi = ColoringImage.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
-                textures.get(texture).setListBufferedImage(bi);*/
                 //Obtener el buffer image de la base coloreada.
                 BufferedImage bi = ColoringTextureMainMesh.coloringImageDoubleTextureBase(texture, new Color(red, green, blue));
                 //Obtener el buffer image de los detalles que había guardado
@@ -201,7 +184,6 @@ public class TexturesInPanel implements ElementInPanel {
         }
     }
     
-    //Comprobar que si es null, hay que generarlo
     public ArrayList<BufferedImage> getListBufferedImage(TextureType texture){
         //Si el BufferedImage es null, es porque no se ha creado todavía. Hay que crearlo con imageProcessing.
         if(textures.get(texture).getListBufferedImage()== null){
