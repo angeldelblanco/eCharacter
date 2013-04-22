@@ -219,6 +219,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             }
             cont++;
         }
+        /*synchronized(st){
+            st.notify();
+        }*/
     }
 }
 

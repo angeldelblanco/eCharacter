@@ -80,8 +80,7 @@ public class ScreenshotThread extends Thread
             Iterator<String> it = namesAnimations.iterator();
             GenerateAnimation generateAnimation = new GenerateAnimation();
             generateAnimation.cleanDirectory(dirScreenshots);
-            while(it.hasNext())
-            {
+            while(it.hasNext()){
                 String nameAnimation = it.next();
                 screenShotState.setFilePath(dirScreenshots+"/"+nameAnimation);
                 imagesNames = new ArrayList<String>();                
@@ -112,7 +111,11 @@ public class ScreenshotThread extends Thread
                     //time = channel.getTime();
                     //time = channel.getTime()-desfaseSegundos;
                 }
-                screenShotState.writeFiles();
+                synchronized (this){
+                    screenShotState.writeFiles();
+                    wait();
+                }
+                System.out.println("ENTROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                 //generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }
             //generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
