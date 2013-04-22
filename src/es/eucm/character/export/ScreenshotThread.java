@@ -119,7 +119,11 @@ public class ScreenshotThread extends Thread{
                     //time = channel.getTime()-desfaseSegundos;
                 }
                 ArrayList<ByteBuffer> list = screenShotState.getListByteBuffer();
-                this.writeFiles(list, screenShotState.getWidth(), screenShotState.getHeight());
+                //synchronized (this){
+                    this.writeFiles(list, screenShotState.getWidth(), screenShotState.getHeight());
+                    //this.wait();
+                //}
+                
                 
                 /*synchronized (this){
                     screenShotState.writeFiles();
@@ -167,5 +171,8 @@ public class ScreenshotThread extends Thread{
             }
             cont++;
         }
+        /*synchronized (this){
+            this.notify();
+        }*/
     }
 }
