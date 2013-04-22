@@ -72,6 +72,9 @@ public class Configuration
     /** Locale path */
     public final static String LocalePath = "localePath";
     
+    /**Default Quality */
+    public final static String DefaultQuality = "defaultQualityFps";
+    
     Properties properties;
     
     
@@ -117,6 +120,8 @@ public class Configuration
         this.properties.setProperty(AssetsPath, "assets");
         this.properties.setProperty(FamiliesPath,"assets"+File.separator+"XML Configuration"+File.separator+"families");
         this.properties.setProperty(LocalePath,"assets"+File.separator+"Locale");
+        this.properties.setProperty(DefaultQuality, "10");
+        
         //Saves the changes in the .properties file
         try {            
             FileOutputStream output = new FileOutputStream(PROPERTIES_FILE_NAME); 

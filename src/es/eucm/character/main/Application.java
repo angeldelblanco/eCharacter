@@ -121,6 +121,7 @@ public class Application extends SimpleApplication{
         
         
         // Camera
+        //setCamera(0.0f);
         /*System.out.println("Eye :"+cam.getLocation().getX()+" "+cam.getLocation().getY()+" "+cam.getLocation().getZ());
         System.out.println("Look :"+cam.getLeft().getX()+" "+cam.getLeft().getY()+" "+cam.getLeft().getZ());
         System.out.println("Up :"+cam.getUp().getX()+" "+cam.getUp().getY()+" "+cam.getUp().getZ());
@@ -139,6 +140,21 @@ public class Application extends SimpleApplication{
         
         flyCam.setDragToRotate(true); // you need the mouse for clicking now
         flyCam.setEnabled(false);
+    }
+    
+    private void setCamera(float ang)
+    {
+        Vector3f look = new Vector3f(0.0f,0.0f,0.0f);
+        Vector3f eye = new Vector3f(0.0f,0.0f,10.0f);
+        Vector3f direction = look.subtract(eye);
+        direction.normalize();
+        Vector3f up_igr = new Vector3f(0.0f,1.0f,0.0f);
+        up_igr.set(up_igr.getX()*(float)Math.cos(ang) - up_igr.getY()*(float)Math.sin(ang), 
+               up_igr.getX()*(float)Math.sin(ang) + up_igr.getY()*(float)Math.cos(ang),
+               up_igr.getZ());
+        Vector3f left = ((up_igr.cross(direction)).negate()).normalize();
+        Vector3f up = direction.cross(left);
+        cam.setAxes(left, up, direction);        
     }
     
      public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
