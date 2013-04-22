@@ -41,13 +41,20 @@ import com.jme3.animation.LoopMode;
 import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
+import com.jme3.system.JmeSystem;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ScreenshotThread extends Thread
-{
+public class ScreenshotThread extends Thread{
+    private static final Logger logger = Logger.getLogger(ScreenshotThread.class.getName());
+    
     static final int quality = 24;
     
     private ScreenshotMyAppState screenShotState;
@@ -111,10 +118,13 @@ public class ScreenshotThread extends Thread
                     //time = channel.getTime();
                     //time = channel.getTime()-desfaseSegundos;
                 }
-                synchronized (this){
+                ArrayList<ByteBuffer> list = screenShotState.getListByteBuffer();
+                this.writeFiles(list, screenShotState.getWidth(), screenShotState.getHeight());
+                
+                /*synchronized (this){
                     screenShotState.writeFiles();
                     wait();
-                }
+                }*/
                 System.out.println("ENTROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                 //generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }
@@ -129,5 +139,33 @@ public class ScreenshotThread extends Thread
         {
                 Logger.getLogger(ScreenshotThread.class.getName()).log(Level.SEVERE, null, ex);
         }      
+    }
+    
+    private void writeFiles(ArrayList<ByteBuffer> list, int width, int height){
+        int cont = 1;
+        System.out.println("Tamaño del list: "+list.size());
+        Iterator<ByteBuffer> it = list.iterator();
+        while(it.hasNext()){
+            ByteBuffer byteBuffer = it.next();
+            File file;
+            file = new File("assets"+File.separator+"Textures"+File.separator+"screenshots"+File.separator+"Prueba "+cont+".png");
+
+            OutputStream outStream = null;
+            try {
+                outStream = new FileOutputStream(file);
+                JmeSystem.writeImageFile(outStream, "png", byteBuffer, width, height);
+            } catch (IOException ex) {
+                logger.log(Level.SEVERE, "Error while saving screenshot", ex);
+            } finally {
+                if (outStream != null){
+                    try {
+                        outStream.close();
+                    } catch (IOException ex) {
+                        logger.log(Level.SEVERE, "Error while saving screenshot", ex);
+                    }
+                }
+            }
+            cont++;
+        }
     }
 }

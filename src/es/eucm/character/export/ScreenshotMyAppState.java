@@ -193,7 +193,19 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         }
     }
     
-    public void writeFiles(){
+    public ArrayList<ByteBuffer> getListByteBuffer(){
+        return list;
+    }
+    
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+    
+    /*public void writeFiles(){
         int cont = 1;
         System.out.println("Tamaño del list: "+list.size());
         Iterator<ByteBuffer> it = list.iterator();
@@ -219,9 +231,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             }
             cont++;
         }
-        /*synchronized(st){
-            st.notify();
-        }*/
-    }
+        //synchronized(st){
+        //    st.notify();
+        //}
+    }*/
 }
 
