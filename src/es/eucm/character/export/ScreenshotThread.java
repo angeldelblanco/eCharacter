@@ -38,14 +38,8 @@ package es.eucm.character.export;
 
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.LoopMode;
-import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
-import com.jme3.system.JmeSystem;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -55,26 +49,28 @@ import java.util.logging.Logger;
 public class ScreenshotThread extends Thread{
     private static final Logger logger = Logger.getLogger(ScreenshotThread.class.getName());
     
-    static final int quality = 24;
+    private static final int quality = 10;
     
     private ScreenshotMyAppState screenShotState;
     private AnimChannel channel;
     private ViewPort guiViewPort;
     private NiftyJmeDisplay niftyDisplay;    
-    private ArrayList<String> namesAnimations;
+    private ArrayList<String> listAnimations, listQualities, listCameras;
     private float stepAnimationTime;
     
     private ArrayList<String> imagesNames;
     
     public ScreenshotThread(ScreenshotMyAppState screeShotState,AnimChannel channel,
-            ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,ArrayList<String> namesAnimations)
-    {
+            ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,ArrayList<String> listAnimations, 
+            ArrayList<String> listQualities, ArrayList<String> listCameras){
         super();
         this.screenShotState = screeShotState;
         this.channel = channel;
         this.guiViewPort = guiViewPort;
         this.niftyDisplay = niftyDisplay;
-        this.namesAnimations = namesAnimations;        
+        this.listAnimations = listAnimations; 
+        this.listQualities = listQualities;
+        this.listCameras = listCameras;
     }
     
     @Override
@@ -84,7 +80,7 @@ public class ScreenshotThread extends Thread{
         {
             String dirScreenshots = "assets/Textures/screenshots";
             int cont = 1;
-            Iterator<String> it = namesAnimations.iterator();
+            Iterator<String> it = listAnimations.iterator();
             GenerateAnimation generateAnimation = new GenerateAnimation();
             generateAnimation.cleanDirectory(dirScreenshots);
             while(it.hasNext()){
@@ -102,77 +98,29 @@ public class ScreenshotThread extends Thread{
                     System.out.println("Captura antes "+j+" con tiempo "+System.currentTimeMillis());
                     time = time+(stepAnimationTime/1000);
                     channel.setTime(time);
-                    
-                    //long tAntes = System.currentTimeMillis();
                     synchronized (this){
                         screenShotState.takeScreenshot(this);
                         wait();
                     }
-                    //long tDespues = System.currentTimeMillis();
-                    //float desfaseSegundos = (tDespues - tAntes)/1000;
-                    
-                    
                     System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
                     cont++;
                     sleep((long)stepAnimationTime);
                     //time = channel.getTime();
-                    //time = channel.getTime()-desfaseSegundos;
                 }
                 ArrayList<ByteBuffer> list = screenShotState.getListByteBuffer();
-                //synchronized (this){
-                    this.writeFiles(list, screenShotState.getWidth(), screenShotState.getHeight());
-                    //this.wait();
-                //}
                 
-                
-                /*synchronized (this){
-                    screenShotState.writeFiles();
-                    wait();
-                }*/
-                System.out.println("ENTROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                ScreenshotWritter sw = new ScreenshotWritter(list, screenShotState.getWidth(), screenShotState.getHeight());
+                sw.start();
+                sw.join();
                 //generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }
             //generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
-            
-            it = namesAnimations.iterator();
-            channel.setAnim(it.next());
-            channel.setLoopMode(LoopMode.Loop);
+            System.out.println("ScreenshotThread OK");
             guiViewPort.addProcessor(niftyDisplay);            
          } 
         catch (InterruptedException ex) 
         {
                 Logger.getLogger(ScreenshotThread.class.getName()).log(Level.SEVERE, null, ex);
         }      
-    }
-    
-    private void writeFiles(ArrayList<ByteBuffer> list, int width, int height){
-        int cont = 1;
-        System.out.println("Tamaño del list: "+list.size());
-        Iterator<ByteBuffer> it = list.iterator();
-        while(it.hasNext()){
-            ByteBuffer byteBuffer = it.next();
-            File file;
-            file = new File("assets"+File.separator+"Textures"+File.separator+"screenshots"+File.separator+"Prueba "+cont+".png");
-
-            OutputStream outStream = null;
-            try {
-                outStream = new FileOutputStream(file);
-                JmeSystem.writeImageFile(outStream, "png", byteBuffer, width, height);
-            } catch (IOException ex) {
-                logger.log(Level.SEVERE, "Error while saving screenshot", ex);
-            } finally {
-                if (outStream != null){
-                    try {
-                        outStream.close();
-                    } catch (IOException ex) {
-                        logger.log(Level.SEVERE, "Error while saving screenshot", ex);
-                    }
-                }
-            }
-            cont++;
-        }
-        /*synchronized (this){
-            this.notify();
-        }*/
     }
 }

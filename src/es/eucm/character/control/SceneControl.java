@@ -335,7 +335,7 @@ public class SceneControl {
     }
     
     public void screenShot(){
-        animations.put("Andar", Boolean.TRUE);
+        //Animation´s list that is checked
         ArrayList<String> listAnimationsChecked = new ArrayList<String>();
         Iterator<String> it = animations.keySet().iterator();
         while(it.hasNext()){
@@ -344,10 +344,31 @@ public class SceneControl {
                 listAnimationsChecked.add(animationName);
             }
         }
+        
+        //PASAR LOS VALORES
+        //Quality´s list that is checked
+        ArrayList<String> listQualitiesChecked = new ArrayList<String>();
+        it = qualities.keySet().iterator();
+        while(it.hasNext()){
+            String qualityLabel = it.next();
+            if(qualities.get(qualityLabel)){
+                listQualitiesChecked.add(qualityLabel);
+            }
+        }
+        //Camera´s list that is checked
+        ArrayList<String> listCamerasChecked = new ArrayList<String>();
+        it = cameras.keySet().iterator();
+        while(it.hasNext()){
+            String cameraLabel = it.next();
+            if(cameras.get(cameraLabel)){
+                listCamerasChecked.add(cameraLabel);
+            }
+        }
         if(listAnimationsChecked.size() > 0){
             control.getGuiViewPort().removeProcessor(control.getNiftyDisplay());
             ScreenshotThread sst = new ScreenshotThread(control.getScreenShotState(),animChannel,
-                    control.getGuiViewPort(),control.getNiftyDisplay(),listAnimationsChecked);
+                    control.getGuiViewPort(),control.getNiftyDisplay(),listAnimationsChecked, 
+                    listQualitiesChecked, listCamerasChecked);
             sst.start();
         }
     }

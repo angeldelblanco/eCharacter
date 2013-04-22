@@ -184,7 +184,8 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             renderer.setViewPort(0, 0, width, height);
             renderer.readFrameBuffer(out, outBuf);
             renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
-            list.add(outBuf);
+            
+            list.add(outBuf.duplicate());
             System.out.println("Añadido Nº "+shotIndex);
             System.out.println("Tamaño actual "+list.size());
             synchronized(st){
@@ -194,7 +195,12 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     }
     
     public ArrayList<ByteBuffer> getListByteBuffer(){
-        return list;
+        ArrayList<ByteBuffer> l = new ArrayList<ByteBuffer>();
+        Iterator<ByteBuffer> it = list.iterator();
+        while(it.hasNext()){
+            l.add(it.next());
+        }
+        return l;
     }
     
     public int getWidth() {
