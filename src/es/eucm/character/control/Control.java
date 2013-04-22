@@ -51,34 +51,34 @@ import es.eucm.character.loader.FamilyWithPath;
 import es.eucm.character.loader.XMLFamilyReader;
 import es.eucm.character.loader.XMLReader;
 import es.eucm.character.main.Application;
+import es.eucm.character.types.CameraValues;
 import es.eucm.character.types.ElementType;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
 
 public class Control {
     
-    //private ArrayList<Family> families;
+    private Configuration config;
+    private Node rootNode;
+    private AssetManager assetManager;
+    private Application app;
+    private ViewPort guiViewPort;
+    private NiftyJmeDisplay niftyDisplay;
+    private ScreenshotMyAppState screenShotState;
+    
     private ArrayList<FamilyWithPath> families;
     private Model model;
     private FamilyControl fc;
     private ModelControl mc;
     private SceneControl sc;
-    private AssetManager assetManager;
-    private Node rootNode;
-    private ViewPort guiViewPort;
-    private NiftyJmeDisplay niftyDisplay;
-    private ScreenshotMyAppState screenShotState;
-    private Application app;
     
     public Control(Configuration config, Node rootNode, AssetManager assetManager, Application app, 
             ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState)
     {
-        String familiesPath = config.getProperty(Configuration.FamiliesPath);
-        /*XMLReader<Family> xmlReader = new XMLReader<Family>(familiesPath);
-        families = xmlReader.readXML(Family.class);*/
+        this.config = config;
+        String familiesPath = this.config.getProperty(Configuration.FamiliesPath);
         XMLFamilyReader xmlReader = new XMLFamilyReader(familiesPath);
         families = xmlReader.readXML();
         this.assetManager = assetManager;
@@ -110,10 +110,8 @@ public class Control {
     }
     /*************************Family******************************************/
     public void selectFamily(String idFamily){
-        //Iterator<Family> it = families.iterator();
         Iterator<FamilyWithPath> it = families.iterator();
         while(it.hasNext()){
-            //Family family = it.next();
             FamilyWithPath family = it.next();
             if (family.getPath().equals(idFamily)){
                 fc = new FamilyControl(family.getFamily());
@@ -123,10 +121,8 @@ public class Control {
     
     public ArrayList<String> getFamiliesID(){
         ArrayList<String> listID = new ArrayList<String>();
-        //Iterator<Family> it = families.iterator();
         Iterator<FamilyWithPath> it = families.iterator();
         while(it.hasNext()){
-            //Family family = it.next();
             FamilyWithPath family = it.next();
             listID.add(family.getPath());
         }
@@ -198,6 +194,10 @@ public class Control {
         return fc.getCamerasLabels();
     }
     
+    public CameraValues getCameraValues(String cameraLabel){
+        return fc.getCameraValues(cameraLabel);
+    }
+    
     public int getNumQualities()
     {
         return fc.getNumQualities();
@@ -206,6 +206,10 @@ public class Control {
     public ArrayList<String> getQualityLabels()
     {
         return fc.getQualityLabels();
+    }
+    
+    public int getQualityValue(String qualityLabel){
+        return fc.getQualityValue(qualityLabel);
     }
     
     public ArrayList<String> getIdsSubStages(String stageLabel)
@@ -244,7 +248,7 @@ public class Control {
         }
         mc = new ModelControl(model);
         TexturesSubMeshesData texturesSubMeshesData = new TexturesSubMeshesData(fc.getAllSubStages(), mc.getAllTextures(), mc.getAllSubMeshes());
-        sc = new SceneControl(this, mc.getMainMeshPath(), mc.getMainMeshTransformations(),texturesSubMeshesData);
+        sc = new SceneControl(this, config, mc.getMainMeshPath(), mc.getMainMeshTransformations(),texturesSubMeshesData);
     }
     
     public String getLanguageModelPath()

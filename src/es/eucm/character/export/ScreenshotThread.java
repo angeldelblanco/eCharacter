@@ -40,6 +40,7 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.LoopMode;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
+import es.eucm.character.types.CameraValues;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -55,14 +56,16 @@ public class ScreenshotThread extends Thread{
     private AnimChannel channel;
     private ViewPort guiViewPort;
     private NiftyJmeDisplay niftyDisplay;    
-    private ArrayList<String> listAnimations, listQualities, listCameras;
+    private ArrayList<String> listAnimations;
+    private ArrayList<Integer> listQualities;
+    private ArrayList<CameraValues> listCameras;
     private float stepAnimationTime;
     
     private ArrayList<String> imagesNames;
     
     public ScreenshotThread(ScreenshotMyAppState screeShotState,AnimChannel channel,
             ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,ArrayList<String> listAnimations, 
-            ArrayList<String> listQualities, ArrayList<String> listCameras){
+            ArrayList<Integer> listQualities, ArrayList<CameraValues> listCameras){
         super();
         this.screenShotState = screeShotState;
         this.channel = channel;
@@ -80,9 +83,9 @@ public class ScreenshotThread extends Thread{
         {
             String dirScreenshots = "assets/Textures/screenshots";
             int cont = 1;
-            Iterator<String> it = listAnimations.iterator();
             GenerateAnimation generateAnimation = new GenerateAnimation();
             generateAnimation.cleanDirectory(dirScreenshots);
+            Iterator<String> it = listAnimations.iterator();
             while(it.hasNext()){
                 String nameAnimation = it.next();
                 screenShotState.setFilePath(dirScreenshots+"/"+nameAnimation);

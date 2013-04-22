@@ -55,6 +55,8 @@ import es.eucm.character.data.model.TransformationType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.export.ScreenshotThread;
 import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
+import es.eucm.character.loader.Configuration;
+import es.eucm.character.types.CameraValues;
 import es.eucm.character.types.ElementType;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -64,6 +66,7 @@ import java.util.Set;
 
 public class SceneControl {
     private Control control;
+    private Configuration config;
     private Spatial mainMesh;
     private HashMap<String,Spatial> subMeshes;
     private HashMap<String,Boolean> animations;
@@ -77,9 +80,10 @@ public class SceneControl {
     private float angRotate;
     private DirectionalLight directionalLight;
     
-    public SceneControl(Control control,String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh,
+    public SceneControl(Control control,Configuration config,String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh,
                 TexturesSubMeshesData texturesSubMeshesData){
         this.control = control;
+        this.config = config;
         this.texturesSubMeshesData = texturesSubMeshesData;        
         this.subMeshes = new HashMap<String, Spatial>();
         this.animations = new HashMap<String,Boolean>();
@@ -335,7 +339,7 @@ public class SceneControl {
     }
     
     public void screenShot(){
-        //Animation´s list that is checked
+        //Animations list that is checked
         ArrayList<String> listAnimationsChecked = new ArrayList<String>();
         Iterator<String> it = animations.keySet().iterator();
         while(it.hasNext()){
@@ -345,23 +349,26 @@ public class SceneControl {
             }
         }
         
-        //PASAR LOS VALORES
-        //Quality´s list that is checked
-        ArrayList<String> listQualitiesChecked = new ArrayList<String>();
+        //List of qualities value that is checked
+        ArrayList<Integer> listQualitiesChecked = new ArrayList<Integer>();
         it = qualities.keySet().iterator();
         while(it.hasNext()){
             String qualityLabel = it.next();
             if(qualities.get(qualityLabel)){
-                listQualitiesChecked.add(qualityLabel);
+                listQualitiesChecked.add(control.getQualityValue(qualityLabel));
             }
         }
-        //Camera´s list that is checked
-        ArrayList<String> listCamerasChecked = new ArrayList<String>();
+        if(listQualitiesChecked.isEmpty()){
+            int defaultQuality = Integer.parseInt(config.getProperty(Configuration.DefaultQuality));
+            listQualitiesChecked.add(defaultQuality);
+        }
+        //List of cameras value that is checked
+        ArrayList<CameraValues> listCamerasChecked = new ArrayList<CameraValues>();
         it = cameras.keySet().iterator();
         while(it.hasNext()){
             String cameraLabel = it.next();
             if(cameras.get(cameraLabel)){
-                listCamerasChecked.add(cameraLabel);
+                listCamerasChecked.add(control.getCameraValues(cameraLabel));
             }
         }
         if(listAnimationsChecked.size() > 0){

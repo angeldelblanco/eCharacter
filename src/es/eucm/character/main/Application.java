@@ -39,15 +39,12 @@ package es.eucm.character.main;
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.app.SimpleApplication;
-import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.renderer.Camera;
 import com.jme3.system.AppSettings;
 import de.lessvoid.nifty.Nifty;
 import es.eucm.character.control.Control;
@@ -122,6 +119,7 @@ public class Application extends SimpleApplication{
         
         // Camera
         //setCamera(0.0f);
+        //setCamera(-(float)Math.PI/4);
         /*System.out.println("Eye :"+cam.getLocation().getX()+" "+cam.getLocation().getY()+" "+cam.getLocation().getZ());
         System.out.println("Look :"+cam.getLeft().getX()+" "+cam.getLeft().getY()+" "+cam.getLeft().getZ());
         System.out.println("Up :"+cam.getUp().getX()+" "+cam.getUp().getY()+" "+cam.getUp().getZ());
@@ -146,15 +144,40 @@ public class Application extends SimpleApplication{
     {
         Vector3f look = new Vector3f(0.0f,0.0f,0.0f);
         Vector3f eye = new Vector3f(0.0f,0.0f,10.0f);
-        Vector3f direction = look.subtract(eye);
-        direction.normalize();
+        Vector3f direction = look.subtract(eye).normalize();
         Vector3f up_igr = new Vector3f(0.0f,1.0f,0.0f);
-        up_igr.set(up_igr.getX()*(float)Math.cos(ang) - up_igr.getY()*(float)Math.sin(ang), 
-               up_igr.getX()*(float)Math.sin(ang) + up_igr.getY()*(float)Math.cos(ang),
-               up_igr.getZ());
-        Vector3f left = ((up_igr.cross(direction)).negate()).normalize();
+        //Esto es una rotacion en el eje Z
+        /*float newX = up_igr.getX()*(float)Math.cos(ang) - up_igr.getY()*(float)Math.sin(ang);
+        float newY = up_igr.getX()*(float)Math.sin(ang) + up_igr.getY()*(float)Math.cos(ang);
+        float newZ = up_igr.getZ();*/
+        
+        //Esto es una rotacion en el eje Y
+        /*float newX = up_igr.getX()*(float)Math.cos(ang) + up_igr.getZ()*(float)Math.sin(ang);
+        float newY = up_igr.getY();
+        float newZ = - up_igr.getX()*(float)Math.sin(ang) + up_igr.getZ()*(float)Math.cos(ang);*/
+        
+        //Esto es una rotacion en el eje X
+        float newX = up_igr.getX();
+        float newY = up_igr.getY()*(float)Math.cos(ang) - up_igr.getZ()*(float)Math.sin(ang);
+        float newZ = up_igr.getY()*(float)Math.sin(ang) + up_igr.getZ()*(float)Math.cos(ang);
+        up_igr.set(newX, newY, newZ);
+        
+        //Vector3f left = ((up_igr.cross(direction)).negate()).normalize();
+        Vector3f left = ((up_igr.cross(direction))).normalize();
         Vector3f up = direction.cross(left);
+        //Vector3f up = direction.cross(left).negate();
+        
+        System.out.println("*******************ANTES****************");
+        System.out.println("Up: "+cam.getUp().toString());
+        System.out.println("Direction: "+cam.getDirection().toString());
+        System.out.println("Left: "+cam.getLeft().toString());
+        
         cam.setAxes(left, up, direction);        
+        
+        System.out.println("*******************DESPUES****************");
+        System.out.println("Up: "+cam.getUp().toString());
+        System.out.println("Direction: "+cam.getDirection().toString());
+        System.out.println("Left: "+cam.getLeft().toString());
     }
     
      public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 

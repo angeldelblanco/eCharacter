@@ -35,6 +35,7 @@
  ******************************************************************************/
 package es.eucm.character.control;
 
+import com.jme3.math.Vector3f;
 import es.eucm.character.data.family.Family;
 import es.eucm.character.data.family.CameraType;
 import es.eucm.character.data.family.ModelRefType;
@@ -45,6 +46,7 @@ import es.eucm.character.data.family.AnimationStageType;
 import es.eucm.character.data.family.ScaleStageType;
 import es.eucm.character.data.family.ScaleStageType.BoneController;
 import es.eucm.character.loader.ResourceHandler;
+import es.eucm.character.types.CameraValues;
 import java.util.ArrayList;
 import java.util.Iterator;
 import es.eucm.character.types.StageType;
@@ -318,28 +320,37 @@ public class FamilyControl
     }
     
     /**************************** Animation Stage **************************/
-    public ArrayList<String> getCamerasLabels()
-    {
+    public ArrayList<String> getCamerasLabels(){
         ArrayList<String> listCameraLabels = new ArrayList<String>();
         AnimationStageType animationStage = family.getStages().getAnimationStage();
         ArrayList<CameraType> listCameras = (ArrayList<CameraType>) animationStage.getCamera();
         Iterator<CameraType> it = listCameras.iterator();
-        while(it.hasNext())
-        {
+        while(it.hasNext()){
             CameraType camera = it.next();
             listCameraLabels.add(camera.getCameraLabel());
         }
         return listCameraLabels;
     }
     
-    public int getNumCameras()
-    {
-        return getCamerasLabels().size();
+    public CameraValues getCameraValues(String cameraLabel){
+        CameraValues cameraValues = null;
+        AnimationStageType animationStage = family.getStages().getAnimationStage();
+        ArrayList<CameraType> listCameras = (ArrayList<CameraType>) animationStage.getCamera();
+        Iterator<CameraType> it = listCameras.iterator();
+        while(it.hasNext()){
+            CameraType camera = it.next();
+            if (camera.getCameraLabel().equals(cameraLabel)){
+                Vector3f up = new Vector3f(camera.getUpAxis().getValueX(), camera.getUpAxis().getValueY(), camera.getUpAxis().getValueZ());
+                Vector3f location = new Vector3f(camera.getLocation().getValueX(), camera.getLocation().getValueY(), camera.getLocation().getValueZ());
+                Vector3f direction = new Vector3f(camera.getDirection().getValueX(), camera.getDirection().getValueY(), camera.getDirection().getValueZ());
+                cameraValues = new CameraValues(up, location, direction);
+            }
+        }
+        return cameraValues;
     }
     
-    public int getNumQualities()
-    {
-        return getQualityLabels().size();
+    public int getNumCameras(){
+        return getCamerasLabels().size();
     }
     
     public ArrayList<String> getQualityLabels()
@@ -354,6 +365,24 @@ public class FamilyControl
             listQualityLabels.add(quality.getQualityLabel());
         }
         return listQualityLabels;
+    }
+    
+    public int getQualityValue(String qualityLabel){
+        int value = 0;
+        AnimationStageType animationStage = family.getStages().getAnimationStage();
+        ArrayList<FpsType> listQuality = (ArrayList<FpsType>) animationStage.getFps();
+        Iterator<FpsType> it = listQuality.iterator();
+        while(it.hasNext()){
+            FpsType quality = it.next();
+            if (quality.getQualityLabel().equals(qualityLabel)){
+                value = quality.getFpsValue().intValue();
+            }
+        }    
+        return value;
+    }
+    
+    public int getNumQualities(){
+        return getQualityLabels().size();
     }
 
     public boolean isMultiSelection(String labelStage, String idPanel) {
