@@ -116,7 +116,12 @@ public class GenerateAnimation {
     
     public void cleanDirectory(String folder){        
         File f = new File(folder);
-        clean(f);
+        if (f.exists()){
+            clean(f);
+        }
+        else{
+            f.mkdirs();
+        }
     }
     
     private void clean(File directorio){

@@ -49,9 +49,7 @@ public class ScreenshotWritter extends Thread{
                 }
                 continue;
             }
-            File file;
-            file = new File(exportPath+File.separator+data.getName()+".png");
-
+            /*File file = new File(exportPath+File.separator+data.getName()+".png");
             OutputStream outStream = null;
             try {
                 outStream = new FileOutputStream(file);
@@ -66,12 +64,13 @@ public class ScreenshotWritter extends Thread{
                         logger.log(Level.SEVERE, "Error while saving screenshot", ex);
                     }
                 }
-            }
+            }*/
+            writeFile(data);
         }
         int size = queue.size();
         for (int i = 0; i<size; i++){
             ScreenshotData data = queue.poll();
-            File file;
+            /*File file;
                 file = new File(exportPath+File.separator+data.getName()+".png");
 
                 OutputStream outStream = null;
@@ -88,8 +87,28 @@ public class ScreenshotWritter extends Thread{
                             logger.log(Level.SEVERE, "Error while saving screenshot", ex);
                         }
                     }
-                }
+                }*/
+            writeFile(data);
         }
         System.out.println("ScreenshotWritter OK");
+    }
+    
+    private void writeFile(ScreenshotData data){
+        File file = new File(exportPath+File.separator+data.getName()+".png");
+        OutputStream outStream = null;
+        try {
+            outStream = new FileOutputStream(file);
+            JmeSystem.writeImageFile(outStream, "png", data.getBuff(), data.getWidth(), data.getHeight());
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Error while saving screenshot", ex);
+        } finally {
+            if (outStream != null){
+                try {
+                    outStream.close();
+                } catch (IOException ex) {
+                    logger.log(Level.SEVERE, "Error while saving screenshot", ex);
+                }
+            }
+        }
     }
 }
