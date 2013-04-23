@@ -56,7 +56,7 @@ public class Main {
             config.loadDefaultProperties();
         }
         //Setting the GUI´s initial configuration
-        StringTokenizer dimension = new StringTokenizer(config.getProperty(Configuration.Resolution));
+        StringTokenizer dimension = new StringTokenizer(config.getProperty(Configuration.RESOLUTION));
         int width = Integer.parseInt(dimension.nextToken("x"));
         int height = Integer.parseInt(dimension.nextToken());
         Application app = new Application(width,height,config);

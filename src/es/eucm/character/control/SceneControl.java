@@ -371,7 +371,7 @@ public class SceneControl {
             }
         }
         if(listQualitiesChecked.isEmpty()){
-            int defaultQuality = Integer.parseInt(config.getProperty(Configuration.DefaultQuality));
+            int defaultQuality = Integer.parseInt(config.getProperty(Configuration.DEFAULT_QUALITY));
             listQualitiesChecked.add(defaultQuality);
         }
         //List of cameras value that is checked

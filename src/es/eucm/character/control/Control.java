@@ -77,7 +77,7 @@ public class Control {
     public Control(Configuration config, Node rootNode, AssetManager assetManager, Application app, 
             ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState){
         this.config = config;
-        String familiesPath = this.config.getProperty(Configuration.FamiliesPath);
+        String familiesPath = this.config.getProperty(Configuration.FAMILIES_PATH);
         XMLFamilyReader xmlReader = new XMLFamilyReader(familiesPath);
         families = xmlReader.readXML();
         this.assetManager = assetManager;

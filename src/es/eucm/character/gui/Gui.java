@@ -134,14 +134,14 @@ public class Gui extends AbstractAppState implements ScreenController {
         DropDown locale = nifty.getScreen("start").findNiftyControl("localeDropDown", DropDown.class);
         ArrayList<String> languajes = config.getListLanguagesAvailables();
         Iterator<String> it = languajes.iterator();
-        String defectLanguage = config.getProperty(Configuration.Language);
+        String defectLanguage = config.getProperty(Configuration.LANGUAGE);
         while(it.hasNext()){
             final String l = it.next();
             locale.addItem(l);
         }
         language = defectLanguage;
         locale.selectItem(defectLanguage);
-        i18nGui = new I18N(config.getProperty(Configuration.LocalePath),language);
+        i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
     }
     
     public void buildMenu(){
@@ -387,8 +387,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         Button startb = nifty.getScreen("start").findNiftyControl("startButton", Button.class);
         Button quitb = nifty.getScreen("start").findNiftyControl("quitButton", Button.class);
         language = event.getSelection();
-        config.setProperty(Configuration.Language, language);
-        i18nGui = new I18N(config.getProperty(Configuration.LocalePath),language);
+        config.setProperty(Configuration.LANGUAGE, language);
+        i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
         nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDescription"));
         nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
         nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idLanguage"));
