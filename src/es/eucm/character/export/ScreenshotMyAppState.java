@@ -47,19 +47,11 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
 import com.jme3.renderer.ViewPort;
 import com.jme3.renderer.queue.RenderQueue;
-import com.jme3.system.JmeSystem;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ScreenshotMyAppState extends ScreenshotAppState{
@@ -76,7 +68,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     private ArrayList<ByteBuffer> list;
     
     private ScreenshotThread st;
-    private BlockingQueue<ScreenshotData> queue;
+    private ArrayListQueue<ScreenshotData> queue;
+    
+    private String nameAnimation;
 
     /**
      * Using this constructor, the screenshot files will be written sequentially to the system
@@ -119,8 +113,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
 
             List<ViewPort> vps = app.getRenderManager().getPostViews();
             ViewPort last = vps.get(vps.size()-1);
+            
             last.addProcessor(this);
-
+            System.out.println( "Adding processor" );
             appName = app.getClass().getSimpleName();
         }
 
@@ -171,6 +166,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     public void postQueue(RenderQueue rq) {
     }
 
+    private boolean viewPortInit = false;
+    
+    
     @Override
     public void postFrame(FrameBuffer out) {
         if (capture){
@@ -183,71 +181,37 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             int viewWidth = (int) ((curCamera.getViewPortRight() - curCamera.getViewPortLeft()) * curCamera.getWidth());
             int viewHeight = (int) ((curCamera.getViewPortTop() - curCamera.getViewPortBottom()) * curCamera.getHeight());
 
-            renderer.setViewPort(0, 0, width, height);
+            if (!viewPortInit){
+                renderer.setViewPort(0, 0, width, height);
+            }
             renderer.readFrameBuffer(out, outBuf);
-            renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
-            
-            //list.add(outBuf.duplicate());
+            if (!viewPortInit){
+                //renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
+                viewPortInit=true;
+            }
             synchronized(queue){
-                ScreenshotData data = new ScreenshotData("Prueba"+shotIndex, outBuf, width, height);
+                ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, outBuf, width, height);
                 queue.add(data);
-                queue.notify();
             }
             System.out.println("Añadido Nº "+shotIndex);
             System.out.println("Tamaño actual "+queue.size());
-            
-            //writeFiles();
-            
+
             synchronized(st){
                 st.notify();
             }
         }
     }
     
-    public void setQueue(BlockingQueue<ScreenshotData> queue){
+    public void setQueue(ArrayListQueue<ScreenshotData> queue){
         this.queue = queue;
-    }
-    
-    public void restartList(){
-        list = new ArrayList<ByteBuffer>();
-    }
-    
-    public ArrayList<ByteBuffer> getListByteBuffer(){
-        ArrayList<ByteBuffer> l = new ArrayList<ByteBuffer>();
-        Iterator<ByteBuffer> it = list.iterator();
-        while(it.hasNext()){
-            l.add(it.next());
-        }
-        return l;
-    }
-    
-    public int getWidth() {
-        return width;
+        viewPortInit=false;
     }
 
-    public int getHeight() {
-        return height;
+    public void setAnimationName(String nameAnimation) {
+        this.nameAnimation = nameAnimation;
     }
-    
-    /*public void writeFiles(){
-        File file;
-        file = new File("assets"+File.separator+"Textures"+File.separator+"screenshots"+File.separator+"Prueba "+shotIndex+".png");
 
-        OutputStream outStream = null;
-        try {
-            outStream = new FileOutputStream(file);
-            JmeSystem.writeImageFile(outStream, "png", outBuf, width, height);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Error while saving screenshot", ex);
-        } finally {
-            if (outStream != null){
-                try {
-                    outStream.close();
-                } catch (IOException ex) {
-                    logger.log(Level.SEVERE, "Error while saving screenshot", ex);
-                }
-            }
-        }
-    }*/
+    void resetShotIndex() {
+        this.shotIndex = 0;
+    }
 }
-

@@ -385,7 +385,7 @@ public class SceneControl {
         }
         if(listAnimationsChecked.size() > 0){
             control.getGuiViewPort().removeProcessor(control.getNiftyDisplay());
-            ScreenshotThread sst = new ScreenshotThread(control.getScreenShotState(),animChannel,
+            ScreenshotThread sst = new ScreenshotThread(config, control.getScreenShotState(),animChannel,
                     control.getGuiViewPort(),control.getNiftyDisplay(),listAnimationsChecked, 
                     listQualitiesChecked, listCamerasChecked);
             sst.start();

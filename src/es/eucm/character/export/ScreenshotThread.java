@@ -40,12 +40,10 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.LoopMode;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
-import java.nio.ByteBuffer;
+import es.eucm.character.control.SceneControl;
+import es.eucm.character.loader.Configuration;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,6 +52,7 @@ public class ScreenshotThread extends Thread{
     
     private static final int quality = 10;
     
+    private Configuration config;
     private ScreenshotMyAppState screenShotState;
     private AnimChannel channel;
     private ViewPort guiViewPort;
@@ -63,12 +62,11 @@ public class ScreenshotThread extends Thread{
     private ArrayList<CameraValues> listCameras;
     private float stepAnimationTime;
     
-    private ArrayList<String> imagesNames;
-    
-    public ScreenshotThread(ScreenshotMyAppState screeShotState,AnimChannel channel,
+    public ScreenshotThread(Configuration config, ScreenshotMyAppState screeShotState,AnimChannel channel,
             ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,ArrayList<String> listAnimations, 
             ArrayList<Integer> listQualities, ArrayList<CameraValues> listCameras){
         super();
+        this.config = config;
         this.screenShotState = screeShotState;
         this.channel = channel;
         this.guiViewPort = guiViewPort;
@@ -81,26 +79,33 @@ public class ScreenshotThread extends Thread{
     @Override
     public void run(){
         try {
-            String dirScreenshots = "assets/Textures/screenshots";
+            String dirScreenshots = config.getProperty(Configuration.DEFAULT_EXPORT_PATH);
             int cont = 1;
             GenerateAnimation generateAnimation = new GenerateAnimation();
             generateAnimation.cleanDirectory(dirScreenshots);
+            
+            ArrayListQueue<ScreenshotData> queue = new ArrayListQueue();
+            screenShotState.setQueue(queue);
+            ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
+            sw.start();
+            
             Iterator<String> it = listAnimations.iterator();
             while(it.hasNext()){
                 String nameAnimation = it.next();
-                BlockingQueue<ScreenshotData> queue = new ArrayBlockingQueue(100, true);
-                //String nameAnimation = listAnimations.get(0);
-                imagesNames = new ArrayList<String>();                
+                
+                
+                screenShotState.setAnimationName(nameAnimation);
+                screenShotState.resetShotIndex();
+                
                 channel.setAnim(nameAnimation);
                 channel.setLoopMode(LoopMode.DontLoop);
-                //screenShotState.restartList();
-                screenShotState.setQueue(queue);
+                /*ArrayListQueue<ScreenshotData> queue = new ArrayListQueue();
+                screenShotState.setQueue(queue);*/
                 //Redondeo
                 int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
                 stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
-                ScreenshotWritter sw = new ScreenshotWritter(queue);
-                sw.start();
-                //sleep(100);
+                /*ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
+                sw.start();*/
                 float time = 0.0f;
                 for(int j= 1 ; j<=numScreenShots; j++){
                     System.out.println("Captura antes "+j+" con tiempo "+System.currentTimeMillis());
@@ -115,16 +120,18 @@ public class ScreenshotThread extends Thread{
                     sleep((long)stepAnimationTime);
                     //time = channel.getTime();
                 }
-                ArrayList<ByteBuffer> list = screenShotState.getListByteBuffer();
-                
-                //ScreenshotWritter sw = new ScreenshotWritter(list, nameAnimation, screenShotState.getWidth(), screenShotState.getHeight());
-                
-                sw.join();
+                /*sw.setTerminate(true);
+                sw.join();//Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)*/
                 //generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }
+            
+            sw.setTerminate(true);
+            sw.join();//Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)
+                
+                
             //generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
             System.out.println("ScreenshotThread OK");
-            guiViewPort.addProcessor(niftyDisplay);            
+            //guiViewPort.addProcessor(niftyDisplay);            
          } 
         catch (InterruptedException ex) {
                 Logger.getLogger(ScreenshotThread.class.getName()).log(Level.SEVERE, null, ex);
