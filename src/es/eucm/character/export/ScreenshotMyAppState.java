@@ -47,12 +47,18 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
 import com.jme3.renderer.ViewPort;
 import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.system.JmeSystem;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ScreenshotMyAppState extends ScreenshotAppState{
@@ -179,9 +185,12 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             renderer.readFrameBuffer(out, outBuf);
             renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
             
-            list.add(outBuf.duplicate());
+            /*list.add(outBuf.duplicate());
             System.out.println("Añadido Nº "+shotIndex);
-            System.out.println("Tamaño actual "+list.size());
+            System.out.println("Tamaño actual "+list.size());*/
+            
+            writeFiles();
+            
             synchronized(st){
                 st.notify();
             }
@@ -209,35 +218,25 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         return height;
     }
     
-    /*public void writeFiles(){
-        int cont = 1;
-        System.out.println("Tamaño del list: "+list.size());
-        Iterator<ByteBuffer> it = list.iterator();
-        while(it.hasNext()){
-            ByteBuffer byteBuffer = it.next();
-            File file;
-            file = new File("assets"+File.separator+"Textures"+File.separator+"screenshots"+File.separator+"Prueba "+cont+".png");
+    public void writeFiles(){
+        File file;
+        file = new File("assets"+File.separator+"Textures"+File.separator+"screenshots"+File.separator+"Prueba "+shotIndex+".png");
 
-            OutputStream outStream = null;
-            try {
-                outStream = new FileOutputStream(file);
-                JmeSystem.writeImageFile(outStream, "png", byteBuffer, width, height);
-            } catch (IOException ex) {
-                logger.log(Level.SEVERE, "Error while saving screenshot", ex);
-            } finally {
-                if (outStream != null){
-                    try {
-                        outStream.close();
-                    } catch (IOException ex) {
-                        logger.log(Level.SEVERE, "Error while saving screenshot", ex);
-                    }
+        OutputStream outStream = null;
+        try {
+            outStream = new FileOutputStream(file);
+            JmeSystem.writeImageFile(outStream, "png", outBuf, width, height);
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Error while saving screenshot", ex);
+        } finally {
+            if (outStream != null){
+                try {
+                    outStream.close();
+                } catch (IOException ex) {
+                    logger.log(Level.SEVERE, "Error while saving screenshot", ex);
                 }
             }
-            cont++;
         }
-        //synchronized(st){
-        //    st.notify();
-        //}
-    }*/
+    }
 }
 
