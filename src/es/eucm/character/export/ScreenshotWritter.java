@@ -15,11 +15,13 @@ public class ScreenshotWritter extends Thread{
     private static final Logger logger = Logger.getLogger(ScreenshotWritter.class.getName());
 
     private ArrayList<ByteBuffer> list;
+    private String nameAnimation;
     private int width;
     private int height;
     
-    public ScreenshotWritter(ArrayList<ByteBuffer> list, int width, int height){
+    public ScreenshotWritter(ArrayList<ByteBuffer> list, String nameAnimation, int width, int height){
         this.list = list;
+        this.nameAnimation = nameAnimation;
         this.width = width;
         this.height = height;
     }
@@ -31,7 +33,7 @@ public class ScreenshotWritter extends Thread{
         while(it.hasNext()){
             ByteBuffer byteBuffer = it.next();
             File file;
-            file = new File("assets"+File.separator+"Textures"+File.separator+"screenshots"+File.separator+"Prueba "+cont+".png");
+            file = new File("assets"+File.separator+"Textures"+File.separator+"screenshots"+File.separator+nameAnimation+cont+".png");
 
             OutputStream outStream = null;
             try {

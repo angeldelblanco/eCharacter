@@ -40,6 +40,7 @@ import com.jme3.animation.AnimControl;
 import com.jme3.animation.Bone;
 import com.jme3.animation.LoopMode;
 import com.jme3.animation.SkeletonControl;
+import com.jme3.export.binary.BinaryImporter;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.FastMath;
@@ -56,13 +57,17 @@ import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.export.ScreenshotThread;
 import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
 import es.eucm.character.loader.Configuration;
+import es.eucm.character.loader.ResourceHandler;
 import es.eucm.character.types.CameraValues;
 import es.eucm.character.types.ElementType;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SceneControl {
     private Control control;
@@ -96,6 +101,13 @@ public class SceneControl {
         this.directionalLight.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
         this.control.getRootNode().addLight(this.directionalLight);
         this.mainMesh = this.control.getAssetManager().loadModel(mainMeshPath); 
+        
+        /*try {
+            this.mainMesh = (Spatial)BinaryImporter.getInstance().load(ResourceHandler.getResource(mainMeshPath)); 
+            
+        } catch (IOException ex) {
+            Logger.getLogger(SceneControl.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
         
         loadTexture();
         this.control.getRootNode().attachChild(mainMesh);

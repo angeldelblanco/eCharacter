@@ -188,6 +188,10 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         }
     }
     
+    public void restartList(){
+        list = new ArrayList<ByteBuffer>();
+    }
+    
     public ArrayList<ByteBuffer> getListByteBuffer(){
         ArrayList<ByteBuffer> l = new ArrayList<ByteBuffer>();
         Iterator<ByteBuffer> it = list.iterator();

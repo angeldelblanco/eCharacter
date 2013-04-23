@@ -86,10 +86,10 @@ public class ScreenshotThread extends Thread{
             Iterator<String> it = listAnimations.iterator();
             while(it.hasNext()){
                 String nameAnimation = it.next();
-                screenShotState.setFilePath(dirScreenshots+"/"+nameAnimation);
                 imagesNames = new ArrayList<String>();                
                 channel.setAnim(nameAnimation);
                 channel.setLoopMode(LoopMode.DontLoop);
+                screenShotState.restartList();
                 //Redondeo
                 int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
                 stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
@@ -110,7 +110,7 @@ public class ScreenshotThread extends Thread{
                 }
                 ArrayList<ByteBuffer> list = screenShotState.getListByteBuffer();
                 
-                ScreenshotWritter sw = new ScreenshotWritter(list, screenShotState.getWidth(), screenShotState.getHeight());
+                ScreenshotWritter sw = new ScreenshotWritter(list, nameAnimation, screenShotState.getWidth(), screenShotState.getHeight());
                 sw.start();
                 sw.join();
                 //generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
