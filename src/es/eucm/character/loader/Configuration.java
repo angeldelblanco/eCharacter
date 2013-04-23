@@ -53,26 +53,29 @@ public class Configuration {
     /** Properties file name */
     public final static String PROPERTIES_FILE_NAME = "initConfig.properties";
     
-    /** Language */
-    public final static String Language = "lang";
+    //Language 
+    public final static String LANGUAGE = "lang";
     
-    /**List of available languages*/
-    public final static String ListLanguage = "listLanguage";
+    //List of available languages
+    public final static String LIST_LANGUAGE = "listLanguage";
  
-    /** Resolution */
-    public final static String Resolution = "resolution";
+    //Resolution
+    public final static String RESOLUTION = "resolution";
  
-    /** Assets paths */
-    public final static String AssetsPath = "assetsPath";
+    //Assets paths
+    public final static String ASSETS_PATH = "assetsPath";
     
-    /** Families path*/
-    public final static String FamiliesPath = "familiesPath";    
+    //Families path
+    public final static String FAMILIES_PATH = "familiesPath";    
     
-    /** Locale path */
-    public final static String LocalePath = "localePath";
+    //Locale path
+    public final static String LOCALE_PATH = "localePath";
     
-    /**Default Quality */
-    public final static String DefaultQuality = "defaultQualityFps";
+    //Default quality
+    public final static String DEFAULT_QUALITY = "defaultQualityFps";
+    
+    //Default export path
+    public final static String DEFAULT_EXPORT_PATH = "defaultExportPath";
     
     Properties properties;
     
@@ -108,13 +111,14 @@ public class Configuration {
     
     public void loadDefaultProperties(){
         //Default configuration
-        this.properties.setProperty(Language, "en_UK");
-        this.properties.setProperty(ListLanguage,"en_UK es_ES fr_FR");
-        this.properties.setProperty(Resolution, "1024x768");
-        this.properties.setProperty(AssetsPath, "assets");
-        this.properties.setProperty(FamiliesPath,"assets"+File.separator+"XML Configuration"+File.separator+"families");
-        this.properties.setProperty(LocalePath,"assets"+File.separator+"Locale");
-        this.properties.setProperty(DefaultQuality, "10");
+        this.properties.setProperty(LANGUAGE, "en_UK");
+        this.properties.setProperty(LIST_LANGUAGE,"en_UK es_ES fr_FR");
+        this.properties.setProperty(RESOLUTION, "1024x768");
+        this.properties.setProperty(ASSETS_PATH, "assets");
+        this.properties.setProperty(FAMILIES_PATH,"assets"+File.separator+"XML Configuration"+File.separator+"families");
+        this.properties.setProperty(LOCALE_PATH,"assets"+File.separator+"Locale");
+        this.properties.setProperty(DEFAULT_QUALITY, "10");
+        this.properties.setProperty(DEFAULT_EXPORT_PATH, "export");
         
         //Saves the changes in the .properties file
         try {            
@@ -128,7 +132,7 @@ public class Configuration {
     
     public ArrayList<String> getListLanguagesAvailables(){
         ArrayList<String> listLanguages = new ArrayList<String>();
-        StringTokenizer st = new StringTokenizer(getProperty(ListLanguage));
+        StringTokenizer st = new StringTokenizer(getProperty(LIST_LANGUAGE));
         while (st.hasMoreTokens())
         {
             listLanguages.add(st.nextToken());
