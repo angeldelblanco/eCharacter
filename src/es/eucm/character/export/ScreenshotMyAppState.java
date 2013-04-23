@@ -58,6 +58,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -75,6 +76,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     private ArrayList<ByteBuffer> list;
     
     private ScreenshotThread st;
+    private BlockingQueue<ScreenshotData> queue;
 
     /**
      * Using this constructor, the screenshot files will be written sequentially to the system
@@ -185,9 +187,14 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             renderer.readFrameBuffer(out, outBuf);
             renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
             
-            list.add(outBuf.duplicate());
+            //list.add(outBuf.duplicate());
+            synchronized(queue){
+                ScreenshotData data = new ScreenshotData("Prueba"+shotIndex, outBuf, width, height);
+                queue.add(data);
+                queue.notify();
+            }
             System.out.println("Añadido Nº "+shotIndex);
-            System.out.println("Tamaño actual "+list.size());
+            System.out.println("Tamaño actual "+queue.size());
             
             //writeFiles();
             
@@ -195,6 +202,10 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 st.notify();
             }
         }
+    }
+    
+    public void setQueue(BlockingQueue<ScreenshotData> queue){
+        this.queue = queue;
     }
     
     public void restartList(){

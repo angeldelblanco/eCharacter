@@ -34,30 +34,36 @@
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package es.eucm.character.types;
+package es.eucm.character.export;
 
-import com.jme3.math.Vector3f;
+import java.nio.ByteBuffer;
 
-public class CameraValues {
-    private Vector3f up;
-    private Vector3f location;
-    private Vector3f direction;
+public class ScreenshotData {
+    private String name;
+    private ByteBuffer buff;
+    private int width, height;
     
-    public CameraValues(Vector3f up, Vector3f location, Vector3f direction){
-        this.up = up;
-        this.location = location;
-        this.direction = direction;
+    public ScreenshotData(String name, ByteBuffer buff, int width, int height){
+        this.name = name;
+        this.buff = buff;
+        this.width = width;
+        this.height = height;
     }
 
-    public Vector3f getUp() {
-        return up;
+    public String getName() {
+        return name;
     }
 
-    public Vector3f getLocation() {
-        return location;
+    public ByteBuffer getBuff() {
+        return buff;
     }
 
-    public Vector3f getDirection() {
-        return direction;
+    public int getWidth() {
+        return width;
     }
+
+    public int getHeight() {
+        return height;
+    }
+
 }

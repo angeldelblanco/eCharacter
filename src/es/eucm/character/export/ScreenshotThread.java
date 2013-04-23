@@ -40,10 +40,12 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.LoopMode;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
-import es.eucm.character.types.CameraValues;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -86,14 +88,18 @@ public class ScreenshotThread extends Thread{
             Iterator<String> it = listAnimations.iterator();
             while(it.hasNext()){
                 String nameAnimation = it.next();
+                BlockingQueue<ScreenshotData> queue = new ArrayBlockingQueue(100, true);
                 //String nameAnimation = listAnimations.get(0);
                 imagesNames = new ArrayList<String>();                
                 channel.setAnim(nameAnimation);
                 channel.setLoopMode(LoopMode.DontLoop);
-                screenShotState.restartList();
+                //screenShotState.restartList();
+                screenShotState.setQueue(queue);
                 //Redondeo
                 int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
                 stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
+                ScreenshotWritter sw = new ScreenshotWritter(queue);
+                sw.start();
                 //sleep(100);
                 float time = 0.0f;
                 for(int j= 1 ; j<=numScreenShots; j++){
@@ -111,8 +117,8 @@ public class ScreenshotThread extends Thread{
                 }
                 ArrayList<ByteBuffer> list = screenShotState.getListByteBuffer();
                 
-                ScreenshotWritter sw = new ScreenshotWritter(list, nameAnimation, screenShotState.getWidth(), screenShotState.getHeight());
-                sw.start();
+                //ScreenshotWritter sw = new ScreenshotWritter(list, nameAnimation, screenShotState.getWidth(), screenShotState.getHeight());
+                
                 sw.join();
                 //generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }

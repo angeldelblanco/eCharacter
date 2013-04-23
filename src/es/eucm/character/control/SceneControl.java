@@ -58,7 +58,7 @@ import es.eucm.character.export.ScreenshotThread;
 import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.ResourceHandler;
-import es.eucm.character.types.CameraValues;
+import es.eucm.character.export.CameraValues;
 import es.eucm.character.types.ElementType;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

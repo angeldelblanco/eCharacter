@@ -8,26 +8,34 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.BlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ScreenshotWritter extends Thread{
     private static final Logger logger = Logger.getLogger(ScreenshotWritter.class.getName());
 
-    private ArrayList<ByteBuffer> list;
+   /* private ArrayList<ByteBuffer> list;
     private String nameAnimation;
     private int width;
-    private int height;
+    private int height;*/
     
-    public ScreenshotWritter(ArrayList<ByteBuffer> list, String nameAnimation, int width, int height){
+    private BlockingQueue<ScreenshotData> queue;
+    
+    /*public ScreenshotWritter(ArrayList<ByteBuffer> list, String nameAnimation, int width, int height){
         this.list = list;
         this.nameAnimation = nameAnimation;
         this.width = width;
         this.height = height;
+    }*/
+    
+    public ScreenshotWritter(BlockingQueue<ScreenshotData> queue){
+        this.queue = queue;
     }
+    
     @Override
     public void run(){
-        int cont = 1;
+        /*int cont = 1;
         System.out.println("Tamaño del list: "+list.size());
         Iterator<ByteBuffer> it = list.iterator();
         while(it.hasNext()){
@@ -51,6 +59,33 @@ public class ScreenshotWritter extends Thread{
                 }
             }
             cont++;
+        }*/
+        synchronized(queue){
+            try {
+                queue.wait();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ScreenshotWritter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ScreenshotData data = queue.poll();
+            ByteBuffer byteBuffer = data.getBuff();
+            File file;
+            file = new File("assets"+File.separator+"Textures"+File.separator+"screenshots"+File.separator+data.getName()+".png");
+
+            OutputStream outStream = null;
+            try {
+                outStream = new FileOutputStream(file);
+                JmeSystem.writeImageFile(outStream, "png", byteBuffer, data.getWidth(), data.getHeight());
+            } catch (IOException ex) {
+                logger.log(Level.SEVERE, "Error while saving screenshot", ex);
+            } finally {
+                if (outStream != null){
+                    try {
+                        outStream.close();
+                    } catch (IOException ex) {
+                        logger.log(Level.SEVERE, "Error while saving screenshot", ex);
+                    }
+                }
+            }
         }
         System.out.println("ScreenshotWritter OK");
     }

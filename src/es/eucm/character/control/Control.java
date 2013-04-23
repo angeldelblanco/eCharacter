@@ -51,7 +51,7 @@ import es.eucm.character.loader.FamilyWithPath;
 import es.eucm.character.loader.XMLFamilyReader;
 import es.eucm.character.loader.XMLReader;
 import es.eucm.character.main.Application;
-import es.eucm.character.types.CameraValues;
+import es.eucm.character.export.CameraValues;
 import es.eucm.character.types.ElementType;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
