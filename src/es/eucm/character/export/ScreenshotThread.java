@@ -83,14 +83,14 @@ public class ScreenshotThread extends Thread{
             int cont = 1;
             GenerateAnimation generateAnimation = new GenerateAnimation();
             generateAnimation.cleanDirectory(dirScreenshots);
-            /*Iterator<String> it = listAnimations.iterator();
-            while(it.hasNext()){*/
-                //String nameAnimation = it.next();
-                String nameAnimation = listAnimations.get(0);
+            Iterator<String> it = listAnimations.iterator();
+            while(it.hasNext()){
+                String nameAnimation = it.next();
+                //String nameAnimation = listAnimations.get(0);
                 imagesNames = new ArrayList<String>();                
                 channel.setAnim(nameAnimation);
                 channel.setLoopMode(LoopMode.DontLoop);
-                //screenShotState.restartList();
+                screenShotState.restartList();
                 //Redondeo
                 int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
                 stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
@@ -109,13 +109,13 @@ public class ScreenshotThread extends Thread{
                     sleep((long)stepAnimationTime);
                     //time = channel.getTime();
                 }
-                /*ArrayList<ByteBuffer> list = screenShotState.getListByteBuffer();
+                ArrayList<ByteBuffer> list = screenShotState.getListByteBuffer();
                 
                 ScreenshotWritter sw = new ScreenshotWritter(list, nameAnimation, screenShotState.getWidth(), screenShotState.getHeight());
                 sw.start();
-                sw.join();*/
+                sw.join();
                 //generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
-            //}
+            }
             //generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
             System.out.println("ScreenshotThread OK");
             guiViewPort.addProcessor(niftyDisplay);            

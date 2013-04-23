@@ -185,11 +185,11 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             renderer.readFrameBuffer(out, outBuf);
             renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
             
-            /*list.add(outBuf.duplicate());
+            list.add(outBuf.duplicate());
             System.out.println("Añadido Nº "+shotIndex);
-            System.out.println("Tamaño actual "+list.size());*/
+            System.out.println("Tamaño actual "+list.size());
             
-            writeFiles();
+            //writeFiles();
             
             synchronized(st){
                 st.notify();
@@ -218,7 +218,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         return height;
     }
     
-    public void writeFiles(){
+    /*public void writeFiles(){
         File file;
         file = new File("assets"+File.separator+"Textures"+File.separator+"screenshots"+File.separator+"Prueba "+shotIndex+".png");
 
@@ -237,6 +237,6 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 }
             }
         }
-    }
+    }*/
 }
 
