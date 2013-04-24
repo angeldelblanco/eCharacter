@@ -93,7 +93,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        modelsb = new ModelStageBuilder(nifty,control,i18nGui);
+        modelsb = new ModelStageBuilder(nifty,control,i18nGui,getFont());
         DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
         Iterator<String> it = families.iterator();
         while(it.hasNext()){
@@ -158,7 +158,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                     childLayoutCenter();
                     text(new TextBuilder(){{
                         color(Color.WHITE);
-                        font("Interface/Fonts/Default.fnt");
+                        font(getFont());
                         text(i18nFamily.getString(pant));
                         width("100%");
                     }});
@@ -333,7 +333,15 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("ay")){
             return "assets/Interface/MenuRojoAntiguo.png";
         }
+        if(param.equals("ca")){
+            return "assets/Interface/CuadroAzul.png";
+        }
         return null;
+    }
+    
+    public String getFont(){
+        
+        return "assets/Interface/Fonts/myFont.fnt";
     }
     
     public String getButton(String param){

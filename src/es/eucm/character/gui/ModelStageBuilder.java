@@ -60,19 +60,19 @@ public class ModelStageBuilder {
     private String stageType;
     private int modelsPage;
     
-    public ModelStageBuilder(Nifty nifty, Control control,I18N i18nGui){
+    public ModelStageBuilder(Nifty nifty, Control control,I18N i18nGui,String font){
         stageType = "modelScreen";
         this.nifty = nifty;
         this.control = control;
         modelsPage = 0;
         this.i18nGui = i18nGui;
-        initModels();
+        initModels(font);
     }
     
     /*receives as input the lenguaje of the aplication
       and builds all the families and the pictures of models*/
     
-    private void initModels(){
+    private void initModels(final String font){
         nifty.getScreen(stageType).findElementByName("chooseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idChoose"));
         nifty.getScreen(stageType).findElementByName("choosePanel").layoutElements();
         nifty.getScreen(stageType).findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
@@ -85,7 +85,7 @@ public class ModelStageBuilder {
             text(new TextBuilder(){{
                 valignCenter();
                 color(Color.WHITE);
-                font("Interface/Fonts/Default.fnt");
+                font(font);
                 text(i18nGui.getString("idFamily"));
                 width("50%");
                 wrap(true);
