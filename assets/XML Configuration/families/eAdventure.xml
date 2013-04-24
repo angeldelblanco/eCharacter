@@ -46,9 +46,9 @@
 		</multiStage>
 		<animationStage stageLabel="idAnimationStageLabel1">
 			<!-- Dar valores. Los que hay son aleatorios -->
-			<fps qualityLabel="idQualityLabel1" fpsValue="3"/>
-			<fps qualityLabel="idQualityLabel2" fpsValue="2"/>
-			<fps qualityLabel="idQualityLabel3" fpsValue="1"/>
+			<fps qualityLabel="idQualityLabel1" fpsValue="24"/>
+			<fps qualityLabel="idQualityLabel2" fpsValue="12"/>
+			<fps qualityLabel="idQualityLabel3" fpsValue="6"/>
 			<camera cameraLabel="idCameraLabel1">
 				<upAxis valueX="2.0" valueY="2.0" valueZ="2.0"/>
 				<location valueX="2.0" valueY="2.0" valueZ="2.0"/>

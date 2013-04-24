@@ -50,7 +50,6 @@ import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -65,8 +64,6 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     private int shotIndex = 0;
     private int width, height;
     
-    private ArrayList<ByteBuffer> list;
-    
     private ScreenshotThread st;
     private ArrayListQueue<ScreenshotData> queue;
     
@@ -78,7 +75,6 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
      */
     public ScreenshotMyAppState() {
         this(null);
-        list = new ArrayList<ByteBuffer>();
     }
 
     /**
@@ -166,29 +162,26 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     public void postQueue(RenderQueue rq) {
     }
 
-    private boolean viewPortInit = false;
-    
-    
     @Override
     public void postFrame(FrameBuffer out) {
         if (capture){
             capture = false;
             shotIndex++;
 
-            Camera curCamera = rm.getCurrentCamera();
+            /*Camera curCamera = rm.getCurrentCamera();
             int viewX = (int) (curCamera.getViewPortLeft() * curCamera.getWidth());
             int viewY = (int) (curCamera.getViewPortBottom() * curCamera.getHeight());
             int viewWidth = (int) ((curCamera.getViewPortRight() - curCamera.getViewPortLeft()) * curCamera.getWidth());
             int viewHeight = (int) ((curCamera.getViewPortTop() - curCamera.getViewPortBottom()) * curCamera.getHeight());
 
-            if (!viewPortInit){
-                renderer.setViewPort(0, 0, width, height);
-            }
+            //if (!viewPortInit){
+                renderer.setViewPort(0, 0, width, height);*/
+            //}
             renderer.readFrameBuffer(out, outBuf);
-            if (!viewPortInit){
+            //if (!viewPortInit){
                 //renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
-                viewPortInit=true;
-            }
+                //viewPortInit=true;
+            //}
             synchronized(queue){
                 ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, outBuf, width, height);
                 queue.add(data);
@@ -204,7 +197,6 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     
     public void setQueue(ArrayListQueue<ScreenshotData> queue){
         this.queue = queue;
-        viewPortInit=false;
     }
 
     public void setAnimationName(String nameAnimation) {
