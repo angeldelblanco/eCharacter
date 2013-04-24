@@ -144,7 +144,7 @@ public class ModelStageBuilder {
             nifty.getScreen(stageType).findElementByName("rightT").setVisible(false);
         }
         String url = "";
-        if(control.getMetadataFamilyURL()!=null){url =i18nGui.getString("idUrl")+": "+control.getMetadataFamilyURL();}
+        if(control.getMetadataFamilyURL()!=null){url =i18nGui.getString("idUrl")+": "+"\n"+control.getMetadataFamilyURL();}
         String desc = i18nGui.getString("idDescriptionFamily")+": "+"\n"+i18nFamily.getString(control.getMetadataFamilyDescription())+"\n";
         String aut = i18nGui.getString("idAuthor")+": "+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n";
         nifty.getScreen(stageType).findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(desc+aut+url);
