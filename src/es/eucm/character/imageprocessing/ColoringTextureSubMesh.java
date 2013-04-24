@@ -40,7 +40,7 @@ import es.eucm.character.data.model.BaseShadowTextureSubMeshType;
 import es.eucm.character.data.model.DoubleTextureSubMeshType;
 import es.eucm.character.data.model.MultiOptionTextureSubMeshType;
 import es.eucm.character.data.model.MultiOptionTextureSubMeshType.OptionTexture;
-import es.eucm.character.loader.ResourceHandler;
+import es.eucm.character.loader.ResourceLocator;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -54,10 +54,10 @@ public class ColoringTextureSubMesh extends ColoringImage{
     public static ArrayList<BufferedImage> coloringImageBaseShadow(BaseShadowTextureSubMeshType texture, Color color){
         ArrayList<BufferedImage> listBi = null;
         try{
-            BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(texture.getPath()));
+            BufferedImage biBase = ImageIO.read(ResourceLocator.getResource(texture.getPath()));
             BufferedImage biShadow = null;
             if(texture.getShadowPath() != null){
-                biShadow = ImageIO.read(ResourceHandler.getResource(texture.getShadowPath()));
+                biShadow = ImageIO.read(ResourceLocator.getResource(texture.getShadowPath()));
             }
             listBi = new ArrayList<BufferedImage>();
             listBi.add(coloringImageBaseShadow(biBase, biShadow, color));
@@ -71,7 +71,7 @@ public class ColoringTextureSubMesh extends ColoringImage{
     public static BufferedImage coloringImageDoubleTextureDetails(DoubleTextureSubMeshType texture, Color color){
         BufferedImage bi = null;
         try{
-            BufferedImage biDetails = ImageIO.read(ResourceHandler.getResource(texture.getDetailsPath()));
+            BufferedImage biDetails = ImageIO.read(ResourceLocator.getResource(texture.getDetailsPath()));
             bi = coloringImageDouble(biDetails, color);
         }
         catch (IOException ex) {
@@ -83,7 +83,7 @@ public class ColoringTextureSubMesh extends ColoringImage{
     public static BufferedImage coloringImageDoubleTextureBase(DoubleTextureSubMeshType texture, Color color){
         BufferedImage bi = null;
         try{
-            BufferedImage biBase = ImageIO.read(ResourceHandler.getResource(texture.getBasePath()));
+            BufferedImage biBase = ImageIO.read(ResourceLocator.getResource(texture.getBasePath()));
             bi = coloringImageDouble(biBase, color);
         }
         catch (IOException ex) {
@@ -101,7 +101,7 @@ public class ColoringTextureSubMesh extends ColoringImage{
             {
                 OptionTexture optionTexture = it2.next();
                 if(optionTexture.getIdSubTexture().equals(idSubTexture)){
-                    BufferedImage bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
+                    BufferedImage bi = ImageIO.read(ResourceLocator.getResource(optionTexture.getPath()));
                     listBi = new ArrayList<BufferedImage>();
                     listBi.add(bi);
                 }

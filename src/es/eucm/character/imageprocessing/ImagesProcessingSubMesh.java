@@ -42,7 +42,7 @@ import es.eucm.character.data.model.MultiOptionTextureSubMeshType;
 import es.eucm.character.data.model.MultiOptionTextureSubMeshType.OptionTexture;
 import es.eucm.character.data.model.SimpleTextureSubMeshType;
 import es.eucm.character.data.model.SubMeshType.SubMeshTexture;
-import es.eucm.character.loader.ResourceHandler;
+import es.eucm.character.loader.ResourceLocator;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,10 +59,10 @@ public class ImagesProcessingSubMesh extends ImagesProcessing{
         try{
             if(texture.getBaseShadowTextureSubMesh() != null){
                 BaseShadowTextureSubMeshType baseShadowTexture = texture.getBaseShadowTextureSubMesh();
-                BufferedImage bi = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getPath()));
+                BufferedImage bi = ImageIO.read(ResourceLocator.getResource(baseShadowTexture.getPath()));
                 images.add(bi);
                 if(baseShadowTexture.getShadowPath() != null){
-                    images.add(ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath())));
+                    images.add(ImageIO.read(ResourceLocator.getResource(baseShadowTexture.getShadowPath())));
                 }
                 BufferedImage finalBi = pasteImages(images, bi.getWidth(), bi.getHeight());
                 list = new ArrayList<BufferedImage>();
@@ -71,15 +71,15 @@ public class ImagesProcessingSubMesh extends ImagesProcessing{
             }
             else if(texture.getSimpleTextureSubMesh() != null){
                 SimpleTextureSubMeshType simpleTexture = texture.getSimpleTextureSubMesh();
-                BufferedImage bi = ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath()));
+                BufferedImage bi = ImageIO.read(ResourceLocator.getResource(simpleTexture.getPath()));
                 list = new ArrayList<BufferedImage>();
                 list.add(bi);
                 return list;
             }
             else if(texture.getDoubleTextureSubMesh() != null){
                 DoubleTextureSubMeshType doubleTexture = texture.getDoubleTextureSubMesh();
-                BufferedImage bi = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
-                BufferedImage bi2 = ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath()));
+                BufferedImage bi = ImageIO.read(ResourceLocator.getResource(doubleTexture.getBasePath()));
+                BufferedImage bi2 = ImageIO.read(ResourceLocator.getResource(doubleTexture.getDetailsPath()));
                 list = new ArrayList<BufferedImage>();
                 list.add(bi);
                 list.add(bi2);
@@ -97,12 +97,12 @@ public class ImagesProcessingSubMesh extends ImagesProcessing{
                     optionTexture = it.next();
                     if (optionTexture.isDefault()){
                         isDefault = true;
-                        bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
+                        bi = ImageIO.read(ResourceLocator.getResource(optionTexture.getPath()));
                     }
                 }
                 if (!isDefault){
                     //No ha encontrado ninguna subtextura en dafault
-                    bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
+                    bi = ImageIO.read(ResourceLocator.getResource(optionTexture.getPath()));
                 }
                 list = new ArrayList<BufferedImage>();
                 list.add(bi);

@@ -78,7 +78,7 @@ public class XMLReader<T> {
                 /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
                 if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), type)) {
                     try {    
-                        list.add(unmarshal(docClass, ResourceHandler.getResource(file.getPath())));
+                        list.add(unmarshal(docClass, ResourceLocator.getResource(file.getPath())));
                     } catch (JAXBException ex) {
                         Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -88,7 +88,7 @@ public class XMLReader<T> {
         else{
             if (getExtension(dirPath.getPath()).equals("xml") && xmlValidator.checkXML(dirPath.getPath(), type)) {
                 try {    
-                        list.add(unmarshal(docClass, ResourceHandler.getResource(dirPath.getPath())));
+                        list.add(unmarshal(docClass, ResourceLocator.getResource(dirPath.getPath())));
                     } catch (JAXBException ex) {
                         Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
                     }

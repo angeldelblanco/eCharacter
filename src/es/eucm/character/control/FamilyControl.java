@@ -45,8 +45,8 @@ import es.eucm.character.data.family.MultiStageType;
 import es.eucm.character.data.family.ScaleStageType;
 import es.eucm.character.data.family.ScaleStageType.BoneController;
 import es.eucm.character.data.family.SubStageType;
-import es.eucm.character.loader.ResourceHandler;
 import es.eucm.character.export.CameraValues;
+import es.eucm.character.loader.ResourceLocator;
 import es.eucm.character.types.StageType;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -76,7 +76,7 @@ public class FamilyControl{
         while(it.hasNext()){
             ModelRefType modelRefType = it.next();
             if(modelRefType.getModelLabel().equals(modelLabel)){
-                if (ResourceHandler.getResource(modelRefType.getIconPath()) != null){
+                if (ResourceLocator.getResource(modelRefType.getIconPath()) != null){
                     return modelRefType.getIconPath();
                 }
                 else{ 

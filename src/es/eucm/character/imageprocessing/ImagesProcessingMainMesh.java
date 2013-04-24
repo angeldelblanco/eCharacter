@@ -42,7 +42,7 @@ import es.eucm.character.data.model.MultiOptionTextureType;
 import es.eucm.character.data.model.MultiOptionTextureType.OptionTexture;
 import es.eucm.character.data.model.SimpleTextureType;
 import es.eucm.character.data.model.TextureType;
-import es.eucm.character.loader.ResourceHandler;
+import es.eucm.character.loader.ResourceLocator;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -111,10 +111,10 @@ public class ImagesProcessingMainMesh extends ImagesProcessing{
         try{
             if(texture instanceof BaseShadowTextureType){
                 BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
-                BufferedImage bi = ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getPath()));
+                BufferedImage bi = ImageIO.read(ResourceLocator.getResource(baseShadowTexture.getPath()));
                 images.add(bi);
                 if(baseShadowTexture.getShadowPath() != null){
-                    images.add(ImageIO.read(ResourceHandler.getResource(baseShadowTexture.getShadowPath())));
+                    images.add(ImageIO.read(ResourceLocator.getResource(baseShadowTexture.getShadowPath())));
                 }
                 BufferedImage finalBi = pasteImages(images, bi.getWidth(), bi.getHeight());
                 list = new ArrayList<BufferedImage>();
@@ -123,15 +123,15 @@ public class ImagesProcessingMainMesh extends ImagesProcessing{
             }
             else if(texture instanceof SimpleTextureType){
                 SimpleTextureType simpleTexture = ((SimpleTextureType)texture);
-                BufferedImage bi = ImageIO.read(ResourceHandler.getResource(simpleTexture.getPath()));
+                BufferedImage bi = ImageIO.read(ResourceLocator.getResource(simpleTexture.getPath()));
                 list = new ArrayList<BufferedImage>();
                 list.add(bi);
                 return list;
             }
             else if(texture instanceof DoubleTextureType){
                 DoubleTextureType doubleTexture = ((DoubleTextureType)texture);
-                BufferedImage bi = ImageIO.read(ResourceHandler.getResource(doubleTexture.getBasePath()));
-                BufferedImage bi2 = ImageIO.read(ResourceHandler.getResource(doubleTexture.getDetailsPath()));
+                BufferedImage bi = ImageIO.read(ResourceLocator.getResource(doubleTexture.getBasePath()));
+                BufferedImage bi2 = ImageIO.read(ResourceLocator.getResource(doubleTexture.getDetailsPath()));
                 list = new ArrayList<BufferedImage>();
                 list.add(bi);
                 list.add(bi2);
@@ -149,12 +149,12 @@ public class ImagesProcessingMainMesh extends ImagesProcessing{
                     optionTexture = it.next();
                     if (optionTexture.isDefault()){
                         isDefault = true;
-                        bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
+                        bi = ImageIO.read(ResourceLocator.getResource(optionTexture.getPath()));
                     }
                 }
                 if (!isDefault){
                     //No ha encontrado ninguna subtextura en dafault
-                    bi = ImageIO.read(ResourceHandler.getResource(optionTexture.getPath()));
+                    bi = ImageIO.read(ResourceLocator.getResource(optionTexture.getPath()));
                 }
                 list = new ArrayList<BufferedImage>();
                 list.add(bi);

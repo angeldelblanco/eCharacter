@@ -346,6 +346,7 @@ public class SceneControl {
     }
     
     public void screenShot(){
+        
         //Animations list that is checked
         ArrayList<String> listAnimationsChecked = new ArrayList<String>();
         Iterator<String> it = animations.keySet().iterator();

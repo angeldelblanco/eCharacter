@@ -52,6 +52,7 @@ import es.eucm.character.export.ScreenshotMyAppState;
 import es.eucm.character.gui.Gui;
 import es.eucm.character.gui.Tooltip;
 import es.eucm.character.loader.Configuration;
+import es.eucm.character.loader.ResourceLocator;
 import java.io.File;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
@@ -94,7 +95,8 @@ public class Application extends SimpleApplication{
         setDisplayStatView(false);
         
         // Register locator to assetManager
-        assetManager.registerLocator("."+File.separator, FileLocator.class);
+        //assetManager.registerLocator("."+File.separator, FileLocator.class);
+        assetManager.registerLocator("."+File.separator, ResourceLocator.class);
         
         niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
         guiViewPort.addProcessor(niftyDisplay);

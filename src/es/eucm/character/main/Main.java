@@ -36,7 +36,7 @@
 package es.eucm.character.main;
 
 import es.eucm.character.loader.Configuration;
-import es.eucm.character.loader.ResourceHandler;
+import es.eucm.character.loader.ResourceLocator;
 import java.io.File;
 import java.io.InputStream;
 import java.util.StringTokenizer;
@@ -48,7 +48,7 @@ public class Main {
     public static void main(String[] args){
         //Initializes the resources and load the initial configuration
         Configuration config = new Configuration();
-        InputStream stream = ResourceHandler.getResource(Configuration.PROPERTIES_FILE_NAME,"."+File.separator);
+        InputStream stream = ResourceLocator.getResource(Configuration.PROPERTIES_FILE_NAME);
         if(stream != null){
             config.loadPropertiesFile(stream);
         }

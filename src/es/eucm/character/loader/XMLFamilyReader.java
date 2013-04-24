@@ -69,7 +69,7 @@ public class XMLFamilyReader {
                 /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
                 if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), XMLType.family)) {
                     try {    
-                        FamilyWithPath family = new FamilyWithPath(file.getPath(), unmarshal(ResourceHandler.getResource(file.getPath())));
+                        FamilyWithPath family = new FamilyWithPath(file.getPath(), unmarshal(ResourceLocator.getResource(file.getPath())));
                         list.add(family);
                     } catch (JAXBException ex) {
                         Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,7 +80,7 @@ public class XMLFamilyReader {
         else{
             if (getExtension(dirPath.getPath()).equals("xml") && xmlValidator.checkXML(dirPath.getPath(), XMLType.family)) {
                 try {    
-                    FamilyWithPath family = new FamilyWithPath(dirPath.getPath(), unmarshal(ResourceHandler.getResource(dirPath.getPath())));    
+                    FamilyWithPath family = new FamilyWithPath(dirPath.getPath(), unmarshal(ResourceLocator.getResource(dirPath.getPath())));    
                     list.add(family);
                     } catch (JAXBException ex) {
                         Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);

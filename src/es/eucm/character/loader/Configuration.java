@@ -51,7 +51,7 @@ import java.util.logging.Logger;
  */
 public class Configuration { 
     /** Properties file name */
-    public final static String PROPERTIES_FILE_NAME = "initConfig.properties";
+    public final static String PROPERTIES_FILE_NAME = "."+File.separator+"initConfig.properties";
     
     //Language 
     public final static String LANGUAGE = "lang";

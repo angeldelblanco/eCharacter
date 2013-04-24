@@ -48,7 +48,7 @@ import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.SubMeshType.SubMeshTexture;
 import es.eucm.character.data.model.TextureType;
 import es.eucm.character.data.model.TransformationType;
-import es.eucm.character.loader.ResourceHandler;
+import es.eucm.character.loader.ResourceLocator;
 import es.eucm.character.types.TexturesMeshType;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -202,7 +202,7 @@ public class ModelControl {
         while(it.hasNext()){
             TextureType texture = it.next();
             if(texture.getIdTexture().equals(idTexturesORSubMeshes)){
-                if (ResourceHandler.getResource(texture.getIconPath()) != null){
+                if (ResourceLocator.getResource(texture.getIconPath()) != null){
                     return texture.getIconPath();
                 }
                 else{ 
@@ -216,7 +216,7 @@ public class ModelControl {
         while(it2.hasNext()){
             SubMeshType subMesh = it2.next();
             if(subMesh.getIdSubMesh().equals(idTexturesORSubMeshes)){
-                if (ResourceHandler.getResource(subMesh.getIconPath()) != null){
+                if (ResourceLocator.getResource(subMesh.getIconPath()) != null){
                     return subMesh.getIconPath();
                 }
                 else{
@@ -362,7 +362,7 @@ public class ModelControl {
         while(it.hasNext()){
             OptionTexture optionTexture = it.next();
             if(optionTexture.getIdSubTexture().equals(idSubTexture)){
-                if (ResourceHandler.getResource(optionTexture.getIconPath()) != null){
+                if (ResourceLocator.getResource(optionTexture.getIconPath()) != null){
                     return optionTexture.getIconPath();
                 }
                 else{ 
