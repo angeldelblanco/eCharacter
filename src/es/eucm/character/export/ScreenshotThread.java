@@ -40,7 +40,6 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.LoopMode;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
-import es.eucm.character.control.SceneControl;
 import es.eucm.character.loader.Configuration;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -93,14 +92,11 @@ public class ScreenshotThread extends Thread{
             while(it.hasNext()){
                 String nameAnimation = it.next();
                 
-                
                 screenShotState.setAnimationName(nameAnimation);
                 screenShotState.resetShotIndex();
                 
                 channel.setAnim(nameAnimation);
                 channel.setLoopMode(LoopMode.DontLoop);
-                /*ArrayListQueue<ScreenshotData> queue = new ArrayListQueue();
-                screenShotState.setQueue(queue);*/
                 //Redondeo
                 int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
                 stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
