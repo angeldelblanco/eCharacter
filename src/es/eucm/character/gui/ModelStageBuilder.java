@@ -40,6 +40,9 @@ import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
+import de.lessvoid.nifty.effects.Effect;
+import de.lessvoid.nifty.effects.EffectEventId;
+import de.lessvoid.nifty.effects.EffectManager;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
@@ -47,6 +50,7 @@ import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
 import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
+import java.util.List;
 
 public class ModelStageBuilder {
     private static final int MODELS_PAGE = 6;
@@ -110,6 +114,8 @@ public class ModelStageBuilder {
             if(i<((modelsPage+1)*MODELS_PAGE)){
                 Element image = nifty.getScreen(stageType).findElementByName("m"+Integer.toString(i%MODELS_PAGE));
                 image.setVisible(true);
+                List<Effect> effects = image.getEffects(EffectEventId.onHover,Tooltip.class);
+                effects.get(0).getParameters().setProperty("hintText", i18nFamily.getString(control.getModelsLabel().get(i)));
                 ImageRenderer imager = image.getRenderer(ImageRenderer.class);
                 String imagePath = control.getModelIconPath(control.getModelsLabel().get(i));
                 if(imagePath!=null){
@@ -118,6 +124,7 @@ public class ModelStageBuilder {
                 else{
                     imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
                 }
+                //image.getEffects(EffectEventId.onActive, null).get(0).
             }
         }
         for(int i=control.getNumModels();i<((modelsPage+1)*MODELS_PAGE);i++){
@@ -137,8 +144,10 @@ public class ModelStageBuilder {
             nifty.getScreen(stageType).findElementByName("rightT").setVisible(false);
         }
         String url = "";
-        if(control.getMetadataFamilyURL()!=null){url = control.getMetadataFamilyURL();}
-        nifty.getScreen(stageType).findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getMetadataFamilyDescription())+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n"+url);
+        if(control.getMetadataFamilyURL()!=null){url =i18nGui.getString("idUrl")+": "+control.getMetadataFamilyURL();}
+        String desc = i18nGui.getString("idDescriptionFamily")+": "+"\n"+i18nFamily.getString(control.getMetadataFamilyDescription())+"\n";
+        String aut = i18nGui.getString("idAuthor")+": "+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n";
+        nifty.getScreen(stageType).findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(desc+aut+url);
         nifty.getScreen(stageType).findElementByName("descriptionPanel").layoutElements();
     }
     

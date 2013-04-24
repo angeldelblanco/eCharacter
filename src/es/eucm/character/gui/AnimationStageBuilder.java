@@ -151,19 +151,19 @@ public class AnimationStageBuilder {
                     nifty.getScreen(stageType).findElementByName(selection+"Text"+Integer.toString(i%CHECKBOX_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(labels.get(i)));
                     if(selection.equals("q")){
                         if(control.isCheckedQuality(labels.get(i))){
-                            nifty.getScreen(stageType).findNiftyControl("qCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).check();
+                            nifty.getScreen(stageType).findNiftyControl("qCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).setChecked(true);
                         }
                         else{
-                            nifty.getScreen(stageType).findNiftyControl("qCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).uncheck();
+                            nifty.getScreen(stageType).findNiftyControl("qCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).setChecked(false);
                         }
                     }
                     else{
                         if(selection.equals("c")){
                             if(control.isCheckedCamera(labels.get(i))){
-                                nifty.getScreen(stageType).findNiftyControl("cCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).check();
+                                nifty.getScreen(stageType).findNiftyControl("cCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).setChecked(true);
                             }
                             else{
-                                nifty.getScreen(stageType).findNiftyControl("cCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).uncheck();
+                                nifty.getScreen(stageType).findNiftyControl("cCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).setChecked(false);
                             }
                         }
                     }
@@ -231,30 +231,22 @@ public class AnimationStageBuilder {
     }
     
     public void checkAll(String id, boolean b){
-        int size = 0;
+        
         if(id.equals("a")){
             control.clickAllAnimations(b);
-            size = control.getNumAnimations();
         }
         else{
             if(id.equals("q")){
                 control.clickAllQualities(b);
-                size = control.getNumQualities();
             }
             else{
                 if(id.equals("c")){
                     control.clickAllCameras(b);
-                    size = control.getNumCameras();
                 }
             }
         }
-        if(b){
-            for(int i=0;i<size;i++){
-                nifty.getScreen(stageType).findNiftyControl(id+"CheckBox"+i, CheckBox.class).setChecked(b);
-            }
-        }
-        else{
-            for(int i=0;i<size;i++){
+        for(int i=0;i<CHECKBOX_PAGE;i++){
+            if(nifty.getScreen(stageType).findElementByName(id+i).isVisible()){
                 nifty.getScreen(stageType).findNiftyControl(id+"CheckBox"+i, CheckBox.class).setChecked(b);
             }
         }

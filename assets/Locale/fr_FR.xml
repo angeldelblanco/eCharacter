@@ -31,5 +31,8 @@
 	<string id="idCustom">Personnalisée</string>
 	<string id="idAll">Tous</string>
 	<string id="idNothing">Aucun</string>
+	<string id="idDescriptionFamily">Description</string>
+	<string id="idAuthor">Author</string>
+	<string id="idUrl">Url</string>
 </metadata>
 	

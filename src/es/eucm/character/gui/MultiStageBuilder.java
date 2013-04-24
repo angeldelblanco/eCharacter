@@ -240,7 +240,7 @@ public class MultiStageBuilder {
         }
         
         if(seleccionado.containsKey(subStageSelected[j])){
-            TexturesMeshType texturesMeshType = control.getTextureType(idsTexturesOrSubMeshes.get(multiPage[j]*TEXTURES_PAGE+j));
+            TexturesMeshType texturesMeshType = control.getTextureType(seleccionado.get(subStageSelected[j]));
 
             if (texturesMeshType == null){
                 nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(j)).setVisible(false);

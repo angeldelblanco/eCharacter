@@ -31,4 +31,7 @@
 	<string id="idCustom">Custom</string>
 	<string id="idAll">All</string>
 	<string id="idNothing">Nothing</string>
+	<string id="idDescriptionFamily">Description</string>
+	<string id="idAuthor">Author</string>
+	<string id="idUrl">Url</string>
 </metadata>

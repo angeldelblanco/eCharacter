@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nifty xmlns="http://nifty-gui.sourceforge.net/nifty.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
        xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty.xsd http://nifty-gui.sourceforge.net/nifty.xsd">
-  <useStyles filename="nifty-default-styles.xml" />
+  <!--<useStyles filename="nifty-default-styles.xml" />-->
+  <useStyles filename="Interface/Style/grey-style/nifty-grey-styles.xml" />
   <useControls filename="nifty-default-controls.xml" />
   <registerEffect name="tooltip" class="es.eucm.character.gui.Tooltip" />
   
@@ -69,10 +70,10 @@
 							<panel id="t0" height="100%" width="47.5%" childLayout="center">
 								<image id = "m0" filename="Interface/x.png" height="95%" width="95%">
 									<interact onClick="selectModel(0)"/>
-                                                                        <effect>
-                                                                        <!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
-                                                                        <onHover name="tooltip" targetElement="hint-panel" hintText="Model 0" />
-                                                                        </effect>
+									<effect>
+									<!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 0" />
+									</effect>
 								</image> 
                                                                 
 							</panel>
@@ -82,10 +83,10 @@
 							<panel id="t1" height="100%" width="47.5%" childLayout="center">
 								<image id = "m1" filename="Interface/x.png" height="95%" width="95%">
 									<interact onClick="selectModel(1)"/>
-                                                                        <effect>
-                                                                        <!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
-                                                                        <onHover name="tooltip" targetElement="hint-panel" hintText="Model 1" />
-                                                                        </effect>
+									<effect>
+									<!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 1" />
+									</effect>
 								</image>
 							</panel>
 						</panel>
@@ -96,10 +97,10 @@
 							<panel id="t2" height="100%" width="47.5%" childLayout="center">
 								<image id = "m2" filename="Interface/x.png" height="95%" width="95%">
 									<interact onClick="selectModel(2)"/>
-                                                                        <effect>
-                                                                        <!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
-                                                                        <onHover name="tooltip" targetElement="hint-panel" hintText="Model 2" />
-                                                                        </effect>
+									<effect>
+									<!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 2" />
+									</effect>
 								</image>
 							</panel>
 							<panel height="100%" width="5%">
@@ -108,10 +109,10 @@
 							<panel id="t3" height="100%" width="47.5%" childLayout="center">
 								<image id = "m3" filename="Interface/x.png" height="95%" width="95%">
 									<interact onClick="selectModel(3)"/>
-                                                                        <effect>
-                                                                        <!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
-                                                                        <onHover name="tooltip" targetElement="hint-panel" hintText="Model 3" />
-                                                                        </effect>
+									<effect>
+									<!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 3" />
+									</effect>
 								</image>
 							</panel>
 						</panel>
@@ -122,10 +123,10 @@
 							<panel id="t4" height="100%" width="47.5%" childLayout="center">
 								<image id = "m4" filename="Interface/x.png" height="95%" width="95%">
 									<interact onClick="selectModel(4)"/>
-                                                                        <effect>
-                                                                        <!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
-                                                                        <onHover name="tooltip" targetElement="hint-panel" hintText="Model 4" />
-                                                                        </effect>
+									<effect>
+									<!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 4" />
+									</effect>
 								</image>
 							</panel>
 							<panel height="100%" width="5%">
@@ -134,10 +135,10 @@
 							<panel id="t5" height="100%" width="47.5%" childLayout="center">
 								<image id = "m5" filename="Interface/x.png" height="95%" width="95%">
 									<interact onClick="selectModel(5)"/>
-                                                                        <effect>
-                                                                        <!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
-                                                                        <onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-                                                                        </effect>
+									<effect>
+									<!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									</effect>
 								</image>
 							</panel>
 						</panel>
@@ -779,6 +780,16 @@
 						</panel>
 					</panel>
 				</panel>
+        </layer>
+    </screen>
+	
+	<!-- Nineth screen(export)-->
+	<screen id="emptyScreen" controller="es.eucm.character.gui.Gui">
+        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
+               
+        </layer>
+        <layer id="foreground" backgroundColor="#0000" childLayout="center">
+		
         </layer>
     </screen>
 	

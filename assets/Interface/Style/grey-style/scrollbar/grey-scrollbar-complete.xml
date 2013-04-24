@@ -1,0 +1,26 @@
+<sheet>
+0	<sprite name="grey-horizontal-back.png" x="0" y="0" width="27" height="27" />
+1	<sprite name="grey-horizontal-handle-hover.png" x="27" y="0" width="27" height="27" />
+2	<sprite name="grey-horizontal-handle.png" x="54" y="0" width="27" height="27" />
+3	<sprite name="grey-horizontal-left-click.png" x="81" y="0" width="27" height="27" />
+4	<sprite name="grey-horizontal-left-focus.png" x="108" y="0" width="27" height="27" />
+5	<sprite name="grey-horizontal-left-normal.png" x="135" y="0" width="27" height="27" />
+6	<sprite name="grey-horizontal-right-click.png" x="162" y="0" width="27" height="27" />
+7	<sprite name="grey-horizontal-right-focus.png" x="189" y="0" width="27" height="27" />
+8	<sprite name="grey-horizontal-right-normal.png" x="216" y="0" width="27" height="27" />
+9	<sprite name="grey-vertical-back.png" x="0" y="27" width="27" height="27" />
+10	<sprite name="grey-vertical-down-click.png" x="27" y="27" width="27" height="27" />
+11	<sprite name="grey-vertical-down-focus.png" x="54" y="27" width="27" height="27" />
+12	<sprite name="grey-vertical-down-normal.png" x="81" y="27" width="27" height="27" />
+13	<sprite name="grey-vertical-handle-hover.png" x="108" y="27" width="27" height="27" />
+14	<sprite name="grey-vertical-handle.png" x="135" y="27" width="27" height="27" />
+15	<sprite name="grey-vertical-listbox-down-click.png" x="162" y="27" width="27" height="27" />
+16	<sprite name="grey-vertical-listbox-down-focus.png" x="189" y="27" width="27" height="27" />
+17	<sprite name="grey-vertical-listbox-down-normal.png" x="216" y="27" width="27" height="27" />
+18	<sprite name="grey-vertical-listbox-up-click.png" x="0" y="54" width="27" height="27" />
+19	<sprite name="grey-vertical-listbox-up-focus.png" x="27" y="54" width="27" height="27" />
+20	<sprite name="grey-vertical-listbox-up-normal.png" x="54" y="54" width="27" height="27" />
+21	<sprite name="grey-vertical-up-click.png" x="81" y="54" width="27" height="27" />
+22	<sprite name="grey-vertical-up-focus.png" x="108" y="54" width="27" height="27" />
+23	<sprite name="grey-vertical-up-normal.png" x="135" y="54" width="27" height="27" />
+</sheet>

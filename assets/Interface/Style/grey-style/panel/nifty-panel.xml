@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty-styles>
+
+  <!-- style for a nifty panel -->
+  <style id="nifty-panel">
+    <attributes backgroundImage="grey-style/panel/grey-panel.png" imageMode="resize:125,6,125,125,125,6,125,6,125,6,125,125" padding="23px"/>
+    <effect>
+      <onActive name="imageOverlay" post="false" filename="grey-style/panel/grey-panel-background.png" inset="11px" imageMode="repeat:0,0,100,100" />
+    </effect>
+  </style>
+
+  <!-- style for a nifty panel -->
+  <style id="nifty-panel-red">
+    <attributes backgroundImage="grey-style/panel/grey-panel.png" imageMode="resize:100,29,100,100,100,29,100,30,100,29,100,100" />
+  </style>
+</nifty-styles>
