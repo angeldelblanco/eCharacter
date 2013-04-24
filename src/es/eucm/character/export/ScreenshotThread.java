@@ -123,7 +123,8 @@ public class ScreenshotThread extends Thread{
             
             sw.setTerminate(true);
             sw.join();//Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)
-                
+            
+            niftyDisplay.getNifty().gotoScreen("popupScreen");
                 
             //generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
             System.out.println("ScreenshotThread OK");
