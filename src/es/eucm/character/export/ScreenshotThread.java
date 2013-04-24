@@ -49,8 +49,6 @@ import java.util.logging.Logger;
 public class ScreenshotThread extends Thread{
     private static final Logger logger = Logger.getLogger(ScreenshotThread.class.getName());
     
-    private static final int quality = 10;
-    
     private Configuration config;
     private ScreenshotMyAppState screenShotState;
     private AnimChannel channel;
@@ -87,34 +85,39 @@ public class ScreenshotThread extends Thread{
             screenShotState.setQueue(queue);
             ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
             sw.start();
-            
-            Iterator<String> it = listAnimations.iterator();
-            while(it.hasNext()){
-                String nameAnimation = it.next();
-                
-                screenShotState.setAnimationName(nameAnimation);
-                screenShotState.resetShotIndex();
-                
-                channel.setAnim(nameAnimation);
-                channel.setLoopMode(LoopMode.DontLoop);
-                //Redondeo
-                int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
-                stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
-                /*ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
-                sw.start();*/
-                float time = 0.0f;
-                for(int j= 1 ; j<=numScreenShots; j++){
-                    System.out.println("Captura antes "+j+" con tiempo "+System.currentTimeMillis());
-                    time = time+(stepAnimationTime/1000);
-                    channel.setTime(time);
-                    synchronized (this){
-                        screenShotState.takeScreenshot(this);
-                        wait();
+            //Recorremos las animaciones
+            Iterator<String> itAnimations = listAnimations.iterator();
+            while(itAnimations.hasNext()){
+                String nameAnimation = itAnimations.next();
+                //Recorremos las calidades
+                Iterator<Integer> itQualities = listQualities.iterator();
+                while(itQualities.hasNext()){
+                    int quality = itQualities.next();              
+
+                    screenShotState.setAnimationName(nameAnimation+quality+"fps");
+                    screenShotState.resetShotIndex();
+
+                    channel.setAnim(nameAnimation);
+                    channel.setLoopMode(LoopMode.DontLoop);
+                    //Redondeo
+                    int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
+                    stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
+                    /*ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
+                    sw.start();*/
+                    float time = 0.0f;
+                    for(int j= 1 ; j<=numScreenShots; j++){
+                        System.out.println("Captura antes "+j+" con tiempo "+System.currentTimeMillis());
+                        time = time+(stepAnimationTime/1000);
+                        channel.setTime(time);
+                        synchronized (this){
+                            screenShotState.takeScreenshot(this);
+                            wait();
+                        }
+                        System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
+                        cont++;
+                        sleep((long)stepAnimationTime);
+                        //time = channel.getTime();
                     }
-                    System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
-                    cont++;
-                    sleep((long)stepAnimationTime);
-                    //time = channel.getTime();
                 }
                 /*sw.setTerminate(true);
                 sw.join();//Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)*/
