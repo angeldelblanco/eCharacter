@@ -414,6 +414,9 @@ public class Gui extends AbstractAppState implements ScreenController {
                 loadScreen(control.getStagesTypes(selection).toString(),"","");
                 nifty.gotoScreen(control.getStagesTypes(selection).toString());
         }
+        if(sel==4){
+            quitGame();
+        }
     }
     
     /******************************PopUpColorControler*****************************/
