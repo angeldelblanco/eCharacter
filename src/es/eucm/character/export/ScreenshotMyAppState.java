@@ -49,6 +49,8 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.Screenshots;
+import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.logging.Logger;
@@ -177,12 +179,22 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 renderer.setViewPort(0, 0, width, height);*/
             //}
             renderer.readFrameBuffer(out, outBuf);
+            
+            //Transform ByteBuffer to BufferedImage
+            BufferedImage awtImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+            Screenshots.convertScreenShot(outBuf, awtImage);
+            outBuf = null;
+            
+            
+            
+            
             //if (!viewPortInit){
                 //renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
                 //viewPortInit=true;
             //}
             synchronized(queue){
-                ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, outBuf, width, height);
+                //ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, outBuf, width, height);
+                ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, awtImage, width, height);
                 queue.add(data);
             }
             System.out.println("Añadido Nº "+shotIndex);

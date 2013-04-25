@@ -115,7 +115,7 @@ public class ScreenshotThread extends Thread{
                         if (j!=1){time = time+(stepAnimationTime/1000);}
                         
                         channel.setTime(time);
-                        sleep(100);
+                        //sleep(100);
                         
                         
                         synchronized (this){

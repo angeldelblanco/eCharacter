@@ -73,6 +73,7 @@ public class Application extends SimpleApplication{
         //Creation of the new configuration
         AppSettings newSettings = new AppSettings(true);
         newSettings.setResolution(width,height);
+        //newSettings.setFullscreen(true);
         this.setShowSettings(false);
         this.setSettings(newSettings);
         this.config = config;

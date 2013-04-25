@@ -42,6 +42,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class ScreenshotWritter extends Thread{
     private static final Logger logger = Logger.getLogger(ScreenshotWritter.class.getName());
@@ -90,13 +91,15 @@ public class ScreenshotWritter extends Thread{
     
     private void writeFile(ScreenshotData data){
         File file = new File(exportPath+File.separator+data.getName()+".png");
-        OutputStream outStream = null;
+        //OutputStream outStream = null;
         try {
-            outStream = new FileOutputStream(file);
-            JmeSystem.writeImageFile(outStream, "png", data.getBuff(), data.getWidth(), data.getHeight());
+            /*outStream = new FileOutputStream(file);
+            JmeSystem.writeImageFile(outStream, "png", data.getBuff(), data.getWidth(), data.getHeight());*/
+            ImageIO.write(data.getBuff(), "png", file);
+            
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Error while saving screenshot", ex);
-        } finally {
+        } /*finally {
             if (outStream != null){
                 try {
                     outStream.close();
@@ -104,6 +107,6 @@ public class ScreenshotWritter extends Thread{
                     logger.log(Level.SEVERE, "Error while saving screenshot", ex);
                 }
             }
-        }
+        }*/
     }
 }

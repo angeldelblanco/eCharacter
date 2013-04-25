@@ -36,14 +36,17 @@
 
 package es.eucm.character.export;
 
+import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 
 public class ScreenshotData {
     private String name;
-    private ByteBuffer buff;
+    //private ByteBuffer buff;
+    private BufferedImage buff;
     private int width, height;
     
-    public ScreenshotData(String name, ByteBuffer buff, int width, int height){
+    //public ScreenshotData(String name, ByteBuffer buff, int width, int height){
+    public ScreenshotData(String name, BufferedImage buff, int width, int height){
         this.name = name;
         this.buff = buff;
         this.width = width;
@@ -54,7 +57,8 @@ public class ScreenshotData {
         return name;
     }
 
-    public ByteBuffer getBuff() {
+    //public ByteBuffer getBuff() {
+    public BufferedImage getBuff() {
         return buff;
     }
 
