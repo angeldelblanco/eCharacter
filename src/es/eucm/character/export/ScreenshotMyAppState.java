@@ -111,7 +111,6 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             ViewPort last = vps.get(vps.size()-1);
             
             last.addProcessor(this);
-            System.out.println( "Adding processor" );
             appName = app.getClass().getSimpleName();
         }
 

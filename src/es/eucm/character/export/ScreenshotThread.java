@@ -42,6 +42,7 @@ import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
 import es.eucm.character.loader.Configuration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,6 +60,8 @@ public class ScreenshotThread extends Thread{
     private ArrayList<CameraValues> listCameras;
     private float stepAnimationTime;
     
+    private HashMap<String, ArrayList<String>> animationsData;
+    
     public ScreenshotThread(Configuration config, ScreenshotMyAppState screeShotState,AnimChannel channel,
             ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,ArrayList<String> listAnimations, 
             ArrayList<Integer> listQualities, ArrayList<CameraValues> listCameras){
@@ -71,15 +74,14 @@ public class ScreenshotThread extends Thread{
         this.listAnimations = listAnimations; 
         this.listQualities = listQualities;
         this.listCameras = listCameras;
+        this.animationsData = new HashMap<String, ArrayList<String>>();
     }
     
     @Override
     public void run(){
         try {
             String dirScreenshots = config.getProperty(Configuration.DEFAULT_EXPORT_PATH);
-            int cont = 1;
-            GenerateAnimation generateAnimation = new GenerateAnimation();
-            generateAnimation.cleanDirectory(dirScreenshots);
+            GenerateAnimation.cleanDirectory(dirScreenshots);
             
             ArrayListQueue<ScreenshotData> queue = new ArrayListQueue();
             screenShotState.setQueue(queue);
@@ -92,9 +94,11 @@ public class ScreenshotThread extends Thread{
                 //Recorremos las calidades
                 Iterator<Integer> itQualities = listQualities.iterator();
                 while(itQualities.hasNext()){
-                    int quality = itQualities.next();              
+                    int quality = itQualities.next();    
+                    
+                    String nameAnimationToSave = nameAnimation+quality+"fps";
 
-                    screenShotState.setAnimationName(nameAnimation+quality+"fps");
+                    screenShotState.setAnimationName(nameAnimationToSave);
                     screenShotState.resetShotIndex();
 
                     channel.setAnim(nameAnimation);
@@ -104,34 +108,40 @@ public class ScreenshotThread extends Thread{
                     stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
                     /*ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
                     sw.start();*/
+                    ArrayList<String> listAnimationsToSave = new ArrayList<String>();
                     float time = 0.0f;
                     for(int j= 1 ; j<=numScreenShots; j++){
                         System.out.println("Captura antes "+j+" con tiempo "+System.currentTimeMillis());
-                        time = time+(stepAnimationTime/1000);
+                        if (j!=1){time = time+(stepAnimationTime/1000);}
+                        
                         channel.setTime(time);
+                        sleep(100);
+                        
+                        
                         synchronized (this){
                             screenShotState.takeScreenshot(this);
-                            wait();
+                            this.wait();
                         }
+                        listAnimationsToSave.add(nameAnimationToSave+j+".png");
                         System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
-                        cont++;
                         sleep((long)stepAnimationTime);
                         //time = channel.getTime();
                     }
+                    animationsData.put(nameAnimationToSave, listAnimationsToSave);
                 }
                 /*sw.setTerminate(true);
                 sw.join();//Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)*/
-                //generateAnimation.createAnimation(dirScreenshots, nameAnimation, imagesNames);
             }
             
             sw.setTerminate(true);
             sw.join();//Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)
             
+            GenerateAnimation.createAnimation(dirScreenshots, animationsData);
+            
             niftyDisplay.getNifty().gotoScreen("popupScreen");
                 
             //generateAnimation.saveZIP("assets/Textures/Screenshots.zip", dirScreenshots);
             System.out.println("ScreenshotThread OK");
-            //guiViewPort.addProcessor(niftyDisplay);            
          } 
         catch (InterruptedException ex) {
                 Logger.getLogger(ScreenshotThread.class.getName()).log(Level.SEVERE, null, ex);

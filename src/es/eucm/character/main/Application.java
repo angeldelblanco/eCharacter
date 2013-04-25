@@ -39,7 +39,6 @@ package es.eucm.character.main;
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.app.SimpleApplication;
-import com.jme3.asset.plugins.FileLocator;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
@@ -226,4 +225,9 @@ public class Application extends SimpleApplication{
             }
         }
     };
+    
+    @Override
+    public void simpleUpdate(float tpf) {
+        
+    }
 }

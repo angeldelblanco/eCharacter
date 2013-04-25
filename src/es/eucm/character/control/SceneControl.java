@@ -382,6 +382,16 @@ public class SceneControl {
         if(listAnimationsChecked.size() > 0){
             //control.getGuiViewPort().removeProcessor(control.getNiftyDisplay());
             control.getNiftyDisplay().getNifty().gotoScreen("emptyScreen");
+            
+            
+            //BORRAR CUANDO HAGA BIEN LA PRIMERA CAPTURA
+            
+            animControl.clearChannels();
+            animChannel = animControl.createChannel();
+            
+            
+            
+            
             ScreenshotThread sst = new ScreenshotThread(config, control.getScreenShotState(),animChannel,
                     control.getGuiViewPort(),control.getNiftyDisplay(),listAnimationsChecked, 
                     listQualitiesChecked, listCamerasChecked);
