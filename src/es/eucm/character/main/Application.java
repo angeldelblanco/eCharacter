@@ -103,8 +103,6 @@ public class Application extends SimpleApplication{
         
         control = new Control(config,rootNode,assetManager,this, guiViewPort, niftyDisplay, screenShotState);
         gui = new Gui(control,config);
-        tooltip = new Tooltip();
-        
         /**
         * Åctivate the Nifty-JME integration: 
         */
@@ -228,6 +226,5 @@ public class Application extends SimpleApplication{
     
     @Override
     public void simpleUpdate(float tpf) {
-        
     }
 }

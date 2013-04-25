@@ -377,6 +377,7 @@ public class Control {
     
     public void restartApplication(){
         sc.deleteModel();
+        //guiViewPort.removeProcessor(niftyDisplay);
         app.initialize();
     }
     
