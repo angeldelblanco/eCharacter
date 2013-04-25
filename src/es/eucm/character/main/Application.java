@@ -57,6 +57,7 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sun.misc.VM;
 
 public class Application extends SimpleApplication{
 

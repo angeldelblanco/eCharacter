@@ -184,6 +184,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             BufferedImage awtImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
             Screenshots.convertScreenShot(outBuf, awtImage);
             outBuf = null;
+            System.gc();
             
             
             
