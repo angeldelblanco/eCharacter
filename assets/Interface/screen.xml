@@ -795,121 +795,353 @@
 	<popup id="popupColor" childLayout="center" controller="es.eucm.character.gui.Gui" backgroundColor="#FFFA">
 		<panel id="popupPanel" height="30%" width="50%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
 			<panel id="selectionPanel" height="70%" width="100%" childLayout="horizontal" valign="center">
-				<panel id="basicSelection" height="100%" width="50%" childLayout="vertical">
-					<panel height="5%" width="100%">
+				<panel id="basicSelection" height="100%" width="50%" childLayout="horizontal">
+					<panel height="100%" width="5%">
 					<!-- Space -->
 					</panel>
-					<panel id="t03" height="20%" width="100%" childLayout="horizontal">
-						<panel height="100%" width="5%">
+					<panel id="t05" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
-						<panel id="t0" height="100%" width="20%" childLayout="center" backgroundColor="#000000FF">
-							<interact onClick="changeSliderColor(#000000FF)"/>
-						</panel>
-						<panel height="100%" width="5%">
-						<!-- Space -->
-						</panel>
-						<panel id="t1" height="100%" width="20%" childLayout="center" backgroundColor="#C0C0C0FF">
-							<interact onClick="changeSliderColor(#C0C0C0FF)"/>
-						</panel>
-						<panel height="100%" width="5%">
-						<!-- Space -->
-						</panel>
-						<panel id="t2" height="100%" width="20%" childLayout="center" backgroundColor="#808080FF">
-							<interact onClick="changeSliderColor(#808080FF)"/>
-						</panel>
-						<panel height="100%" width="5%">
-						<!-- Space -->
-						</panel>
-						<panel id="t3" height="100%" width="20%" childLayout="center" backgroundColor="#FFFFFFFF">
+						<panel id="t0" height="14%" width="100%" childLayout="center" backgroundColor="#FFFFFFFF">
 							<interact onClick="changeSliderColor(#FFFFFFFF)"/>
 						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t1" height="14%" width="100%" childLayout="center" backgroundColor="#EAEAEAFF">
+							<interact onClick="changeSliderColor(#EAEAEAFF)"/>
+						</panel>
+						<panel id="t2" height="14%" width="100%" childLayout="center" backgroundColor="#DDDDDDFF">
+							<interact onClick="changeSliderColor(#DDDDDDFF)"/>
+						</panel>
+						<panel id="t3" height="14%" width="100%" childLayout="center" backgroundColor="#C0C0C0FF">
+							<interact onClick="changeSliderColor(#C0C0C0FF)"/>
+						</panel>
+						<panel id="t4" height="14%" width="100%" childLayout="center" backgroundColor="#B2B2B2FF">
+							<interact onClick="changeSliderColor(#B2B2B2FF)"/>
+						</panel>
+						<panel id="t5" height="14%" width="100%" childLayout="center" backgroundColor="#969696FF">
+							<interact onClick="changeSliderColor(#969696FF)"/>
+						</panel>
 					</panel>
-					<panel height="5%" width="100%">
+					<panel height="100%" width="1%">
 					<!-- Space -->
 					</panel>
-					<panel id="t47" height="20%" width="100%" childLayout="horizontal">
-						<panel height="100%" width="5%">
+					<panel id="t611" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
-						<panel id="t4" height="100%" width="20%" childLayout="center" backgroundColor="#800000FF">
-							<interact onClick="changeSliderColor(#800000FF)"/>
+						<panel id="t6" height="14%" width="100%" childLayout="center" backgroundColor="#000000FF">
+							<interact onClick="changeSliderColor(#000000FF)"/>
 						</panel>
-						<panel height="100%" width="5%">
+						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
-						<panel id="t5" height="100%" width="20%" childLayout="center" backgroundColor="#FF0000FF">
+						<panel id="t7" height="14%" width="100%" childLayout="center" backgroundColor="#4D4D4DFF">
+							<interact onClick="changeSliderColor(#4D4D4DFF)"/>
+						</panel>
+						<panel id="t8" height="14%" width="100%" childLayout="center" backgroundColor="#333333FF">
+							<interact onClick="changeSliderColor(#333333FF)"/>
+						</panel>
+						<panel id="t9" height="14%" width="100%" childLayout="center" backgroundColor="#292929FF">
+							<interact onClick="changeSliderColor(#292929FF)"/>
+						</panel>
+						<panel id="t10" height="14%" width="100%" childLayout="center" backgroundColor="#1C1C1CFF">
+							<interact onClick="changeSliderColor(#1C1C1CFF)"/>
+						</panel>
+						<panel id="t11" height="14%" width="100%" childLayout="center" backgroundColor="#111111FF">
+							<interact onClick="changeSliderColor(#111111FF)"/>
+						</panel>
+					</panel>
+					<panel height="100%" width="1%">
+					<!-- Space -->
+					</panel>
+					<panel id="t1217" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t12" height="14%" width="100%" childLayout="center" backgroundColor="#EEECE1FF">
+							<interact onClick="changeSliderColor(#EEECE1FF)"/>
+						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t13" height="14%" width="100%" childLayout="center" backgroundColor="#CDC8A7FF">
+							<interact onClick="changeSliderColor(#CDC8A7FF)"/>
+						</panel>
+						<panel id="t14" height="14%" width="100%" childLayout="center" backgroundColor="#BAB284FF">
+							<interact onClick="changeSliderColor(#BAB284FF)"/>
+						</panel>
+						<panel id="t15" height="14%" width="100%" childLayout="center" backgroundColor="#A89E64FF">
+							<interact onClick="changeSliderColor(#A89E64FF)"/>
+						</panel>
+						<panel id="t16" height="14%" width="100%" childLayout="center" backgroundColor="#766F42FF">
+							<interact onClick="changeSliderColor(#766F42FF)"/>
+						</panel>
+						<panel id="t17" height="14%" width="100%" childLayout="center" backgroundColor="#403C24FF">
+							<interact onClick="changeSliderColor(#403C24FF)"/>
+						</panel>
+					</panel>
+					<panel height="100%" width="1%">
+					<!-- Space -->
+					</panel>
+					<panel id="t1823" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t18" height="14%" width="100%" childLayout="center" backgroundColor="#1F497DFF">
+							<interact onClick="changeSliderColor(#1F497DFF)"/>
+						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t19" height="14%" width="100%" childLayout="center" backgroundColor="#A2C2E8FF">
+							<interact onClick="changeSliderColor(#A2C2E8FF)"/>
+						</panel>
+						<panel id="t20" height="14%" width="100%" childLayout="center" backgroundColor="#72A2DCFF">
+							<interact onClick="changeSliderColor(#72A2DCFF)"/>
+						</panel>
+						<panel id="t21" height="14%" width="100%" childLayout="center" backgroundColor="#3379CDFF">
+							<interact onClick="changeSliderColor(#3379CDFF)"/>
+						</panel>
+						<panel id="t22" height="14%" width="100%" childLayout="center" backgroundColor="#2962A7FF">
+							<interact onClick="changeSliderColor(#2962A7FF)"/>
+						</panel>
+						<panel id="t23" height="14%" width="100%" childLayout="center" backgroundColor="#122B4AFF">
+							<interact onClick="changeSliderColor(#122B4AFF)"/>
+						</panel>
+					</panel>
+					<panel height="100%" width="1%">
+					<!-- Space -->
+					</panel>
+					<panel id="t2429" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t24" height="14%" width="100%" childLayout="center" backgroundColor="#4F81BDFF">
+							<interact onClick="changeSliderColor(#4F81BDFF)"/>
+						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t25" height="14%" width="100%" childLayout="center" backgroundColor="#C8D7EAFF">
+							<interact onClick="changeSliderColor(#C8D7EAFF)"/>
+						</panel>
+						<panel id="t26" height="14%" width="100%" childLayout="center" backgroundColor="#9BB7D9FF">
+							<interact onClick="changeSliderColor(#9BB7D9FF)"/>
+						</panel>
+						<panel id="t27" height="14%" width="100%" childLayout="center" backgroundColor="#638FC5FF">
+							<interact onClick="changeSliderColor(#638FC5FF)"/>
+						</panel>
+						<panel id="t28" height="14%" width="100%" childLayout="center" backgroundColor="#396497FF">
+							<interact onClick="changeSliderColor(#396497FF)"/>
+						</panel>
+						<panel id="t29" height="14%" width="100%" childLayout="center" backgroundColor="#233E5FFF">
+							<interact onClick="changeSliderColor(#233E5FFF)"/>
+						</panel>
+					</panel>
+					<panel height="100%" width="1%">
+					<!-- Space -->
+					</panel>
+					<panel id="t3035" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t30" height="14%" width="100%" childLayout="center" backgroundColor="#C0504DFF">
+							<interact onClick="changeSliderColor(#C0504DFF)"/>
+						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t31" height="14%" width="100%" childLayout="center" backgroundColor="#EAC5C4FF">
+							<interact onClick="changeSliderColor(#EAC5C4FF)"/>
+						</panel>
+						<panel id="t32" height="14%" width="100%" childLayout="center" backgroundColor="#DA9896FF">
+							<interact onClick="changeSliderColor(#DA9896FF)"/>
+						</panel>
+						<panel id="t33" height="14%" width="100%" childLayout="center" backgroundColor="#D97977FF">
+							<interact onClick="changeSliderColor(#D97977FF)"/>
+						</panel>
+						<panel id="t34" height="14%" width="100%" childLayout="center" backgroundColor="#9A3836FF">
+							<interact onClick="changeSliderColor(#9A3836FF)"/>
+						</panel>
+						<panel id="t35" height="14%" width="100%" childLayout="center" backgroundColor="#692725FF">
+							<interact onClick="changeSliderColor(#692725FF)"/>
+						</panel>
+					</panel>
+					<panel height="100%" width="1%">
+					<!-- Space -->
+					</panel>
+					<panel id="t3641" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t36" height="14%" width="100%" childLayout="center" backgroundColor="#8064A2FF">
+							<interact onClick="changeSliderColor(#8064A2FF)"/>
+						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t37" height="14%" width="100%" childLayout="center" backgroundColor="#D0C5DDFF">
+							<interact onClick="changeSliderColor(#D0C5DDFF)"/>
+						</panel>
+						<panel id="t38" height="14%" width="100%" childLayout="center" backgroundColor="#B09FC5FF">
+							<interact onClick="changeSliderColor(#B09FC5FF)"/>
+						</panel>
+						<panel id="t39" height="14%" width="100%" childLayout="center" backgroundColor="#947CB0FF">
+							<interact onClick="changeSliderColor(#947CB0FF)"/>
+						</panel>
+						<panel id="t40" height="14%" width="100%" childLayout="center" backgroundColor="#60497BFF">
+							<interact onClick="changeSliderColor(#60497BFF)"/>
+						</panel>
+						<panel id="t41" height="14%" width="100%" childLayout="center" backgroundColor="#3F3151FF">
+							<interact onClick="changeSliderColor(#3F3151FF)"/>
+						</panel>
+					</panel>
+					<panel height="100%" width="1%">
+					<!-- Space -->
+					</panel>
+					<panel id="t4247" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t42" height="14%" width="100%" childLayout="center" backgroundColor="#FFC000FF">
+							<interact onClick="changeSliderColor(#FFC000FF)"/>
+						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t43" height="14%" width="100%" childLayout="center" backgroundColor="#FFF2CCFF">
+							<interact onClick="changeSliderColor(#FFF2CCFF)"/>
+						</panel>
+						<panel id="t44" height="14%" width="100%" childLayout="center" backgroundColor="#FFE699FF">
+							<interact onClick="changeSliderColor(#FFE699FF)"/>
+						</panel>
+						<panel id="t45" height="14%" width="100%" childLayout="center" backgroundColor="#FFD966FF">
+							<interact onClick="changeSliderColor(#FFD966FF)"/>
+						</panel>
+						<panel id="t46" height="14%" width="100%" childLayout="center" backgroundColor="#BF9000FF">
+							<interact onClick="changeSliderColor(#BF9000FF)"/>
+						</panel>
+						<panel id="t47" height="14%" width="100%" childLayout="center" backgroundColor="#7F6000FF">
+							<interact onClick="changeSliderColor(#7F6000FF)"/>
+						</panel>
+					</panel>
+					<panel height="100%" width="1%">
+					<!-- Space -->
+					</panel>
+					<panel id="t4853" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t48" height="14%" width="100%" childLayout="center" backgroundColor="#4BACC6FF">
+							<interact onClick="changeSliderColor(#4BACC6FF)"/>
+						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t49" height="14%" width="100%" childLayout="center" backgroundColor="#A5D6E3FF">
+							<interact onClick="changeSliderColor(#A5D6E3FF)"/>
+						</panel>
+						<panel id="t50" height="14%" width="100%" childLayout="center" backgroundColor="#8AC9DAFF">
+							<interact onClick="changeSliderColor(#8AC9DAFF)"/>
+						</panel>
+						<panel id="t51" height="14%" width="100%" childLayout="center" backgroundColor="#3898B2FF">
+							<interact onClick="changeSliderColor(#3898B2FF)"/>
+						</panel>
+						<panel id="t52" height="14%" width="100%" childLayout="center" backgroundColor="#2A7286FF">
+							<interact onClick="changeSliderColor(#2A7286FF)"/>
+						</panel>
+						<panel id="t53" height="14%" width="100%" childLayout="center" backgroundColor="#215A69FF">
+							<interact onClick="changeSliderColor(#215A69FF)"/>
+						</panel>
+					</panel>
+					<panel height="100%" width="1%">
+					<!-- Space -->
+					</panel>
+					<panel id="t5459" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t54" height="14%" width="100%" childLayout="center" backgroundColor="#FF0000FF">
 							<interact onClick="changeSliderColor(#FF0000FF)"/>
 						</panel>
-						<panel height="100%" width="5%">
+						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
-						<panel id="t6" height="100%" width="20%" childLayout="center" backgroundColor="#800080FF">
-							<interact onClick="changeSliderColor(#800080FF)"/>
+						<panel id="t55" height="14%" width="100%" childLayout="center" backgroundColor="#FF7D7DFF">
+							<interact onClick="changeSliderColor(#FF7D7DFF)"/>
 						</panel>
-						<panel height="100%" width="5%">
-						<!-- Space -->
+						<panel id="t56" height="14%" width="100%" childLayout="center" backgroundColor="#FF4949FF">
+							<interact onClick="changeSliderColor(#FF4949FF)"/>
 						</panel>
-						<panel id="t7" height="100%" width="20%" childLayout="center" backgroundColor="#FF00FFFF">
-							<interact onClick="changeSliderColor(#FF00FFFF)"/>
+						<panel id="t57" height="14%" width="100%" childLayout="center" backgroundColor="#B40000FF">
+							<interact onClick="changeSliderColor(#B40000FF)"/>
+						</panel>
+						<panel id="t58" height="14%" width="100%" childLayout="center" backgroundColor="#960000FF">
+							<interact onClick="changeSliderColor(#960000FF)"/>
+						</panel>
+						<panel id="t59" height="14%" width="100%" childLayout="center" backgroundColor="#700000FF">
+							<interact onClick="changeSliderColor(#700000FF)"/>
 						</panel>
 					</panel>
-					<panel height="5%" width="100%">
+					<panel height="100%" width="1%">
 					<!-- Space -->
 					</panel>
-					<panel id="t811" height="20%" width="100%" childLayout="horizontal">
-						<panel height="100%" width="5%">
+					<panel id="t6065" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
-						<panel id="t8" height="100%" width="20%" childLayout="center" backgroundColor="#008000FF">
-							<interact onClick="changeSliderColor(#008000FF)"/>
+						<panel id="t60" height="14%" width="100%" childLayout="center" backgroundColor="#70AD47FF">
+							<interact onClick="changeSliderColor(#70AD47FF)"/>
 						</panel>
-						<panel height="100%" width="5%">
+						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
-						<panel id="t9" height="100%" width="20%" childLayout="center" backgroundColor="#00FF00FF">
-							<interact onClick="changeSliderColor(#00FF00FF)"/>
+						<panel id="t61" height="14%" width="100%" childLayout="center" backgroundColor="#E2F0D9FF">
+							<interact onClick="changeSliderColor(#E2F0D9FF)"/>
 						</panel>
-						<panel height="100%" width="5%">
-						<!-- Space -->
+						<panel id="t62" height="14%" width="100%" childLayout="center" backgroundColor="#C5E0B4FF">
+							<interact onClick="changeSliderColor(#C5E0B4FF)"/>
 						</panel>
-						<panel id="t10" height="100%" width="20%" childLayout="center" backgroundColor="#FF9900FF">
-							<interact onClick="changeSliderColor(#FF9900FF)"/>
+						<panel id="t63" height="14%" width="100%" childLayout="center" backgroundColor="#A9D18EFF">
+							<interact onClick="changeSliderColor(#A9D18EFF)"/>
 						</panel>
-						<panel height="100%" width="5%">
-						<!-- Space -->
+						<panel id="t64" height="14%" width="100%" childLayout="center" backgroundColor="#548235FF">
+							<interact onClick="changeSliderColor(#548235FF)"/>
 						</panel>
-						<panel id="t11" height="100%" width="20%" childLayout="center" backgroundColor="#FFFF00FF">
-							<interact onClick="changeSliderColor(#FFFF00FF)"/>
+						<panel id="t65" height="14%" width="100%" childLayout="center" backgroundColor="#385723FF">
+							<interact onClick="changeSliderColor(#385723FF)"/>
 						</panel>
 					</panel>
-					<panel height="5%" width="100%">
+					<panel height="100%" width="1%">
 					<!-- Space -->
 					</panel>
-					<panel id="t1215" height="20%" width="100%" childLayout="horizontal">
-						<panel height="100%" width="5%">
+					<panel id="t6671" height="100%" width="7%" childLayout="vertical">
+						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
-						<panel id="t12" height="100%" width="20%" childLayout="center" backgroundColor="#000080FF">
-							<interact onClick="changeSliderColor(#000080FF)"/>
+						<panel id="t66" height="14%" width="100%" childLayout="center" backgroundColor="#F79646FF">
+							<interact onClick="changeSliderColor(#F79646FF)"/>
 						</panel>
-						<panel height="100%" width="5%">
+						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
-						<panel id="t13" height="100%" width="20%" childLayout="center" backgroundColor="#0000FFFF">
-							<interact onClick="changeSliderColor(#0000FFFF)"/>
+						<panel id="t67" height="14%" width="100%" childLayout="center" backgroundColor="#FBCDA7FF">
+							<interact onClick="changeSliderColor(#FBCDA7FF)"/>
 						</panel>
-						<panel height="100%" width="5%">
-						<!-- Space -->
+						<panel id="t68" height="14%" width="100%" childLayout="center" backgroundColor="#F9B277FF">
+							<interact onClick="changeSliderColor(#F9B277FF)"/>
 						</panel>
-						<panel id="t14" height="100%" width="20%" childLayout="center" backgroundColor="#008080FF">
-							<interact onClick="changeSliderColor(#008080FF)"/>
+						<panel id="t69" height="14%" width="100%" childLayout="center" backgroundColor="#F5801FFF">
+							<interact onClick="changeSliderColor(#F5801FFF)"/>
 						</panel>
-						<panel height="100%" width="5%">
-						<!-- Space -->
+						<panel id="t70" height="14%" width="100%" childLayout="center" backgroundColor="#DD6909FF">
+							<interact onClick="changeSliderColor(#DD6909FF)"/>
 						</panel>
-						<panel id="t15" height="100%" width="20%" childLayout="center" backgroundColor="#00FFFFFF">
-							<interact onClick="changeSliderColor(#00FFFFFF)"/>
+						<panel id="t71" height="14%" width="100%" childLayout="center" backgroundColor="#A95007FF">
+							<interact onClick="changeSliderColor(#A95007FF)"/>
 						</panel>
 					</panel>
 				</panel>
