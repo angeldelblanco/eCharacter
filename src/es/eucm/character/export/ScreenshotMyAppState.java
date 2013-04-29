@@ -181,21 +181,21 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             renderer.readFrameBuffer(out, outBuf);
             
             //Transform ByteBuffer to BufferedImage
-            BufferedImage awtImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
-            Screenshots.convertScreenShot(outBuf, awtImage);
+            BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+            Screenshots.convertScreenShot(outBuf, bufferedImage);
+            
+            BufferedImage bufferedImageCut = cutImage(bufferedImage);
+            
             outBuf = null;
-            System.gc();
-            
-            
-            
-            
+            //System.gc();
+                        
             //if (!viewPortInit){
                 //renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
                 //viewPortInit=true;
             //}
             synchronized(queue){
                 //ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, outBuf, width, height);
-                ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, awtImage, width, height);
+                ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImageCut, bufferedImageCut.getWidth(), bufferedImageCut.getHeight());
                 queue.add(data);
             }
             System.out.println("Añadido Nº "+shotIndex);
@@ -215,7 +215,86 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         this.nameAnimation = nameAnimation;
     }
 
-    void resetShotIndex() {
+    public void resetShotIndex() {
         this.shotIndex = 0;
+    }
+    
+    private BufferedImage cutImage(BufferedImage bi){
+        int w = bi.getWidth();
+        int h = bi.getHeight();
+
+        //Cut horizontally
+        int cutWmin = 0;
+        salida:
+        for (int i = 0; i<w; i++){
+            for (int j = 0; j<h; j++){
+                //if the pixel isn't transparent
+                if (bi.getRGB(i, j) < 0){
+                    if (i!= 0){
+                        cutWmin = i-1;
+                    }
+                    else{
+                        cutWmin = i;
+                    }
+                    break salida;
+                }
+            }
+        }
+        
+        int cutWmax = 0;
+        salida:
+        for (int i = w-1; i>=0; i--){
+            for (int j = h-1; j>=0; j--){
+                //if the pixel isn't transparent
+                if (bi.getRGB(i, j) < 0){
+                    if (i!= w-1){
+                        cutWmax = i+1;
+                    }
+                    else{
+                        cutWmax = i;
+                    }
+                    cutWmax = i;
+                    break salida;
+                }
+            }
+        }
+        
+        //Cut vertically
+        int cutHmin = 0;
+        salida:
+        for (int i = 0; i<h; i++){
+            for (int j = 0; j<w; j++){
+                //if the pixel isn't transparent
+                if (bi.getRGB(j, i) < 0){
+                    if (i!=0){
+                        cutHmin = i-1;
+                    }
+                    else{
+                        cutHmin = i;
+                    }
+                    break salida;
+                }
+            }
+        }
+        
+        int cutHmax = 0;
+        salida:
+        for (int i = h-1; i>=0; i--){
+            for (int j = w-1; j>=0; j--){
+                //if the pixel isn't transparent
+                if (bi.getRGB(j, i) < 0){
+                    if (i!=h-1){
+                        cutHmax = i+1;
+                    }
+                    else{
+                        cutHmax = i;
+                    }
+                    break salida;
+                }
+            }
+        }
+        
+        BufferedImage biCut = bi.getSubimage(cutWmin, cutHmin, cutWmax-cutWmin, cutHmax-cutHmin);
+        return biCut;
     }
 }

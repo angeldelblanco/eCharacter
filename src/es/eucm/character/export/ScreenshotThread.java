@@ -94,6 +94,11 @@ public class ScreenshotThread extends Thread{
                 //Recorremos las calidades
                 Iterator<Integer> itQualities = listQualities.iterator();
                 while(itQualities.hasNext()){
+                    /*ArrayListQueue<ScreenshotData> queue = new ArrayListQueue();
+                    screenShotState.setQueue(queue);
+                    ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
+                    sw.start();*/
+            
                     int quality = itQualities.next();    
                     
                     String nameAnimationToSave = nameAnimation+quality+"fps";
@@ -106,8 +111,6 @@ public class ScreenshotThread extends Thread{
                     //Redondeo
                     int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
                     stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
-                    /*ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
-                    sw.start();*/
                     ArrayList<String> listAnimationsToSave = new ArrayList<String>();
                     float time = 0.0f;
                     for(int j= 1 ; j<=numScreenShots; j++){
@@ -128,9 +131,9 @@ public class ScreenshotThread extends Thread{
                         //time = channel.getTime();
                     }
                     animationsData.put(nameAnimationToSave, listAnimationsToSave);
+                    /*sw.setTerminate(true);
+                    sw.join();*///Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)
                 }
-                /*sw.setTerminate(true);
-                sw.join();//Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)*/
             }
             
             sw.setTerminate(true);
