@@ -42,7 +42,6 @@ import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import de.lessvoid.nifty.effects.Effect;
 import de.lessvoid.nifty.effects.EffectEventId;
-import de.lessvoid.nifty.effects.EffectManager;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
@@ -52,7 +51,7 @@ import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
 import java.util.List;
 
-public class ModelStageBuilder {
+public class FamilyStageBuilder {
     private static final int MODELS_PAGE = 6;
     private Nifty nifty;
     private I18N i18nGui; 
@@ -60,7 +59,7 @@ public class ModelStageBuilder {
     private String stageType;
     private int modelsPage;
     
-    public ModelStageBuilder(Nifty nifty, Control control,I18N i18nGui,String font){
+    public FamilyStageBuilder(Nifty nifty, Control control,I18N i18nGui,String font){
         stageType = "modelScreen";
         this.nifty = nifty;
         this.control = control;

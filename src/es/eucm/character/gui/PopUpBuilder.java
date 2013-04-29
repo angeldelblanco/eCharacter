@@ -36,12 +36,9 @@
 package es.eucm.character.gui;
 
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.Button;
-import de.lessvoid.nifty.controls.ButtonClickedEvent;
 import de.lessvoid.nifty.controls.CheckBox;
 import de.lessvoid.nifty.controls.Slider;
-import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
@@ -50,7 +47,6 @@ import de.lessvoid.nifty.tools.Color;
 import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
 import es.eucm.character.types.TexturesMeshType;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -269,7 +265,7 @@ public class PopUpBuilder {
                 return 1;
             }
             if(popUpNum == 2){
-                control.restartApplication();
+                control.deleteModel();
                 return 2;
             }
         }

@@ -37,7 +37,6 @@
 package es.eucm.character.gui;
 
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.CheckBox;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;

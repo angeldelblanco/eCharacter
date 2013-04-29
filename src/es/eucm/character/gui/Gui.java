@@ -50,6 +50,7 @@ import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
+import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
@@ -62,6 +63,7 @@ import es.eucm.character.types.StageType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Gui extends AbstractAppState implements ScreenController {
     
@@ -78,7 +80,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     private ArrayList<String> families;
     private int index;
     private String language;
-    private ModelStageBuilder modelsb;
+    private FamilyStageBuilder modelsb;
     private ScaleStageBuilder scalesb;
     private SingleStageBuilder singlesb;
     private MultiStageBuilder multisb;
@@ -93,7 +95,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        modelsb = new ModelStageBuilder(nifty,control,i18nGui,getFont());
+        modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getFont());
         DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
         Iterator<String> it = families.iterator();
         while(it.hasNext()){
@@ -103,6 +105,27 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         control.selectFamily(families.get(0));
         i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
+        family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
+    }
+    
+    public void loadFamilyScreen(){
+        String types[] = {StageType.singleStage.toString(),
+                          StageType.scaleStage.toString(),
+                          StageType.multiStage.toString(),
+                          StageType.animationStage.toString()};
+        for(String type : types){
+            nifty.gotoScreen(type);
+            List<Element> listmenu = nifty.getScreen(type).findElementByName("panel_options").getElements();
+            Iterator<Element> it = listmenu.iterator();
+            while(it.hasNext()){
+                Element element = it.next();
+                element.markForRemoval();
+            }
+        }
+        nifty.gotoScreen("modelScreen");
+        control.selectFamily(families.get(0));
+        i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
+        DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
         family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
     }
 
@@ -127,6 +150,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         this.app = app;
         page = 0;
         index = 0;
+        popUp = null;
         new DropDownBuilder("localeDropDown") {{
                 valignCenter();
                 width("100");
@@ -177,7 +201,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 nifty.getScreen(type).findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
             }
             nifty.getScreen(type).findElementByName("panel_screenright").layoutElements();
-        }
+        }          
     }
     
     public void changeCharacterPage(String steep){
@@ -189,6 +213,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void loadFirstScreen(){
+        index = 0;
         control.selectModel(modelSelection);
         i18nModel = new I18N(control.getLanguageModelPath(),language);
         stages = control.getStagesLabels();
@@ -197,7 +222,10 @@ public class Gui extends AbstractAppState implements ScreenController {
         singlesb = new SingleStageBuilder(nifty,control,i18nGui);
         multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily);
         animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
-        popUp = new PopUpBuilder(nifty, control, i18nGui);
+        if(popUp == null){
+            popUp = new PopUpBuilder(nifty, control, i18nGui);
+        }
+        
         ArrayList<String> idPanel = control.getIdsSubStages(selection);
         idPhysicalBuild = control.getIdsPhysicalBuild(idPanel.get(0));
         idBones = control.getIdBonesController(selection);
@@ -252,7 +280,8 @@ public class Gui extends AbstractAppState implements ScreenController {
             loadScreen(stage,oldStage,old);
         }
         else{
-            control.restartApplication();
+            control.deleteModel();
+            loadFamilyScreen();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);
         }/*
@@ -422,6 +451,10 @@ public class Gui extends AbstractAppState implements ScreenController {
                 loadScreen(control.getStagesTypes(selection).toString(),"","");
                 nifty.gotoScreen(control.getStagesTypes(selection).toString());
         }
+        if(sel==2){
+            loadFamilyScreen();
+        }
+        
         if(sel==4){
             quitGame();
         }

@@ -45,13 +45,13 @@ import es.eucm.character.data.model.Model;
 import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.TextureType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
+import es.eucm.character.export.CameraValues;
 import es.eucm.character.export.ScreenshotMyAppState;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.FamilyWithPath;
 import es.eucm.character.loader.XMLFamilyReader;
 import es.eucm.character.loader.XMLReader;
 import es.eucm.character.main.Application;
-import es.eucm.character.export.CameraValues;
 import es.eucm.character.types.ElementType;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
@@ -375,10 +375,8 @@ public class Control {
         sc.applyEscalations(listEscalations);
     }
     
-    public void restartApplication(){
+    public void deleteModel(){
         sc.deleteModel();
-        //guiViewPort.removeProcessor(niftyDisplay);
-        app.initialize();
     }
     
     public boolean isChecked(String idPanel, String idTextureOrSubMesh){

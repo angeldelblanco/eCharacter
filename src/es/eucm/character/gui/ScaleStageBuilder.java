@@ -36,15 +36,15 @@
 
 package es.eucm.character.gui;
 
-import es.eucm.character.control.Control;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
+import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
-import java.util.ArrayList;
 import es.eucm.character.types.StageType;
+import java.util.ArrayList;
 
 public class ScaleStageBuilder {
     private static final int SCALE_PAGE = 5;
