@@ -97,9 +97,9 @@ public class ScaleStageBuilder {
                        nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).setVisible(true);
                        nifty.getScreen(stage).findElementByName("slider"+Integer.toString(i%SCALE_PAGE)).setVisible(true);
                        Slider s = nifty.getScreen(stage).findNiftyControl("slider"+Integer.toString(i%SCALE_PAGE), Slider.class);
+                       s.setValue(control.getDefaultValueBoneController(idBones.get(i)));
                        s.setMax(control.getMaxValueBoneController(idBones.get(i)));
                        s.setMin(control.getMinValueBoneController(idBones.get(i)));
-                       s.setValue(control.getDefaultValueBoneController(idBones.get(i)));
                     }
                 }
                 nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
