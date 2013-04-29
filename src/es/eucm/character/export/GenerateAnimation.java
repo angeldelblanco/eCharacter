@@ -187,7 +187,6 @@ public class GenerateAnimation {
              if (ficheros[x].isDirectory()) {
                 clean(ficheros[x]);
              }
-             System.out.println(ficheros[x].getName());
              ficheros[x].delete();
          }
     }
