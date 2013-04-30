@@ -57,7 +57,9 @@ public class PopUpBuilder {
     private int popUpPage, popUpNum;
     private I18N i18nGui;
     private Element popupColor;
-    private float red, green, blue, red2, green2, blue2; 
+    private float red, green, blue;
+    private Color baseColor, detailsColor;
+    private String tab;
 
     public PopUpBuilder(Nifty nifty, Control control, I18N i18nGui){
         popUpPage = 0;
@@ -66,15 +68,15 @@ public class PopUpBuilder {
         this.nifty = nifty;
         this.i18nGui = i18nGui;
         popupColor = null;
+        baseColor = null;
+        detailsColor = null;
+        tab = "basic";
     }
     
     public void showWindowChangeColor(String subStageSelected, String textureOrSubMeshSelected){
         red = 0; 
         green = 0; 
-        blue = 0; 
-        red2 = 0; 
-        green2 = 0; 
-        blue2 = 0;
+        blue = 0;
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
             popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
@@ -84,9 +86,11 @@ public class PopUpBuilder {
             popupColor.findElementByName("blueText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
             popupColor.findElementByName("bluePanel").layoutElements();
             popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
+            popupColor.findElementByName("advancedSelection").setVisible(false);
+            popupColor.findElementByName("colorOptions").setVisible(false);
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.doubleTexture)){
-            popupColor = nifty.createPopup("popupColor2");
+            popupColor = nifty.createPopup("popupColor");
             popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
             popupColor.findElementByName("redPanel").layoutElements();
             popupColor.findElementByName("greenText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
@@ -94,16 +98,10 @@ public class PopUpBuilder {
             popupColor.findElementByName("blueText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
             popupColor.findElementByName("bluePanel").layoutElements();
             popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
-            popupColor.findElementByName("baseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBase"));
-            popupColor.findElementByName("checkBasePanel").layoutElements();
-            popupColor.findElementByName("shadowText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDetails"));
-            popupColor.findElementByName("checkShadowPanel").layoutElements();
-            popupColor.findElementByName("red2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
-            popupColor.findElementByName("red2Panel").layoutElements();
-            popupColor.findElementByName("green2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
-            popupColor.findElementByName("green2Panel").layoutElements();
-            popupColor.findElementByName("blue2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
-            popupColor.findElementByName("blue2Panel").layoutElements();
+            popupColor.findElementByName("advancedSelection").setVisible(false);
+            popupColor.findElementByName("colorOptions").setVisible(true);
+            popupColor.findElementByName("basicText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBase"));
+            popupColor.findElementByName("customText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDetails"));
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.multiOptionTexture)){
             popupColor = nifty.createPopup("popupColor3");
@@ -111,25 +109,28 @@ public class PopUpBuilder {
         }
         popupColor.findNiftyControl("cancelButton", Button.class).setText(i18nGui.getString("idCancel"));
         nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
+        baseColor = null;
+        detailsColor = null;
+        changeTabColor("basic");
     }
     
     public void accept(String textureOrSubMeshSelected, String subStageSelected){
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.baseShadow)){
-            control.changeColorBaseShadow(subStageSelected,textureOrSubMeshSelected,red / 255.f, green / 255.f, blue / 255.f);
+            if(baseColor != null){
+                control.changeColorBaseShadow(subStageSelected,textureOrSubMeshSelected,baseColor.getRed(), baseColor.getGreen(),baseColor.getBlue());
+            }
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.doubleTexture)){
-            boolean base = popupColor.findNiftyControl("baseCheckBox", CheckBox.class).isChecked();
-            boolean shadow = popupColor.findNiftyControl("shadowCheckBox", CheckBox.class).isChecked();
-            if(base&&shadow){
-                control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,red/ 255.f,green/ 255.f,blue/ 255.f,red2/ 255.f,green2/ 255.f,blue2/ 255.f);
+            if((baseColor != null)&&(detailsColor != null)){
+                control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,baseColor.getRed(), baseColor.getGreen(),baseColor.getBlue(),detailsColor.getRed(), detailsColor.getGreen(),detailsColor.getBlue());
             }
             else{
-                if(base){
-                    control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,red/ 255.f,green/ 255.f,blue/ 255.f,-1,-1,-1);
+                if(baseColor != null){
+                    control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,baseColor.getRed(), baseColor.getGreen(),baseColor.getBlue(),-1,-1,-1);
                 }
                 else{
-                    if(shadow){
-                        control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,-1,-1,-1,red2/ 255.f,green2/ 255.f,blue2/ 255.f);
+                    if(detailsColor != null){
+                        control.changeColorDoubleTexture(subStageSelected,textureOrSubMeshSelected,-1,-1,-1,detailsColor.getRed(), detailsColor.getGreen(),detailsColor.getBlue());
                     }
                 }
             }
@@ -185,18 +186,15 @@ public class PopUpBuilder {
     public void changeSliderColor(String color){
         if(popupColor != null){
             Color c = new Color(color);
+            if(tab.equals("basic")){
+                baseColor = new Color(color);
+            }
+            else{
+                detailsColor = new Color(color);
+            }
             popupColor.findNiftyControl("sliderR", Slider.class).setValue(c.getRed()*255);
             popupColor.findNiftyControl("sliderG", Slider.class).setValue(c.getGreen()*255);
             popupColor.findNiftyControl("sliderB", Slider.class).setValue(c.getBlue()*255);
-        }
-    }    
-    
-    public void changeSliderColor2(String color){
-        if(popupColor != null){
-            Color c = new Color(color);
-            popupColor.findNiftyControl("sliderR2", Slider.class).setValue(c.getRed()*255);
-            popupColor.findNiftyControl("sliderG2", Slider.class).setValue(c.getGreen()*255);
-            popupColor.findNiftyControl("sliderB2", Slider.class).setValue(c.getBlue()*255);
         }
     }
     
@@ -220,37 +218,16 @@ public class PopUpBuilder {
             changeColor();
         }
     }
-    
-    public void onRed2SliderChange(float value) {
-        if(popupColor != null){
-            red2 = value;
-            changeColor2();
-        }
-    }
-
-    public void onGreen2SliderChange(float value) {
-        if(popupColor != null){
-            green2 = value;
-            changeColor2();
-        }
-    }
-
-    public void onBlue2SliderChange(float value) {
-        if(popupColor != null){
-            blue2 = value;
-            changeColor2();
-        }
-    }
   
     private void changeColor() {
         if(popupColor != null){
+            if(tab.equals("basic")){
+                baseColor = new Color(red / 255.f, green / 255.f, blue / 255.f, 1);
+            }
+            else{
+                detailsColor = new Color(red / 255.f, green / 255.f, blue / 255.f, 1);
+            }
             popupColor.findElementByName("colorPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red / 255.f, green / 255.f, blue / 255.f, 1));
-        }
-    }
-    
-    private void changeColor2() {
-        if(popupColor != null){
-            popupColor.findElementByName("color2Panel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(red2 / 255.f, green2 / 255.f, blue2 / 255.f, 1));
         }
     }
     
@@ -281,7 +258,6 @@ public class PopUpBuilder {
             }
             if(popUpNum == 2){
                 return 4;
-                //nifty.gotoScreen("finalScreen");
             }
         }
         return 0;
@@ -295,5 +271,36 @@ public class PopUpBuilder {
         nifty.getScreen(stage).findElementByName("popup").layoutElements();
         nifty.getScreen(stage).findNiftyControl("popUpButton1", Button.class).setText(i18nGui.getString("idPopupButton1"));
         nifty.getScreen(stage).findNiftyControl("popUpButton2", Button.class).setText(i18nGui.getString("idPopupButton2"));
+    }
+    
+    public void showMoreColors(){
+        popupColor.findElementByName("advancedSelection").setVisible(true);
+    }
+    
+    public void changeTabColor(String option){
+        tab = option;
+        if(tab.equals("basic")){
+            popupColor.findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            popupColor.findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+            if(baseColor!=null){
+                changeSliderColor(baseColor.getColorString());
+            }
+            else{
+                changeSliderColor("#000000FF");
+                baseColor=null;
+            }
+        }
+        else{
+            popupColor.findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+            popupColor.findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            if(detailsColor!=null){
+                changeSliderColor(detailsColor.getColorString());
+            }
+            else{
+                changeSliderColor("#000000FF");
+                detailsColor=null;
+            }
+        }
+        popupColor.findElementByName("advancedSelection").setVisible(false);
     }
 }

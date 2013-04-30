@@ -482,28 +482,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         popUp.changePopUpColor(im,subStageSelected,textureOrSubMeshSelected);
     }
     
-    /*@NiftyEventSubscriber(id="baseCheckBox")
-    public void onBaseCheckBoxChange(final String id, final SliderChangedEvent event) {
-        if(popupColor != null){
-            green = event.getValue();
-            changeColor();
-        }
-    }
-    
-    @NiftyEventSubscriber(id="shadowCheckBox")
-    public void onShadowCheckBoxChange(final String id, final SliderChangedEvent event) {
-        if(popupColor != null){
-            green = event.getValue();
-            changeColor();
-        }
-    }*/
-    
     public void changeSliderColor(String color){
         popUp.changeSliderColor(color);
-    }
-    
-    public void changeSliderColor2(String color){
-        popUp.changeSliderColor2(color);
     }
     
     @NiftyEventSubscriber(id="sliderR")
@@ -521,21 +501,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         popUp.onBlueSliderChange(event.getValue());
     }
     
-    @NiftyEventSubscriber(id="sliderR2")
-    public void onRed2SliderChange(final String id, final SliderChangedEvent event) {
-        popUp.onRed2SliderChange(event.getValue());
-    }
-
-    @NiftyEventSubscriber(id="sliderG2")
-    public void onGreen2SliderChange(final String id, final SliderChangedEvent event) {
-        popUp.onGreen2SliderChange(event.getValue());
-    }
-
-    @NiftyEventSubscriber(id="sliderB2")
-    public void onBlue2SliderChange(final String id, final SliderChangedEvent event) {
-        popUp.onBlue2SliderChange(event.getValue());
-    }
-    
     @NiftyEventSubscriber(id="aceptButton")
     public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
         popUp.accept(textureOrSubMeshSelected,subStageSelected);
@@ -544,6 +509,14 @@ public class Gui extends AbstractAppState implements ScreenController {
     @NiftyEventSubscriber(id="cancelButton")
     public void onCancelButtonClicked(final String id, final ButtonClickedEvent event) {
         popUp.cancel(); 
+    }
+    
+    public void showMoreColors(){
+        popUp.showMoreColors();
+    }
+    
+    public void changeTabColor(String option){
+        popUp.changeTabColor(option);
     }
     
     /******************************SliderControler*****************************/
