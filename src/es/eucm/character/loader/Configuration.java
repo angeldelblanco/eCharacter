@@ -116,7 +116,7 @@ public class Configuration {
         this.properties.setProperty(RESOLUTION, "1024x768");
         this.properties.setProperty(ASSETS_PATH, "assets");
         this.properties.setProperty(FAMILIES_PATH,"assets"+File.separator+"XML Configuration"+File.separator+"families");
-        this.properties.setProperty(LOCALE_PATH,"assets"+File.separator+"Locale");
+        this.properties.setProperty(LOCALE_PATH,"assets"+File.separator+"Locale"+File.separatorChar+"Gui");
         this.properties.setProperty(DEFAULT_QUALITY, "10");
         this.properties.setProperty(DEFAULT_EXPORT_PATH, "export");
         

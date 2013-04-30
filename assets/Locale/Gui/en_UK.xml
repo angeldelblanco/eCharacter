@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="language.xsd">
+<metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./language.xsd">
 	<string id="idDescription">Welcome to eAdventure characters configurator. This configurator can create your avatar to play platform games eAdventure.</string>
 	<string id="idStart">Start</string>
 	<string id="idQuit">Quit</string>
