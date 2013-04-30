@@ -37,7 +37,6 @@ package es.eucm.character.gui;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.Button;
-import de.lessvoid.nifty.controls.CheckBox;
 import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
@@ -286,7 +285,7 @@ public class PopUpBuilder {
                 changeSliderColor(baseColor.getColorString());
             }
             else{
-                changeSliderColor("#000000FF");
+                changeSliderColor("#00000000");
                 baseColor=null;
             }
         }
@@ -297,7 +296,7 @@ public class PopUpBuilder {
                 changeSliderColor(detailsColor.getColorString());
             }
             else{
-                changeSliderColor("#000000FF");
+                changeSliderColor("#00000000");
                 detailsColor=null;
             }
         }
