@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.11 a las 10:46:54 AM CEST 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: AM.04.30 a las 09:58:31 AM CEST 
 //
 
 
@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="idPanelRef" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="layer" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="idTexture" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
+ *       &lt;attribute name="text" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -66,6 +67,8 @@ public class TextureType {
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String idTexture;
+    @XmlAttribute(name = "text", required = true)
+    protected String text;
 
     /**
      * Obtiene el valor de la propiedad iconPath.
@@ -161,6 +164,30 @@ public class TextureType {
      */
     public void setIdTexture(String value) {
         this.idTexture = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad text.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * Define el valor de la propiedad text.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setText(String value) {
+        this.text = value;
     }
 
 }

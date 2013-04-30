@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.04.11 a las 10:46:54 AM CEST 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: AM.04.30 a las 09:58:31 AM CEST 
 //
 
 
@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *                 &lt;/sequence>
  *                 &lt;attribute name="idSubTexture" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *                 &lt;attribute name="default" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *                 &lt;attribute name="text" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -109,6 +110,7 @@ public class MultiOptionTextureSubMeshType
      *       &lt;/sequence>
      *       &lt;attribute name="idSubTexture" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
      *       &lt;attribute name="default" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+     *       &lt;attribute name="text" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -134,6 +136,8 @@ public class MultiOptionTextureSubMeshType
         protected String idSubTexture;
         @XmlAttribute(name = "default", required = true)
         protected boolean _default;
+        @XmlAttribute(name = "text", required = true)
+        protected String text;
 
         /**
          * Obtiene el valor de la propiedad path.
@@ -221,6 +225,30 @@ public class MultiOptionTextureSubMeshType
          */
         public void setDefault(boolean value) {
             this._default = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad text.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getText() {
+            return text;
+        }
+
+        /**
+         * Define el valor de la propiedad text.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setText(String value) {
+            this.text = value;
         }
 
     }
