@@ -152,7 +152,7 @@ public class PopUpBuilder {
                 Element image = popupColor.findElementByName("i"+Integer.toString(i%TEXTURES_POPUP));
                 image.setVisible(true);
                 ImageRenderer imager = image.getRenderer(ImageRenderer.class);
-                imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathInMultiOption(textureOrSubMeshSelected, control.getIdsTexturesInMultiOption(textureOrSubMeshSelected).get(i)), false));
+                imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathInMultiOption(textureOrSubMeshSelected, control.getIdsSubTexturesInMultiOption(textureOrSubMeshSelected).get(i)), false));
             }
         }
         for(int i=control.getNumTexturesInMultiOption(textureOrSubMeshSelected);i<((popUpPage+1)*TEXTURES_POPUP);i++){
@@ -175,7 +175,7 @@ public class PopUpBuilder {
     
     public void changePopUpColor(String im, String subStageSelected, String textureOrSubMeshSelected){
         
-        ArrayList<String> mul = control.getIdsTexturesInMultiOption(textureOrSubMeshSelected);
+        ArrayList<String> mul = control.getIdsSubTexturesInMultiOption(textureOrSubMeshSelected);
         int j = Integer.parseInt(im)+popUpPage*TEXTURES_POPUP;
         String sel = mul.get(j);
         control.changeColorMultiOptionTexture(subStageSelected,textureOrSubMeshSelected,sel);

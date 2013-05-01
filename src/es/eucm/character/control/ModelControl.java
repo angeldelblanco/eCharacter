@@ -228,6 +228,32 @@ public class ModelControl {
     }
     
     /*
+     * Receives a input id texture and return a texture´s text 
+     * which are associated with this texture. 
+     */
+    public String getTextTexturesORSubMeshes(String idTexturesORSubMeshes){
+        //Search in textures
+        ArrayList<TextureType> listTextures = (ArrayList<TextureType>) model.getMainMesh().getMainMeshTextures().getBaseShadowTextureOrSimpleTextureOrDoubleTexture();
+        Iterator<TextureType> it = listTextures.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            if(texture.getIdTexture().equals(idTexturesORSubMeshes)){
+                return texture.getText();
+            }            
+        }
+        //Search in submeshes
+        ArrayList<SubMeshType> listSubMeshes = (ArrayList<SubMeshType>) model.getSubMesh();
+        Iterator<SubMeshType> it2 = listSubMeshes.iterator();
+        while(it2.hasNext()){
+            SubMeshType subMesh = it2.next();
+            if(subMesh.getIdSubMesh().equals(idTexturesORSubMeshes)){
+                return subMesh.getText();
+            }            
+        }
+        return null; 
+    }
+    
+    /*
      * Return the list of default textures.
      */
     public ArrayList<TextureType> getDefaultTextures(){
@@ -348,6 +374,19 @@ public class ModelControl {
             listIdTexturesMultiOption.add(optionTexture.getIdSubTexture());
         }
         return listIdTexturesMultiOption;   
+    }
+    
+    public String getTextSubTextureInMultiOption(String idMultiOption, String idSubTexture){
+        MultiOptionTextureType multiOptionTexture = (MultiOptionTextureType) getTexture(idMultiOption);
+        ArrayList<OptionTexture> listOptionTexture = (ArrayList<OptionTexture>) multiOptionTexture.getOptionTexture();
+        Iterator<OptionTexture> it = listOptionTexture.iterator();
+        while(it.hasNext()){
+            OptionTexture optionTexture = it.next();
+            if (optionTexture.getIdSubTexture().equals(idSubTexture)){
+                return optionTexture.getText();
+            }
+        } 
+        return null;
     }
     
     public int getNumTexturesInMultiOption(String idMultiOption){

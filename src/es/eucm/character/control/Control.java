@@ -245,8 +245,16 @@ public class Control {
         return mc.getIconPathTexturesORSubMeshes(idTexturesORSubMeshes);
     }
     
-    public ArrayList<String> getIdsTexturesInMultiOption(String idMultiOption){
+    public String getTextTexturesORSubMeshes(String idTexturesORSubMeshes){
+        return mc.getTextTexturesORSubMeshes(idTexturesORSubMeshes);
+    }
+    
+    public ArrayList<String> getIdsSubTexturesInMultiOption(String idMultiOption){
         return mc.getIdsTexturesInMultiOption(idMultiOption);
+    }
+    
+    public String getTextSubTextureInMultiOption(String idMultiOption, String idSubTexture){
+        return mc.getTextSubTextureInMultiOption(idMultiOption, idSubTexture);
     }
     
     public int getNumTexturesInMultiOption(String idMultiOption){
