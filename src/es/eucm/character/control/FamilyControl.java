@@ -119,6 +119,15 @@ public class FamilyControl{
         return family.getMetadata().getURL();
     }
     
+    public String getIconPathFamily(){
+        if (ResourceLocator.getResource(family.getMetadata().getIconPath()) != null){
+            return family.getMetadata().getIconPath();
+        }
+        else{ 
+            return null;
+        }
+    }
+    
     public String getLanguagePath(){
         return family.getMetadata().getLanguagesPath();
     }
@@ -172,6 +181,59 @@ public class FamilyControl{
             return StageType.animationStage;
         }     
         
+        return null;
+    }
+    
+    public String getIconPathStage(String idStage){
+        ArrayList<ScaleStageType> listScaleStage = (ArrayList<ScaleStageType>) family.getStages().getScaleStage();
+        Iterator<ScaleStageType> it = listScaleStage.iterator();
+        while(it.hasNext()){
+            ScaleStageType sst = it.next();
+            if(sst.getStageLabel().equals(idStage)){
+                String iconPath = sst.getIconPath();
+                if (iconPath!=null){
+                    if (ResourceLocator.getResource(iconPath) != null){
+                        return iconPath;
+                    }
+                    else{ 
+                        return null;
+                    }
+                }
+                return null;
+            }
+        }
+        
+        ArrayList<MultiStageType> listMultiStage = (ArrayList<MultiStageType>) family.getStages().getMultiStage();
+        Iterator<MultiStageType> it2 = listMultiStage.iterator();
+        while(it2.hasNext()){
+            MultiStageType mst = it2.next();
+            if(mst.getStageLabel().equals(idStage)){
+                String iconPath = mst.getIconPath();
+                if (iconPath!=null){
+                    if (ResourceLocator.getResource(iconPath) != null){
+                        return iconPath;
+                    }
+                    else{ 
+                        return null;
+                    }
+                }
+                return null;
+            }
+        }
+        
+        AnimationStageType as = family.getStages().getAnimationStage();
+        if(as.getStageLabel().equals(idStage)){
+            String iconPath = as.getIconPath();
+            if (iconPath!=null){
+                if (ResourceLocator.getResource(iconPath) != null){
+                    return iconPath;
+                }
+                else{ 
+                    return null;
+                }
+            }
+            return null;
+        }
         return null;
     }
     

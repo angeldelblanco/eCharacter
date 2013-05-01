@@ -231,8 +231,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         idBones = control.getIdBonesController(selection);
         buildMenu();
         
-        loadScreen(control.getStagesTypes(selection).toString(),"","");
-        nifty.gotoScreen(control.getStagesTypes(selection).toString());
+        loadScreen(control.getStageTypes(selection).toString(),"","");
+        nifty.gotoScreen(control.getStageTypes(selection).toString());
     }
     
     public void changeScalePage(String steep){
@@ -241,11 +241,11 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void changeTab(String param){
-        if(control.getStagesTypes(selection).toString().equals(StageType.scaleStage.toString())){
+        if(control.getStageTypes(selection).toString().equals(StageType.scaleStage.toString())){
             changePage("0");
             scalesb.changeTab(param, selection);
         }
-        if(control.getStagesTypes(selection).toString().equals(StageType.animationStage.toString())){
+        if(control.getStageTypes(selection).toString().equals(StageType.animationStage.toString())){
             animationsb.changeTab(param, selection);
         }
     }
@@ -272,8 +272,8 @@ public class Gui extends AbstractAppState implements ScreenController {
             }
         }
         if(!selection.equals("")){
-            String stage = control.getStagesTypes(selection).toString();
-            String oldStage = control.getStagesTypes(stages.get(oldIndex)).toString();
+            String stage = control.getStageTypes(selection).toString();
+            String oldStage = control.getStageTypes(stages.get(oldIndex)).toString();
             if(!oldStage.equals(stage)){
                 nifty.gotoScreen(stage);
             }
@@ -393,12 +393,12 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){
-        if(control.getStagesTypes(selection) == StageType.singleStage){
+        if(control.getStageTypes(selection) == StageType.singleStage){
             singlesb.changeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
             textureOrSubMeshSelected = singlesb.getTextureOrSubMesh();
             subStageSelected = singlesb.getSubStage(selection, page, substage);
         }
-        if(control.getStagesTypes(selection) == StageType.multiStage){
+        if(control.getStageTypes(selection) == StageType.multiStage){
             multisb.changeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
             textureOrSubMeshSelected = multisb.getTextureOrSubMesh(substage);
             subStageSelected = multisb.getSubStage(selection, page, substage);
@@ -448,8 +448,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(sel == 1){
                 index = 0;
                 selection = stages.get(index);
-                loadScreen(control.getStagesTypes(selection).toString(),"","");
-                nifty.gotoScreen(control.getStagesTypes(selection).toString());
+                loadScreen(control.getStageTypes(selection).toString(),"","");
+                nifty.gotoScreen(control.getStageTypes(selection).toString());
         }
         if(sel==2){
             loadFamilyScreen();
@@ -463,11 +463,11 @@ public class Gui extends AbstractAppState implements ScreenController {
     /******************************PopUpColorControler*****************************/
     
     public void showWindowChangeColor(String h) throws InterruptedException{
-        if(control.getStagesTypes(selection) == StageType.singleStage){
+        if(control.getStageTypes(selection) == StageType.singleStage){
             textureOrSubMeshSelected = singlesb.getTextureOrSubMesh();
             subStageSelected = singlesb.getSubStage();
         }
-        if(control.getStagesTypes(selection) == StageType.multiStage){
+        if(control.getStageTypes(selection) == StageType.multiStage){
             textureOrSubMeshSelected = multisb.getTextureOrSubMesh(h);
             subStageSelected = multisb.getSubStage(h);
         }

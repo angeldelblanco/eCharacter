@@ -108,6 +108,16 @@ public class Control {
         return screenShotState;
     }
     /*************************Family******************************************/
+    public ArrayList<String> getFamiliesID(){
+        ArrayList<String> listID = new ArrayList<String>();
+        Iterator<FamilyWithPath> it = families.iterator();
+        while(it.hasNext()){
+            FamilyWithPath family = it.next();
+            listID.add(family.getPath());
+        }
+        return listID;
+    }
+    
     public void selectFamily(String idFamily){
         Iterator<FamilyWithPath> it = families.iterator();
         while(it.hasNext()){
@@ -117,15 +127,9 @@ public class Control {
             }
         }
     }
-    
-    public ArrayList<String> getFamiliesID(){
-        ArrayList<String> listID = new ArrayList<String>();
-        Iterator<FamilyWithPath> it = families.iterator();
-        while(it.hasNext()){
-            FamilyWithPath family = it.next();
-            listID.add(family.getPath());
-        }
-        return listID;
+    //Antes de llamar a estos métodos hay que hacer antes un selectFamily
+    public String getIconPathFamily(){
+        return fc.getIconPathFamily();
     }
     
     public String getLanguageFamilyPath(){
@@ -168,8 +172,12 @@ public class Control {
         return fc.getStagesLabels();
     }
     
-    public StageType getStagesTypes(String idStage){
+    public StageType getStageTypes(String idStage){
         return fc.getStagesTypes(idStage);
+    }
+    
+    public String getIconPathStage(String idStage){
+        return fc.getIconPathStage(idStage);
     }
     
     public int getNumCameras(){
