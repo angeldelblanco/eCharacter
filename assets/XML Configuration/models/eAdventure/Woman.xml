@@ -106,7 +106,7 @@
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoSombraOjosGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/SombraOjosGirl.png</path>
 			</simpleTexture>
-			<baseShadowTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idLabios"  text="idTextLabios">
+			<baseShadowTexture idPanelRef="facePanel" layer="2" default="true" idTexture="idLabios"  text="idTextLabios">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoLabiosGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/LabiosRojosGirl.png</path>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/LabiosSombrasGirl.png</shadowPath>

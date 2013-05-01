@@ -27,7 +27,7 @@
 				<path>assets/Textures/Medieval/Male/HairMaleMedieval.png</path>
 			</simpleTexture>
 			<!-- eyes textures-->
-			<simpleTexture idPanelRef="eyesPanel" layer="1" idTexture="idOjosCasual" default="true"  text="idTextojosCasual">
+			<simpleTexture idPanelRef="eyesPanel" layer="1" idTexture="idOjosCasual" default="true"  text="idTextOjosCasual">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoOjosBoy.png</iconPath>
 				<path>assets/Textures/Medieval/Male/EyesMaleCasual.png</path>
 			</simpleTexture>
@@ -76,9 +76,9 @@
 			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_R_Clavicle"/>
 			<bone idControllerRef="hands" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_L_Hand"/>
 			<bone idControllerRef="hands" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_R_Hand"/>
-                        <bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_L_Thigh"/>
-                        <bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_R_Thigh"/>
-                        <bone idControllerRef="feet" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_L_Foot"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_L_Thigh"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_R_Thigh"/>
+			<bone idControllerRef="feet" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_L_Foot"/>
 			<bone idControllerRef="feet" defaultValue="0" minValue="-50" maxValue="50" boneName="Bip01_R_Foot"/>
 		</bones>		
 		<!--Physical Builds-->

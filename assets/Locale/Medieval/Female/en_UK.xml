@@ -5,4 +5,19 @@
 	<string id="idPhysicalBuildLabel3">Thin</string>
 	<string id="idPhysicalBuildLabel4">Tall</string>
 	<string id="idPhysicalBuildLabel5">Small</string>
+	<string id="idTextPielCasual">Casual skin</string>
+	<string id="idTextPielMedieval">Medieval skin</string>
+	<string id="idTextPeloCasual">Casual hair</string>
+	<string id="idTextPeloMedieval">Medieval hair</string>
+	<string id="idTextOjosCasual">Casual eyes</string>
+	<string id="idTextOjosMedieval">Medieval eyes</string>
+	<string id="idTextCamisetaCasual">Casual t-shirt</string>
+	<string id="idTextFaldaCasual">Casual skirt</string>
+	<string id="idTextVestidoMedieval">Medieval dress</string>
+	<string id="idTextZapatosCasual">Casual shoes</string>
+	<string id="idTextZapatosMedieval">Medieval shoes</string>
+	<string id="idTextRopaInterior">Underwear</string>
+	<string id="idTextCinta">Headband</string>
+	<string id="idTextLabiosCasual">Casual lips</string>
+	<string id="idTextLabiosMedieval">Medieval lips</string>
 </metadata>
