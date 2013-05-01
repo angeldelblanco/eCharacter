@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.04.06 a las 04:27:19 PM CEST 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: PM.05.01 a las 01:57:40 PM CEST 
 //
 
 
@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="iconPath" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="boneController" maxOccurs="10">
  *           &lt;complexType>
  *             &lt;complexContent>
@@ -53,10 +54,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "scaleStageType", propOrder = {
+    "iconPath",
     "boneController"
 })
 public class ScaleStageType {
 
+    protected String iconPath;
     @XmlElement(required = true)
     protected List<ScaleStageType.BoneController> boneController;
     @XmlAttribute(name = "stageLabel", required = true)
@@ -66,6 +69,30 @@ public class ScaleStageType {
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String idPanel;
+
+    /**
+     * Obtiene el valor de la propiedad iconPath.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    /**
+     * Define el valor de la propiedad iconPath.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIconPath(String value) {
+        this.iconPath = value;
+    }
 
     /**
      * Gets the value of the boneController property.

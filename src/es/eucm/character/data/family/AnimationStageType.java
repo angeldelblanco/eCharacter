@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.04.06 a las 04:27:19 PM CEST 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: PM.05.01 a las 01:57:40 PM CEST 
 //
 
 
@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="iconPath" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fps" type="{}fpsType" maxOccurs="unbounded"/>
  *         &lt;element name="camera" type="{}cameraType" maxOccurs="unbounded"/>
  *       &lt;/sequence>
@@ -40,17 +41,43 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "animationStageType", propOrder = {
+    "iconPath",
     "fps",
     "camera"
 })
 public class AnimationStageType {
 
+    protected String iconPath;
     @XmlElement(required = true)
     protected List<FpsType> fps;
     @XmlElement(required = true)
     protected List<CameraType> camera;
     @XmlAttribute(name = "stageLabel", required = true)
     protected String stageLabel;
+
+    /**
+     * Obtiene el valor de la propiedad iconPath.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    /**
+     * Define el valor de la propiedad iconPath.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIconPath(String value) {
+        this.iconPath = value;
+    }
 
     /**
      * Gets the value of the fps property.

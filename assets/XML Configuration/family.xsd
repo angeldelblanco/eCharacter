@@ -12,6 +12,7 @@
 							<xs:element name="author" type="xs:string"/>
 							<xs:element name="URL" type="xs:string" minOccurs="0" maxOccurs="1"/>
 							<xs:element name="languagesPath" type="xs:string"/>
+							<xs:element name="iconPath" type="xs:string"/>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
@@ -43,6 +44,7 @@
 	</xs:complexType>
 	<xs:complexType name="multiStageType">
 		<xs:sequence>
+			<xs:element name="iconPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="subStage" type="subStageType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="stageLabel" type="xs:string" use="required"/>
@@ -62,6 +64,7 @@
 	</xs:complexType>
 	<xs:complexType name="scaleStageType">
 		<xs:sequence>
+			<xs:element name="iconPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="boneController" minOccurs="1" maxOccurs="10">
 				<xs:complexType>
 					<xs:attribute name="controllerLabel" type="xs:string" use="required"/>
@@ -74,6 +77,7 @@
 	</xs:complexType>
 	<xs:complexType name="animationStageType">
 		<xs:sequence>
+			<xs:element name="iconPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="fps" type="fpsType" minOccurs="1" maxOccurs="unbounded"/>
 			<xs:element name="camera" type="cameraType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
