@@ -37,7 +37,6 @@ package es.eucm.character.main;
 
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.ResourceLocator;
-import java.io.File;
 import java.io.InputStream;
 import java.util.StringTokenizer;
 

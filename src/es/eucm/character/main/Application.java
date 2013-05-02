@@ -42,8 +42,11 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.scene.CameraNode;
 import com.jme3.system.AppSettings;
 import de.lessvoid.nifty.Nifty;
 import es.eucm.character.control.Control;
@@ -57,7 +60,6 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.misc.VM;
 
 public class Application extends SimpleApplication{
 
@@ -83,7 +85,44 @@ public class Application extends SimpleApplication{
     @Override
     public void simpleInitApp() {
         initKeys();
-        //Disable log of nifty
+        disableLogNifty();        
+                
+        setDisplayFps(false);
+        setDisplayStatView(false);
+        
+        // Register locator to assetManager
+        assetManager.registerLocator("."+File.separator, ResourceLocator.class);
+        
+        //Add nifty
+        niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
+        guiViewPort.addProcessor(niftyDisplay);
+        
+        screenShotState = new ScreenshotMyAppState();        
+        control = new Control(config,rootNode,cam,assetManager,this, guiViewPort, niftyDisplay, screenShotState);
+        gui = new Gui(control,config);
+        
+        //Activate the Nifty-JME integration
+        nifty = niftyDisplay.getNifty();
+        nifty.fromXml("assets/Interface/screen.xml", "start", gui);
+        //nifty.setDebugOptionPanelColors(true);
+        
+        //Attach nifty-control and screenshot
+        stateManager.attach(gui);
+        stateManager.attach(screenShotState);  
+        
+        //Disable flyCam
+        flyCam.setDragToRotate(true); // you need the mouse for clicking now
+        flyCam.setEnabled(false);
+    }
+    
+    public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
+    {}
+ 
+    public void onAnimChange(AnimControl control, AnimChannel channel, String animName) 
+    {}
+    
+    //Disable log of nifty
+    private void disableLogNifty(){
         Logger root = Logger.getLogger("");
         Handler[] handlers = root.getHandlers();
         for (int i = 0; i < handlers.length; i++) {
@@ -91,142 +130,42 @@ public class Application extends SimpleApplication{
                 ((ConsoleHandler) handlers[i]).setLevel(Level.WARNING);
             }
         }
-                
-        setDisplayFps(false);
-        setDisplayStatView(false);
-        
-        // Register locator to assetManager
-        //assetManager.registerLocator("."+File.separator, FileLocator.class);
-        assetManager.registerLocator("."+File.separator, ResourceLocator.class);
-        
-        niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
-        guiViewPort.addProcessor(niftyDisplay);
-        screenShotState = new ScreenshotMyAppState();
-        
-        control = new Control(config,rootNode,assetManager,this, guiViewPort, niftyDisplay, screenShotState);
-        gui = new Gui(control,config);
-        /**
-        * Åctivate the Nifty-JME integration: 
-        */
-        nifty = niftyDisplay.getNifty();
-        nifty.fromXml("assets/Interface/screen.xml", "start", gui);
-        //nifty.setDebugOptionPanelColors(true);
-
-        stateManager.attach(gui);
-        stateManager.attach(screenShotState);
-        
-        
-        
-        // Camera
-        //setCamera(0.0f);
-        //setCamera(-(float)Math.PI/4);
-        /*System.out.println("Eye :"+cam.getLocation().getX()+" "+cam.getLocation().getY()+" "+cam.getLocation().getZ());
-        System.out.println("Look :"+cam.getLeft().getX()+" "+cam.getLeft().getY()+" "+cam.getLeft().getZ());
-        System.out.println("Up :"+cam.getUp().getX()+" "+cam.getUp().getY()+" "+cam.getUp().getZ());
-        
-        Vector3f newLocation = new Vector3f(cam.getLocation().getX(),1.0f,cam.getLocation().getZ());
-        Vector3f newUp = new Vector3f(0.0f,0.5f,-1.0f);
-        cam.setFrame(newLocation, cam.getLeft(),newUp,cam.getDirection());
-       
-        System.out.println("Eye :"+cam.getLocation().getX()+" "+cam.getLocation().getY()+" "+cam.getLocation().getZ());
-        System.out.println("Look :"+cam.getLeft().getX()+" "+cam.getLeft().getY()+" "+cam.getLeft().getZ());
-        System.out.println("Up :"+cam.getUp().getX()+" "+cam.getUp().getY()+" "+cam.getUp().getZ());*/
-        
-        //cam.setLocation(new Vector3f(0.0f, 3.0f, 10.0f));
-        //cam.setAxes(cam.getLeft(), new Vector3f(0.0f, 0.7f, 0.0f), new Vector3f(0.0f, -0.7f, -0.7f));
-        //cam.setRotation(new Quaternion(0.0f, 0.75f, 0.0f, 0.0f));
-        
-        flyCam.setDragToRotate(true); // you need the mouse for clicking now
-        flyCam.setEnabled(false);
     }
     
-    private void setCamera(float ang){
-        Vector3f look = new Vector3f(0.0f,0.0f,0.0f);
-        Vector3f eye = new Vector3f(0.0f,0.0f,10.0f);
-        Vector3f direction = look.subtract(eye).normalize();
-        Vector3f up_igr = new Vector3f(0.0f,1.0f,0.0f);
-        //Esto es una rotacion en el eje Z
-        /*float newX = up_igr.getX()*(float)Math.cos(ang) - up_igr.getY()*(float)Math.sin(ang);
-        float newY = up_igr.getX()*(float)Math.sin(ang) + up_igr.getY()*(float)Math.cos(ang);
-        float newZ = up_igr.getZ();*/
+    // Custom Keybindings: Mapping a named action to a key input. 
+    private void initKeys() {        
+        //Translate camera
+        inputManager.addMapping("TranslateRight", new KeyTrigger(KeyInput.KEY_RIGHT));
+        inputManager.addListener(actionListener,"TranslateRight");
+        inputManager.addMapping("TranslateLef", new KeyTrigger(KeyInput.KEY_LEFT));
+        inputManager.addListener(actionListener,"TranslateLeft");
+        inputManager.addMapping("TranslateUp", new KeyTrigger(KeyInput.KEY_UP));
+        inputManager.addListener(actionListener,"TranslateUp");
+        inputManager.addMapping("TranslateDown", new KeyTrigger(KeyInput.KEY_DOWN));
+        inputManager.addListener(actionListener,"TranslateDown");
         
-        //Esto es una rotacion en el eje Y
-        /*float newX = up_igr.getX()*(float)Math.cos(ang) + up_igr.getZ()*(float)Math.sin(ang);
-        float newY = up_igr.getY();
-        float newZ = - up_igr.getX()*(float)Math.sin(ang) + up_igr.getZ()*(float)Math.cos(ang);*/
-        
-        //Esto es una rotacion en el eje X
-        float newX = up_igr.getX();
-        float newY = up_igr.getY()*(float)Math.cos(ang) - up_igr.getZ()*(float)Math.sin(ang);
-        float newZ = up_igr.getY()*(float)Math.sin(ang) + up_igr.getZ()*(float)Math.cos(ang);
-        up_igr.set(newX, newY, newZ);
-        
-        //Vector3f left = ((up_igr.cross(direction)).negate()).normalize();
-        Vector3f left = ((up_igr.cross(direction))).normalize();
-        Vector3f up = direction.cross(left);
-        //Vector3f up = direction.cross(left).negate();
-        
-        System.out.println("*******************ANTES****************");
-        System.out.println("Up: "+cam.getUp().toString());
-        System.out.println("Direction: "+cam.getDirection().toString());
-        System.out.println("Left: "+cam.getLeft().toString());
-        
-        cam.setAxes(left, up, direction);        
-        
-        System.out.println("*******************DESPUES****************");
-        System.out.println("Up: "+cam.getUp().toString());
-        System.out.println("Direction: "+cam.getDirection().toString());
-        System.out.println("Left: "+cam.getLeft().toString());
-    }
-    
-     public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
-    {}
- 
-    public void onAnimChange(AnimControl control, AnimChannel channel, String animName) 
-    {}
-    
-     /** Custom Keybindings: Mapping a named action to a key input. */
-    private void initKeys() {
-        inputManager.addMapping("RotateLeft", new KeyTrigger(KeyInput.KEY_LEFT));
-        inputManager.addMapping("RotateRight", new KeyTrigger(KeyInput.KEY_RIGHT));
-        inputManager.addMapping("RestartRotate", new KeyTrigger(KeyInput.KEY_SPACE));
-        inputManager.addListener(actionListener, "RotateLeft");
-        inputManager.addListener(actionListener, "RotateRight");
-        inputManager.addListener(actionListener, "RestartRotate");
+        //Views camera
+        inputManager.addMapping("Frontal",new KeyTrigger(KeyInput.KEY_1));
+        inputManager.addListener(actionListener, "Frontal");
+        inputManager.addMapping("2D",new KeyTrigger(KeyInput.KEY_2));
+        inputManager.addListener(actionListener, "2D");
   }
 
-    /** Definining the named action that can be triggered by key inputs. */
+    // Definining the named action that can be triggered by key inputs.
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
-            if (name.equals("RotateLeft") && !keyPressed) {
-                
-                /*float nx = (float) (cam.getLocation().getX() * Math.cos(0.1f) +
-                                    cam.getLocation().getZ() * Math.sin(0.1f));
-                float ny = cam.getLocation().getY();
-                float nz = (float) (-cam.getLocation().getX() * Math.sin(0.1f) +
-                                    cam.getLocation().getZ() * Math.cos(0.1f));
-                
-                cam.setLocation(new Vector3f(nx,ny,nz));*/
-                control.rotateModel(-10.0f);
+            if (name.equals("Frontal") && !keyPressed) {
+               Vector3f position = new Vector3f(0.0f,0.0f,10.f);
+               Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+               Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+               control.setViewCamera(position,direction,up);
             }
-            if (name.equals("RotateRight") && !keyPressed){
-                
-                /*float nx = (float) (cam.getLocation().getX() * Math.cos(-1.0f) +
-                                    cam.getLocation().getZ() * Math.sin(-1.0f));
-                float nz = (float) (-cam.getLocation().getX() * Math.sin(-1.0f) +
-                                    cam.getLocation().getZ() * Math.cos(-1.0f));
-                
-                cam.setLocation(new Vector3f(nx,cam.getLocation().getY(),nz));*/
-                
-                control.rotateModel(10.0f);
-            }
-            if (name.equals("RestartRotate") && !keyPressed){
-                control.restartRotateModel();
+            if (name.equals("2D") && !keyPressed) {
+                Vector3f position = new Vector3f(-3.0f,3.0f,10.0f);
+                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+                control.setViewCamera(position,direction,up);
             }
         }
     };
-    
-    @Override
-    public void simpleUpdate(float tpf) {
-    }
 }

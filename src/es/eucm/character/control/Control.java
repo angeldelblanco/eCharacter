@@ -37,7 +37,9 @@
 package es.eucm.character.control;
 
 import com.jme3.asset.AssetManager;
+import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import es.eucm.character.data.model.EscalationType;
@@ -62,6 +64,7 @@ public class Control {
     
     private Configuration config;
     private Node rootNode;
+    private Camera camera;
     private AssetManager assetManager;
     private Application app;
     private ViewPort guiViewPort;
@@ -74,7 +77,7 @@ public class Control {
     private ModelControl mc;
     private SceneControl sc;
     
-    public Control(Configuration config, Node rootNode, AssetManager assetManager, Application app, 
+    public Control(Configuration config, Node rootNode,Camera camera,AssetManager assetManager, Application app, 
             ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState){
         this.config = config;
         String familiesPath = this.config.getProperty(Configuration.FAMILIES_PATH);
@@ -82,6 +85,7 @@ public class Control {
         families = xmlReader.readXML();
         this.assetManager = assetManager;
         this.rootNode = rootNode;
+        this.camera = camera;
         this.app = app;
         this.guiViewPort = guiViewPort;
         this.niftyDisplay = niftyDisplay;
@@ -94,6 +98,10 @@ public class Control {
 
     public Node getRootNode() {
         return rootNode;
+    }
+    
+    public Camera getCamera(){
+        return camera;
     }
 
     public ViewPort getGuiViewPort() {
@@ -416,14 +424,6 @@ public class Control {
         return fc.isMultiSelection(labelStage,idPanel);
     }
     
-    public void rotateModel(float inc){
-        sc.rotateModel(inc);
-    }
-    
-    public void restartRotateModel(){
-        sc.restartRotateModel();
-    }
-    
     public void clickAnimation(String animationName, boolean check){
         sc.clickAnimation(animationName, check);
     }
@@ -458,5 +458,9 @@ public class Control {
     
     public void clickAllQualities(boolean check){
         sc.clickAllQualities(check);
+    }
+    
+    public void setViewCamera(Vector3f position,Vector3f direction,Vector3f up){
+        sc.setViewCamera(position,direction,up);
     }
 }

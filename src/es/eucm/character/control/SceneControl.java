@@ -45,6 +45,7 @@ import com.jme3.material.Material;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
+import com.jme3.scene.CameraNode;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture2D;
@@ -66,6 +67,7 @@ import java.util.Set;
 
 public class SceneControl {
     private Control control;
+    private CameraNode cameraNode;
     private Configuration config;
     private Spatial mainMesh;
     private HashMap<String,Spatial> subMeshes;
@@ -77,7 +79,6 @@ public class SceneControl {
     private AnimControl animControl;
     private Vector3f vectorScaleBase;
     private TexturesSubMeshesData texturesSubMeshesData;
-    private float angRotate;
     private DirectionalLight directionalLight;
     
     public SceneControl(Control control,Configuration config,String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh,
@@ -90,7 +91,6 @@ public class SceneControl {
         this.cameras = new HashMap<String,Boolean>();
         this.qualities = new HashMap<String,Boolean>();
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
-        this.angRotate = 0.0f;
         
         this.directionalLight = new DirectionalLight();
         this.directionalLight.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
@@ -108,6 +108,13 @@ public class SceneControl {
         this.control.getRootNode().attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
         loadSubMeshes();
+        
+        //Setting the camera´s inital configuration
+        cameraNode = new CameraNode("camera",control.getCamera());
+        cameraNode.setLocalTranslation(-3.0f,3.0f,10.0f);
+        cameraNode.lookAt(new Vector3f(control.getCamera().getDirection()), 
+                          new Vector3f(control.getCamera().getUp()));
+        control.getRootNode().attachChild(cameraNode);
        
         this.animControl = this.mainMesh.getControl(AnimControl.class);
         this.animChannel = this.animControl.createChannel();
@@ -278,8 +285,10 @@ public class SceneControl {
         Image load = loader.load(bi, true);
         Texture2D texture = new Texture2D(load);
         
-        mat = new Material(control.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md"); 
-        mat.setTexture("ColorMap",texture);
+        /*mat = new Material(control.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md"); 
+        mat.setTexture("ColorMap",texture);*/
+        mat = new Material(control.getAssetManager(), "Common/MatDefs/Light/Lighting.j3md"); 
+        mat.setTexture("DiffuseMap",texture);
         mainMesh.setMaterial(mat);
     }
     
@@ -332,17 +341,6 @@ public class SceneControl {
     
     public boolean isCheckedSubMesh(String idPanel, String idSubMesh){
         return texturesSubMeshesData.isCheckedSubMesh(idPanel, idSubMesh);
-    }
-    
-    public void rotateModel(float inc){
-        angRotate += inc;
-        mainMesh.rotate(0,0,FastMath.DEG_TO_RAD*inc);
-    }
-    
-    public void restartRotateModel(){
-        float ang = 360 - (angRotate % 360.0f);
-        mainMesh.rotate(0,0,FastMath.DEG_TO_RAD*ang);
-        angRotate = 0.0f;
     }
     
     public void screenShot(){
@@ -469,5 +467,11 @@ public class SceneControl {
         while(it.hasNext()){
             qualities.put(it.next(),check);
         }
+    }
+    
+    //-----------------------CAMERA CONTROLLER--------------------------------//
+    public void setViewCamera(Vector3f position,Vector3f direction,Vector3f up){
+        cameraNode.setLocalTranslation(position);
+        cameraNode.lookAt(direction,up);
     }
 }
