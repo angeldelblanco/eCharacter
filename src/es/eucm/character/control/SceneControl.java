@@ -285,10 +285,10 @@ public class SceneControl {
         Image load = loader.load(bi, true);
         Texture2D texture = new Texture2D(load);
         
-        /*mat = new Material(control.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md"); 
-        mat.setTexture("ColorMap",texture);*/
-        mat = new Material(control.getAssetManager(), "Common/MatDefs/Light/Lighting.j3md"); 
-        mat.setTexture("DiffuseMap",texture);
+        mat = new Material(control.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md"); 
+        mat.setTexture("ColorMap",texture);
+        /*mat = new Material(control.getAssetManager(), "Common/MatDefs/Light/Lighting.j3md"); 
+        mat.setTexture("DiffuseMap",texture);*/
         mainMesh.setMaterial(mat);
     }
     

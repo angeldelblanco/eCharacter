@@ -137,12 +137,18 @@ public class Application extends SimpleApplication{
         //Translate camera
         inputManager.addMapping("TranslateRight", new KeyTrigger(KeyInput.KEY_RIGHT));
         inputManager.addListener(actionListener,"TranslateRight");
-        inputManager.addMapping("TranslateLef", new KeyTrigger(KeyInput.KEY_LEFT));
+        inputManager.addMapping("TranslateLeft", new KeyTrigger(KeyInput.KEY_LEFT));
         inputManager.addListener(actionListener,"TranslateLeft");
         inputManager.addMapping("TranslateUp", new KeyTrigger(KeyInput.KEY_UP));
         inputManager.addListener(actionListener,"TranslateUp");
         inputManager.addMapping("TranslateDown", new KeyTrigger(KeyInput.KEY_DOWN));
         inputManager.addListener(actionListener,"TranslateDown");
+        
+        //Rotate camera
+        inputManager.addMapping("RotateRight", new KeyTrigger(KeyInput.KEY_S));
+        inputManager.addListener(actionListener,"RotateRight");
+        inputManager.addMapping("RotateLeft", new KeyTrigger(KeyInput.KEY_A));
+        inputManager.addListener(actionListener,"RotateLeft");
         
         //Views camera
         inputManager.addMapping("Frontal",new KeyTrigger(KeyInput.KEY_1));
@@ -154,18 +160,59 @@ public class Application extends SimpleApplication{
     // Definining the named action that can be triggered by key inputs.
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
+            if(name.equals("TranslateRight") && !keyPressed){
+                Vector3f position = cam.getLocation().add(1.0f, 0.0f, 0.0f);
+                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+                control.setViewCamera(position, direction, up);
+            }
+            if(name.equals("TranslateLeft") && !keyPressed){
+                Vector3f position = cam.getLocation().subtract(1.0f, 0.0f, 0.0f);
+                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+                control.setViewCamera(position, direction, up);
+            }
+            if(name.equals("TranslateUp") && !keyPressed){
+                Vector3f position = cam.getLocation().add(0.0f, 1.0f, 0.0f);
+                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+                control.setViewCamera(position, direction, up);
+            }
+            if(name.equals("TranslateDown") && !keyPressed){
+                Vector3f position = cam.getLocation().subtract(0.0f, 1.0f, 0.0f);
+                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+                control.setViewCamera(position, direction, up);
+            }
+            if(name.equals("RotateRight") && !keyPressed){
+                Quaternion quat = new Quaternion();
+                quat.fromAngleAxis(FastMath.DEG_TO_RAD* 10.0f, Vector3f.UNIT_Y);
+                Vector3f position = quat.mult(cam.getLocation());
+                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+                control.setViewCamera(position, direction, up);
+            }
+            if(name.equals("RotateLeft") && !keyPressed){
+                Quaternion quat = new Quaternion();
+                quat.fromAngleAxis(FastMath.DEG_TO_RAD* -10.0f, Vector3f.UNIT_Y);
+                Vector3f position = quat.mult(cam.getLocation());
+                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+                control.setViewCamera(position, direction, up);
+            }
             if (name.equals("Frontal") && !keyPressed) {
-               Vector3f position = new Vector3f(0.0f,0.0f,10.f);
-               Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-               Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-               control.setViewCamera(position,direction,up);
+                Vector3f position = new Vector3f(0.0f,0.0f,10.f);
+                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+                control.setViewCamera(position, direction, up);
             }
             if (name.equals("2D") && !keyPressed) {
                 Vector3f position = new Vector3f(-3.0f,3.0f,10.0f);
                 Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
                 Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-                control.setViewCamera(position,direction,up);
+                control.setViewCamera(position, direction, up);
             }
+            
         }
     };
 }
