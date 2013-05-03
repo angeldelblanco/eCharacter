@@ -51,14 +51,14 @@
 			<fps qualityLabel="idQualityLabel2" fpsValue="12"/>
 			<fps qualityLabel="idQualityLabel3" fpsValue="6"/>
 			<camera cameraLabel="idCameraLabel1">
-				<upAxis valueX="2.0" valueY="2.0" valueZ="2.0"/>
-				<location valueX="2.0" valueY="2.0" valueZ="2.0"/>
-				<direction valueX="2.0" valueY="2.0" valueZ="2.0"/>
+				<upAxis valueX="0.0" valueY="1.0" valueZ="0.0"/>
+				<location valueX="0.0" valueY="0.0" valueZ="10.0"/>
+				<direction valueX="0.0" valueY="0.0" valueZ="-1.0"/>
 			</camera>
 			<camera cameraLabel="idCameraLabel2">
-				<upAxis valueX="2.0" valueY="2.0" valueZ="2.0"/>
-				<location valueX="2.0" valueY="2.0" valueZ="2.0"/>
-				<direction valueX="2.0" valueY="2.0" valueZ="2.0"/>
+				<upAxis valueX="0.0" valueY="1.0" valueZ="0.0"/>
+				<location valueX="-3.0" valueY="3.0" valueZ="10.0"/>
+				<direction valueX="0.0" valueY="0.0" valueZ="-1.0"/>
 			</camera>
 		</animationStage>
 	</stages>
