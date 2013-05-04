@@ -44,6 +44,7 @@ import es.eucm.character.data.model.SimpleTextureType;
 import es.eucm.character.data.model.SubMeshType;
 import es.eucm.character.data.model.TextureType;
 import es.eucm.character.types.ElementType;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -283,6 +284,17 @@ public class TexturesSubMeshesData{
             subMeshesData.get(idPanel).changeColorMultiOptionTexture(idTextureOrSubmesh, idSubTexture);
         }
     }
+    
+    public ArrayList<Color> getColorTexture(String idPanel, String idTextureOrSubmesh, ElementType type){
+        if (type == ElementType.Texture){
+            return texturesData.get(idPanel).getColorTexture(idTextureOrSubmesh);
+        }
+        else if(type == ElementType.SubMesh){
+            return subMeshesData.get(idPanel).getColorTexture(idTextureOrSubmesh);
+        }
+        return null;
+    }
+    
     public boolean isCheckedTexture(String idPanel, String idTexture){
         return texturesData.get(idPanel).ischecked(idTexture);
     }

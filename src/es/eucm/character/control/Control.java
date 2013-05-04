@@ -57,6 +57,7 @@ import es.eucm.character.main.Application;
 import es.eucm.character.types.ElementType;
 import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -383,6 +384,23 @@ public class Control {
         if (type != null){
             sc.changeColorMultiOptionTexture(idPanelRef, idTextureOrSubMesh, type, idSubTexture);
         }
+    }
+    
+    /* Return the last color selected by user. 
+     * If texture is BaseShadow, the ArrayList only has one element.
+     * if texture is BaseShadow, return null if there isn't any color selected 
+     * If texture is DobleTexture, the ArrayList has two elements (the first element is color of base, and the second element is color of details).
+     * If texture is DobleTexture, return null if there isn't any color selected or return the ArrayList with one of the elemtns null, when 
+     * the base or details haven't any color slected. 
+     * ArrayList(0) -> Base
+     * ArrayList(1) -> Details
+     */
+    public ArrayList<Color> getColorTexture(String idPanelRef, String idTextureOrSubMesh){
+        ElementType type = getElementType(idTextureOrSubMesh);
+        if (type != null){
+            return sc.getColorTexture(idPanelRef, idTextureOrSubMesh, type);
+        }
+        return null;
     }
     
     public void screenShot(){

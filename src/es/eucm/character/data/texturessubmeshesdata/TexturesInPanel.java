@@ -127,6 +127,9 @@ public class TexturesInPanel implements ElementInPanel {
             if (texture.getIdTexture().equals(idTexture)){
                 ArrayList<BufferedImage> bi = ColoringTextureMainMesh.coloringImageBaseShadow(texture, new Color(red, green, blue));
                 textures.get(texture).setListBufferedImage(bi);
+                ArrayList<Color> colors = new ArrayList<Color>();
+                colors.add(new Color(red, green, blue));
+                textures.get(texture).setListColors(colors);
             }
         }        
     }
@@ -147,6 +150,20 @@ public class TexturesInPanel implements ElementInPanel {
                 listBi.add(biBaseOriginal);
                 listBi.add(bi);
                 textures.get(texture).setListBufferedImage(listBi);
+                
+                if (textures.get(texture).getListColors() == null){
+                    ArrayList<Color> colors = new ArrayList<Color>();
+                    colors.add(null);
+                    colors.add(new Color(red, green, blue));
+                    textures.get(texture).setListColors(colors);
+                }
+                else{
+                    Color colorBase = textures.get(texture).getListColors().get(0);
+                    ArrayList<Color> colors = new ArrayList<Color>();
+                    colors.add(colorBase);
+                    colors.add(new Color(red, green, blue));
+                    textures.get(texture).setListColors(colors);
+                }
             }
         }
     }
@@ -167,6 +184,20 @@ public class TexturesInPanel implements ElementInPanel {
                 listBi.add(bi);
                 listBi.add(biDetailsOriginal);
                 textures.get(texture).setListBufferedImage(listBi);
+                
+                if (textures.get(texture).getListColors() == null){
+                    ArrayList<Color> colors = new ArrayList<Color>();
+                    colors.add(new Color(red, green, blue));
+                    colors.add(null);
+                    textures.get(texture).setListColors(colors);
+                }
+                else{
+                    Color colorDetails = textures.get(texture).getListColors().get(1);
+                    ArrayList<Color> colors = new ArrayList<Color>();
+                    colors.add(new Color(red, green, blue));
+                    colors.add(colorDetails);
+                    textures.get(texture).setListColors(colors);
+                }
             }
         }
     }
@@ -182,6 +213,19 @@ public class TexturesInPanel implements ElementInPanel {
                 textures.get(texture).setListBufferedImage(bi);
             }
         }
+    }
+    
+    @Override
+    public ArrayList<Color> getColorTexture(String idTexture) {
+        Set<TextureType> keySet = textures.keySet();
+        Iterator<TextureType> it = keySet.iterator();
+        while(it.hasNext()){
+            TextureType texture = it.next();
+            if (texture.getIdTexture().equals(idTexture)){
+                return textures.get(texture).getListColors();
+            }
+        }
+        return null;
     }
     
     public ArrayList<BufferedImage> getListBufferedImage(TextureType texture){

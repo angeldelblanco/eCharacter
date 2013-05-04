@@ -127,6 +127,9 @@ public class SubMeshesInPanel implements ElementInPanel{
             if (subMesh.getIdSubMesh().equals(idSubMesh)){
                 ArrayList<BufferedImage> bi = ColoringTextureSubMesh.coloringImageBaseShadow(subMesh.getSubMeshTexture().getBaseShadowTextureSubMesh(), new Color(red, green, blue));
                 subMeshes.get(subMesh).setListBufferedImage(bi);
+                ArrayList<Color> colors = new ArrayList<Color>();
+                colors.add(new Color(red, green, blue));
+                subMeshes.get(subMesh).setListColors(colors);
             }
         }        
     }
@@ -147,6 +150,20 @@ public class SubMeshesInPanel implements ElementInPanel{
                 listBi.add(biBaseOriginal);
                 listBi.add(bi);
                 subMeshes.get(subMesh).setListBufferedImage(listBi);
+                
+                if (subMeshes.get(subMesh).getListColors() == null){
+                    ArrayList<Color> colors = new ArrayList<Color>();
+                    colors.add(null);
+                    colors.add(new Color(red, green, blue));
+                    subMeshes.get(subMesh).setListColors(colors);
+                }
+                else{
+                    Color colorBase = subMeshes.get(subMesh).getListColors().get(0);
+                    ArrayList<Color> colors = new ArrayList<Color>();
+                    colors.add(colorBase);
+                    colors.add(new Color(red, green, blue));
+                    subMeshes.get(subMesh).setListColors(colors);
+                }
             }
         }
     }
@@ -167,6 +184,20 @@ public class SubMeshesInPanel implements ElementInPanel{
                 listBi.add(bi);
                 listBi.add(biDetailsOriginal);
                 subMeshes.get(subMesh).setListBufferedImage(listBi);
+                
+                if (subMeshes.get(subMesh).getListColors() == null){
+                    ArrayList<Color> colors = new ArrayList<Color>();
+                    colors.add(new Color(red, green, blue));
+                    colors.add(null);
+                    subMeshes.get(subMesh).setListColors(colors);
+                }
+                else{
+                    Color colorDetails = subMeshes.get(subMesh).getListColors().get(1);
+                    ArrayList<Color> colors = new ArrayList<Color>();
+                    colors.add(new Color(red, green, blue));
+                    colors.add(colorDetails);
+                    subMeshes.get(subMesh).setListColors(colors);
+                }
             }
         }
     }
@@ -182,6 +213,19 @@ public class SubMeshesInPanel implements ElementInPanel{
                 subMeshes.get(subMesh).setListBufferedImage(bi);
             }
         }
+    }
+    
+    @Override
+    public ArrayList<Color> getColorTexture(String idSubMesh) {
+        Set<SubMeshType> keySet = subMeshes.keySet();
+        Iterator<SubMeshType> it = keySet.iterator();
+        while(it.hasNext()){
+            SubMeshType subMesh = it.next();
+            if (subMesh.getIdSubMesh().equals(idSubMesh)){
+                return subMeshes.get(subMesh).getListColors();
+            }
+        }
+        return null;
     }
 
     public BufferedImage getSubMeshTexture(String idSubMesh) {

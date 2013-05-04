@@ -36,6 +36,7 @@
 
 package es.eucm.character.data.texturessubmeshesdata;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -43,6 +44,7 @@ public class AttrTexture {
     
     private boolean selected;
     private ArrayList<BufferedImage> listBufferedImage;
+    private ArrayList<Color> listColors;
 
     public AttrTexture(boolean selected){
         this.selected = selected;
@@ -62,5 +64,13 @@ public class AttrTexture {
 
     public void setListBufferedImage(ArrayList<BufferedImage> listBufferedImage) {
         this.listBufferedImage = listBufferedImage;        
+    }
+
+    public ArrayList<Color> getListColors() {
+        return listColors;
+    }
+
+    public void setListColors(ArrayList<Color> listColors) {
+        this.listColors = listColors;
     }
 }

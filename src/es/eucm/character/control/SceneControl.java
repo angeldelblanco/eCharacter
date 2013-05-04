@@ -59,6 +59,7 @@ import es.eucm.character.export.ScreenshotThread;
 import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.types.ElementType;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -275,6 +276,10 @@ public class SceneControl {
         loadTexture();
         loadSubMeshes();
         attachAllChild();  
+    }
+    
+    public ArrayList<Color> getColorTexture(String idPanel, String idTextureOrSubMesh, ElementType type){
+        return texturesSubMeshesData.getColorTexture(idPanel, idTextureOrSubMesh, type);
     }
     
     private void loadTexture(){

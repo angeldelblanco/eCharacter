@@ -36,6 +36,9 @@
 
 package es.eucm.character.data.texturessubmeshesdata;
 
+import java.awt.Color;
+import java.util.ArrayList;
+
 public interface ElementInPanel {
 
     void changeColorBaseShadow(String idElement, float red, float green, float blue);
@@ -45,6 +48,8 @@ public interface ElementInPanel {
     void changeColorDoubleTextureDetails(String idElement, float red, float green, float blue);
 
     void changeColorMultiOptionTexture(String idElement, String idSubTexture);
+    
+    ArrayList<Color> getColorTexture(String idElement);
 
     void changeElement(String idElement);
 
