@@ -57,11 +57,11 @@ import org.w3c.dom.Element;
 public class GenerateAnimation {
 
     
-    public static void createAnimation(String folderPath, HashMap<String, ArrayList<String>> animationsData){
+    public static void createAnimation(String folderPath, HashMap<String, ArrayList<String>> animationsData, ZIPWritter zipWritter){
         Iterator<String> itNames = animationsData.keySet().iterator();
         while(itNames.hasNext()){
             String nameAnimation = itNames.next();
-            String fileEaaPath = folderPath + "/" + nameAnimation + ".eaa";
+            String fileEaaPath = folderPath + File.separator + nameAnimation + ".eaa";
             try{
                 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance( );
                 TransformerFactory tf = TransformerFactory.newInstance( );
@@ -106,6 +106,7 @@ public class GenerateAnimation {
                 transformer.transform(new DOMSource(doc), new StreamResult(writeFile));
                 writeFile.close();
                 fout.close();
+                zipWritter.saveFile(fileEaaPath, nameAnimation + ".eaa");
             }
             catch( Exception e ) {
                 System.out.println("error");
@@ -165,10 +166,10 @@ public class GenerateAnimation {
         }
     }
     
-    public void saveZIP(String filename, String folder){
+    /*public void saveZIP(String filename, String folder){
         ZIPCreator zipCreator = new ZIPCreator();
         zipCreator.createZIP(filename, folder);
-    }
+    }*/
     
     public static void cleanDirectory(String folder){        
         File f = new File(folder);

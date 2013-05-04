@@ -37,13 +37,9 @@ package es.eucm.character.export;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
@@ -54,11 +50,13 @@ public class ScreenshotWritter extends Thread{
     private boolean terminate;
     private int xMin, xMax, yMin, yMax;
     private ArrayList<String> listAnimationsName;
+    private ZIPWritter zipWritter;
     
-    public ScreenshotWritter(String exportPath, ArrayList<String> listAnimationsName, 
+    public ScreenshotWritter(String exportPath, ArrayList<String> listAnimationsName, ZIPWritter zipWritter,
             int xMin, int xMax, int yMin, int yMax){
         this.exportPath = exportPath;
         this.listAnimationsName = listAnimationsName;
+        this.zipWritter = zipWritter;
         this.xMin = xMin;
         this.xMax = xMax;
         this.yMin = yMin;
@@ -83,11 +81,13 @@ public class ScreenshotWritter extends Thread{
             BufferedImage img = null;
             File temp = null;
             try {
-                temp = new File(exportPath+File.separator+it.next());
+                String name = it.next();
+                temp = new File(exportPath+File.separator+name);
                 img = ImageIO.read(temp);
                 temp.delete();
                 BufferedImage biCut = img.getSubimage(xMin, yMin, xMax-xMin, yMax-yMin);
                 ImageIO.write(biCut, "png", temp);
+                zipWritter.saveFile(temp, name);
             } catch (IOException e) {
                 
             }

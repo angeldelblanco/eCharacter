@@ -40,55 +40,82 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ZIPCreator {
+public class ZIPWritter {
     
     private int BUFFER = 1024;
+    private ZipOutputStream out;
+    private byte data[];
     
-    public ZIPCreator(){}
-    
-    public void createZIP(String filename, String folder){
+    public ZIPWritter(String filename){
         try {
-            //Nuestro InputStream
-            BufferedInputStream origin = null;
             //Declaramos el FileOutputStream para guardar el archivo
             FileOutputStream dest = new FileOutputStream(filename);
             //Indicamos que será un archivo ZIP
-            ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
+            out = new ZipOutputStream(new BufferedOutputStream(dest));
             //Indicamos que el archivo tendrá compresión
             out.setMethod(ZipOutputStream.DEFLATED);
                 //Indicamos que el archivo NO tendrá compresión
                 //out.setMethod(ZipOutputStream.STORED);
-            byte data[] = new byte[BUFFER];
-            // Creamos la referencia de la carpeta a leer
-            File f = new File(folder);
-            // Guarda los nombres de los archivos de la carpeta a leer
-            String files[] = f.list();
-            // Muestra el listado de archivos de la carpeta a leer
-            for (int i=0; i<files.length; i++) {
-                //Es para no guardar en el ZIP el fichero Thumbs.db
-                if (!files[i].equals("Thumbs.db")){
-                    System.out.println("Agregando al ZIP: "+files[i]);
-                    //Creamos el objeto a guardar para cada uno de los elementos del listado
-                    FileInputStream fi = new FileInputStream(folder+"/"+files[i]);
-                    origin = new BufferedInputStream(fi, BUFFER);
-                    ZipEntry entry = new ZipEntry(files[i]);
-                    //Guardamos el objeto en el ZIP
-                    out.putNextEntry(entry);
-                    int count;
-                    //Escribimos el objeto en el ZIP
-                    while((count = origin.read(data, 0,BUFFER)) != -1) {
-                        out.write(data, 0, count);
-                    }
-                    origin.close();
-                }
-            }
-            out.close();
+            data = new byte[BUFFER];
         } 
         catch(Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    public void saveFile(File file, String name){
+        try {
+            System.out.println("Agregando al ZIP: "+file.getPath());
+            //Creamos el objeto a guardar
+            FileInputStream fi = new FileInputStream(file);
+            BufferedInputStream origin = new BufferedInputStream(fi, BUFFER);
+            ZipEntry entry = new ZipEntry(name);
+            //Guardamos el objeto en el ZIP
+            out.putNextEntry(entry);
+            int count;
+            //Escribimos el objeto en el ZIP
+            while((count = origin.read(data, 0,BUFFER)) != -1) {
+                out.write(data, 0, count);
+            }
+            origin.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void saveFile(String filePath, String fileName){
+        try {
+            System.out.println("Agregando al ZIP: "+filePath);
+            //Creamos el objeto a guardar
+            FileInputStream fi = new FileInputStream(filePath);
+            BufferedInputStream origin = new BufferedInputStream(fi, BUFFER);
+            ZipEntry entry = new ZipEntry(fileName);
+            //Guardamos el objeto en el ZIP
+            out.putNextEntry(entry);
+            int count;
+            //Escribimos el objeto en el ZIP
+            while((count = origin.read(data, 0,BUFFER)) != -1) {
+                out.write(data, 0, count);
+            }
+            origin.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void closeZip(){
+        try {
+            out.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ZIPWritter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

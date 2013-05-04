@@ -70,7 +70,6 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     private int width, height;
     
     private ScreenshotThread st;
-    private ArrayListQueue<ScreenshotData> queue;
     
     private String nameAnimation;
     
@@ -210,17 +209,13 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             }
             
             System.out.println("Añadido Nº "+shotIndex);
-            System.out.println("Tamaño actual "+queue.size());
+            //System.out.println("Tamaño actual "+queue.size());
             System.out.println();
 
             synchronized(st){
                 st.notify();
             }
         }
-    }
-    
-    public void setQueue(ArrayListQueue<ScreenshotData> queue){
-        this.queue = queue;
     }
 
     public void setAnimationName(String nameAnimation) {
