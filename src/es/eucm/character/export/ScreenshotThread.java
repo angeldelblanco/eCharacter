@@ -85,8 +85,8 @@ public class ScreenshotThread extends Thread{
             
             ArrayListQueue<ScreenshotData> queue = new ArrayListQueue();
             screenShotState.setQueue(queue);
-            ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
-            sw.start();
+            /*ScreenshotWritter sw = new ScreenshotWritter(queue, config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
+            sw.start();*/
             //Recorremos las animaciones
             Iterator<String> itAnimations = listAnimations.iterator();
             while(itAnimations.hasNext()){
@@ -105,6 +105,7 @@ public class ScreenshotThread extends Thread{
 
                     screenShotState.setAnimationName(nameAnimationToSave);
                     screenShotState.resetShotIndex();
+                    screenShotState.setFilePath(config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
 
                     channel.setAnim(nameAnimation);
                     channel.setLoopMode(LoopMode.DontLoop);
@@ -131,15 +132,20 @@ public class ScreenshotThread extends Thread{
                         //time = channel.getTime();
                     }
                     animationsData.put(nameAnimationToSave, listAnimationsToSave);
+                    ScreenshotWritter sw = new ScreenshotWritter(dirScreenshots, listAnimationsToSave, 
+                            screenShotState.getCutWmin(), screenShotState.getCutWmax(), screenShotState.getCutHmin(), screenShotState.getCutHmax());
+                    sw.start();
+                    sw.join();
+                    GenerateAnimation.createAnimation(dirScreenshots, animationsData);
                     /*sw.setTerminate(true);
                     sw.join();*///Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)
                 }
             }
             
-            sw.setTerminate(true);
-            sw.join();//Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)
+            /*sw.setTerminate(true);
+            sw.join();*///Para que de tiempo a guardar las que quedan (sino esta, cuando sale el mensaje de cerrar la app, sigue guardando)
             
-            GenerateAnimation.createAnimation(dirScreenshots, animationsData);
+            //GenerateAnimation.createAnimation(dirScreenshots, animationsData);
             
             niftyDisplay.getNifty().gotoScreen("popupScreen");
                 

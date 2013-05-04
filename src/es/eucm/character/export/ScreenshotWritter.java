@@ -35,11 +35,14 @@
  ******************************************************************************/
 package es.eucm.character.export;
 
-import com.jme3.system.JmeSystem;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -47,13 +50,20 @@ import javax.imageio.ImageIO;
 public class ScreenshotWritter extends Thread{
     private static final Logger logger = Logger.getLogger(ScreenshotWritter.class.getName());
     
-    private ArrayListQueue<ScreenshotData> queue;
     private String exportPath;
     private boolean terminate;
+    private int xMin, xMax, yMin, yMax;
+    private ArrayList<String> listAnimationsName;
     
-    public ScreenshotWritter(ArrayListQueue<ScreenshotData> queue, String exportPath){
-        this.queue = queue;
+    public ScreenshotWritter(String exportPath, ArrayList<String> listAnimationsName, 
+            int xMin, int xMax, int yMin, int yMax){
         this.exportPath = exportPath;
+        this.listAnimationsName = listAnimationsName;
+        this.xMin = xMin;
+        this.xMax = xMax;
+        this.yMin = yMin;
+        this.yMax = yMax;
+        
         setTerminate(false);
     }
 
@@ -67,46 +77,21 @@ public class ScreenshotWritter extends Thread{
     
     @Override
     public void run(){
-        while(!isTerminate()){
-            ScreenshotData data = null;
-            synchronized(queue){
-                data = queue.poll();
-            }
+        System.out.println("TAMAÑOOOO "+listAnimationsName.size());
+        Iterator<String> it = listAnimationsName.iterator();
+        while(it.hasNext()){
+            BufferedImage img = null;
+            File temp = null;
+            try {
+                temp = new File(exportPath+File.separator+it.next());
+                img = ImageIO.read(temp);
+                temp.delete();
+                BufferedImage biCut = img.getSubimage(xMin, yMin, xMax-xMin, yMax-yMin);
+                ImageIO.write(biCut, "png", temp);
+            } catch (IOException e) {
                 
-            if (data==null){
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(ScreenshotWritter.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                continue;
             }
-            writeFile(data);
-        }
-        for (ScreenshotData data : queue){
-            writeFile(data);
-        }
+        }     
         System.out.println("ScreenshotWritter OK");
-    }
-    
-    private void writeFile(ScreenshotData data){
-        File file = new File(exportPath+File.separator+data.getName()+".png");
-        //OutputStream outStream = null;
-        try {
-            /*outStream = new FileOutputStream(file);
-            JmeSystem.writeImageFile(outStream, "png", data.getBuff(), data.getWidth(), data.getHeight());*/
-            ImageIO.write(data.getBuff(), "png", file);
-            
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Error while saving screenshot", ex);
-        } /*finally {
-            if (outStream != null){
-                try {
-                    outStream.close();
-                } catch (IOException ex) {
-                    logger.log(Level.SEVERE, "Error while saving screenshot", ex);
-                }
-            }
-        }*/
     }
 }

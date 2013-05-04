@@ -42,7 +42,6 @@ import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
-import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
 import com.jme3.renderer.ViewPort;
@@ -51,9 +50,13 @@ import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class ScreenshotMyAppState extends ScreenshotAppState{
     private static final Logger logger = Logger.getLogger(ScreenshotAppState.class.getName());
@@ -70,7 +73,11 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     private ArrayListQueue<ScreenshotData> queue;
     
     private String nameAnimation;
-
+    
+    private int cutWmin = Integer.MAX_VALUE;
+    private int cutHmin = Integer.MAX_VALUE;
+    private int cutWmax = 0;
+    private int cutHmax = 0;
     /**
      * Using this constructor, the screenshot files will be written sequentially to the system
      * default storage folder.
@@ -184,7 +191,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
             Screenshots.convertScreenShot(outBuf, bufferedImage);
             
-            BufferedImage bufferedImageCut = cutImage(bufferedImage);
+            getMaxMixImage(bufferedImage);
             
             outBuf = null;
             //System.gc();
@@ -193,13 +200,18 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 //renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
                 //viewPortInit=true;
             //}
-            synchronized(queue){
-                //ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, outBuf, width, height);
-                ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImageCut, bufferedImageCut.getWidth(), bufferedImageCut.getHeight());
-                queue.add(data);
+            ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImage, bufferedImage.getWidth(), bufferedImage.getHeight());
+            File file = new File(filePath+File.separator+data.getName()+".png");
+            try {
+                ImageIO.write(bufferedImage, "png", file);
             }
+            catch (IOException ex) {
+                logger.log(Level.SEVERE, "Error while saving screenshot", ex);
+            }
+            
             System.out.println("Añadido Nº "+shotIndex);
             System.out.println("Tamaño actual "+queue.size());
+            System.out.println();
 
             synchronized(st){
                 st.notify();
@@ -219,82 +231,113 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         this.shotIndex = 0;
     }
     
-    private BufferedImage cutImage(BufferedImage bi){
+    private void getMaxMixImage(BufferedImage bi){
         int w = bi.getWidth();
         int h = bi.getHeight();
 
         //Cut horizontally
-        int cutWmin = 0;
+        int current_cutWmin = 0;
         salida:
         for (int i = 0; i<w; i++){
             for (int j = 0; j<h; j++){
                 //if the pixel isn't transparent
                 if (bi.getRGB(i, j) < 0){
                     if (i!= 0){
-                        cutWmin = i-1;
+                        current_cutWmin = i-1;
                     }
                     else{
-                        cutWmin = i;
+                        current_cutWmin = i;
                     }
                     break salida;
                 }
             }
         }
         
-        int cutWmax = 0;
+        int current_cutWmax = 0;
         salida:
         for (int i = w-1; i>=0; i--){
             for (int j = h-1; j>=0; j--){
                 //if the pixel isn't transparent
                 if (bi.getRGB(i, j) < 0){
                     if (i!= w-1){
-                        cutWmax = i+1;
+                        current_cutWmax = i+1;
                     }
                     else{
-                        cutWmax = i;
+                        current_cutWmax = i;
                     }
-                    cutWmax = i;
                     break salida;
                 }
             }
         }
         
         //Cut vertically
-        int cutHmin = 0;
+        int current_cutHmin = 0;
         salida:
         for (int i = 0; i<h; i++){
             for (int j = 0; j<w; j++){
                 //if the pixel isn't transparent
                 if (bi.getRGB(j, i) < 0){
                     if (i!=0){
-                        cutHmin = i-1;
+                        current_cutHmin = i-1;
                     }
                     else{
-                        cutHmin = i;
+                        current_cutHmin = i;
                     }
                     break salida;
                 }
             }
         }
         
-        int cutHmax = 0;
+        int current_cutHmax = 0;
         salida:
         for (int i = h-1; i>=0; i--){
             for (int j = w-1; j>=0; j--){
                 //if the pixel isn't transparent
                 if (bi.getRGB(j, i) < 0){
                     if (i!=h-1){
-                        cutHmax = i+1;
+                        current_cutHmax = i+1;
                     }
                     else{
-                        cutHmax = i;
+                        current_cutHmax = i;
                     }
                     break salida;
                 }
             }
         }
+        /*BufferedImage biCut = bi.getSubimage(cutWmin, cutHmin, cutWmax-cutWmin, cutHmax-cutHmin);
+        return biCut;*/
+        if (current_cutWmin < cutWmin){
+            cutWmin = current_cutWmin;
+        }
+        if (current_cutWmax > cutWmax){
+            cutWmax = current_cutWmax;
+        }
+        if (current_cutHmin < cutHmin){
+            cutHmin = current_cutHmin;
+        }
+        if (current_cutHmax > cutHmax){
+            cutHmax = current_cutHmax;
+        }
         
-        BufferedImage biCut = bi.getSubimage(cutWmin, cutHmin, cutWmax-cutWmin, cutHmax-cutHmin);
-        return biCut;
+        System.out.println("Xmin: "+cutWmin);
+        System.out.println("Xmax: "+cutWmax);
+        System.out.println("Ymin: "+cutHmin);
+        System.out.println("Ymax: "+cutHmax);
+    }
+
+    public int getCutWmin() {
+        return cutWmin;
+    }
+
+    public int getCutHmin() {
+        return cutHmin;
+    }
+
+    public int getCutWmax() {
+        return cutWmax;
+    }
+
+    public int getCutHmax() {
+        return cutHmax;
     }
 }
