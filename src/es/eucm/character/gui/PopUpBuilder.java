@@ -38,6 +38,8 @@ package es.eucm.character.gui;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.Slider;
+import de.lessvoid.nifty.effects.Effect;
+import de.lessvoid.nifty.effects.EffectEventId;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
@@ -47,6 +49,7 @@ import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
 import es.eucm.character.types.TexturesMeshType;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class PopUpBuilder {
@@ -54,18 +57,19 @@ public class PopUpBuilder {
     private Control control;
     private Nifty nifty;
     private int popUpPage, popUpNum;
-    private I18N i18nGui;
+    private I18N i18nGui, i18nModel;
     private Element popupColor;
     private float red, green, blue;
     private Color baseColor, detailsColor;
     private String tab;
 
-    public PopUpBuilder(Nifty nifty, Control control, I18N i18nGui){
+    public PopUpBuilder(Nifty nifty, Control control, I18N i18nGui, I18N i18nModel){
         popUpPage = 0;
         popUpNum = 0;
         this.control = control;
         this.nifty = nifty;
         this.i18nGui = i18nGui;
+        this.i18nModel = i18nModel;
         popupColor = null;
         baseColor = null;
         detailsColor = null;
@@ -150,6 +154,8 @@ public class PopUpBuilder {
         for(int i=popUpPage*TEXTURES_POPUP; i<control.getNumTexturesInMultiOption(textureOrSubMeshSelected); i++){
             if(i<((popUpPage+1)*TEXTURES_POPUP)){
                 Element image = popupColor.findElementByName("i"+Integer.toString(i%TEXTURES_POPUP));
+                List<Effect> effects = image.getEffects(EffectEventId.onHover,Tooltip.class);
+                effects.get(0).getParameters().setProperty("hintText", i18nModel.getString(control.getTextSubTextureInMultiOption(textureOrSubMeshSelected, control.getIdsSubTexturesInMultiOption(textureOrSubMeshSelected).get(i))));
                 image.setVisible(true);
                 ImageRenderer imager = image.getRenderer(ImageRenderer.class);
                 imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathInMultiOption(textureOrSubMeshSelected, control.getIdsSubTexturesInMultiOption(textureOrSubMeshSelected).get(i)), false));
@@ -281,6 +287,18 @@ public class PopUpBuilder {
         }
     }
     
+    public void check(String id){
+        
+        popupColor.findElementByName("ci"+id).setVisible(true);
+    }
+    
+    public void unCheck(){
+        
+        for(int i=0;i<72;i++){
+            popupColor.findElementByName("ci"+i).setVisible(false);
+        }
+    }
+    
     public void changeTabColor(String option){
         tab = option;
         if(tab.equals("basic")){
@@ -291,6 +309,7 @@ public class PopUpBuilder {
             }
             else{
                 changeSliderColor("#00000000");
+                popupColor.findElementByName("colorPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(0,0,0,0));
                 baseColor=null;
             }
         }
@@ -302,9 +321,11 @@ public class PopUpBuilder {
             }
             else{
                 changeSliderColor("#00000000");
+                popupColor.findElementByName("colorPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(0,0,0,0));
                 detailsColor=null;
             }
         }
         popupColor.findElementByName("advancedSelection").setVisible(false);
+        unCheck();
     }
 }

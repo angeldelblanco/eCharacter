@@ -223,7 +223,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily, i18nModel);
         animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
         if(popUp == null){
-            popUp = new PopUpBuilder(nifty, control, i18nGui);
+            popUp = new PopUpBuilder(nifty, control, i18nGui,i18nModel);
         }
         
         ArrayList<String> idPanel = control.getIdsSubStages(selection);
@@ -392,6 +392,11 @@ public class Gui extends AbstractAppState implements ScreenController {
         return null;
     }
     
+    public String getTick(){
+        
+        return "assets/Interface/x.png";
+    }
+    
     public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){
         if(control.getStageTypes(selection) == StageType.singleStage){
             singlesb.changeTextureOrSubMesh(selection,page,substage,idTextureOrSubMesh);
@@ -482,8 +487,10 @@ public class Gui extends AbstractAppState implements ScreenController {
         popUp.changePopUpColor(im,subStageSelected,textureOrSubMeshSelected);
     }
     
-    public void changeSliderColor(String color){
+    public void changeSliderColor(String color, String id){
         popUp.changeSliderColor(color);
+        popUp.unCheck();
+        popUp.check(id);
     }
     
     @NiftyEventSubscriber(id="sliderR")
