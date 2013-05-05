@@ -80,8 +80,6 @@ public class PopUpBuilder {
         red = 0; 
         green = 0; 
         blue = 0;
-        baseColor = null;
-        detailsColor = null;
         int r,g,b;
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
@@ -94,6 +92,8 @@ public class PopUpBuilder {
             popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
             popupColor.findElementByName("advancedSelection").setVisible(false);
             popupColor.findElementByName("colorOptions").setVisible(false);
+            baseColor = null;
+            detailsColor = null;
             if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected)!=null){
                 if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0)!=null){
                     r = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0).getRed();
@@ -116,6 +116,8 @@ public class PopUpBuilder {
             popupColor.findElementByName("colorOptions").setVisible(true);
             popupColor.findElementByName("basicText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBase"));
             popupColor.findElementByName("customText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDetails"));
+            baseColor = null;
+            detailsColor = null;
             if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected)!=null){
                 if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0)!=null){
                     r = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0).getRed();
@@ -134,6 +136,8 @@ public class PopUpBuilder {
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.multiOptionTexture)){
             popupColor = nifty.createPopup("popupColor3");
             changePopUpPage("0",subStageSelected,textureOrSubMeshSelected);
+            baseColor = null;
+            detailsColor = null;
         }
         popupColor.findNiftyControl("cancelButton", Button.class).setText(i18nGui.getString("idCancel"));
         nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
