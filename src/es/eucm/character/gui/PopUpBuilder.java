@@ -80,6 +80,9 @@ public class PopUpBuilder {
         red = 0; 
         green = 0; 
         blue = 0;
+        baseColor = null;
+        detailsColor = null;
+        int r,g,b;
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
             popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
@@ -91,6 +94,14 @@ public class PopUpBuilder {
             popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
             popupColor.findElementByName("advancedSelection").setVisible(false);
             popupColor.findElementByName("colorOptions").setVisible(false);
+            if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected)!=null){
+                if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0)!=null){
+                    r = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0).getRed();
+                    g = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0).getGreen();
+                    b = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0).getBlue();
+                    baseColor = new Color(r/255.f,g/255.f,b/255.f,1);
+                }
+            }
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.doubleTexture)){
             popupColor = nifty.createPopup("popupColor");
@@ -105,6 +116,20 @@ public class PopUpBuilder {
             popupColor.findElementByName("colorOptions").setVisible(true);
             popupColor.findElementByName("basicText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBase"));
             popupColor.findElementByName("customText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDetails"));
+            if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected)!=null){
+                if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0)!=null){
+                    r = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0).getRed();
+                    g = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0).getGreen();
+                    b = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(0).getBlue();
+                    baseColor = new Color(r/255.f,g/255.f,b/255.f,1);
+                }
+                if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(1)!=null){
+                    r = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(1).getRed();
+                    g = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(1).getGreen();
+                    b = control.getColorTexture(subStageSelected, textureOrSubMeshSelected).get(1).getBlue();
+                    detailsColor = new Color(r/255.f,g/255.f,b/255.f,1);
+                }
+            }
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.multiOptionTexture)){
             popupColor = nifty.createPopup("popupColor3");
@@ -112,8 +137,6 @@ public class PopUpBuilder {
         }
         popupColor.findNiftyControl("cancelButton", Button.class).setText(i18nGui.getString("idCancel"));
         nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
-        baseColor = null;
-        detailsColor = null;
         changeTabColor("basic");
     }
     
