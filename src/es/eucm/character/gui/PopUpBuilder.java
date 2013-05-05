@@ -273,7 +273,12 @@ public class PopUpBuilder {
     }
     
     public void showMoreColors(){
-        popupColor.findElementByName("advancedSelection").setVisible(true);
+        if(popupColor.findElementByName("advancedSelection").isVisible()){
+            popupColor.findElementByName("advancedSelection").setVisible(false);
+        }
+        else{
+            popupColor.findElementByName("advancedSelection").setVisible(true);
+        }
     }
     
     public void changeTabColor(String option){
