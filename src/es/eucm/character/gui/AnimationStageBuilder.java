@@ -37,6 +37,7 @@
 package es.eucm.character.gui;
 
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.CheckBox;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
@@ -74,14 +75,6 @@ public class AnimationStageBuilder {
         nifty.getScreen(stageType).findElementByName("qualityPanel").layoutElements();
         nifty.getScreen(stageType).findElementByName("cameraText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCamera"));
         nifty.getScreen(stageType).findElementByName("cameraPanel").layoutElements();
-        /*String types[] = {"a","q","c"};
-        for(String type : types){
-            nifty.getScreen(stageType).findNiftyControl(type+"AllButton", Button.class).setText(i18nGui.getString("idAll"));
-            nifty.getScreen(stageType).findNiftyControl(type+"NoButton", Button.class).setText(i18nGui.getString("idNothing"));
-        }
-        for(int i = 0; i<CHECKBOX_PAGE; i++){
-            nifty.getScreen(stageType).findNiftyControl("aButton"+Integer.toString(i), Button.class).setText(i18nGui.getString("idPreview"));
-        }*/
     }
     
     public void showPage(String selection, String steep){
@@ -106,7 +99,12 @@ public class AnimationStageBuilder {
             }
             page = animationPage;
             labels = control.getAnimationNames();
-            size = control.getNumAnimations();
+            if(labels == null){
+                size = 0;
+            }
+            else{
+                size = control.getNumAnimations();
+            }
         }
         else{
             if(selection.equals("q")){
@@ -118,7 +116,12 @@ public class AnimationStageBuilder {
                 }
                 page = qualityPage;
                 labels = control.getQualityLabels();
-                size = control.getNumQualities();
+                if(labels == null){
+                    size = 0;
+                }
+                else{
+                    size = control.getNumQualities();
+                }
             }
             else{
                 if(selection.equals("c")){
@@ -130,7 +133,12 @@ public class AnimationStageBuilder {
                     }
                     page = cameraPage;
                     labels = control.getCamerasLabels();
-                    size = control.getNumCameras();
+                    if(labels == null){
+                        size = 0;
+                    }
+                    else{
+                        size = control.getNumCameras();
+                    }
                 }
             }    
         }
@@ -205,6 +213,14 @@ public class AnimationStageBuilder {
             showPage("a","0");
             showPage("q","0");
             showPage("c","0");
+        }
+        String types[] = {"a","q","c"};
+        for(String type : types){
+            nifty.getScreen(stageType).findNiftyControl(type+"AllButton", Button.class).setText(i18nGui.getString("idAll"));
+            nifty.getScreen(stageType).findNiftyControl(type+"NoButton", Button.class).setText(i18nGui.getString("idNothing"));
+        }
+        for(int i = 0; i<CHECKBOX_PAGE; i++){
+            nifty.getScreen(stageType).findNiftyControl("aButton"+Integer.toString(i), Button.class).setText(i18nGui.getString("idPreview"));
         }
     }
     

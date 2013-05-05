@@ -219,8 +219,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         stages = control.getStagesLabels();
         selection = stages.get(index);
         scalesb = new ScaleStageBuilder(nifty,control,i18nFamily,i18nModel,i18nGui);
-        singlesb = new SingleStageBuilder(nifty,control,i18nGui);
-        multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily);
+        singlesb = new SingleStageBuilder(nifty,control,i18nGui,i18nModel);
+        multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily, i18nModel);
         animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
         if(popUp == null){
             popUp = new PopUpBuilder(nifty, control, i18nGui);

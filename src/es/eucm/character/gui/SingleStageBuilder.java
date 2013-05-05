@@ -37,6 +37,8 @@
 package es.eucm.character.gui;
 
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.effects.Effect;
+import de.lessvoid.nifty.effects.EffectEventId;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
@@ -48,6 +50,7 @@ import es.eucm.character.types.StageType;
 import es.eucm.character.types.TexturesMeshType;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class SingleStageBuilder {
@@ -57,13 +60,15 @@ public class SingleStageBuilder {
     private String stageType;
     private String subStageSelected;
     private HashMap<String,String> seleccionado;
+    private I18N i18nModel;
     
-    public SingleStageBuilder(Nifty nifty, Control control, I18N i18nGui){
+    public SingleStageBuilder(Nifty nifty, Control control, I18N i18nGui, I18N i18nModel){
         stageType = StageType.singleStage.toString();
         this.nifty = nifty;
         this.control = control;
         seleccionado = new HashMap<String,String>();
         subStageSelected = "";
+        this.i18nModel = i18nModel;
         nifty.getScreen(stageType).findElementByName("colorText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
         nifty.getScreen(stageType).findElementByName("panel_color").layoutElements();
         nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
@@ -81,6 +86,8 @@ public class SingleStageBuilder {
         for(int i=page*TEXTURES_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(0)); i++){
             if(i<((page+1)*TEXTURES_PAGE)){
                 Element image = nifty.getScreen(stageType).findElementByName("i"+Integer.toString(i%TEXTURES_PAGE));
+                List<Effect> effects = image.getEffects(EffectEventId.onHover,Tooltip.class);
+                effects.get(0).getParameters().setProperty("hintText", i18nModel.getString(control.getTextTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i))));
                 image.setVisible(true);
                 ImageRenderer imager = image.getRenderer(ImageRenderer.class);
                 String imagePath = control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i));
