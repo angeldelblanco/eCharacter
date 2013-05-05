@@ -61,8 +61,6 @@ public class ScreenshotThread extends Thread{
     private ArrayList<CameraValues> listCameras;
     private float stepAnimationTime;
     
-    private HashMap<String, ArrayList<String>> animationsData;
-    
     public ScreenshotThread(Configuration config, ScreenshotMyAppState screeShotState,AnimChannel channel,
             ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,ArrayList<String> listAnimations, 
             ArrayList<Integer> listQualities, ArrayList<CameraValues> listCameras){
@@ -75,7 +73,6 @@ public class ScreenshotThread extends Thread{
         this.listAnimations = listAnimations; 
         this.listQualities = listQualities;
         this.listCameras = listCameras;
-        this.animationsData = new HashMap<String, ArrayList<String>>();
     }
     
     @Override
@@ -93,8 +90,9 @@ public class ScreenshotThread extends Thread{
                 while(itQualities.hasNext()){      
                     int quality = itQualities.next();    
                     String nameAnimationToSave = nameAnimation+quality+"fps";
-                    screenShotState.setAnimationName(nameAnimationToSave);
                     screenShotState.resetShotIndex();
+                    screenShotState.resetMaxMixImage();
+                    screenShotState.setAnimationName(nameAnimationToSave);
                     screenShotState.setFilePath(config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
                     channel.setAnim(nameAnimation);
                     channel.setLoopMode(LoopMode.DontLoop);
@@ -119,12 +117,10 @@ public class ScreenshotThread extends Thread{
                         System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
                         sleep((long)stepAnimationTime);
                     }
-                    animationsData.put(nameAnimationToSave, listAnimationsToSave);
-                    ScreenshotWritter sw = new ScreenshotWritter(dirScreenshots, listAnimationsToSave, zipWritter,
+                    ScreenshotWritter sw = new ScreenshotWritter(dirScreenshots, nameAnimationToSave, listAnimationsToSave, zipWritter,
                             screenShotState.getCutWmin(), screenShotState.getCutWmax(), screenShotState.getCutHmin(), screenShotState.getCutHmax());
                     sw.start();
                     sw.join();
-                    GenerateAnimation.createAnimation(dirScreenshots, animationsData, zipWritter);
                 }
             }
             zipWritter.closeZip();

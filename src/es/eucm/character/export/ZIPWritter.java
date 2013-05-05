@@ -46,7 +46,7 @@ import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ZIPWritter {
+public final class ZIPWritter {
     
     private int BUFFER = 1024;
     private ZipOutputStream out;

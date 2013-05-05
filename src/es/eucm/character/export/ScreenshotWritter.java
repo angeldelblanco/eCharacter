@@ -40,37 +40,25 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class ScreenshotWritter extends Thread{
-    private static final Logger logger = Logger.getLogger(ScreenshotWritter.class.getName());
-    
+public final class ScreenshotWritter extends Thread{
     private String exportPath;
-    private boolean terminate;
+    private String nameAnimationToSave;
     private int xMin, xMax, yMin, yMax;
     private ArrayList<String> listAnimationsName;
     private ZIPWritter zipWritter;
     
-    public ScreenshotWritter(String exportPath, ArrayList<String> listAnimationsName, ZIPWritter zipWritter,
-            int xMin, int xMax, int yMin, int yMax){
+    public ScreenshotWritter(String exportPath, String nameAnimationToSave, ArrayList<String> listAnimationsName, 
+            ZIPWritter zipWritter, int xMin, int xMax, int yMin, int yMax){
         this.exportPath = exportPath;
+        this.nameAnimationToSave = nameAnimationToSave;
         this.listAnimationsName = listAnimationsName;
         this.zipWritter = zipWritter;
         this.xMin = xMin;
         this.xMax = xMax;
         this.yMin = yMin;
         this.yMax = yMax;
-        
-        setTerminate(false);
-    }
-
-    public synchronized boolean isTerminate() {
-        return terminate;
-    }
-
-    public synchronized void setTerminate(boolean terminate) {
-        this.terminate = terminate;
     }
     
     @Override
@@ -78,12 +66,10 @@ public class ScreenshotWritter extends Thread{
         System.out.println("TAMAÑOOOO "+listAnimationsName.size());
         Iterator<String> it = listAnimationsName.iterator();
         while(it.hasNext()){
-            BufferedImage img = null;
-            File temp = null;
             try {
                 String name = it.next();
-                temp = new File(exportPath+File.separator+name);
-                img = ImageIO.read(temp);
+                File temp = new File(exportPath+File.separator+name);
+                BufferedImage img = ImageIO.read(temp);
                 temp.delete();
                 BufferedImage biCut = img.getSubimage(xMin, yMin, xMax-xMin, yMax-yMin);
                 ImageIO.write(biCut, "png", temp);
@@ -91,7 +77,8 @@ public class ScreenshotWritter extends Thread{
             } catch (IOException e) {
                 
             }
-        }     
+        }
+        GenerateAnimation.createAnimation(exportPath, nameAnimationToSave, listAnimationsName, zipWritter);
         System.out.println("ScreenshotWritter OK");
     }
 }

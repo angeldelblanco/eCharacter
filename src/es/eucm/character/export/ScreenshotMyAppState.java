@@ -226,6 +226,13 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         this.shotIndex = 0;
     }
     
+    public void resetMaxMixImage() {
+        this.cutWmin = Integer.MAX_VALUE;
+        this.cutHmin = Integer.MAX_VALUE;
+        this.cutWmax = 0;
+        this.cutHmax = 0;
+    }
+    
     private void getMaxMixImage(BufferedImage bi){
         int w = bi.getWidth();
         int h = bi.getHeight();
