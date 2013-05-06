@@ -106,8 +106,8 @@ public class ScreenshotThread extends Thread{
                             time = time+(stepAnimationTime/1000);
                         }
                         channel.setTime(time);
-                        //sleep(100);
-                        
+                        //Para dar tiempo a que el setTime se aplique
+                        sleep(40);
                         synchronized (this){
                             screenShotState.takeScreenshot(this);
                             this.wait();
