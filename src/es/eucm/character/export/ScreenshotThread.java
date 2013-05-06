@@ -43,7 +43,6 @@ import com.jme3.renderer.ViewPort;
 import es.eucm.character.loader.Configuration;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,7 +90,7 @@ public class ScreenshotThread extends Thread{
                     int quality = itQualities.next();    
                     String nameAnimationToSave = nameAnimation+quality+"fps";
                     screenShotState.resetShotIndex();
-                    screenShotState.resetMaxMixImage();
+                    screenShotState.resetMinMaxImage();
                     screenShotState.setAnimationName(nameAnimationToSave);
                     screenShotState.setFilePath(config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
                     channel.setAnim(nameAnimation);

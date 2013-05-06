@@ -190,7 +190,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
             Screenshots.convertScreenShot(outBuf, bufferedImage);
             
-            getMaxMixImage(bufferedImage);
+            getMinMaxImage(bufferedImage);
             
             outBuf = null;
             //System.gc();
@@ -226,14 +226,14 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         this.shotIndex = 0;
     }
     
-    public void resetMaxMixImage() {
+    public void resetMinMaxImage() {
         this.cutWmin = Integer.MAX_VALUE;
         this.cutHmin = Integer.MAX_VALUE;
         this.cutWmax = 0;
         this.cutHmax = 0;
     }
     
-    private void getMaxMixImage(BufferedImage bi){
+    private void getMinMaxImage(BufferedImage bi){
         int w = bi.getWidth();
         int h = bi.getHeight();
 
@@ -306,8 +306,6 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 }
             }
         }
-        /*BufferedImage biCut = bi.getSubimage(cutWmin, cutHmin, cutWmax-cutWmin, cutHmax-cutHmin);
-        return biCut;*/
         if (current_cutWmin < cutWmin){
             cutWmin = current_cutWmin;
         }
