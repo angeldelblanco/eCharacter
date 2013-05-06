@@ -569,7 +569,7 @@
 			</panel>
 			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right">
 				<panel id="panel_image" height="90%" width="100%" align="center" childLayout="vertical">
-					<panel height="33%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
+					<panel height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
 						<panel id="animationsPanel" height="100%" width="80%" childLayout="vertical">
 							<text id="animationsText" text="" font="${CALL.getFont()}" align="center" width="100%" height="10%" wrap = "true"/>
 							<panel height="5%" width="100%">
@@ -651,7 +651,7 @@
 					<panel height="2%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="Panel2" height="30%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
+					<panel id="Panel2" height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
 						<panel id="qualityPanel" height="100%" width="80%" childLayout="vertical">
 							<text id="qualityText" text="" font="${CALL.getFont()}" align="center" width="100%" height="10%" wrap = "true"/>
 							<panel height="5%" width="100%">
@@ -715,38 +715,56 @@
 					<panel height="2%" width="100%">
 					<!-- Space -->
 					</panel>
-					<panel id="Panel3" height="33%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
+					<panel id="Panel3" height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
 						<panel id="cameraPanel" height="100%" width="80%" childLayout="vertical">
 							<text id="cameraText" text="" font="${CALL.getFont()}" width="100%" height="10%" wrap = "true"/>
 							<panel height="5%" width="100%">
 								<!-- Space -->
 							</panel>
 							<panel id="c0" height="15%" width="100%" childLayout="horizontal">
-								<text id="cText0" text="" font="${CALL.getFont()}" align="center" valign="center" width="85%" wrap = "true"/>
+								<text id="cText0" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
 								<control id="cCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control name="button" label="ver" id="cButton0" width="25%" align="center" valign="center" visibleToMouse="true"> 
+									<interact onClick="cameraPreview(0)" />
+								</control>
 							</panel>
 							<panel height="5%" width="100%">
 								<!-- Space -->
 							</panel>
 							<panel id="c1" height="15%" width="100%" childLayout="horizontal">
-								<text id="cText1" text="" font="${CALL.getFont()}" align="center" valign="center" width="85%" wrap = "true"/>
+								<text id="cText1" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
 								<control id="cCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control name="button" label="ver" id="cButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
+									<interact onClick="camerPreview(1)" />
+								</control>
 							</panel>
 							<panel height="5%" width="100%">
 								<!-- Space -->
 							</panel>
 							<panel id="c2" height="15%" width="100%" childLayout="horizontal">
-								<text id="cText2" text="" font="${CALL.getFont()}" align="center" valign="center" width="85%" wrap = "true"/>
+								<text id="cText2" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
 								<panel width="5%">
 									<!-- Space -->
 								</panel>
 								<control id="cCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+								<panel width="5%">
+									<!-- Space -->
+								</panel>
+								<control name="button" label="ver" id="cButton2" width="25%" align="center" valign="center" visibleToMouse="true"> 
+									<interact onClick="cameraPreview(2)" />
+								</control>
 							</panel>
 							<panel height="5%" width="100%">
 								<!-- Space -->

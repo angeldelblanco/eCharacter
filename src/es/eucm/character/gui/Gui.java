@@ -575,6 +575,11 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void preview(String animation){
         animationsb.showAnimation(animation);
     }
+    
+    public void cameraPreview(String camera){
+        animationsb.showCamera(camera);
+    }
+    
     public void changePageAnimations(String selection, String steep){
         animationsb.showPage(selection, steep);
     }

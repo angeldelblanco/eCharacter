@@ -221,12 +221,18 @@ public class AnimationStageBuilder {
         }
         for(int i = 0; i<CHECKBOX_PAGE; i++){
             nifty.getScreen(stageType).findNiftyControl("aButton"+Integer.toString(i), Button.class).setText(i18nGui.getString("idPreview"));
+            nifty.getScreen(stageType).findNiftyControl("cButton"+Integer.toString(i), Button.class).setText(i18nGui.getString("idPreview"));
         }
     }
     
     public void showAnimation(String animation){
         String a = control.getAnimationNames().get(Integer.valueOf(animation) + animationPage*CHECKBOX_PAGE);
         control.setAnimations(a);
+    }
+    
+    public void showCamera(String camera){
+        //String c = control.getAnimationNames().get(Integer.valueOf(camera) + cameraPage*CHECKBOX_PAGE);
+        //control.setAnimations(c);
     }
     
     public void checkOrUncheck(String selection, int pos, boolean checkedState){
