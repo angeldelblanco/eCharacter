@@ -93,8 +93,10 @@ public class ScreenshotThread extends Thread{
                     screenShotState.resetMinMaxImage();
                     screenShotState.setAnimationName(nameAnimationToSave);
                     screenShotState.setFilePath(config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
+                    //Para dar tiempo a que el setAnim se aplique
                     channel.setAnim(nameAnimation);
                     channel.setLoopMode(LoopMode.DontLoop);
+                    sleep(40);
                     //Redondeo
                     int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
                     stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
