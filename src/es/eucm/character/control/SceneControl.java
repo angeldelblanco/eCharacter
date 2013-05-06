@@ -129,13 +129,13 @@ public class SceneControl {
     
     private void addLights(){
         DirectionalLight light1 = new DirectionalLight();
-        light1.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());        
+        light1.setDirection(new Vector3f(-0.1f, 0.0f, -1.0f).normalizeLocal());        
         DirectionalLight light2 = new DirectionalLight();
-        light2.setDirection(new Vector3f(-0.1f,-1f,1).normalizeLocal());
+        light2.setDirection(new Vector3f(-0.1f,0.0f,1.0f).normalizeLocal());
         DirectionalLight light3 = new DirectionalLight();
-        light3.setDirection(new Vector3f(0.1f,-1f,-1).normalizeLocal());
+        light3.setDirection(new Vector3f(1.0f,0.0f,0.0f).normalizeLocal());
         DirectionalLight light4 = new DirectionalLight();
-        light4.setDirection(new Vector3f(0.1f,-1f,1).normalizeLocal());
+        light4.setDirection(new Vector3f(-1.0f,0.0f,0.0f).normalizeLocal());
         control.getRootNode().addLight(light1);
         control.getRootNode().addLight(light2);
         control.getRootNode().addLight(light3);

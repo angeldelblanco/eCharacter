@@ -77,6 +77,8 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     private int cutHmin = Integer.MAX_VALUE;
     private int cutWmax = 0;
     private int cutHmax = 0;
+    
+    private boolean first = false;
     /**
      * Using this constructor, the screenshot files will be written sequentially to the system
      * default storage folder.
@@ -193,7 +195,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             getMinMaxImage(bufferedImage);
             
             outBuf = null;
-            //System.gc();
+            System.gc();
                         
             //if (!viewPortInit){
                 //renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
