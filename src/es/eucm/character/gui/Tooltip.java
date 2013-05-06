@@ -68,8 +68,11 @@ public class Tooltip implements EffectImpl {
             if (hintText != null) {
                 targetElement.findElementByName("content").getRenderer(TextRenderer.class).setText(hintText);
             }
-            targetElement.setConstraintX(new SizeValue(element.getX() + element.getWidth() - 50 + "px"));
-            targetElement.setConstraintY(new SizeValue(element.getY() + element.getHeight() - 50 + "px"));
+            int x = hintText.length()*5;
+            targetElement.setConstraintX(new SizeValue(element.getX() + element.getHeight()/2 - x + "px"));
+            targetElement.setConstraintY(new SizeValue(element.getY() + element.getHeight()/2 + "px"));
+            targetElement.setPaddingLeft(new SizeValue(x+"px"));
+            targetElement.setPaddingRight(new SizeValue(x+"px"));
             targetElement.show();
             nifty.getCurrentScreen().layoutLayers();
         }
