@@ -202,7 +202,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImage, bufferedImage.getWidth(), bufferedImage.getHeight());
             File file = new File(filePath+File.separator+data.getName()+".png");
             try {
-                ImageIO.write(bufferedImage, "png", file);
+                boolean b = false;
+                b = ImageIO.write(bufferedImage, "png", file);
+                while(b == false){}
             }
             catch (IOException ex) {
                 logger.log(Level.SEVERE, "Error while saving screenshot", ex);

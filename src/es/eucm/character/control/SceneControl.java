@@ -80,10 +80,12 @@ public class SceneControl {
     private AnimControl animControl;
     private Vector3f vectorScaleBase;
     private TexturesSubMeshesData texturesSubMeshesData;
-    private DirectionalLight directionalLight;
+    private ArrayList<DirectionalLight> lights;
     
     public SceneControl(Control control,Configuration config,String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh,
                 TexturesSubMeshesData texturesSubMeshesData){
+        
+        //Initialize structures
         this.control = control;
         this.config = config;
         this.texturesSubMeshesData = texturesSubMeshesData;        
@@ -91,20 +93,14 @@ public class SceneControl {
         this.animations = new HashMap<String,Boolean>();
         this.cameras = new HashMap<String,Boolean>();
         this.qualities = new HashMap<String,Boolean>();
+        this.lights = new ArrayList<DirectionalLight>();
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         
-        this.directionalLight = new DirectionalLight();
-        this.directionalLight.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());
-        this.control.getRootNode().addLight(this.directionalLight);
+        //Add lights
+        addLights();
+        
+        //Load and locate the main model
         this.mainMesh = this.control.getAssetManager().loadModel(mainMeshPath); 
-        
-        /*try {
-            this.mainMesh = (Spatial)BinaryImporter.getInstance().load(ResourceHandler.getResource(mainMeshPath)); 
-            
-        } catch (IOException ex) {
-            Logger.getLogger(SceneControl.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        
         loadTexture();
         this.control.getRootNode().attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
@@ -113,20 +109,41 @@ public class SceneControl {
         //Setting the camera´s inital configuration
         cameraNode = new CameraNode("camera",control.getCamera());
         cameraNode.setLocalTranslation(-3.0f,3.0f,10.0f);
-        cameraNode.lookAt(new Vector3f(control.getCamera().getDirection()), 
-                          new Vector3f(control.getCamera().getUp()));
+        cameraNode.lookAt(new Vector3f(control.getCamera().getDirection()),new Vector3f(control.getCamera().getUp()));
         control.getRootNode().attachChild(cameraNode);
-       
+        
+        //Setting the initial animation
         this.animControl = this.mainMesh.getControl(AnimControl.class);
         this.animChannel = this.animControl.createChannel();
         Set<String> animList = (Set<String>) this.animControl.getAnimationNames();
         if(animList.size() > 0){
             this.animChannel.setAnim(animList.iterator().next());
             this.animChannel.setLoopMode(LoopMode.Loop); 
-        }   
+        }  
+        
+        //Fill the structures
         fillAnimations(animList);
         fillCameras(control.getCamerasLabels());
         fillQualities(control.getQualityLabels());
+    }
+    
+    private void addLights(){
+        DirectionalLight light1 = new DirectionalLight();
+        light1.setDirection(new Vector3f(-0.1f, -1f, -1).normalizeLocal());        
+        DirectionalLight light2 = new DirectionalLight();
+        light2.setDirection(new Vector3f(-0.1f,-1f,1).normalizeLocal());
+        DirectionalLight light3 = new DirectionalLight();
+        light3.setDirection(new Vector3f(0.1f,-1f,-1).normalizeLocal());
+        DirectionalLight light4 = new DirectionalLight();
+        light4.setDirection(new Vector3f(0.1f,-1f,1).normalizeLocal());
+        control.getRootNode().addLight(light1);
+        control.getRootNode().addLight(light2);
+        control.getRootNode().addLight(light3);
+        control.getRootNode().addLight(light4);
+        lights.add(light1);
+        lights.add(light2);
+        lights.add(light3);
+        lights.add(light4);
     }
     
     private void setPositionModel(ArrayList<TransformationType> listTransformations){
@@ -290,10 +307,10 @@ public class SceneControl {
         Image load = loader.load(bi, true);
         Texture2D texture = new Texture2D(load);
         
-        mat = new Material(control.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md"); 
-        mat.setTexture("ColorMap",texture);
-        /*mat = new Material(control.getAssetManager(), "Common/MatDefs/Light/Lighting.j3md"); 
-        mat.setTexture("DiffuseMap",texture);*/
+        /*mat = new Material(control.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md"); 
+        mat.setTexture("ColorMap",texture);*/
+        mat = new Material(control.getAssetManager(), "Common/MatDefs/Light/Lighting.j3md"); 
+        mat.setTexture("DiffuseMap",texture);
         mainMesh.setMaterial(mat);
     }
     
@@ -336,7 +353,10 @@ public class SceneControl {
     }
     
     public void deleteModel(){
-        this.control.getRootNode().removeLight(directionalLight);
+        Iterator<DirectionalLight> it = lights.iterator();
+        while(it.hasNext()){
+            this.control.getRootNode().removeLight(it.next());
+        }
         this.control.getRootNode().detachAllChildren();
     }
     
