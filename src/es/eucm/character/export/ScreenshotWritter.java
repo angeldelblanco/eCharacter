@@ -72,8 +72,9 @@ public final class ScreenshotWritter extends Thread{
                 BufferedImage img = ImageIO.read(temp);
                 temp.delete();
                 BufferedImage biCut = img.getSubimage(xMin, yMin, xMax-xMin, yMax-yMin);
-                ImageIO.write(biCut, "png", temp);
-                zipWritter.saveFile(temp, name);
+                File file = new File(exportPath+File.separator+name);
+                ImageIO.write(biCut, "png", file);
+                zipWritter.saveFile(file, name);
             } catch (IOException e) {
                 
             }
