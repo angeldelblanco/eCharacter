@@ -138,34 +138,40 @@ public class ResourceLocator implements AssetLocator{
         File dirPath = new File(directory);
         /** List all the files of this directory */
         File[] files = dirPath.listFiles();
-        InputStream stream = null;
-        for (int x=0;x<files.length;x++){
-            File file = files[x];
-            if (! file.isDirectory()) {
-                /** "file" is a file */
-                if (file.getName().equals(fileName)){
-                    /** We found the file. */
-                    String resource = dirPath+File.separator+file.getName();                    
-                    System.out.println("File found : " + resource);                    
-                    try {
-                        stream = new FileInputStream(resource);
-                    } catch (FileNotFoundException ex) {
-                        System.out.println(ex.getMessage());
-                    }
-                    return stream;
-                }   
+        if (files!=null){
+            InputStream stream = null;
+            for (int x=0;x<files.length;x++){
+                File file = files[x];
+                if (! file.isDirectory()) {
+                    /** "file" is a file */
+                    if (file.getName().equals(fileName)){
+                        /** We found the file. */
+                        String resource = dirPath+File.separator+file.getName();                    
+                        System.out.println("File found : " + resource);                    
+                        try {
+                            stream = new FileInputStream(resource);
+                        } catch (FileNotFoundException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                        return stream;
+                    }   
+                }
+                else{
+                    /** "file" is a directory. */
+                    stream = getResourceInDirectory(fileName, directory+File.separator+file.getName());
+                }
             }
-            else{
-                /** "file" is a directory. */
-                stream = getResourceInDirectory(fileName, directory+File.separator+file.getName());
-            }
+            return stream;
         }
-        return stream;
+        else{
+            return null;
+        }
     }
     
     public static InputStream getResource(String filePath){
         try {
             InputStream stream = new FileInputStream(filePath);  
+            System.out.println("FICHEROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"+filePath);
             /** The file exists */
             return stream;
         } catch (FileNotFoundException ex) {
