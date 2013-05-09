@@ -64,6 +64,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class Gui extends AbstractAppState implements ScreenController {
     
@@ -156,8 +157,8 @@ public class Gui extends AbstractAppState implements ScreenController {
                 width("100");
         }}.build(nifty, nifty.getScreen("start"), nifty.getScreen("start").findElementByName("panel_location"));
         DropDown locale = nifty.getScreen("start").findNiftyControl("localeDropDown", DropDown.class);
-        ArrayList<String> languajes = config.getListLanguagesAvailables();
-        Iterator<String> it = languajes.iterator();
+        ArrayList<String> languages = this.getListLanguagesAvailables();
+        Iterator<String> it = languages.iterator();
         String defectLanguage = config.getProperty(Configuration.LANGUAGE);
         while(it.hasNext()){
             final String l = it.next();
@@ -166,6 +167,16 @@ public class Gui extends AbstractAppState implements ScreenController {
         language = defectLanguage;
         locale.selectItem(defectLanguage);
         i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
+    }
+    
+    private ArrayList<String> getListLanguagesAvailables(){
+        ArrayList<String> listLanguages = new ArrayList<String>();
+        StringTokenizer st = new StringTokenizer(config.getProperty(Configuration.LIST_LANGUAGE));
+        while (st.hasMoreTokens())
+        {
+            listLanguages.add(st.nextToken());
+        }
+        return listLanguages;
     }
     
     public void buildMenu(){

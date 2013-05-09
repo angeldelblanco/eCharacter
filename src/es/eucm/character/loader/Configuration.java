@@ -73,8 +73,20 @@ public class Configuration {
     //Default quality
     public final static String DEFAULT_QUALITY = "defaultQualityFps";
     
+    //Default camera: Vector Position
+    public final static String DEFAULT_VECTOR_POSITION = "defaultVectorPosition";
+    
+    //Default camera: Vector Direction
+    public final static String DEFAULT_VECTOR_DIRECTION = "defaultVectorDirection";
+    
+     //Default camera: Vector Up
+    public final static String DEFAULT_VECTOR_UP = "defaultVectorUp";
+    
     //Default export path
     public final static String DEFAULT_EXPORT_PATH = "defaultExportPath";
+    
+    //Defult temp path
+    public final static String DEFAULT_TEMP_PATH = "defaultTempPath";
     
     Properties properties;
     
@@ -117,7 +129,11 @@ public class Configuration {
         this.properties.setProperty(FAMILIES_PATH,"assets"+File.separator+"XML Configuration"+File.separator+"families");
         this.properties.setProperty(LOCALE_PATH,"assets"+File.separator+"Locale"+File.separatorChar+"Gui");
         this.properties.setProperty(DEFAULT_QUALITY, "10");
+        this.properties.setProperty(DEFAULT_VECTOR_POSITION, "-3.0,3.0,10.0");
+        this.properties.setProperty(DEFAULT_VECTOR_DIRECTION, "0.0,0.0,-1.0");
+        this.properties.setProperty(DEFAULT_VECTOR_UP, "0.0,1.0,0.0");
         this.properties.setProperty(DEFAULT_EXPORT_PATH, "export");
+        this.properties.setProperty(DEFAULT_TEMP_PATH, "temp");
         
         //Saves the changes in the .properties file
         try {            
@@ -127,15 +143,5 @@ public class Configuration {
         } catch (IOException ex) {
             Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public ArrayList<String> getListLanguagesAvailables(){
-        ArrayList<String> listLanguages = new ArrayList<String>();
-        StringTokenizer st = new StringTokenizer(getProperty(LIST_LANGUAGE));
-        while (st.hasMoreTokens())
-        {
-            listLanguages.add(st.nextToken());
-        }
-        return listLanguages;
     }
 }
