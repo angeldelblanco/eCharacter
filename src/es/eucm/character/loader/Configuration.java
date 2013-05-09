@@ -73,6 +73,9 @@ public class Configuration {
     //Default quality
     public final static String DEFAULT_QUALITY = "defaultQualityFps";
     
+    //Default camera name
+    public final static String DEFAULT_CAMERA_NAME = "defaultCameraName";
+    
     //Default camera: Vector Position
     public final static String DEFAULT_VECTOR_POSITION = "defaultVectorPosition";
     
@@ -129,6 +132,7 @@ public class Configuration {
         this.properties.setProperty(FAMILIES_PATH,"assets"+File.separator+"XML Configuration"+File.separator+"families");
         this.properties.setProperty(LOCALE_PATH,"assets"+File.separator+"Locale"+File.separatorChar+"Gui");
         this.properties.setProperty(DEFAULT_QUALITY, "10");
+        this.properties.setProperty(DEFAULT_CAMERA_NAME, "DefaultCamera");
         this.properties.setProperty(DEFAULT_VECTOR_POSITION, "-3.0,3.0,10.0");
         this.properties.setProperty(DEFAULT_VECTOR_DIRECTION, "0.0,0.0,-1.0");
         this.properties.setProperty(DEFAULT_VECTOR_UP, "0.0,1.0,0.0");

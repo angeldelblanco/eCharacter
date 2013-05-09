@@ -56,7 +56,6 @@ import es.eucm.character.data.model.TransformationType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.export.CameraValues;
 import es.eucm.character.export.ScreenshotThread;
-import es.eucm.character.i18n.I18N;
 import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.types.ElementType;
@@ -66,13 +65,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 public class SceneControl {
     private CameraNode cameraNode;
-    private static CameraValues defaultCamera = new CameraValues("Default",  
-                                                                 new Vector3f(-3.0f,3.0f,10.0f), 
-                                                                 new Vector3f(0.0f,0.0f,-1.0f),
-                                                                 new Vector3f(0.0f,1.0f,0.0f));
+    private CameraValues defaultCamera;
     private Control control;
     private Configuration config;
     private Spatial mainMesh;
@@ -106,8 +103,8 @@ public class SceneControl {
         
         //Setting the camera´s inital configuration
         cameraNode = new CameraNode("camera",control.getCamera());
-        cameraNode.setLocalTranslation(-3.0f,3.0f,10.0f);
-        cameraNode.lookAt(new Vector3f(control.getCamera().getDirection()),new Vector3f(control.getCamera().getUp()));        
+        defaultCamera = this.parseDefaultCamera();
+        defaultCameraView();
         control.getRootNode().attachChild(cameraNode);
         
         //Load and locate the main model
@@ -407,6 +404,9 @@ public class SceneControl {
                 listCamerasChecked.add(control.getCameraValues(cameraLabel));
             }
         }
+        if(listCamerasChecked.isEmpty()){
+            listCamerasChecked.add(defaultCamera);
+        }
         if(listAnimationsChecked.size() > 0){
             //control.getGuiViewPort().removeProcessor(control.getNiftyDisplay());
             control.getNiftyDisplay().getNifty().gotoScreen("emptyScreen");
@@ -519,8 +519,27 @@ public class SceneControl {
         setCameraView(position,defaultCamera.getDirection(),defaultCamera.getUp());
     }
     
-    public void defaultCameraView(){
+    public final void defaultCameraView(){
         setCameraView(defaultCamera.getPosition(),defaultCamera.getDirection(),defaultCamera.getUp());      
+    }
+    
+    private CameraValues parseDefaultCamera(){        
+        Vector3f position = parseVector(config.getProperty(Configuration.DEFAULT_VECTOR_POSITION));
+        Vector3f direction = parseVector(config.getProperty(Configuration.DEFAULT_VECTOR_DIRECTION));
+        Vector3f up = parseVector(config.getProperty(Configuration.DEFAULT_VECTOR_UP));
+        String name = config.getProperty(Configuration.DEFAULT_CAMERA_NAME);
+        return new CameraValues(name, position, direction, up);
+    }
+    
+    private Vector3f parseVector(String vector){
+        StringTokenizer st = new StringTokenizer(vector, ",");
+        if(st.countTokens() == 3){
+            float x = Float.parseFloat(st.nextToken());
+            float y = Float.parseFloat(st.nextToken());
+            float z = Float.parseFloat(st.nextToken());
+            return new Vector3f(x,y,z);
+        }
+        return null;
     }
     
     
