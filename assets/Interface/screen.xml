@@ -747,7 +747,7 @@
 									<!-- Space -->
 								</panel>
 								<control name="button" label="ver" id="cButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="camerPreview(1)" />
+									<interact onClick="cameraPreview(1)" />
 								</control>
 							</panel>
 							<panel height="5%" width="100%">

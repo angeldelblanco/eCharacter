@@ -231,8 +231,8 @@ public class AnimationStageBuilder {
     }
     
     public void showCamera(String camera){
-        //String c = control.getAnimationNames().get(Integer.valueOf(camera) + cameraPage*CHECKBOX_PAGE);
-        //control.setAnimations(c);
+        String idCamera = control.getCamerasLabels().get(Integer.valueOf(camera) + cameraPage*CHECKBOX_PAGE);
+        control.previewCamera(idCamera);
     }
     
     public void checkOrUncheck(String selection, int pos, boolean checkedState){

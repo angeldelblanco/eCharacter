@@ -49,7 +49,6 @@ import es.eucm.character.data.model.TextureType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.export.CameraValues;
 import es.eucm.character.export.ScreenshotMyAppState;
-import es.eucm.character.i18n.I18N;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.FamilyWithPath;
 import es.eucm.character.loader.XMLFamilyReader;
@@ -480,6 +479,11 @@ public class Control {
     }
     
     //-------------------CAMERA CONTROLLER-----------------------------------/
+    public void previewCamera(String idCamera){
+        CameraValues cameraValues = fc.getCameraValues(idCamera);
+        sc.setCameraView(cameraValues.getPosition(), cameraValues.getDirection(), cameraValues.getUp());
+    }
+    
     public void setViewCamera(Vector3f position,Vector3f direction,Vector3f up){
         sc.setCameraView(position,direction,up);
     }

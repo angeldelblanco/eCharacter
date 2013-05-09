@@ -69,9 +69,10 @@ import java.util.Set;
 
 public class SceneControl {
     private CameraNode cameraNode;
-    private static CameraValues defaultCamera = new CameraValues("Default", new Vector3f(0.0f,1.0f,0.0f), 
+    private static CameraValues defaultCamera = new CameraValues("Default",  
                                                                  new Vector3f(-3.0f,3.0f,10.0f), 
-                                                                 new Vector3f(0.0f,0.0f,-1.0f));
+                                                                 new Vector3f(0.0f,0.0f,-1.0f),
+                                                                 new Vector3f(0.0f,1.0f,0.0f));
     private Control control;
     private Configuration config;
     private Spatial mainMesh;
@@ -499,7 +500,7 @@ public class SceneControl {
     }
     
     //-----------------------CAMERA CONTROLLER--------------------------------//
-    
+    //luego hay que hacerlo privado y en Control no tiene que estar
     public void setCameraView(Vector3f position,Vector3f direction,Vector3f up){
         cameraNode.setLocalTranslation(position);
         cameraNode.lookAt(direction,up);

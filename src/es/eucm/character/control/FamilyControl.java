@@ -368,9 +368,9 @@ public class FamilyControl{
             CameraType camera = it.next();
             if (camera.getCameraLabel().equals(cameraLabel)){
                 Vector3f up = new Vector3f(camera.getUpAxis().getValueX(), camera.getUpAxis().getValueY(), camera.getUpAxis().getValueZ());
-                Vector3f location = new Vector3f(camera.getLocation().getValueX(), camera.getLocation().getValueY(), camera.getLocation().getValueZ());
+                Vector3f position = new Vector3f(camera.getLocation().getValueX(), camera.getLocation().getValueY(), camera.getLocation().getValueZ());
                 Vector3f direction = new Vector3f(camera.getDirection().getValueX(), camera.getDirection().getValueY(), camera.getDirection().getValueZ());
-                cameraValues = new CameraValues(camera.getCameraLabel(), up, location, direction);
+                cameraValues = new CameraValues(camera.getCameraLabel(), position, direction, up);
             }
         }
         return cameraValues;

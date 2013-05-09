@@ -44,11 +44,11 @@ public class CameraValues {
     private Vector3f position;
     private Vector3f direction;
     
-    public CameraValues(String cameraName, Vector3f up, Vector3f position, Vector3f direction){
+    public CameraValues(String cameraName, Vector3f position, Vector3f direction, Vector3f up){
         this.cameraName = cameraName;
-        this.up = up;
         this.position = position;
         this.direction = direction;
+        this.up = up;
     }
 
     public String getCameraName(){
