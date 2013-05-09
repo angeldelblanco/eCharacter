@@ -287,6 +287,9 @@ public class Gui extends AbstractAppState implements ScreenController {
             String oldStage = control.getStageTypes(stages.get(oldIndex)).toString();
             if(!oldStage.equals(stage)){
                 nifty.gotoScreen(stage);
+                /*if(!stage.equals("animationStage")){
+                    control.defaultCameraView();
+                }*/
             }
             loadScreen(stage,oldStage,old);
         }
@@ -300,6 +303,7 @@ public class Gui extends AbstractAppState implements ScreenController {
             //nifty.getScreen(stage).findElementByName("panel_screenleft").enable();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(true);
         }*/
+        
     }
     
     public void loadScreen(String type, String oldType, String param){
