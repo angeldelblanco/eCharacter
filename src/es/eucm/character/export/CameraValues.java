@@ -40,12 +40,12 @@ import com.jme3.math.Vector3f;
 
 public class CameraValues {
     private Vector3f up;
-    private Vector3f location;
+    private Vector3f position;
     private Vector3f direction;
     
-    public CameraValues(Vector3f up, Vector3f location, Vector3f direction){
+    public CameraValues(Vector3f up, Vector3f position, Vector3f direction){
         this.up = up;
-        this.location = location;
+        this.position = position;
         this.direction = direction;
     }
 
@@ -53,8 +53,8 @@ public class CameraValues {
         return up;
     }
 
-    public Vector3f getLocation() {
-        return location;
+    public Vector3f getPosition() {
+        return position;
     }
 
     public Vector3f getDirection() {

@@ -162,43 +162,25 @@ public class Application extends SimpleApplication{
         public void onAction(String name, boolean keyPressed, float tpf) {
             if(name.equals("TranslateRight") && !keyPressed){
                 Vector3f position = cam.getLocation().add(1.0f, 0.0f, 0.0f);
-                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-                control.setViewCamera(position, direction, up);
+                control.translateCamera(position);
             }
             if(name.equals("TranslateLeft") && !keyPressed){
                 Vector3f position = cam.getLocation().subtract(1.0f, 0.0f, 0.0f);
-                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-                control.setViewCamera(position, direction, up);
+                control.translateCamera(position);
             }
             if(name.equals("TranslateUp") && !keyPressed){
                 Vector3f position = cam.getLocation().add(0.0f, 1.0f, 0.0f);
-                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-                control.setViewCamera(position, direction, up);
+                control.translateCamera(position);
             }
             if(name.equals("TranslateDown") && !keyPressed){
                 Vector3f position = cam.getLocation().subtract(0.0f, 1.0f, 0.0f);
-                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-                control.setViewCamera(position, direction, up);
+                control.translateCamera(position);
             }
             if(name.equals("RotateRight") && !keyPressed){
-                Quaternion quat = new Quaternion();
-                quat.fromAngleAxis(FastMath.DEG_TO_RAD* 10.0f, Vector3f.UNIT_Y);
-                Vector3f position = quat.mult(cam.getLocation());
-                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-                control.setViewCamera(position, direction, up);
+                control.rotateCamera(10.0f);
             }
             if(name.equals("RotateLeft") && !keyPressed){
-                Quaternion quat = new Quaternion();
-                quat.fromAngleAxis(FastMath.DEG_TO_RAD* -10.0f, Vector3f.UNIT_Y);
-                Vector3f position = quat.mult(cam.getLocation());
-                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-                control.setViewCamera(position, direction, up);
+                control.rotateCamera(-10.0f);
             }
             if (name.equals("Frontal") && !keyPressed) {
                 Vector3f position = new Vector3f(0.0f,0.0f,10.f);

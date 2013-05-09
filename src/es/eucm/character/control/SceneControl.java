@@ -69,6 +69,9 @@ import java.util.Set;
 public class SceneControl {
     private Control control;
     private CameraNode cameraNode;
+    private static CameraValues defaultCamera = new CameraValues(new Vector3f(0.0f,1.0f,0.0f), 
+                                                                 new Vector3f(-3.0f,3.0f,10.0f), 
+                                                                 new Vector3f(0.0f,0.0f,-1.0f));
     private Configuration config;
     private Spatial mainMesh;
     private HashMap<String,Spatial> subMeshes;
@@ -99,18 +102,18 @@ public class SceneControl {
         //Add lights
         addLights();
         
+        //Setting the camera´s inital configuration
+        cameraNode = new CameraNode("camera",control.getCamera());
+        cameraNode.setLocalTranslation(-3.0f,3.0f,10.0f);
+        cameraNode.lookAt(new Vector3f(control.getCamera().getDirection()),new Vector3f(control.getCamera().getUp()));        
+        control.getRootNode().attachChild(cameraNode);
+        
         //Load and locate the main model
         this.mainMesh = this.control.getAssetManager().loadModel(mainMeshPath); 
         loadTexture();
         this.control.getRootNode().attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
         loadSubMeshes();
-        
-        //Setting the camera´s inital configuration
-        cameraNode = new CameraNode("camera",control.getCamera());
-        cameraNode.setLocalTranslation(-3.0f,3.0f,10.0f);
-        cameraNode.lookAt(new Vector3f(control.getCamera().getDirection()),new Vector3f(control.getCamera().getUp()));
-        control.getRootNode().attachChild(cameraNode);
         
         //Setting the initial animation
         this.animControl = this.mainMesh.getControl(AnimControl.class);
@@ -124,8 +127,8 @@ public class SceneControl {
         //Fill the structures
         fillAnimations(animList);
         fillCameras(control.getCamerasLabels());
-        fillQualities(control.getQualityLabels());
-    }
+        fillQualities(control.getQualityLabels());        
+   }
     
     private void addLights(){
         DirectionalLight light1 = new DirectionalLight();
@@ -495,8 +498,28 @@ public class SceneControl {
     }
     
     //-----------------------CAMERA CONTROLLER--------------------------------//
-    public void setViewCamera(Vector3f position,Vector3f direction,Vector3f up){
+    
+    public void setCameraView(Vector3f position,Vector3f direction,Vector3f up){
         cameraNode.setLocalTranslation(position);
         cameraNode.lookAt(direction,up);
     }
+    
+    public void rotateCamera(float ang){
+        Quaternion quat = new Quaternion();
+        quat.fromAngleAxis(FastMath.DEG_TO_RAD* ang, Vector3f.UNIT_Y);
+        Vector3f position = quat.mult(cameraNode.getCamera().getLocation());
+        Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+        Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
+        setCameraView(position, direction, up);
+    }
+    
+    public void translateCamera(Vector3f position){
+        setCameraView(position,defaultCamera.getDirection(),defaultCamera.getUp());
+    }
+    
+    public void defaultCameraView(){
+        setCameraView(defaultCamera.getPosition(),defaultCamera.getDirection(),defaultCamera.getUp());      
+    }
+    
+    
 }

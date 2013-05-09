@@ -68,9 +68,7 @@ public class ResourceLocator implements AssetLocator{
     }
 
     public AssetInfo locate(AssetManager manager, AssetKey key) {
-        String filePath = key.getName();
-        //String fileName = getFileName(filePath);
-        
+        String filePath = key.getName();        
         String path = getAssetResource(filePath, root.getPath());
         if(path!= null){
             /** File found */
@@ -146,8 +144,7 @@ public class ResourceLocator implements AssetLocator{
                     /** "file" is a file */
                     if (file.getName().equals(fileName)){
                         /** We found the file. */
-                        String resource = dirPath+File.separator+file.getName();                    
-                        System.out.println("File found : " + resource);                    
+                        String resource = dirPath+File.separator+file.getName();                                        
                         try {
                             stream = new FileInputStream(resource);
                         } catch (FileNotFoundException ex) {
@@ -171,7 +168,6 @@ public class ResourceLocator implements AssetLocator{
     public static InputStream getResource(String filePath){
         try {
             InputStream stream = new FileInputStream(filePath);  
-            System.out.println("FICHEROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"+filePath);
             /** The file exists */
             return stream;
         } catch (FileNotFoundException ex) {
@@ -184,7 +180,7 @@ public class ResourceLocator implements AssetLocator{
     
     /** Get the name of the file */
     private static String getFileName(String filePath){
-        StringTokenizer tokens=new StringTokenizer(filePath, "/");
+        StringTokenizer tokens=new StringTokenizer(filePath, File.separator);
         String fileName = "";
         while (tokens.hasMoreTokens()){
             fileName = tokens.nextToken(); 

@@ -478,7 +478,20 @@ public class Control {
         sc.clickAllQualities(check);
     }
     
+    //-------------------CAMERA CONTROLLER-----------------------------------/
     public void setViewCamera(Vector3f position,Vector3f direction,Vector3f up){
-        sc.setViewCamera(position,direction,up);
+        sc.setCameraView(position,direction,up);
+    }
+    
+    public void rotateCamera(float ang){
+        sc.rotateCamera(ang);
+    }
+    
+    public void translateCamera(Vector3f position){
+        sc.translateCamera(position);
+    }
+    
+    public void defaultCameraView(){
+        sc.defaultCameraView();
     }
 }
