@@ -46,6 +46,7 @@ import es.eucm.character.data.family.ScaleStageType;
 import es.eucm.character.data.family.ScaleStageType.BoneController;
 import es.eucm.character.data.family.SubStageType;
 import es.eucm.character.export.CameraValues;
+import es.eucm.character.i18n.I18N;
 import es.eucm.character.loader.ResourceLocator;
 import es.eucm.character.types.StageType;
 import java.util.ArrayList;
@@ -369,7 +370,7 @@ public class FamilyControl{
                 Vector3f up = new Vector3f(camera.getUpAxis().getValueX(), camera.getUpAxis().getValueY(), camera.getUpAxis().getValueZ());
                 Vector3f location = new Vector3f(camera.getLocation().getValueX(), camera.getLocation().getValueY(), camera.getLocation().getValueZ());
                 Vector3f direction = new Vector3f(camera.getDirection().getValueX(), camera.getDirection().getValueY(), camera.getDirection().getValueZ());
-                cameraValues = new CameraValues(up, location, direction);
+                cameraValues = new CameraValues(camera.getCameraLabel(), up, location, direction);
             }
         }
         return cameraValues;

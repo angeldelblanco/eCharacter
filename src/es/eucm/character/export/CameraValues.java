@@ -39,16 +39,22 @@ package es.eucm.character.export;
 import com.jme3.math.Vector3f;
 
 public class CameraValues {
+    private String cameraName;
     private Vector3f up;
     private Vector3f position;
     private Vector3f direction;
     
-    public CameraValues(Vector3f up, Vector3f position, Vector3f direction){
+    public CameraValues(String cameraName, Vector3f up, Vector3f position, Vector3f direction){
+        this.cameraName = cameraName;
         this.up = up;
         this.position = position;
         this.direction = direction;
     }
 
+    public String getCameraName(){
+        return cameraName;
+    }
+    
     public Vector3f getUp() {
         return up;
     }

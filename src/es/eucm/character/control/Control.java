@@ -49,6 +49,7 @@ import es.eucm.character.data.model.TextureType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.export.CameraValues;
 import es.eucm.character.export.ScreenshotMyAppState;
+import es.eucm.character.i18n.I18N;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.FamilyWithPath;
 import es.eucm.character.loader.XMLFamilyReader;
@@ -245,7 +246,7 @@ public class Control {
         TexturesSubMeshesData texturesSubMeshesData = new TexturesSubMeshesData(fc.getAllSubStages(), mc.getAllTextures(), mc.getAllSubMeshes());
         sc = new SceneControl(this, config, mc.getMainMeshPath(), mc.getMainMeshTransformations(),texturesSubMeshesData);
     }
-    
+   
     public String getLanguageModelPath(){
         return mc.getLanguagePath();
     }

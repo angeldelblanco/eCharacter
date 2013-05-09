@@ -40,6 +40,7 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.LoopMode;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
+import es.eucm.character.control.SceneControl;
 import es.eucm.character.loader.Configuration;
 import java.io.File;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ import java.util.logging.Logger;
 public class ScreenshotThread extends Thread{
     private static final Logger logger = Logger.getLogger(ScreenshotThread.class.getName());
     
+    private SceneControl sc;
     private Configuration config;
     private ScreenshotMyAppState screenShotState;
     private AnimChannel channel;
@@ -60,10 +62,11 @@ public class ScreenshotThread extends Thread{
     private ArrayList<CameraValues> listCameras;
     private float stepAnimationTime;
     
-    public ScreenshotThread(Configuration config, ScreenshotMyAppState screeShotState,AnimChannel channel,
+    public ScreenshotThread(SceneControl sc,Configuration config, ScreenshotMyAppState screeShotState,AnimChannel channel,
             ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,ArrayList<String> listAnimations, 
             ArrayList<Integer> listQualities, ArrayList<CameraValues> listCameras){
         super();
+        this.sc = sc;
         this.config = config;
         this.screenShotState = screeShotState;
         this.channel = channel;
@@ -80,48 +83,54 @@ public class ScreenshotThread extends Thread{
             String dirScreenshots = config.getProperty(Configuration.DEFAULT_EXPORT_PATH);
             GenerateAnimation.cleanDirectory(dirScreenshots);
             ZIPWritter zipWritter = new ZIPWritter(dirScreenshots+File.separator+"Screenshots.zip");
-            //Recorremos las animaciones
-            Iterator<String> itAnimations = listAnimations.iterator();
-            while(itAnimations.hasNext()){
-                String nameAnimation = itAnimations.next();
-                //Recorremos las calidades
-                Iterator<Integer> itQualities = listQualities.iterator();
-                while(itQualities.hasNext()){      
-                    int quality = itQualities.next();    
-                    String nameAnimationToSave = nameAnimation+quality+"fps";
-                    screenShotState.resetShotIndex();
-                    screenShotState.resetMinMaxImage();
-                    screenShotState.setAnimationName(nameAnimationToSave);
-                    screenShotState.setFilePath(config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
-                    //Para dar tiempo a que el setAnim se aplique
-                    channel.setAnim(nameAnimation);
-                    channel.setLoopMode(LoopMode.DontLoop);
-                    sleep(40);
-                    //Redondeo
-                    int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
-                    stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
-                    ArrayList<String> listAnimationsToSave = new ArrayList<String>();
-                    float time = 0.0f;
-                    for(int j= 1 ; j<=numScreenShots; j++){
-                        System.out.println("Captura antes "+j+" con tiempo "+System.currentTimeMillis());
-                        if (j!=1){
-                            time = time+(stepAnimationTime/1000);
-                        }
-                        channel.setTime(time);
-                        //Para dar tiempo a que el setTime se aplique
+            //Recorremos las camaras
+            Iterator<CameraValues> itCameras = listCameras.iterator();
+            while(itCameras.hasNext()){
+                CameraValues cameraValues = itCameras.next(); 
+                sc.setCameraView(cameraValues.getPosition(),cameraValues.getDirection(),cameraValues.getUp());
+                //Recorremos las animaciones
+                Iterator<String> itAnimations = listAnimations.iterator();
+                while(itAnimations.hasNext()){
+                    String nameAnimation = itAnimations.next();
+                    //Recorremos las calidades
+                    Iterator<Integer> itQualities = listQualities.iterator();
+                    while(itQualities.hasNext()){      
+                        int quality = itQualities.next();    
+                        String nameAnimationToSave = nameAnimation+cameraValues.getCameraName()+quality+"fps";
+                        screenShotState.resetShotIndex();
+                        screenShotState.resetMinMaxImage();
+                        screenShotState.setAnimationName(nameAnimationToSave);
+                        screenShotState.setFilePath(config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
+                        //Para dar tiempo a que el setAnim se aplique
+                        channel.setAnim(nameAnimation);
+                        channel.setLoopMode(LoopMode.DontLoop);
                         sleep(40);
-                        synchronized (this){
-                            screenShotState.takeScreenshot(this);
-                            this.wait();
+                        //Redondeo
+                        int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
+                        stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
+                        ArrayList<String> listAnimationsToSave = new ArrayList<String>();
+                        float time = 0.0f;
+                        for(int j= 1 ; j<=numScreenShots; j++){
+                            System.out.println("Captura antes "+j+" con tiempo "+System.currentTimeMillis());
+                            if (j!=1){
+                                time = time+(stepAnimationTime/1000);
+                            }
+                            channel.setTime(time);
+                            //Para dar tiempo a que el setTime se aplique
+                            sleep(40);
+                            synchronized (this){
+                                screenShotState.takeScreenshot(this);
+                                this.wait();
+                            }
+                            listAnimationsToSave.add(nameAnimationToSave+j+".png");
+                            System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
+                            sleep((long)stepAnimationTime);
                         }
-                        listAnimationsToSave.add(nameAnimationToSave+j+".png");
-                        System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
-                        sleep((long)stepAnimationTime);
+                        ScreenshotWritter sw = new ScreenshotWritter(dirScreenshots, nameAnimationToSave, listAnimationsToSave, zipWritter,
+                                screenShotState.getCutWmin(), screenShotState.getCutWmax(), screenShotState.getCutHmin(), screenShotState.getCutHmax());
+                        sw.start();
+                        sw.join();
                     }
-                    ScreenshotWritter sw = new ScreenshotWritter(dirScreenshots, nameAnimationToSave, listAnimationsToSave, zipWritter,
-                            screenShotState.getCutWmin(), screenShotState.getCutWmax(), screenShotState.getCutHmin(), screenShotState.getCutHmax());
-                    sw.start();
-                    sw.join();
                 }
             }
             zipWritter.closeZip();

@@ -56,6 +56,7 @@ import es.eucm.character.data.model.TransformationType;
 import es.eucm.character.data.texturessubmeshesdata.TexturesSubMeshesData;
 import es.eucm.character.export.CameraValues;
 import es.eucm.character.export.ScreenshotThread;
+import es.eucm.character.i18n.I18N;
 import es.eucm.character.imageprocessing.ImagesProcessingMainMesh;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.types.ElementType;
@@ -67,11 +68,11 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class SceneControl {
-    private Control control;
     private CameraNode cameraNode;
-    private static CameraValues defaultCamera = new CameraValues(new Vector3f(0.0f,1.0f,0.0f), 
+    private static CameraValues defaultCamera = new CameraValues("Default", new Vector3f(0.0f,1.0f,0.0f), 
                                                                  new Vector3f(-3.0f,3.0f,10.0f), 
                                                                  new Vector3f(0.0f,0.0f,-1.0f));
+    private Control control;
     private Configuration config;
     private Spatial mainMesh;
     private HashMap<String,Spatial> subMeshes;
@@ -85,7 +86,7 @@ public class SceneControl {
     private TexturesSubMeshesData texturesSubMeshesData;
     private ArrayList<DirectionalLight> lights;
     
-    public SceneControl(Control control,Configuration config,String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh,
+    public SceneControl(Control control, Configuration config,String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh,
                 TexturesSubMeshesData texturesSubMeshesData){
         
         //Initialize structures
@@ -418,7 +419,7 @@ public class SceneControl {
             
             
             
-            ScreenshotThread sst = new ScreenshotThread(config, control.getScreenShotState(),animChannel,
+            ScreenshotThread sst = new ScreenshotThread(this,config, control.getScreenShotState(),animChannel,
                     control.getGuiViewPort(),control.getNiftyDisplay(),listAnimationsChecked, 
                     listQualitiesChecked, listCamerasChecked);
             sst.start();
