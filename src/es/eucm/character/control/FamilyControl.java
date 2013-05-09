@@ -46,7 +46,6 @@ import es.eucm.character.data.family.ScaleStageType;
 import es.eucm.character.data.family.ScaleStageType.BoneController;
 import es.eucm.character.data.family.SubStageType;
 import es.eucm.character.export.CameraValues;
-import es.eucm.character.i18n.I18N;
 import es.eucm.character.loader.ResourceLocator;
 import es.eucm.character.types.StageType;
 import java.util.ArrayList;
