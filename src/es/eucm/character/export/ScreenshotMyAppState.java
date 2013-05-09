@@ -113,9 +113,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         if (!super.isInitialized()){
-            InputManager inputManager = app.getInputManager();
+            /*InputManager inputManager = app.getInputManager();
             inputManager.addMapping("ScreenShot", new KeyTrigger(KeyInput.KEY_SYSRQ));
-            inputManager.addListener(this, "ScreenShot");
+            inputManager.addListener(this, "ScreenShot");*/
 
             List<ViewPort> vps = app.getRenderManager().getPostViews();
             ViewPort last = vps.get(vps.size()-1);
@@ -125,6 +125,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         }
 
         super.initialize(stateManager, app);
+        //Delete the mapping for the KeyInput.KEY_SYSRQ key.
+        InputManager inputManager = app.getInputManager();
+        inputManager.deleteMapping("ScreenShot");
     }
 
     @Override
