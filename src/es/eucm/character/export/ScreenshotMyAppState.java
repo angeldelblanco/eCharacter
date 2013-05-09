@@ -195,7 +195,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             getMinMaxImage(bufferedImage);
             
             outBuf = null;
-            System.gc();
+            //System.gc();
                         
             //if (!viewPortInit){
                 //renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
