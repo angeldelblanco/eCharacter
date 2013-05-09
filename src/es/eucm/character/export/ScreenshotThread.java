@@ -80,9 +80,9 @@ public class ScreenshotThread extends Thread{
     @Override
     public void run(){
         try {
-            String dirScreenshots = config.getProperty(Configuration.DEFAULT_EXPORT_PATH);
+            String dirScreenshots = config.getProperty(Configuration.DEFAULT_TEMP_PATH);
             GenerateAnimation.cleanDirectory(dirScreenshots);
-            ZIPWritter zipWritter = new ZIPWritter(dirScreenshots+File.separator+"Screenshots.zip");
+            ZIPWritter zipWritter = new ZIPWritter(config.getProperty(Configuration.DEFAULT_EXPORT_PATH), "Screenshots.zip");
             //Recorremos las camaras
             Iterator<CameraValues> itCameras = listCameras.iterator();
             while(itCameras.hasNext()){
@@ -100,7 +100,7 @@ public class ScreenshotThread extends Thread{
                         screenShotState.resetShotIndex();
                         screenShotState.resetMinMaxImage();
                         screenShotState.setAnimationName(nameAnimationToSave);
-                        screenShotState.setFilePath(config.getProperty(Configuration.DEFAULT_EXPORT_PATH));
+                        screenShotState.setFilePath(config.getProperty(Configuration.DEFAULT_TEMP_PATH));
                         //Para dar tiempo a que el setAnim se aplique
                         channel.setAnim(nameAnimation);
                         channel.setLoopMode(LoopMode.DontLoop);

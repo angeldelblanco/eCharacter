@@ -52,10 +52,15 @@ public final class ZIPWritter {
     private ZipOutputStream out;
     private byte data[];
     
-    public ZIPWritter(String filename){
+    public ZIPWritter(String folder, String filename){
         try {
+            File f = new File(folder);
+            if (!f.exists()){
+                f.mkdirs();
+            }
+            String filePath = folder + File.separator + filename;
             //Declaramos el FileOutputStream para guardar el archivo
-            FileOutputStream dest = new FileOutputStream(filename);
+            FileOutputStream dest = new FileOutputStream(filePath);
             //Indicamos que será un archivo ZIP
             out = new ZipOutputStream(new BufferedOutputStream(dest));
             //Indicamos que el archivo tendrá compresión
