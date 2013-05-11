@@ -13,7 +13,7 @@
 	<string id="idTextBlancoOjos">Sclérotique</string>
 	<string id="idTextOjos">Yeux</string>
 	<string id="idTextCejas1">Sourcils minces</string>
-	<string id="idTextCejas2">Sourcils gras</string>
+	<string id="idTextCejas2">Sourcils grosses</string>
 	<string id="idTextPestanas">Onglets</string>
 	<string id="idTextCamisetaSinMangas">Tee-shirt sans manches</string>
 	<string id="idTextCamiseta">Tee-shirt</string>
@@ -42,6 +42,6 @@
 	<string id="idTextPulseraIzq">Poignet gauche</string>
 	<string id="idTextPeloLong">Cheveux longs</string>
 	<string id="idTextPeloOld">Vieux cheveux</string>
-	<string id="idTextPeloPonyTail">Queue de cheval cheveux</string>
+	<string id="idTextPeloPonyTail">Queue de cheval au cheveux</string>
 	<string id="idTextPeloShort">Cheveux courts</string>
 </metadata>

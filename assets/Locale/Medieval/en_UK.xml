@@ -3,7 +3,6 @@
 	<string id="idNameFamily">Medieval</string>
 	<string id="idDescriptionFamily">This family has composed by two humans: a man and a woman. Every human can dress casual or medieval.</string>
 	<string id="idAuthor">???</string>
-	<!-- Revisar los nombres de los bone controller -->
 	<string id="idMultiStageLabel1">Scale</string>
 	<string id="idBoneControler1">Head</string>
 	<string id="idBoneControler2">Arms</string>

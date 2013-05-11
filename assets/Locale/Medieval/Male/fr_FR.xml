@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="fr_FR" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../language.xsd">
+	<string id="idPhysicalBuildLabel1">Moyenne</string>
+	<string id="idPhysicalBuildLabel2">Gros</string>
+	<string id="idPhysicalBuildLabel3">Mince</string>
+	<string id="idPhysicalBuildLabel4">Haut</string>
+	<string id="idPhysicalBuildLabel5">Bas</string>
+	<string id="idTextPielCasual">Peau casual</string>
+	<string id="idTextPielMedieval">Peau médiéval</string>
+	<string id="idTextPeloCasual">Cheveaux casual</string>
+	<string id="idTextPeloMedieval">Cheveaux médiéval</string>
+	<string id="idTextOjosCasual">Yeaux casual</string>
+	<string id="idTextOjosMedieval">Yeaux médiéval</string>
+	<string id="idTextCamisetaCasual">T-shirt casual</string>
+	<string id="idTextCamisetaMedieval">T-shirt médiéval</string>
+	<string id="idTextPantalonCasual">Pantalon casual</string>
+	<string id="idTextPantalonMedieval">Pantalon médiéval</string>
+	<string id="idTextZapatosCasual">Chaussures casual</string>
+	<string id="idTextZapatosMedieval">Chaussures médiéval</string>
+	<string id="idTextGuantes">Gants</string>
+</metadata>
