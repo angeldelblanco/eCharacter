@@ -159,7 +159,7 @@
 			</panel>
         </layer>
         <!-- show a hint on top of the normal layer -->
-        <layer id="layer2" childLayout="absolute">
+        <layer id="layer2" childLayout="absolute-inside">
             <panel id="hint-panel" visible="false" childLayout="vertical" padding="5px,10px,5px,10px" backgroundColor="#ffc">
                 <text id="content" font="${CALL.getFont()}" text="" align="center" valign="center" color="#000"/>
             </panel>    
@@ -394,7 +394,7 @@
 			</panel>
         </layer>
 		<!-- show a hint on top of the normal layer -->
-		<layer id="layer2" childLayout="absolute">
+		<layer id="layer2" childLayout="absolute-inside">
             <panel id="hint-panel" visible="false" childLayout="vertical" padding="5px,10px,5px,10px" backgroundColor="#ffc">
                 <text id="content" font="${CALL.getFont()}" text="" align="center" valign="center" color="#000"/>
             </panel>    
@@ -535,7 +535,7 @@
 			</panel>
         </layer>
 		<!-- show a hint on top of the normal layer -->
-        <layer id="layer2" childLayout="absolute">
+        <layer id="layer2" childLayout="absolute-inside">
             <panel id="hint-panel" visible="false" childLayout="vertical" padding="5px,10px,5px,10px" backgroundColor="#ffc">
                 <text id="content" font="${CALL.getFont()}" text="" align="center" valign="center" color="#000"/>
             </panel>    
