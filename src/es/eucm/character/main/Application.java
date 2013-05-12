@@ -53,9 +53,11 @@ import es.eucm.character.control.Control;
 import es.eucm.character.export.ScreenshotMyAppState;
 import es.eucm.character.gui.Gui;
 import es.eucm.character.gui.Tooltip;
+import es.eucm.character.gui.ProgressbarControl;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.ResourceLocator;
 import java.io.File;
+import java.util.Date;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -113,6 +115,8 @@ public class Application extends SimpleApplication{
         //Disable flyCam
         flyCam.setDragToRotate(true); // you need the mouse for clicking now
         flyCam.setEnabled(false);
+        /*LwjglInitHelper.renderLoop(nifty, new RenderLoop(nifty));
+ 	LwjglInitHelper.destroy();*/
     }
     
     public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
@@ -197,4 +201,29 @@ public class Application extends SimpleApplication{
             
         }
     };
+    
+    /*private static final class RenderLoop implements RenderLoopCallback {
+        private final Nifty nifty;
+ 	private int progress = 0;
+     	private long start = new Date().getTime();
+     	
+     	private RenderLoop(final Nifty nifty) {
+            this.nifty = nifty;
+     	}
+    	
+     	@Override
+     	public void process() {
+            long now = new Date().getTime();
+            if (now - start > 50) { // add one percent every 50 ms
+                start = now;
+     	
+         	progress++;
+                nifty.getScreen("start").findControl("my-progress", ProgressbarControl.class).setProgress(progress / 100.0f);
+     	
+         	if (progress >= 100) {
+                 	System.out.println("done");
+                }
+            }
+     	}
+    }*/
 }
