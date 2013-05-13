@@ -236,7 +236,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(popUp == null){
             popUp = new PopUpBuilder(nifty, control, i18nGui,i18nModel);
         }
-        
+        nifty.gotoScreen("scaleStage");
         ArrayList<String> idPanel = control.getIdsSubStages(selection);
         idPhysicalBuild = control.getIdsPhysicalBuild(idPanel.get(0));
         idBones = control.getIdBonesController(selection);
