@@ -40,6 +40,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public final class ScreenshotWritter extends Thread{
@@ -73,10 +75,13 @@ public final class ScreenshotWritter extends Thread{
                 while(img == null){}
                 //temp.delete();
                 BufferedImage biCut = img.getSubimage(xMin, yMin, xMax-xMin, yMax-yMin);
-                while(biCut == null){}
+                sleep(80);
+                //while(biCut == null){}
                 //File file = new File(exportPath+File.separator+name);
                 ImageIO.write(biCut, "png", temp);
                 zipWritter.saveFile(temp, name);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ScreenshotWritter.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException e) {
                 
             }

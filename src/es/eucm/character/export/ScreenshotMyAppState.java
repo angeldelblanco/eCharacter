@@ -202,8 +202,8 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 //renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
                 //viewPortInit=true;
             //}
-            ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImage, bufferedImage.getWidth(), bufferedImage.getHeight());
-            File file = new File(filePath+File.separator+data.getName()+".png");
+            //ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImage, bufferedImage.getWidth(), bufferedImage.getHeight());
+            File file = new File(filePath+File.separator+nameAnimation+shotIndex+".png");
             try {
                 boolean b = false;
                 b = ImageIO.write(bufferedImage, "png", file);

@@ -72,7 +72,7 @@ public class Application extends SimpleApplication{
     private Control control;
     private Configuration config;
     private Nifty nifty;
-    
+    private float t = 0;
     
     public Application(int width,int height,Configuration config){
         //Creation of the new configuration
