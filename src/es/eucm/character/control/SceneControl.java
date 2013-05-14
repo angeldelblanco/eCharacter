@@ -42,6 +42,7 @@ import com.jme3.animation.LoopMode;
 import com.jme3.animation.SkeletonControl;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
@@ -371,6 +372,7 @@ public class SceneControl {
     }
     
     public void screenShot(){
+        control.getViewPort().setBackgroundColor(new ColorRGBA(0f, 0f, 1f, 0f));
         
         //Animations list that is checked
         ArrayList<String> listAnimationsChecked = new ArrayList<String>();

@@ -42,6 +42,9 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.system.AppSettings;
@@ -69,7 +72,7 @@ public class Application extends SimpleApplication{
     private Control control;
     private Configuration config;
     private Nifty nifty;
-    
+    private float t = 0;
     
     public Application(int width,int height,Configuration config){
         //Creation of the new configuration
@@ -97,7 +100,7 @@ public class Application extends SimpleApplication{
         guiViewPort.addProcessor(niftyDisplay);
         
         screenShotState = new ScreenshotMyAppState();        
-        control = new Control(config,rootNode,cam,assetManager,this, guiViewPort, niftyDisplay, screenShotState);
+        control = new Control(config,rootNode,cam,assetManager,this, viewPort, guiViewPort, niftyDisplay, screenShotState);
         gui = new Gui(control,config);
         
         //Activate the Nifty-JME integration

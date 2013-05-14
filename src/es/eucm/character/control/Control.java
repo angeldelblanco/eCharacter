@@ -68,6 +68,7 @@ public class Control {
     private Camera camera;
     private AssetManager assetManager;
     private Application app;
+    private ViewPort viewPort;
     private ViewPort guiViewPort;
     private NiftyJmeDisplay niftyDisplay;
     private ScreenshotMyAppState screenShotState;
@@ -79,7 +80,7 @@ public class Control {
     private SceneControl sc;
     
     public Control(Configuration config, Node rootNode,Camera camera,AssetManager assetManager, Application app, 
-            ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState){
+            ViewPort viewPort, ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState){
         this.config = config;
         String familiesPath = this.config.getProperty(Configuration.FAMILIES_PATH);
         XMLFamilyReader xmlReader = new XMLFamilyReader(familiesPath);
@@ -88,10 +89,12 @@ public class Control {
         this.rootNode = rootNode;
         this.camera = camera;
         this.app = app;
+        this.viewPort = viewPort;
         this.guiViewPort = guiViewPort;
         this.niftyDisplay = niftyDisplay;
         this.screenShotState = screenShotState;
     }
+    
     /*************************Getter******************************************/
     public AssetManager getAssetManager() {
         return assetManager;
@@ -103,6 +106,10 @@ public class Control {
     
     public Camera getCamera(){
         return camera;
+    }
+    
+    public ViewPort getViewPort() {
+        return viewPort;
     }
 
     public ViewPort getGuiViewPort() {
@@ -499,4 +506,6 @@ public class Control {
     public void defaultCameraView(){
         sc.defaultCameraView();
     }
+
+    
 }

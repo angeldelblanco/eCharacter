@@ -47,6 +47,7 @@ import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
+import es.eucm.character.imageprocessing.filter.TransparentColorFilter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -68,6 +69,8 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     private int width, height;
     
     private ScreenshotThread st;
+    
+    private TransparentColorFilter t;
     
     private String nameAnimation;
     
@@ -121,11 +124,12 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             last.addProcessor(this);
             appName = app.getClass().getSimpleName();
         }
-
+        
         super.initialize(stateManager, app);
         //Delete the mapping for the KeyInput.KEY_SYSRQ key.
         InputManager inputManager = app.getInputManager();
         inputManager.deleteMapping("ScreenShot");
+        t = new TransparentColorFilter(true, 15);
     }
 
     @Override
@@ -193,6 +197,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
             Screenshots.convertScreenShot(outBuf, bufferedImage);
             
+            t.setActive(true);
+            t.transform(bufferedImage, 0, 0);
+            
             getMinMaxImage(bufferedImage);
             
             outBuf = null;
@@ -202,8 +209,8 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 //renderer.setViewPort(viewX, viewY, viewWidth, viewHeight);
                 //viewPortInit=true;
             //}
-            ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImage, bufferedImage.getWidth(), bufferedImage.getHeight());
-            File file = new File(filePath+File.separator+data.getName()+".png");
+            //ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImage, bufferedImage.getWidth(), bufferedImage.getHeight());
+            File file = new File(filePath+File.separator+nameAnimation+shotIndex+".png");
             try {
                 boolean b = false;
                 b = ImageIO.write(bufferedImage, "png", file);
@@ -213,8 +220,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 logger.log(Level.SEVERE, "Error while saving screenshot", ex);
             }
             
-            System.out.println("Añadido Nº "+shotIndex);
-            //System.out.println("Tamaño actual "+queue.size());
+            System.out.println("Añadido Nº "+shotIndex);;
             System.out.println();
 
             synchronized(st){

@@ -104,7 +104,7 @@ public class ScreenshotThread extends Thread{
                         //Para dar tiempo a que el setAnim se aplique
                         channel.setAnim(nameAnimation);
                         channel.setLoopMode(LoopMode.DontLoop);
-                        sleep(40);
+                        sleep(60);
                         //Redondeo
                         int numScreenShots = Math.round(channel.getAnimMaxTime() * quality); 
                         stepAnimationTime = (channel.getAnimMaxTime() * 1000 / numScreenShots);
@@ -117,7 +117,7 @@ public class ScreenshotThread extends Thread{
                             }
                             channel.setTime(time);
                             //Para dar tiempo a que el setTime se aplique
-                            sleep(40);
+                            sleep(100);
                             synchronized (this){
                                 screenShotState.takeScreenshot(this);
                                 this.wait();
