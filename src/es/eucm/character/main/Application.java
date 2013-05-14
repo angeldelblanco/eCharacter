@@ -42,11 +42,8 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
-import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.scene.CameraNode;
 import com.jme3.system.AppSettings;
 import de.lessvoid.nifty.Nifty;
 import es.eucm.character.control.Control;
@@ -147,12 +144,20 @@ public class Application extends SimpleApplication{
         inputManager.addListener(actionListener,"TranslateUp");
         inputManager.addMapping("TranslateDown", new KeyTrigger(KeyInput.KEY_DOWN));
         inputManager.addListener(actionListener,"TranslateDown");
+        inputManager.addMapping("Translate+", new KeyTrigger(KeyInput.KEY_X));
+        inputManager.addListener(actionListener,"Translate+");
+        inputManager.addMapping("Translate-", new KeyTrigger(KeyInput.KEY_Z));
+        inputManager.addListener(actionListener,"Translate-");
         
         //Rotate camera
-        inputManager.addMapping("RotateRight", new KeyTrigger(KeyInput.KEY_S));
+        inputManager.addMapping("RotateRight", new KeyTrigger(KeyInput.KEY_D));
         inputManager.addListener(actionListener,"RotateRight");
         inputManager.addMapping("RotateLeft", new KeyTrigger(KeyInput.KEY_A));
         inputManager.addListener(actionListener,"RotateLeft");
+        inputManager.addMapping("RotateUp", new KeyTrigger(KeyInput.KEY_W));
+        inputManager.addListener(actionListener,"RotateUp");
+        inputManager.addMapping("RotateDown", new KeyTrigger(KeyInput.KEY_S));
+        inputManager.addListener(actionListener,"RotateDown");
         
         //Views camera
         inputManager.addMapping("Frontal",new KeyTrigger(KeyInput.KEY_1));
@@ -165,26 +170,40 @@ public class Application extends SimpleApplication{
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
             if(name.equals("TranslateRight") && !keyPressed){
-                Vector3f position = cam.getLocation().add(1.0f, 0.0f, 0.0f);
-                control.translateCamera(position);
+                Vector3f inc = new Vector3f(0.2f, 0.0f, 0.0f);
+                control.translateCamera(inc);
             }
             if(name.equals("TranslateLeft") && !keyPressed){
-                Vector3f position = cam.getLocation().subtract(1.0f, 0.0f, 0.0f);
-                control.translateCamera(position);
+                Vector3f inc = new Vector3f(-0.2f, 0.0f, 0.0f);
+                control.translateCamera(inc);
             }
             if(name.equals("TranslateUp") && !keyPressed){
-                Vector3f position = cam.getLocation().add(0.0f, 1.0f, 0.0f);
-                control.translateCamera(position);
+                Vector3f inc = new Vector3f(0.0f, 0.2f, 0.0f);
+                control.translateCamera(inc);
             }
             if(name.equals("TranslateDown") && !keyPressed){
-                Vector3f position = cam.getLocation().subtract(0.0f, 1.0f, 0.0f);
-                control.translateCamera(position);
+                Vector3f inc = new Vector3f(0.0f, -0.2f, 0.0f);
+                control.translateCamera(inc);
+            }
+            if(name.equals("Translate+") && !keyPressed){
+                Vector3f inc = new Vector3f(0.0f, 0.0f, 0.2f);
+                control.translateCamera(inc);
+            }
+            if(name.equals("Translate-") && !keyPressed){
+                Vector3f inc = new Vector3f(0.0f, 0.0f, -0.2f);
+                control.translateCamera(inc);
             }
             if(name.equals("RotateRight") && !keyPressed){
-                control.rotateCamera(10.0f);
+                control.rotateCamera(5.0f,Vector3f.UNIT_Y);
             }
             if(name.equals("RotateLeft") && !keyPressed){
-                control.rotateCamera(-10.0f);
+                control.rotateCamera(-5.0f, Vector3f.UNIT_Y);
+            }
+            if(name.equals("RotateUp") && !keyPressed){
+                control.rotateCamera(-5.0f,Vector3f.UNIT_X);
+            }
+            if(name.equals("RotateDown") && !keyPressed){
+                control.rotateCamera(5.0f,Vector3f.UNIT_X);
             }
             if (name.equals("Frontal") && !keyPressed) {
                 Vector3f position = new Vector3f(0.0f,0.0f,10.f);

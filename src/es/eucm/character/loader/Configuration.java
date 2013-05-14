@@ -133,7 +133,7 @@ public class Configuration {
         this.properties.setProperty(LOCALE_PATH,"assets"+File.separator+"Locale"+File.separatorChar+"Gui");
         this.properties.setProperty(DEFAULT_QUALITY, "10");
         this.properties.setProperty(DEFAULT_CAMERA_NAME, "DefaultCamera");
-        this.properties.setProperty(DEFAULT_VECTOR_POSITION, "-3.0,3.0,10.0");
+        this.properties.setProperty(DEFAULT_VECTOR_POSITION, "-3.0,5.0,10.0");
         this.properties.setProperty(DEFAULT_VECTOR_DIRECTION, "0.0,0.0,-1.0");
         this.properties.setProperty(DEFAULT_VECTOR_UP, "0.0,1.0,0.0");
         this.properties.setProperty(DEFAULT_EXPORT_PATH, "export");

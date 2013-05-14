@@ -48,7 +48,7 @@
 			</camera>
 			<camera cameraLabel="idCameraLabel2">
 				<upAxis valueX="0.0" valueY="1.0" valueZ="0.0"/>
-				<location valueX="-3.0" valueY="3.0" valueZ="10.0"/>
+				<location valueX="-3.0" valueY="5.0" valueZ="10.0"/>
 				<direction valueX="0.0" valueY="0.0" valueZ="-1.0"/>
 			</camera>
 		</animationStage>

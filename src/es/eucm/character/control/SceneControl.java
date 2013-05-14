@@ -506,17 +506,19 @@ public class SceneControl {
         cameraNode.lookAt(direction,up);
     }
     
-    public void rotateCamera(float ang){
+    public void rotateCamera(float ang,Vector3f vector){
         Quaternion quat = new Quaternion();
-        quat.fromAngleAxis(FastMath.DEG_TO_RAD* ang, Vector3f.UNIT_Y);
-        Vector3f position = quat.mult(cameraNode.getCamera().getLocation());
+        quat.fromAngleAxis(FastMath.DEG_TO_RAD* ang,vector);
+        Vector3f position = quat.mult(cameraNode.getLocalTranslation());
         Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
+        //Vector3f direction = new Vector3f(0.0f,position.getY(),-1.0f);
         Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
         setCameraView(position, direction, up);
     }
     
-    public void translateCamera(Vector3f position){
-        setCameraView(position,defaultCamera.getDirection(),defaultCamera.getUp());
+    public void translateCamera(Vector3f inc){
+        Vector3f position = cameraNode.getLocalTranslation().add(inc);
+        cameraNode.setLocalTranslation(position);
     }
     
     public final void defaultCameraView(){
