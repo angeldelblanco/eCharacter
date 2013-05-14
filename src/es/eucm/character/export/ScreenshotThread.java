@@ -126,14 +126,14 @@ public class ScreenshotThread extends Thread{
                             System.out.println("Captura despues "+j+" con tiempo "+System.currentTimeMillis());
                             sleep((long)stepAnimationTime);
                         }
-                        ScreenshotWritter sw = new ScreenshotWritter(dirScreenshots, nameAnimationToSave, listAnimationsToSave, zipWritter,
+                        /*ScreenshotWritter sw = new ScreenshotWritter(dirScreenshots, nameAnimationToSave, listAnimationsToSave, zipWritter,
                                 screenShotState.getCutWmin(), screenShotState.getCutWmax(), screenShotState.getCutHmin(), screenShotState.getCutHmax());
                         sw.start();
-                        sw.join();
+                        sw.join();*/
                     }
                 }
             }
-            zipWritter.closeZip();
+            //zipWritter.closeZip();
             niftyDisplay.getNifty().gotoScreen("popupScreen");
             System.out.println("ScreenshotThread OK");
          } 

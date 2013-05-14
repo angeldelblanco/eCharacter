@@ -47,6 +47,7 @@ import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -247,6 +248,14 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         salida:
         for (int i = 0; i<w; i++){
             for (int j = 0; j<h; j++){
+                int color = bi.getRGB(i, j);
+                Color c = new Color(color);
+                if (c.getRed() == 0 && c.getGreen() == 0 && c.getBlue() == 255 && c.getAlpha() == (0.4*255)){
+                    //int alpha = ((bi.getRGB(i,j)&0xFF000000));
+                    //Quitar el new Color, trabajar con ints
+                    bi.setRGB(i, j, new Color((int)0,(int)0,(int)1).getRGB() + 427819007);
+                    //bi.setRGB(i, j, 16000);
+                }
                 //if the pixel isn't transparent
                 if (bi.getRGB(i, j) < 0){
                     if (i!= 0){
