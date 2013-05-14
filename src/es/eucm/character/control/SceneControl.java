@@ -372,7 +372,7 @@ public class SceneControl {
     }
     
     public void screenShot(){
-        control.getViewPort().setBackgroundColor(new ColorRGBA(0f, 0f, 1f, 0.4f));
+        control.getViewPort().setBackgroundColor(new ColorRGBA(0f, 0f, 1f, 0f));
         
         //Animations list that is checked
         ArrayList<String> listAnimationsChecked = new ArrayList<String>();

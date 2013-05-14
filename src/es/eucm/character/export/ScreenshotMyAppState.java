@@ -47,7 +47,7 @@ import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
-import java.awt.Color;
+import es.eucm.character.imageprocessing.filter.TransparentColorFilter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -69,6 +69,8 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
     private int width, height;
     
     private ScreenshotThread st;
+    
+    private TransparentColorFilter t;
     
     private String nameAnimation;
     
@@ -122,11 +124,12 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             last.addProcessor(this);
             appName = app.getClass().getSimpleName();
         }
-
+        
         super.initialize(stateManager, app);
         //Delete the mapping for the KeyInput.KEY_SYSRQ key.
         InputManager inputManager = app.getInputManager();
         inputManager.deleteMapping("ScreenShot");
+        t = new TransparentColorFilter(true, 15);
     }
 
     @Override
@@ -194,6 +197,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
             Screenshots.convertScreenShot(outBuf, bufferedImage);
             
+            t.setActive(true);
+            t.transform(bufferedImage, 0, 0);
+            
             getMinMaxImage(bufferedImage);
             
             outBuf = null;
@@ -214,8 +220,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 logger.log(Level.SEVERE, "Error while saving screenshot", ex);
             }
             
-            System.out.println("Añadido Nº "+shotIndex);
-            //System.out.println("Tamaño actual "+queue.size());
+            System.out.println("Añadido Nº "+shotIndex);;
             System.out.println();
 
             synchronized(st){
@@ -248,14 +253,6 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         salida:
         for (int i = 0; i<w; i++){
             for (int j = 0; j<h; j++){
-                int color = bi.getRGB(i, j);
-                Color c = new Color(color);
-                if (c.getRed() == 0 && c.getGreen() == 0 && c.getBlue() == 255 && c.getAlpha() == (0.4*255)){
-                    //int alpha = ((bi.getRGB(i,j)&0xFF000000));
-                    //Quitar el new Color, trabajar con ints
-                    bi.setRGB(i, j, new Color((int)0,(int)0,(int)1).getRGB() + 427819007);
-                    //bi.setRGB(i, j, 16000);
-                }
                 //if the pixel isn't transparent
                 if (bi.getRGB(i, j) < 0){
                     if (i!= 0){
