@@ -48,7 +48,6 @@ import com.jme3.texture.FrameBuffer;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
 import es.eucm.character.imageprocessing.filter.TransparentColorFilter;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -130,7 +129,6 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         //Delete the mapping for the KeyInput.KEY_SYSRQ key.
         InputManager inputManager = app.getInputManager();
         inputManager.deleteMapping("ScreenShot");
-        t = new TransparentColorFilter(false, 15);
     }
 
     @Override
@@ -198,9 +196,10 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
             Screenshots.convertScreenShot(outBuf, bufferedImage);
             
-            /*t.setActive(true);
-            t.transform(bufferedImage, 0, 0);*/
-            
+            t = new TransparentColorFilter(false, 15);
+            t.setActive(true);
+            t.transform(bufferedImage, 0, 0);
+
             getMinMaxImage(bufferedImage);
             
             outBuf = null;
@@ -249,7 +248,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
         int w = bi.getWidth();
         int h = bi.getHeight();
         
-        for (int i = 0; i<w; i++){
+        /*for (int i = 0; i<w; i++){
             for (int j = 0; j<h; j++){
                 //110 es el nivel de transparencia hasta el que se quiere borrar el color
                 //Si el color de fondo se construye con 0.4 de alpha, float(0.4*255 = 102). Redondeando, 110
@@ -257,7 +256,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                     bi.setRGB(i, j, new Color(0,0,0,0).getRGB()); //Asigna un nuevo color, por ejemplo el negro
                 }
             }
-        }
+        }*/
 
         //Cut horizontally
         int current_cutWmin = 0;

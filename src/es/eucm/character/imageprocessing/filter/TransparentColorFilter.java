@@ -65,8 +65,9 @@ public class TransparentColorFilter implements ImageFilter {
     }
 
     public void transform( BufferedImage image, int x, int y ) {
-
+        
         if( active && image.getColorModel( ).getNumComponents( ) == 4 ) {
+            System.out.println("ENTROOOOOOOOOOOOOO");
             WritableRaster raster = image.getRaster( );
 
             int transparentColor[] = new int[ 4 ];
