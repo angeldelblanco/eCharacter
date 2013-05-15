@@ -47,7 +47,9 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.renderer.ViewPort;
 import com.jme3.system.AppSettings;
+import com.jme3.ui.Picture;
 import de.lessvoid.nifty.Nifty;
 import es.eucm.character.control.Control;
 import es.eucm.character.export.ScreenshotMyAppState;
@@ -74,6 +76,9 @@ public class Application extends SimpleApplication{
     private Nifty nifty;
     private float t = 0;
     
+    /*private ViewPort pv;
+    private Picture p;*/
+    
     public Application(int width,int height,Configuration config){
         //Creation of the new configuration
         AppSettings newSettings = new AppSettings(true);
@@ -86,6 +91,21 @@ public class Application extends SimpleApplication{
     
     @Override
     public void simpleInitApp() {
+        //CODIGO PARA PONER UNA IMAGEN DE FONDO
+        /*p = new Picture("background");
+        p.setImage(assetManager, "Interface/greystilebutton.png", false);
+        p.setWidth(settings.getWidth());
+        p.setHeight(settings.getHeight());
+        p.setPosition(0, 0);
+
+        pv = renderManager.createPreView("background", cam);
+        pv.setClearFlags(true, true, true);
+        pv.attachScene(p);
+        viewPort.setClearFlags(false, true, true);
+        p.updateGeometricState();
+        //CODIGO PARA QUITAR LA IMAGEN DE FONDO (ESTO HAY QUE HACERLO EN DONDE NOS INTERESE QUITAR EL FONDO)
+        //pv.detachScene(p);*/
+        
         initKeys();
         disableLogNifty();        
                 
@@ -117,6 +137,9 @@ public class Application extends SimpleApplication{
         flyCam.setEnabled(false);
         /*LwjglInitHelper.renderLoop(nifty, new RenderLoop(nifty));
  	LwjglInitHelper.destroy();*/
+        
+        
+       
     }
     
     public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
