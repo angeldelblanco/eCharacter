@@ -196,9 +196,9 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
             Screenshots.convertScreenShot(outBuf, bufferedImage);
             
-            t = new TransparentColorFilter(false, 15);
+            t = new TransparentColorFilter(true, 15);
             t.setActive(true);
-            t.transform(bufferedImage, 0, 0);
+            t.transform(bufferedImage, width-1, height-1);
 
             getMinMaxImage(bufferedImage);
             
