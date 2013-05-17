@@ -4,7 +4,7 @@
 		<name>idNameFamily</name>
 		<description>idDescriptionFamily</description>
 		<author>idAuthor</author>
-		<languagesPath>assets\Locale\eAdventure</languagesPath>
+		<languagesPath>assets/Locale/eAdventure</languagesPath>
 		<iconPath></iconPath>
 	</metadata>
 	<stages>
@@ -65,23 +65,23 @@
 	<modelsRef>
 		<modelRef>
 			<modelLabel>idModelLabel1</modelLabel>
-			<iconPath>assets\Interface\Icons\eAdventure\man.png</iconPath>
-			<modelPath>assets\XML Configuration\models\eAdventure\Man.xml</modelPath>
+			<iconPath>assets/Interface/Icons/eAdventure/man.png</iconPath>
+			<modelPath>assets/XML Configuration/models/eAdventure/Man.xml</modelPath>
 		</modelRef>
 		<modelRef>
 			<modelLabel>idModelLabel2</modelLabel>
-			<iconPath>assets\Interface\Icons\eAdventure\woman.png</iconPath>
-			<modelPath>assets\XML Configuration\models\eAdventure\Woman.xml</modelPath>
+			<iconPath>assets/Interface/Icons\eAdventure/woman.png</iconPath>
+			<modelPath>assets/XML Configuration/models/eAdventure/Woman.xml</modelPath>
 		</modelRef>	
 		<modelRef>
 			<modelLabel>idModelLabel3</modelLabel>
-			<iconPath>assets\Interface\Icons\eAdventure\young_boy.png</iconPath>
-			<modelPath>assets\XML Configuration\models\eAdventure\YoungBoy.xml</modelPath>
+			<iconPath>assets/Interface/Icons/eAdventure/young_boy.png</iconPath>
+			<modelPath>assets/XML Configuration/models/eAdventure/YoungBoy.xml</modelPath>
 		</modelRef>
 		<modelRef>
 			<modelLabel>idModelLabel4</modelLabel>
-			<iconPath>assets\Interface\Icons\eAdventure\young_girl.png</iconPath>
-			<modelPath>assets\XML Configuration\models\eAdventure\YoungWoman.xml</modelPath>
+			<iconPath>assets/Interface/Icons/eAdventure/young_girl.png</iconPath>
+			<modelPath>assets/XML Configuration/models/eAdventure/YoungWoman.xml</modelPath>
 		</modelRef>
 	</modelsRef>
 </family>
