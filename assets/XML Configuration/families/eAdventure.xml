@@ -70,7 +70,7 @@
 		</modelRef>
 		<modelRef>
 			<modelLabel>idModelLabel2</modelLabel>
-			<iconPath>assets/Interface/Icons\eAdventure/woman.png</iconPath>
+			<iconPath>assets/Interface/Icons/eAdventure/woman.png</iconPath>
 			<modelPath>assets/XML Configuration/models/eAdventure/Woman.xml</modelPath>
 		</modelRef>	
 		<modelRef>
