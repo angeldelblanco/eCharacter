@@ -66,4 +66,18 @@ public class CameraValues {
     public Vector3f getDirection() {
         return direction;
     }
+
+    public void setUp(Vector3f up) {
+        this.up = up;
+    }
+
+    public void setPosition(Vector3f position) {
+        this.position = position;
+    }
+
+    public void setDirection(Vector3f direction) {
+        this.direction = direction;
+    }
+    
+    
 }

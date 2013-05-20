@@ -180,10 +180,10 @@ public class Application extends SimpleApplication{
         inputManager.addListener(actionListener,"RotateRight");
         inputManager.addMapping("RotateLeft", new KeyTrigger(KeyInput.KEY_A));
         inputManager.addListener(actionListener,"RotateLeft");
-        inputManager.addMapping("RotateUp", new KeyTrigger(KeyInput.KEY_W));
-        inputManager.addListener(actionListener,"RotateUp");
-        inputManager.addMapping("RotateDown", new KeyTrigger(KeyInput.KEY_S));
-        inputManager.addListener(actionListener,"RotateDown");
+        inputManager.addMapping("PitchUp", new KeyTrigger(KeyInput.KEY_W));
+        inputManager.addListener(actionListener,"PitchUp");
+        inputManager.addMapping("PitchDown", new KeyTrigger(KeyInput.KEY_S));
+        inputManager.addListener(actionListener,"PitchDown");
         
         //Views camera
         inputManager.addMapping("Frontal",new KeyTrigger(KeyInput.KEY_1));
@@ -225,11 +225,11 @@ public class Application extends SimpleApplication{
             if(name.equals("RotateLeft") && !keyPressed){
                 control.rotateCamera(-5.0f, Vector3f.UNIT_Y);
             }
-            if(name.equals("RotateUp") && !keyPressed){
-                control.rotateCamera(-5.0f,Vector3f.UNIT_X);
+            if(name.equals("PitchUp") && !keyPressed){
+                control.pitchCamera(-5.0f);
             }
-            if(name.equals("RotateDown") && !keyPressed){
-                control.rotateCamera(5.0f,Vector3f.UNIT_X);
+            if(name.equals("PitchDown") && !keyPressed){
+                control.pitchCamera(5.0f);
             }
             if (name.equals("Frontal") && !keyPressed) {
                 Vector3f position = new Vector3f(0.0f,0.0f,10.f);

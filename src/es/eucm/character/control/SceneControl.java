@@ -71,6 +71,7 @@ import java.util.StringTokenizer;
 public class SceneControl {
     private CameraNode cameraNode;
     private CameraValues defaultCamera;
+    private CameraValues activeCamera;
     private Control control;
     private Configuration config;
     private Spatial mainMesh;
@@ -105,6 +106,8 @@ public class SceneControl {
         //Setting the camera´s inital configuration
         cameraNode = new CameraNode("camera",control.getCamera());
         defaultCamera = this.parseDefaultCamera();
+        activeCamera = new CameraValues("activeCamera", 
+                    defaultCamera.getPosition(), defaultCamera.getDirection(), defaultCamera.getUp());
         defaultCameraView();
         control.getRootNode().attachChild(cameraNode);
         
@@ -506,21 +509,32 @@ public class SceneControl {
     public void setCameraView(Vector3f position,Vector3f direction,Vector3f up){
         cameraNode.setLocalTranslation(position);
         cameraNode.lookAt(direction,up);
+        activeCamera.setDirection(direction);
+        activeCamera.setPosition(position);
+        activeCamera.setUp(up);
     }
     
     public void rotateCamera(float ang,Vector3f vector){
         Quaternion quat = new Quaternion();
         quat.fromAngleAxis(FastMath.DEG_TO_RAD* ang,vector);
-        Vector3f position = quat.mult(cameraNode.getLocalTranslation());
-        Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-        //Vector3f direction = new Vector3f(0.0f,position.getY(),-1.0f);
-        Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-        setCameraView(position, direction, up);
+        Vector3f position = quat.mult(activeCamera.getPosition());
+        Vector3f direction = (quat.mult(activeCamera.getDirection()));
+        setCameraView(position, direction, activeCamera.getUp());
     }
     
     public void translateCamera(Vector3f inc){
-        Vector3f position = cameraNode.getLocalTranslation().add(inc);
-        cameraNode.setLocalTranslation(position);
+        Vector3f position = activeCamera.getPosition().add(inc);
+        Vector3f direction = activeCamera.getDirection().add(inc);
+        setCameraView(position, direction, activeCamera.getUp());
+    }
+    
+    public void pitchCamera(float ang){
+        Quaternion quat = new Quaternion();
+        quat.fromAngleAxis(FastMath.DEG_TO_RAD*ang,Vector3f.UNIT_X);
+        //Vector3f up = quat.mult(activeCamera.getUp());
+        Vector3f direction = quat.mult(activeCamera.getDirection());
+        setCameraView(activeCamera.getPosition(), direction, activeCamera.getUp());
+        //setCameraView(activeCamera.getPosition(), activeCamera.getDirection(), up);
     }
     
     public final void defaultCameraView(){

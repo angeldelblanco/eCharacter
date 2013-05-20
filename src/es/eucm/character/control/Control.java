@@ -499,6 +499,10 @@ public class Control {
         sc.rotateCamera(ang,vector);
     }
     
+    public void pitchCamera(float ang){
+        sc.pitchCamera(ang);
+    }
+    
     public void translateCamera(Vector3f inc){
         sc.translateCamera(inc);
     }
