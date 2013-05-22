@@ -212,14 +212,22 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             //ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImage, bufferedImage.getWidth(), bufferedImage.getHeight());
             File file = new File(filePath+File.separator+nameAnimation+shotIndex+".png");
             try {
-                boolean b = false;
-                b = ImageIO.write(bufferedImage, "png", file);
-                while(b == false){}
+                ImageIO.write(bufferedImage, "png", file);
             }
             catch (IOException ex) {
                 logger.log(Level.SEVERE, "Error while saving screenshot", ex);
             }
             
+            int cont = 0;
+            int maxTime = 50;
+            try {
+                while((!file.exists() || file.length()==0) && cont<maxTime){
+                    Thread.sleep(100);
+                }
+            } catch (InterruptedException ex) {
+                    Logger.getLogger(ScreenshotMyAppState.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    
             System.out.println("Añadido Nº "+shotIndex);;
             System.out.println();
 

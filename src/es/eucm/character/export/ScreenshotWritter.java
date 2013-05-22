@@ -72,7 +72,6 @@ public final class ScreenshotWritter extends Thread{
                 String name = it.next();
                 File temp = new File(exportPath+File.separator+name);
                 BufferedImage img = ImageIO.read(temp);
-                while(img == null){}
                 //temp.delete();
                 BufferedImage biCut = img.getSubimage(xMin, yMin, xMax-xMin, yMax-yMin);
                 sleep(80);
