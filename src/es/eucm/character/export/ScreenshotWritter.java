@@ -55,7 +55,7 @@ public final class ScreenshotWritter extends Thread{
             ZIPWritter zipWritter, int xMin, int xMax, int yMin, int yMax){
         this.exportPath = exportPath;
         this.nameAnimationToSave = nameAnimationToSave;
-        this.listAnimationsName = listAnimationsName;
+        this.listAnimationsName = (ArrayList<String>)listAnimationsName.clone();
         this.zipWritter = zipWritter;
         this.xMin = xMin;
         this.xMax = xMax;
@@ -71,6 +71,7 @@ public final class ScreenshotWritter extends Thread{
             try {
                 String name = it.next();
                 File temp = new File(exportPath+File.separator+name);
+                //if (temp.exists()){
                 BufferedImage img = ImageIO.read(temp);
                 //temp.delete();
                 BufferedImage biCut = img.getSubimage(xMin, yMin, xMax-xMin, yMax-yMin);
@@ -79,6 +80,10 @@ public final class ScreenshotWritter extends Thread{
                 //File file = new File(exportPath+File.separator+name);
                 ImageIO.write(biCut, "png", temp);
                 zipWritter.saveFile(temp, name);
+                /*}
+                else{
+                    listAnimationsName.remove(name);
+                }*/
             } catch (InterruptedException ex) {
                 Logger.getLogger(ScreenshotWritter.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException e) {

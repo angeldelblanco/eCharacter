@@ -211,12 +211,19 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             //}
             //ScreenshotData data = new ScreenshotData(nameAnimation+shotIndex, bufferedImage, bufferedImage.getWidth(), bufferedImage.getHeight());
             File file = new File(filePath+File.separator+nameAnimation+shotIndex+".png");
+            System.out.println("-----Tamaño file antes : "+file.length());
+            
+            if (file.exists()){System.out.println("EXISTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");}
+            else {System.out.println("NOOOOO   EXISTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");}
+            
             try {
                 ImageIO.write(bufferedImage, "png", file);
             }
             catch (IOException ex) {
                 logger.log(Level.SEVERE, "Error while saving screenshot", ex);
             }
+            
+            System.out.println("--------Tamaño file despues : "+file.length());
             
             int cont = 0;
             int maxTime = 50;
