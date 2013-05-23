@@ -222,6 +222,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             int maxTime = 50;
             try {
                 while((!file.exists() || file.length()==0) && cont<maxTime){
+                    System.out.println("**************************************");
                     Thread.sleep(100);
                     cont++;
                 }
@@ -229,7 +230,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                     Logger.getLogger(ScreenshotMyAppState.class.getName()).log(Level.SEVERE, null, ex);
             }
                     
-            System.out.println("Añadido Nº "+shotIndex);;
+            System.out.println("Añadido Nº "+shotIndex);
             System.out.println();
 
             synchronized(st){
