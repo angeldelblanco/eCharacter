@@ -223,6 +223,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             try {
                 while((!file.exists() || file.length()==0) && cont<maxTime){
                     Thread.sleep(100);
+                    cont++;
                 }
             } catch (InterruptedException ex) {
                     Logger.getLogger(ScreenshotMyAppState.class.getName()).log(Level.SEVERE, null, ex);
