@@ -42,15 +42,36 @@ import java.util.Iterator;
 
 public class I18N {
     private Metadata language;
+    private static final String defaultLanguage = "en_UK";
     
     public I18N(String languagesPath, String language){
         XMLReader<Metadata> xmlReader = new XMLReader<Metadata>(languagesPath);
         ArrayList<Metadata> listLanguages = xmlReader.readXML(Metadata.class);
         Iterator<Metadata> it = listLanguages.iterator();
+        boolean found = false;
         while(it.hasNext()){
             Metadata aux = it.next();
             if (aux.getLanguage().equals(language)){
                 this.language = aux;
+                found = true;
+            }
+        }
+        //language not found. Search defaultLanguage file.
+        if(!found){
+            it = listLanguages.iterator();
+            boolean found2 = false;
+            while(it.hasNext()){
+                Metadata aux = it.next();
+                if (aux.getLanguage().equals(defaultLanguage)){
+                    this.language = aux;
+                    found2 = true;
+                }
+            }
+            //defaultLanguage nor found. Search the first language.
+            if (!found2){
+                if (listLanguages.size()>0){
+                    this.language = listLanguages.get(0);
+                }
             }
         }
     }
