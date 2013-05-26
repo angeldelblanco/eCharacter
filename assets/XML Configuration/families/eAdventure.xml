@@ -5,7 +5,7 @@
 		<description>idDescriptionFamily</description>
 		<author>idAuthor</author>
 		<languagesPath>assets/Locale/eAdventure</languagesPath>
-		<iconPath></iconPath>
+		<iconPath>assets/Interface/Icons/eAdventure/IconoeAdventure.png</iconPath>
 	</metadata>
 	<stages>
 		<scaleStage stageLabel="idMultiStageLabel1" idPanel="ScalePanel">

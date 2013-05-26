@@ -5,7 +5,7 @@
 		<description>idDescriptionFamily</description>
 		<author>idAuthor</author>
 		<languagesPath>assets/Locale/Medieval</languagesPath>
-		<iconPath></iconPath>
+		<iconPath>assets/Interface/Icons/Medieval/IconoCubix.png</iconPath>
 	</metadata>
 	<stages>
 	<!-- Revisar que controladores poner -->
