@@ -211,7 +211,7 @@
 			</physicalBuild>
 		</physicalBuilds>
 	</mainMesh>	
-	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idLongHair" default="true"  text="idTextPeloLong">
+	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idLongHair" default="false"  text="idTextPeloLong">
 		<path>assets/Models/eAdventure/Hair Girl/long haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="4.4" valueY="-6.0" valueZ="0.5"/>
@@ -244,7 +244,7 @@
 		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPeloChicaColeta.jpg</iconPath>		
 	</subMesh>
-	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idShortHair" default="false" text="idTextPeloShort">
+	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idShortHair" default="true" text="idTextPeloShort">
 		<path>assets/Models/eAdventure/Hair Girl/short haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="0.0" valueY="-4.3" valueZ="4.6"/>
