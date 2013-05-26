@@ -220,20 +220,6 @@ public class FamilyControl{
                 return null;
             }
         }
-        
-        AnimationStageType as = family.getStages().getAnimationStage();
-        if(as.getStageLabel().equals(idStage)){
-            String iconPath = as.getIconPath();
-            if (iconPath!=null){
-                if (ResourceLocator.getResource(iconPath) != null){
-                    return iconPath;
-                }
-                else{ 
-                    return null;
-                }
-            }
-            return null;
-        }
         return null;
     }
     

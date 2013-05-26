@@ -9,6 +9,7 @@
 	</metadata>
 	<stages>
 		<scaleStage stageLabel="idMultiStageLabel1" idPanel="ScalePanel">
+			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0000_Complexion.png</iconPath>
 			<boneController controllerLabel="idBoneControler1" idController="head"/>
 			<boneController controllerLabel="idBoneControler2" idController="torso"/>
 			<boneController controllerLabel="idBoneControler3" idController="leftArm"/>
@@ -21,26 +22,33 @@
 			<boneController controllerLabel="idBoneControler10" idController="rightFoot"/>			
 		</scaleStage>
 		<multiStage stageLabel="idMultiStageLabel2">
+			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0001_Piel.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel1" idPanel="skinsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel3">
+			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0002_Ojos.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel2" idPanel="eyesPanel" multiselection="true"/>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel3" idPanel="eyebrowsPanel" multiselection="true"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel4">
+			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0003_Camiseta.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel4" idPanel="tshirtsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel5">
+			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0004_Pantalones.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel5" idPanel="trousersPanel" multiselection="false"/>
 		</multiStage>		
 		<multiStage stageLabel="idMultiStageLabel6">
+			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0005_Calzado.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel6" idPanel="shoesPanel" multiselection="false"/>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel7" idPanel="socksPanel" multiselection="true"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel7">
+			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0006_Pelo.png</iconPath>
 			<subStage subStageType="meshSubStage" subStageLabel="idTextureSubStageLabel8" idPanel="hairsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel8">
+			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0007_Accesorios.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel9" idPanel="facePanel" multiselection="true"/>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel10" idPanel="accesoriesFacePanel" multiselection="true"/>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel11" idPanel="otherAccesoriesPanel" multiselection="true"/>

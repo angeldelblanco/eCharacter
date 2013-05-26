@@ -10,6 +10,7 @@
 	<stages>
 	<!-- Revisar que controladores poner -->
 		<scaleStage stageLabel="idMultiStageLabel1" idPanel="ScalePanel">
+			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0000_Complexion.png</iconPath>
 			<boneController controllerLabel="idBoneControler1" idController="head"/>
 			<boneController controllerLabel="idBoneControler2" idController="arms"/>
 			<boneController controllerLabel="idBoneControler3" idController="hands"/>
@@ -17,22 +18,28 @@
 			<boneController controllerLabel="idBoneControler5" idController="feet"/>
 		</scaleStage>
 		<multiStage stageLabel="idMultiStageLabel2">
+			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0001_Piel.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel1" idPanel="skinsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel3">
+			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0006_Pelo.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel2" idPanel="hairsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel4">
+			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0002_Ojos.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel3" idPanel="eyesPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel5">
+			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0003_Camiseta.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel4" idPanel="shirtsPanel" multiselection="true"/>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel5" idPanel="trousersPanel" multiselection="true"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel6">
+			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0005_Calzado.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel6" idPanel="shoesPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel7">
+			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0007_Accesorios.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel7" idPanel="accesoriesPanel" multiselection="true"/>
 		</multiStage>
 		<!-- Revisar la etapa de animación -->
