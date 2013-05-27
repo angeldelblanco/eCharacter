@@ -54,7 +54,7 @@ import java.util.List;
 
 
 public class SingleStageBuilder {
-    private static final int TEXTURES_PAGE = 2;
+    private static final int TEXTURES_PAGE = 16;
     private Nifty nifty;
     private Control control;
     private String stageType;

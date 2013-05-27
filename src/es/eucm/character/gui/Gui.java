@@ -211,6 +211,12 @@ public class Gui extends AbstractAppState implements ScreenController {
                 //menu.backgroundImage(getMenu("no"));
                 menu.interactOnClick("changeScreen("+stages.get(i)+")");
                 menu.build(nifty, nifty.getScreen(type), nifty.getScreen(type).findElementByName("panel_options"));
+                if(i<stages.size()-1){
+                    new ImageBuilder(){{
+                        valign(VAlign.Center);
+                        filename(getMenu("header-leftseparator"));
+                    }}.build(nifty, nifty.getScreen(type), nifty.getScreen(type).findElementByName("panel_options"));
+                }
                 nifty.getScreen(type).findElementByName(stages.get(i)+"menu-selection").setVisible(false);
             }
         }          
@@ -367,6 +373,9 @@ public class Gui extends AbstractAppState implements ScreenController {
     public String getMenu(String param){
         if(param.equals("s2-header-left")){
             return "assets/Interface/s2-header-left.png";
+        }
+        if(param.equals("header-leftseparator")){
+            return "assets/Interface/header-leftseparator.png";
         }
         if(param.equals("s2-header-right")){
             return "assets/Interface/s2-header-right.png";
