@@ -192,9 +192,10 @@ public class Gui extends AbstractAppState implements ScreenController {
                 menu = new PanelBuilder(){{
                     height("100%");
                     childLayoutVertical();
-                    image(new ImageBuilder(){{
+                    /*image(new ImageBuilder(){{
                         filename(control.getIconPathStage(pant));
-                    }});
+                        align(Align.Center);
+                    }});*/
                     text(new TextBuilder(){{
                         color(Color.WHITE);
                         font(getFont());
