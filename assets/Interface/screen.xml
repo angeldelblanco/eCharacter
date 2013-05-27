@@ -178,106 +178,119 @@
   
   <!-- Third screen(basic)-->
 	<screen id="scaleStage" controller="es.eucm.character.gui.Gui">
-        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
-            <!-- Option Panel -->    
-        </layer>
-        <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+		<layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<panel height="3%" width="100%">
+				<!-- Space -->
+			</panel>
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
-			
+			<panel height="5%" width="100%" childLayout="Horizontal"> 
+				<panel id="panel_options" height="100%" width="88%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-left)}"> 
+					
+				</panel>
+				<panel height="100%" width="1%">
+					<!-- Space -->
+				</panel>
+				<panel id="panel_options2" height="100%" width="11%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-right)}"> 
+					
+				</panel>
 			</panel>
 			<panel height="6%" width="100%">
-					<!-- Space -->
+				<!-- Space -->
 			</panel>
-			<panel id="panel_options-complexion" height="4%" width="30%" align="right" childLayout="horizontal"> 
-				<!-- Change Basic Options Panel -->
-				<panel id="basicPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-					<text id="basicText" text="Basic" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeTab(basic)"/>
-				</panel>
-				<!-- Change Advanced Options Panel -->
-				<panel id="advancedPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-					<text id="customText" text="Custom" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeTab(advanced)"/>
-				</panel>
-			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
-				<panel id="panel_image" height="80%" width="80%" align="center" childLayout="vertical">
-					<panel height="5%" width="100%">
-					<!-- Space -->
+			<panel height="79%" width="90%" childLayout="vertical" align="center">
+				<panel id="panel_options-complexion" height="4%" width="30%" align="right" childLayout="horizontal"> 
+					<!-- Change Basic Options Panel -->
+					<panel id="basicPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
+						<text id="basicText" text="Basic" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeTab(basic)"/>
 					</panel>
-					<panel id="t0" height="14%" width="100%" childLayout="vertical">
-						<panel id="cont0" height="50%" width="100%" childLayout="horizontal">
-							<text id="text0" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(0)"/>
+					<!-- Change Advanced Options Panel -->
+					<panel id="advancedPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
+						<text id="customText" text="Custom" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeTab(advanced)"/>
+					</panel>
+				</panel>
+				<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
+					<panel id="panel_image" height="80%" width="80%" align="center" childLayout="vertical">
+						<panel height="5%" width="100%">
+						<!-- Space -->
 						</panel>
-						<control id="slider0" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
-					</panel>
-					<panel height="5%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t1" height="14%" width="100%" childLayout="vertical">
-						<panel id="cont1" height="50%" width="100%" childLayout="horizontal">
-							<text id="text1" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(1)"/>
+						<panel id="t0" height="14%" width="100%" childLayout="vertical">
+							<panel id="cont0" height="50%" width="100%" childLayout="horizontal">
+								<text id="text0" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
+								<interact onClick="changeBodyType(0)"/>
+							</panel>
+							<control id="slider0" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
 						</panel>
-						<control id="slider1" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
-					</panel>
-					<panel height="5%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t2" height="14%" width="100%" childLayout="vertical">
-						<panel id="cont2" height="50%" width="100%" childLayout="horizontal">
-							<text id="text2" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(2)"/>
+						<panel height="5%" width="100%">
+						<!-- Space -->
 						</panel>
-						<control id="slider2" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
-					</panel>
-					<panel height="5%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t3" height="14%" width="100%" childLayout="vertical">
-						<panel id="cont3" height="50%" width="100%" childLayout="horizontal">
-							<text id="text3" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(3)"/>
+						<panel id="t1" height="14%" width="100%" childLayout="vertical">
+							<panel id="cont1" height="50%" width="100%" childLayout="horizontal">
+								<text id="text1" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
+								<interact onClick="changeBodyType(1)"/>
+							</panel>
+							<control id="slider1" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
 						</panel>
-						<control id="slider3" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
-					</panel>
-					<panel height="5%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t4" height="14%" width="100%" childLayout="vertical">
-						<panel id="cont4" height="50%" width="100%" childLayout="horizontal">
-							<text id="text4" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
-							<interact onClick="changeBodyType(4)"/>
+						<panel height="5%" width="100%">
+						<!-- Space -->
 						</panel>
-						<control id="slider4" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
+						<panel id="t2" height="14%" width="100%" childLayout="vertical">
+							<panel id="cont2" height="50%" width="100%" childLayout="horizontal">
+								<text id="text2" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
+								<interact onClick="changeBodyType(2)"/>
+							</panel>
+							<control id="slider2" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
+						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t3" height="14%" width="100%" childLayout="vertical">
+							<panel id="cont3" height="50%" width="100%" childLayout="horizontal">
+								<text id="text3" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
+								<interact onClick="changeBodyType(3)"/>
+							</panel>
+							<control id="slider3" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
+						</panel>
+						<panel height="5%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="t4" height="14%" width="100%" childLayout="vertical">
+							<panel id="cont4" height="50%" width="100%" childLayout="horizontal">
+								<text id="text4" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
+								<interact onClick="changeBodyType(4)"/>
+							</panel>
+							<control id="slider4" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
+						</panel>
+					</panel>
+					<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
+						<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
+							<interact onClick="changeScalePage(-)"/>
+						</image>
+						<panel height="50%" width="34%">
+						<!-- Space -->
+						</panel>
+						<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
+							<interact onClick="changeScalePage(+)"/>
+						</image>
 					</panel>
 				</panel>
-				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-					<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
-						<interact onClick="changeScalePage(-)"/>
-					</image>
-					<panel height="50%" width="34%">
+				<panel height="23%" width="100%">
 					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
+					<panel id="panel_screenleft" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeScreen(-)"/>
 					</panel>
-					<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
-						<interact onClick="changeScalePage(+)"/>
-					</image>
-				</panel>
-			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeScreen(-)"/>
-				</panel>
-				<panel height="66%" width="34%">
-					<!-- Space -->
-				</panel>
-				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeScreen(+)"/>
+					<panel height="100%" width="90%">
+						<!-- Space -->
+					</panel>
+					<panel id="panel_screenright" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeScreen(+)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -285,121 +298,250 @@
 	
 	<!-- Fifth screen(skin)-->
 	<screen id="singleStage" controller="es.eucm.character.gui.Gui">
-        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
-            <!-- Option Panel -->    
-        </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<panel height="3%" width="100%">
+				<!-- Space -->
+			</panel>
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
-				
+			<panel height="5%" width="100%" childLayout="Horizontal"> 
+				<panel id="panel_options" height="100%" width="88%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-left)}"> 
+					
+				</panel>
+				<panel height="100%" width="1%">
+					<!-- Space -->
+				</panel>
+				<panel id="panel_options2" height="100%" width="11%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-right)}"> 
+					
+				</panel>
 			</panel>
 			<panel height="10%" width="100%">
-					<!-- Space -->
+				<!-- Space -->
 			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
-				<panel id="panel_image" height="70%" width="80%" align="center" childLayout="vertical">
-					<!-- Texture's Image -->
-					<panel height="10%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t01" height="26%" width="100%" childLayout="horizontal">
-						<panel id="t0" height="100%" width="47.5%" childLayout="center">
-							<image id = "i0" filename="Interface/x.png" height="95%" width="95%">
-								<interact onClick="changeTextureOrSubMesh(0,0)"/>
-								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-								</effect>
-							</image>
-						</panel>
-						<panel height="100%" width="5%">
+			<panel height="79%" width="90%" childLayout="vertical" align="center">
+				<panel id="rightSelectionPanel" height="70%" width="45%" childLayout="Vertical" align="right" backgroundImage="${CALL.getMenu(s2-right-panel)}">
+					<panel height="2%" width="100%">
 						<!-- Space -->
+					</panel>
+					<panel id="texturePanel" height="80%" width="100%" childLayout="Horizontal">	
+						<panel id="leftPanel" height="100%" width="12%" align="center" childLayout="center">
+							<image id="leftT" align="center" filename="${CALL.getButton(left)}">
+									<interact onClick="changeTexturePage(-)"/>
+							</image>
 						</panel>
-						<panel id="t1" height="100%" width="47.5%" childLayout="center">
-							<image id = "i1" filename="Interface/x.png" height="95%" width="95%">
-								<interact onClick="changeTextureOrSubMesh(0,1)"/>
-								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-								</effect>
+						<panel id="panel_image" height="100%" width="76%" align="center" childLayout="vertical">
+							<!-- Texture's Image -->
+							<panel id="t03" height="22%" width="100%" childLayout="horizontal">
+								<panel id="t0" height="100%" width="22%" childLayout="center">
+									<image id = "i0" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,0)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t1" height="100%" width="22%" childLayout="center">
+									<image id = "i1" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,1)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t2" height="100%" width="22%" childLayout="center">
+									<image id = "i2" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,2)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t3" height="100%" width="22%" childLayout="center">
+									<image id = "i3" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,3)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+							</panel>
+							<panel height="4%" width="100%">
+							<!-- Space -->
+							</panel>
+							<panel id="t47" height="22%" width="100%" childLayout="horizontal">
+								<panel id="t4" height="100%" width="22%" childLayout="center">
+									<image id = "i4" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,4)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t5" height="100%" width="22%" childLayout="center">
+									<image id = "i5" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,5)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t6" height="100%" width="22%" childLayout="center">
+									<image id = "i6" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,6)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t7" height="100%" width="22%" childLayout="center">
+									<image id = "i7" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,7)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+							</panel>
+							<panel height="4%" width="100%">
+							<!-- Space -->
+							</panel>
+							<panel id="t811" height="22%" width="100%" childLayout="horizontal">
+								<panel id="t8" height="100%" width="22%" childLayout="center">
+									<image id = "i8" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,8)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t9" height="100%" width="22%" childLayout="center">
+									<image id = "i9" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,9)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t10" height="100%" width="22%" childLayout="center">
+									<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,10)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t11" height="100%" width="22%" childLayout="center">
+									<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,11)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+							</panel>
+							<panel height="4%" width="100%">
+							<!-- Space -->
+							</panel>
+							<panel id="t1215" height="22%" width="100%" childLayout="horizontal">
+								<panel id="t12" height="100%" width="22%" childLayout="center">
+									<image id = "i12" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,12)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t13" height="100%" width="22%" childLayout="center">
+									<image id = "i13" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,13)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t14" height="100%" width="22%" childLayout="center">
+									<image id = "i14" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,14)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="4%">
+								<!-- Space -->
+								</panel>
+								<panel id="t15" height="100%" width="22%" childLayout="center">
+									<image id = "i15" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,15)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+							</panel>
+						</panel>
+						<panel id="rightPanel" height="100%" width="12%" align="center" childLayout="center">
+							<image id="rightT" align="center" filename="${CALL.getButton(right)}">
+									<interact onClick="changeTexturePage(+)"/>
 							</image>
 						</panel>
 					</panel>
-					<panel height="5%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t23" height="26%" width="100%" childLayout="horizontal">
-						<panel id="t2" height="100%" width="47.5%" childLayout="center">
-							<image id = "i2" filename="Interface/x.png" height="95%" width="95%">
-								<interact onClick="changeTextureOrSubMesh(0,2)"/>
-								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-								</effect>
-							</image>
-						</panel>
-						<panel height="100%" width="5%">
+					<panel height="3%" width="100%">
 						<!-- Space -->
-						</panel>
-						<panel id="t3" height="100%" width="47.5%" childLayout="center">
-							<image id = "i3" filename="Interface/x.png" height="95%" width="95%">
-								<interact onClick="changeTextureOrSubMesh(0,3)"/>
-								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-								</effect>
-							</image>
-						</panel>
 					</panel>
-					<panel height="5%" width="100%">
+					<panel id="panel_color" height="10%" width="42%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+						<text id="colorText" text="" color="#000000FF" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="showWindowChangeColor(0)"/>
+					</panel>
+				</panel>
+				<panel height="23%" width="100%">
 					<!-- Space -->
+				</panel>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
+					<panel id="panel_screenleft" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeScreen(-)"/>
 					</panel>
-					<panel id="t45" height="26%" width="100%" childLayout="horizontal">
-						<panel id="t4" height="100%" width="47.5%" childLayout="center">
-							<image id = "i4" filename="Interface/x.png" height="95%" width="95%">
-								<interact onClick="changeTextureOrSubMesh(0,4)"/>
-								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-								</effect>
-							</image>
-						</panel>
-						<panel height="100%" width="5%">
+					<panel height="100%" width="90%">
 						<!-- Space -->
-						</panel>
-						<panel id="t5" height="100%" width="47.5%" childLayout="center">
-							<image id = "i5" filename="Interface/x.png" height="95%" width="95%">
-								<interact onClick="changeTextureOrSubMesh(0,5)"/>
-								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-								</effect>
-							</image>
-						</panel>
 					</panel>
-				</panel>
-				<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-					<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
-							<interact onClick="changeTexturePage(-)"/>
-					</image>
-					<panel height="50%" width="34%">
-					<!-- Space -->
+					<panel id="panel_screenright" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeScreen(+)"/>
 					</panel>
-					<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
-							<interact onClick="changeTexturePage(+)"/>
-					</image>
-				</panel>
-				<panel id="panel_color" height="8%" width="50%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-					<text id="colorText" text="Color" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="showWindowChangeColor(0)"/>
-				</panel>
-			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeScreen(-)"/>
-				</panel>
-				<panel height="66%" width="34%">
-					<!-- Space -->
-				</panel>
-				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeScreen(+)"/>
 				</panel>
 			</panel>
         </layer>
@@ -413,134 +555,147 @@
 	
 	<!-- Sixth screen(accesories)-->
 	<screen id="multiStage" controller="es.eucm.character.gui.Gui">
-        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
-            <!-- Option Panel -->    
-        </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<panel height="3%" width="100%">
+				<!-- Space -->
+			</panel>
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
-				
+			<panel height="5%" width="100%" childLayout="Horizontal"> 
+				<panel id="panel_options" height="100%" width="88%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-left)}"> 
+					
+				</panel>
+				<panel height="100%" width="1%">
+					<!-- Space -->
+				</panel>
+				<panel id="panel_options2" height="100%" width="11%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-right)}"> 
+					
+				</panel>
 			</panel>
 			<panel height="10%" width="100%">
-					<!-- Space -->
+				<!-- Space -->
 			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right">
-				<panel id="panel_image" height="80%" width="100%" align="center" childLayout="vertical">
-					<panel id="t0" height="48%" width="100%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
-						<panel id="textPanel0" height="15%" width="100%" childLayout="center" align="center">
-							<text id="text0" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
-						</panel>
-						<panel id="p0" height="50%" width="80%" childLayout="horizontal" align="center">
-							<panel id="t00" height="100%" width="47.5%" childLayout="center">
-								<image id = "i00" filename="Interface/x.png" height="95%" width="95%">
-									<interact onClick="changeTextureOrSubMesh(0,0)"/>
-									<effect>
-										<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-									</effect>
-								</image>
+			<panel height="79%" width="90%" childLayout="vertical" align="center">
+				<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right">
+					<panel id="panel_image" height="80%" width="100%" align="center" childLayout="vertical">
+						<panel id="t0" height="48%" width="100%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
+							<panel id="textPanel0" height="15%" width="100%" childLayout="center" align="center">
+								<text id="text0" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
 							</panel>
-							<panel height="100%" width="5%">
-							<!-- Space -->
-							</panel>
-							<panel id="t01" height="100%" width="47.5%" childLayout="center">
-								<image id = "i01" filename="Interface/x.png" height="95%" width="95%">
-									<interact onClick="changeTextureOrSubMesh(0,1)"/>
-									<effect>
-										<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-									</effect>
-								</image>
-							</panel>
-						</panel>
-						<panel id="panel_change0" height="10%" width="70%" align="center" childLayout="horizontal">
-							<image id="leftT0" filename="${CALL.getButton(left)}" height="100%" width="33%" valign="center" align="left">
-								<interact onClick="changePageSubStage(0,-)"/>
-							</image>
-							<panel height="100%" width="34%">
+							<panel id="p0" height="50%" width="80%" childLayout="horizontal" align="center">
+								<panel id="t00" height="100%" width="47.5%" childLayout="center">
+									<image id = "i00" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,0)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="5%">
 								<!-- Space -->
+								</panel>
+								<panel id="t01" height="100%" width="47.5%" childLayout="center">
+									<image id = "i01" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(0,1)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
 							</panel>
-							<image id="rightT0" filename="${CALL.getButton(right)}" height="100%" width="33%" valign="center" align="right">
-								<interact onClick="changePageSubStage(0,+)"/>
-							</image>
-						</panel>
-						<panel id="panel_color0" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-							<text id="colorText0" text="Color" font="${CALL.getFont()}" width="100%" height="100%" />
-							<interact onClick="showWindowChangeColor(0)"/>
-						</panel>
-					</panel>
-					<panel height="2%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="t1" height="48%" width="100%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
-						<panel id="textPanel1" height="15%" width="100%" childLayout="center" align="center">
-							<text id="text1" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
-						</panel>
-						<panel id="p1" height="50%" width="80%" childLayout="horizontal" align="center">
-							<panel id="t10" height="100%" width="47.5%" childLayout="center">
-								<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
-									<interact onClick="changeTextureOrSubMesh(1,0)"/>
-									<effect>
-										<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-									</effect>
+							<panel id="panel_change0" height="10%" width="70%" align="center" childLayout="horizontal">
+								<image id="leftT0" filename="${CALL.getButton(left)}" height="100%" width="33%" valign="center" align="left">
+									<interact onClick="changePageSubStage(0,-)"/>
+								</image>
+								<panel height="100%" width="34%">
+									<!-- Space -->
+								</panel>
+								<image id="rightT0" filename="${CALL.getButton(right)}" height="100%" width="33%" valign="center" align="right">
+									<interact onClick="changePageSubStage(0,+)"/>
 								</image>
 							</panel>
-							<panel height="100%" width="5%">
-							<!-- Space -->
-							</panel>
-							<panel id="t11" height="100%" width="47.5%" childLayout="center">
-								<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
-									<interact onClick="changeTextureOrSubMesh(1,1)"/>
-									<effect>
-										<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-									</effect>
-								</image>
+							<panel id="panel_color0" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+								<text id="colorText0" text="Color" font="${CALL.getFont()}" width="100%" height="100%" />
+								<interact onClick="showWindowChangeColor(0)"/>
 							</panel>
 						</panel>
-						<panel id="panel_change1" height="10%" width="70%" align="center" childLayout="horizontal">
-							<image id="leftT1" filename="${CALL.getButton(left)}" height="100%" width="33%" valign="center" align="left">
-								<interact onClick="changePageSubStage(1,-)"/>
-							</image>
-							<panel height="100%" width="34%">
-								<!-- Space -->
-							</panel>
-							<image id="rightT1" filename="${CALL.getButton(right)}" height="100%" width="33%" valign="center" align="right">
-								<interact onClick="changePageSubStage(1,+)"/>
-							</image>
-						</panel>
-						<panel id="panel_color1" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-							<text id="colorText1" text="Color" font="${CALL.getFont()}" width="100%" height="100%" />
-							<interact onClick="showWindowChangeColor(1)"/>
-						</panel>
-					</panel>
-					<panel height="2%" width="100%">
-						<!-- Space -->
-					</panel>
-				</panel>
-				<panel id="changePanel" height="20%" width="100%" align="center" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
-					<panel height="100%" width="80%" align="center" childLayout="horizontal">
-						<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
-								<interact onClick="changeMultiTexturePage(-)"/>
-						</image>
-						<panel height="50%" width="34%">
+						<panel height="2%" width="100%">
 						<!-- Space -->
 						</panel>
-						<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
-								<interact onClick="changeMultiTexturePage(+)"/>
-						</image>
+						<panel id="t1" height="48%" width="100%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
+							<panel id="textPanel1" height="15%" width="100%" childLayout="center" align="center">
+								<text id="text1" text="Head" font="${CALL.getFont()}" height="100%" width="100%" wrap="true"/>
+							</panel>
+							<panel id="p1" height="50%" width="80%" childLayout="horizontal" align="center">
+								<panel id="t10" height="100%" width="47.5%" childLayout="center">
+									<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(1,0)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+								<panel height="100%" width="5%">
+								<!-- Space -->
+								</panel>
+								<panel id="t11" height="100%" width="47.5%" childLayout="center">
+									<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
+										<interact onClick="changeTextureOrSubMesh(1,1)"/>
+										<effect>
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+										</effect>
+									</image>
+								</panel>
+							</panel>
+							<panel id="panel_change1" height="10%" width="70%" align="center" childLayout="horizontal">
+								<image id="leftT1" filename="${CALL.getButton(left)}" height="100%" width="33%" valign="center" align="left">
+									<interact onClick="changePageSubStage(1,-)"/>
+								</image>
+								<panel height="100%" width="34%">
+									<!-- Space -->
+								</panel>
+								<image id="rightT1" filename="${CALL.getButton(right)}" height="100%" width="33%" valign="center" align="right">
+									<interact onClick="changePageSubStage(1,+)"/>
+								</image>
+							</panel>
+							<panel id="panel_color1" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
+								<text id="colorText1" text="Color" font="${CALL.getFont()}" width="100%" height="100%" />
+								<interact onClick="showWindowChangeColor(1)"/>
+							</panel>
+						</panel>
+						<panel height="2%" width="100%">
+							<!-- Space -->
+						</panel>
+					</panel>
+					<panel id="changePanel" height="20%" width="100%" align="center" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
+						<panel height="100%" width="80%" align="center" childLayout="horizontal">
+							<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
+									<interact onClick="changeMultiTexturePage(-)"/>
+							</image>
+							<panel height="50%" width="34%">
+							<!-- Space -->
+							</panel>
+							<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
+									<interact onClick="changeMultiTexturePage(+)"/>
+							</image>
+						</panel>
 					</panel>
 				</panel>
-			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeScreen(-)"/>
-				</panel>
-				<panel height="66%" width="34%">
+				<panel height="23%" width="100%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeScreen(+)"/>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
+					<panel id="panel_screenleft" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeScreen(-)"/>
+					</panel>
+					<panel height="100%" width="90%">
+						<!-- Space -->
+					</panel>
+					<panel id="panel_screenright" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeScreen(+)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>
@@ -554,270 +709,283 @@
 	
 	<!-- Eigthth screen(export)-->
 	<screen id="animationStage" controller="es.eucm.character.gui.Gui">
-        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
-            <!-- Option Panel -->    
-        </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+			<panel height="3%" width="100%">
+				<!-- Space -->
+			</panel>
 			<!-- Option Panel -->
-			<panel id="panel_options" height="5%" width="100%" childLayout="Horizontal"> 
-				
+			<panel height="5%" width="100%" childLayout="Horizontal"> 
+				<panel id="panel_options" height="100%" width="88%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-left)}"> 
+					
+				</panel>
+				<panel height="100%" width="1%">
+					<!-- Space -->
+				</panel>
+				<panel id="panel_options2" height="100%" width="11%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-right)}"> 
+					
+				</panel>
 			</panel>
 			<panel height="6%" width="100%">
-					<!-- Space -->
+				<!-- Space -->
 			</panel>
-			<panel id="panel_options-animation" height="4%" width="30%" align="right" childLayout="horizontal"> 
-				<!-- Change Basic Options Panel -->
-				<panel id="basicPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-					<text id="basicText" text="Basic" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeTab(basic)"/>
+			<panel height="79%" width="90%" childLayout="vertical" align="center">
+				<panel id="panel_options-animation" height="4%" width="30%" align="right" childLayout="horizontal"> 
+					<!-- Change Basic Options Panel -->
+					<panel id="basicPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
+						<text id="basicText" text="Basic" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeTab(basic)"/>
+					</panel>
+					<!-- Change Advanced Options Panel -->
+					<panel id="advancedPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
+						<text id="customText" text="Custom" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeTab(advanced)"/>
+					</panel>
 				</panel>
-				<!-- Change Advanced Options Panel -->
-				<panel id="advancedPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-					<text id="customText" text="Custom" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeTab(advanced)"/>
-				</panel>
-			</panel>
-			<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right">
-				<panel id="panel_image" height="90%" width="100%" align="center" childLayout="vertical">
-					<panel height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
-						<panel id="animationsPanel" height="100%" width="80%" childLayout="vertical">
-							<text id="animationsText" text="" font="${CALL.getFont()}" align="center" width="100%" height="10%" wrap = "true"/>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="a0" height="15%" width="100%" childLayout="horizontal">
-								<text id="aText0" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
-								<panel width="5%">
+				<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right">
+					<panel id="panel_image" height="90%" width="100%" align="center" childLayout="vertical">
+						<panel height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
+							<panel id="animationsPanel" height="100%" width="80%" childLayout="vertical">
+								<text id="animationsText" text="" font="${CALL.getFont()}" align="center" width="100%" height="10%" wrap = "true"/>
+								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
-								<control id="aCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control name="button" label="ver" id="aButton0" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="preview(0)" />
-								</control>
-							</panel>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="a1" height="15%" width="100%" childLayout="horizontal">
-								<text id="aText1" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control id="aCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control name="button" label="ver" id="aButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="preview(1)" />
-								</control>
-							</panel>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="a2" height="15%" width="100%" childLayout="horizontal">
-								<text id="aText2" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control id="aCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control name="button" label="ver" id="aButton2" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="preview(2)" />
-								</control>
-							</panel>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="aChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
-									<image id="aleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
-										<interact onClick="changePageAnimations(a,-)"/>
-									</image>
+								<panel id="a0" height="15%" width="100%" childLayout="horizontal">
+									<text id="aText0" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control name="button" label="All" id="aAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="checkAll(a,true)" />
+									<control id="aCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="ver" id="aButton0" width="25%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="preview(0)" />
 									</control>
+								</panel>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="a1" height="15%" width="100%" childLayout="horizontal">
+									<text id="aText1" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control name="button" label="No" id="aNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="checkAll(a,false)" />
+									<control id="aCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="ver" id="aButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="preview(1)" />
 									</control>
+								</panel>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="a2" height="15%" width="100%" childLayout="horizontal">
+									<text id="aText2" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<image id="arightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
-										<interact onClick="changePageAnimations(a,+)"/>
-									</image>
+									<control id="aCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="ver" id="aButton2" width="25%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="preview(2)" />
+									</control>
+								</panel>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="aChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
+										<image id="aleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
+											<interact onClick="changePageAnimations(a,-)"/>
+										</image>
+										<panel width="5%">
+											<!-- Space -->
+										</panel>
+										<control name="button" label="All" id="aAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+											<interact onClick="checkAll(a,true)" />
+										</control>
+										<panel width="5%">
+											<!-- Space -->
+										</panel>
+										<control name="button" label="No" id="aNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+											<interact onClick="checkAll(a,false)" />
+										</control>
+										<panel width="5%">
+											<!-- Space -->
+										</panel>
+										<image id="arightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
+											<interact onClick="changePageAnimations(a,+)"/>
+										</image>
+								</panel>
+							</panel>
+						</panel>
+						<panel height="2%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="Panel2" height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
+							<panel id="qualityPanel" height="100%" width="80%" childLayout="vertical">
+								<text id="qualityText" text="" font="${CALL.getFont()}" align="center" width="100%" height="10%" wrap = "true"/>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="q0" height="15%" width="100%" childLayout="horizontal">
+									<text id="qText0" text="" font="${CALL.getFont()}" align="center" valign="center" width="85%" wrap = "true"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control id="qCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+								</panel>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="q1" height="15%" width="100%" childLayout="horizontal">
+									<text id="qText1" text="" font="${CALL.getFont()}" align="center" valign="center" width="85%" wrap = "true"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control id="qCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+								</panel>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="q2" height="15%" width="100%" childLayout="horizontal">
+									<text id="qText2" text="" font="${CALL.getFont()}" align="center" valign="center" width="85%" wrap = "true"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control id="qCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+								</panel>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="qChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
+										<image id="qleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
+											<interact onClick="changePageAnimations(q,-)"/>
+										</image>
+										<panel width="5%">
+											<!-- Space -->
+										</panel>
+										<control name="button" label="All" id="qAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+											<interact onClick="checkAll(q,true)" />
+										</control>
+										<panel width="5%">
+											<!-- Space -->
+										</panel>
+										<control name="button" label="No" id="qNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+											<interact onClick="checkAll(q,false)" />
+										</control>
+										<panel width="5%">
+											<!-- Space -->
+										</panel>
+										<image id="qrightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
+											<interact onClick="changePageAnimations(q,+)"/>
+										</image>
+								</panel>
+							</panel>
+						</panel>
+						<panel height="2%" width="100%">
+						<!-- Space -->
+						</panel>
+						<panel id="Panel3" height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
+							<panel id="cameraPanel" height="100%" width="80%" childLayout="vertical">
+								<text id="cameraText" text="" font="${CALL.getFont()}" width="100%" height="10%" wrap = "true"/>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="c0" height="15%" width="100%" childLayout="horizontal">
+									<text id="cText0" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control id="cCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="ver" id="cButton0" width="25%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="cameraPreview(0)" />
+									</control>
+								</panel>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="c1" height="15%" width="100%" childLayout="horizontal">
+									<text id="cText1" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control id="cCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="ver" id="cButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="cameraPreview(1)" />
+									</control>
+								</panel>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="c2" height="15%" width="100%" childLayout="horizontal">
+									<text id="cText2" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control id="cCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<panel width="5%">
+										<!-- Space -->
+									</panel>
+									<control name="button" label="ver" id="cButton2" width="25%" align="center" valign="center" visibleToMouse="true"> 
+										<interact onClick="cameraPreview(2)" />
+									</control>
+								</panel>
+								<panel height="5%" width="100%">
+									<!-- Space -->
+								</panel>
+								<panel id="cChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
+										<image id="cleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
+											<interact onClick="changePageAnimations(c,-)"/>
+										</image>
+										<panel width="5%">
+											<!-- Space -->
+										</panel>
+										<control name="button" label="All" id="cAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+											<interact onClick="checkAll(c,true)" />
+										</control>
+										<panel width="5%">
+											<!-- Space -->
+										</panel>
+										<control name="button" label="No" id="cNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
+											<interact onClick="checkAll(c,false)" />
+										</control>
+										<panel width="5%">
+											<!-- Space -->
+										</panel>
+										<image id="crightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
+											<interact onClick="changePageAnimations(c,+)"/>
+										</image>
+								</panel>
 							</panel>
 						</panel>
 					</panel>
-					<panel height="2%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="Panel2" height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
-						<panel id="qualityPanel" height="100%" width="80%" childLayout="vertical">
-							<text id="qualityText" text="" font="${CALL.getFont()}" align="center" width="100%" height="10%" wrap = "true"/>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="q0" height="15%" width="100%" childLayout="horizontal">
-								<text id="qText0" text="" font="${CALL.getFont()}" align="center" valign="center" width="85%" wrap = "true"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control id="qCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-							</panel>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="q1" height="15%" width="100%" childLayout="horizontal">
-								<text id="qText1" text="" font="${CALL.getFont()}" align="center" valign="center" width="85%" wrap = "true"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control id="qCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-							</panel>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="q2" height="15%" width="100%" childLayout="horizontal">
-								<text id="qText2" text="" font="${CALL.getFont()}" align="center" valign="center" width="85%" wrap = "true"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control id="qCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-							</panel>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="qChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
-									<image id="qleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
-										<interact onClick="changePageAnimations(q,-)"/>
-									</image>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<control name="button" label="All" id="qAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="checkAll(q,true)" />
-									</control>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<control name="button" label="No" id="qNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="checkAll(q,false)" />
-									</control>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<image id="qrightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
-										<interact onClick="changePageAnimations(q,+)"/>
-									</image>
-							</panel>
-						</panel>
-					</panel>
-					<panel height="2%" width="100%">
-					<!-- Space -->
-					</panel>
-					<panel id="Panel3" height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
-						<panel id="cameraPanel" height="100%" width="80%" childLayout="vertical">
-							<text id="cameraText" text="" font="${CALL.getFont()}" width="100%" height="10%" wrap = "true"/>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="c0" height="15%" width="100%" childLayout="horizontal">
-								<text id="cText0" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control id="cCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control name="button" label="ver" id="cButton0" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="cameraPreview(0)" />
-								</control>
-							</panel>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="c1" height="15%" width="100%" childLayout="horizontal">
-								<text id="cText1" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control id="cCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control name="button" label="ver" id="cButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="cameraPreview(1)" />
-								</control>
-							</panel>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="c2" height="15%" width="100%" childLayout="horizontal">
-								<text id="cText2" text="" font="${CALL.getFont()}" align="center" valign="center" width="55%" wrap = "true"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control id="cCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-								<panel width="5%">
-									<!-- Space -->
-								</panel>
-								<control name="button" label="ver" id="cButton2" width="25%" align="center" valign="center" visibleToMouse="true"> 
-									<interact onClick="cameraPreview(2)" />
-								</control>
-							</panel>
-							<panel height="5%" width="100%">
-								<!-- Space -->
-							</panel>
-							<panel id="cChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
-									<image id="cleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
-										<interact onClick="changePageAnimations(c,-)"/>
-									</image>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<control name="button" label="All" id="cAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="checkAll(c,true)" />
-									</control>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<control name="button" label="No" id="cNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="checkAll(c,false)" />
-									</control>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<image id="crightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
-										<interact onClick="changePageAnimations(c,+)"/>
-									</image>
-							</panel>
-						</panel>
-					</panel>
 				</panel>
-			</panel>
-			<!-- Change screen Panel -->
-			<panel id="panel_change_screen" height="15%" width="30%" childLayout="horizontal" align="right">
-				<panel id="panel_screenleft" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-					<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="changeScreen(-)"/>
-				</panel>
-				<panel height="66%" width="34%">
+				<panel height="23%" width="100%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_screenright" height="66%" width="33%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-					<text id="finishText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-					<interact onClick="export()"/>
+				<!-- Change screen Panel -->
+				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
+					<panel id="panel_screenleft" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
+						<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeScreen(-)"/>
+					</panel>
+					<panel height="100%" width="90%">
+						<!-- Space -->
+					</panel>
+					<panel id="panel_screenright" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
+						<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+						<interact onClick="changeScreen(+)"/>
+					</panel>
 				</panel>
 			</panel>
         </layer>

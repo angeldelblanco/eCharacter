@@ -41,6 +41,7 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
+import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.Button;
@@ -184,34 +185,34 @@ public class Gui extends AbstractAppState implements ScreenController {
                           StageType.scaleStage.toString(),
                           StageType.multiStage.toString(),
                           StageType.animationStage.toString()};
-        for(String type : types){
+        for(final String type : types){
             for(int i = 0; i<stages.size(); i++){
                 final String pant = stages.get(i);
                 PanelBuilder menu;
                 menu = new PanelBuilder(){{
                     height("100%");
-                    childLayoutCenter();
+                    childLayoutVertical();
+                    /*image(new ImageBuilder(){{
+                        filename(control.getIconPathStage(type));
+                    }});*/
                     text(new TextBuilder(){{
                         color(Color.WHITE);
                         font(getFont());
                         text(i18nFamily.getString(pant));
                         width("100%");
                     }});
+                    image(new ImageBuilder(){{
+                        id(pant+"menu-selection");
+                        align(Align.Center);
+                        filename(getMenu("menu-selection"));
+                    }});
                 }};
                 menu.id(stages.get(i)+"Menu");
-                menu.backgroundImage(getMenu("no"));
+                //menu.backgroundImage(getMenu("no"));
                 menu.interactOnClick("changeScreen("+stages.get(i)+")");
                 menu.build(nifty, nifty.getScreen(type), nifty.getScreen(type).findElementByName("panel_options"));
+                nifty.getScreen(type).findElementByName(stages.get(i)+"menu-selection").setVisible(false);
             }
-            nifty.getScreen(type).findElementByName("previousText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPrevious"));
-            nifty.getScreen(type).findElementByName("panel_screenleft").layoutElements();
-            if(type.equals(StageType.animationStage.toString())){
-                nifty.getScreen(type).findElementByName("finishText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idFinish"));
-            }
-            else{
-                nifty.getScreen(type).findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
-            }
-            nifty.getScreen(type).findElementByName("panel_screenright").layoutElements();
         }          
     }
     
@@ -320,13 +321,12 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void loadMenu(String type){
-        String color = "#FF0000AA";
         Iterator<String> it = stages.iterator();
         while(it.hasNext()){
             String auxStage = it.next();
-            nifty.getScreen(type).findElementByName(auxStage+"Menu").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(color));
+            nifty.getScreen(type).findElementByName(auxStage+"menu-selection").setVisible(false);
             if(auxStage.equals(selection)){
-                color = "#FF000000";
+                nifty.getScreen(type).findElementByName(auxStage+"menu-selection").setVisible(true);
             }
         }
     }
@@ -365,6 +365,18 @@ public class Gui extends AbstractAppState implements ScreenController {
     /******************************LoadGuiImages*****************************/
     
     public String getMenu(String param){
+        if(param.equals("s2-header-left")){
+            return "assets/Interface/s2-header-left.png";
+        }
+        if(param.equals("s2-header-right")){
+            return "assets/Interface/s2-header-right.png";
+        }
+        if(param.equals("s2-right-panel")){
+            return "assets/Interface/s2-right-panel.png";
+        }
+        if(param.equals("menu-selection")){
+            return "assets/Interface/header-selection.png";
+        }
         if(param.equals("yes")){
             return "assets/Interface/MenuRojo.png";
         }
@@ -385,18 +397,18 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public String getFont(){
         
-        return "assets/Interface/Fonts/myFont.fnt";
+        return "assets/Interface/Fonts/Brixton.fnt";
     }
     
     public String getButton(String param){
         if(param.equals("left")){
-            return "assets/Interface/ant.png";
+            return "assets/Interface/rightpanel-scroll-left.png";
         }
         if(param.equals("right")){
-            return "assets/Interface/sig.png";
+            return "assets/Interface/rightpanel-scroll-right.png";
         }
         if(param.equals("color")){
-            return "assets/Interface/ColorButton.png";
+            return "assets/Interface/rightpanel-selectcolor.png";
         }
         if(param.equals("next")){
             return "assets/Interface/next.png";
