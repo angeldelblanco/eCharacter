@@ -984,7 +984,7 @@
 					</panel>
 					<panel id="panel_screenright" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
 						<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-						<interact onClick="changeScreen(+)"/>
+						<interact onClick="export()"/>
 					</panel>
 				</panel>
 			</panel>
