@@ -530,7 +530,7 @@ public class SceneControl {
     
     public void pitchCamera(float ang){
         Quaternion quat = new Quaternion();
-        Vector3f upXdirection = activeCamera.getDirection().cross(activeCamera.getUp());
+        Vector3f upXdirection = activeCamera.getUp().cross(activeCamera.getDirection());
         quat.fromAngleAxis(FastMath.DEG_TO_RAD*ang,upXdirection);
         Vector3f direction = quat.mult(activeCamera.getDirection());
         setCameraView(activeCamera.getPosition(), direction, activeCamera.getUp());
