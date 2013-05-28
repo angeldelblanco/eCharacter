@@ -219,7 +219,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 logger.log(Level.SEVERE, "Error while saving screenshot", ex);
             }
             
-            int cont = 0;
+            /*int cont = 0;
             int maxTime = 50;
             try {
                 while((!file.exists() || file.length()==0) && cont<maxTime){
@@ -228,7 +228,7 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
                 }
             } catch (InterruptedException ex) {
                     Logger.getLogger(ScreenshotMyAppState.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
                     
             System.out.println("Añadido Nº "+shotIndex);
             System.out.println();
