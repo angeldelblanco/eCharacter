@@ -1012,7 +1012,7 @@
 						<!-- Space -->
 					</panel>
 					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
-						<interact onClick="changeScreen(+)"/>
+						<interact onClick="export()"/>
 					</image>
 				</panel>
 			</panel>
