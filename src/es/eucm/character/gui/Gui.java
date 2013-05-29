@@ -41,6 +41,7 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
+import de.lessvoid.nifty.builder.ElementBuilder;
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
@@ -52,6 +53,7 @@ import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import de.lessvoid.nifty.elements.Element;
+import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
@@ -190,17 +192,12 @@ public class Gui extends AbstractAppState implements ScreenController {
                 final String pant = stages.get(i);
                 PanelBuilder menu;
                 menu = new PanelBuilder(){{
-                    height("100%");
+                    height("80%");
                     childLayoutVertical();
-                    /*image(new ImageBuilder(){{
+                    valign(VAlign.Bottom);
+                    image(new ImageBuilder(){{
                         filename(control.getIconPathStage(pant));
                         align(Align.Center);
-                    }});*/
-                    text(new TextBuilder(){{
-                        color(Color.WHITE);
-                        font(getFont());
-                        text(i18nFamily.getString(pant));
-                        width("100%");
                     }});
                     image(new ImageBuilder(){{
                         id(pant+"menu-selection");
@@ -209,7 +206,6 @@ public class Gui extends AbstractAppState implements ScreenController {
                     }});
                 }};
                 menu.id(stages.get(i)+"Menu");
-                //menu.backgroundImage(getMenu("no"));
                 menu.interactOnClick("changeScreen("+stages.get(i)+")");
                 menu.build(nifty, nifty.getScreen(type), nifty.getScreen(type).findElementByName("panel_options"));
                 if(i<stages.size()-1){
@@ -250,7 +246,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         idBones = control.getIdBonesController(selection);
         buildMenu();
         
-        loadScreen(control.getStageTypes(selection).toString(),"","");
+        loadScreen(control.getStageTypes(selection).toString());
         nifty.gotoScreen(control.getStageTypes(selection).toString());
     }
     
@@ -260,22 +256,28 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void changeTab(String param){
-        if(control.getStageTypes(selection).toString().equals(StageType.scaleStage.toString())){
-            changePage("0");
-            scalesb.changeTab(param, selection);
-        }
-        if(control.getStageTypes(selection).toString().equals(StageType.animationStage.toString())){
+        if(selection.equals("")){
             animationsb.changeTab(param, selection);
+        }
+        else{
+            if(control.getStageTypes(selection).toString().equals(StageType.scaleStage.toString())){
+                changePage("0");
+                scalesb.changeTab(param, selection);
+            }
         }
     }
     
     public void changeScreen(String param){
-        String old = selection;
         int oldIndex = index;
         selection = param;
         if(param.equals("+")){
             index++;
-            selection = stages.get(index);
+            if(index==stages.size()){
+                selection = "";
+            }
+            else{
+                selection = stages.get(index);
+            }
             
         }else{
             if(param.equals("-")){
@@ -287,23 +289,41 @@ public class Gui extends AbstractAppState implements ScreenController {
                     selection= "";
                 }
             }else{
-                index = stages.lastIndexOf(selection);
+                if(param.equals("animationStage")){
+                    selection ="";
+                    index=stages.size();
+                }
+                else{
+                    index = stages.lastIndexOf(selection);
+                }
             }
         }
         if(!selection.equals("")){
             String stage = control.getStageTypes(selection).toString();
-            String oldStage = control.getStageTypes(stages.get(oldIndex)).toString();
+            String oldStage;
+            if(oldIndex==stages.size()){
+                oldStage = "animationStage";
+            }
+            else{
+                oldStage = control.getStageTypes(stages.get(oldIndex)).toString();
+            }
             if(!oldStage.equals(stage)){
                 nifty.gotoScreen(stage);
                 /*if(!stage.equals("animationStage")){
                     control.defaultCameraView();
                 }*/
             }
-            loadScreen(stage,oldStage,old);
+            loadScreen(stage);
         }
         else{
-            control.deleteModel();
-            loadFamilyScreen();
+            if(index < 0){
+                control.deleteModel();
+                loadFamilyScreen();
+            }
+            else{
+                nifty.gotoScreen("animationStage");
+                loadScreen("animationStage");
+            }
             //nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
             //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);
         }/*
@@ -314,7 +334,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         
     }
     
-    public void loadScreen(String type, String oldType, String param){
+    public void loadScreen(String type){
         loadMenu(type);
         if(type.equals(StageType.singleStage.toString())){
             changeTexturePage("0");
@@ -331,10 +351,10 @@ public class Gui extends AbstractAppState implements ScreenController {
         Iterator<String> it = stages.iterator();
         while(it.hasNext()){
             String auxStage = it.next();
-            nifty.getScreen(type).findElementByName(auxStage+"menu-selection").setVisible(false);
-            if(auxStage.equals(selection)){
-                nifty.getScreen(type).findElementByName(auxStage+"menu-selection").setVisible(true);
-            }
+                nifty.getScreen(type).findElementByName(auxStage+"menu-selection").setVisible(false);
+                if(auxStage.equals(selection)){
+                    nifty.getScreen(type).findElementByName(auxStage+"menu-selection").setVisible(true);
+                }
         }
     }
     
@@ -381,8 +401,17 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("s2-header-right")){
             return "assets/Interface/s2-header-right.png";
         }
-        if(param.equals("s2-right-panel")){
-            return "assets/Interface/s2-right-panel.png";
+        if(param.equals("header-rightseparator")){
+            return "assets/Interface/header-rightseparator.png";
+        }
+        if(param.equals("export")){
+            return "assets/Interface/export.png";
+        }
+        if(param.equals("export-over")){
+            return "assets/Interface/export-over.png";
+        }
+        if(param.equals("s2-settings")){
+            return "assets/Interface/s2-settings.png";
         }
         if(param.equals("menu-selection")){
             return "assets/Interface/header-selection.png";
@@ -425,6 +454,16 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(param.equals("previous")){
             return "assets/Interface/previous.png";
+        }
+        return null;
+    }
+    
+    public String getTexture(String param){
+        if(param.equals("s1-background")){
+            return "assets/Interface/s1-background.png";
+        }
+        if(param.equals("s2-right-panel")){
+            return "assets/Interface/s2-right-panel.png";
         }
         return null;
     }
@@ -490,7 +529,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(sel == 1){
                 index = 0;
                 selection = stages.get(index);
-                loadScreen(control.getStageTypes(selection).toString(),"","");
+                loadScreen(control.getStageTypes(selection).toString());
                 nifty.gotoScreen(control.getStageTypes(selection).toString());
         }
         if(sel==2){

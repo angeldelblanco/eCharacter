@@ -46,7 +46,7 @@
   <!-- Second screen(Model selection)-->
 	<screen id="modelScreen" controller="es.eucm.character.gui.Gui">
         <layer id="background" backgroundColor="#0000" childLayout="horizontal">
-            <image filename="Interface/second-background.png"></image>   
+            <image filename="${CALL.getTexture(s1-background)}"></image>   
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<panel id="choosePanel" height="5%" width="100%" childLayout="center"> 
@@ -179,25 +179,34 @@
   <!-- Third screen(basic)-->
 	<screen id="scaleStage" controller="es.eucm.character.gui.Gui">
 		<layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-			<panel height="3%" width="100%">
+			<panel height="2%" width="100%">
 				<!-- Space -->
 			</panel>
 			<!-- Option Panel -->
-			<panel height="5%" width="100%" childLayout="Horizontal"> 
-				<panel id="panel_options" height="100%" width="88%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-left)}"> 
+			<panel width="100%" childLayout="Horizontal"> 
+				<image id="panel_options" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-left)}"> 
 					
-				</panel>
+				</image>
 				<panel height="100%" width="1%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_options2" height="100%" width="11%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-right)}"> 
-					
-				</panel>
+				<image id="panel_options2" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-right)}">
+					<panel id ="exportPanel" childLayout="center"height="100%" width="70%">
+						<image id = "export" filename="${CALL.getMenu(export)}">
+							<interact onClick="changeScreen(animationStage)"/>
+						</image>
+					</panel>
+					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
+					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						</image>
+					</panel>
+				</image>
 			</panel>
 			<panel height="6%" width="100%">
 				<!-- Space -->
 			</panel>
-			<panel height="79%" width="90%" childLayout="vertical" align="center">
+			<panel height="79%" width="94%" childLayout="vertical" align="center">
 				<panel id="panel_options-complexion" height="4%" width="30%" align="right" childLayout="horizontal"> 
 					<!-- Change Basic Options Panel -->
 					<panel id="basicPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
@@ -275,22 +284,20 @@
 						</image>
 					</panel>
 				</panel>
-				<panel height="23%" width="100%">
+				<panel height="15%" width="100%">
 					<!-- Space -->
 				</panel>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
-					<panel id="panel_screenleft" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-						<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
 						<interact onClick="changeScreen(-)"/>
-					</panel>
+					</image>
 					<panel height="100%" width="90%">
 						<!-- Space -->
 					</panel>
-					<panel id="panel_screenright" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-						<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="changeScreen(+)"/>
-					</panel>
+					</image>
 				</panel>
 			</panel>
         </layer>
@@ -299,26 +306,35 @@
 	<!-- Fifth screen(skin)-->
 	<screen id="singleStage" controller="es.eucm.character.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-			<panel height="3%" width="100%">
+			<panel height="2%" width="100%">
 				<!-- Space -->
 			</panel>
 			<!-- Option Panel -->
-			<panel height="5%" width="100%" childLayout="Horizontal"> 
-				<panel id="panel_options" height="100%" width="88%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-left)}"> 
+			<panel width="100%" childLayout="Horizontal"> 
+				<image id="panel_options" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-left)}"> 
 					
-				</panel>
+				</image>
 				<panel height="100%" width="1%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_options2" height="100%" width="11%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-right)}"> 
-					
-				</panel>
+				<image id="panel_options2" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-right)}">
+					<panel id ="exportPanel" childLayout="center"height="100%" width="70%">
+						<image id = "export" filename="${CALL.getMenu(export)}">
+							<interact onClick="changeScreen(animationStage)"/>
+						</image>
+					</panel>
+					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
+					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						</image>
+					</panel>
+				</image>
 			</panel>
 			<panel height="10%" width="100%">
 				<!-- Space -->
 			</panel>
-			<panel height="79%" width="90%" childLayout="vertical" align="center">
-				<panel id="rightSelectionPanel" height="70%" width="45%" childLayout="Vertical" align="right" backgroundImage="${CALL.getMenu(s2-right-panel)}">
+			<panel height="79%" width="94%" childLayout="vertical" align="center">
+				<image id="rightSelectionPanel" childLayout="Vertical" align="right" filename="${CALL.getTexture(s2-right-panel)}">
 					<panel height="2%" width="100%">
 						<!-- Space -->
 					</panel>
@@ -525,23 +541,21 @@
 						<text id="colorText" text="" color="#000000FF" font="${CALL.getFont()}" width="100%" height="100%" />
 						<interact onClick="showWindowChangeColor(0)"/>
 					</panel>
-				</panel>
-				<panel height="23%" width="100%">
+				</image>
+				<panel height="15%" width="100%">
 					<!-- Space -->
 				</panel>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
-					<panel id="panel_screenleft" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-						<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
 						<interact onClick="changeScreen(-)"/>
-					</panel>
+					</image>
 					<panel height="100%" width="90%">
 						<!-- Space -->
 					</panel>
-					<panel id="panel_screenright" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-						<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="changeScreen(+)"/>
-					</panel>
+					</image>
 				</panel>
 			</panel>
         </layer>
@@ -556,25 +570,34 @@
 	<!-- Sixth screen(accesories)-->
 	<screen id="multiStage" controller="es.eucm.character.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-			<panel height="3%" width="100%">
+			<panel height="2%" width="100%">
 				<!-- Space -->
 			</panel>
 			<!-- Option Panel -->
-			<panel height="5%" width="100%" childLayout="Horizontal"> 
-				<panel id="panel_options" height="100%" width="88%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-left)}"> 
+			<panel width="100%" childLayout="Horizontal"> 
+				<image id="panel_options" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-left)}"> 
 					
-				</panel>
+				</image>
 				<panel height="100%" width="1%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_options2" height="100%" width="11%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-right)}"> 
-					
-				</panel>
+				<image id="panel_options2" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-right)}">
+					<panel id ="exportPanel" childLayout="center"height="100%" width="70%">
+						<image id = "export" filename="${CALL.getMenu(export)}">
+							<interact onClick="changeScreen(animationStage)"/>
+						</image>
+					</panel>
+					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
+					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						</image>
+					</panel>
+				</image>
 			</panel>
 			<panel height="10%" width="100%">
 				<!-- Space -->
 			</panel>
-			<panel height="79%" width="90%" childLayout="vertical" align="center">
+			<panel height="79%" width="94%" childLayout="vertical" align="center">
 				<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right">
 					<panel id="panel_image" height="80%" width="100%" align="center" childLayout="vertical">
 						<panel id="t0" height="48%" width="100%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
@@ -680,22 +703,20 @@
 						</panel>
 					</panel>
 				</panel>
-				<panel height="23%" width="100%">
+				<panel height="15%" width="100%">
 					<!-- Space -->
 				</panel>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
-					<panel id="panel_screenleft" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-						<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
 						<interact onClick="changeScreen(-)"/>
-					</panel>
+					</image>
 					<panel height="100%" width="90%">
 						<!-- Space -->
 					</panel>
-					<panel id="panel_screenright" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-						<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="changeScreen(+)"/>
-					</panel>
+					</image>
 				</panel>
 			</panel>
         </layer>
@@ -710,25 +731,34 @@
 	<!-- Eigthth screen(export)-->
 	<screen id="animationStage" controller="es.eucm.character.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-			<panel height="3%" width="100%">
+			<panel height="2%" width="100%">
 				<!-- Space -->
 			</panel>
 			<!-- Option Panel -->
-			<panel height="5%" width="100%" childLayout="Horizontal"> 
-				<panel id="panel_options" height="100%" width="88%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-left)}"> 
+			<panel width="100%" childLayout="Horizontal"> 
+				<image id="panel_options" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-left)}"> 
 					
-				</panel>
+				</image>
 				<panel height="100%" width="1%">
 					<!-- Space -->
 				</panel>
-				<panel id="panel_options2" height="100%" width="11%" childLayout="Horizontal" backgroundImage="${CALL.getMenu(s2-header-right)}"> 
-					
-				</panel>
+				<image id="panel_options2" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-right)}">
+					<panel id ="exportPanel" childLayout="center"height="100%" width="70%">
+						<image id = "export" filename="${CALL.getMenu(export)}">
+							<interact onClick="changeScreen(animationStage)"/>
+						</image>
+					</panel>
+					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
+					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						</image>
+					</panel>
+				</image>
 			</panel>
 			<panel height="6%" width="100%">
 				<!-- Space -->
 			</panel>
-			<panel height="79%" width="90%" childLayout="vertical" align="center">
+			<panel height="79%" width="94%" childLayout="vertical" align="center">
 				<panel id="panel_options-animation" height="4%" width="30%" align="right" childLayout="horizontal"> 
 					<!-- Change Basic Options Panel -->
 					<panel id="basicPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
@@ -970,22 +1000,20 @@
 						</panel>
 					</panel>
 				</panel>
-				<panel height="23%" width="100%">
+				<panel height="15%" width="100%">
 					<!-- Space -->
 				</panel>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
-					<panel id="panel_screenleft" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(previous)}">
-						<text id="previousText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
+					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
 						<interact onClick="changeScreen(-)"/>
-					</panel>
+					</image>
 					<panel height="100%" width="90%">
 						<!-- Space -->
 					</panel>
-					<panel id="panel_screenright" height="100%" width="5%" childLayout="center" valign="center" backgroundImage="${CALL.getButton(next)}">
-						<text id="nextText" text="" font="${CALL.getFont()}" width="100%" height="100%" />
-						<interact onClick="export()"/>
-					</panel>
+					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
+						<interact onClick="changeScreen(+)"/>
+					</image>
 				</panel>
 			</panel>
         </layer>

@@ -146,8 +146,6 @@ public class FamilyControl{
             MultiStageType mst = it2.next();
             listStagesLabels.add(mst.getStageLabel());
         }
-        AnimationStageType as = family.getStages().getAnimationStage();
-        listStagesLabels.add(as.getStageLabel());
             
         return listStagesLabels;
     }
