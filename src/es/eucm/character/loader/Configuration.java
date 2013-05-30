@@ -124,6 +124,7 @@ public class Configuration {
     }
     
     public void loadDefaultProperties(){
+        String userPath = System.getProperty("user.home");
         //Default configuration
         this.properties.setProperty(LANGUAGE, "en_UK");
         this.properties.setProperty(LIST_LANGUAGE,"en_UK es_ES fr_FR");
@@ -136,8 +137,8 @@ public class Configuration {
         this.properties.setProperty(DEFAULT_VECTOR_POSITION, "-3.0,5.0,10.0");
         this.properties.setProperty(DEFAULT_VECTOR_DIRECTION, "0.0,0.0,-1.0");
         this.properties.setProperty(DEFAULT_VECTOR_UP, "0.0,1.0,0.0");
-        this.properties.setProperty(DEFAULT_EXPORT_PATH, "export");
-        this.properties.setProperty(DEFAULT_TEMP_PATH, "temp");
+        this.properties.setProperty(DEFAULT_EXPORT_PATH, userPath+File.separator+"eCharacter"+File.separator+"export");
+        this.properties.setProperty(DEFAULT_TEMP_PATH, userPath+File.separator+"eCharacter"+File.separator+"temp");
         
         //Saves the changes in the .properties file
         try {            

@@ -45,6 +45,13 @@ import java.util.StringTokenizer;
  */
 public class Main {            
     public static void main(String[] args){
+        String sSistemaOperativo = System.getProperty("user.home"); 
+        
+        /*//Saber el sistema operativo
+        String sistemaOperativo = System.getProperty("os.name");
+        System.out.println(sistemaOperativo);*/
+        
+        
         //Initializes the resources and load the initial configuration
         Configuration config = new Configuration();
         InputStream stream = ResourceLocator.getResource(Configuration.PROPERTIES_FILE_NAME);
