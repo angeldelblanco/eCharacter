@@ -53,12 +53,9 @@ import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import de.lessvoid.nifty.elements.Element;
-import de.lessvoid.nifty.elements.render.ImageRenderer;
-import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import de.lessvoid.nifty.tools.Color;
 import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
 import es.eucm.character.loader.Configuration;
@@ -220,11 +217,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void changeCharacterPage(String steep){
-        modelsb.changeCharacterPage(i18nFamily,steep);    
-    }
-    
-    public void selectModel(String id){
-        modelSelection = modelsb.selectModel(id);
+        modelSelection = modelsb.changeCharacterPage(i18nFamily,steep);    
     }
     
     public void loadFirstScreen(){
@@ -392,6 +385,18 @@ public class Gui extends AbstractAppState implements ScreenController {
     /******************************LoadGuiImages*****************************/
     
     public String getMenu(String param){
+        if(param.equals("s1-header")){
+            return "assets/Interface/s1-header.png";
+        }
+        if(param.equals("logo")){
+            return "assets/Interface/logo.png";
+        }
+        if(param.equals("s1-settings")){
+            return "assets/Interface/s1-settings.png";
+        }
+        if(param.equals("s1-subheader")){
+            return "assets/Interface/s1-subheader.png";
+        }
         if(param.equals("s2-header-left")){
             return "assets/Interface/s2-header-left.png";
         }
@@ -440,6 +445,12 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public String getButton(String param){
+        if(param.equals("s1-left")){
+            return "assets/Interface/s1-rightpanel-scroll-left.png";
+        }
+        if(param.equals("s1-right")){
+            return "assets/Interface/s1-rightpanel-scroll-right.png";
+        }
         if(param.equals("left")){
             return "assets/Interface/rightpanel-scroll-left.png";
         }
@@ -461,6 +472,12 @@ public class Gui extends AbstractAppState implements ScreenController {
     public String getTexture(String param){
         if(param.equals("s1-background")){
             return "assets/Interface/s1-background.png";
+        }
+        if(param.equals("s1-leftpanel")){
+            return "assets/Interface/s1-leftpanel.png";
+        }
+        if(param.equals("s1-rightpanel")){
+            return "assets/Interface/s1-rightpanel.png";
         }
         if(param.equals("s2-right-panel")){
             return "assets/Interface/s2-right-panel.png";

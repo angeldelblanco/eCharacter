@@ -44,7 +44,6 @@ import de.lessvoid.nifty.effects.Effect;
 import de.lessvoid.nifty.effects.EffectEventId;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
-import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
 import es.eucm.character.control.Control;
@@ -52,7 +51,6 @@ import es.eucm.character.i18n.I18N;
 import java.util.List;
 
 public class FamilyStageBuilder {
-    private static final int MODELS_PAGE = 6;
     private Nifty nifty;
     private I18N i18nGui; 
     private Control control;
@@ -72,12 +70,6 @@ public class FamilyStageBuilder {
       and builds all the families and the pictures of models*/
     
     private void initModels(final String font){
-        nifty.getScreen(stageType).findElementByName("chooseText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idChoose"));
-        nifty.getScreen(stageType).findElementByName("choosePanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("nextText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNext"));
-        nifty.getScreen(stageType).findElementByName("panel_screenright").layoutElements();
-        nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(false);
-        nifty.getScreen(stageType).findElementByName("loadPopupPanel").setVisible(false);
         new PanelBuilder() {{
             width("40%");
             childLayoutHorizontal();
@@ -93,12 +85,12 @@ public class FamilyStageBuilder {
                 valignCenter();
                 width("50%");
             }});
-        }}.build(nifty, nifty.getScreen(stageType), nifty.getScreen(stageType).findElementByName("familyPanel"));
+        }}.build(nifty, nifty.getScreen(stageType), nifty.getScreen(stageType).findElementByName("familyDrop"));
     }
     
     //Change the model's page hiding pictures of previous models or previous family
     
-    public void changeCharacterPage(I18N i18nFamily,String steep){
+    public String changeCharacterPage(I18N i18nFamily,String steep){
         if(steep.equals("+")){
             modelsPage++;
         }
@@ -108,27 +100,17 @@ public class FamilyStageBuilder {
         if(steep.equals("0")){
             modelsPage = 0;
         }
-        unCheck();
-        for(int i=modelsPage*MODELS_PAGE; i<control.getNumModels(); i++){
-            if(i<((modelsPage+1)*MODELS_PAGE)){
-                Element image = nifty.getScreen(stageType).findElementByName("m"+Integer.toString(i%MODELS_PAGE));
-                image.setVisible(true);
-                List<Effect> effects = image.getEffects(EffectEventId.onHover,Tooltip.class);
-                effects.get(0).getParameters().setProperty("hintText", i18nFamily.getString(control.getModelsLabel().get(i)));
-                ImageRenderer imager = image.getRenderer(ImageRenderer.class);
-                String imagePath = control.getModelIconPath(control.getModelsLabel().get(i));
-                if(imagePath!=null){
-                    imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
-                }
-                else{
-                    imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
-                }
-                //image.getEffects(EffectEventId.onActive, null).get(0).
-            }
+        Element image = nifty.getScreen(stageType).findElementByName("m");
+        image.setVisible(true);
+        List<Effect> effects = image.getEffects(EffectEventId.onHover,Tooltip.class);
+        effects.get(0).getParameters().setProperty("hintText", i18nFamily.getString(control.getModelsLabel().get(modelsPage)));
+        ImageRenderer imager = image.getRenderer(ImageRenderer.class);
+        String imagePath = control.getModelIconPath(control.getModelsLabel().get(modelsPage));
+        if(imagePath!=null){
+            imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
         }
-        for(int i=control.getNumModels();i<((modelsPage+1)*MODELS_PAGE);i++){
-            Element image = nifty.getScreen(stageType).findElementByName("m"+Integer.toString(i%MODELS_PAGE));
-            image.setVisible(false);
+        else{
+            imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
         }
         if(modelsPage > 0){
             nifty.getScreen(stageType).findElementByName("leftT").setVisible(true);
@@ -136,7 +118,7 @@ public class FamilyStageBuilder {
         else{
             nifty.getScreen(stageType).findElementByName("leftT").setVisible(false);
         }
-        if((((double)control.getNumModels()/(double)MODELS_PAGE) - modelsPage) > 1){
+        if((control.getNumModels() - modelsPage) > 1){
             nifty.getScreen(stageType).findElementByName("rightT").setVisible(true);
         }
         else{
@@ -147,26 +129,8 @@ public class FamilyStageBuilder {
         String desc = i18nGui.getString("idDescriptionFamily")+": "+"\n"+i18nFamily.getString(control.getMetadataFamilyDescription())+"\n";
         String aut = i18nGui.getString("idAuthor")+": "+"\n"+i18nFamily.getString(control.getMetadataFamilyAuthor())+"\n";
         nifty.getScreen(stageType).findElementByName("descriptionText").getRenderer(TextRenderer.class).setText(desc+aut+url);
-        nifty.getScreen(stageType).findElementByName("descriptionPanel").layoutElements();
-    }
-    
-    //Select the current model
-    
-    public String selectModel(String id){
-        int i = modelsPage*MODELS_PAGE + Integer.valueOf(id);
-        control.getModelFamilyPath(control.getModelsLabel().get(i));
-        unCheck();
-        nifty.getScreen(stageType).findElementByName("m"+id).getParent().getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));
-        nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(true);
-        return control.getModelFamilyPath(control.getModelsLabel().get(i));
-    } 
-    
-    //uncheck all the models
-    
-    private void unCheck(){
-        for(int i = 0; i < MODELS_PAGE; i++){
-            nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-        }
-        nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(false);
+        nifty.getScreen(stageType).findElementByName("family0").layoutElements();
+        control.getModelFamilyPath(control.getModelsLabel().get(modelsPage));
+        return control.getModelFamilyPath(control.getModelsLabel().get(modelsPage));
     }
 }
