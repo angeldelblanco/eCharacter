@@ -42,28 +42,24 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.renderer.ViewPort;
 import com.jme3.system.AppSettings;
-import com.jme3.ui.Picture;
 import de.lessvoid.nifty.Nifty;
 import es.eucm.character.control.Control;
 import es.eucm.character.export.ScreenshotMyAppState;
 import es.eucm.character.gui.Gui;
 import es.eucm.character.gui.Tooltip;
-import es.eucm.character.gui.ProgressbarControl;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.ResourceLocator;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Date;
+import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class Application extends SimpleApplication{
 
@@ -75,14 +71,26 @@ public class Application extends SimpleApplication{
     private Configuration config;
     private Nifty nifty;
     private float t = 0;
+    private AppSettings newSettings;
     
     /*private ViewPort pv;
     private Picture p;*/
     
     public Application(int width,int height,Configuration config){
         //Creation of the new configuration
-        AppSettings newSettings = new AppSettings(true);
+        newSettings = new AppSettings(true);
         newSettings.setResolution(width,height);
+        newSettings.setTitle("eCharacter");
+        /*BufferedImage[] arrayIcons = new BufferedImage[4];
+        try {
+            arrayIcons[0] = ImageIO.read(new File("assets"+File.separator+"Interface"+File.separator+"256.png"));
+            arrayIcons[1] = ImageIO.read(new File("assets"+File.separator+"Interface"+File.separator+"128.png"));
+            arrayIcons[2] = ImageIO.read(new File("assets"+File.separator+"Interface"+File.separator+"32.png"));
+            arrayIcons[3] = ImageIO.read(new File("assets"+File.separator+"Interface"+File.separator+"16.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        newSettings.setIcons(arrayIcons);*/
         //newSettings.setFullscreen(true);
         this.setShowSettings(false);
         this.setSettings(newSettings);
@@ -137,9 +145,6 @@ public class Application extends SimpleApplication{
         flyCam.setEnabled(false);
         /*LwjglInitHelper.renderLoop(nifty, new RenderLoop(nifty));
  	LwjglInitHelper.destroy();*/
-        
-        
-       
     }
     
     public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
