@@ -58,7 +58,12 @@
 				<panel height="100%" width="81%" childLayout="center">
 					<text id= "headerText" text="Selecciona una familia y luego el modelo base para comenzar" font="${CALL.getFont()}" wrap = "true"/>
 				</panel>
-				<image valign ="center" filename="${CALL.getMenu(s1-settings)}"/>
+				<image valign ="center" filename="${CALL.getMenu(s1-settings)}">
+					<interact onClick=""/>
+					<effect>
+						<onHover name="imageOverlay" filename="${CALL.getMenu(s1-settings-over)}" post="true" />
+					</effect>
+				</image> 
 			</image> 
 			<image filename="${CALL.getMenu(s1-subheader)}" align="right" childLayout="horizontal">
 				<text id= "subheaderText" text="Bienvenido a Character, el configurador de personajes de eAdventure. Para conocer más detalles sobre el proyecto pulsa aquí" font="${CALL.getFont()}" wrap = "true"/>
@@ -77,8 +82,11 @@
 					<panel id="characterPanel" height="100%" width="48%" childLayout="center">
 						<image filename="${CALL.getTexture(s1-rightpanel)}" childLayout="horizontal">
 							<panel id="panel_changeleft" width="12%" height="80%" align="center" childLayout="center">
-								<image id="leftT" filename="${CALL.getButton(s1-left)}">
-										<interact onClick="changeCharacterPage(-)"/>
+								<image id="leftT" filename="${CALL.getButton(left)}">
+									<interact onClick="changeCharacterPage(-)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+									</effect>
 								</image>
 							</panel>
 							<panel id="panel_image" width="76%" height="80%" align="center" childLayout="vertical">
@@ -88,14 +96,17 @@
 										<interact onClick="selectModel(0)"/>
 										<effect>
 										<!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
-										<onHover name="tooltip" targetElement="hint-panel" hintText="Model 0" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 0" />
 										</effect>
 									</image> 								
 								</panel>
 							</panel>
 							<panel id="panel_changeright" width="12%" height="80%" align="center" childLayout="center">
-								<image id="rightT" filename="${CALL.getButton(s1-right)}">
-										<interact onClick="changeCharacterPage(+)"/>
+								<image id="rightT" filename="${CALL.getButton(right)}">
+									<interact onClick="changeCharacterPage(+)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
+									</effect>
 								</image>
 							</panel>
 						</image>
@@ -104,6 +115,9 @@
 				<panel height="1%" width="100%"/>
 				<image id="panel_screenright" filename="${CALL.getButton(next)}" align="right">
 					<interact onClick="loadFirstScreen()"/>
+					<effect>
+						<onHover name="imageOverlay" filename="${CALL.getButton(next-over)}" post="true" />
+					</effect>
 				</image>
 			</panel>
         </layer>
@@ -133,11 +147,18 @@
 					<panel id ="exportPanel" childLayout="center"height="100%" width="70%">
 						<image id = "export" filename="${CALL.getMenu(export)}">
 							<interact onClick="changeScreen(animationStage)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getMenu(export-over)}" post="true" />
+							</effect>
 						</image>
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
 						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+							<interact onClick=""/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
+							</effect>
 						</image>
 					</panel>
 				</image>
@@ -230,12 +251,18 @@
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
 						<interact onClick="changeScreen(-)"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(previous-over)}" post="true" />
+						</effect>
 					</image>
 					<panel height="100%" width="90%">
 						<!-- Space -->
 					</panel>
 					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="changeScreen(+)"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(next-over)}" post="true" />
+						</effect>
 					</image>
 				</panel>
 			</panel>
@@ -260,11 +287,18 @@
 					<panel id ="exportPanel" childLayout="center"height="100%" width="70%">
 						<image id = "export" filename="${CALL.getMenu(export)}">
 							<interact onClick="changeScreen(animationStage)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getMenu(export-over)}" post="true" />
+							</effect>
 						</image>
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
 						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+							<interact onClick=""/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
+							</effect>
 						</image>
 					</panel>
 				</image>
@@ -281,6 +315,9 @@
 						<panel id="leftPanel" height="100%" width="12%" align="center" childLayout="center">
 							<image id="leftT" align="center" filename="${CALL.getButton(left)}">
 									<interact onClick="changeTexturePage(-)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+									</effect>
 							</image>
 						</panel>
 						<panel id="panel_image" height="100%" width="76%" align="center" childLayout="vertical">
@@ -469,7 +506,10 @@
 						</panel>
 						<panel id="rightPanel" height="100%" width="12%" align="center" childLayout="center">
 							<image id="rightT" align="center" filename="${CALL.getButton(right)}">
-									<interact onClick="changeTexturePage(+)"/>
+								<interact onClick="changeTexturePage(+)"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
+								</effect>
 							</image>
 						</panel>
 					</panel>
@@ -479,6 +519,9 @@
 					<panel id="panel_color" height="10%" width="42%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
 						<text id="colorText" text="" color="#000000FF" font="${CALL.getFont()}" width="100%" height="100%" />
 						<interact onClick="showWindowChangeColor(0)"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(color-over)}" post="true" />
+						</effect>
 					</panel>
 				</image>
 				<panel height="15%" width="100%">
@@ -488,12 +531,18 @@
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
 						<interact onClick="changeScreen(-)"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(previous-over)}" post="true" />
+						</effect>
 					</image>
 					<panel height="100%" width="90%">
 						<!-- Space -->
 					</panel>
 					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="changeScreen(+)"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(next-over)}" post="true" />
+						</effect>
 					</image>
 				</panel>
 			</panel>
@@ -524,11 +573,18 @@
 					<panel id ="exportPanel" childLayout="center"height="100%" width="70%">
 						<image id = "export" filename="${CALL.getMenu(export)}">
 							<interact onClick="changeScreen(animationStage)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getMenu(export-over)}" post="true" />
+							</effect>
 						</image>
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
 						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+							<interact onClick=""/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
+							</effect>
 						</image>
 					</panel>
 				</image>
@@ -649,12 +705,18 @@
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
 						<interact onClick="changeScreen(-)"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(previous-over)}" post="true" />
+						</effect>
 					</image>
 					<panel height="100%" width="90%">
 						<!-- Space -->
 					</panel>
 					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="changeScreen(+)"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(next-over)}" post="true" />
+						</effect>
 					</image>
 				</panel>
 			</panel>
@@ -683,13 +745,20 @@
 				</panel>
 				<image id="panel_options2" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-right)}">
 					<panel id ="exportPanel" childLayout="center"height="100%" width="70%">
-						<image id = "export" filename="${CALL.getMenu(export-over)}">
+						<image id = "export" filename="${CALL.getMenu(export)}">
 							<interact onClick="changeScreen(animationStage)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getMenu(export-over)}" post="true" />
+							</effect>
 						</image>
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
 						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+							<interact onClick=""/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
+							</effect>
 						</image>
 					</panel>
 				</image>
@@ -946,12 +1015,18 @@
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
 						<interact onClick="changeScreen(-)"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(previous-over)}" post="true" />
+						</effect>
 					</image>
 					<panel height="100%" width="90%">
 						<!-- Space -->
 					</panel>
 					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="export()"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(next-over)}" post="true" />
+						</effect>
 					</image>
 				</panel>
 			</panel>

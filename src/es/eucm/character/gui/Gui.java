@@ -394,6 +394,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("s1-settings")){
             return "assets/Interface/s1-settings.png";
         }
+        if(param.equals("s1-settings-over")){
+            return "assets/Interface/s1-settings-over.png";
+        }
         if(param.equals("s1-subheader")){
             return "assets/Interface/s1-subheader.png";
         }
@@ -417,6 +420,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(param.equals("s2-settings")){
             return "assets/Interface/s2-settings.png";
+        }
+        if(param.equals("s2-settings-over")){
+            return "assets/Interface/s2-settings-over.png";
         }
         if(param.equals("menu-selection")){
             return "assets/Interface/header-selection.png";
@@ -445,26 +451,35 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public String getButton(String param){
-        if(param.equals("s1-left")){
-            return "assets/Interface/s1-rightpanel-scroll-left.png";
-        }
-        if(param.equals("s1-right")){
-            return "assets/Interface/s1-rightpanel-scroll-right.png";
-        }
         if(param.equals("left")){
             return "assets/Interface/rightpanel-scroll-left.png";
+        }
+        if(param.equals("left-over")){
+            return "assets/Interface/rightpanel-scroll-left-over.png";
         }
         if(param.equals("right")){
             return "assets/Interface/rightpanel-scroll-right.png";
         }
+        if(param.equals("right-over")){
+            return "assets/Interface/rightpanel-scroll-right-over.png";
+        }
         if(param.equals("color")){
             return "assets/Interface/rightpanel-selectcolor.png";
+        }
+        if(param.equals("color-over")){
+            return "assets/Interface/rightpanel-selectcolor-over.png";
         }
         if(param.equals("next")){
             return "assets/Interface/next.png";
         }
+        if(param.equals("next-over")){
+            return "assets/Interface/next-over.png";
+        }
         if(param.equals("previous")){
             return "assets/Interface/previous.png";
+        }
+        if(param.equals("previous-over")){
+            return "assets/Interface/previous-over.png";
         }
         return null;
     }
