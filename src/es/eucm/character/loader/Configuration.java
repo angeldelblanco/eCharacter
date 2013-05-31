@@ -50,8 +50,11 @@ import java.util.logging.Logger;
  * In case the .properties file doesn´t exist, loading of a default configuration.
  */
 public class Configuration { 
+    
+    private final static String userPath = System.getProperty("user.home");
+    
     /** Properties file name */
-    public final static String PROPERTIES_FILE_NAME = "."+File.separator+"initConfig.properties";
+    public final static String PROPERTIES_FILE_NAME = userPath+File.separator+"eCharacter"+File.separator+"initConfig.properties";
     //Language 
     public final static String LANGUAGE = "lang";
     
@@ -95,6 +98,10 @@ public class Configuration {
     
     
     public Configuration(){
+        File f = new File(userPath+File.separator+"eCharacter");
+        if (!f.exists()){
+            f.mkdirs();
+        }
         properties = new Properties();
     }
     
@@ -124,7 +131,6 @@ public class Configuration {
     }
     
     public void loadDefaultProperties(){
-        String userPath = System.getProperty("user.home");
         //Default configuration
         this.properties.setProperty(LANGUAGE, "en_UK");
         this.properties.setProperty(LIST_LANGUAGE,"en_UK es_ES fr_FR");
