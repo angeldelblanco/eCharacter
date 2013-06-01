@@ -158,7 +158,7 @@ public class Application extends SimpleApplication{
     public void loadBackground(){
         //CODIGO PARA PONER UNA IMAGEN DE FONDO
         p = new Picture("background");
-        p.setImage(assetManager, "Interface/FondoVista3D-3.png", false);
+        p.setImage(assetManager, "assets/Interface/FondoVista3D-3.png", false);
         p.setWidth(settings.getWidth());
         p.setHeight(settings.getHeight());
         p.setPosition(0, 0);
