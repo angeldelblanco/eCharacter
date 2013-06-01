@@ -81,16 +81,7 @@ public class Application extends SimpleApplication{
         newSettings = new AppSettings(true);
         newSettings.setResolution(width,height);
         newSettings.setTitle("eCharacter");
-        /*BufferedImage[] arrayIcons = new BufferedImage[4];
-        try {
-            arrayIcons[0] = ImageIO.read(new File("assets"+File.separator+"Interface"+File.separator+"256.png"));
-            arrayIcons[1] = ImageIO.read(new File("assets"+File.separator+"Interface"+File.separator+"128.png"));
-            arrayIcons[2] = ImageIO.read(new File("assets"+File.separator+"Interface"+File.separator+"32.png"));
-            arrayIcons[3] = ImageIO.read(new File("assets"+File.separator+"Interface"+File.separator+"16.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        newSettings.setIcons(arrayIcons);*/
+        initIcons();
         //newSettings.setFullscreen(true);
         this.setShowSettings(false);
         this.setSettings(newSettings);
@@ -162,6 +153,19 @@ public class Application extends SimpleApplication{
                 ((ConsoleHandler) handlers[i]).setLevel(Level.WARNING);
             }
         }
+    }
+    
+    private void initIcons(){
+        BufferedImage[] arrayIcons = new BufferedImage[4];
+        try {
+            arrayIcons[0] = ImageIO.read(new File("assets"+File.separator+"Icons"+File.separator+"Logo2-256.png"));
+            arrayIcons[1] = ImageIO.read(new File("assets"+File.separator+"Icons"+File.separator+"Logo2-128.png"));
+            arrayIcons[2] = ImageIO.read(new File("assets"+File.separator+"Icons"+File.separator+"Logo2-32.png"));
+            arrayIcons[3] = ImageIO.read(new File("assets"+File.separator+"Icons"+File.separator+"Logo2-16.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        newSettings.setIcons(arrayIcons);
     }
     
     // Custom Keybindings: Mapping a named action to a key input. 
