@@ -47,7 +47,9 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.CameraNode;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.shape.Cylinder;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture2D;
 import com.jme3.texture.plugins.AWTLoader;
@@ -120,6 +122,8 @@ public class SceneControl {
         setPositionModel(listTransformationMainMesh);
         loadSubMeshes();
         
+        loadBase();
+
         //Setting the initial animation
         this.animControl = this.mainMesh.getControl(AnimControl.class);
         this.animChannel = this.animControl.createChannel();
@@ -156,6 +160,19 @@ public class SceneControl {
         lights.add(light2);
         lights.add(light3);
         lights.add(light4);
+    }
+    
+    private void loadBase(){
+        Cylinder c = new Cylinder(12, 50, 2.3f, 0.1f, true, false);
+        //Box box1 = new Box( Vector3f.ZERO, 1,1,1);
+        Geometry cylinder = new Geometry("Cylinder", c);
+        Material mat1 = new Material(this.control.getAssetManager(), 
+                "Common/MatDefs/Misc/Unshaded.j3md");
+        mat1.setColor("Color", ColorRGBA.Gray);
+        cylinder.setMaterial(mat1);
+        cylinder.rotate(FastMath.DEG_TO_RAD*60, 0, 0);
+        cylinder.move(-4,-2,0);
+        this.control.getRootNode().attachChild(cylinder);
     }
     
     private void setPositionModel(ArrayList<TransformationType> listTransformations){
