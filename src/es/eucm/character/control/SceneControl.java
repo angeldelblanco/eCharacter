@@ -170,8 +170,8 @@ public class SceneControl {
                 "Common/MatDefs/Misc/Unshaded.j3md");
         mat1.setColor("Color", ColorRGBA.Gray);
         cylinder.setMaterial(mat1);
-        cylinder.rotate(FastMath.DEG_TO_RAD*60, 0, 0);
-        cylinder.move(-4,-2,0);
+        cylinder.rotate(FastMath.DEG_TO_RAD*(-100), 0, 0);
+        cylinder.move(0,-3,0);
         this.control.getRootNode().attachChild(cylinder);
     }
     
