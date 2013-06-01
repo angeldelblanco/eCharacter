@@ -310,7 +310,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         else{
             if(index < 0){
-                control.deleteModel();
+                control.removeModel();
                 loadFamilyScreen();
             }
             else{

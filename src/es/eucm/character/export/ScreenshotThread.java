@@ -135,6 +135,7 @@ public class ScreenshotThread extends Thread{
             }
             zipWritter.closeZip();
             niftyDisplay.getNifty().gotoScreen("popupScreen");
+            sc.loadBackground();
             System.out.println("ScreenshotThread OK");
          } 
         catch (InterruptedException ex) {

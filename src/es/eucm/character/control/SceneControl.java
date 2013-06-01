@@ -100,6 +100,8 @@ public class SceneControl {
         this.lights = new ArrayList<DirectionalLight>();
         this.vectorScaleBase = new Vector3f(1.0f,1.0f,1.0f);
         
+        loadBackground();
+        
         //Add lights
         addLights();
         
@@ -131,7 +133,11 @@ public class SceneControl {
         fillAnimations(animList);
         fillCameras(control.getCamerasLabels());
         fillQualities(control.getQualityLabels());        
-   }
+    }
+    
+    public void loadBackground(){
+        control.loadBackground();
+    }
     
     private void addLights(){
         DirectionalLight light1 = new DirectionalLight();
@@ -358,7 +364,7 @@ public class SceneControl {
         attachAllChild();
     }
     
-    public void deleteModel(){
+    public void removeModel(){
         Iterator<DirectionalLight> it = lights.iterator();
         while(it.hasNext()){
             this.control.getRootNode().removeLight(it.next());
@@ -375,6 +381,7 @@ public class SceneControl {
     }
     
     public void screenShot(){
+        control.removeBackground();
         control.getViewPort().setBackgroundColor(new ColorRGBA(0f, 0f, 0f, 0.4f));
         
         //Animations list that is checked

@@ -44,7 +44,9 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.renderer.ViewPort;
 import com.jme3.system.AppSettings;
+import com.jme3.ui.Picture;
 import de.lessvoid.nifty.Nifty;
 import es.eucm.character.control.Control;
 import es.eucm.character.export.ScreenshotMyAppState;
@@ -73,8 +75,8 @@ public class Application extends SimpleApplication{
     private float t = 0;
     private AppSettings newSettings;
     
-    /*private ViewPort pv;
-    private Picture p;*/
+    private ViewPort pv;
+    private Picture p;
     
     public Application(int width,int height,Configuration config){
         //Creation of the new configuration
@@ -90,21 +92,6 @@ public class Application extends SimpleApplication{
     
     @Override
     public void simpleInitApp() {
-        //CODIGO PARA PONER UNA IMAGEN DE FONDO
-        /*p = new Picture("background");
-        p.setImage(assetManager, "Interface/greystilebutton.png", false);
-        p.setWidth(settings.getWidth());
-        p.setHeight(settings.getHeight());
-        p.setPosition(0, 0);
-
-        pv = renderManager.createPreView("background", cam);
-        pv.setClearFlags(true, true, true);
-        pv.attachScene(p);
-        viewPort.setClearFlags(false, true, true);
-        p.updateGeometricState();
-        //CODIGO PARA QUITAR LA IMAGEN DE FONDO (ESTO HAY QUE HACERLO EN DONDE NOS INTERESE QUITAR EL FONDO)
-        //pv.detachScene(p);*/
-        
         initKeys();
         disableLogNifty();        
                 
@@ -166,6 +153,26 @@ public class Application extends SimpleApplication{
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
         }
         newSettings.setIcons(arrayIcons);
+    }
+    
+    public void loadBackground(){
+        //CODIGO PARA PONER UNA IMAGEN DE FONDO
+        p = new Picture("background");
+        p.setImage(assetManager, "Interface/FondoVista3D-3.png", false);
+        p.setWidth(settings.getWidth());
+        p.setHeight(settings.getHeight());
+        p.setPosition(0, 0);
+
+        pv = renderManager.createPreView("background", cam);
+        pv.setClearFlags(true, true, true);
+        pv.attachScene(p);
+        viewPort.setClearFlags(false, true, true);
+        p.updateGeometricState();
+    }
+    
+    public void removeBackground(){
+        //CODIGO PARA QUITAR LA IMAGEN DE FONDO (ESTO HAY QUE HACERLO EN DONDE NOS INTERESE QUITAR EL FONDO)
+        pv.detachScene(p);
     }
     
     // Custom Keybindings: Mapping a named action to a key input. 

@@ -318,6 +318,14 @@ public class Control {
     }
     
     /*************************Scene******************************************/
+    public void loadBackground(){
+        app.loadBackground();
+    }
+    
+    public void removeBackground(){
+        app.removeBackground();
+    }
+    
     public ArrayList<String> getAnimationNames(){
         return sc.getAnimationsName();
     }
@@ -424,8 +432,9 @@ public class Control {
         sc.applyEscalations(listEscalations);
     }
     
-    public void deleteModel(){
-        sc.deleteModel();
+    public void removeModel(){
+        app.removeBackground();
+        sc.removeModel();
     }
     
     public boolean isChecked(String idPanel, String idTextureOrSubMesh){

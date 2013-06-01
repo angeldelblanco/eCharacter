@@ -274,7 +274,7 @@ public class PopUpBuilder {
                 return 1;
             }
             if(popUpNum == 2){
-                control.deleteModel();
+                control.removeModel();
                 return 2;
             }
         }
