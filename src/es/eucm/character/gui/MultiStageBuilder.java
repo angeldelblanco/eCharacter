@@ -137,7 +137,7 @@ public class MultiStageBuilder {
             else{
                 nifty.getScreen(stageType).findElementByName("leftT"+Integer.toString(h)).setVisible(false);
             }
-            if((((1.0*control.getNumTexturesORSubMeshes(idSubStages.get(page*SUBSTAGE_PAGE+h)))/(1.0*TEXTURES_PAGE)) - multiPage[h]) > 1){
+            if(((((double)control.getNumTexturesORSubMeshes(idSubStages.get(page*SUBSTAGE_PAGE+h)))/((double)TEXTURES_PAGE)) - multiPage[h]) > 1){
                 nifty.getScreen(stageType).findElementByName("rightT"+Integer.toString(h)).setVisible(true);
             }
             else{
@@ -156,23 +156,18 @@ public class MultiStageBuilder {
             showSubTexturePage(selection, 0, page, "0");
             showSubTexturePage(selection, 1, page, "0");
             
-            if(control.getNumSubStages(selection)<3){
-                nifty.getScreen(stageType).findElementByName("changePanel").setVisible(false);
+            if(page > 0){
+                nifty.getScreen(stageType).findElementByName("upT").setVisible(true);
             }
             else{
-                nifty.getScreen(stageType).findElementByName("changePanel").setVisible(true);
-                if(page > 0){
-                    nifty.getScreen(stageType).findElementByName("leftT").setVisible(true);
-                }
-                else{
-                    nifty.getScreen(stageType).findElementByName("leftT").setVisible(false);
-                }
-                if((((1.0*control.getNumSubStages(selection)) /(1.0*SUBSTAGE_PAGE)) - page) > 1){
-                    nifty.getScreen(stageType).findElementByName("rightT").setVisible(true);
-                }
-                else{
-                    nifty.getScreen(stageType).findElementByName("rightT").setVisible(false);
-                }
+                nifty.getScreen(stageType).findElementByName("upT").setVisible(false);
+            }
+            if((((double)control.getNumSubStages(selection) /(double)SUBSTAGE_PAGE) - page) > 1){
+           //if((control.getNumSubStages(selection) - page) > SUBSTAGE_PAGE){
+                nifty.getScreen(stageType).findElementByName("downT").setVisible(true);
+            }
+            else{
+                nifty.getScreen(stageType).findElementByName("downT").setVisible(false);
             }
     }
     

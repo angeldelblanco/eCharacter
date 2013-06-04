@@ -96,17 +96,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getFont());
-        DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
-        Iterator<String> it = families.iterator();
-        while(it.hasNext()){
-            control.selectFamily(it.next());
-            I18N i18nAux = new I18N(control.getLanguageFamilyPath(),language);
-            family.addItem(i18nAux.getString(control.getMetadataFamilyName()));
-        }
-        control.selectFamily(families.get(0));
-        i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
-        family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
+        modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
     }
     
     public void loadFamilyScreen(){
@@ -124,10 +114,7 @@ public class Gui extends AbstractAppState implements ScreenController {
             }
         }
         nifty.gotoScreen("modelScreen");
-        control.selectFamily(families.get(0));
-        i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
-        DropDown family = nifty.getScreen("modelScreen").findNiftyControl("familyDropDown", DropDown.class);
-        family.selectItem(i18nFamily.getString(control.getMetadataFamilyName()));
+        modelsb.initModels(getTexture("family-button"));
     }
 
     public void quitGame() {
@@ -397,9 +384,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("s1-settings-over")){
             return "assets/Interface/s1-settings-over.png";
         }
-        if(param.equals("s1-subheader")){
-            return "assets/Interface/s1-subheader.png";
-        }
         if(param.equals("s2-header-left")){
             return "assets/Interface/s2-header-left.png";
         }
@@ -417,6 +401,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(param.equals("export-over")){
             return "assets/Interface/export-over.png";
+        }
+        if(param.equals("export-selection")){
+            return "assets/Interface/export-selection.png";
         }
         if(param.equals("s2-settings")){
             return "assets/Interface/s2-settings.png";
@@ -445,23 +432,50 @@ public class Gui extends AbstractAppState implements ScreenController {
         return null;
     }
     
-    public String getFont(){
+    public String getFont(String size){
         
-        return "assets/Interface/Fonts/Brixton.fnt";
+        if(size.equals("15")){
+            return "assets/Interface/Fonts/Brixton15.fnt";
+        }
+        if(size.equals("20")){
+            return "assets/Interface/Fonts/Brixton20.fnt";
+        }
+        if(size.equals("30")){
+            return "assets/Interface/Fonts/Brixton30.fnt";
+        }
+        return null;
     }
     
     public String getButton(String param){
         if(param.equals("left")){
-            return "assets/Interface/rightpanel-scroll-left.png";
+            return "assets/Interface/scroll-left.png";
         }
         if(param.equals("left-over")){
-            return "assets/Interface/rightpanel-scroll-left-over.png";
+            return "assets/Interface/scroll-left-over.png";
         }
         if(param.equals("right")){
-            return "assets/Interface/rightpanel-scroll-right.png";
+            return "assets/Interface/scroll-right.png";
         }
         if(param.equals("right-over")){
-            return "assets/Interface/rightpanel-scroll-right-over.png";
+            return "assets/Interface/scroll-right-over.png";
+        }
+        if(param.equals("up")){
+            return "assets/Interface/scroll-up.png";
+        }
+        if(param.equals("up-over")){
+            return "assets/Interface/scroll-up-over.png";
+        }
+        if(param.equals("down")){
+            return "assets/Interface/scroll-down.png";
+        }
+        if(param.equals("down-over")){
+            return "assets/Interface/scroll-down-over.png";
+        }
+        if(param.equals("info")){
+            return "assets/Interface/s1-leftpanel-familyinfo.png";
+        }
+        if(param.equals("info-over")){
+            return "assets/Interface/s1-leftpanel-familyinfo-over.png";
         }
         if(param.equals("color")){
             return "assets/Interface/rightpanel-selectcolor.png";
@@ -491,11 +505,20 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("s1-leftpanel")){
             return "assets/Interface/s1-leftpanel.png";
         }
+        if(param.equals("family-button")){
+            return "assets/Interface/family-button.png";
+        }
+        if(param.equals("family-button-over")){
+            return "assets/Interface/family-button-over.png";
+        }
         if(param.equals("s1-rightpanel")){
             return "assets/Interface/s1-rightpanel.png";
         }
         if(param.equals("s2-right-panel")){
             return "assets/Interface/s2-right-panel.png";
+        }
+        if(param.equals("model")){
+            return "assets/Interface/model.png";
         }
         return null;
     }
@@ -518,15 +541,17 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
     }
     
-  /******************************FamilyDropDownControler*****************************/
-    
-  @NiftyEventSubscriber(id="familyDropDown")
-  public void onFamilyDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
-    if (event.getSelection() != null) {
-        control.selectFamily(families.get(event.getSelectionItemIndex()));
-        i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
-        changeCharacterPage("0");
-    }
+  /******************************FamilyControler*****************************/
+  
+  public void changeFamilyPage(String steep){
+      modelsb.showFamilyPage(steep);
+  } 
+  
+  public void selectFamily(String id){
+      int i = modelsb.selectFamily(id,getTexture("family-button"),getTexture("family-button-over"));
+      control.selectFamily(families.get(i));
+      i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
+      changeCharacterPage("0");
   }
     
   /******************************LocaleDropDownControler*****************************/  
