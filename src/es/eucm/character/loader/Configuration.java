@@ -136,15 +136,15 @@ public class Configuration {
         this.properties.setProperty(LIST_LANGUAGE,"en_UK es_ES fr_FR");
         this.properties.setProperty(RESOLUTION, "1024x768");
         this.properties.setProperty(ASSETS_PATH, "assets");
-        this.properties.setProperty(FAMILIES_PATH,"assets"+File.separator+"XML Configuration"+File.separator+"families");
-        this.properties.setProperty(LOCALE_PATH,"assets"+File.separator+"Locale"+File.separatorChar+"Gui");
+        this.properties.setProperty(FAMILIES_PATH,"assets/XML Configuration/families");
+        this.properties.setProperty(LOCALE_PATH,"assets/Locale/Gui");
         this.properties.setProperty(DEFAULT_QUALITY, "10");
         this.properties.setProperty(DEFAULT_CAMERA_NAME, "DefaultCamera");
         this.properties.setProperty(DEFAULT_VECTOR_POSITION, "-3.0,5.0,10.0");
         this.properties.setProperty(DEFAULT_VECTOR_DIRECTION, "0.0,0.0,-1.0");
         this.properties.setProperty(DEFAULT_VECTOR_UP, "0.0,1.0,0.0");
-        this.properties.setProperty(DEFAULT_EXPORT_PATH, userPath+File.separator+"eCharacter"+File.separator+"export");
-        this.properties.setProperty(DEFAULT_TEMP_PATH, userPath+File.separator+"eCharacter"+File.separator+"temp");
+        this.properties.setProperty(DEFAULT_EXPORT_PATH, userPath+"/eCharacter/export");
+        this.properties.setProperty(DEFAULT_TEMP_PATH, userPath+"/eCharacter/temp");
         
         //Saves the changes in the .properties file
         try {            

@@ -43,6 +43,7 @@ import es.eucm.character.data.model.MultiOptionTextureType.OptionTexture;
 import es.eucm.character.data.model.SimpleTextureType;
 import es.eucm.character.data.model.TextureType;
 import es.eucm.character.loader.ResourceLocator;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -107,10 +108,13 @@ public class ImagesProcessingMainMesh extends ImagesProcessing{
     public static ArrayList<BufferedImage> createBufferedImage(TextureType texture){
         
         ArrayList<BufferedImage> list = null;
-        ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
         try{
             if(texture instanceof BaseShadowTextureType){
                 BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
+                list = ColoringTextureMainMesh.coloringImageBaseShadow(texture, 
+                        new Color(baseShadowTexture.getColorDefault().getRed().intValue(), baseShadowTexture.getColorDefault().getGreen().intValue(), baseShadowTexture.getColorDefault().getBlue().intValue()));
+                return list;                  
+                /*BaseShadowTextureType baseShadowTexture = ((BaseShadowTextureType)texture);
                 BufferedImage bi = ImageIO.read(ResourceLocator.getResource(baseShadowTexture.getPath()));
                 images.add(bi);
                 if(baseShadowTexture.getShadowPath() != null){
@@ -119,7 +123,7 @@ public class ImagesProcessingMainMesh extends ImagesProcessing{
                 BufferedImage finalBi = pasteImages(images, bi.getWidth(), bi.getHeight());
                 list = new ArrayList<BufferedImage>();
                 list.add(finalBi);
-                return list;
+                return list;*/
             }
             else if(texture instanceof SimpleTextureType){
                 SimpleTextureType simpleTexture = ((SimpleTextureType)texture);

@@ -34,6 +34,11 @@
 			<baseShadowTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idBlancoOjos"  text="idTextBlancoOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoBlancoOjosGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/BlancoOjosGirl.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>255</green>
+					<blue>255</blue>
+				</colorDefault>
 			</baseShadowTexture>
 			<doubleTexture idPanelRef="eyesPanel" layer="2" default="true" idTexture="idOjos"  text="idTextOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoOjosGirl.png</iconPath>
@@ -44,57 +49,112 @@
 			<baseShadowTexture idPanelRef="eyebrowsPanel" layer="2" default="true" idTexture="idCejas1"  text="idTextCejas1">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoCejas1Girl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/Cejas1Girl.png</path>
+				<colorDefault>
+					<red>0</red>
+					<green>0</green>
+					<blue>0</blue>
+				</colorDefault>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="eyebrowsPanel" layer="2" default="false" idTexture="idCejas2"  text="idTextCejas2">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoCejas2Girl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/Cejas2Girl.png</path>
+				<colorDefault>
+					<red>0</red>
+					<green>0</green>
+					<blue>0</blue>
+				</colorDefault>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="eyebrowsPanel" layer="2" default="false" idTexture="idPestanas"  text="idTextPestanas"> 
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPestanasGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PestanasGirl.png</path>
+				<colorDefault>
+					<red>0</red>
+					<green>0</green>
+					<blue>0</blue>
+				</colorDefault>
 			</baseShadowTexture>	
 			<!-- tshirtsPanel textures-->			
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="true" idTexture="idCamisetaSinMangas"  text="idTextCamisetaSinMangas">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoCamisetaSinMangasGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/CamisetaSinMangasSolidoGirl.png</path>
+				<colorDefault>
+					<red>216</red>
+					<green>26</green>
+					<blue>130</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaSinMangasSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamiseta"  text="idTextCamiseta">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoCamisetaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/CamisetaSolidoGirl.png</path>
+				<colorDefault>
+					<red>254</red>
+					<green>0</green>
+					<blue>0</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaTirantes"  text="idTextCamisetaTirantes">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoCamisetaTirantesGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/CamisetaTirantesSolidoGirl.png</path>
+				<colorDefault>
+					<red>254</red>
+					<green>89</green>
+					<blue>0</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaTirantesSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idTop"  text="idTextTop">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoTopGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/TopSolidoGirl.png</path>
+				<colorDefault>
+					<red>0</red>
+					<green>165</green>
+					<blue>254</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/TopSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<!-- trousersPanel textures-->
 			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="true" idTexture="idPantalonCorto"  text="idTextPantalonCorto">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPantalonCortoGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PantalonCortoSolidoGirl.png</path>
+				<colorDefault>
+					<red>30</red>
+					<green>143</green>
+					<blue>230</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PantalonCortoSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="false" idTexture="idPantalonLargo"  text="idTextPantalonLargo">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPantalonLargoGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PantalonLargoSolidoGirl.png</path>
+				<colorDefault>
+					<red>215</red>
+					<green>57</green>
+					<blue>249</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PantalonLargoSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<!-- shoesPanel textures-->
 			<baseShadowTexture idPanelRef="shoesPanel" layer="2" default="true" idTexture="idZapatos"  text="idTextZapatos">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoZapatosGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/ZapatosSolidoGirl.png</path>
+				<colorDefault>
+					<red>79</red>
+					<green>167</green>
+					<blue>65</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/ZapatosSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<!-- socksPanel textures-->
 			<baseShadowTexture idPanelRef="socksPanel" layer="1" default="false" idTexture="idMedias"  text="idTextMedias">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoMediasGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/MediasSolidoGirl.png</path>
+				<colorDefault>
+					<red>182</red>
+					<green>124</green>
+					<blue>90</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/MediasSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<!-- accesoriesPanel textures-->
@@ -107,15 +167,25 @@
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoSombraOjosGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/SombraOjosGirl.png</path>
 			</simpleTexture>
-			<baseShadowTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idLabios"  text="idTextLabios">
+			<baseShadowTexture idPanelRef="facePanel" layer="2" default="true" idTexture="idLabios"  text="idTextLabios">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoLabiosGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/LabiosRojosGirl.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>0</green>
+					<blue>0</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/LabiosSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<!-- accesoriesFace textures-->
 			<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoDientesGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/DientesGirl.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>255</green>
+					<blue>255</blue>
+				</colorDefault>
 			</baseShadowTexture>
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idLengua"  text="idTextLengua">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoLenguaGirl.png</iconPath>
@@ -161,16 +231,31 @@
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idMunequeras"  text="idTextMunequeras">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoMunequerasGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/MunequerasGirl.png</path>
+				<colorDefault>
+					<red>226</red>
+					<green>15</green>
+					<blue>15</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/MunequerasSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idPulseraDcha"  text="idTextPulseraDcha">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPulseraDerechaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PulseraDerechaGirl.png</path>
+				<colorDefault>
+					<red>228</red>
+					<green>143</green>
+					<blue>172</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PulseraDerechaSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idPulseraIzq"  text="idTextPulseraIzq">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPulseraIzquierdaGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/PulseraIzquierdaGirl.png</path>
+				<colorDefault>
+					<red>203</red>
+					<green>48</green>
+					<blue>166</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/PulseraIzquierdaSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 		</mainMeshTextures>

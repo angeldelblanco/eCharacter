@@ -75,19 +75,13 @@ public final class ScreenshotWritter extends Thread{
                 //temp.delete();
                 BufferedImage biCut = img.getSubimage(xMin, yMin, xMax-xMin, yMax-yMin);
                 sleep(80);
-                try{
-                    ImageIO.write(biCut, "png", temp);
-                    zipWritter.saveFile(temp, name);
-                }catch (IOException e){
-                    listAnimationsName.remove(name);
-                    System.out.println("**************** WRITE  *********************");
-                    System.out.println("Captura "+name+" no escrita.");
-                }
+                ImageIO.write(biCut, "png", temp);
+                zipWritter.saveFile(temp, name);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ScreenshotWritter.class.getName()).log(Level.SEVERE, null, ex);
             }catch (IOException e) {
                 listAnimationsName.remove(name);
-                System.out.println("**************** READ  *********************");
+                System.out.println("**************** ERROOOOOR  *********************");
                 System.out.println("Captura "+name+" no escrita.");
             }
         }

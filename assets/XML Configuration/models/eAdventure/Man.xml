@@ -29,6 +29,11 @@
 			<baseShadowTexture idPanelRef="eyesPanel" layer="1" default="true" idTexture="idBlancoOjos"  text="idTextBlancoOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoBlancoOjosBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/BlancoOjosBoy.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>255</green>
+					<blue>255</blue>
+				</colorDefault>
 			</baseShadowTexture>			
 			<doubleTexture idPanelRef="eyesPanel" layer="2" default="true" idTexture="idOjos"  text="idTextOjos">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoOjosBoy.png</iconPath>
@@ -39,58 +44,113 @@
 			<baseShadowTexture idPanelRef="eyebrowsPanel" layer="2" default="true" idTexture="idCejas"  text="idTextCejas">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCejasBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CejasBoy.png</path>
+				<colorDefault>
+					<red>0</red>
+					<green>0</green>
+					<blue>0</blue>
+				</colorDefault>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="eyebrowsPanel" layer="2" default="false" idTexture="idPestanas"  text="idTextPestanas">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPestanasBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PestanasBoy.png</path>
+				<colorDefault>
+					<red>0</red>
+					<green>0</green>
+					<blue>0</blue>
+				</colorDefault>
 			</baseShadowTexture>			
 			<!-- tshirtsPanel textures-->			
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="true" idTexture="idCamisaCorta"  text="idTextCamisaCorta">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaCortaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisaCortaSolidoBoy.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>255</green>
+					<blue>255</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisaCortaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisaLarga"  text="idTextCamisaLarga">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaLargaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisaLargaSolidoBoy.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>255</green>
+					<blue>255</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisaLargaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaCorta"  text="idTextCamisetaCorta">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisetaCortaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisetaCortaSolidoBoy.png</path>				
+				<colorDefault>
+					<red>26</red>
+					<green>132</green>
+					<blue>255</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaCortaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaLarga"  text="idTextCamisetaLarga">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisetaLargaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSolidoBoy.png</path>		
+				<colorDefault>
+					<red>65</red>
+					<green>167</green>
+					<blue>31</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaLargaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaTirantes"  text="idTextCamisetaTirantes">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisetaTirantesBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisetaTirantesSolidoBoy.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>248</green>
+					<blue>66</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaTirantesSombrasBoy.png</shadowPath>
 			</baseShadowTexture>			
 			<!-- trousersPanel textures-->
 			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="false" idTexture="idPantalonCorto"  text="idTextPantalonCorto">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPantalonCortoBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PantalonCortoSolidoBoy.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>127</green>
+					<blue>2</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PantalonCortoSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="true" idTexture="idPantalonLargo"  text="idTextPantalonLargo">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPantalonLargoBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PantalonLargoSolidoBoy.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>127</green>
+					<blue>2</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PantalonLargoSombrasBoy.png</shadowPath>
 			</baseShadowTexture>			
 			<!-- shoesPanel textures-->
 			<baseShadowTexture idPanelRef="shoesPanel" layer="2" default="true" idTexture="idZapatos"  text="idTextZapatos">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoZapatosBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/ZapatosSolidoBoy.png</path>
+				<colorDefault>
+					<red>218</red>
+					<green>134</green>
+					<blue>31</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/ZapatosSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<!-- socksPanel textures-->
 			<baseShadowTexture idPanelRef="socksPanel" layer="1" default="false" idTexture="idCalcetines"  text="idTextCalcetines">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCalcetinesBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CalcetinesBoy.png</path>
+				<colorDefault>
+					<red>8</red>
+					<green>49</green>
+					<blue>100</blue>
+				</colorDefault>
 			</baseShadowTexture>			
 			<!-- accesoriesPanel textures-->
 			<!-- facePanel textures-->
@@ -114,6 +174,11 @@
 			<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoDientesBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/DientesBoy.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>255</green>
+					<blue>255</blue>
+				</colorDefault>
 			</baseShadowTexture>
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idLengua"  text="idTextLengua">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoLenguaBoy.png</iconPath>
@@ -139,20 +204,40 @@
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="3" default="false" idTexture="idCinturon"  text="idTextCinturon">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CinturonBoy.png</path>
+				<colorDefault>
+					<red>51</red>
+					<green>44</green>
+					<blue>158</blue>
+				</colorDefault>
             </baseShadowTexture>
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="4" default="false" idTexture="idHebillaCinturon"  text="idTextHebillaCinturon">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoHebillaCinturonBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/HebillaCinturonSolidoBoy.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>216</green>
+					<blue>0</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/HebillaCinturonSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idCorbata"  text="idTextCorbata">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCorbataBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CorbataSolidoBoy.png</path>
+				<colorDefault>
+					<red>2</red>
+					<green>97</green>
+					<blue>255</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CorbataSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idPajarita"  text="idTextPajarita">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPajaritaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PajaritaSolidoBoy.png</path>
+				<colorDefault>
+					<red>2</red>
+					<green>97</green>
+					<blue>255</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PajaritaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<simpleTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idReloj"  text="idTextReloj">
@@ -162,11 +247,21 @@
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idMunequeraDcha"  text="idTextMunequeraDcha">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoMunequeraDchaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/MunequeraDchaSolidoBoy.png</path>
+				<colorDefault>
+					<red>202</red>
+					<green>32</green>
+					<blue>44</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/MunequeraDchaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idMunequeraIzq"  text="idTextMunequeraIzq">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoMunequeraIzqBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/MunequeraIzqSolidoBoy.png</path>
+				<colorDefault>
+					<red>202</red>
+					<green>32</green>
+					<blue>44</blue>
+				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/MunequeraIzqSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
 			<simpleTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idLogoCamiseta"  text="idTextLogoCamiseta">

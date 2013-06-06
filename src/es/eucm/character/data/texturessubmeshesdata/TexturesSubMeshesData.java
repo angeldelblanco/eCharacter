@@ -58,7 +58,7 @@ public class TexturesSubMeshesData{
     //HashMap<idPanel,SubMeshesInPanel>
     private HashMap<String,SubMeshesInPanel> subMeshesData;
     
-    public TexturesSubMeshesData(ArrayList<SubStageType> listSubStages, ArrayList<TextureType> listTextures,ArrayList<SubMeshType> listSubMeshes){
+    public TexturesSubMeshesData(ArrayList<SubStageType> listSubStages, ArrayList<TextureType> listTextures, ArrayList<SubMeshType> listSubMeshes){
         texturesData = new HashMap<String,TexturesInPanel>();
         subMeshesData = new HashMap<String,SubMeshesInPanel>();
         setData(listSubStages, listTextures, listSubMeshes);

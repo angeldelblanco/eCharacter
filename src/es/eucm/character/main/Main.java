@@ -45,7 +45,9 @@ import java.util.StringTokenizer;
  */
 public class Main {            
     public static void main(String[] args){
-        String sSistemaOperativo = System.getProperty("user.home"); 
+        String sSistemaOperativo = System.getProperty("java.io.tmpdir");
+        
+        System.out.println(sSistemaOperativo);
         
         /*//Saber el sistema operativo
         String sistemaOperativo = System.getProperty("os.name");
