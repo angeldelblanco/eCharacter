@@ -77,6 +77,7 @@ public class SceneControl {
     private Control control;
     private Configuration config;
     private Spatial mainMesh;
+    private Geometry base;
     private HashMap<String,Spatial> subMeshes;
     private HashMap<String,Boolean> animations;
     private HashMap<String,Boolean> cameras;
@@ -164,15 +165,18 @@ public class SceneControl {
     
     private void loadBase(){
         Cylinder c = new Cylinder(12, 50, 2.3f, 0.1f, true, false);
-        //Box box1 = new Box( Vector3f.ZERO, 1,1,1);
-        Geometry cylinder = new Geometry("Cylinder", c);
+        base = new Geometry("Cylinder", c);
         Material mat1 = new Material(this.control.getAssetManager(), 
                 "Common/MatDefs/Misc/Unshaded.j3md");
         mat1.setColor("Color", ColorRGBA.Gray);
-        cylinder.setMaterial(mat1);
-        cylinder.rotate(FastMath.DEG_TO_RAD*(-90), 0, 0);
-        cylinder.move(0,-3,0);
-        this.control.getRootNode().attachChild(cylinder);
+        base.setMaterial(mat1);
+        base.rotate(FastMath.DEG_TO_RAD*(-90), 0, 0);
+        base.move(0,-3,0);
+        this.control.getRootNode().attachChild(base);
+    }
+    
+    private void removeBase(){
+        this.control.getRootNode().detachChild(base);
     }
     
     private void setPositionModel(ArrayList<TransformationType> listTransformations){
@@ -399,6 +403,7 @@ public class SceneControl {
     
     public void screenShot(){
         control.removeBackground();
+        removeBase();
         control.getViewPort().setBackgroundColor(new ColorRGBA(0f, 0f, 0f, 0.4f));
         
         //Animations list that is checked
