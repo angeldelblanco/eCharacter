@@ -51,6 +51,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Cylinder;
 import com.jme3.texture.Image;
+import com.jme3.texture.Texture;
 import com.jme3.texture.Texture2D;
 import com.jme3.texture.plugins.AWTLoader;
 import es.eucm.character.data.model.EscalationType;
@@ -69,6 +70,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
+import javax.imageio.ImageIO;
 
 public class SceneControl {
     private CameraNode cameraNode;
@@ -166,9 +168,17 @@ public class SceneControl {
     private void loadBase(){
         Cylinder c = new Cylinder(12, 50, 2.3f, 0.1f, true, false);
         base = new Geometry("Cylinder", c);
-        Material mat1 = new Material(this.control.getAssetManager(), 
+        /*Material mat1 = new Material(this.control.getAssetManager(), 
                 "Common/MatDefs/Misc/Unshaded.j3md");
-        mat1.setColor("Color", ColorRGBA.Gray);
+        mat1.setColor("Color", ColorRGBA.Gray);*/
+        
+        
+        
+        Material mat1 = new Material(control.getAssetManager(), "Common/MatDefs/Light/Lighting.j3md"); 
+        Texture t = control.getAssetManager().loadTexture("assets/Interface/peana.png");
+        mat1.setTexture("DiffuseMap",t);
+        
+        
         base.setMaterial(mat1);
         base.rotate(FastMath.DEG_TO_RAD*(-90), 0, 0);
         base.move(0,-3,0);
