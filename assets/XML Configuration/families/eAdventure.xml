@@ -73,12 +73,12 @@
 	<modelsRef>
 		<modelRef>
 			<modelLabel>idModelLabel1</modelLabel>
-			<iconPath>assets/Interface/Icons/eAdventure/man.png</iconPath>
+			<iconPath>assets/Interface/Icons/eAdventure/eAdventure-chico.png</iconPath>
 			<modelPath>assets/XML Configuration/models/eAdventure/Man.xml</modelPath>
 		</modelRef>
 		<modelRef>
 			<modelLabel>idModelLabel2</modelLabel>
-			<iconPath>assets/Interface/Icons/eAdventure/woman.png</iconPath>
+			<iconPath>assets/Interface/Icons/eAdventure/eAdventure-chica.png</iconPath>
 			<modelPath>assets/XML Configuration/models/eAdventure/Woman.xml</modelPath>
 		</modelRef>	
 		<modelRef>

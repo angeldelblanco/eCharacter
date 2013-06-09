@@ -63,12 +63,12 @@
 	<modelsRef>
 		<modelRef>
 			<modelLabel>idModelLabel1</modelLabel>	
-			<iconPath>assets/Interface/Icons/Medieval/IconMale.png</iconPath>
+			<iconPath>assets/Interface/Icons/Medieval/Cubix-Hombre.png</iconPath>
 			<modelPath>assets/XML Configuration/models/Medieval/Male.xml</modelPath>
 		</modelRef>
 		<modelRef>
 			<modelLabel>idModelLabel2</modelLabel>
-			<iconPath>assets/Interface/Icons/Medieval/IconFemale.png</iconPath>
+			<iconPath>assets/Interface/Icons/Medieval/Cubix-Mujer.png</iconPath>
 			<modelPath>assets/XML Configuration/models/Medieval/Female.xml</modelPath>
 		</modelRef>	
 	</modelsRef>
