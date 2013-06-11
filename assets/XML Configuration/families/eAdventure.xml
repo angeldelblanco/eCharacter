@@ -10,16 +10,18 @@
 	<stages>
 		<scaleStage stageLabel="idMultiStageLabel1" idPanel="ScalePanel">
 			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0000_Complexion.png</iconPath>
-			<boneController controllerLabel="idBoneControler1" idController="head"/>
-			<boneController controllerLabel="idBoneControler2" idController="torso"/>
-			<boneController controllerLabel="idBoneControler3" idController="leftArm"/>
-			<boneController controllerLabel="idBoneControler4" idController="rightArm"/>
-			<boneController controllerLabel="idBoneControler5" idController="leftHand"/>
-			<boneController controllerLabel="idBoneControler6" idController="rightHand"/>
-			<boneController controllerLabel="idBoneControler7" idController="leftLeg"/>
-			<boneController controllerLabel="idBoneControler8" idController="rightLeg"/>
-			<boneController controllerLabel="idBoneControler9" idController="leftFoot"/>
-			<boneController controllerLabel="idBoneControler10" idController="rightFoot"/>			
+			<boneController controllerLabel="idBoneControler1" idController="torsoHeadArms" level="0"/>
+			<boneController controllerLabel="idBoneControler2" idController="head" level="1"/>
+			<boneController controllerLabel="idBoneControler3" idController="arms" level="1"/>
+			<boneController controllerLabel="idBoneControler4" idController="leftArm" level="2"/>
+			<boneController controllerLabel="idBoneControler5" idController="leftHand" level="3"/>
+			<boneController controllerLabel="idBoneControler6" idController="rightArm" level="2"/>
+			<boneController controllerLabel="idBoneControler7" idController="rightHand" level="3"/>
+			<boneController controllerLabel="idBoneControler8" idController="legs" level="0"/>
+			<boneController controllerLabel="idBoneControler9" idController="leftLeg" level="1"/>
+			<boneController controllerLabel="idBoneControler10" idController="leftFoot" level="2"/>
+			<boneController controllerLabel="idBoneControler11" idController="rightLeg" level="1"/>		
+			<boneController controllerLabel="idBoneControler12" idController="rightFoot" level="2"/>			
 		</scaleStage>
 		<multiStage stageLabel="idMultiStageLabel2">
 			<iconPath>assets/Interface/Icons/eAdventure/IconosBarraSuperior_0001_Piel.png</iconPath>

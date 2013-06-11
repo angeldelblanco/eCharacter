@@ -329,6 +329,25 @@ public class FamilyControl{
         return null;       
     }
     
+    public int getBoneControllerLevel(String idStageLabel,String idBoneController){
+        ArrayList<ScaleStageType> listScaleStage = (ArrayList<ScaleStageType>) family.getStages().getScaleStage();
+        Iterator<ScaleStageType> it = listScaleStage.iterator();
+        while(it.hasNext()){
+            ScaleStageType s = it.next();
+            if(s.getStageLabel().equals(idStageLabel)){
+                ArrayList<BoneController> listBoneController = (ArrayList<BoneController>) s.getBoneController();
+                Iterator<BoneController> it2 = listBoneController.iterator();
+                while(it2.hasNext()){
+                    BoneController bc = it2.next();
+                    if(bc.getIdController().equals(idBoneController)){
+                        return bc.getLevel().intValue();
+                    }
+                }                
+            }
+        }
+        return -1; 
+    }
+    
     /**************************** Animation Stage **************************/
     public ArrayList<String> getCamerasLabels(){
         ArrayList<String> listCameraLabels = new ArrayList<String>();

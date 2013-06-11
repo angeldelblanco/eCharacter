@@ -182,7 +182,7 @@
 	</xs:complexType>
 	<xs:complexType name="bonesType">
 		<xs:sequence>
-			<xs:element name="bone" type="boneType" minOccurs="1" maxOccurs="15"/>
+			<xs:element name="bone" type="boneType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="boneType">

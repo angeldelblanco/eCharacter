@@ -261,17 +261,24 @@
 		<!--Bones-->
 		<bones>
 			<!-- Dar valores a los huesos, Los que hay son aleatorios -->
-                        <bone idControllerRef="head" defaultValue="0" minValue="-50" maxValue="100" boneName="Cabeza"/>
-			<bone idControllerRef="torso" defaultValue="0" minValue="-50" maxValue="100" boneName="Torax"/>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="100" boneName="Cabeza"/>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="100" boneName="Torax"/>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="100" boneName="ClaviculaIz"/>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="100" boneName="ClaviculaDer"/>
+			<bone idControllerRef="head" defaultValue="0" minValue="-50" maxValue="100" boneName="Cabeza"/>
+			<bone idControllerRef="arms" defaultValue="0" minValue="-100" maxValue="100" boneName="ClaviculaIz"/>
+			<bone idControllerRef="arms" defaultValue="0" minValue="-100" maxValue="100" boneName="ClaviculaDer"/>
 			<bone idControllerRef="leftArm" defaultValue="0" minValue="-100" maxValue="100" boneName="ClaviculaIz"/>
-			<bone idControllerRef="rightArm" defaultValue="0" minValue="-100" maxValue="100" boneName="ClaviculaDer"/>
 			<bone idControllerRef="leftHand" defaultValue="0" minValue="-100" maxValue="100" boneName="MuniecaIz"/>
+			<bone idControllerRef="rightArm" defaultValue="0" minValue="-100" maxValue="100" boneName="ClaviculaDer"/>			
 			<bone idControllerRef="rightHand" defaultValue="0" minValue="-100" maxValue="100" boneName="MuniecaDer"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-100" maxValue="100" boneName="FemurIz"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-100" maxValue="100" boneName="FemurDer"/>
 			<bone idControllerRef="leftLeg" defaultValue="0" minValue="-100" maxValue="100" boneName="FemurIz"/>
-			<bone idControllerRef="rightLeg" defaultValue="0" minValue="-100" maxValue="100" boneName="FemurDer"/>
 			<bone idControllerRef="leftFoot" defaultValue="0" minValue="-100" maxValue="100" boneName="TobilloIz"/>
+			<bone idControllerRef="rightLeg" defaultValue="0" minValue="-100" maxValue="100" boneName="FemurDer"/>
 			<bone idControllerRef="rightFoot" defaultValue="0" minValue="-100" maxValue="100" boneName="TobilloDer"/>
-		</bones>		
+		</bones>	
 		<!--Physical Builds-->
 		<physicalBuilds>
 			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">

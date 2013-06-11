@@ -11,11 +11,11 @@
 	<!-- Revisar que controladores poner -->
 		<scaleStage stageLabel="idMultiStageLabel1" idPanel="ScalePanel">
 			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0000_Complexion.png</iconPath>
-			<boneController controllerLabel="idBoneControler1" idController="head"/>
-			<boneController controllerLabel="idBoneControler2" idController="arms"/>
-			<boneController controllerLabel="idBoneControler3" idController="hands"/>
-			<boneController controllerLabel="idBoneControler4" idController="legs"/>
-			<boneController controllerLabel="idBoneControler5" idController="feet"/>
+			<boneController controllerLabel="idBoneControler1" idController="head" level="0"/>
+			<boneController controllerLabel="idBoneControler2" idController="arms" level="0"/>
+			<boneController controllerLabel="idBoneControler3" idController="hands" level="0"/>
+			<boneController controllerLabel="idBoneControler4" idController="legs" level="0"/>
+			<boneController controllerLabel="idBoneControler5" idController="feet" level="0"/>
 		</scaleStage>
 		<multiStage stageLabel="idMultiStageLabel2">
 			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0001_Piel.png</iconPath>

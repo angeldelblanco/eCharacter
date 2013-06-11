@@ -240,6 +240,11 @@ public class Control {
         return fc.getBoneControllerLabel(idStageLabel, idBoneController);
     }
     
+    //Devuelve -1 en caso de que haya error.
+    public int getBoneControllerLevel(String idStageLabel,String idBoneController){
+        return fc.getBoneControllerLevel(idStageLabel, idBoneController);
+    }
+    
     /*************************Models******************************************/
     
     public void selectModel(String pathModel){

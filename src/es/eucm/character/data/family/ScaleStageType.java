@@ -2,12 +2,13 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.05.01 a las 01:57:40 PM CEST 
+// Generado el: AM.06.11 a las 11:39:41 AM CEST 
 //
 
 
 package es.eucm.character.data.family;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -31,13 +32,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="iconPath" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="boneController" maxOccurs="10">
+ *         &lt;element name="iconPath" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="boneController" maxOccurs="15">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;attribute name="controllerLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;attribute name="idController" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
+ *                 &lt;attribute name="level" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -59,6 +61,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 })
 public class ScaleStageType {
 
+    @XmlElement(required = true)
     protected String iconPath;
     @XmlElement(required = true)
     protected List<ScaleStageType.BoneController> boneController;
@@ -183,6 +186,7 @@ public class ScaleStageType {
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;attribute name="controllerLabel" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
      *       &lt;attribute name="idController" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
+     *       &lt;attribute name="level" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -201,6 +205,8 @@ public class ScaleStageType {
         @XmlID
         @XmlSchemaType(name = "ID")
         protected String idController;
+        @XmlAttribute(name = "level", required = true)
+        protected BigInteger level;
 
         /**
          * Obtiene el valor de la propiedad controllerLabel.
@@ -248,6 +254,30 @@ public class ScaleStageType {
          */
         public void setIdController(String value) {
             this.idController = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad level.
+         * 
+         * @return
+         *     possible object is
+         *     {@link BigInteger }
+         *     
+         */
+        public BigInteger getLevel() {
+            return level;
+        }
+
+        /**
+         * Define el valor de la propiedad level.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link BigInteger }
+         *     
+         */
+        public void setLevel(BigInteger value) {
+            this.level = value;
         }
 
     }

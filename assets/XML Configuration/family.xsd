@@ -65,10 +65,11 @@
 	<xs:complexType name="scaleStageType">
 		<xs:sequence>
 			<xs:element name="iconPath" type="xs:string"/>
-			<xs:element name="boneController" minOccurs="1" maxOccurs="10">
+			<xs:element name="boneController" minOccurs="1" maxOccurs="15">
 				<xs:complexType>
 					<xs:attribute name="controllerLabel" type="xs:string" use="required"/>
 					<xs:attribute name="idController" type="xs:ID" use="required"/>
+					<xs:attribute name="level" type="xs:integer" use="required"/>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
