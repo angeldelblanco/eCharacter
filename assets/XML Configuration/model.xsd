@@ -3,15 +3,20 @@
 	<xs:element name="model">
 		<xs:complexType>
 			<xs:sequence>
+				<!-- This node defines all the textures, physical builds, initial transformations and all the bones to scale. -->
 				<xs:element name="mainMesh" type="mainMeshType"/>
+				<!-- This node defines all the submeshes of the model -->
 				<xs:element name="subMesh" type="subMeshType" minOccurs="0" maxOccurs="unbounded"/>
+				<!-- This node define the languages path of the model -->
 				<xs:element name="languagesPath" type="xs:string"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:complexType name="meshType">
 		<xs:sequence>
+			<!-- This node define the mesh path -->
 			<xs:element name="path" type="xs:string"/>
+			<!-- This node define the list of initial transformations to make to the model -->
 			<xs:element name="transformation" type="transformationType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
@@ -19,6 +24,7 @@
 		<xs:complexContent>
 			<xs:extension base="meshType">
 				<xs:sequence>
+					<!-- This node define the list of the textures of the model -->
 					<xs:element name="mainMeshTextures" minOccurs="0" maxOccurs="1">
 						<xs:complexType>
 							<xs:choice minOccurs="1" maxOccurs="unbounded">
@@ -29,7 +35,9 @@
 							</xs:choice>
 						</xs:complexType>
 					</xs:element>
+					<!-- This node define the list of the bones to scale -->
 					<xs:element name="bones" type="bonesType"/>
+					<!-- This node define the list of the physical builds of the model -->
 					<xs:element name="physicalBuilds" type="physicalBuildsType"/>
 				</xs:sequence>
 			</xs:extension>
@@ -59,13 +67,18 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<!-- This node is the generic type of a texture. All the textures have these fields. -->
 	<xs:complexType name="textureType">
 		<xs:sequence>
 			<xs:element name="iconPath" type="xs:string"/>
 		</xs:sequence>
+		<!-- This attribute indicates the panel where it has to load this texture -->
 		<xs:attribute name="idPanelRef" type="xs:string" use="required"/>
+		<!-- This attribute indicates the priority of this texture. Lower value indicates higher priority. (The highest priority is layer=0) -->
 		<xs:attribute name="layer" type="xs:integer" use="required"/>
+		<!-- This attribute indicates the id of this texture. ¡Must be unique! -->
 		<xs:attribute name="idTexture" type="xs:ID" use="required"/>
+		<!-- This attribute indicates the panel where it has to load this texture -->
 		<xs:attribute name="text" type="xs:string" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="baseShadowTextureType">
@@ -93,6 +106,7 @@
 				<xs:sequence>
 					<xs:element name="path" type="xs:string"/>
 				</xs:sequence>
+				<!-- This attribute indicates if this texture has to be loaded at the top. -->
 				<xs:attribute name="default" type="xs:boolean" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
@@ -212,6 +226,7 @@
 		<xs:attribute name="valueZ" type="xs:float" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="transformationType">
+		<!-- This field defines the type of the transformation (scale, rotate or translate). -->
 		<xs:attribute name="transformationType" use="required">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -221,6 +236,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+		<!-- These fields define the values of the transformations on each axis. -->
 		<xs:attribute name="valueX" type="xs:float" use="required"/>
 		<xs:attribute name="valueY" type="xs:float" use="required"/>
 		<xs:attribute name="valueZ" type="xs:float" use="required"/>
