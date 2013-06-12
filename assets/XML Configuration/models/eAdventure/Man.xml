@@ -305,7 +305,7 @@
 		<physicalBuilds>
 			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
 				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
-                                <escalation boneName="Cabeza" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+				<escalation boneName="Cabeza" valueX="1.0" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
 			<physicalBuild label="idPhysicalBuildLabel2" idPanelRef="ScalePanel" idPhysicalBuild="idHeavy">
 				<escalation boneName="ALL" valueX="1.50" valueY="1.0" valueZ="1.0"/>
