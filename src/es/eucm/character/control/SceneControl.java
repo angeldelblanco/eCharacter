@@ -181,7 +181,8 @@ public class SceneControl {
         
         base.setMaterial(mat1);
         base.rotate(FastMath.DEG_TO_RAD*(-90), 0, 0);
-        base.move(0,-3,0);
+        base.move(-2.5f,-3.0f,0.0f);
+        base.rotate(FastMath.DEG_TO_RAD*(-13.0f),0.0f,0.0f);
         this.control.getRootNode().attachChild(base);
     }
     
