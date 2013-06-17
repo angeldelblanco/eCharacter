@@ -555,7 +555,7 @@
 						</effect>
 					</panel>
 				</image>
-				<panel height="10%" width="100%"/>
+				<panel height="7%" width="100%"/>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
@@ -692,6 +692,9 @@
 							<image id="panel_color0" align="center" childLayout="center" filename="${CALL.getButton(color)}">
 								<text id="colorText0" text="Color" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
 								<interact onClick="showWindowChangeColor(0)"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(color-over)}" post="true" />
+								</effect>
 							</image>
 						</panel>
 						<panel height="2%" width="100%" childLayout="center">
@@ -760,6 +763,9 @@
 							<image id="panel_color1" align="center" childLayout="center" filename="${CALL.getButton(color)}">
 								<text id="colorText1" text="Color" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
 								<interact onClick="showWindowChangeColor(1)"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(color-over)}" post="true" />
+								</effect>
 							</image>
 						</panel>
 					</panel>
@@ -772,7 +778,7 @@
 						</image>
 					</panel>
 				</image>
-				<panel height="10%" width="100%"/>
+				<panel height="7%" width="100%"/>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
