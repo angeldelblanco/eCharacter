@@ -520,6 +520,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("model")){
             return "assets/Interface/model.png";
         }
+        if(param.equals("s2-separator")){
+            return "assets/Interface/s2-separator.png";
+        }
         return null;
     }
     
