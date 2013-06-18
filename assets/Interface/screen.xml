@@ -2,7 +2,8 @@
 <nifty xmlns="http://nifty-gui.sourceforge.net/nifty.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
        xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty.xsd http://nifty-gui.sourceforge.net/nifty.xsd">
   <useStyles filename="nifty-default-styles.xml" />
-  <!--<useStyles filename="Interface/Style/grey-style/nifty-grey-styles.xml" />-->
+  <!--<useStyles filename="nifty-grey-styles.xml" />-->
+  <!--<useStyles filename="assets/Interface/Style/black-style/nifty-black-styles.xml" />-->
   <useControls filename="nifty-default-controls.xml" />
   <registerEffect name="tooltip" class="es.eucm.character.gui.Tooltip" />
   
@@ -262,51 +263,66 @@
 							<!-- Space -->
 							</panel>
 							<panel id="t0" height="14%" width="100%" childLayout="vertical">
-								<panel id="cont0" height="50%" width="100%" childLayout="horizontal">
-									<text id="text0" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+								<panel id="b0" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb0" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
 									<interact onClick="changeBodyType(0)"/>
 								</panel>
-								<control id="slider0" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
+								<panel id="a0" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta0" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider0" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+								</panel>
 							</panel>
 							<panel height="5%" width="100%">
 							<!-- Space -->
 							</panel>
 							<panel id="t1" height="14%" width="100%" childLayout="vertical">
-								<panel id="cont1" height="50%" width="100%" childLayout="horizontal">
-									<text id="text1" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+								<panel id="b1" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb1" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
 									<interact onClick="changeBodyType(1)"/>
 								</panel>
-								<control id="slider1" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
+								<panel id="a1" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta1" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider1" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+								</panel>
 							</panel>
 							<panel height="5%" width="100%">
 							<!-- Space -->
 							</panel>
 							<panel id="t2" height="14%" width="100%" childLayout="vertical">
-								<panel id="cont2" height="50%" width="100%" childLayout="horizontal">
-									<text id="text2" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+								<panel id="b2" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb2" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
 									<interact onClick="changeBodyType(2)"/>
 								</panel>
-								<control id="slider2" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
+								<panel id="a2" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta2" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider2" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+								</panel>
 							</panel>
 							<panel height="5%" width="100%">
 							<!-- Space -->
 							</panel>
 							<panel id="t3" height="14%" width="100%" childLayout="vertical">
-								<panel id="cont3" height="50%" width="100%" childLayout="horizontal">
-									<text id="text3" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+								<panel id="b3" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb3" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
 									<interact onClick="changeBodyType(3)"/>
 								</panel>
-								<control id="slider3" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
+								<panel id="a3" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta3" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider3" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+								</panel>
 							</panel>
 							<panel height="5%" width="100%">
 							<!-- Space -->
 							</panel>
 							<panel id="t4" height="14%" width="100%" childLayout="vertical">
-								<panel id="cont4" height="50%" width="100%" childLayout="horizontal">
-									<text id="text4" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+								<panel id="b4" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb4" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
 									<interact onClick="changeBodyType(4)"/>
 								</panel>
-								<control id="slider4" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
+								<panel id="a4" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta4" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider4" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+								</panel>
 							</panel>
 						</panel>
 						<panel height="100%" width="12%" align="center" childLayout="center">

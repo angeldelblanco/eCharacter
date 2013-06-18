@@ -76,11 +76,11 @@ public class ScaleStageBuilder {
                 bonesSize = idPhysicalBuild.size();
                 for(int i=page*SCALE_PAGE; i<bonesSize; i++){
                     if(i<((page+1)*SCALE_PAGE)){
-                       nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%SCALE_PAGE)).getRenderer(TextRenderer.class).setText(i18nModel.getString(control.getPhysicalBuildLabel(idPhysicalBuild.get(i))));
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).layoutElements();
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).enable();
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).setVisible(true);
-                       nifty.getScreen(stage).findElementByName("slider"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
+                       nifty.getScreen(stage).findElementByName("textb"+Integer.toString(i%SCALE_PAGE)).getRenderer(TextRenderer.class).setText(i18nModel.getString(control.getPhysicalBuildLabel(idPhysicalBuild.get(i))));
+                       nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).layoutElements();
+                       nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).enable();
+                       nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).setVisible(true);
+                       nifty.getScreen(stage).findElementByName("a"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
                     }
                 }
                 nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
@@ -91,10 +91,13 @@ public class ScaleStageBuilder {
                 bonesSize = idBones.size();
                 for(int i=page*SCALE_PAGE; i<bonesSize; i++){
                     if(i<((page+1)*SCALE_PAGE)){
-                       nifty.getScreen(stage).findElementByName("text"+Integer.toString(i%SCALE_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getBoneControllerLabel(selection, idBones.get(i))));
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).layoutElements();
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).disable();
-                       nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).setVisible(true);
+                       String text = i18nFamily.getString(control.getBoneControllerLabel(selection, idBones.get(i)));
+                       int level = control.getBoneControllerLevel(selection, idBones.get(i));
+                       nifty.getScreen(stage).findElementByName("texta"+Integer.toString(i%SCALE_PAGE)).getRenderer(TextRenderer.class).setText(indentLabel(text,level));
+                       nifty.getScreen(stage).findElementByName("a"+Integer.toString(i%SCALE_PAGE)).layoutElements();
+                       nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).disable();
+                       nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
+                       nifty.getScreen(stage).findElementByName("a"+Integer.toString(i%SCALE_PAGE)).setVisible(true);
                        nifty.getScreen(stage).findElementByName("slider"+Integer.toString(i%SCALE_PAGE)).setVisible(true);
                        Slider s = nifty.getScreen(stage).findNiftyControl("slider"+Integer.toString(i%SCALE_PAGE), Slider.class);
                        s.setup(control.getMinValueBoneController(idBones.get(i)), control.getMaxValueBoneController(idBones.get(i)), control.getDefaultValueBoneController(idBones.get(i)), 1, 1);
@@ -104,9 +107,9 @@ public class ScaleStageBuilder {
                 nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
             }
             for(int i=bonesSize;i<((page+1)*SCALE_PAGE);i++){
-                nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).disable();
-                nifty.getScreen(stage).findElementByName("cont"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
-                nifty.getScreen(stage).findElementByName("slider"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
+                nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).disable();
+                nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
+                nifty.getScreen(stage).findElementByName("a"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
             }
             if(page > 0){
                 nifty.getScreen(stage).findElementByName("leftT").enable();
