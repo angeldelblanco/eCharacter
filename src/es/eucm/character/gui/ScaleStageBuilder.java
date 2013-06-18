@@ -83,8 +83,8 @@ public class ScaleStageBuilder {
                        nifty.getScreen(stage).findElementByName("a"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
                     }
                 }
-                nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-                nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+                //nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+                //nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
             }
             if(tabSelected.equals("advanced")){
                 idBones = control.getIdBonesController(selection);
@@ -103,8 +103,8 @@ public class ScaleStageBuilder {
                        s.setup(control.getMinValueBoneController(idBones.get(i)), control.getMaxValueBoneController(idBones.get(i)), control.getDefaultValueBoneController(idBones.get(i)), 1, 1);
                     }
                 }
-                nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
-                nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+                //nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+                //nifty.getScreen(stage).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
             }
             for(int i=bonesSize;i<((page+1)*SCALE_PAGE);i++){
                 nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).disable();
