@@ -48,7 +48,7 @@ import es.eucm.character.types.StageType;
 import java.util.ArrayList;
 
 public class AnimationStageBuilder {
-    private static final int CHECKBOX_PAGE = 3;
+    private static final int CHECKBOX_PAGE = 2;
     private Nifty nifty;
     private I18N i18nGui, i18nFamily; 
     private Control control;
@@ -216,12 +216,16 @@ public class AnimationStageBuilder {
         }
         String types[] = {"a","q","c"};
         for(String type : types){
-            nifty.getScreen(stageType).findNiftyControl(type+"AllButton", Button.class).setText(i18nGui.getString("idAll"));
-            nifty.getScreen(stageType).findNiftyControl(type+"NoButton", Button.class).setText(i18nGui.getString("idNothing"));
+            nifty.getScreen(stageType).findElementByName(type+"AllButtonText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAll"));
+            nifty.getScreen(stageType).findElementByName(type+"AllButton").layoutElements();
+            nifty.getScreen(stageType).findElementByName(type+"NoButtonText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNothing"));
+            nifty.getScreen(stageType).findElementByName(type+"NoButton").layoutElements();
         }
         for(int i = 0; i<CHECKBOX_PAGE; i++){
-            nifty.getScreen(stageType).findNiftyControl("aButton"+Integer.toString(i), Button.class).setText(i18nGui.getString("idPreview"));
-            nifty.getScreen(stageType).findNiftyControl("cButton"+Integer.toString(i), Button.class).setText(i18nGui.getString("idPreview"));
+            nifty.getScreen(stageType).findElementByName("aButton"+i+"Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPreview"));
+            nifty.getScreen(stageType).findElementByName("aButton"+i).layoutElements();
+            nifty.getScreen(stageType).findElementByName("cButton"+i+"Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPreview"));
+            nifty.getScreen(stageType).findElementByName("cButton"+i).layoutElements();
         }
     }
     

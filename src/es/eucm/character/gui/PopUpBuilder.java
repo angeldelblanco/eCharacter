@@ -53,7 +53,7 @@ import java.util.List;
 
 
 public class PopUpBuilder {
-    private static final int TEXTURES_POPUP = 6;
+    private static final int TEXTURES_POPUP = 16;
     private Control control;
     private Nifty nifty;
     private int popUpPage, popUpNum;
@@ -83,13 +83,8 @@ public class PopUpBuilder {
         int r,g,b;
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
-            popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
-            popupColor.findElementByName("redPanel").layoutElements();
-            popupColor.findElementByName("greenText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
-            popupColor.findElementByName("greenPanel").layoutElements();
-            popupColor.findElementByName("blueText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
-            popupColor.findElementByName("bluePanel").layoutElements();
-            popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
+            popupColor.findElementByName("acceptText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAcept"));
+            popupColor.findElementByName("acceptPanel").layoutElements();
             popupColor.findElementByName("advancedSelection").setVisible(false);
             popupColor.findElementByName("colorOptions").setVisible(false);
             baseColor = null;
@@ -105,13 +100,8 @@ public class PopUpBuilder {
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.doubleTexture)){
             popupColor = nifty.createPopup("popupColor");
-            popupColor.findElementByName("redText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRed"));
-            popupColor.findElementByName("redPanel").layoutElements();
-            popupColor.findElementByName("greenText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idGreen"));
-            popupColor.findElementByName("greenPanel").layoutElements();
-            popupColor.findElementByName("blueText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBlue"));
-            popupColor.findElementByName("bluePanel").layoutElements();
-            popupColor.findNiftyControl("aceptButton", Button.class).setText(i18nGui.getString("idAcept"));
+            popupColor.findElementByName("acceptText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAcept"));
+            popupColor.findElementByName("acceptPanel").layoutElements();
             popupColor.findElementByName("advancedSelection").setVisible(false);
             popupColor.findElementByName("colorOptions").setVisible(true);
             popupColor.findElementByName("basicText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBase"));
@@ -134,12 +124,13 @@ public class PopUpBuilder {
             }
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.multiOptionTexture)){
-            popupColor = nifty.createPopup("popupColor3");
+            popupColor = nifty.createPopup("PopUpColorDefault");
             changePopUpPage("0",subStageSelected,textureOrSubMeshSelected);
             baseColor = null;
             detailsColor = null;
         }
-        popupColor.findNiftyControl("cancelButton", Button.class).setText(i18nGui.getString("idCancel"));
+        popupColor.findElementByName("cancelText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCancel"));
+        popupColor.findElementByName("cancelPanel").layoutElements();
         nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
         changeTabColor("basic");
     }
@@ -283,9 +274,11 @@ public class PopUpBuilder {
                 popUpNum = 2;
                 control.screenShot();
                 nifty.getScreen(stage).findElementByName("popUpText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopup2"));
-                nifty.getScreen(stage).findElementByName("popup").layoutElements();
-                nifty.getScreen(stage).findNiftyControl("popUpButton1", Button.class).setText(i18nGui.getString("idPopupButton3"));
-                nifty.getScreen(stage).findNiftyControl("popUpButton2", Button.class).setText(i18nGui.getString("idPopupButton4"));
+                nifty.getScreen(stage).findElementByName("textPanel").layoutElements();
+                nifty.getScreen(stage).findElementByName("button1Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupButton3"));
+                nifty.getScreen(stage).findElementByName("button1").layoutElements();
+                nifty.getScreen(stage).findElementByName("button2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupButton4"));
+                nifty.getScreen(stage).findElementByName("button2").layoutElements();
                 return 3;
             }
             if(popUpNum == 2){
@@ -300,9 +293,11 @@ public class PopUpBuilder {
         nifty.gotoScreen(stage);
         popUpNum = 1;
         nifty.getScreen(stage).findElementByName("popUpText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopup1"));
-        nifty.getScreen(stage).findElementByName("popup").layoutElements();
-        nifty.getScreen(stage).findNiftyControl("popUpButton1", Button.class).setText(i18nGui.getString("idPopupButton1"));
-        nifty.getScreen(stage).findNiftyControl("popUpButton2", Button.class).setText(i18nGui.getString("idPopupButton2"));
+        nifty.getScreen(stage).findElementByName("textPanel").layoutElements();
+        nifty.getScreen(stage).findElementByName("button1Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupButton1"));
+        nifty.getScreen(stage).findElementByName("button1").layoutElements();
+        nifty.getScreen(stage).findElementByName("button2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupButton2"));
+        nifty.getScreen(stage).findElementByName("button2").layoutElements();
     }
     
     public void showMoreColors(){

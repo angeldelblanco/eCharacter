@@ -495,6 +495,30 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("previous-over")){
             return "assets/Interface/previous-over.png";
         }
+        if(param.equals("cancel")){
+            return "assets/Interface/cancel.png";
+        }
+        if(param.equals("cancel-over")){
+            return "assets/Interface/cancel-over.png";
+        }
+        if(param.equals("accept")){
+            return "assets/Interface/accept.png";
+        }
+        if(param.equals("accept-over")){
+            return "assets/Interface/accept-over.png";
+        }
+        if(param.equals("more")){
+            return "assets/Interface/more.png";
+        }
+        if(param.equals("more-over")){
+            return "assets/Interface/more-over.png";
+        }
+        if(param.equals("button")){
+            return "assets/Interface/button.png";
+        }
+        if(param.equals("button-over")){
+            return "assets/Interface/button-over.png";
+        }
         return null;
     }
     
@@ -522,6 +546,24 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(param.equals("s2-separator")){
             return "assets/Interface/s2-separator.png";
+        }
+        if(param.equals("red")){
+            return "assets/Interface/red.png";
+        }
+        if(param.equals("green")){
+            return "assets/Interface/green.png";
+        }
+        if(param.equals("blue")){
+            return "assets/Interface/blue.png";
+        }
+        if(param.equals("background-popup")){
+            return "assets/Interface/background-popup.png";
+        }
+        if(param.equals("background-popup-custom")){
+            return "assets/Interface/background-popup-custom.png";
+        }
+        if(param.equals("background-popup-dialog")){
+            return "assets/Interface/background-popup-dialog.png";
         }
         return null;
     }
@@ -644,13 +686,11 @@ public class Gui extends AbstractAppState implements ScreenController {
         popUp.onBlueSliderChange(event.getValue());
     }
     
-    @NiftyEventSubscriber(id="aceptButton")
-    public void onChangeButtonClicked(final String id, final ButtonClickedEvent event) throws InterruptedException, IOException {
+    public void acceptButtonClicked() throws InterruptedException, IOException {
         popUp.accept(textureOrSubMeshSelected,subStageSelected);
     }
     
-    @NiftyEventSubscriber(id="cancelButton")
-    public void onCancelButtonClicked(final String id, final ButtonClickedEvent event) {
+    public void cancelButtonClicked() {
         popUp.cancel(); 
     }
     
