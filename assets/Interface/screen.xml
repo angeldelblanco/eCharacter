@@ -889,7 +889,7 @@
 								</image>
 							</panel>
 							<panel id="animationsPanel" height="100%" width="76%" childLayout="vertical">
-								<text id="animationsText" text="" font="${CALL.getfont(20)}" textHAlign="left" width="100%" height="10%" color="#565857" wrap = "true"/>
+								<text id="animationsText" text="" font="${CALL.getfont(20)}" width="100%" height="10%" color="#565857" wrap = "true"/>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
@@ -974,7 +974,7 @@
 								</image>
 							</panel>
 							<panel id="qualityPanel" height="100%" width="76%" childLayout="vertical">
-								<text id="qualityText" text="" font="${CALL.getfont(20)}" textHAlign="left" width="100%" height="10%" color="#565857" wrap = "true"/>
+								<text id="qualityText" text="" font="${CALL.getfont(20)}" width="100%" height="10%" color="#565857" wrap = "true"/>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
@@ -1039,7 +1039,7 @@
 								</image>
 							</panel>
 							<panel id="cameraPanel" height="100%" width="76%" childLayout="vertical">
-								<text id="cameraText" text="" font="${CALL.getfont(20)}" textHAlign="left" width="100%" height="10%" color="#565857" wrap = "true"/>
+								<text id="cameraText" text="" font="${CALL.getfont(20)}" width="100%" height="10%" color="#565857" wrap = "true"/>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
