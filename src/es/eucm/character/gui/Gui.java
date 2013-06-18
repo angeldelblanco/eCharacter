@@ -565,12 +565,18 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("background-popup-dialog")){
             return "assets/Interface/background-popup-dialog.png";
         }
+        if(param.equals("tab-l")){
+            return "assets/Interface/tab-l.png";
+        }
+        if(param.equals("tab-r")){
+            return "assets/Interface/tab-r.png";
+        }
         return null;
     }
     
     public String getTick(){
         
-        return "assets/Interface/x.png";
+        return "assets/Interface/tick.png";
     }
     
     public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){

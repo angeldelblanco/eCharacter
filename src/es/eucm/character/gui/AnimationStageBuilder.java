@@ -39,6 +39,7 @@ package es.eucm.character.gui;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.CheckBox;
+import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
@@ -201,15 +202,15 @@ public class AnimationStageBuilder {
         if(tabSelected.equals("basic")){
             nifty.getScreen(stageType).findElementByName("Panel2").setVisible(false);
             nifty.getScreen(stageType).findElementByName("Panel3").setVisible(false);
-            //nifty.getScreen(stageType).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-            //nifty.getScreen(stageType).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+            nifty.getScreen(stageType).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            nifty.getScreen(stageType).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
             showPage("a","0");
         }    
         if(tabSelected.equals("advanced")){
             nifty.getScreen(stageType).findElementByName("Panel2").setVisible(true);
             nifty.getScreen(stageType).findElementByName("Panel3").setVisible(true);
-            //nifty.getScreen(stageType).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
-            //nifty.getScreen(stageType).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            nifty.getScreen(stageType).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+            nifty.getScreen(stageType).findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
             showPage("a","0");
             showPage("q","0");
             showPage("c","0");

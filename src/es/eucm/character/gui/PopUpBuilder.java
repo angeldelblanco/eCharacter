@@ -324,8 +324,8 @@ public class PopUpBuilder {
     public void changeTabColor(String option){
         tab = option;
         if(tab.equals("basic")){
-            //popupColor.findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
-            //popupColor.findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+            popupColor.findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            popupColor.findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
             if(baseColor!=null){
                 changeSliderColor(baseColor.getColorString());
             }
@@ -336,8 +336,8 @@ public class PopUpBuilder {
             }
         }
         else{
-            //popupColor.findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
-            //popupColor.findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
+            popupColor.findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#808080AA"));
+            popupColor.findElementByName("advancedPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
             if(detailsColor!=null){
                 changeSliderColor(detailsColor.getColorString());
             }

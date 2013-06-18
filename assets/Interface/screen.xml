@@ -238,15 +238,20 @@
 			<panel height="79%" width="94%" childLayout="vertical" align="center">
 				<image id="rightSelectionPanel" childLayout="vertical" align="right" filename="${CALL.getTexture(s2-right-panel)}">
 					<panel id="panel_options-complexion" height="10%" width="100%" align="right" childLayout="horizontal"> 
+						<panel height="100%" width="2%"/>
 						<!-- Change Basic Options Panel -->
-						<image id="basicPanel" height="100%" width="50%" childLayout="center" filename="${CALL.getTexture(s2-right-panel)}">
-							<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
-							<interact onClick="changeTab(basic)"/>
+						<image id="basic" childLayout="center" filename="${CALL.getTexture(tab-l)}">
+							<panel id="basicPanel" height="100%" width="100%" childLayout="center">
+								<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+								<interact onClick="changeTab(basic)"/>
+							</panel>
 						</image>
 						<!-- Change Advanced Options Panel -->
-						<image id="advancedPanel" height="100%" width="50%" childLayout="center" filename="${CALL.getTexture(s2-right-panel)}">
-							<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
-							<interact onClick="changeTab(advanced)"/>
+						<image id="advanced" childLayout="center" filename="${CALL.getTexture(tab-r)}">
+							<panel id="advancedPanel" height="100%" width="100%" childLayout="center">
+								<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+								<interact onClick="changeTab(advanced)"/>
+							</panel>
 						</image>
 					</panel>
 					<panel id="texturePanel" height="85%" width="100%" childLayout="horizontal" align="right">
@@ -259,9 +264,7 @@
 							</image>
 						</panel>
 						<panel id="panel_image" height="100%" width="76%" align="center" childLayout="vertical">
-							<panel height="5%" width="100%">
-							<!-- Space -->
-							</panel>
+							<panel height="5%" width="100%"/>
 							<panel id="t0" height="14%" width="100%" childLayout="vertical">
 								<panel id="b0" height="50%" width="100%" childLayout="horizontal">
 									<text id="textb0" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
@@ -867,15 +870,20 @@
 			<panel height="79%" width="94%" childLayout="vertical" align="center">
 				<image id="rightSelectionPanel" childLayout="vertical" align="right" filename="${CALL.getTexture(s2-right-panel)}">
 					<panel id="panel_options-animation" height="10%" width="100%" childLayout="horizontal"> 
+						<panel height="100%" width="2%"/>
 						<!-- Change Basic Options Panel -->
-						<image id="basicPanel" height="100%" width="50%" childLayout="center" filename="${CALL.getTexture(s2-right-panel)}">
-							<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
-							<interact onClick="changeTab(basic)"/>
+						<image id="basic" childLayout="center" filename="${CALL.getTexture(tab-l)}">
+							<panel id="basicPanel" height="100%" width="100%" childLayout="center">
+								<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+								<interact onClick="changeTab(basic)"/>
+							</panel>
 						</image>
 						<!-- Change Advanced Options Panel -->
-						<image id="advancedPanel" height="100%" width="50%" childLayout="center" filename="${CALL.getTexture(s2-right-panel)}">
-							<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
-							<interact onClick="changeTab(advanced)"/>
+						<image id="advanced" childLayout="center" filename="${CALL.getTexture(tab-r)}">
+							<panel id="advancedPanel" height="100%" width="100%" childLayout="center">
+								<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+								<interact onClick="changeTab(advanced)"/>
+							</panel>
 						</image>
 					</panel>
 					<panel id="texturePanel" height="85%" width="100%" childLayout="vertical">
@@ -890,9 +898,7 @@
 							</panel>
 							<panel id="animationsPanel" height="100%" width="76%" childLayout="vertical">
 								<text id="animationsText" text="" font="${CALL.getfont(20)}" width="100%" height="10%" color="#565857" wrap = "true"/>
-								<panel height="5%" width="100%">
-									<!-- Space -->
-								</panel>
+								<panel height="5%" width="100%"/>
 								<panel id="a0" height="20%" width="100%" childLayout="horizontal">
 									<text id="aText0" text="" font="${CALL.getfont(20)}" textHAlign="left" valign="center" color="#565857" width="55%" wrap = "true"/>
 									<panel width="5%">
@@ -1178,16 +1184,20 @@
 	<popup id="popupColor" childLayout="center" controller="es.eucm.character.gui.Gui" backgroundColor="#FFFA">
 		<panel id="popupPanel" height="35%" width="50%" childLayout="horizontal"  valign="center" >
 			<image id="selectionPanel" childLayout="vertical" valign="center" filename="${CALL.getTexture(background-popup)}">
-				<panel id="colorOptions" height="20%" width="90%" align="center" childLayout="horizontal"> 
+				<panel id="colorOptions" height="20%" width="90%" align="center" childLayout="horizontal">
 					<!-- Change Basic Options Panel -->
-					<image id="basicPanel" height="100%" width="50%" childLayout="center" filename="${CALL.getTexture(background-popup)}">
-						<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
-						<interact onClick="changeTabColor(basic)"/>
+					<image id="basic" childLayout="center" width="50%" filename="${CALL.getTexture(tab-l)}">
+						<panel id="basicPanel" height="100%" width="100%" childLayout="center">
+							<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+							<interact onClick="changeTabColor(basic)"/>
+						</panel>
 					</image>
 					<!-- Change Advanced Options Panel -->
-					<image id="advancedPanel" height="100%" width="50%" childLayout="center" filename="${CALL.getTexture(background-popup)}">
-						<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
-						<interact onClick="changeTabColor(advanced)"/>
+					<image id="advanced" childLayout="center" width="50%" filename="${CALL.getTexture(tab-r)}">
+						<panel id="advancedPanel" height="100%" width="100%" childLayout="center">
+							<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+							<interact onClick="changeTabColor(advanced)"/>
+						</panel>
 					</image>
 				</panel>
 				<panel id="basicSelection" height="60%" width="90%" childLayout="horizontal" align="center">
@@ -1200,30 +1210,30 @@
 						</panel>
 						<panel id="c0" height="14%" width="100%" childLayout="center" backgroundColor="#FFFFFFFF">
 							<interact onClick="changeSliderColor(#FFFFFFFF,0)"/>
-							<panel id = "ci0" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci0" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c1" height="14%" width="100%" childLayout="center" backgroundColor="#EAEAEAFF">
 							<interact onClick="changeSliderColor(#EAEAEAFF,1)"/>
-							<panel id = "ci1" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci1" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c2" height="14%" width="100%" childLayout="center" backgroundColor="#DDDDDDFF">
 							<interact onClick="changeSliderColor(#DDDDDDFF,2)"/>
-							<panel id = "ci2" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci2" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c3" height="14%" width="100%" childLayout="center" backgroundColor="#C0C0C0FF">
 							<interact onClick="changeSliderColor(#C0C0C0FF,3)"/>
-							<panel id = "ci3" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci3" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c4" height="14%" width="100%" childLayout="center" backgroundColor="#B2B2B2FF">
 							<interact onClick="changeSliderColor(#B2B2B2FF,4)"/>
-							<panel id = "ci4" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci4" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c5" height="14%" width="100%" childLayout="center" backgroundColor="#969696FF">
 							<interact onClick="changeSliderColor(#969696FF,5)"/>
-							<panel id = "ci5" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci5" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1235,30 +1245,30 @@
 						</panel>
 						<panel id="c6" height="14%" width="100%" childLayout="center" backgroundColor="#000000FF">
 							<interact onClick="changeSliderColor(#000000FF,6)"/>
-							<panel id = "ci6" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci6" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c7" height="14%" width="100%" childLayout="center" backgroundColor="#4D4D4DFF">
 							<interact onClick="changeSliderColor(#4D4D4DFF,7)"/>
-							<panel id = "ci7" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci7" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c8" height="14%" width="100%" childLayout="center" backgroundColor="#333333FF">
 							<interact onClick="changeSliderColor(#333333FF,8)"/>
-							<panel id = "ci8" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci8" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c9" height="14%" width="100%" childLayout="center" backgroundColor="#292929FF">
 							<interact onClick="changeSliderColor(#292929FF,9)"/>
-							<panel id = "ci9" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci9" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c10" height="14%" width="100%" childLayout="center" backgroundColor="#1C1C1CFF">
 							<interact onClick="changeSliderColor(#1C1C1CFF,10)"/>
-							<panel id = "ci10" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci10" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c11" height="14%" width="100%" childLayout="center" backgroundColor="#111111FF">
 							<interact onClick="changeSliderColor(#111111FF,11)"/>
-							<panel id = "ci11" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci11" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1270,30 +1280,30 @@
 						</panel>
 						<panel id="c12" height="14%" width="100%" childLayout="center" backgroundColor="#EEECE1FF">
 							<interact onClick="changeSliderColor(#EEECE1FF,12)"/>
-							<panel id = "ci12" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci12" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c13" height="14%" width="100%" childLayout="center" backgroundColor="#CDC8A7FF">
 							<interact onClick="changeSliderColor(#CDC8A7FF,13)"/>
-							<panel id = "ci13" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci13" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c14" height="14%" width="100%" childLayout="center" backgroundColor="#BAB284FF">
 							<interact onClick="changeSliderColor(#BAB284FF,14)"/>
-							<panel id = "ci14" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci14" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c15" height="14%" width="100%" childLayout="center" backgroundColor="#A89E64FF">
 							<interact onClick="changeSliderColor(#A89E64FF,15)"/>
-							<panel id = "ci15" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci15" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c16" height="14%" width="100%" childLayout="center" backgroundColor="#766F42FF">
 							<interact onClick="changeSliderColor(#766F42FF,16)"/>
-							<panel id = "ci16" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci16" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c17" height="14%" width="100%" childLayout="center" backgroundColor="#403C24FF">
 							<interact onClick="changeSliderColor(#403C24FF,17)"/>
-							<panel id = "ci17" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci17" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1305,30 +1315,30 @@
 						</panel>
 						<panel id="c18" height="14%" width="100%" childLayout="center" backgroundColor="#1F497DFF">
 							<interact onClick="changeSliderColor(#1F497DFF,18)"/>
-							<panel id = "ci18" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci18" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c19" height="14%" width="100%" childLayout="center" backgroundColor="#A2C2E8FF">
 							<interact onClick="changeSliderColor(#A2C2E8FF,19)"/>
-							<panel id = "ci19" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci19" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c20" height="14%" width="100%" childLayout="center" backgroundColor="#72A2DCFF">
 							<interact onClick="changeSliderColor(#72A2DCFF,20)"/>
-							<panel id = "ci20" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci20" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c21" height="14%" width="100%" childLayout="center" backgroundColor="#3379CDFF">
 							<interact onClick="changeSliderColor(#3379CDFF,21)"/>
-							<panel id = "ci21" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci21" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c22" height="14%" width="100%" childLayout="center" backgroundColor="#2962A7FF">
 							<interact onClick="changeSliderColor(#2962A7FF,22)"/>
-							<panel id = "ci22" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci22" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c23" height="14%" width="100%" childLayout="center" backgroundColor="#122B4AFF">
 							<interact onClick="changeSliderColor(#122B4AFF,23)"/>
-							<panel id = "ci23" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci23" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1340,30 +1350,30 @@
 						</panel>
 						<panel id="c24" height="14%" width="100%" childLayout="center" backgroundColor="#4F81BDFF">
 							<interact onClick="changeSliderColor(#4F81BDFF,24)"/>
-							<panel id = "ci24" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci24" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c25" height="14%" width="100%" childLayout="center" backgroundColor="#C8D7EAFF">
 							<interact onClick="changeSliderColor(#C8D7EAFF,25)"/>
-							<panel id = "ci25" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci25" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c26" height="14%" width="100%" childLayout="center" backgroundColor="#9BB7D9FF">
 							<interact onClick="changeSliderColor(#9BB7D9FF,26)"/>
-							<panel id = "ci26" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci26" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c27" height="14%" width="100%" childLayout="center" backgroundColor="#638FC5FF">
 							<interact onClick="changeSliderColor(#638FC5FF,27)"/>
-							<panel id = "ci27" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci27" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c28" height="14%" width="100%" childLayout="center" backgroundColor="#396497FF">
 							<interact onClick="changeSliderColor(#396497FF,28)"/>
-							<panel id = "ci28" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci28" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c29" height="14%" width="100%" childLayout="center" backgroundColor="#233E5FFF">
 							<interact onClick="changeSliderColor(#233E5FFF,29)"/>
-							<panel id = "ci29" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci29" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1375,30 +1385,30 @@
 						</panel>
 						<panel id="c30" height="14%" width="100%" childLayout="center" backgroundColor="#C0504DFF">
 							<interact onClick="changeSliderColor(#C0504DFF,30)"/>
-							<panel id = "ci30" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci30" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c31" height="14%" width="100%" childLayout="center" backgroundColor="#EAC5C4FF">
 							<interact onClick="changeSliderColor(#EAC5C4FF,31)"/>
-							<panel id = "ci31" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci31" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c32" height="14%" width="100%" childLayout="center" backgroundColor="#DA9896FF">
 							<interact onClick="changeSliderColor(#DA9896FF,32)"/>
-							<panel id = "ci32" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci32" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c33" height="14%" width="100%" childLayout="center" backgroundColor="#D97977FF">
 							<interact onClick="changeSliderColor(#D97977FF,33)"/>
-							<panel id = "ci33" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci33" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c34" height="14%" width="100%" childLayout="center" backgroundColor="#9A3836FF">
 							<interact onClick="changeSliderColor(#9A3836FF,34)"/>
-							<panel id = "ci34" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci34" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c35" height="14%" width="100%" childLayout="center" backgroundColor="#692725FF">
 							<interact onClick="changeSliderColor(#692725FF,35)"/>
-							<panel id = "ci35" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci35" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1410,30 +1420,30 @@
 						</panel>
 						<panel id="c36" height="14%" width="100%" childLayout="center" backgroundColor="#8064A2FF">
 							<interact onClick="changeSliderColor(#8064A2FF,36)"/>
-							<panel id = "ci36" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci36" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c37" height="14%" width="100%" childLayout="center" backgroundColor="#D0C5DDFF">
 							<interact onClick="changeSliderColor(#D0C5DDFF,37)"/>
-							<panel id = "ci37" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci37" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c38" height="14%" width="100%" childLayout="center" backgroundColor="#B09FC5FF">
 							<interact onClick="changeSliderColor(#B09FC5FF,38)"/>
-							<panel id = "ci38" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci38" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c39" height="14%" width="100%" childLayout="center" backgroundColor="#947CB0FF">
 							<interact onClick="changeSliderColor(#947CB0FF,39)"/>
-							<panel id = "ci39" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci39" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c40" height="14%" width="100%" childLayout="center" backgroundColor="#60497BFF">
 							<interact onClick="changeSliderColor(#60497BFF,40)"/>
-							<panel id = "ci40" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci40" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c41" height="14%" width="100%" childLayout="center" backgroundColor="#3F3151FF">
 							<interact onClick="changeSliderColor(#3F3151FF,41)"/>
-							<panel id = "ci41" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci41" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1445,30 +1455,30 @@
 						</panel>
 						<panel id="t42" height="14%" width="100%" childLayout="center" backgroundColor="#FFC000FF">
 							<interact onClick="changeSliderColor(#FFC000FF,42)"/>
-							<panel id = "ci42" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci42" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c43" height="14%" width="100%" childLayout="center" backgroundColor="#FFF2CCFF">
 							<interact onClick="changeSliderColor(#FFF2CCFF,43)"/>
-							<panel id = "ci43" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci43" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c44" height="14%" width="100%" childLayout="center" backgroundColor="#FFE699FF">
 							<interact onClick="changeSliderColor(#FFE699FF,44)"/>
-							<panel id = "ci44" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci44" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c45" height="14%" width="100%" childLayout="center" backgroundColor="#FFD966FF">
 							<interact onClick="changeSliderColor(#FFD966FF,45)"/>
-							<panel id = "ci45" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci45" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c46" height="14%" width="100%" childLayout="center" backgroundColor="#BF9000FF">
 							<interact onClick="changeSliderColor(#BF9000FF,46)"/>
-							<panel id = "ci46" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci46" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c47" height="14%" width="100%" childLayout="center" backgroundColor="#7F6000FF">
 							<interact onClick="changeSliderColor(#7F6000FF,47)"/>
-							<panel id = "ci47" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci47" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1480,30 +1490,30 @@
 						</panel>
 						<panel id="c48" height="14%" width="100%" childLayout="center" backgroundColor="#4BACC6FF">
 							<interact onClick="changeSliderColor(#4BACC6FF,48)"/>
-							<panel id = "ci48" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci48" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c49" height="14%" width="100%" childLayout="center" backgroundColor="#A5D6E3FF">
 							<interact onClick="changeSliderColor(#A5D6E3FF,49)"/>
-							<panel id = "ci49" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci49" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c50" height="14%" width="100%" childLayout="center" backgroundColor="#8AC9DAFF">
 							<interact onClick="changeSliderColor(#8AC9DAFF,50)"/>
-							<panel id = "ci50" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci50" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c51" height="14%" width="100%" childLayout="center" backgroundColor="#3898B2FF">
 							<interact onClick="changeSliderColor(#3898B2FF,51)"/>
-							<panel id = "ci51" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci51" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c52" height="14%" width="100%" childLayout="center" backgroundColor="#2A7286FF">
 							<interact onClick="changeSliderColor(#2A7286FF,52)"/>
-							<panel id = "ci52" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci52" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c53" height="14%" width="100%" childLayout="center" backgroundColor="#215A69FF">
 							<interact onClick="changeSliderColor(#215A69FF,53)"/>
-							<panel id = "ci53" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci53" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1515,30 +1525,30 @@
 						</panel>
 						<panel id="c54" height="14%" width="100%" childLayout="center" backgroundColor="#FF0000FF">
 							<interact onClick="changeSliderColor(#FF0000FF,54)"/>
-							<panel id = "ci54" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci54" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c55" height="14%" width="100%" childLayout="center" backgroundColor="#FF7D7DFF">
 							<interact onClick="changeSliderColor(#FF7D7DFF,55)"/>
-							<panel id = "ci55" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci55" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c56" height="14%" width="100%" childLayout="center" backgroundColor="#FF4949FF">
 							<interact onClick="changeSliderColor(#FF4949FF,56)"/>
-							<panel id = "ci56" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci56" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c57" height="14%" width="100%" childLayout="center" backgroundColor="#B40000FF">
 							<interact onClick="changeSliderColor(#B40000FF,57)"/>
-							<panel id = "ci57" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci57" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c58" height="14%" width="100%" childLayout="center" backgroundColor="#960000FF">
 							<interact onClick="changeSliderColor(#960000FF,58)"/>
-							<panel id = "ci58" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci58" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c59" height="14%" width="100%" childLayout="center" backgroundColor="#700000FF">
 							<interact onClick="changeSliderColor(#700000FF,59)"/>
-							<panel id = "ci59" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci59" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1550,30 +1560,30 @@
 						</panel>
 						<panel id="c60" height="14%" width="100%" childLayout="center" backgroundColor="#70AD47FF">
 							<interact onClick="changeSliderColor(#70AD47FF,60)"/>
-							<panel id = "ci60" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci60" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c61" height="14%" width="100%" childLayout="center" backgroundColor="#E2F0D9FF">
 							<interact onClick="changeSliderColor(#E2F0D9FF,61)"/>
-							<panel id = "ci61" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci61" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c62" height="14%" width="100%" childLayout="center" backgroundColor="#C5E0B4FF">
 							<interact onClick="changeSliderColor(#C5E0B4FF,62)"/>
-							<panel id = "ci62" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci62" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c63" height="14%" width="100%" childLayout="center" backgroundColor="#A9D18EFF">
 							<interact onClick="changeSliderColor(#A9D18EFF,63)"/>
-							<panel id = "ci63" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci63" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c64" height="14%" width="100%" childLayout="center" backgroundColor="#548235FF">
 							<interact onClick="changeSliderColor(#548235FF,64)"/>
-							<panel id = "ci64" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci64" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c65" height="14%" width="100%" childLayout="center" backgroundColor="#385723FF">
 							<interact onClick="changeSliderColor(#385723FF,65)"/>
-							<panel id = "ci65" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci65" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1585,28 +1595,28 @@
 						</panel>
 						<panel id="c66" height="14%" width="100%" childLayout="center" backgroundColor="#F79646FF">
 							<interact onClick="changeSliderColor(#F79646FF,66)"/>
-							<panel id = "ci66" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci66" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%"/>
 						<panel id="c67" height="14%" width="100%" childLayout="center" backgroundColor="#FBCDA7FF">
 							<interact onClick="changeSliderColor(#FBCDA7FF,67)"/>
-							<panel id = "ci67" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci67" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c68" height="14%" width="100%" childLayout="center" backgroundColor="#F9B277FF">
 							<interact onClick="changeSliderColor(#F9B277FF,68)"/>
-							<panel id = "ci68" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci68" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c69" height="14%" width="100%" childLayout="center" backgroundColor="#F5801FFF">
 							<interact onClick="changeSliderColor(#F5801FFF,69)"/>
-							<panel id = "ci69" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci69" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c70" height="14%" width="100%" childLayout="center" backgroundColor="#DD6909FF">
 							<interact onClick="changeSliderColor(#DD6909FF,70)"/>
-							<panel id = "ci70" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci70" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c71" height="14%" width="100%" childLayout="center" backgroundColor="#A95007FF">
 							<interact onClick="changeSliderColor(#A95007FF,71)"/>
-							<panel id = "ci71" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci71" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 				</panel>
