@@ -138,7 +138,7 @@ public class ScaleStageBuilder {
     
     private String indentLabel(String label, int level){
         for (int i=0; i<level; i++){
-             label="   "+label;
+             label="      "+label;
         }
         return label;
     }
