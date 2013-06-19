@@ -46,7 +46,7 @@ public class SliderControl extends AbstractController implements Slider {
     elementPosition = element.findElementByName("#position");
     nextPrevHelper = new NextPrevHelper(element, screen.getFocusHandler());
 
-    if ("verticalSlider".equals(parameter.getProperty("name"))) {
+    if ("verticalSlidereCharacter".equals(parameter.getProperty("name"))) {
       sliderView = new SliderViewVertical(this);
     } else if ("horizontalSlidereCharacter".equals(parameter.getProperty("name"))) {
       sliderView = new SliderViewHorizontal(this);
