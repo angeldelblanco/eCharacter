@@ -14,13 +14,13 @@
     </image>
   </controlDefinition>
   
-  <controlDefinition name="horizontalSlider1" controller="de.lessvoid.nifty.controls.slider.SliderControl" inputMapping="de.lessvoid.nifty.controls.scrollbar.ScrollbarInputMapping">
+  <controlDefinition name="horizontalSlidereCharacter" controller="es.eucm.character.gui.slider.SliderControl" inputMapping="es.eucm.character.gui.scrollbar.ScrollbarInputMapping">
     <panel childLayout="horizontal" width="23px" align="center" focusable="true">
       <interact onMouseWheel="mouseWheel()" />
       <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,6">
         <interact onClickRepeat="upClick()" />
 		<effect>
-		  <!--<onClick name="focus" targetElement="#parent" />-->
+		  <onClick name="focus" targetElement="#parent" />
 		  <onClick name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,8" post="true" />
 		  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,7" post="true" />
 		  <onHover name="border" color="#822f" post="true" />
@@ -31,12 +31,12 @@
       <image id="#background" filename="Interface/slider.png" width="*" height="23px" childLayout="absolute" imageMode="sprite-resize:23,23,16,4,15,4,4,4,15,4,15,4,15,4,4">
         <interact onClick="mouseClick()" onClickMouseMove="mouseClick()" />
 		<effect>
-		  <!--<onClick name="focus" targetElement="#parent" />-->
+		  <onClick name="focus" targetElement="#parent" />
 		</effect>
         <image id="#position" filename="Interface/slider.png" x="0px" y="0px" width="23px" height="23px" imageMode="sprite-resize:23,23,17,4,15,4,4,4,15,4,15,4,15,4,4">
 			<interact onClick="mouseClick()" onClickMouseMove="mouseClick()" />
 			<effect>
-			  <!--<onClick name="focus" targetElement="#parent#parent" />-->
+			  <onClick name="focus" targetElement="#parent#parent" />
 			  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite-resize:23,23,19,4,15,4,4,4,15,4,15,4,15,4,4" post="true" />
 			  <onHover name="imageOverlay" filename="Interface/slider.png" imageMode="sprite-resize:23,23,18,4,15,4,4,4,15,4,15,4,15,4,4" post="true" />
 			  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
@@ -47,7 +47,7 @@
       <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,9">
         <interact onClickRepeat="downClick()" />
 		<effect>
-		  <!--<onClick name="focus" targetElement="#parent" />-->
+		  <onClick name="focus" targetElement="#parent" />
 		  <onClick name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,11" post="true" />
 		  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,10" post="true" />
 		  <onHover name="border" color="#822f" post="true" />
@@ -316,7 +316,7 @@
 								</panel>
 								<panel id="a0" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta0" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
-									<control id="slider0" name="horizontalSlider1" max="100" min="-50" value="0" width="50%"/>
+									<control id="slider0" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
 								</panel>
 							</panel>
 							<panel height="5%" width="100%">
@@ -329,7 +329,7 @@
 								</panel>
 								<panel id="a1" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta1" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
-									<control id="slider1" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+									<control id="slider1" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
 								</panel>
 							</panel>
 							<panel height="5%" width="100%">
@@ -342,7 +342,7 @@
 								</panel>
 								<panel id="a2" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta2" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
-									<control id="slider2" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+									<control id="slider2" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
 								</panel>
 							</panel>
 							<panel height="5%" width="100%">
@@ -355,7 +355,7 @@
 								</panel>
 								<panel id="a3" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta3" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
-									<control id="slider3" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+									<control id="slider3" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
 								</panel>
 							</panel>
 							<panel height="5%" width="100%">
@@ -368,7 +368,7 @@
 								</panel>
 								<panel id="a4" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta4" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
-									<control id="slider4" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+									<control id="slider4" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
 								</panel>
 							</panel>
 						</panel>
