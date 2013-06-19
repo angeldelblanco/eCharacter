@@ -14,6 +14,50 @@
     </image>
   </controlDefinition>
   
+  <controlDefinition name="horizontalSlider1" controller="de.lessvoid.nifty.controls.slider.SliderControl" inputMapping="de.lessvoid.nifty.controls.scrollbar.ScrollbarInputMapping">
+    <panel childLayout="horizontal" width="23px" align="center" focusable="true">
+      <interact onMouseWheel="mouseWheel()" />
+      <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,6">
+        <interact onClickRepeat="upClick()" />
+		<effect>
+		  <!--<onClick name="focus" targetElement="#parent" />-->
+		  <onClick name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,8" post="true" />
+		  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,7" post="true" />
+		  <onHover name="border" color="#822f" post="true" />
+		  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
+		  <onDisabled name="renderQuad" startColor="#2220" endColor="#2228" post="true" length="150" />
+		</effect>
+      </image>
+      <image id="#background" filename="Interface/slider.png" width="*" height="23px" childLayout="absolute" imageMode="sprite-resize:23,23,16,4,15,4,4,4,15,4,15,4,15,4,4">
+        <interact onClick="mouseClick()" onClickMouseMove="mouseClick()" />
+		<effect>
+		  <!--<onClick name="focus" targetElement="#parent" />-->
+		</effect>
+        <image id="#position" filename="Interface/slider.png" x="0px" y="0px" width="23px" height="23px" imageMode="sprite-resize:23,23,17,4,15,4,4,4,15,4,15,4,15,4,4">
+			<interact onClick="mouseClick()" onClickMouseMove="mouseClick()" />
+			<effect>
+			  <!--<onClick name="focus" targetElement="#parent#parent" />-->
+			  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite-resize:23,23,19,4,15,4,4,4,15,4,15,4,15,4,4" post="true" />
+			  <onHover name="imageOverlay" filename="Interface/slider.png" imageMode="sprite-resize:23,23,18,4,15,4,4,4,15,4,15,4,15,4,4" post="true" />
+			  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
+			  <onDisabled name="renderQuad" startColor="#2220" endColor="#2228" post="true" length="150" />
+			</effect>
+        </image>
+      </image>
+      <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,9">
+        <interact onClickRepeat="downClick()" />
+		<effect>
+		  <!--<onClick name="focus" targetElement="#parent" />-->
+		  <onClick name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,11" post="true" />
+		  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,10" post="true" />
+		  <onHover name="border" color="#822f" post="true" />
+		  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
+		  <onDisabled name="renderQuad" startColor="#2220" endColor="#2228" post="true" length="150" />
+		</effect>
+      </image>
+    </panel>
+  </controlDefinition>
+  
   <!-- First Screen-->
   <screen id="start" controller="es.eucm.character.gui.Gui">
     <layer id="background" childLayout="center">
@@ -272,7 +316,7 @@
 								</panel>
 								<panel id="a0" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta0" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
-									<control id="slider0" name="horizontalSlider" max="100" min="-50" value="0" width="50%"/>
+									<control id="slider0" name="horizontalSlider1" max="100" min="-50" value="0" width="50%"/>
 								</panel>
 							</panel>
 							<panel height="5%" width="100%">
