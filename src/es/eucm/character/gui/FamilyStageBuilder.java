@@ -37,15 +37,11 @@
 package es.eucm.character.gui;
 
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.PanelBuilder;
-import de.lessvoid.nifty.builder.TextBuilder;
-import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import de.lessvoid.nifty.effects.Effect;
 import de.lessvoid.nifty.effects.EffectEventId;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
-import de.lessvoid.nifty.tools.Color;
 import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
 import java.util.ArrayList;
@@ -100,8 +96,6 @@ public class FamilyStageBuilder {
         }
         Element image = nifty.getScreen(stageType).findElementByName("m");
         image.setVisible(true);
-        List<Effect> effects = image.getEffects(EffectEventId.onHover,Tooltip.class);
-        effects.get(0).getParameters().setProperty("hintText", i18nFamily.getString(control.getModelsLabel().get(modelsPage)));
         ImageRenderer imager = image.getRenderer(ImageRenderer.class);
         String imagePath = control.getModelIconPath(control.getModelsLabel().get(modelsPage));
         if(imagePath!=null){

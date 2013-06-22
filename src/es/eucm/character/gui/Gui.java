@@ -818,4 +818,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         animationsb.checkAll(id,b);
     }
+    
+    public void showWeb(){
+    
+    }
 }

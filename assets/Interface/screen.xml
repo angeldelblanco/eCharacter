@@ -141,15 +141,16 @@
 					<panel height="100%" width="79%" childLayout="center">
 						<text textHAlign="left" id= "headerText" align="right" text="Selecciona una familia y luego el modelo base para comenzar" font="${CALL.getfont(30)}" wrap="true"/>
 					</panel>
-					<image valign ="center" filename="${CALL.getMenu(s1-settings)}">
+					<image valign ="center" filename="${CALL.getMenu(s1-settings)}" visible="false">
 						<interact onClick=""/>
 						<effect>
-							<onHover name="imageOverlay" filename="${CALL.getMenu(s1-settings-over)}" post="true" />
+							<onHover name="imageOverlay" filename="${CALL.getMenu(s1-settings-over)}" post="true"/>
 						</effect>
 					</image> 
 				</panel>
 				<panel id="subheader" width="89%" height="33%" align="right" childLayout="center">
-					<text textHAlign="left" id= "subheaderText" text="Bienvenido a Character, el configurador de personajes de eAdventure. Para conocer más detalles sobre el proyecto pulsa aquí" font="${CALL.getfont(20)}" wrap="true"/>
+					<text textHAlign="left" id= "subheaderText" text="Bienvenido a Character, el configurador de personajes de eAdventure. Para conocer más detalles sobre el proyecto pulse \#0000FF#aquí" font="${CALL.getfont(20)}" wrap="true"/>
+					<interact onClick="showWeb()"/>
 				</panel>
 			</image>
 			<panel height="3%" width="100%"/>
@@ -252,10 +253,6 @@
 								<!-- Character's Image -->
 								<image id = "m" filename="${CALL.getTexture(model)}">
 									<interact onClick="selectModel(0)"/>
-									<effect>
-									<!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
-										<onHover name="tooltip" targetElement="hint-panel" hintText="Model 0" />
-									</effect>
 								</image> 
 							</panel>
 							<panel id="panel_changeright" width="12%" height="90%" align="center" childLayout="center">
@@ -276,12 +273,6 @@
 					</effect>
 				</image>
 			</panel>
-        </layer>
-        <!-- show a hint on top of the normal layer -->
-        <layer id="layer2" childLayout="absolute-inside">
-            <panel id="hint-panel" visible="false" childLayout="vertical" padding="5px,10px,5px,10px" backgroundColor="#ffc">
-                <text id="content" font="${CALL.getfont(20)}" text="" align="center" valign="center" color="#000"/>
-            </panel>    
         </layer>
     </screen>
   
@@ -304,15 +295,15 @@
 								<onHover name="imageOverlay" filename="${CALL.getMenu(export-over)}" post="true" />
 							</effect>
 						</image>
-						<image id = "export" align="center" filename="${CALL.getMenu(export-selection)}" visible ="false"/>
+						<image id = "export" align="center" filename="${CALL.getMenu(export-selection)}" visible="false"/>
 						</panel>
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}" visible="false">
 							<interact onClick=""/>
 							<effect>
-								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
+								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true"/>
 							</effect>
 						</image>
 					</panel>
@@ -469,7 +460,7 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}" visible="false">
 							<interact onClick=""/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
@@ -715,7 +706,7 @@
 						</panel>
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
-					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
+					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%" visible="false">
 						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
 							<interact onClick=""/>
 							<effect>
@@ -941,7 +932,7 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}" visible="false">
 							<interact onClick=""/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
