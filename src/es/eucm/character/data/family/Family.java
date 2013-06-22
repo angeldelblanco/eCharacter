@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.06.11 a las 11:39:41 AM CEST 
+// Generado el: AM.06.22 a las 11:33:06 AM CEST 
 //
 
 
@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlType;
  *                 &lt;sequence>
  *                   &lt;element name="license" type="{}licenseType" minOccurs="0"/>
  *                   &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *                   &lt;element name="abstract" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="URL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -177,6 +178,7 @@ public class Family {
      *       &lt;sequence>
      *         &lt;element name="license" type="{}licenseType" minOccurs="0"/>
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+     *         &lt;element name="abstract" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="URL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -194,6 +196,7 @@ public class Family {
     @XmlType(name = "", propOrder = {
         "license",
         "name",
+        "_abstract",
         "description",
         "author",
         "url",
@@ -205,6 +208,8 @@ public class Family {
         protected LicenseType license;
         @XmlElement(required = true)
         protected String name;
+        @XmlElement(name = "abstract", required = true)
+        protected String _abstract;
         @XmlElement(required = true)
         protected String description;
         @XmlElement(required = true)
@@ -262,6 +267,30 @@ public class Family {
          */
         public void setName(String value) {
             this.name = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad abstract.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getAbstract() {
+            return _abstract;
+        }
+
+        /**
+         * Define el valor de la propiedad abstract.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setAbstract(String value) {
+            this._abstract = value;
         }
 
         /**

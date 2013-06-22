@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../language.xsd">
-	<string id="idNameFamily">Medieval</string>
+	<string id="idNameFamily">Cubix Studio</string>
+	<string id="idAbstractFamily">Man and woman of average quality with realistic aesthetic.</string>
 	<string id="idDescriptionFamily">This family has composed by two humans: a man and a woman. Every human can dress casual or medieval.</string>
-	<string id="idAuthor">???</string>
+	<string id="idAuthor">Cubix Studio</string>
 	<string id="idMultiStageLabel1">Scale</string>
 	<string id="idBoneControler1">Head</string>
 	<string id="idBoneControler2">Arms</string>

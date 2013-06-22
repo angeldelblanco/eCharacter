@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../language.xsd">
 	<string id="idNameFamily">eAdventure</string>
+	<string id="idAbstractFamily">A man, a woman, a young boy and a young girl of simple aesthetic and cartoon type.</string>
 	<string id="idDescriptionFamily">This family has composed by four humans: a man, a woman, a young boy and a young girl.</string>
 	<string id="idAuthor">Alex,Sergio and David</string>
 	<string id="idMultiStageLabel1">Scale</string>

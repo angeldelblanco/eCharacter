@@ -107,6 +107,10 @@ public class FamilyControl{
         return family.getMetadata().getAuthor();
     }
     
+    public String getMetadataAbstract(){
+        return family.getMetadata().getAbstract();
+    }
+    
     public String getMetadataDescription(){
         return family.getMetadata().getDescription();
     }

@@ -136,7 +136,7 @@ public class FamilyStageBuilder {
             if(i<FAMILIES_PAGE+familyPage){
                 int j= i-familyPage;
                 nifty.getScreen(stageType).findElementByName("t"+j).setVisible(true);
-                nifty.getScreen(stageType).findElementByName("description"+j).getRenderer(TextRenderer.class).setText(i18nAux.getString(control.getMetadataFamilyDescription()));
+                nifty.getScreen(stageType).findElementByName("description"+j).getRenderer(TextRenderer.class).setText(i18nAux.getString(control.getMetadataFamilyAbstract()));
                 nifty.getScreen(stageType).findElementByName("textPanel"+j).layoutElements();
                 nifty.getScreen(stageType).findElementByName("name"+j).getRenderer(TextRenderer.class).setText(i18nAux.getString(control.getMetadataFamilyName()));
                 nifty.getScreen(stageType).findElementByName("textPanel"+j).layoutElements();

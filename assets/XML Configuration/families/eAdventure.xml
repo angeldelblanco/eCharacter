@@ -2,6 +2,7 @@
 <family xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../family.xsd">
 	<metadata>
 		<name>idNameFamily</name>
+		<abstract>idAbstractFamily</abstract>
 		<description>idDescriptionFamily</description>
 		<author>idAuthor</author>
 		<languagesPath>assets/Locale/eAdventure</languagesPath>

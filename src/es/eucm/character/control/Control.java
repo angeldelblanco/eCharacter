@@ -176,6 +176,10 @@ public class Control {
         return fc.getMetadataURL();
     }
     
+    public String getMetadataFamilyAbstract(){
+        return fc.getMetadataAbstract();
+    }
+    
     public String getMetadataFamilyDescription(){
         return fc.getMetadataDescription();
     }

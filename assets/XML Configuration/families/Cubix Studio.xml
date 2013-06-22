@@ -2,15 +2,16 @@
 <family xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../family.xsd">
 	<metadata>
 		<name>idNameFamily</name>
+		<abstract>idAbstractFamily</abstract>
 		<description>idDescriptionFamily</description>
 		<author>idAuthor</author>
-		<languagesPath>assets/Locale/Medieval</languagesPath>
-		<iconPath>assets/Interface/Icons/Medieval/IconoCubix.png</iconPath>
+		<languagesPath>assets/Locale/Cubix Studio</languagesPath>
+		<iconPath>assets/Interface/Icons/Cubix Studio/IconoCubix.png</iconPath>
 	</metadata>
 	<stages>
 	<!-- Revisar que controladores poner -->
 		<scaleStage stageLabel="idMultiStageLabel1" idPanel="ScalePanel">
-			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0000_Complexion.png</iconPath>
+			<iconPath>assets/Interface/Icons/Cubix Studio/IconosBarraSuperior_0000_Complexion.png</iconPath>
 			<boneController controllerLabel="idBoneControler1" idController="head" level="0"/>
 			<boneController controllerLabel="idBoneControler2" idController="arms" level="0"/>
 			<boneController controllerLabel="idBoneControler3" idController="hands" level="0"/>
@@ -18,28 +19,28 @@
 			<boneController controllerLabel="idBoneControler5" idController="feet" level="0"/>
 		</scaleStage>
 		<multiStage stageLabel="idMultiStageLabel2">
-			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0001_Piel.png</iconPath>
+			<iconPath>assets/Interface/Icons/Cubix Studio/IconosBarraSuperior_0001_Piel.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel1" idPanel="skinsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel3">
-			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0006_Pelo.png</iconPath>
+			<iconPath>assets/Interface/Icons/Cubix Studio/IconosBarraSuperior_0006_Pelo.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel2" idPanel="hairsPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel4">
-			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0002_Ojos.png</iconPath>
+			<iconPath>assets/Interface/Icons/Cubix Studio/IconosBarraSuperior_0002_Ojos.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel3" idPanel="eyesPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel5">
-			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0003_Camiseta.png</iconPath>
+			<iconPath>assets/Interface/Icons/Cubix Studio/IconosBarraSuperior_0003_Camiseta.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel4" idPanel="shirtsPanel" multiselection="true"/>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel5" idPanel="trousersPanel" multiselection="true"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel6">
-			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0005_Calzado.png</iconPath>
+			<iconPath>assets/Interface/Icons/Cubix Studio/IconosBarraSuperior_0005_Calzado.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel6" idPanel="shoesPanel" multiselection="false"/>
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel7">
-			<iconPath>assets/Interface/Icons/Medieval/IconosBarraSuperior_0007_Accesorios.png</iconPath>
+			<iconPath>assets/Interface/Icons/Cubix Studio/IconosBarraSuperior_0007_Accesorios.png</iconPath>
 			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel7" idPanel="accesoriesPanel" multiselection="true"/>
 		</multiStage>
 		<!-- Revisar la etapa de animación -->
@@ -63,13 +64,13 @@
 	<modelsRef>
 		<modelRef>
 			<modelLabel>idModelLabel1</modelLabel>	
-			<iconPath>assets/Interface/Icons/Medieval/Cubix-Hombre.png</iconPath>
-			<modelPath>assets/XML Configuration/models/Medieval/Male.xml</modelPath>
+			<iconPath>assets/Interface/Icons/Cubix Studio/Cubix-Hombre.png</iconPath>
+			<modelPath>assets/XML Configuration/models/Cubix Studio/Male.xml</modelPath>
 		</modelRef>
 		<modelRef>
 			<modelLabel>idModelLabel2</modelLabel>
-			<iconPath>assets/Interface/Icons/Medieval/Cubix-Mujer.png</iconPath>
-			<modelPath>assets/XML Configuration/models/Medieval/Female.xml</modelPath>
+			<iconPath>assets/Interface/Icons/Cubix Studio/Cubix-Mujer.png</iconPath>
+			<modelPath>assets/XML Configuration/models/Cubix Studio/Female.xml</modelPath>
 		</modelRef>	
 	</modelsRef>
 </family>
