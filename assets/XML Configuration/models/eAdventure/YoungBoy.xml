@@ -61,7 +61,7 @@
 				</colorDefault>
 			</baseShadowTexture>			
 			<!-- tshirtsPanel textures-->			
-			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="true" idTexture="idCamisaCorta"  text="idTextCamisaCorta">
+			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisaCorta"  text="idTextCamisaCorta">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisaCortaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisaCortaSolidoBoy.png</path>
 				<colorDefault>
@@ -81,13 +81,13 @@
 				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisaLargaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
-			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaCorta"  text="idTextCamisetaCorta">
+			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="true" idTexture="idCamisetaCorta"  text="idTextCamisetaCorta">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoCamisetaCortaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/CamisetaCortaSolidoBoy.png</path>				
 				<colorDefault>
-					<red>26</red>
-					<green>132</green>
-					<blue>255</blue>
+					<red>192</red>
+					<green>194</green>
+					<blue>232</blue>
 				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaCortaSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
@@ -112,23 +112,23 @@
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/CamisetaTirantesSombrasBoy.png</shadowPath>
 			</baseShadowTexture>			
 			<!-- trousersPanel textures-->
-			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="false" idTexture="idPantalonCorto"  text="idTextPantalonCorto">
+			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="true" idTexture="idPantalonCorto"  text="idTextPantalonCorto">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPantalonCortoBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PantalonCortoSolidoBoy.png</path>
 				<colorDefault>
 					<red>255</red>
-					<green>127</green>
-					<blue>2</blue>
+					<green>217</green>
+					<blue>102</blue>
 				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PantalonCortoSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
-			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="true" idTexture="idPantalonLargo"  text="idTextPantalonLargo">
+			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="false" idTexture="idPantalonLargo"  text="idTextPantalonLargo">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPantalonLargoBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/PantalonLargoSolidoBoy.png</path>
 				<colorDefault>
 					<red>255</red>
-					<green>127</green>
-					<blue>2</blue>
+					<green>217</green>
+					<blue>102</blue>
 				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/PantalonLargoSombrasBoy.png</shadowPath>
 			</baseShadowTexture>			
@@ -265,7 +265,7 @@
 				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Boy/MunequeraIzqSombrasBoy.png</shadowPath>
 			</baseShadowTexture>
-			<simpleTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idLogoCamiseta"  text="idTextLogoCamiseta">
+			<simpleTexture idPanelRef="otherAccesoriesPanel" layer="2" default="true" idTexture="idLogoCamiseta"  text="idTextLogoCamiseta">
 				<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoLogoCamisetaBoy.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Boy/LogoCamisetaBoy.png</path>
 			</simpleTexture>
@@ -348,7 +348,7 @@
 		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoAfro.jpg</iconPath>
 	</subMesh>
-	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idBowl" default="false" text="idTextPeloBowl">
+	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idBowl" default="true" text="idTextPeloBowl">
 		<path>assets/Models/eAdventure/Hair Boy/bowl haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="0.0" valueY="-4.29" valueZ="4.17"/>
@@ -359,7 +359,7 @@
 		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Boy/IconoPeloChicoTazon.jpg</iconPath>
 	</subMesh>
-	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idPunta" default="true" text="idTextPeloPunta">
+	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idPunta" default="false" text="idTextPeloPunta">
 		<path>assets/Models/eAdventure/Hair Boy/punta haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="2.10" valueY="-4.30" valueZ="0.60"/>

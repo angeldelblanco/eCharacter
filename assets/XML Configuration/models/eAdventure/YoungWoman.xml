@@ -74,7 +74,7 @@
 				</colorDefault>
 			</baseShadowTexture>	
 			<!-- tshirtsPanel textures-->			
-			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="true" idTexture="idCamisetaSinMangas"  text="idTextCamisetaSinMangas">
+			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaSinMangas"  text="idTextCamisetaSinMangas">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoCamisetaSinMangasGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/CamisetaSinMangasSolidoGirl.png</path>
 				<colorDefault>
@@ -94,13 +94,13 @@
 				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
-			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaTirantes"  text="idTextCamisetaTirantes">
+			<baseShadowTexture idPanelRef="tshirtsPanel" layer="1" default="true" idTexture="idCamisetaTirantes"  text="idTextCamisetaTirantes">
 				<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoCamisetaTirantesGirl.png</iconPath>
 				<path>assets/Textures/eAdventure/Textures Girl/CamisetaTirantesSolidoGirl.png</path>
 				<colorDefault>
 					<red>254</red>
-					<green>89</green>
-					<blue>0</blue>
+					<green>125</green>
+					<blue>125</blue>
 				</colorDefault>
 				<shadowPath>assets/Textures/eAdventure/Textures Girl/CamisetaTirantesSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
@@ -326,7 +326,7 @@
 		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPeloChicaViejo.jpg</iconPath>	
 	</subMesh>
-	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idPonyTailHair" default="false" text="idTextPeloPonyTail">
+	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idPonyTailHair" default="true" text="idTextPeloPonyTail">
 		<path>assets/Models/eAdventure/Hair Girl/ponytail haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="4.4" valueY="-6.0" valueZ="0.5"/>
@@ -337,7 +337,7 @@
 		</subMeshTexture>
 		<iconPath>assets/Interface/Icons/eAdventure/Girl/IconoPeloChicaColeta.jpg</iconPath>		
 	</subMesh>
-	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idShortHair" default="true"  text="idTextPeloShort">
+	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idShortHair" default="false"  text="idTextPeloShort">
 		<path>assets/Models/eAdventure/Hair Girl/short haircut.mesh.xml</path>
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"/>
 		<transformation transformationType="translate" valueX="0.0" valueY="-4.3" valueZ="4.6"/>
