@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="fr_FR" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="language.xsd">
+	<string id="language">assets/Locale/Flags/France.png</string>
 	<string id="idDescription">Bienvenue au configurateur des personages pour eAdventure. Avec cet configurateur des personages vous pouvez crèer votre avatar pour jouer aux jeux dans la platforme eAdventure.</string>
 	<string id="idStart">Démarrer</string>
 	<string id="idQuit">Sortir</string>

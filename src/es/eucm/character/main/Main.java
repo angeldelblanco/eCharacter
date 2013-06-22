@@ -38,6 +38,7 @@ package es.eucm.character.main;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.loader.ResourceLocator;
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 /**
@@ -45,14 +46,13 @@ import java.util.StringTokenizer;
  */
 public class Main {            
     public static void main(String[] args){
-        String sSistemaOperativo = System.getProperty("java.io.tmpdir");
-        
-        System.out.println(sSistemaOperativo);
+        /*//Saber directorio temporal del sistema
+        String dirTemp = System.getProperty("java.io.tmpdir");
+        System.out.println(dirTemp);*/
         
         /*//Saber el sistema operativo
         String sistemaOperativo = System.getProperty("os.name");
         System.out.println(sistemaOperativo);*/
-        
         
         //Initializes the resources and load the initial configuration
         Configuration config = new Configuration();

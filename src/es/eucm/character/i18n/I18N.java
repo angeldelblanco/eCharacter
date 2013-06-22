@@ -39,6 +39,7 @@ package es.eucm.character.i18n;
 import es.eucm.character.loader.XMLReader;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.StringTokenizer;
 
 public class I18N {
     private Metadata language;
@@ -86,5 +87,29 @@ public class I18N {
             }
         }
         return null;
+    }
+    
+    public static boolean isLanguage(String languagesPath, String language){
+        XMLReader<Metadata> xmlReader = new XMLReader<Metadata>(languagesPath);
+        ArrayList<Metadata> listLanguages = xmlReader.readXML(Metadata.class);
+        Iterator<Metadata> it = listLanguages.iterator();
+        while(it.hasNext()){
+            Metadata aux = it.next();
+            String readedLanguage = aux.getLanguage();
+            StringTokenizer tokens=new StringTokenizer(readedLanguage, "_");
+            String prefixLanguage = null;
+            while (tokens.hasMoreTokens()){
+                prefixLanguage = tokens.nextToken(); 
+                break;
+            }
+            
+            if (prefixLanguage.equals(language)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        return false;
     }
 }

@@ -66,6 +66,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class Gui extends AbstractAppState implements ScreenController {
@@ -832,5 +833,10 @@ public class Gui extends AbstractAppState implements ScreenController {
         } catch (Exception e) {
                 e.printStackTrace();
         }
+    }
+    
+    private String getSystemLanguage(){
+        Locale locale = Locale.getDefault();
+        return locale.getLanguage();
     }
 }
