@@ -60,7 +60,9 @@ import es.eucm.character.control.Control;
 import es.eucm.character.i18n.I18N;
 import es.eucm.character.loader.Configuration;
 import es.eucm.character.types.StageType;
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -820,6 +822,15 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     
     public void showWeb(){
-    
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    desktop.browse(new URI("http://character.e-ucm.es"));
+                }
+            }
+        } catch (Exception e) {
+                e.printStackTrace();
+        }
     }
 }
