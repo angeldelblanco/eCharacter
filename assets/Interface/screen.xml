@@ -5,16 +5,16 @@
   <!--<useStyles filename="nifty-grey-styles.xml" />-->
   <!--<useStyles filename="assets/Interface/Style/black-style/nifty-black-styles.xml" />-->
   <useControls filename="nifty-default-controls.xml" />
-  <registerEffect name="tooltip" class="es.eucm.character.gui.Tooltip" />
+  <registerEffect name="tooltip" class="es.eucm.echaracter.gui.Tooltip" />
   
-  <controlDefinition name="progressbar" controller="es.eucm.character.gui.ProgressbarControl">
+  <controlDefinition name="progressbar" controller="es.eucm.echaracter.gui.ProgressbarControl">
     <image filename="Interface/progressbar-outer.png" imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15" childLayout="absolute">
       <image id="#progress" x="0" y="0" filename="Interface/progressbar-inner.png" width="32px" height="100%" imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15" />
       <text id="#progress-text" font="Interface/Fonts/Default.fnt" text="" textHAlign="center" textVAlign="center" width="100%" height="100%" x="0" y="0" color="#f00f" />
     </image>
   </controlDefinition>
   
-  <controlDefinition name="horizontalSlidereCharacter" controller="es.eucm.character.gui.slider.SliderControl" inputMapping="es.eucm.character.gui.scrollbar.ScrollbarInputMapping">
+  <controlDefinition name="horizontalSlidereCharacter" controller="es.eucm.echaracter.gui.slider.SliderControl" inputMapping="es.eucm.echaracter.gui.scrollbar.ScrollbarInputMapping">
     <panel childLayout="horizontal" width="23px" align="center" focusable="true">
       <interact onMouseWheel="mouseWheel()" />
       <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,6">
@@ -56,7 +56,7 @@
     </panel>
   </controlDefinition>
   
-  <controlDefinition name="verticalSlidereCharacter" controller="es.eucm.character.gui.slider.SliderControl" inputMapping="es.eucm.character.gui.scrollbar.ScrollbarInputMapping">
+  <controlDefinition name="verticalSlidereCharacter" controller="es.eucm.echaracter.gui.slider.SliderControl" inputMapping="es.eucm.echaracter.gui.scrollbar.ScrollbarInputMapping">
     <panel childLayout="vertical" width="23px" align="center" focusable="true">
       <interact onMouseWheel="mouseWheel()" />
       <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,3">
@@ -99,7 +99,7 @@
   </controlDefinition>
   
   <!-- First Screen-->
-  <screen id="start" controller="es.eucm.character.gui.Gui">
+  <screen id="start" controller="es.eucm.echaracter.gui.Gui">
     <layer id="background" childLayout="center">
       <image filename="Interface/start-background.jpg"></image>
     </layer>
@@ -129,7 +129,7 @@
   </screen>
   
   <!-- Second screen(Model selection)-->
-	<screen id="modelScreen" controller="es.eucm.character.gui.Gui">
+	<screen id="modelScreen" controller="es.eucm.echaracter.gui.Gui">
         <layer id="background" childLayout="vertical">
             <image filename="${CALL.getTexture(s1-background)}" height="100%" width="100%"></image>   
         </layer>
@@ -277,7 +277,7 @@
     </screen>
   
   <!-- Third screen(basic)-->
-	<screen id="scaleStage" controller="es.eucm.character.gui.Gui">
+	<screen id="scaleStage" controller="es.eucm.echaracter.gui.Gui">
 		<layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<panel height="2%" width="100%"/>
 			<!-- Option Panel -->
@@ -437,7 +437,7 @@
     </screen>
 	
 	<!-- Fifth screen(skin)-->
-	<screen id="singleStage" controller="es.eucm.character.gui.Gui">
+	<screen id="singleStage" controller="es.eucm.echaracter.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<panel height="2%" width="100%"/>
 			<!-- Option Panel -->
@@ -682,7 +682,7 @@
     </screen>
 	
 	<!-- Sixth screen(accesories)-->
-	<screen id="multiStage" controller="es.eucm.character.gui.Gui">
+	<screen id="multiStage" controller="es.eucm.echaracter.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<panel height="2%" width="100%">
 				<!-- Space -->
@@ -905,7 +905,7 @@
     </screen>
 	
 	<!-- Eigthth screen(export)-->
-	<screen id="animationStage" controller="es.eucm.character.gui.Gui">
+	<screen id="animationStage" controller="es.eucm.echaracter.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<panel height="2%" width="100%">
 				<!-- Space -->
@@ -1218,7 +1218,7 @@
     </screen>
 	
 	<!-- Nineth screen(export)-->
-	<screen id="popupScreen" controller="es.eucm.character.gui.Gui">
+	<screen id="popupScreen" controller="es.eucm.echaracter.gui.Gui">
         <layer id="foreground" childLayout="center">
 			<image filename="${CALL.getTexture(background-popup-dialog)}" childLayout="vertical">
 				<panel height="45%" width="100%"/>
@@ -1250,13 +1250,13 @@
     </screen>
 	
 	<!-- Nineth screen(export)-->
-	<screen id="emptyScreen" controller="es.eucm.character.gui.Gui">
+	<screen id="emptyScreen" controller="es.eucm.echaracter.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="center">
 		
         </layer>
     </screen>
 	
-	<popup id="popupColor" childLayout="center" controller="es.eucm.character.gui.Gui" backgroundColor="#FFFA">
+	<popup id="popupColor" childLayout="center" controller="es.eucm.echaracter.gui.Gui" backgroundColor="#FFFA">
 		<panel id="popupPanel" height="35%" width="50%" childLayout="horizontal"  valign="center" >
 			<image id="selectionPanel" childLayout="vertical" valign="center" filename="${CALL.getTexture(background-popup)}">
 				<panel id="colorOptions" height="20%" width="90%" align="center" childLayout="horizontal">
@@ -1747,7 +1747,7 @@
 		</panel>
 	</popup>
 	
-	<popup id="PopUpColorDefault" childLayout="center" controller="es.eucm.character.gui.Gui" backgroundColor="#FFFA">
+	<popup id="PopUpColorDefault" childLayout="center" controller="es.eucm.echaracter.gui.Gui" backgroundColor="#FFFA">
 		<image id="popUpPanel" childLayout="Vertical" filename="${CALL.getTexture(s2-right-panel)}">
 			<panel height="2%" width="100%"/>
 			<panel id="texturePanel" height="80%" width="100%" childLayout="Horizontal">	
