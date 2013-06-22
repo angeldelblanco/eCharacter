@@ -172,7 +172,7 @@
 									<panel id="textPanel0" height="90%" width="50%" childLayout="vertical" valign="center">
 										<panel id="titulo0" height="30%" width="100%" childLayout="horizontal" valign="center">
 											<image id ="info0" valing="center" filename="${CALL.getButton(info)}">
-												<interact onClick=""/>
+												<interact onClick="showInfo(0)"/>
 												<effect>
 													<onHover name="imageOverlay" filename="${CALL.getButton(info-over)}" post="true" />
 												</effect>
@@ -192,7 +192,7 @@
 									<panel id="textPanel1" height="90%" width="50%" childLayout="vertical" valign="center">
 										<panel id="titulo1" height="30%" width="100%" childLayout="horizontal" valign="center">
 											<image id ="info1" valing="center" filename="${CALL.getButton(info)}">
-												<interact onClick=""/>
+												<interact onClick="showInfo(1)"/>
 												<effect>
 													<onHover name="imageOverlay" filename="${CALL.getButton(info-over)}" post="true" />
 												</effect>
@@ -212,7 +212,7 @@
 									<panel id="textPanel2" height="90%" width="50%" childLayout="vertical" valign="center">
 										<panel id="titulo2" height="30%" width="100%" childLayout="horizontal" valign="center">
 											<image id ="info2" valing="center" filename="${CALL.getButton(info)}">
-												<interact onClick=""/>
+												<interact onClick="showInfo(2)"/>
 												<effect>
 													<onHover name="imageOverlay" filename="${CALL.getButton(info-over)}" post="true" />
 												</effect>
@@ -273,6 +273,40 @@
 					</effect>
 				</image>
 			</panel>
+        </layer>
+		<layer id="InfoFam" childLayout="center" visible="false">
+			<image filename="${CALL.getTexture(background-popup-dialog)}" childLayout="vertical">
+				<panel height="45%" width="100%"/>
+				<panel id="popup" height="30%" width="60%" childLayout="vertical" align="center">
+					<panel id="familyNamePopupPanel" height="10%" width="100%" childLayout="horizontal">
+						<text id="familyNamePopupText" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#000088" wrap="true"/>
+					</panel>
+					<panel height="80%" width="100%" childLayout="horizontal">
+						<panel id="familyDescriptionPopupPanel" height="100%" width="65%" childLayout="horizontal" valign="center">
+							<text id="familyDescriptionPopupText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
+						</panel>
+						<panel width="10%"/>
+						<panel height="100%" width="25%" childLayout="vertical" valign="center">
+							<panel id="familyAuthorPopupPanel" height="45%" width="100%" childLayout="horizontal" valign="center">
+								<text id="familyAuthorPopupText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
+							</panel>
+							<panel height="10%"/>
+							<panel id="familyUrlPopupPanel" height="45%" width="100%" childLayout="horizontal" valign="center">
+								<text id="familyUrlPopupText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
+							</panel>
+						</panel>
+					</panel>
+					<panel id="buttonPanel" height="10%" width="100%" childLayout="center" valign="center">
+						<image id="accept" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+							<text id="acceptText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+							<interact onClick="closeInfo()"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+							</effect>
+						</image>
+					</panel>
+				</panel>
+			</image>
         </layer>
     </screen>
   

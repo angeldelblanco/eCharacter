@@ -839,4 +839,11 @@ public class Gui extends AbstractAppState implements ScreenController {
         Locale locale = Locale.getDefault();
         return locale.getLanguage();
     }
+    
+    public void showInfo(String family){
+        modelsb.showInfo(family);
+    }
+    public void closeInfo(){
+        nifty.getScreen("modelScreen").getLayerElements().get(2).setVisible(false);
+    }
 }
