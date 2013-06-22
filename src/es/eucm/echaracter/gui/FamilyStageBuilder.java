@@ -211,7 +211,9 @@ public class FamilyStageBuilder {
         nifty.getScreen(stageType).findElementByName("acceptText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAcept"));
         nifty.getScreen(stageType).findElementByName("accept").layoutElements();
         nifty.getScreen(stageType).getLayerElements().get(2).setVisible(true);
-        control.selectFamily(families.get(familySelected));
+        if(familySelected!=-1){
+            control.selectFamily(families.get(familySelected));
+        }
     }
 }
 
