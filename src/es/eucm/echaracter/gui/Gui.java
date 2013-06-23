@@ -82,7 +82,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     private int page;
     private ArrayList<String> stages,idBones,idPhysicalBuild;
     private ArrayList<String> families;
-    private int index;
+    private int index, languagePage;
     private String language;
     private FamilyStageBuilder modelsb;
     private ScaleStageBuilder scalesb;
@@ -99,7 +99,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public void startGame(String nextScreen) {
         nifty.gotoScreen(nextScreen);  // switch to another screen
-        modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
     }
     
     public void loadFamilyScreen(){
@@ -116,8 +115,8 @@ public class Gui extends AbstractAppState implements ScreenController {
                 element.markForRemoval();
             }
         }
-        nifty.gotoScreen("modelScreen");
-        modelsb.initModels(getTexture("family-button"));
+        nifty.gotoScreen("start");
+        modelsb.initModels();
     }
 
     public void quitGame() {
@@ -142,21 +141,13 @@ public class Gui extends AbstractAppState implements ScreenController {
         page = 0;
         index = 0;
         popUp = null;
-        new DropDownBuilder("localeDropDown") {{
-                valignCenter();
-                width("100");
-        }}.build(nifty, nifty.getScreen("start"), nifty.getScreen("start").findElementByName("panel_location"));
-        DropDown locale = nifty.getScreen("start").findNiftyControl("localeDropDown", DropDown.class);
-        ArrayList<String> languages = this.getListLanguagesAvailables();
-        Iterator<String> it = languages.iterator();
         String defectLanguage = config.getProperty(Configuration.LANGUAGE);
-        while(it.hasNext()){
-            final String l = it.next();
-            locale.addItem(l);
-        }
         language = defectLanguage;
-        locale.selectItem(defectLanguage);
+        ArrayList<String> languages = this.getListLanguagesAvailables();
+        languagePage = languages.indexOf(language);
         i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
+        modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
+        changeLocale("");
     }
     
     private ArrayList<String> getListLanguagesAvailables(){
@@ -522,10 +513,34 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("button-over")){
             return "assets/Interface/button-over.png";
         }
+        if(param.equals("selector")){
+            return "assets/Interface/selector.png";
+        }
+        if(param.equals("up-selector")){
+            return "assets/Interface/up-selector.png";
+        }
+        if(param.equals("up-selector-over")){
+            return "assets/Interface/up-selector-over.png";
+        }
+        if(param.equals("down-selector")){
+            return "assets/Interface/down-selector.png";
+        }
+        if(param.equals("down-selector-over")){
+            return "assets/Interface/down-selector-over.png";
+        }
+        if(param.equals("close-language")){
+            return "assets/Interface/close-language.png";
+        }
+        if(param.equals("close-language-over")){
+            return "assets/Interface/close-language-over.png";
+        }
         return null;
     }
     
     public String getTexture(String param){
+        if(param.equals("flag")){
+            return "assets/Interface/flag.png";
+        }
         if(param.equals("s1-background")){
             return "assets/Interface/s1-background.png";
         }
@@ -568,11 +583,17 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("background-popup-dialog")){
             return "assets/Interface/background-popup-dialog.png";
         }
+        if(param.equals("background-popup-language")){
+            return "assets/Interface/background-popup-language.png";
+        }
         if(param.equals("tab-l")){
             return "assets/Interface/tab-l.png";
         }
         if(param.equals("tab-r")){
             return "assets/Interface/tab-r.png";
+        }
+        if(param.equals("eCharacter")){
+            return "assets/Interface/eCharacter.png";
         }
         return null;
     }
@@ -609,22 +630,31 @@ public class Gui extends AbstractAppState implements ScreenController {
   }
     
   /******************************LocaleDropDownControler*****************************/  
-    
-  @NiftyEventSubscriber(id="localeDropDown")
-  public void onLocaleDropDownSelectionChanged(final String id, final DropDownSelectionChangedEvent<String> event) {
-    if (event.getSelection() != null) {
-        Button startb = nifty.getScreen("start").findNiftyControl("startButton", Button.class);
-        Button quitb = nifty.getScreen("start").findNiftyControl("quitButton", Button.class);
-        language = event.getSelection();
+  
+  public void changeLocale(String steep) {
+        if(steep.equals("+")){
+            languagePage++;
+        }
+        if(steep.equals("-")){
+            languagePage--;
+        }
+        ArrayList<String> languages = this.getListLanguagesAvailables();
+        language = languages.get(languagePage);
         config.setProperty(Configuration.LANGUAGE, language);
         i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
-        nifty.getScreen("start").findElementByName("description").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDescription"));
-        nifty.getScreen("start").findElementByName("panel_mid").layoutElements();
-        nifty.getScreen("start").findElementByName("languageText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idLanguage"));
-        nifty.getScreen("start").findElementByName("panel_location").layoutElements();
-        startb.setText(i18nGui.getString("idStart"));
-        quitb.setText(i18nGui.getString("idQuit"));
-    }
+        modelsb.changeLocale(i18nGui,language);
+        if(languagePage > 0){
+            nifty.getScreen("start").findElementByName("uplanguage").setVisible(true);
+        }
+        else{
+            nifty.getScreen("start").findElementByName("uplanguage").setVisible(false);
+        }
+        if((languages.size() - languagePage) > 1){
+            nifty.getScreen("start").findElementByName("downlanguage").setVisible(true);
+        }
+        else{
+            nifty.getScreen("start").findElementByName("downlanguage").setVisible(false);
+        }
   }
     
     /******************************FinishButtonControler*****************************/
@@ -844,6 +874,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         modelsb.showInfo(family);
     }
     public void closeInfo(){
-        nifty.getScreen("modelScreen").getLayerElements().get(2).setVisible(false);
+        nifty.getScreen("start").getLayerElements().get(2).setVisible(false);
+    }
+    public void hideLanguagePopup(){
+        nifty.getScreen("start").getLayerElements().get(3).setVisible(false);
     }
 }

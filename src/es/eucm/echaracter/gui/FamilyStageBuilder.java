@@ -37,43 +37,52 @@
 package es.eucm.echaracter.gui;
 
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.effects.Effect;
-import de.lessvoid.nifty.effects.EffectEventId;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import es.eucm.echaracter.control.Control;
 import es.eucm.echaracter.i18n.I18N;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FamilyStageBuilder {
     private static final int FAMILIES_PAGE = 3;
     private Nifty nifty;
     private I18N i18nGui; 
     private Control control;
-    private String stageType, language;
+    private String stageType, language, pathNoSel;
     private int modelsPage, familyPage, familySelected;
     
     public FamilyStageBuilder(Nifty nifty, Control control,I18N i18nGui,String pathNoSel, String language){
-        stageType = "modelScreen";
+        stageType = "start";
         this.nifty = nifty;
         this.control = control;
         modelsPage = 0;
         familyPage = 0;
         this.i18nGui = i18nGui;
         this.language = language;
-        initModels(pathNoSel);
+        this.pathNoSel = pathNoSel;
+        initModels();
     }
     
     /*receives as input the lenguaje of the aplication
       and builds all the families and the pictures of models*/
     
-    public void initModels(final String pathNoSel){
+    public void initModels(){
         nifty.getScreen(stageType).findElementByName("leftT").setVisible(false);
         nifty.getScreen(stageType).findElementByName("rightT").setVisible(false);
         nifty.getScreen(stageType).findElementByName("m").setVisible(false);
         nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(false);
+        String subHeader = i18nGui.getString("idSubHeader")+" \\#0000FF#"+i18nGui.getString("idHere");
+        nifty.getScreen(stageType).findElementByName("headerText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idHeader"));
+        nifty.getScreen(stageType).findElementByName("header").layoutElements();
+        nifty.getScreen(stageType).findElementByName("subHeaderText").getRenderer(TextRenderer.class).setText(subHeader);
+        nifty.getScreen(stageType).findElementByName("subHeader").layoutElements();
+        nifty.getScreen(stageType).findElementByName("welcome").getRenderer(TextRenderer.class).setText(i18nGui.getString("idWelcome"));
+        nifty.getScreen(stageType).findElementByName("welcomePanel").layoutElements();
+        nifty.getScreen(stageType).findElementByName("subWelcome").getRenderer(TextRenderer.class).setText(i18nGui.getString("ideCharacter"));
+        nifty.getScreen(stageType).findElementByName("subWelcomePanel").layoutElements();
+        nifty.getScreen(stageType).findElementByName("localeDescriptionPopupText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupLanguage"));
+        nifty.getScreen(stageType).findElementByName("localeDescriptionPopupPanel").layoutElements();
         for(int i=0; i<FAMILIES_PAGE;i++){
             Element image = nifty.getScreen(stageType).findElementByName("t"+i);
             ImageRenderer imager = image.getRenderer(ImageRenderer.class);
@@ -81,6 +90,21 @@ public class FamilyStageBuilder {
         }
         familySelected = -1;
         this.showFamilyPage("0");
+    }
+    
+    public void changeLocale(I18N i18nGui,String language){
+        this.i18nGui = i18nGui;
+        this.language = language;
+        Element image = nifty.getScreen(stageType).findElementByName("flag");
+        ImageRenderer imager = image.getRenderer(ImageRenderer.class);
+        String imagePath = i18nGui.getString("language");
+        if(imagePath!=null){
+            imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
+        }
+        else{
+            imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/flag.png", false));
+        }
+        initModels();
     }
     
     //Change the model's page hiding pictures of previous models or previous family

@@ -35,5 +35,11 @@
 	<string id="idDescriptionFamily">Description</string>
 	<string id="idAuthor">Author</string>
 	<string id="idUrl">Url</string>
+	<string id="idHeader">Sélectionnez une famille, puis le modèle de base pour commencer</string>
+	<string id="idSubHeader">Bienvenue à eCharacter, les caractères de eAdventure configurateur. Pour en savoir plus sur le projet, cliquez</string>
+	<string id="idHere">ici</string>
+	<string id="idWelcome">Bienvenue</string>
+	<string id="ideCharacter">Chaîne caractères configurateur</string>
+	<string id="idPopupLanguage">S'il vous plaît choisir la langue que vous préférez utiliser la liste</string>
 </metadata>
 	
