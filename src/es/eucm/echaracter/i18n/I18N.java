@@ -52,7 +52,18 @@ public class I18N {
         boolean found = false;
         while(it.hasNext()){
             Metadata aux = it.next();
-            if (aux.getLanguage().equals(language)){
+            
+            String readedLanguage = aux.getLanguage();
+            StringTokenizer tokens=new StringTokenizer(readedLanguage, "_");
+            String prefixLanguage = null;
+            while (tokens.hasMoreTokens()){
+                prefixLanguage = tokens.nextToken(); 
+                break;
+            }
+            
+            
+            
+            if (aux.getLanguage().equals(language) || prefixLanguage.equals(language)){
                 this.language = aux;
                 found = true;
             }

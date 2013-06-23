@@ -41,13 +41,21 @@ import es.eucm.echaracter.loader.XMLReader;
 import es.eucm.echaracter.repository.data.Repository;
 import es.eucm.echaracter.repository.data.Repository.Family;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class RepositoryReader {
     
     private final String url = "https://dl.dropboxusercontent.com/u/29636278/eCharacter/repo.xml";
-    private final String downloadFolder = Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+"repository/";
+    private final String downloadFolder = Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+"repository"+File.separator;
     private final String fileName = "families.xml";
     
     private ArrayList<Family> listFamilies;
@@ -119,6 +127,41 @@ public class RepositoryReader {
     }
     
     private void installFamily(String fileName){
-        //TO DO
+        try {
+            ZipInputStream zis = new ZipInputStream(new FileInputStream(fileName));
+            ZipEntry entry;
+            while (null != (entry = zis.getNextEntry()) ){
+                System.out.println(entry.getName());
+                if (entry.isDirectory()){
+                    File dir = new File(entry.getName());
+                    if (!dir.exists()){
+                        if (!dir.mkdir()){
+                            return; // no se pudo crear la carpeta de destino
+                        }
+                    }
+                }
+                else{
+                    FileOutputStream fos = new FileOutputStream(entry.getName());
+                    int readed;
+                    byte [] buffer = new byte[1024];
+                    while (0<(readed=zis.read(buffer))){
+                       fos.write(buffer,0,readed);
+                    }
+                    fos.close();
+                    zis.closeEntry();
+                }
+            }
+            zis.close();       
+        } catch (IOException ex) {
+            Logger.getLogger(RepositoryReader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
+    public static void main(String[] args){
+        RepositoryReader r = new RepositoryReader();
+        ArrayList<String> l = r.getFamiliesID();
+        r.downloadFamily(l.get(0));
     }
 }
