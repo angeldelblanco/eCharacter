@@ -100,7 +100,7 @@ public class I18N {
         return null;
     }
     
-    public static boolean isLanguage(String languagesPath, String language){
+    public static String getLanguage(String languagesPath, String language){
         XMLReader<Metadata> xmlReader = new XMLReader<Metadata>(languagesPath);
         ArrayList<Metadata> listLanguages = xmlReader.readXML(Metadata.class);
         Iterator<Metadata> it = listLanguages.iterator();
@@ -115,12 +115,9 @@ public class I18N {
             }
             
             if (prefixLanguage.equals(language)){
-                return true;
-            }
-            else{
-                return false;
+                return readedLanguage;
             }
         }
-        return false;
+        return null;
     }
 }

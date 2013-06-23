@@ -141,10 +141,21 @@ public class Gui extends AbstractAppState implements ScreenController {
         page = 0;
         index = 0;
         popUp = null;
-        String defectLanguage = config.getProperty(Configuration.LANGUAGE);
-        language = defectLanguage;
-        ArrayList<String> languages = this.getListLanguagesAvailables();
-        languagePage = languages.indexOf(language);
+        String systemLanguagePrefix = getSystemLanguage();
+        String systemLanguage = I18N.getLanguage(config.getProperty(Configuration.LOCALE_PATH), systemLanguagePrefix);
+        if (systemLanguage != null){
+            language = systemLanguage;
+            ArrayList<String> listLanguages = this.getListLanguagesAvailables();
+            languagePage = listLanguages.indexOf(language);
+            hideLanguagePopup();
+        }
+        else{
+            ArrayList<String> listLanguages = this.getListLanguagesAvailables();
+            if (listLanguages.size()>0){
+                language = listLanguages.get(0);
+            }
+            languagePage = 0;
+        }
         i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
         modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
         changeLocale("");
