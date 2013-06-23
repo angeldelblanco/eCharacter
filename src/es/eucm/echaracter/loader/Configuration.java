@@ -51,10 +51,10 @@ import java.util.logging.Logger;
  */
 public class Configuration { 
     
-    private final static String userPath = System.getProperty("user.home");
+    public final static String USER_PATH = System.getProperty("user.home");
     
     /** Properties file name */
-    public final static String PROPERTIES_FILE_NAME = userPath+File.separator+"eCharacter"+File.separator+"initConfig.properties";
+    public final static String PROPERTIES_FILE_NAME = USER_PATH+File.separator+"eCharacter"+File.separator+"initConfig.properties";
     //Language 
     public final static String LANGUAGE = "lang";
     
@@ -98,7 +98,7 @@ public class Configuration {
     
     
     public Configuration(){
-        File f = new File(userPath+File.separator+"eCharacter");
+        File f = new File(USER_PATH+File.separator+"eCharacter");
         if (!f.exists()){
             f.mkdirs();
         }
@@ -143,8 +143,8 @@ public class Configuration {
         this.properties.setProperty(DEFAULT_VECTOR_POSITION, "0.0,0.0,10.0");
         this.properties.setProperty(DEFAULT_VECTOR_DIRECTION, "0.0,0.0,-1.0");
         this.properties.setProperty(DEFAULT_VECTOR_UP, "0.0,1.0,0.0");
-        this.properties.setProperty(DEFAULT_EXPORT_PATH, userPath+"/eCharacter/export");
-        this.properties.setProperty(DEFAULT_TEMP_PATH, userPath+"/eCharacter/temp");
+        this.properties.setProperty(DEFAULT_EXPORT_PATH, USER_PATH+"/eCharacter/export");
+        this.properties.setProperty(DEFAULT_TEMP_PATH, USER_PATH+"/eCharacter/temp");
         
         //Saves the changes in the .properties file
         try {            

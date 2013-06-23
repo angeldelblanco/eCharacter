@@ -37,5 +37,5 @@
 package es.eucm.echaracter.types;
 
 public enum XMLType {
-    model, family, language
+    model, family, language, repository
 }

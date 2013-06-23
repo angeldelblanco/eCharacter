@@ -38,6 +38,7 @@ package es.eucm.echaracter.loader;
 import es.eucm.echaracter.data.family.Family;
 import es.eucm.echaracter.data.model.Model;
 import es.eucm.echaracter.i18n.Metadata;
+import es.eucm.echaracter.repository.data.Repository;
 import es.eucm.echaracter.types.XMLType;
 import java.io.File;
 import java.io.InputStream;
@@ -69,6 +70,9 @@ public class XMLReader<T> {
         }
         else if (docClass.equals(Metadata.class)){
             type = XMLType.language;
+        }
+        else if (docClass.equals(Repository.class)){
+            type = XMLType.repository;
         }
         File dirPath = new File(path);
         if (dirPath.isDirectory()){
