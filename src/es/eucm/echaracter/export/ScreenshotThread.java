@@ -82,7 +82,7 @@ public class ScreenshotThread extends Thread{
         try {
             String dirScreenshots = config.getProperty(Configuration.DEFAULT_TEMP_PATH);
             GenerateAnimation.cleanDirectory(dirScreenshots);
-            ZIPWritter zipWritter = new ZIPWritter(config.getProperty(Configuration.DEFAULT_EXPORT_PATH), "Screenshots.zip");
+            ZIPWritter zipWritter = new ZIPWritter(config.getProperty(Configuration.DEFAULT_EXPORT_PATH), "eCharacter.zip");
             //Recorremos las camaras
             Iterator<CameraValues> itCameras = listCameras.iterator();
             while(itCameras.hasNext()){

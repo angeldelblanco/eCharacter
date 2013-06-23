@@ -38,7 +38,8 @@ package es.eucm.echaracter.main;
 import es.eucm.echaracter.loader.Configuration;
 import es.eucm.echaracter.loader.ResourceLocator;
 import java.io.InputStream;
-import java.util.Locale;
+import java.util.Iterator;
+import java.util.Properties;
 import java.util.StringTokenizer;
 
 /**
@@ -73,4 +74,25 @@ public class Main {
             app.start();
         }
     }  
+    
+    public static void eCharacter (Properties properties){
+        //Load the initial configuration in the parameter properties
+        Configuration config = new Configuration();
+        config.loadDefaultProperties();        
+        Iterator<Object> it = properties.keySet().iterator();
+        while (it.hasNext()){
+            String key = ((String)it.next());
+            config.setProperty(key, properties.getProperty(key));
+        } 
+        
+        StringTokenizer dimension = new StringTokenizer(config.getProperty(Configuration.RESOLUTION), "x");
+        if (dimension.countTokens() == 2){
+            int width = Integer.parseInt(dimension.nextToken());
+            int height = Integer.parseInt(dimension.nextToken());     
+            Application app = new Application(width,height,config);
+            //Launch the GUI
+            app.start();
+        }
+        
+    }
 }

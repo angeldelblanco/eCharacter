@@ -40,6 +40,7 @@ import com.jme3.animation.AnimControl;
 import com.jme3.animation.Bone;
 import com.jme3.animation.LoopMode;
 import com.jme3.animation.SkeletonControl;
+import com.jme3.collision.CollisionResults;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -50,7 +51,6 @@ import com.jme3.scene.CameraNode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.debug.Arrow;
 import com.jme3.scene.shape.Cylinder;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture;
@@ -129,8 +129,7 @@ public class SceneControl {
         mainMeshNode.attachChild(mainMesh);
         setPositionModel(listTransformationMainMesh);
         this.control.getRootNode().attachChild(mainMeshNode);
-        loadSubMeshes();        
-        
+        loadSubMeshes();              
 
         //Setting the initial animation
         this.animControl = this.mainMesh.getControl(AnimControl.class);
@@ -285,6 +284,12 @@ public class SceneControl {
             b.setUserControl(true);
             b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,new Vector3f(inc,inc,inc));
         }
+        /*CollisionResults result = new CollisionResults();
+        int num = mainMesh.collideWith(base.getModelBound(), result);
+        if(num > 0){
+            float d = result.getClosestCollision().getDistance();
+            mainMesh.move(0.0f, d, 0.0f);
+        }*/
     }
     
     public ArrayList<String> getAnimationsName(){
@@ -415,8 +420,10 @@ public class SceneControl {
     }
     
     public void screenShot(){
+        //Remove background, base, restart rotation and center the model
         control.removeBackground();
         removeBase();
+        restartRotationModel();
         control.getViewPort().setBackgroundColor(new ColorRGBA(0f, 0f, 0f, 0.4f));
         
         //Animations list that is checked
@@ -457,16 +464,6 @@ public class SceneControl {
         if(listAnimationsChecked.size() > 0){
             //control.getGuiViewPort().removeProcessor(control.getNiftyDisplay());
             control.getNiftyDisplay().getNifty().gotoScreen("emptyScreen");
-            
-            
-            //BORRAR CUANDO HAGA BIEN LA PRIMERA CAPTURA
-            
-            animControl.clearChannels();
-            animChannel = animControl.createChannel();
-            
-            
-            
-            
             ScreenshotThread sst = new ScreenshotThread(this,config, control.getScreenShotState(),animChannel,
                     control.getGuiViewPort(),control.getNiftyDisplay(),listAnimationsChecked, 
                     listQualitiesChecked, listCamerasChecked);
