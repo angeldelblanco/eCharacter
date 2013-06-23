@@ -513,16 +513,12 @@ public class Control {
         sc.setCameraView(position,direction,up);
     }
     
-    public void rotateCamera(float ang,Vector3f vector){
-        sc.rotateCamera(ang,vector);
+    public void rotateModel(float ang){
+        sc.rotateModel(ang);
     }
     
-    public void pitchCamera(float ang){
-        sc.pitchCamera(ang);
-    }
-    
-    public void translateCamera(Vector3f inc){
-        sc.translateCamera(inc);
+    public void restartRotationModel(){
+        sc.restartRotationModel();
     }
     
     public void defaultCameraView(){

@@ -3,9 +3,9 @@
 	<mainMesh>
 		<path>assets/Models/Cubix Studio/Male/CubixStudioMaleNPC.mesh.xml</path>		
 		<!--Transformations-->
-		<transformation transformationType="rotate" valueX="0.0" valueY="-90.0" valueZ="0.0"></transformation>
+		<transformation transformationType="rotate" valueX="0.0" valueY="-77.0" valueZ="0.0"></transformation>
                 <transformation transformationType="scale" valueX="2.25" valueY="2.25" valueZ="2.25"></transformation>
-                <transformation transformationType="translate" valueX="-0.25" valueY="-2.5" valueZ="0.0"></transformation>
+                <transformation transformationType="translate" valueX="-2.65" valueY="-2.9" valueZ="0.0"></transformation>
                 <!--Textures-->
 		<mainMeshTextures>
 			<!-- skinPanel textures-->
@@ -84,24 +84,16 @@
 		<!--Physical Builds-->
 		<physicalBuilds>
 			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
-				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
-                                <escalation boneName="Cabeza" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+				<escalation boneName="ALL" valueX="0.444" valueY="0.444" valueZ="0.444"/>
+                                <escalation boneName="Bip01_Head" valueX="0.66" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
-			<physicalBuild label="idPhysicalBuildLabel2" idPanelRef="ScalePanel" idPhysicalBuild="idHeavy">
-				<escalation boneName="ALL" valueX="1.50" valueY="1.0" valueZ="1.0"/>
-				<escalation boneName="Cabeza" valueX="0.66" valueY="1.0" valueZ="1.0"/>
+                        <physicalBuild label="idPhysicalBuildLabel2" idPanelRef="ScalePanel" idPhysicalBuild="idTall">
+				<escalation boneName="ALL" valueX="0.488" valueY="0.555" valueZ="0.555"/>
+                                <escalation boneName="Bip01_Head" valueX="0.66" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
-			<physicalBuild label="idPhysicalBuildLabel3" idPanelRef="ScalePanel" idPhysicalBuild="idThin">
-				<escalation boneName="ALL" valueX="0.65" valueY="1.0" valueZ="1.0"/>
-				<escalation boneName="Cabeza" valueX="1.54" valueY="1.0" valueZ="1.0"/>
-			</physicalBuild>
-			<physicalBuild label="idPhysicalBuildLabel4" idPanelRef="ScalePanel" idPhysicalBuild="idTall">
-				<escalation boneName="ALL" valueX="1.1" valueY="1.25" valueZ="1.25"/>
-				<escalation boneName="Cabeza" valueX="0.91" valueY="0.8" valueZ="0.8"/>
-			</physicalBuild>
-			<physicalBuild label="idPhysicalBuildLabel5" idPanelRef="ScalePanel" idPhysicalBuild="idSmall">
-				<escalation boneName="ALL" valueX="0.9" valueY="0.75" valueZ="0.75"/>
-				<escalation boneName="Cabeza" valueX="1.11" valueY="1.33" valueZ="1.33"/>
+                        <physicalBuild label="idPhysicalBuildLabel3" idPanelRef="ScalePanel" idPhysicalBuild="idSmall">
+				<escalation boneName="ALL" valueX="0.4" valueY="0.333" valueZ="0.333"/>
+                                <escalation boneName="Bip01_Head" valueX="0.66" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
 		</physicalBuilds>
 	</mainMesh>	
