@@ -66,13 +66,16 @@ public class XMLValidator {
             // cargar el esquema XSD
             Schema schema = null;
             if (type==XMLType.family){
-                schema = sf.newSchema(new File("assets/XML Configuration/family.xsd"));
+                schema = sf.newSchema(new File("assets/XSD/family.xsd"));
             }
             else if (type==XMLType.model){
-                schema = sf.newSchema(new File("assets/XML Configuration/model.xsd"));
+                schema = sf.newSchema(new File("assets/XSD/model.xsd"));
             }
             else if (type==XMLType.language){
-                schema = sf.newSchema(new File("assets/Locale/language.xsd"));
+                schema = sf.newSchema(new File("assets/XSD/language.xsd"));
+            }
+            else if (type==XMLType.repository){
+                schema = sf.newSchema(new File("assets/XSD/repository.xsd"));
             }
             // crear el objeto validator, que será el responsable de validar el XML
             Validator validator = schema.newValidator();
