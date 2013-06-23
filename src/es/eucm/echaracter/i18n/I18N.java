@@ -52,18 +52,7 @@ public class I18N {
         boolean found = false;
         while(it.hasNext()){
             Metadata aux = it.next();
-            
-            String readedLanguage = aux.getLanguage();
-            StringTokenizer tokens=new StringTokenizer(readedLanguage, "_");
-            String prefixLanguage = null;
-            while (tokens.hasMoreTokens()){
-                prefixLanguage = tokens.nextToken(); 
-                break;
-            }
-            
-            
-            
-            if (aux.getLanguage().equals(language) || prefixLanguage.equals(language)){
+            if (aux.getLanguage().equals(language)){
                 this.language = aux;
                 found = true;
             }
@@ -98,6 +87,18 @@ public class I18N {
             }
         }
         return null;
+    }
+    
+    public static ArrayList<String> getListLanguage(String languagesPath){
+        XMLReader<Metadata> xmlReader = new XMLReader<Metadata>(languagesPath);
+        ArrayList<Metadata> list = xmlReader.readXML(Metadata.class);
+        ArrayList<String> listLanguage =  new ArrayList<String>();
+        Iterator<Metadata> it = list.iterator();
+        while(it.hasNext()){
+            Metadata aux = it.next();
+            listLanguage.add(aux.getLanguage());
+        }
+        return listLanguage;
     }
     
     public static String getLanguage(String languagesPath, String language){

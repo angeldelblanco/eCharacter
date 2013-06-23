@@ -145,12 +145,12 @@ public class Gui extends AbstractAppState implements ScreenController {
         String systemLanguage = I18N.getLanguage(config.getProperty(Configuration.LOCALE_PATH), systemLanguagePrefix);
         if (systemLanguage != null){
             language = systemLanguage;
-            ArrayList<String> listLanguages = this.getListLanguagesAvailables();
+            ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
             languagePage = listLanguages.indexOf(language);
             hideLanguagePopup();
         }
         else{
-            ArrayList<String> listLanguages = this.getListLanguagesAvailables();
+            ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
             if (listLanguages.size()>0){
                 language = listLanguages.get(0);
             }
@@ -161,7 +161,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         changeLocale("");
     }
     
-    private ArrayList<String> getListLanguagesAvailables(){
+    /*private ArrayList<String> getListLanguagesAvailables(){
         ArrayList<String> listLanguages = new ArrayList<String>();
         StringTokenizer st = new StringTokenizer(config.getProperty(Configuration.LIST_LANGUAGE));
         while (st.hasMoreTokens())
@@ -169,7 +169,7 @@ public class Gui extends AbstractAppState implements ScreenController {
             listLanguages.add(st.nextToken());
         }
         return listLanguages;
-    }
+    }*/
     
     public void buildMenu(){
         String types[] = {StageType.singleStage.toString(),
@@ -649,9 +649,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(steep.equals("-")){
             languagePage--;
         }
-        ArrayList<String> languages = this.getListLanguagesAvailables();
-        language = languages.get(languagePage);
-        config.setProperty(Configuration.LANGUAGE, language);
+        ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
+        language = listLanguages.get(languagePage);
+        //config.setProperty(Configuration.LANGUAGE, language);
         i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
         modelsb.changeLocale(i18nGui,language);
         if(languagePage > 0){
@@ -660,7 +660,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         else{
             nifty.getScreen("start").findElementByName("uplanguage").setVisible(false);
         }
-        if((languages.size() - languagePage) > 1){
+        if((listLanguages.size() - languagePage) > 1){
             nifty.getScreen("start").findElementByName("downlanguage").setVisible(true);
         }
         else{
