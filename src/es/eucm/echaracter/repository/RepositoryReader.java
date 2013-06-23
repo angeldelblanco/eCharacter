@@ -127,6 +127,7 @@ public class RepositoryReader {
     }
     
     private void installFamily(String fileName){
+        // TO DO
         try {
             ZipInputStream zis = new ZipInputStream(new FileInputStream(fileName));
             ZipEntry entry;
@@ -145,7 +146,7 @@ public class RepositoryReader {
                     int readed;
                     byte [] buffer = new byte[1024];
                     while (0<(readed=zis.read(buffer))){
-                       fos.write(buffer,0,readed);
+                        fos.write(buffer,0,readed);
                     }
                     fos.close();
                     zis.closeEntry();
