@@ -111,8 +111,8 @@
 					<panel id="header" height="100%" width="79%" childLayout="center">
 						<text textHAlign="left" id= "headerText" align="right" text="" font="${CALL.getfont(30)}" wrap="true"/>
 					</panel>
-					<image valign ="center" filename="${CALL.getMenu(s1-settings)}" visible="false">
-						<interact onClick=""/>
+					<image valign ="center" filename="${CALL.getMenu(s1-settings)}">
+						<interact onClick="showRepository()"/>
 						<effect>
 							<onHover name="imageOverlay" filename="${CALL.getMenu(s1-settings-over)}" post="true"/>
 						</effect>
@@ -325,6 +325,68 @@
 									</effect>
 								</image>
 							</panel>
+						</image>
+					</panel>
+				</panel>
+			</image>
+        </layer>
+		<layer id="repository" childLayout="center" visible="false">
+			<image filename="${CALL.getTexture(background-popup-language)}" childLayout="vertical">
+				<panel height="27%" width="100%"/>
+				<panel height="12%" width="70%" childLayout="horizontal" align="center">
+					<panel height="100%" width="25%"/>
+					<panel height="100%" width="75%" childLayout="vertical" align="center">
+						<panel id="welcomeRepoPanel" height="60%" width="100%" childLayout="horizontal" align="center">
+							<text id="repoWelcome" valign="center" height="50%" width="30%" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#000000" wrap="true"/>
+							<image filename="${CALL.getTexture(eCharacter)}" valign="center"/>
+							<panel height="100%" width="25%"/>
+							<image valign="top" filename="${CALL.getButton(close-language)}" childLayout="center">
+								<interact onClick="hideRepository()"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(close-language-over)}" post="true" />
+								</effect>
+							</image>
+						</panel>
+						<panel id="repoDescPanel" height="40%" width="100%" childLayout="horizontal" align="center">
+							<text id="repoDescText" valign="center" height="50%" width="100%" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#565857" wrap="true"/>
+						</panel>
+					</panel>
+				</panel>
+				<panel height="5%" width="100%"/>
+				<panel id="popupRepository" height="30%" width="60%" childLayout="horizontal" align="center">
+					<panel height="100%" width="5%" childLayout="center">
+						<image id="familyRepoLeft" filename="${CALL.getButton(left)}">
+							<interact onClick="changeRepository(-)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+							</effect>
+						</image>
+					</panel>
+					<panel height="100%" width="90%" childLayout="vertical">
+						<panel height="80%" width="100%" childLayout="horizontal">
+							<panel id="RepoDescFamPanel" height="100%" width="70%" childLayout="horizontal">
+								<text id="RepoDescFamText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
+							</panel>
+							<panel height="100%" width="30%" childLayout="center">
+								<image id="familyRepo" height="103" width="174" filename="Interface/x.png"/>
+							</panel>
+						</panel>
+						<panel height="20%" width="100%" childLayout="center">
+							<image id="download" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+								<text id="downloadText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+								<interact onClick="downloadFamily()"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+								</effect>
+							</image>
+						</panel>
+					</panel>
+					<panel height="100%" width="5%" childLayout="center">
+						<image id="familyRepoRight" filename="${CALL.getButton(right)}">
+							<interact onClick="changeRepository(+)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
+							</effect>
 						</image>
 					</panel>
 				</panel>

@@ -41,5 +41,7 @@
 	<string id="idWelcome">Bienvenido a</string>
 	<string id="ideCharacter">El configurador de personajes</string>
 	<string id="idPopupLanguage">Por favor, seleccione el idioma de la lista que prefiera utilizar</string>
+	<string id="idDownload">Descargar</string>
+	<string id="idRepoText">Descarga las familias que más te gusten</string>
 </metadata>
 	

@@ -41,4 +41,6 @@
 	<string id="idWelcome">Welcome to</string>
 	<string id="ideCharacter">Configurator characters</string>
 	<string id="idPopupLanguage">Please select the language you prefer to the list</string>
+	<string id="idDownload">Download</string>
+	<string id="idRepoText">Download the families that you like</string>
 </metadata>

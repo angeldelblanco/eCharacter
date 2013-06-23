@@ -41,5 +41,7 @@
 	<string id="idWelcome">Bienvenue</string>
 	<string id="ideCharacter">Chaîne caractères configurateur</string>
 	<string id="idPopupLanguage">S'il vous plaît choisir la langue que vous préférez utiliser la liste</string>
+	<string id="idDownload">Télécharger</string>
+	<string id="idRepoText">Télécharger les familles que vous aimez</string>
 </metadata>
 	

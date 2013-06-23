@@ -52,7 +52,9 @@ import de.lessvoid.nifty.controls.DropDown;
 import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
+import es.eucm.echaracter.repository.RepositoryReader;
 import de.lessvoid.nifty.elements.Element;
+import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
@@ -82,7 +84,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     private int page;
     private ArrayList<String> stages,idBones,idPhysicalBuild;
     private ArrayList<String> families;
-    private int index, languagePage;
+    private int index, languagePage, repositoryPage;
     private String language;
     private FamilyStageBuilder modelsb;
     private ScaleStageBuilder scalesb;
@@ -90,6 +92,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     private MultiStageBuilder multisb;
     private AnimationStageBuilder animationsb;
     private PopUpBuilder popUp;
+    private RepositoryReader repository;
     
     public Gui(Control control,Configuration config){
         this.control = control;
@@ -141,6 +144,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         page = 0;
         index = 0;
         popUp = null;
+        repository = new RepositoryReader();
         String systemLanguagePrefix = getSystemLanguage();
         String systemLanguage = I18N.getLanguage(config.getProperty(Configuration.LOCALE_PATH), systemLanguagePrefix);
         if (systemLanguage != null){
@@ -889,5 +893,63 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     public void hideLanguagePopup(){
         nifty.getScreen("start").getLayerElements().get(3).setVisible(false);
+    }
+    public void showRepository(){
+        String stageType = "start";
+        nifty.getScreen(stageType).findElementByName("repoWelcome").getRenderer(TextRenderer.class).setText(i18nGui.getString("idWelcome"));
+        nifty.getScreen(stageType).findElementByName("welcomeRepoPanel").layoutElements();
+        nifty.getScreen(stageType).findElementByName("repoDescText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRepoText"));
+        nifty.getScreen(stageType).findElementByName("repoDescPanel").layoutElements();
+        nifty.getScreen(stageType).findElementByName("downloadText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDownload"));
+        nifty.getScreen(stageType).findElementByName("download").layoutElements();
+        nifty.getScreen(stageType).getLayerElements().get(4).setVisible(true);
+        changeRepository("0");
+    }
+    public void hideRepository(){
+        nifty.getScreen("start").getLayerElements().get(4).setVisible(false);
+    }
+    public void changeRepository(String steep){
+        if(steep.equals("+")){
+            repositoryPage++;
+        }
+        if(steep.equals("-")){
+            repositoryPage--;
+        }
+        if(steep.equals("0")){
+            repositoryPage=0;
+        }
+        ArrayList<String> listFamilies = repository.getFamiliesID();
+        String family = listFamilies.get(repositoryPage);
+        nifty.getScreen("start").findElementByName("RepoDescFamText").getRenderer(TextRenderer.class).setText(repository.getDescriptionFamily(family));
+        nifty.getScreen("start").findElementByName("RepoDescFamPanel").layoutElements();
+        i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
+        Element image = nifty.getScreen("start").findElementByName("familyRepo");
+        ImageRenderer imager = image.getRenderer(ImageRenderer.class);
+        //String imagePath = repository.getIconPathFamily(family);
+        String imagePath = null;
+        if(imagePath!=null){
+            imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
+        }
+        else{
+            imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
+        }
+        if(repositoryPage > 0){
+            nifty.getScreen("start").findElementByName("familyRepoLeft").setVisible(true);
+        }
+        else{
+            nifty.getScreen("start").findElementByName("familyRepoLeft").setVisible(false);
+        }
+        if((repository.getNumFamilies() - repositoryPage) > 1){
+            nifty.getScreen("start").findElementByName("familyRepoRight").setVisible(true);
+        }
+        else{
+            nifty.getScreen("start").findElementByName("familyRepoRight").setVisible(false);
+        }
+    }
+    public void downloadFamily(){
+        ArrayList<String> listFamilies = repository.getFamiliesID();
+        String idFamily = listFamilies.get(repositoryPage);
+        repository.downloadFamily(idFamily);
+        modelsb.initModels();
     }
 }
