@@ -53,11 +53,6 @@ public class Configuration {
     
     /** Properties file name */
     public final static String PROPERTIES_FILE_NAME = USER_PATH+File.separator+"eCharacter"+File.separator+"initConfig.properties";
-    //Language 
-    //public final static String LANGUAGE = "lang";
-    
-    //List of available languages
-    //public final static String LIST_LANGUAGE = "listLanguage";
  
     //Resolution
     public final static String RESOLUTION = "resolution";
@@ -130,11 +125,9 @@ public class Configuration {
     
     public void loadDefaultProperties(){
         //Default configuration
-        /*this.properties.setProperty(LANGUAGE, "en_UK");
-        this.properties.setProperty(LIST_LANGUAGE,"en_UK es_ES fr_FR");*/
         this.properties.setProperty(RESOLUTION, "1024x768");
         this.properties.setProperty(ASSETS_PATH, "assets");
-        this.properties.setProperty(FAMILIES_PATH,"assets/XML Configuration/families");
+        this.properties.setProperty(FAMILIES_PATH,"assets/XML families");
         this.properties.setProperty(LOCALE_PATH,"assets/Locale/Gui");
         this.properties.setProperty(DEFAULT_QUALITY, "10");
         this.properties.setProperty(DEFAULT_CAMERA_NAME, "DefaultCamera");
