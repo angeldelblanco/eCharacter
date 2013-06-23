@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="fr_FR" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../language.xsd">
 	<string id="idPhysicalBuildLabel1">Moyenne</string>
-	<string id="idPhysicalBuildLabel2">Gros</string>
-	<string id="idPhysicalBuildLabel3">Mince</string>
-	<string id="idPhysicalBuildLabel4">Haut</string>
-	<string id="idPhysicalBuildLabel5">Bas</string>
+        <string id="idPhysicalBuildLabel2">Haut</string>
+	<string id="idPhysicalBuildLabel3">Bas</string>
 	<string id="idTextPielCasual">Peau casual</string>
 	<string id="idTextPielMedieval">Peau médiéval</string>
 	<string id="idTextPeloCasual">Cheveaux casual</string>

@@ -4,9 +4,11 @@
 		<path>assets/Models/eAdventure/Animation Girl/polySurfaceShape12.mesh.xml</path>
 		<!--Transformations-->
 		<transformation transformationType="rotate" valueX="90" valueY="0.0" valueZ="0.0"></transformation>
-		<transformation transformationType="translate" valueX="0.0" valueY="-3.0" valueZ="0.0"></transformation>
-		<transformation transformationType="scale" valueX="0.65" valueY="0.65" valueZ="0.65"></transformation>			
-		<!--Textures-->
+		<transformation transformationType="translate" valueX="0.0" valueY="-2.90" valueZ="0.0"></transformation>
+                <transformation transformationType="translate" valueX="-2.55" valueY="0.0" valueZ="0.0"></transformation>
+                <transformation transformationType="rotate" valueX="0.0" valueY="0.0" valueZ="-13.0"></transformation>
+		<transformation transformationType="scale" valueX="0.65" valueY="0.65" valueZ="0.65"></transformation>
+                <!--Textures-->
 		<mainMeshTextures>
 			<!-- skinPanel textures-->
 			<simpleTexture idPanelRef="skinsPanel" layer="0" default="true" idTexture="idPielBlanca" text="idTextPielBlanca">
@@ -261,24 +263,23 @@
 		</mainMeshTextures>
 		<!--Bones-->
 		<bones>
-			<!-- Dar valores a los huesos, Los que hay son aleatorios -->
-			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="100" boneName="Cabeza"/>
-			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="100" boneName="Torax"/>
-			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="100" boneName="ClaviculaIz"/>
-			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="100" boneName="ClaviculaDer"/>
-			<bone idControllerRef="head" defaultValue="0" minValue="-50" maxValue="100" boneName="Cabeza"/>
-			<bone idControllerRef="arms" defaultValue="0" minValue="-100" maxValue="100" boneName="ClaviculaIz"/>
-			<bone idControllerRef="arms" defaultValue="0" minValue="-100" maxValue="100" boneName="ClaviculaDer"/>
-			<bone idControllerRef="leftArm" defaultValue="0" minValue="-100" maxValue="100" boneName="ClaviculaIz"/>
-			<bone idControllerRef="leftHand" defaultValue="0" minValue="-100" maxValue="100" boneName="MuniecaIz"/>
-			<bone idControllerRef="rightArm" defaultValue="0" minValue="-100" maxValue="100" boneName="ClaviculaDer"/>			
-			<bone idControllerRef="rightHand" defaultValue="0" minValue="-100" maxValue="100" boneName="MuniecaDer"/>
-			<bone idControllerRef="legs" defaultValue="0" minValue="-100" maxValue="100" boneName="FemurIz"/>
-			<bone idControllerRef="legs" defaultValue="0" minValue="-100" maxValue="100" boneName="FemurDer"/>
-			<bone idControllerRef="leftLeg" defaultValue="0" minValue="-100" maxValue="100" boneName="FemurIz"/>
-			<bone idControllerRef="leftFoot" defaultValue="0" minValue="-100" maxValue="100" boneName="TobilloIz"/>
-			<bone idControllerRef="rightLeg" defaultValue="0" minValue="-100" maxValue="100" boneName="FemurDer"/>
-			<bone idControllerRef="rightFoot" defaultValue="0" minValue="-100" maxValue="100" boneName="TobilloDer"/>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="Cabeza"/>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="Torax"/>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaIz"/>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaDer"/>
+			<bone idControllerRef="head" defaultValue="0" minValue="-50" maxValue="50" boneName="Cabeza"/>
+			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaIz"/>
+			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaDer"/>
+			<bone idControllerRef="leftArm" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaIz"/>
+			<bone idControllerRef="leftHand" defaultValue="0" minValue="-50" maxValue="50" boneName="MuniecaIz"/>
+			<bone idControllerRef="rightArm" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaDer"/>			
+			<bone idControllerRef="rightHand" defaultValue="0" minValue="-50" maxValue="50" boneName="MuniecaDer"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="50" boneName="FemurIz"/>
+			<bone idControllerRef="legs" defaultValue="0" minValue="-50" maxValue="50" boneName="FemurDer"/>
+			<bone idControllerRef="leftLeg" defaultValue="0" minValue="-50" maxValue="50" boneName="FemurIz"/>
+			<bone idControllerRef="leftFoot" defaultValue="0" minValue="-50" maxValue="50" boneName="TobilloIz"/>
+			<bone idControllerRef="rightLeg" defaultValue="0" minValue="-50" maxValue="50" boneName="FemurDer"/>
+			<bone idControllerRef="rightFoot" defaultValue="0" minValue="-100" maxValue="50" boneName="TobilloDer"/>
 		</bones>	
 		<!--Physical Builds-->
 		<physicalBuilds>

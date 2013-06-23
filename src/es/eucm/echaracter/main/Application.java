@@ -177,92 +177,36 @@ public class Application extends SimpleApplication{
     }
     
     // Custom Keybindings: Mapping a named action to a key input. 
-    private void initKeys() {        
-        //Translate camera
-        inputManager.addMapping("TranslateRight", new KeyTrigger(KeyInput.KEY_RIGHT));
-        inputManager.addListener(actionListener,"TranslateRight");
-        inputManager.addMapping("TranslateLeft", new KeyTrigger(KeyInput.KEY_LEFT));
-        inputManager.addListener(actionListener,"TranslateLeft");
-        inputManager.addMapping("TranslateUp", new KeyTrigger(KeyInput.KEY_UP));
-        inputManager.addListener(actionListener,"TranslateUp");
-        inputManager.addMapping("TranslateDown", new KeyTrigger(KeyInput.KEY_DOWN));
-        inputManager.addListener(actionListener,"TranslateDown");
-        inputManager.addMapping("Translate+", new KeyTrigger(KeyInput.KEY_X));
-        inputManager.addListener(actionListener,"Translate+");
-        inputManager.addMapping("Translate-", new KeyTrigger(KeyInput.KEY_Z));
-        inputManager.addListener(actionListener,"Translate-");
-        
-        //Rotate camera
+    private void initKeys() {                
+        //Rotate model
         inputManager.addMapping("RotateRight", new KeyTrigger(KeyInput.KEY_D));
         inputManager.addListener(actionListener,"RotateRight");
         inputManager.addMapping("RotateLeft", new KeyTrigger(KeyInput.KEY_A));
         inputManager.addListener(actionListener,"RotateLeft");
-        inputManager.addMapping("PitchUp", new KeyTrigger(KeyInput.KEY_W));
-        inputManager.addListener(actionListener,"PitchUp");
-        inputManager.addMapping("PitchDown", new KeyTrigger(KeyInput.KEY_S));
-        inputManager.addListener(actionListener,"PitchDown");
-        
-        //Views camera
-        inputManager.addMapping("Frontal",new KeyTrigger(KeyInput.KEY_1));
-        inputManager.addListener(actionListener, "Frontal");
-        inputManager.addMapping("2D",new KeyTrigger(KeyInput.KEY_2));
-        inputManager.addListener(actionListener, "2D");
+        inputManager.addMapping("Restart", new KeyTrigger(KeyInput.KEY_SPACE));
+        inputManager.addListener(actionListener,"Restart");
   }
 
     // Definining the named action that can be triggered by key inputs.
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
-            if(name.equals("TranslateRight") && !keyPressed){
-                Vector3f inc = new Vector3f(0.2f, 0.0f, 0.0f);
-                control.translateCamera(inc);
-            }
-            if(name.equals("TranslateLeft") && !keyPressed){
-                Vector3f inc = new Vector3f(-0.2f, 0.0f, 0.0f);
-                control.translateCamera(inc);
-            }
-            if(name.equals("TranslateUp") && !keyPressed){
-                Vector3f inc = new Vector3f(0.0f, 0.2f, 0.0f);
-                control.translateCamera(inc);
-            }
-            if(name.equals("TranslateDown") && !keyPressed){
-                Vector3f inc = new Vector3f(0.0f, -0.2f, 0.0f);
-                control.translateCamera(inc);
-            }
-            if(name.equals("Translate+") && !keyPressed){
-                Vector3f inc = new Vector3f(0.0f, 0.0f, 0.2f);
-                control.translateCamera(inc);
-            }
-            if(name.equals("Translate-") && !keyPressed){
-                Vector3f inc = new Vector3f(0.0f, 0.0f, -0.2f);
-                control.translateCamera(inc);
-            }
             if(name.equals("RotateRight") && !keyPressed){
-                control.rotateCamera(5.0f,Vector3f.UNIT_Y);
+                control.rotateModel(5.0f);
             }
             if(name.equals("RotateLeft") && !keyPressed){
-                control.rotateCamera(-5.0f, Vector3f.UNIT_Y);
+                control.rotateModel(-5.0f);
             }
-            if(name.equals("PitchUp") && !keyPressed){
-                control.pitchCamera(-5.0f);
+            if(name.equals("Restart") && !keyPressed){
+                control.restartRotationModel();
             }
-            if(name.equals("PitchDown") && !keyPressed){
-                control.pitchCamera(5.0f);
-            }
-            if (name.equals("Frontal") && !keyPressed) {
-                Vector3f position = new Vector3f(0.0f,0.0f,10.f);
-                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-                control.setViewCamera(position, direction, up);
-            }
-            if (name.equals("2D") && !keyPressed) {
-                Vector3f position = new Vector3f(-3.0f,3.0f,10.0f);
-                Vector3f direction = new Vector3f(0.0f,0.0f,-1.0f);
-                Vector3f up = new Vector3f(0.0f,1.0f,0.0f);
-                control.setViewCamera(position, direction, up);
-            }
-            
         }
     };
+    
+    
+    
+    
+    
+    
     
     /*private static final class RenderLoop implements RenderLoopCallback {
         private final Nifty nifty;
