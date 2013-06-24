@@ -97,6 +97,13 @@ public class Control {
     }
     
     /*************************Getter******************************************/
+    public void refreshFamilies(){
+        String familiesPath1 = this.config.getProperty(Configuration.FAMILIES_PATH);
+        String familiesPath2 = this.config.getProperty(Configuration.FAMILIES_REPO_PATH);
+        XMLFamilyReader xmlReader = new XMLFamilyReader(familiesPath1, familiesPath2);
+        families = xmlReader.readXML();
+    }
+    
     public AssetManager getAssetManager() {
         return assetManager;
     }

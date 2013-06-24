@@ -93,9 +93,10 @@ public class RepositoryReader {
             Family family = it.next();
             if (family.getUrl().equals(familyID)){
                 String iconUrl = family.getIconPath();
-                if(FamiliesDownloader.download(iconUrl, downloadFolder, "pr.png")){
+                String fileDownloadedName = iconUrl.substring(iconUrl.lastIndexOf("/")+1, iconUrl.length());
+                if(FamiliesDownloader.download(iconUrl, downloadFolder, fileDownloadedName)){
                     System.out.println("Descargado");
-                    return downloadFolder+"pr.png";
+                    return downloadFolder+fileDownloadedName;
                 }
             }
         }
@@ -134,9 +135,14 @@ public class RepositoryReader {
     private void installFamily(String fileName){
         // TO DO
         try {
+            String path  = Configuration.APPLICATION_PATH+File.separator+"assets"+File.separator+"Families"+File.separator;
+            File file = new File(path);
+            if (!file.exists()){
+                file.mkdirs();
+            }
+            
             ZipInputStream zis = new ZipInputStream(new FileInputStream(fileName));
             ZipEntry entry;
-            String path  = Configuration.APPLICATION_PATH+File.separator+"assets"+File.separator+"Families"+File.separator;
             while (null != (entry = zis.getNextEntry()) ){
                 System.out.println(entry.getName());
                 if (entry.isDirectory()){
@@ -162,13 +168,5 @@ public class RepositoryReader {
         } catch (IOException ex) {
             Logger.getLogger(RepositoryReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    
-    
-    public static void main(String[] args){
-        RepositoryReader r = new RepositoryReader();
-        ArrayList<String> l = r.getFamiliesID();
-        r.downloadFamily(l.get(0));
     }
 }
