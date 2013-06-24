@@ -49,24 +49,52 @@ import javax.xml.bind.Unmarshaller;
 
 public class XMLFamilyReader {
     private ArrayList<FamilyWithPath> list;
-    private String path;
+    private String path1, path2;
     private XMLValidator xmlValidator;
     
-    public XMLFamilyReader(String path){
-        this.path = path;
-
+    public XMLFamilyReader(String path1, String path2){
+        this.path1 = path1;
+        this.path2 = path2;
         list = new ArrayList<FamilyWithPath>();
         xmlValidator = new XMLValidator();
     }
     
     public ArrayList<FamilyWithPath> readXML(){
         /** Check the type of the XML */
-        File dirPath = new File(path);
+        //Installation directory
+        File dirPath = new File(path1);
         if (dirPath.isDirectory()){
             File[] ficheros = dirPath.listFiles();
             for (int x=0;x<ficheros.length;x++){
                 File file = ficheros[x];
                 /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
+                if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), XMLType.family)) {
+                    try {    
+                        FamilyWithPath family = new FamilyWithPath(file.getPath(), unmarshal(ResourceLocator.getResource(file.getPath())));
+                        list.add(family);
+                    } catch (JAXBException ex) {
+                        Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
+        else{
+            if (getExtension(dirPath.getPath()).equals("xml") && xmlValidator.checkXML(dirPath.getPath(), XMLType.family)) {
+                try {    
+                    FamilyWithPath family = new FamilyWithPath(dirPath.getPath(), unmarshal(ResourceLocator.getResource(dirPath.getPath())));    
+                    list.add(family);
+                    } catch (JAXBException ex) {
+                        Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+        }
+        //User directory
+        dirPath = new File(path2);
+        if (dirPath.isDirectory()){
+            File[] ficheros = dirPath.listFiles();
+            for (int x=0;x<ficheros.length;x++){
+                File file = ficheros[x];
+                // Check if the file is a file, the extension is "xml" and validate the XML with the XSD
                 if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), XMLType.family)) {
                     try {    
                         FamilyWithPath family = new FamilyWithPath(file.getPath(), unmarshal(ResourceLocator.getResource(file.getPath())));

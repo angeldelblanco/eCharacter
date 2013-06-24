@@ -42,8 +42,6 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
 import com.jme3.system.AppSettings;
@@ -52,6 +50,7 @@ import de.lessvoid.nifty.Nifty;
 import es.eucm.echaracter.control.Control;
 import es.eucm.echaracter.export.ScreenshotMyAppState;
 import es.eucm.echaracter.gui.Gui;
+import es.eucm.echaracter.gui.Resources;
 import es.eucm.echaracter.gui.Tooltip;
 import es.eucm.echaracter.loader.Configuration;
 import es.eucm.echaracter.loader.ResourceLocator;
@@ -101,29 +100,32 @@ public class Application extends SimpleApplication{
         
         // Register locator to assetManager
         assetManager.registerLocator("."+File.separator, ResourceLocator.class);
+        assetManager.registerLocator(Configuration.USER_PATH+File.separator+"eCharacter"+File.separator, ResourceLocator.class);
         
-        //Add nifty
-        niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
-        guiViewPort.addProcessor(niftyDisplay);
-        
-        screenShotState = new ScreenshotMyAppState();        
-        control = new Control(config,rootNode,cam,assetManager,this, viewPort, guiViewPort, niftyDisplay, screenShotState);
-        gui = new Gui(control,config);
-        
-        //Activate the Nifty-JME integration
-        nifty = niftyDisplay.getNifty();
-        nifty.fromXml("assets/Interface/screen.xml", "start", gui);
-        //nifty.setDebugOptionPanelColors(true);
-        
-        //Attach nifty-control and screenshot
-        stateManager.attach(gui);
-        stateManager.attach(screenShotState);  
-        
-        //Disable flyCam
-        flyCam.setDragToRotate(true); // you need the mouse for clicking now
-        flyCam.setEnabled(false);
-        /*LwjglInitHelper.renderLoop(nifty, new RenderLoop(nifty));
- 	LwjglInitHelper.destroy();*/
+        if (checkResources()){
+            //Add nifty
+            niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
+            guiViewPort.addProcessor(niftyDisplay);
+
+            screenShotState = new ScreenshotMyAppState();        
+            control = new Control(config,rootNode,cam,assetManager,this, viewPort, guiViewPort, niftyDisplay, screenShotState);
+            gui = new Gui(control,config);
+
+            //Activate the Nifty-JME integration
+            nifty = niftyDisplay.getNifty();
+            nifty.fromXml("assets/Interface/screen.xml", "start", gui);
+            //nifty.setDebugOptionPanelColors(true);
+
+            //Attach nifty-control and screenshot
+            stateManager.attach(gui);
+            stateManager.attach(screenShotState);  
+
+            //Disable flyCam
+            flyCam.setDragToRotate(true); // you need the mouse for clicking now
+            flyCam.setEnabled(false);
+            /*LwjglInitHelper.renderLoop(nifty, new RenderLoop(nifty));
+            LwjglInitHelper.destroy();*/
+        }
     }
     
     public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) 
@@ -202,11 +204,217 @@ public class Application extends SimpleApplication{
         }
     };
     
-    
-    
-    
-    
-    
+    private static boolean checkResources(){
+        if (ResourceLocator.getPathResource(Resources.background_popup) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.background_popup_custom) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.background_popup_dialog) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.background_popup_language) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.blue) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_accept) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_accept_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_cancel) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_cancel_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_color) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_color_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_down) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_down_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_family) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_family_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_info) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_info_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_left) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_left_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_more) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_more_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_next) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_next_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_previous) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_previous_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_right) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_right_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_up) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.button_up_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.close_language) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.close_language_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.eCharacter) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.export) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.export_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.export_selection) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.flag) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.font_15) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.font_20) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.font_30) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.green) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.header_left_separator) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.header_right_separator) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.logo) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.menu_selection) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.model) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.red) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s1_background) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s1_header) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s1_left_panel) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s1_right_panel) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s1_settings) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s1_settings_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s2_header_left) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s2_header_right) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s2_right_panel) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s2_separator) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s2_settings) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.s2_settings_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.selector) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.selector_down) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.selector_down_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.selector_up) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.selector_up_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.tab_left) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.tab_rigth) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.tick) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.x) == null){
+            return false;
+        }
+        return true;
+    }
+
     
     /*private static final class RenderLoop implements RenderLoopCallback {
         private final Nifty nifty;

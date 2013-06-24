@@ -102,7 +102,7 @@ public class FamilyStageBuilder {
             imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
         }
         else{
-            imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/flag.png", false));
+            imager.setImage(nifty.getRenderEngine().createImage(Resources.flag, false));
         }
         initModels();
     }
@@ -127,7 +127,7 @@ public class FamilyStageBuilder {
             imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
         }
         else{
-            imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
+            imager.setImage(nifty.getRenderEngine().createImage(Resources.x, false));
         }
         if(modelsPage > 0){
             nifty.getScreen(stageType).findElementByName("leftT").setVisible(true);
@@ -174,7 +174,7 @@ public class FamilyStageBuilder {
                     imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
                 }
                 else{
-                    imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
+                    imager.setImage(nifty.getRenderEngine().createImage(Resources.x, false));
                 }
             }
         }

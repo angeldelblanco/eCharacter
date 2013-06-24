@@ -41,17 +41,10 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
-import de.lessvoid.nifty.builder.ElementBuilder;
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
-import de.lessvoid.nifty.builder.TextBuilder;
-import de.lessvoid.nifty.controls.Button;
-import de.lessvoid.nifty.controls.ButtonClickedEvent;
 import de.lessvoid.nifty.controls.CheckBoxStateChangedEvent;
-import de.lessvoid.nifty.controls.DropDown;
-import de.lessvoid.nifty.controls.DropDownSelectionChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
-import de.lessvoid.nifty.controls.dropdown.builder.DropDownBuilder;
 import es.eucm.echaracter.repository.RepositoryReader;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
@@ -69,7 +62,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.StringTokenizer;
 
 public class Gui extends AbstractAppState implements ScreenController {
     
@@ -381,61 +373,46 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     public String getMenu(String param){
         if(param.equals("s1-header")){
-            return "assets/Interface/s1-header.png";
+            return Resources.s1_header;
         }
         if(param.equals("logo")){
-            return "assets/Interface/logo.png";
+            return Resources.logo;
         }
         if(param.equals("s1-settings")){
-            return "assets/Interface/s1-settings.png";
+            return Resources.s1_settings;
         }
         if(param.equals("s1-settings-over")){
-            return "assets/Interface/s1-settings-over.png";
+            return Resources.s1_settings_over;
         }
         if(param.equals("s2-header-left")){
-            return "assets/Interface/s2-header-left.png";
+            return Resources.s2_header_left;
         }
         if(param.equals("header-leftseparator")){
-            return "assets/Interface/header-leftseparator.png";
+            return Resources.header_left_separator;
         }
         if(param.equals("s2-header-right")){
-            return "assets/Interface/s2-header-right.png";
+            return Resources.s2_header_right;
         }
         if(param.equals("header-rightseparator")){
-            return "assets/Interface/header-rightseparator.png";
+            return Resources.header_right_separator;
         }
         if(param.equals("export")){
-            return "assets/Interface/export.png";
+            return Resources.export;
         }
         if(param.equals("export-over")){
-            return "assets/Interface/export-over.png";
+            return Resources.export_over;
         }
         if(param.equals("export-selection")){
-            return "assets/Interface/export-selection.png";
+            return Resources.export_selection;
         }
         if(param.equals("s2-settings")){
-            return "assets/Interface/s2-settings.png";
+            return Resources.s2_settings;
         }
         if(param.equals("s2-settings-over")){
-            return "assets/Interface/s2-settings-over.png";
+            return Resources.s2_settings_over;
         }
         if(param.equals("menu-selection")){
-            return "assets/Interface/header-selection.png";
-        }
-        if(param.equals("yes")){
-            return "assets/Interface/MenuRojo.png";
-        }
-        if(param.equals("no")){
-            return "assets/Interface/MenuAzul.png";
-        }
-        if(param.equals("an")){
-            return "assets/Interface/MenuAzulAntiguo.png";
-        }
-        if(param.equals("ay")){
-            return "assets/Interface/MenuRojoAntiguo.png";
-        }
-        if(param.equals("ca")){
-            return "assets/Interface/CuadroAzul.png";
+            return Resources.menu_selection;
         }
         return null;
     }
@@ -443,178 +420,177 @@ public class Gui extends AbstractAppState implements ScreenController {
     public String getFont(String size){
         
         if(size.equals("15")){
-            return "assets/Interface/Fonts/Brixton15.fnt";
+            return Resources.font_15;
         }
         if(size.equals("20")){
-            return "assets/Interface/Fonts/Brixton20.fnt";
+            return Resources.font_20;
         }
         if(size.equals("30")){
-            return "assets/Interface/Fonts/Brixton30.fnt";
+            return Resources.font_30;
         }
         return null;
     }
     
     public String getButton(String param){
         if(param.equals("left")){
-            return "assets/Interface/scroll-left.png";
+            return Resources.button_left;
         }
         if(param.equals("left-over")){
-            return "assets/Interface/scroll-left-over.png";
+            return Resources.button_left_over;
         }
         if(param.equals("right")){
-            return "assets/Interface/scroll-right.png";
+            return Resources.button_right;
         }
         if(param.equals("right-over")){
-            return "assets/Interface/scroll-right-over.png";
+            return Resources.button_right_over;
         }
         if(param.equals("up")){
-            return "assets/Interface/scroll-up.png";
+            return Resources.button_up;
         }
         if(param.equals("up-over")){
-            return "assets/Interface/scroll-up-over.png";
+            return Resources.button_up_over;
         }
         if(param.equals("down")){
-            return "assets/Interface/scroll-down.png";
+            return Resources.button_down;
         }
         if(param.equals("down-over")){
-            return "assets/Interface/scroll-down-over.png";
+            return Resources.button_down_over;
         }
         if(param.equals("info")){
-            return "assets/Interface/s1-leftpanel-familyinfo.png";
+            return Resources.button_info;
         }
         if(param.equals("info-over")){
-            return "assets/Interface/s1-leftpanel-familyinfo-over.png";
+            return Resources.button_info_over;
         }
         if(param.equals("color")){
-            return "assets/Interface/rightpanel-selectcolor.png";
+            return Resources.button_color;
         }
         if(param.equals("color-over")){
-            return "assets/Interface/rightpanel-selectcolor-over.png";
+            return Resources.button_color_over;
         }
         if(param.equals("next")){
-            return "assets/Interface/next.png";
+            return Resources.button_next;
         }
         if(param.equals("next-over")){
-            return "assets/Interface/next-over.png";
+            return Resources.button_next_over;
         }
         if(param.equals("previous")){
-            return "assets/Interface/previous.png";
+            return Resources.button_previous;
         }
         if(param.equals("previous-over")){
-            return "assets/Interface/previous-over.png";
+            return Resources.button_previous_over;
         }
         if(param.equals("cancel")){
-            return "assets/Interface/cancel.png";
+            return Resources.button_cancel;
         }
         if(param.equals("cancel-over")){
-            return "assets/Interface/cancel-over.png";
+            return Resources.button_cancel_over;
         }
         if(param.equals("accept")){
-            return "assets/Interface/accept.png";
+            return Resources.button_accept;
         }
         if(param.equals("accept-over")){
-            return "assets/Interface/accept-over.png";
+            return Resources.button_accept_over;
         }
         if(param.equals("more")){
-            return "assets/Interface/more.png";
+            return Resources.button_more;
         }
         if(param.equals("more-over")){
-            return "assets/Interface/more-over.png";
+            return Resources.button_more_over;
         }
         if(param.equals("button")){
-            return "assets/Interface/button.png";
+            return Resources.button;
         }
         if(param.equals("button-over")){
-            return "assets/Interface/button-over.png";
+            return Resources.button_over;
         }
         if(param.equals("selector")){
-            return "assets/Interface/selector.png";
+            return Resources.selector;
         }
         if(param.equals("up-selector")){
-            return "assets/Interface/up-selector.png";
+            return Resources.selector_up;
         }
         if(param.equals("up-selector-over")){
-            return "assets/Interface/up-selector-over.png";
+            return Resources.selector_up_over;
         }
         if(param.equals("down-selector")){
-            return "assets/Interface/down-selector.png";
+            return Resources.selector_down;
         }
         if(param.equals("down-selector-over")){
-            return "assets/Interface/down-selector-over.png";
+            return Resources.selector_down_over;
         }
         if(param.equals("close-language")){
-            return "assets/Interface/close-language.png";
+            return Resources.close_language;
         }
         if(param.equals("close-language-over")){
-            return "assets/Interface/close-language-over.png";
+            return Resources.close_language_over;
         }
         return null;
     }
     
     public String getTexture(String param){
         if(param.equals("flag")){
-            return "assets/Interface/flag.png";
+            return Resources.flag;
         }
         if(param.equals("s1-background")){
-            return "assets/Interface/s1-background.png";
+            return Resources.s1_background;
         }
         if(param.equals("s1-leftpanel")){
-            return "assets/Interface/s1-leftpanel.png";
+            return Resources.s1_left_panel;
         }
         if(param.equals("family-button")){
-            return "assets/Interface/family-button.png";
+            return Resources.button_family;
         }
         if(param.equals("family-button-over")){
-            return "assets/Interface/family-button-over.png";
+            return Resources.button_family_over;
         }
         if(param.equals("s1-rightpanel")){
-            return "assets/Interface/s1-rightpanel.png";
+            return Resources.s1_right_panel;
         }
         if(param.equals("s2-right-panel")){
-            return "assets/Interface/s2-right-panel.png";
+            return Resources.s2_right_panel;
         }
         if(param.equals("model")){
-            return "assets/Interface/model.png";
+            return Resources.model;
         }
         if(param.equals("s2-separator")){
-            return "assets/Interface/s2-separator.png";
+            return Resources.s2_separator;
         }
         if(param.equals("red")){
-            return "assets/Interface/red.png";
+            return Resources.red;
         }
         if(param.equals("green")){
-            return "assets/Interface/green.png";
+            return Resources.green;
         }
         if(param.equals("blue")){
-            return "assets/Interface/blue.png";
+            return Resources.blue;
         }
         if(param.equals("background-popup")){
-            return "assets/Interface/background-popup.png";
+            return Resources.background_popup;
         }
         if(param.equals("background-popup-custom")){
-            return "assets/Interface/background-popup-custom.png";
+            return Resources.background_popup_custom;
         }
         if(param.equals("background-popup-dialog")){
-            return "assets/Interface/background-popup-dialog.png";
+            return Resources.background_popup_dialog;
         }
         if(param.equals("background-popup-language")){
-            return "assets/Interface/background-popup-language.png";
+            return Resources.background_popup_language;
         }
         if(param.equals("tab-l")){
-            return "assets/Interface/tab-l.png";
+            return Resources.tab_left;
         }
         if(param.equals("tab-r")){
-            return "assets/Interface/tab-r.png";
+            return Resources.tab_rigth;
         }
         if(param.equals("eCharacter")){
-            return "assets/Interface/eCharacter.png";
+            return Resources.eCharacter;
         }
         return null;
     }
     
     public String getTick(){
-        
-        return "assets/Interface/tick.png";
+        return Resources.tick;
     }
     
     public void changeTextureOrSubMesh(String substage, String idTextureOrSubMesh){
@@ -931,7 +907,7 @@ public class Gui extends AbstractAppState implements ScreenController {
             imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
         }
         else{
-            imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
+            imager.setImage(nifty.getRenderEngine().createImage(Resources.x, false));
         }
         if(repositoryPage > 0){
             nifty.getScreen("start").findElementByName("familyRepoLeft").setVisible(true);

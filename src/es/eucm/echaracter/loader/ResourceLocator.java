@@ -71,7 +71,7 @@ public class ResourceLocator implements AssetLocator{
         String filePath = key.getName();        
         String path = getAssetResource(filePath, root.getPath());
         if(path!= null){
-            /** File found */
+            // File found
             return new AssetInfoResource(manager, key, path);
         }
         else {
@@ -85,10 +85,17 @@ public class ResourceLocator implements AssetLocator{
             return filePath;
         }
         else{
-            /** The file don't exists. */
-            String fileName = getFileName(filePath);
-            /** Search this file in root directory. */
-            return getRecursiveAssetResource(fileName, rootPath);
+            // The file don't exists.
+            String path = Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+filePath;
+            file = new File(path);
+            if (file.exists()){
+                return path;
+            }
+            else{
+                String fileName = getFileName(filePath);
+                // Search this file in root directory.
+                return getRecursiveAssetResource(fileName, rootPath);
+            }
         }
     }
     
@@ -111,8 +118,6 @@ public class ResourceLocator implements AssetLocator{
                         if (!canonical.endsWith(absolute)){
                             throw new AssetNotFoundException("Asset name doesn´t match requirements.\n" +
                                     "\"" + canonical + "\" doesn´t match \"" + absolute + "\"");
-
-
                         }
                     } catch (IOException ex) {
                         throw new AssetLoadException("Failed to get file canonical path " + file, ex);
@@ -130,6 +135,40 @@ public class ResourceLocator implements AssetLocator{
             x++;
         }
         return resource;
+    }
+    
+    private static String getPathResourceInDirectory(String fileName, String directory){        
+        File dirPath = new File(directory);
+        /** List all the files of this directory */
+        File[] files = dirPath.listFiles();
+        if (files!=null){
+            String finalPath = null;
+            for (int x=0;x<files.length;x++){
+                File file = files[x];
+                if (! file.isDirectory()) {
+                    /** "file" is a file */
+                    if (file.getName().equals(fileName)){
+                        /** We found the file. */
+                        String resource = dirPath+File.separator+file.getName();                                        
+                        try {
+                            InputStream stream = new FileInputStream(resource);
+                            return resource;
+                        } catch (FileNotFoundException ex) {
+                            System.out.println(ex.getMessage());
+                            return null;
+                        }
+                    }   
+                }
+                else{
+                    /** "file" is a directory. */
+                    finalPath = getPathResourceInDirectory(fileName, directory+File.separator+file.getName());
+                }
+            }
+            return finalPath;
+        }
+        else{
+            return null;
+        }
     }
     
     private static InputStream getResourceInDirectory(String fileName, String directory){        
@@ -165,16 +204,53 @@ public class ResourceLocator implements AssetLocator{
         }
     }
     
+    public static String getPathResource(String filePath){
+        try {
+            InputStream stream = new FileInputStream(filePath);  
+            // The file exists
+            return filePath;
+        } catch (FileNotFoundException ex) {
+
+            try {
+                // The file don't exists. 
+                String path = Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+filePath;
+                InputStream stream = new FileInputStream(path);
+                return path;
+            } catch (FileNotFoundException ex1) {
+                String fileName = getFileName(filePath);
+                // Search this file in root directory. 
+                return getPathResourceInDirectory(fileName, "."+File.separator);
+            }
+            
+
+            //String fileName = getFileName(filePath);
+            // Search this file in root directory.
+            //return getResourceInDirectory(fileName, "."+File.separator);
+        }     
+    }
+    
     public static InputStream getResource(String filePath){
         try {
             InputStream stream = new FileInputStream(filePath);  
-            /** The file exists */
+            // The file exists
             return stream;
         } catch (FileNotFoundException ex) {
-            /** The file don't exists. */
-            String fileName = getFileName(filePath);
-            /** Search this file in root directory. */
-            return getResourceInDirectory(fileName, "."+File.separator);
+
+            try {
+                // The file don't exists. 
+                String s = Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+filePath;
+                InputStream stream = new FileInputStream(s);
+                return stream;
+            } catch (FileNotFoundException ex1) {
+                String fileName = getFileName(filePath);
+                // Search this file in root directory. 
+                return getResourceInDirectory(fileName, "."+File.separator);
+            }
+            
+
+            //String fileName = getFileName(filePath);
+            // Search this file in root directory.
+            //return getResourceInDirectory(fileName, "."+File.separator);
         }     
     }
     

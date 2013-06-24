@@ -93,6 +93,5 @@ public class Main {
             //Launch the GUI
             app.start();
         }
-        
     }
 }

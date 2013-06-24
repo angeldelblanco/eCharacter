@@ -63,6 +63,9 @@ public class Configuration {
     //Families path
     public final static String FAMILIES_PATH = "familiesPath";    
     
+    //Families repository path
+    public final static String FAMILIES_REPO_PATH = "familiesRepoPath"; 
+    
     //Locale path
     public final static String LOCALE_PATH = "localePath";
     
@@ -127,7 +130,8 @@ public class Configuration {
         //Default configuration
         this.properties.setProperty(RESOLUTION, "1024x768");
         this.properties.setProperty(ASSETS_PATH, "assets");
-        this.properties.setProperty(FAMILIES_PATH,"assets/XML families");
+        this.properties.setProperty(FAMILIES_PATH, "assets/Families");
+        this.properties.setProperty(FAMILIES_REPO_PATH, USER_PATH+"/eCharacter/assets/Families");
         this.properties.setProperty(LOCALE_PATH,"assets/Locale/Gui");
         this.properties.setProperty(DEFAULT_QUALITY, "10");
         this.properties.setProperty(DEFAULT_CAMERA_NAME, "DefaultCamera");

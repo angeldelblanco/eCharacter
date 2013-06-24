@@ -202,8 +202,9 @@ public class ModelControl {
         while(it.hasNext()){
             TextureType texture = it.next();
             if(texture.getIdTexture().equals(idTexturesORSubMeshes)){
-                if (ResourceLocator.getResource(texture.getIconPath()) != null){
-                    return texture.getIconPath();
+                String path = ResourceLocator.getPathResource(texture.getIconPath());
+                if (path != null){
+                    return path;
                 }
                 else{ 
                     return null;
@@ -216,8 +217,9 @@ public class ModelControl {
         while(it2.hasNext()){
             SubMeshType subMesh = it2.next();
             if(subMesh.getIdSubMesh().equals(idTexturesORSubMeshes)){
-                if (ResourceLocator.getResource(subMesh.getIconPath()) != null){
-                    return subMesh.getIconPath();
+                String path = ResourceLocator.getPathResource(subMesh.getIconPath());
+                if (path != null){
+                    return path;
                 }
                 else{
                     return null;
@@ -401,8 +403,9 @@ public class ModelControl {
         while(it.hasNext()){
             OptionTexture optionTexture = it.next();
             if(optionTexture.getIdSubTexture().equals(idSubTexture)){
-                if (ResourceLocator.getResource(optionTexture.getIconPath()) != null){
-                    return optionTexture.getIconPath();
+                String path = ResourceLocator.getPathResource(optionTexture.getIconPath());
+                if (path != null){
+                    return path;
                 }
                 else{ 
                     return null;

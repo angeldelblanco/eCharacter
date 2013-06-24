@@ -95,7 +95,7 @@ public class SingleStageBuilder {
                     imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
                 }
                 else{
-                    imager.setImage(nifty.getRenderEngine().createImage("assets/Interface/x.png", false));
+                    imager.setImage(nifty.getRenderEngine().createImage(Resources.x, false));
                 }
                 if (control.isChecked(idSubStages.get(0), idsTexturesOrSubMeshes.get(i))){
                     nifty.getScreen(stageType).findElementByName("t"+Integer.toString(i%TEXTURES_PAGE)).getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#FF0000AA"));

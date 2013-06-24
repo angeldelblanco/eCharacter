@@ -76,8 +76,9 @@ public class FamilyControl{
         while(it.hasNext()){
             ModelRefType modelRefType = it.next();
             if(modelRefType.getModelLabel().equals(modelLabel)){
-                if (ResourceLocator.getResource(modelRefType.getIconPath()) != null){
-                    return modelRefType.getIconPath();
+                String path = ResourceLocator.getPathResource(modelRefType.getIconPath());
+                if (path != null){
+                    return path;
                 }
                 else{ 
                     return null;
@@ -124,8 +125,9 @@ public class FamilyControl{
     }
     
     public String getIconPathFamily(){
-        if (ResourceLocator.getResource(family.getMetadata().getIconPath()) != null){
-            return family.getMetadata().getIconPath();
+        String path = ResourceLocator.getPathResource(family.getMetadata().getIconPath());
+        if (path != null){
+            return path;
         }
         else{ 
             return null;
@@ -194,8 +196,9 @@ public class FamilyControl{
             if(sst.getStageLabel().equals(idStage)){
                 String iconPath = sst.getIconPath();
                 if (iconPath!=null){
-                    if (ResourceLocator.getResource(iconPath) != null){
-                        return iconPath;
+                    String path = ResourceLocator.getPathResource(iconPath);
+                    if (path != null){
+                        return path;
                     }
                     else{ 
                         return null;
@@ -212,8 +215,9 @@ public class FamilyControl{
             if(mst.getStageLabel().equals(idStage)){
                 String iconPath = mst.getIconPath();
                 if (iconPath!=null){
-                    if (ResourceLocator.getResource(iconPath) != null){
-                        return iconPath;
+                    String path = ResourceLocator.getPathResource(iconPath);
+                    if (path != null){
+                        return path;
                     }
                     else{ 
                         return null;

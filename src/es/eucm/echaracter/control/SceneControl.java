@@ -93,8 +93,6 @@ public class SceneControl {
     private TexturesSubMeshesData texturesSubMeshesData;
     private ArrayList<DirectionalLight> lights;
     
-    
-    
     public SceneControl(Control control, Configuration config,String mainMeshPath, ArrayList<TransformationType> listTransformationMainMesh,
                 TexturesSubMeshesData texturesSubMeshesData){    
         //Initialize structures

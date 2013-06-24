@@ -54,7 +54,6 @@ public class XMLReader<T> {
     
     public XMLReader(String path){
         this.path = path;
-
         list = new ArrayList<T>();
         xmlValidator = new XMLValidator();
     }
@@ -78,6 +77,30 @@ public class XMLReader<T> {
         if (dirPath.isDirectory()){
             File[] ficheros = dirPath.listFiles();
             for (int x=0;x<ficheros.length;x++){
+                File file = ficheros[x];
+                /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
+                if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), type)) {
+                    try {    
+                        list.add(unmarshal(docClass, ResourceLocator.getResource(file.getPath())));
+                    } catch (JAXBException ex) {
+                        Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
+        else{
+            if (getExtension(dirPath.getPath()).equals("xml") && xmlValidator.checkXML(dirPath.getPath(), type)) {
+                try {    
+                        list.add(unmarshal(docClass, ResourceLocator.getResource(dirPath.getPath())));
+                    } catch (JAXBException ex) {
+                        Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+        }
+        dirPath = new File(Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+path);
+        if(dirPath.isDirectory()){
+             File[] ficheros = dirPath.listFiles();
+             for (int x=0;x<ficheros.length;x++){
                 File file = ficheros[x];
                 /** Check if the file is a file, the extension is "xml" and validate the XML with the XSD */
                 if (! file.isDirectory() && getExtension(file.getPath()).equals("xml") && xmlValidator.checkXML(file.getPath(), type)) {
