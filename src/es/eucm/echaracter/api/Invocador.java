@@ -4,6 +4,7 @@
  */
 package es.eucm.echaracter.api;
 
+import java.io.File;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 
@@ -22,7 +23,13 @@ public class Invocador implements Callback{
         try {
             Invocador inv = new Invocador();
             Properties p = new Properties();
-            p.put("lang", "en_EN");
+            p.put("lang", "fr_FR");
+            /*p.put("defaultFamily","assets"+File.separator+"Families"+File.separator+"Cubix Studio.xml");
+            p.put("defaultModel","assets"+File.separator+"Families"+File.separator+"Cubix Studio"
+                    +File.separator+"XML models"+File.separator+"Male.xml");*/
+            p.put("defaultFamily","assets"+File.separator+"Families"+File.separator+"eAdventure.xml");
+            p.put("defaultModel","assets"+File.separator+"Families"+File.separator+"eAdventure"
+                    +File.separator+"XML models"+File.separator+"Man.xml");
             p.put("defaultExportPath", "C:/Users/Alex/Desktop");
             eCharacter eC = new eCharacter();
             eC.eCharacter(p,inv);

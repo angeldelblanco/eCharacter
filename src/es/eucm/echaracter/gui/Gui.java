@@ -133,13 +133,13 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
+        selection = "";
+        this.app = app;
+        page = 0;
+        index = 0;
+        popUp = null;
         //Native application
-        if(callback == null){
-            selection = "";
-            this.app = app;
-            page = 0;
-            index = 0;
-            popUp = null;
+        if(callback == null){            
             String systemLanguagePrefix = getSystemLanguage();
             String systemLanguage = I18N.getLanguage(config.getProperty(Configuration.LOCALE_PATH), systemLanguagePrefix);
             if (systemLanguage != null){
@@ -158,12 +158,28 @@ public class Gui extends AbstractAppState implements ScreenController {
             i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
             modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
             changeLocale("");
-            
-            
         }
         //Called by API
         else{
-            
+            //Load GUI with the language specified if exists
+            if (config.getProperty(Configuration.INPUT_LANG) != null){
+                language = config.getProperty(Configuration.INPUT_LANG);
+                ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
+                languagePage = listLanguages.indexOf(language);
+                hideLanguagePopup();                
+            }
+            i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
+            modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
+            //Load the initial model specified if exists
+            if((config.getProperty(Configuration.INPUT_DEFAULT_FAMILY) != null) && 
+                       (config.getProperty(Configuration.INPUT_DEFAULT_MODEL) != null))
+            {
+                i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
+                control.selectFamily(config.getProperty(Configuration.INPUT_DEFAULT_FAMILY));
+                modelSelection = config.getProperty(Configuration.INPUT_DEFAULT_MODEL);
+                loadFirstScreen();                
+            }
+                
         }
     }
     

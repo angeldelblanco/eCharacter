@@ -45,6 +45,7 @@ public class eCharacter {
     /* The keyset for the file properties is:
      * - lang : Active language
      * - defaultExportPath: Default export path
+     * - defaultFamily and defaultModel: Set the initial model for configuration
      */
     
     private HashSet<String> keySet;

@@ -92,6 +92,11 @@ public class Configuration {
     //Defult temp path
     public final static String DEFAULT_TEMP_PATH = "defaultTempPath";
     
+    //FOR API
+    public final static String INPUT_LANG = "lang";
+    public final static String INPUT_DEFAULT_FAMILY = "defaultFamily";
+    public final static String INPUT_DEFAULT_MODEL = "defaultModel";
+    
     Properties properties;
     
     
