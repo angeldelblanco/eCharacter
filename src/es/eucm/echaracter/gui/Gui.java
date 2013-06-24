@@ -233,7 +233,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void loadFirstScreen(){
         
         // First, iterate layers to make loading indicators visible
-        List<Element> layers = this.screen.getLayerElements();
+        List<Element> layers = this.nifty.getCurrentScreen().getLayerElements();
         for (Element e:layers){
            if (e.getId().equals("progressLayer") || e.getId().equals("Loading")){
                e.setVisible(true);
