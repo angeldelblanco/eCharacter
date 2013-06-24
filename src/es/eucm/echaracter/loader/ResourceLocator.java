@@ -86,7 +86,7 @@ public class ResourceLocator implements AssetLocator{
         }
         else{
             // The file don't exists.
-            String path = Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+filePath;
+            String path = Configuration.APPLICATION_PATH+File.separator+filePath;
             file = new File(path);
             if (file.exists()){
                 return path;
@@ -213,7 +213,7 @@ public class ResourceLocator implements AssetLocator{
 
             try {
                 // The file don't exists. 
-                String path = Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+filePath;
+                String path = Configuration.APPLICATION_PATH+File.separator+filePath;
                 InputStream stream = new FileInputStream(path);
                 return path;
             } catch (FileNotFoundException ex1) {
@@ -238,7 +238,7 @@ public class ResourceLocator implements AssetLocator{
 
             try {
                 // The file don't exists. 
-                String s = Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+filePath;
+                String s = Configuration.APPLICATION_PATH+File.separator+filePath;
                 InputStream stream = new FileInputStream(s);
                 return stream;
             } catch (FileNotFoundException ex1) {

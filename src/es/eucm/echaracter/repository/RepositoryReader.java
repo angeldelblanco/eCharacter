@@ -54,13 +54,14 @@ import java.util.zip.ZipInputStream;
 public class RepositoryReader {
     
     private final String url = "https://dl.dropboxusercontent.com/u/29636278/eCharacter/repo.xml";
-    private final String downloadFolder = Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+"repository"+File.separator;
+    private final String downloadFolder = Configuration.APPLICATION_PATH+File.separator+"repository"+File.separator;
     private final String fileName = "families.xml";
     
     private ArrayList<Family> listFamilies;
     
     public RepositoryReader(){
         if (FamiliesDownloader.download(url, downloadFolder, fileName)){
+            System.out.println("Descargado");
             XMLReader xmlReader = new XMLReader<Repository>(downloadFolder);
             ArrayList<Repository> list = xmlReader.readXML(Repository.class);
             if (list.size() == 1){
@@ -93,6 +94,7 @@ public class RepositoryReader {
             if (family.getUrl().equals(familyID)){
                 String iconUrl = family.getIconPath();
                 if(FamiliesDownloader.download(iconUrl, downloadFolder, "pr.png")){
+                    System.out.println("Descargado");
                     return downloadFolder+"pr.png";
                 }
             }
@@ -115,6 +117,7 @@ public class RepositoryReader {
     public boolean downloadFamily(String familyID){
         String familyFileName = getFileName(familyID);
         if (FamiliesDownloader.download(familyID, downloadFolder, familyFileName)){
+            System.out.println("Descargado");
             installFamily(downloadFolder+familyFileName);
             return true;
         }
@@ -133,18 +136,19 @@ public class RepositoryReader {
         try {
             ZipInputStream zis = new ZipInputStream(new FileInputStream(fileName));
             ZipEntry entry;
+            String path  = Configuration.APPLICATION_PATH+File.separator+"assets"+File.separator+"Families"+File.separator;
             while (null != (entry = zis.getNextEntry()) ){
                 System.out.println(entry.getName());
                 if (entry.isDirectory()){
-                    File dir = new File(entry.getName());
+                    File dir = new File(path+entry.getName());
                     if (!dir.exists()){
-                        if (!dir.mkdir()){
+                        if (!dir.mkdirs()){
                             return; // no se pudo crear la carpeta de destino
                         }
                     }
                 }
                 else{
-                    FileOutputStream fos = new FileOutputStream(entry.getName());
+                    FileOutputStream fos = new FileOutputStream(path+entry.getName());
                     int readed;
                     byte [] buffer = new byte[1024];
                     while (0<(readed=zis.read(buffer))){

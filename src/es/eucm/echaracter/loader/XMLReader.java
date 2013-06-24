@@ -97,7 +97,7 @@ public class XMLReader<T> {
                     }
             }
         }
-        dirPath = new File(Configuration.USER_PATH+File.separator+"eCharacter"+File.separator+path);
+        dirPath = new File(Configuration.APPLICATION_PATH+File.separator+path);
         if(dirPath.isDirectory()){
              File[] ficheros = dirPath.listFiles();
              for (int x=0;x<ficheros.length;x++){

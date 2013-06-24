@@ -100,7 +100,7 @@ public class Application extends SimpleApplication{
         
         // Register locator to assetManager
         assetManager.registerLocator("."+File.separator, ResourceLocator.class);
-        assetManager.registerLocator(Configuration.USER_PATH+File.separator+"eCharacter"+File.separator, ResourceLocator.class);
+        assetManager.registerLocator(Configuration.APPLICATION_PATH+File.separator, ResourceLocator.class);
         
         if (checkResources()){
             //Add nifty

@@ -83,14 +83,8 @@ public class Control {
             ViewPort viewPort, ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState){
         this.config = config;
         String familiesPath1 = this.config.getProperty(Configuration.FAMILIES_PATH);
-        
-        
         String familiesPath2 = this.config.getProperty(Configuration.FAMILIES_REPO_PATH);
         XMLFamilyReader xmlReader = new XMLFamilyReader(familiesPath1, familiesPath2);
-        
-        
-        
-        
         families = xmlReader.readXML();
         this.assetManager = assetManager;
         this.rootNode = rootNode;

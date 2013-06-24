@@ -51,8 +51,10 @@ public class Configuration {
     
     public final static String USER_PATH = System.getProperty("user.home");
     
+    public final static String APPLICATION_PATH = USER_PATH+File.separator+"eCharacter";
+    
     /** Properties file name */
-    public final static String PROPERTIES_FILE_NAME = USER_PATH+File.separator+"eCharacter"+File.separator+"initConfig.properties";
+    public final static String PROPERTIES_FILE_NAME = APPLICATION_PATH+File.separator+"initConfig.properties";
  
     //Resolution
     public final static String RESOLUTION = "resolution";
@@ -131,15 +133,15 @@ public class Configuration {
         this.properties.setProperty(RESOLUTION, "1024x768");
         this.properties.setProperty(ASSETS_PATH, "assets");
         this.properties.setProperty(FAMILIES_PATH, "assets/Families");
-        this.properties.setProperty(FAMILIES_REPO_PATH, USER_PATH+"/eCharacter/assets/Families");
+        this.properties.setProperty(FAMILIES_REPO_PATH, APPLICATION_PATH+"/assets/Families");
         this.properties.setProperty(LOCALE_PATH,"assets/Locale/Gui");
         this.properties.setProperty(DEFAULT_QUALITY, "10");
         this.properties.setProperty(DEFAULT_CAMERA_NAME, "DefaultCamera");
         this.properties.setProperty(DEFAULT_VECTOR_POSITION, "0.0,0.0,11.0");
         this.properties.setProperty(DEFAULT_VECTOR_DIRECTION, "0.0,0.0,-1.0");
         this.properties.setProperty(DEFAULT_VECTOR_UP, "0.0,1.0,0.0");
-        this.properties.setProperty(DEFAULT_EXPORT_PATH, USER_PATH+"/eCharacter/export");
-        this.properties.setProperty(DEFAULT_TEMP_PATH, USER_PATH+"/eCharacter/temp");
+        this.properties.setProperty(DEFAULT_EXPORT_PATH, APPLICATION_PATH+"/export");
+        this.properties.setProperty(DEFAULT_TEMP_PATH, APPLICATION_PATH+"/temp");
         
         //Saves the changes in the .properties file
         try {            
