@@ -35,40 +35,10 @@
  ******************************************************************************/
 package es.eucm.echaracter.api;
 
-import es.eucm.echaracter.main.Launcher;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Properties;
-;
 
-
-public class eCharacter {
+public interface Callback {
     
-    /* The keyset for the file properties is:
-     * - lang : Active language
-     * - defaultExportPath: Default export path
-     */
-    
-    private HashSet<String> keySet;
-    
-    public eCharacter(){
-        keySet = new HashSet<String>();
-        keySet.add("lang");
-        keySet.add("defaultExportPath");
-        keySet.add("defaultFamily");
-        keySet.add("defaultModel");
-    }
-    
-    public void eCharacter(Properties properties,Callback callback) throws Exception{ 
-        Iterator<Object> it = properties.keySet().iterator();
-        while(it.hasNext()){
-            String key = (String) it.next();
-            if (!keySet.contains(key)){
-                throw new Exception("Bad key in properties");
-            }
-        }
-        Launcher.eCharacter(properties,callback);
-    }
-        
+    public int returnFailed();
+    public int returnSuccess();
     
 }
