@@ -42,7 +42,6 @@ import es.eucm.echaracter.repository.data.Repository;
 import es.eucm.echaracter.repository.data.Repository.Family;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -92,7 +91,10 @@ public class RepositoryReader {
         while(it.hasNext()){
             Family family = it.next();
             if (family.getUrl().equals(familyID)){
-                return family.getIconPath();
+                String iconUrl = family.getIconPath();
+                if(FamiliesDownloader.download(iconUrl, downloadFolder, "pr.png")){
+                    return downloadFolder+"pr.png";
+                }
             }
         }
         return null;

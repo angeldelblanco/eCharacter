@@ -144,7 +144,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         page = 0;
         index = 0;
         popUp = null;
-        repository = new RepositoryReader();
         String systemLanguagePrefix = getSystemLanguage();
         String systemLanguage = I18N.getLanguage(config.getProperty(Configuration.LOCALE_PATH), systemLanguagePrefix);
         if (systemLanguage != null){
@@ -895,6 +894,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         nifty.getScreen("start").getLayerElements().get(3).setVisible(false);
     }
     public void showRepository(){
+        repository = new RepositoryReader();
         String stageType = "start";
         nifty.getScreen(stageType).findElementByName("repoWelcome").getRenderer(TextRenderer.class).setText(i18nGui.getString("idWelcome"));
         nifty.getScreen(stageType).findElementByName("welcomeRepoPanel").layoutElements();
@@ -925,8 +925,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
         Element image = nifty.getScreen("start").findElementByName("familyRepo");
         ImageRenderer imager = image.getRenderer(ImageRenderer.class);
-        //String imagePath = repository.getIconPathFamily(family);
-        String imagePath = null;
+        String imagePath = repository.getIconPathFamily(family);
+        //String imagePath = null;
         if(imagePath!=null){
             imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
         }

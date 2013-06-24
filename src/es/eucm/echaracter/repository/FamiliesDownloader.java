@@ -55,7 +55,6 @@ public class FamiliesDownloader {
                 return false; // no se pudo crear la carpeta de destino
             }
         }
-        File  file = new File (downloadFolder + fileName);
         URLConnection conn = null;
         try {
             conn = new URL(url).openConnection();
@@ -66,15 +65,17 @@ public class FamiliesDownloader {
             System .out.println(">> tamaño: " + conn.getContentLength() + " bytes");
 
             InputStream  in = conn.getInputStream();
-            OutputStream  out = new FileOutputStream (file);
-
-            int b = 0;
-            while (b != -1) {
-                b = in.read();
-                if (b != -1){
-                    out.write(b);
-                }
+            OutputStream out = new FileOutputStream (downloadFolder + fileName);
+            
+            byte[] array = new byte[1000]; // buffer temporal de lectura.
+            int readed = in.read(array);
+            while (readed > 0) {
+                    out.write(array, 0, readed);
+                    readed = in.read(array);
             }
+            in.close();
+            out.close();
+
             return true;
         } catch (MalformedURLException e1) {
             // TODO Auto-generated catch block
