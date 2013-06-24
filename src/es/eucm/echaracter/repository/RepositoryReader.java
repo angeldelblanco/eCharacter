@@ -93,9 +93,10 @@ public class RepositoryReader {
             Family family = it.next();
             if (family.getUrl().equals(familyID)){
                 String iconUrl = family.getIconPath();
-                if(FamiliesDownloader.download(iconUrl, downloadFolder, "pr.png")){
+                String fileDownloadedName = iconUrl.substring(iconUrl.lastIndexOf("/")+1, iconUrl.length());
+                if(FamiliesDownloader.download(iconUrl, downloadFolder, fileDownloadedName)){
                     System.out.println("Descargado");
-                    return downloadFolder+"pr.png";
+                    return downloadFolder+fileDownloadedName;
                 }
             }
         }
