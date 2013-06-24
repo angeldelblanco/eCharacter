@@ -134,9 +134,14 @@ public class RepositoryReader {
     private void installFamily(String fileName){
         // TO DO
         try {
+            String path  = Configuration.APPLICATION_PATH+File.separator+"assets"+File.separator+"Families"+File.separator;
+            File file = new File(path);
+            if (!file.exists()){
+                file.mkdirs();
+            }
+            
             ZipInputStream zis = new ZipInputStream(new FileInputStream(fileName));
             ZipEntry entry;
-            String path  = Configuration.APPLICATION_PATH+File.separator+"assets"+File.separator+"Families"+File.separator;
             while (null != (entry = zis.getNextEntry()) ){
                 System.out.println(entry.getName());
                 if (entry.isDirectory()){
@@ -162,13 +167,5 @@ public class RepositoryReader {
         } catch (IOException ex) {
             Logger.getLogger(RepositoryReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    
-    
-    public static void main(String[] args){
-        RepositoryReader r = new RepositoryReader();
-        ArrayList<String> l = r.getFamiliesID();
-        r.downloadFamily(l.get(0));
     }
 }
