@@ -364,10 +364,10 @@
 					</panel>
 					<panel height="100%" width="90%" childLayout="vertical">
 						<panel height="80%" width="100%" childLayout="horizontal">
-							<panel id="RepoDescFamPanel" height="100%" width="70%" childLayout="horizontal">
+							<panel id="RepoDescFamPanel" height="100%" width="60%" childLayout="horizontal">
 								<text id="RepoDescFamText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
 							</panel>
-							<panel height="100%" width="30%" childLayout="center">
+							<panel height="100%" width="30%" childLayout="vertical">
 								<image id="familyRepo" height="103" width="174" filename="Interface/x.png"/>
 							</panel>
 						</panel>
