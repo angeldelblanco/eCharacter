@@ -35,6 +35,7 @@
  ******************************************************************************/
 package es.eucm.echaracter.main;
 
+import es.eucm.echaracter.api.Callback;
 import es.eucm.echaracter.loader.Configuration;
 import es.eucm.echaracter.loader.ResourceLocator;
 import java.io.InputStream;
@@ -45,7 +46,8 @@ import java.util.StringTokenizer;
 /**
  * This class initializes the application resources and launch the GUI
  */
-public class Main {            
+public class Launcher {     
+    
     public static void main(String[] args){
         /*//Saber directorio temporal del sistema
         String dirTemp = System.getProperty("java.io.tmpdir");
@@ -62,23 +64,23 @@ public class Main {
             config.loadPropertiesFile(stream);
         }
         else{
-            config.loadDefaultProperties();
+            config.loadDefaultProperties(true);
         }
         //Setting the GUI´s initial configuration
         StringTokenizer dimension = new StringTokenizer(config.getProperty(Configuration.RESOLUTION), "x");
         if (dimension.countTokens() == 2){
             int width = Integer.parseInt(dimension.nextToken());
             int height = Integer.parseInt(dimension.nextToken());     
-            Application app = new Application(width,height,config);
+            Application app = new Application(width,height,config,null);
             //Launch the GUI
             app.start();
         }
     }  
     
-    public static void eCharacter (Properties properties){
+    public static void eCharacter (Properties properties,Callback callback){
         //Load the initial configuration in the parameter properties
         Configuration config = new Configuration();
-        config.loadDefaultProperties();        
+        config.loadDefaultProperties(false);        
         Iterator<Object> it = properties.keySet().iterator();
         while (it.hasNext()){
             String key = ((String)it.next());
@@ -89,9 +91,10 @@ public class Main {
         if (dimension.countTokens() == 2){
             int width = Integer.parseInt(dimension.nextToken());
             int height = Integer.parseInt(dimension.nextToken());     
-            Application app = new Application(width,height,config);
+            Application app = new Application(width,height,config,callback);
             //Launch the GUI
             app.start();
         }
     }
+    
 }

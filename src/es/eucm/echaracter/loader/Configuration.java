@@ -128,7 +128,7 @@ public class Configuration {
         }
     }
     
-    public void loadDefaultProperties(){
+    public void loadDefaultProperties(boolean saveFile){
         //Default configuration
         this.properties.setProperty(RESOLUTION, "1024x768");
         this.properties.setProperty(ASSETS_PATH, "assets");
@@ -143,13 +143,16 @@ public class Configuration {
         this.properties.setProperty(DEFAULT_EXPORT_PATH, APPLICATION_PATH+"/export");
         this.properties.setProperty(DEFAULT_TEMP_PATH, APPLICATION_PATH+"/temp");
         
-        //Saves the changes in the .properties file
-        try {            
-            FileOutputStream output = new FileOutputStream(PROPERTIES_FILE_NAME); 
-            this.properties.store(output,null);
-            output.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
+        if(saveFile){
+            //Saves the changes in the .properties file
+            try {            
+                FileOutputStream output = new FileOutputStream(PROPERTIES_FILE_NAME); 
+                this.properties.store(output,null);
+                output.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
+            }            
         }
+        
     }
 }

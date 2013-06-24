@@ -47,6 +47,7 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import de.lessvoid.nifty.Nifty;
+import es.eucm.echaracter.api.Callback;
 import es.eucm.echaracter.control.Control;
 import es.eucm.echaracter.export.ScreenshotMyAppState;
 import es.eucm.echaracter.gui.Gui;
@@ -73,12 +74,12 @@ public class Application extends SimpleApplication{
     private Configuration config;
     private Nifty nifty;
     private float t = 0;
-    private AppSettings newSettings;
-    
+    private AppSettings newSettings;    
     private ViewPort pv;
     private Picture p;
+    private Callback callback;
     
-    public Application(int width,int height,Configuration config){
+    public Application(int width,int height,Configuration config,Callback callback){
         //Creation of the new configuration
         newSettings = new AppSettings(true);
         newSettings.setResolution(width,height);
@@ -88,6 +89,7 @@ public class Application extends SimpleApplication{
         this.setShowSettings(false);
         this.setSettings(newSettings);
         this.config = config;
+        this.callback = callback;
     }
     
     @Override
@@ -109,7 +111,7 @@ public class Application extends SimpleApplication{
 
             screenShotState = new ScreenshotMyAppState();        
             control = new Control(config,rootNode,cam,assetManager,this, viewPort, guiViewPort, niftyDisplay, screenShotState);
-            gui = new Gui(control,config);
+            gui = new Gui(control,config,callback);
 
             //Activate the Nifty-JME integration
             nifty = niftyDisplay.getNifty();

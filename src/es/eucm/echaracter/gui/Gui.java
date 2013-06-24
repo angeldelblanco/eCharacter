@@ -51,6 +51,7 @@ import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import es.eucm.echaracter.api.Callback;
 import es.eucm.echaracter.control.Control;
 import es.eucm.echaracter.i18n.I18N;
 import es.eucm.echaracter.loader.Configuration;
@@ -85,10 +86,12 @@ public class Gui extends AbstractAppState implements ScreenController {
     private AnimationStageBuilder animationsb;
     private PopUpBuilder popUp;
     private RepositoryReader repository;
+    private Callback callback;
     
-    public Gui(Control control,Configuration config){
+    public Gui(Control control,Configuration config,Callback callback){
         this.control = control;
         this.config = config;
+        this.callback = callback;
         families = this.control.getFamiliesID();
     }
     
@@ -131,29 +134,35 @@ public class Gui extends AbstractAppState implements ScreenController {
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
-        selection = "";
-        this.app = app;
-        page = 0;
-        index = 0;
-        popUp = null;
-        String systemLanguagePrefix = getSystemLanguage();
-        String systemLanguage = I18N.getLanguage(config.getProperty(Configuration.LOCALE_PATH), systemLanguagePrefix);
-        if (systemLanguage != null){
-            language = systemLanguage;
-            ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
-            languagePage = listLanguages.indexOf(language);
-            hideLanguagePopup();
-        }
-        else{
-            ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
-            if (listLanguages.size()>0){
-                language = listLanguages.get(0);
+        //Native application
+        if(callback == null){
+            selection = "";
+            this.app = app;
+            page = 0;
+            index = 0;
+            popUp = null;
+            String systemLanguagePrefix = getSystemLanguage();
+            String systemLanguage = I18N.getLanguage(config.getProperty(Configuration.LOCALE_PATH), systemLanguagePrefix);
+            if (systemLanguage != null){
+                language = systemLanguage;
+                ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
+                languagePage = listLanguages.indexOf(language);
+                hideLanguagePopup();
             }
-            languagePage = 0;
+            else{
+                ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
+                if (listLanguages.size()>0){
+                    language = listLanguages.get(0);
+                }
+                languagePage = 0;
+            }
+            i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
+            modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
+            changeLocale("");
         }
-        i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
-        modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
-        changeLocale("");
+        //Called by API
+        else{
+        }
     }
     
     /*private ArrayList<String> getListLanguagesAvailables(){
