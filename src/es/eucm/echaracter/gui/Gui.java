@@ -15,7 +15,7 @@
  *          C Profesor Jose Garcia Santesmases sn,
  *          28040 Madrid (Madrid), Spain.
  *  
- *          For more info please visit:  <http://character.e-ucm.es>, 
+ *          For more info please visit:  <http://echaracter.e-ucm.es>, 
  *          <http://e-adventure.e-ucm.es> or <http://www.e-ucm.es>
  *  
  *  ****************************************************************************
@@ -57,6 +57,7 @@ import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import es.eucm.echaracter.api.Callback;
 import es.eucm.echaracter.control.Control;
+import es.eucm.echaracter.gui.progressbar.ProgressbarThread;
 import es.eucm.echaracter.i18n.I18N;
 import es.eucm.echaracter.loader.Configuration;
 import es.eucm.echaracter.types.StageType;
@@ -75,7 +76,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     private I18N i18nGui, i18nModel, i18nFamily; 
     private Control control;
     private Application app;
-    private Screen screen;
     private Configuration config;
     private String selection, modelSelection,subStageSelected, textureOrSubMeshSelected;
     private int page;
@@ -141,7 +141,6 @@ public class Gui extends AbstractAppState implements ScreenController {
 
     public void bind(Nifty nifty, Screen screen) {
         this.nifty = nifty;
-        this.screen = screen;
     }
 
     public void onStartScreen() {
@@ -177,21 +176,14 @@ public class Gui extends AbstractAppState implements ScreenController {
             i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
             modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
             changeLocale("");
+            
+            
         }
         //Called by API
         else{
+            
         }
     }
-    
-    /*private ArrayList<String> getListLanguagesAvailables(){
-        ArrayList<String> listLanguages = new ArrayList<String>();
-        StringTokenizer st = new StringTokenizer(config.getProperty(Configuration.LIST_LANGUAGE));
-        while (st.hasMoreTokens())
-        {
-            listLanguages.add(st.nextToken());
-        }
-        return listLanguages;
-    }*/
     
     public void buildMenu(){
         String types[] = {StageType.singleStage.toString(),
@@ -329,13 +321,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 nifty.gotoScreen("animationStage");
                 loadScreen("animationStage");
             }
-            //nifty.getScreen(stage).findElementByName("panel_screenleft").disable();
-            //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(false);
-        }/*
-        else{
-            //nifty.getScreen(stage).findElementByName("panel_screenleft").enable();
-            //nifty.getScreen(stage).findElementByName("panel_screenleft").setVisible(true);
-        }*/
+        }
         
     }
     
@@ -610,6 +596,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(param.equals("eCharacter")){
             return Resources.eCharacter;
+        }
+        if(param.equals("x")){
+            return Resources.x;
         }
         return null;
     }
@@ -927,12 +916,11 @@ public class Gui extends AbstractAppState implements ScreenController {
         Element image = nifty.getScreen("start").findElementByName("familyRepo");
         ImageRenderer imager = image.getRenderer(ImageRenderer.class);
         String imagePath = repository.getIconPathFamily(family);
-        //String imagePath = null;
         if(imagePath!=null){
             imager.setImage(nifty.getRenderEngine().createImage(imagePath, false));
         }
         else{
-            imager.setImage(nifty.getRenderEngine().createImage(Resources.x, false));
+            imager.setImage(nifty.getRenderEngine().createImage(getTexture("x"), false));
         }
         if(repositoryPage > 0){
             nifty.getScreen("start").findElementByName("familyRepoLeft").setVisible(true);

@@ -15,7 +15,7 @@
  *          C Profesor Jose Garcia Santesmases sn,
  *          28040 Madrid (Madrid), Spain.
  *  
- *          For more info please visit:  <http://character.e-ucm.es>, 
+ *          For more info please visit:  <http://echaracter.e-ucm.es>, 
  *          <http://e-adventure.e-ucm.es> or <http://www.e-ucm.es>
  *  
  *  ****************************************************************************
@@ -65,9 +65,10 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class Application extends SimpleApplication{
+    
+    private final String guiFile = "assets/Interface/gui.xml";
 
     private Gui gui;
-    private Tooltip tooltip;
     private ScreenshotMyAppState screenShotState;
     private NiftyJmeDisplay niftyDisplay;
     private Control control;
@@ -115,8 +116,7 @@ public class Application extends SimpleApplication{
 
             //Activate the Nifty-JME integration
             nifty = niftyDisplay.getNifty();
-            nifty.fromXml("assets/Interface/screen.xml", "start", gui);
-            //nifty.setDebugOptionPanelColors(true);
+            nifty.fromXml(guiFile, "start", gui);
 
             //Attach nifty-control and screenshot
             stateManager.attach(gui);
@@ -125,8 +125,6 @@ public class Application extends SimpleApplication{
             //Disable flyCam
             flyCam.setDragToRotate(true); // you need the mouse for clicking now
             flyCam.setEnabled(false);
-            /*LwjglInitHelper.renderLoop(nifty, new RenderLoop(nifty));
-            LwjglInitHelper.destroy();*/
         }
     }
     
@@ -416,30 +414,4 @@ public class Application extends SimpleApplication{
         }
         return true;
     }
-
-    
-    /*private static final class RenderLoop implements RenderLoopCallback {
-        private final Nifty nifty;
- 	private int progress = 0;
-     	private long start = new Date().getTime();
-     	
-     	private RenderLoop(final Nifty nifty) {
-            this.nifty = nifty;
-     	}
-    	
-     	@Override
-     	public void process() {
-            long now = new Date().getTime();
-            if (now - start > 50) { // add one percent every 50 ms
-                start = now;
-     	
-         	progress++;
-                nifty.getScreen("start").findControl("my-progress", ProgressbarControl.class).setProgress(progress / 100.0f);
-     	
-         	if (progress >= 100) {
-                 	System.out.println("done");
-                }
-            }
-     	}
-    }*/
 }

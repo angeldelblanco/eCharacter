@@ -34,9 +34,33 @@
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package es.eucm.echaracter.types;
+package es.eucm.echaracter.gui.progressbar;
 
+import de.lessvoid.nifty.Nifty;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public enum TexturesMeshType {
-   baseShadow, simpleTexture, doubleTexture, multiOptionTexture
+public class ProgressbarThread extends Thread{
+    
+    private Nifty nifty;
+
+  public ProgressbarThread(Nifty nifty) {
+      super();
+      this.nifty = nifty;
+      nifty.getScreen("start").getLayerElements().get(5).setVisible(true);
+  }
+  
+  @Override
+  public void run(){
+        try {
+            while(true){
+                for (float i=0; i<=1; i=i+0.01f){
+                    nifty.getScreen("start").findControl("my-progress", ProgressbarControl.class).setProgress(i);
+                    sleep(10);
+                }
+            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ProgressbarThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  }
 }

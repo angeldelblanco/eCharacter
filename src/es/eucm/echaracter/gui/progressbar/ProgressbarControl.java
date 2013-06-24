@@ -15,7 +15,7 @@
  *          C Profesor Jose Garcia Santesmases sn,
  *          28040 Madrid (Madrid), Spain.
  *  
- *          For more info please visit:  <http://character.e-ucm.es>, 
+ *          For more info please visit:  <http://echaracter.e-ucm.es>, 
  *          <http://e-adventure.e-ucm.es> or <http://www.e-ucm.es>
  *  
  *  ****************************************************************************
@@ -34,7 +34,7 @@
  *      see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package es.eucm.echaracter.gui;
+package es.eucm.echaracter.gui.progressbar;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.Controller;
@@ -49,18 +49,6 @@ import org.xml.sax.Attributes;
 
 public class ProgressbarControl implements Controller {
   private Element progressBarElement;
-  private Element progressTextElement;
-
-  public void bind(
-      final Nifty nifty,
-      final Screen screenParam,
-      final Element element,
-      final Properties parameter,
-      final ControllerEventListener listener,
-      final Attributes controlDefinitionAttributes) {
-    progressBarElement = element.findElementByName("progress");
-    progressTextElement = element.findElementByName("progress-text");
-  }
 
   public void onStartScreen() {
   }
@@ -83,14 +71,10 @@ public class ProgressbarControl implements Controller {
     int pixelWidth = (int)(MIN_WIDTH + (progressBarElement.getParent().getWidth() - MIN_WIDTH) * progress);
     progressBarElement.setConstraintWidth(new SizeValue(pixelWidth + "px"));
     progressBarElement.getParent().layoutElements();
-
-    String progressText = String.format("%3.0f%%", progress * 100);
-    progressTextElement.getRenderer(TextRenderer.class).setText(progressText);
   }
 
     public void bind(Nifty nifty, Screen screen, Element element, Properties parameter, de.lessvoid.xml.xpp3.Attributes controlDefinitionAttributes) {
-        progressBarElement = element.findElementByName("progress");
-        progressTextElement = element.findElementByName("progress-text");
+        progressBarElement = element.findElementByName("my-progress#progress");
     }
 
     public void init(Properties parameter, de.lessvoid.xml.xpp3.Attributes controlDefinitionAttributes) {
