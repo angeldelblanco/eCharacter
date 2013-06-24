@@ -150,7 +150,7 @@
 										</panel>
 										<text id="description0" textHAlign="left" text="Head" font="${CALL.getfont(15)}" height="100%" width="100%" wrap="true" color="#7D7455"/>
 									</panel>
-									<image id = "f0" height="103" width="174" filename="Interface/x.png"/>
+									<image id = "f0" height="103" width="174" filename="Interface/x.png" valign="center" />
 									<interact onClick="selectFamily(0)"/>
 									<effect>
 										<onHover name="imageOverlay" filename="${CALL.getTexture(family-button-over)}" post="true" />
@@ -170,7 +170,7 @@
 										</panel>
 										<text id="description1" textHAlign="left" text="Head" font="${CALL.getfont(15)}" height="100%" width="100%" wrap="true" color="#7D7455"/>
 									</panel>
-									<image id = "f1" height="103" width="174" filename="Interface/x.png"/>
+									<image id = "f1" height="103" width="174" filename="Interface/x.png" valign="center" />
 									<interact onClick="selectFamily(1)"/>
 									<effect>
 										<onHover name="imageOverlay" filename="${CALL.getTexture(family-button-over)}" post="true" />
@@ -190,7 +190,7 @@
 										</panel>
 										<text id="description2" textHAlign="left" text="Head" font="${CALL.getfont(15)}" height="100%" width="100%" wrap="true" color="#7D7455"/>
 									</panel>
-									<image id = "f2" height="103" width="174" filename="Interface/x.png"/>
+									<image id = "f2" height="103" width="174" filename="Interface/x.png" valign="center" />
 									<interact onClick="selectFamily(2)"/>
 									<effect>
 										<onHover name="imageOverlay" filename="${CALL.getTexture(family-button-over)}" post="true" />
@@ -243,7 +243,8 @@
 				</image>
 			</panel>
         </layer>
-		<layer id="InfoFam" childLayout="center" visible="false">
+		
+        <layer id="InfoFam" childLayout="center" visible="false">
 			<image filename="${CALL.getTexture(background-popup-dialog)}" childLayout="vertical">
 				<panel height="45%" width="100%"/>
 				<panel id="popup" height="30%" width="60%" childLayout="vertical" align="center">
@@ -391,6 +392,12 @@
 				</panel>
 			</image>
         </layer>
+
+        <layer id="Loading" childLayout="center" visible="false">
+             <text id="familyNamePopupText" textHAlign="right" textVAlign="bottom" text="Loading" font="${CALL.getfont(30)}" color="#000088" wrap="true"/>
+            			
+        </layer>
+
 		<layer id="progressLayer" childLayout="center" visible="false" backgroundColor="#5555">
 			<control id="my-progress" name="progressbar" align="center" valign="center" width="400px" height="32px"/>
 		</layer>

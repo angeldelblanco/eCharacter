@@ -39,6 +39,10 @@ package es.eucm.echaracter.gui;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.material.RenderState;
+import com.jme3.renderer.RenderManager;
+import com.jme3.scene.Node;
+import com.jme3.scene.shape.Sphere;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.ImageBuilder;
@@ -87,6 +91,20 @@ public class Gui extends AbstractAppState implements ScreenController {
     private PopUpBuilder popUp;
     private RepositoryReader repository;
     private Callback callback;
+    
+    /**
+     * The mustLoad and loading params are used as a quick&dirty state machine implementation.
+     * Their only purpose is to allow Nifty update and show the loading progress components
+     * before start loading the selected model. 
+     * 
+     * The state transition is as follows:
+     * 1) The user clicks the button to start character customization.
+     * 2) The method loadFirstScreen() is called. This method setsUp mustLoad=true
+     * 3) In the next update() cycle, mustLoad:=false and loading:=true. 
+     * 4) In the next update() cycle, the method doLoad() is invoked which actually triggers the loading process
+     */
+    private boolean mustLoad=false;
+    private boolean loading=false;
     
     public Gui(Control control,Configuration config,Callback callback){
         this.control = control;
@@ -224,27 +242,25 @@ public class Gui extends AbstractAppState implements ScreenController {
         modelSelection = modelsb.changeCharacterPage(i18nFamily,steep);    
     }
     
+    /**
+     * This method is invoked once the user clicks the right-pointed arrow to start personalizing the 
+     * model. 
+     */
     public void loadFirstScreen(){
-        index = 0;
-        control.selectModel(modelSelection);
-        i18nModel = new I18N(control.getLanguageModelPath(),language);
-        stages = control.getStagesLabels();
-        selection = stages.get(index);
-        scalesb = new ScaleStageBuilder(nifty,control,i18nFamily,i18nModel,i18nGui);
-        singlesb = new SingleStageBuilder(nifty,control,i18nGui,i18nModel);
-        multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily, i18nModel);
-        animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
-        if(popUp == null){
-            popUp = new PopUpBuilder(nifty, control, i18nGui,i18nModel);
-        }
-        nifty.gotoScreen("scaleStage");
-        ArrayList<String> idPanel = control.getIdsSubStages(selection);
-        idPhysicalBuild = control.getIdsPhysicalBuild(idPanel.get(0));
-        idBones = control.getIdBonesController(selection);
-        buildMenu();
         
-        loadScreen(control.getStageTypes(selection).toString());
-        nifty.gotoScreen(control.getStageTypes(selection).toString());
+        // First, iterate layers to make loading indicators visible
+        List<Element> layers = this.nifty.getCurrentScreen().getLayerElements();
+        for (Element e:layers){
+           if (e.getId().equals("progressLayer") || e.getId().equals("Loading")){
+               e.setVisible(true);
+
+           }
+        }
+   
+        // Set mustLoad to true. This will trigger the model loading process in the next update cycle.
+        // (A full cycle is skipped to ensure Nifty has time to get updated as to reflect the changes
+        // done to the visibility of the elements used to convey loading progress).
+      mustLoad=true;
     }
     
     public void changeScalePage(String steep){
@@ -941,5 +957,48 @@ public class Gui extends AbstractAppState implements ScreenController {
         repository.downloadFamily(idFamily);
         control.refreshFamilies();
         modelsb.initModels();
+    }
+    
+    /**
+     * Only checks if the loading progress must be started
+     * @param tpf 
+     */
+    public void update(float tpf) {
+        if (mustLoad){
+            loading = true;
+            mustLoad=false;
+        } else if (loading){
+            mustLoad=loading=false;
+            doLoad();
+        }
+    //System.out.println("UPDATING");
+    }
+
+    /**
+     * Starts loading the model for customization. This method is only invoked by update() after method
+     * loadFirstScreen() sets mustLoad:=true.
+     */
+    private void doLoad() {
+                index = 0;
+        control.selectModel(modelSelection);
+        i18nModel = new I18N(control.getLanguageModelPath(),language);
+        stages = control.getStagesLabels();
+        selection = stages.get(index);
+        scalesb = new ScaleStageBuilder(nifty,control,i18nFamily,i18nModel,i18nGui);
+        singlesb = new SingleStageBuilder(nifty,control,i18nGui,i18nModel);
+        multisb = new MultiStageBuilder(nifty, control, i18nGui, i18nFamily, i18nModel);
+        animationsb = new AnimationStageBuilder(nifty, control, i18nGui, i18nFamily);
+        if(popUp == null){
+            popUp = new PopUpBuilder(nifty, control, i18nGui,i18nModel);
+        }
+        nifty.gotoScreen("scaleStage");
+        ArrayList<String> idPanel = control.getIdsSubStages(selection);
+        idPhysicalBuild = control.getIdsPhysicalBuild(idPanel.get(0));
+        idBones = control.getIdBonesController(selection);
+        buildMenu();
+        
+        loadScreen(control.getStageTypes(selection).toString());
+        nifty.gotoScreen(control.getStageTypes(selection).toString());
+
     }
 }
