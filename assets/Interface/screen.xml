@@ -2,74 +2,128 @@
 <nifty xmlns="http://nifty-gui.sourceforge.net/nifty.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
        xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty.xsd http://nifty-gui.sourceforge.net/nifty.xsd">
   <useStyles filename="nifty-default-styles.xml" />
-  <!--<useStyles filename="Interface/Style/grey-style/nifty-grey-styles.xml" />-->
+  <!--<useStyles filename="nifty-grey-styles.xml" />-->
+  <!--<useStyles filename="assets/Interface/Style/black-style/nifty-black-styles.xml" />-->
   <useControls filename="nifty-default-controls.xml" />
-  <registerEffect name="tooltip" class="es.eucm.character.gui.Tooltip" />
+  <registerEffect name="tooltip" class="es.eucm.echaracter.gui.Tooltip" />
   
-  <controlDefinition name="progressbar" controller="es.eucm.character.gui.ProgressbarControl">
+  <controlDefinition name="progressbar" controller="es.eucm.echaracter.gui.ProgressbarControl">
     <image filename="Interface/progressbar-outer.png" imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15" childLayout="absolute">
       <image id="#progress" x="0" y="0" filename="Interface/progressbar-inner.png" width="32px" height="100%" imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15" />
       <text id="#progress-text" font="Interface/Fonts/Default.fnt" text="" textHAlign="center" textVAlign="center" width="100%" height="100%" x="0" y="0" color="#f00f" />
     </image>
   </controlDefinition>
   
-  <!-- First Screen-->
-  <screen id="start" controller="es.eucm.character.gui.Gui">
-    <layer id="background" childLayout="center">
-      <image filename="Interface/start-background.jpg"></image>
-    </layer>
-    <layer id="foreground" childLayout="vertical">
-      <panel id="panel_mid" height="30%" width="75%" align="center" childLayout="center">       
-        <text id="description" text="" font="${CALL.getfont(20)}" width="100%" height="100%" wrap="true" />
-      </panel>
-      <panel id="panel_bottom" height="30%" width="75%" align="center" childLayout="vertical"> 
-		<panel height="50%" width="100%" align="center" childLayout="horizontal">
-			<panel id="panel_bottom_left" height="50%" width="50%" valign="center" childLayout="center">  
-			  <control name="button" label="Start" id="startButton" align="center" valign="center" visibleToMouse="true"> 
-				<interact onClick="startGame(modelScreen)" />
-			  </control>
-			</panel>
-			<panel id="panel_bottom_right" height="50%" width="50%" valign="center" childLayout="center">  
-			  <control name="button" label="Quit" id="quitButton" align="center" valign="center"  visibleToMouse="true" > 
-				<interact onClick="quitGame()"/>
-			  </control>
-			</panel>
-		</panel>
-		<control id="my-progress" name="progressbar" align="center" valign="center" width="400px" height="32px" />
-      </panel>
-	  <panel id="panel_location" height="30%" width="75%" valign="center" align="center" childLayout="horizontal">
-		<text id="languageText" text="Language:" font="${CALL.getfont(20)}" width="75%" height="100%" valign="center" align="right" wrap="true" />
-	  </panel>
-    </layer>
-  </screen>
+  <controlDefinition name="horizontalSlidereCharacter" controller="es.eucm.echaracter.gui.slider.SliderControl" inputMapping="es.eucm.echaracter.gui.scrollbar.ScrollbarInputMapping">
+    <panel childLayout="horizontal" width="23px" align="center" focusable="true">
+      <interact onMouseWheel="mouseWheel()" />
+      <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,6">
+        <interact onClickRepeat="upClick()" />
+		<effect>
+		  <onClick name="focus" targetElement="#parent" />
+		  <onClick name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,8" post="true" />
+		  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,7" post="true" />
+		  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
+		  <onDisabled name="renderQuad" startColor="#2220" endColor="#2228" post="true" length="150" />
+		</effect>
+      </image>
+      <image id="#background" filename="Interface/slider.png" width="*" height="23px" childLayout="absolute" imageMode="sprite-resize:23,23,16,4,15,4,4,4,15,4,15,4,15,4,4">
+        <interact onClick="mouseClick()" onClickMouseMove="mouseClick()" />
+		<effect>
+		  <onClick name="focus" targetElement="#parent" />
+		</effect>
+        <image id="#position" filename="Interface/slider.png" x="0px" y="0px" width="23px" height="23px" imageMode="sprite-resize:23,23,17,4,15,4,4,4,15,4,15,4,15,4,4">
+			<interact onClick="mouseClick()" onClickMouseMove="mouseClick()" />
+			<effect>
+			  <onClick name="focus" targetElement="#parent#parent" />
+			  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite-resize:23,23,19,4,15,4,4,4,15,4,15,4,15,4,4" post="true" />
+			  <onHover name="imageOverlay" filename="Interface/slider.png" imageMode="sprite-resize:23,23,18,4,15,4,4,4,15,4,15,4,15,4,4" post="true" />
+			  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
+			  <onDisabled name="renderQuad" startColor="#2220" endColor="#2228" post="true" length="150" />
+			</effect>
+        </image>
+      </image>
+      <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,9">
+        <interact onClickRepeat="downClick()" />
+		<effect>
+		  <onClick name="focus" targetElement="#parent" />
+		  <onClick name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,11" post="true" />
+		  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,10" post="true" />
+		  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
+		  <onDisabled name="renderQuad" startColor="#2220" endColor="#2228" post="true" length="150" />
+		</effect>
+      </image>
+    </panel>
+  </controlDefinition>
+  
+  <controlDefinition name="verticalSlidereCharacter" controller="es.eucm.echaracter.gui.slider.SliderControl" inputMapping="es.eucm.echaracter.gui.scrollbar.ScrollbarInputMapping">
+    <panel childLayout="vertical" width="23px" align="center" focusable="true">
+      <interact onMouseWheel="mouseWheel()" />
+      <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,3">
+        <interact onClickRepeat="upClick()"/> 
+		<effect>
+		  <onClick name="focus" targetElement="#parent" />
+		  <onClick name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,5" post="true" />
+		  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,4" post="true" />
+		  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
+		  <onDisabled name="renderQuad" startColor="#2220" endColor="#2228" post="true" length="150" />
+		</effect>
+      </image>
+      <image id="#background" filename="Interface/slider.png" width="23px" height="*" childLayout="absolute" imageMode="sprite:23,23,12">
+        <interact onClick="mouseClick()" onClickMouseMove="mouseClick()" />
+		<effect>
+		  <onClick name="focus" targetElement="#parent" />
+		</effect>
+        <image id="#position" filename="Interface/slider.png" x="0px" y="0px" width="23px" height="23px" imageMode="sprite-resize:23,23,13,4,15,4,4,4,15,4,15,4,15,4,4" childLayout="center">
+          <interact onClick="mouseClick()" onClickMouseMove="mouseClick()" />
+			<effect>
+			  <onClick name="focus" targetElement="#parent#parent" />
+			  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite-resize:23,23,15,4,15,4,4,4,15,4,15,4,15,4,4" post="true" />
+			  <onHover name="imageOverlay" filename="Interface/slider.png" imageMode="sprite-resize:23,23,14,4,15,4,4,4,15,4,15,4,15,4,4" post="true" />
+			  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
+			  <onDisabled name="renderQuad" startColor="#2220" endColor="#2228" post="true" length="150" />
+			</effect>
+        </image>
+      </image>
+      <image filename="Interface/slider.png" width="23px" height="23px" imageMode="sprite:23,23,0">
+        <interact onClickRepeat="downClick()" />
+		<effect>
+		  <onClick name="focus" targetElement="#parent" />
+		  <onClick name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,2" post="true" />
+		  <onFocus name="imageOverlay" filename="Interface/slider.png" imageMode="sprite:23,23,1" post="true" />
+		  <onEnabled name="renderQuad" startColor="#2228" endColor="#2220" post="true" length="150" />
+		  <onDisabled name="renderQuad" startColor="#2220" endColor="#2228" post="true" length="150" />
+		</effect>
+      </image>
+    </panel>
+  </controlDefinition>
   
   <!-- Second screen(Model selection)-->
-	<screen id="modelScreen" controller="es.eucm.character.gui.Gui">
+	<screen id="start" controller="es.eucm.echaracter.gui.Gui">
         <layer id="background" childLayout="vertical">
             <image filename="${CALL.getTexture(s1-background)}" height="100%" width="100%"></image>   
         </layer>
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-			<panel id="familyDrop" height="8%" width="100%" childLayout="horizontal"> 
-				<panel height="100%" width="25%"/>
-			</panel>
+			<panel height="6%" width="100%"/>
 			<image filename="${CALL.getMenu(s1-header)}" childLayout="vertical">
-				<panel id="header" width="100%" height="67%" childLayout="horizontal">
-					<panel height="100%" width="13%"/>
-					<panel height="100%" width="81%" childLayout="center">
-						<text id= "headerText" text="Selecciona una familia y luego el modelo base para comenzar" font="${CALL.getfont(30)}" wrap = "true"/>
+				<panel width="100%" height="67%" childLayout="horizontal">
+					<panel height="100%" width="15%"/>
+					<panel id="header" height="100%" width="79%" childLayout="center">
+						<text textHAlign="left" id= "headerText" align="right" text="" font="${CALL.getfont(30)}" wrap="true"/>
 					</panel>
 					<image valign ="center" filename="${CALL.getMenu(s1-settings)}">
-						<interact onClick=""/>
+						<interact onClick="showRepository()"/>
 						<effect>
-							<onHover name="imageOverlay" filename="${CALL.getMenu(s1-settings-over)}" post="true" />
+							<onHover name="imageOverlay" filename="${CALL.getMenu(s1-settings-over)}" post="true"/>
 						</effect>
 					</image> 
 				</panel>
-				<panel id="subheader" width="90%" height="33%" align="right" childLayout="center">
-					<text id= "subheaderText" text="Bienvenido a Character, el configurador de personajes de eAdventure. Para conocer más detalles sobre el proyecto pulsa aquí" font="${CALL.getfont(20)}" wrap = "true"/>
+				<panel id="subHeader" width="89%" height="33%" align="right" childLayout="center">
+					<text textHAlign="left" id= "subHeaderText" text="" font="${CALL.getfont(20)}" wrap="true"/>
+					<interact onClick="showWeb()"/>
 				</panel>
 			</image>
-			<panel height="5%" width="100%"/>
+			<panel height="3%" width="100%"/>
 			<panel height="69%" width="90%" align="center" childLayout="vertical">
 				<panel height="90%" width="100%" align="center" childLayout="horizontal">
 					<panel id="familyPanel" height="100%" width="48%" childLayout="vertical">
@@ -88,14 +142,14 @@
 									<panel id="textPanel0" height="90%" width="50%" childLayout="vertical" valign="center">
 										<panel id="titulo0" height="30%" width="100%" childLayout="horizontal" valign="center">
 											<image id ="info0" valing="center" filename="${CALL.getButton(info)}">
-												<interact onClick=""/>
+												<interact onClick="showInfo(0)"/>
 												<effect>
 													<onHover name="imageOverlay" filename="${CALL.getButton(info-over)}" post="true" />
 												</effect>
 											</image>
-											<text id="name0" align="left" text="Head" font="${CALL.getfont(20)}" wrap="true"/>
+											<text id="name0" text="Head" font="${CALL.getfont(20)}" wrap="true" color="#565857"/>
 										</panel>
-										<text id="description0" text="Head" font="${CALL.getfont(15)}" height="100%" width="100%" wrap="true"/>
+										<text id="description0" textHAlign="left" text="Head" font="${CALL.getfont(15)}" height="100%" width="100%" wrap="true" color="#7D7455"/>
 									</panel>
 									<image id = "f0" height="103" width="174" filename="Interface/x.png"/>
 									<interact onClick="selectFamily(0)"/>
@@ -108,14 +162,14 @@
 									<panel id="textPanel1" height="90%" width="50%" childLayout="vertical" valign="center">
 										<panel id="titulo1" height="30%" width="100%" childLayout="horizontal" valign="center">
 											<image id ="info1" valing="center" filename="${CALL.getButton(info)}">
-												<interact onClick=""/>
+												<interact onClick="showInfo(1)"/>
 												<effect>
 													<onHover name="imageOverlay" filename="${CALL.getButton(info-over)}" post="true" />
 												</effect>
 											</image>
-											<text id="name1" text="Head" font="${CALL.getfont(20)}" wrap="true"/>
+											<text id="name1" text="Head" font="${CALL.getfont(20)}" wrap="true" color="#565857"/>
 										</panel>
-										<text id="description1" text="Head" font="${CALL.getfont(15)}" height="100%" width="100%" wrap="true"/>
+										<text id="description1" textHAlign="left" text="Head" font="${CALL.getfont(15)}" height="100%" width="100%" wrap="true" color="#7D7455"/>
 									</panel>
 									<image id = "f1" height="103" width="174" filename="Interface/x.png"/>
 									<interact onClick="selectFamily(1)"/>
@@ -128,14 +182,14 @@
 									<panel id="textPanel2" height="90%" width="50%" childLayout="vertical" valign="center">
 										<panel id="titulo2" height="30%" width="100%" childLayout="horizontal" valign="center">
 											<image id ="info2" valing="center" filename="${CALL.getButton(info)}">
-												<interact onClick=""/>
+												<interact onClick="showInfo(2)"/>
 												<effect>
 													<onHover name="imageOverlay" filename="${CALL.getButton(info-over)}" post="true" />
 												</effect>
 											</image>
-											<text id="name2" text="Head" font="${CALL.getfont(20)}" wrap="true"/>
+											<text id="name2" text="Head" font="${CALL.getfont(20)}" wrap="true" color="#565857"/>
 										</panel>
-										<text id="description2" text="Head" font="${CALL.getfont(15)}" height="100%" width="100%" wrap="true"/>
+										<text id="description2" textHAlign="left" text="Head" font="${CALL.getfont(15)}" height="100%" width="100%" wrap="true" color="#7D7455"/>
 									</panel>
 									<image id = "f2" height="103" width="174" filename="Interface/x.png"/>
 									<interact onClick="selectFamily(2)"/>
@@ -165,14 +219,10 @@
 									</effect>
 								</image>
 							</panel>
-							<panel id="panel_image" width="76%" height="90%" align="center" childLayout="center">
+							<panel id="panel_image" width="76%" height="90%" childLayout="center">
 								<!-- Character's Image -->
 								<image id = "m" filename="${CALL.getTexture(model)}">
 									<interact onClick="selectModel(0)"/>
-									<effect>
-									<!-- apply the custom-hint effect whenever someone hovers this element, show the element with the id “hint-panel” and change the text to the given hintText -->
-										<onHover name="tooltip" targetElement="hint-panel" hintText="Model 0" />
-									</effect>
 								</image> 
 							</panel>
 							<panel id="panel_changeright" width="12%" height="90%" align="center" childLayout="center">
@@ -186,7 +236,6 @@
 						</image>
 					</panel>
 				</panel>
-				<panel height="1%" width="100%"/>
 				<image id="panel_screenright" filename="${CALL.getButton(next)}" align="right">
 					<interact onClick="loadFirstScreen()"/>
 					<effect>
@@ -195,135 +244,294 @@
 				</image>
 			</panel>
         </layer>
-        <!-- show a hint on top of the normal layer -->
-        <layer id="layer2" childLayout="absolute-inside">
-            <panel id="hint-panel" visible="false" childLayout="vertical" padding="5px,10px,5px,10px" backgroundColor="#ffc">
-                <text id="content" font="${CALL.getfont(20)}" text="" align="center" valign="center" color="#000"/>
-            </panel>    
+		<layer id="InfoFam" childLayout="center" visible="false">
+			<image filename="${CALL.getTexture(background-popup-dialog)}" childLayout="vertical">
+				<panel height="45%" width="100%"/>
+				<panel id="popup" height="30%" width="60%" childLayout="vertical" align="center">
+					<panel id="familyNamePopupPanel" height="10%" width="100%" childLayout="horizontal">
+						<text id="familyNamePopupText" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#000088" wrap="true"/>
+					</panel>
+					<panel height="80%" width="100%" childLayout="horizontal">
+						<panel id="familyDescriptionPopupPanel" height="100%" width="65%" childLayout="horizontal" valign="center">
+							<text id="familyDescriptionPopupText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
+						</panel>
+						<panel width="10%"/>
+						<panel height="100%" width="25%" childLayout="vertical" valign="center">
+							<panel id="familyAuthorPopupPanel" height="45%" width="100%" childLayout="horizontal" valign="center">
+								<text id="familyAuthorPopupText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
+							</panel>
+							<panel height="10%"/>
+							<panel id="familyUrlPopupPanel" height="45%" width="100%" childLayout="horizontal" valign="center">
+								<text id="familyUrlPopupText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
+							</panel>
+						</panel>
+					</panel>
+					<panel id="buttonPanel" height="10%" width="100%" childLayout="center" valign="center">
+						<image id="accept" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+							<text id="acceptText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+							<interact onClick="closeInfo()"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+							</effect>
+						</image>
+					</panel>
+				</panel>
+			</image>
+        </layer>
+		<layer id="Language" childLayout="center">
+			<image filename="${CALL.getTexture(background-popup-language)}" childLayout="vertical">
+				<panel height="27%" width="100%"/>
+				<panel height="12%" width="70%" childLayout="horizontal" align="center">
+					<panel height="100%" width="25%"/>
+					<panel height="100%" width="75%" childLayout="vertical" align="center">
+						<panel id="welcomePanel" height="60%" width="100%" childLayout="horizontal" align="center">
+							<text id="welcome" valign="center" height="50%" width="30%" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#000000" wrap="true"/>
+							<image filename="${CALL.getTexture(eCharacter)}" valign="center"/>
+							<panel height="100%" width="25%"/>
+							<image valign="top" filename="${CALL.getButton(close-language)}" childLayout="center">
+								<interact onClick="hideLanguagePopup()"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(close-language-over)}" post="true" />
+								</effect>
+							</image>
+						</panel>
+						<panel id="subWelcomePanel" height="40%" width="100%" childLayout="horizontal" align="center">
+							<text id="subWelcome" valign="center" height="50%" width="100%" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#565857" wrap="true"/>
+						</panel>
+					</panel>
+				</panel>
+				<panel height="5%" width="100%"/>
+				<panel id="popupLanguage" height="30%" width="60%" childLayout="vertical" align="center">
+					<panel id="localeDescriptionPopupPanel" height="70%" width="100%" childLayout="horizontal">
+						<text id="localeDescriptionPopupText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
+					</panel>
+					<panel id="buttonLanguagePanel" height="30%" width="100%" childLayout="center" valign="center">
+						<image align="center" valign="center" filename="${CALL.getButton(selector)}" childLayout="horizontal">
+							<panel height="100%" width="75%" childLayout="center" valign="center">
+								<image id="flag" filename="${CALL.getTexture(flag)}"/>
+							</panel>
+							<panel height="50%" width="25%" childLayout="vertical" valign="center">
+								<image id="uplanguage" align="center" valign="center" filename="${CALL.getButton(up-selector)}" childLayout="center">
+									<interact onClick="changeLocale(-)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(up-selector-over)}" post="true" />
+									</effect>
+								</image>
+								<panel height="20%" width="100%"/>
+								<image id="downlanguage" align="center" valign="center" filename="${CALL.getButton(down-selector)}" childLayout="center">
+									<interact onClick="changeLocale(+)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(down-selector-over)}" post="true" />
+									</effect>
+								</image>
+							</panel>
+						</image>
+					</panel>
+				</panel>
+			</image>
+        </layer>
+		<layer id="repository" childLayout="center" visible="false">
+			<image filename="${CALL.getTexture(background-popup-language)}" childLayout="vertical">
+				<panel height="27%" width="100%"/>
+				<panel height="12%" width="70%" childLayout="horizontal" align="center">
+					<panel height="100%" width="25%"/>
+					<panel height="100%" width="75%" childLayout="vertical" align="center">
+						<panel id="welcomeRepoPanel" height="60%" width="100%" childLayout="horizontal" align="center">
+							<text id="repoWelcome" valign="center" height="50%" width="30%" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#000000" wrap="true"/>
+							<image filename="${CALL.getTexture(eCharacter)}" valign="center"/>
+							<panel height="100%" width="25%"/>
+							<image valign="top" filename="${CALL.getButton(close-language)}" childLayout="center">
+								<interact onClick="hideRepository()"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(close-language-over)}" post="true" />
+								</effect>
+							</image>
+						</panel>
+						<panel id="repoDescPanel" height="40%" width="100%" childLayout="horizontal" align="center">
+							<text id="repoDescText" valign="center" height="50%" width="100%" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#565857" wrap="true"/>
+						</panel>
+					</panel>
+				</panel>
+				<panel height="5%" width="100%"/>
+				<panel id="popupRepository" height="30%" width="60%" childLayout="horizontal" align="center">
+					<panel height="100%" width="5%" childLayout="center">
+						<image id="familyRepoLeft" filename="${CALL.getButton(left)}">
+							<interact onClick="changeRepository(-)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+							</effect>
+						</image>
+					</panel>
+					<panel height="100%" width="90%" childLayout="vertical">
+						<panel height="80%" width="100%" childLayout="horizontal">
+							<panel id="RepoDescFamPanel" height="100%" width="70%" childLayout="horizontal">
+								<text id="RepoDescFamText" height="100%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
+							</panel>
+							<panel height="100%" width="30%" childLayout="center">
+								<image id="familyRepo" height="103" width="174" filename="Interface/x.png"/>
+							</panel>
+						</panel>
+						<panel height="20%" width="100%" childLayout="center">
+							<image id="download" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+								<text id="downloadText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+								<interact onClick="downloadFamily()"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+								</effect>
+							</image>
+						</panel>
+					</panel>
+					<panel height="100%" width="5%" childLayout="center">
+						<image id="familyRepoRight" filename="${CALL.getButton(right)}">
+							<interact onClick="changeRepository(+)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
+							</effect>
+						</image>
+					</panel>
+				</panel>
+			</image>
         </layer>
     </screen>
   
   <!-- Third screen(basic)-->
-	<screen id="scaleStage" controller="es.eucm.character.gui.Gui">
+	<screen id="scaleStage" controller="es.eucm.echaracter.gui.Gui">
 		<layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-			<panel height="2%" width="100%">
-				<!-- Space -->
-			</panel>
+			<panel height="2%" width="100%"/>
 			<!-- Option Panel -->
 			<panel width="100%" childLayout="Horizontal"> 
 				<image id="panel_options" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-left)}"> 
 					
 				</image>
-				<panel height="100%" width="1%">
-					<!-- Space -->
-				</panel>
+				<panel height="100%" width="1%"/>
 				<image id="panel_options2" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-right)}">
 					<panel id ="exportPanel" childLayout="horizontal"height="100%" width="70%">
 						<panel childLayout="vertical" valign="bottom" height="80%" width="100%">
-						<image id = "export" align="center" filename="${CALL.getMenu(export)}">
+						<image id = "exportIcon" align="center" filename="${CALL.getMenu(export)}">
 							<interact onClick="changeScreen(animationStage)"/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(export-over)}" post="true" />
 							</effect>
 						</image>
-						<image id = "export" align="center" filename="${CALL.getMenu(export-selection)}" visible ="false"/>
+						<image id = "export" align="center" filename="${CALL.getMenu(export-selection)}" visible="false"/>
 						</panel>
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}" visible="false">
 							<interact onClick=""/>
 							<effect>
-								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
+								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true"/>
 							</effect>
 						</image>
 					</panel>
 				</image>
 			</panel>
-			<panel height="6%" width="100%">
-				<!-- Space -->
-			</panel>
+			<panel height="6%" width="100%"/>
 			<panel height="79%" width="94%" childLayout="vertical" align="center">
-				<panel id="panel_options-complexion" height="4%" width="30%" align="right" childLayout="horizontal"> 
-					<!-- Change Basic Options Panel -->
-					<panel id="basicPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-						<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" />
-						<interact onClick="changeTab(basic)"/>
-					</panel>
-					<!-- Change Advanced Options Panel -->
-					<panel id="advancedPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-						<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" />
-						<interact onClick="changeTab(advanced)"/>
-					</panel>
-				</panel>
-				<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right" backgroundImage="Interface/CuadroAzul.png">
-					<panel id="panel_image" height="80%" width="80%" align="center" childLayout="vertical">
-						<panel height="5%" width="100%">
-						<!-- Space -->
-						</panel>
-						<panel id="t0" height="14%" width="100%" childLayout="vertical">
-							<panel id="cont0" height="50%" width="100%" childLayout="horizontal">
-								<text id="text0" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" wrap="true"/>
-								<interact onClick="changeBodyType(0)"/>
+				<image id="rightSelectionPanel" childLayout="vertical" align="right" filename="${CALL.getTexture(s2-right-panel)}">
+					<panel id="panel_options-complexion" height="10%" width="100%" align="right" childLayout="horizontal"> 
+						<panel height="100%" width="2%"/>
+						<!-- Change Basic Options Panel -->
+						<image id="basic" childLayout="center" filename="${CALL.getTexture(tab-l)}">
+							<panel id="basicPanel" height="100%" width="100%" childLayout="center">
+								<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+								<interact onClick="changeTab(basic)"/>
 							</panel>
-							<control id="slider0" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
-						</panel>
-						<panel height="5%" width="100%">
-						<!-- Space -->
-						</panel>
-						<panel id="t1" height="14%" width="100%" childLayout="vertical">
-							<panel id="cont1" height="50%" width="100%" childLayout="horizontal">
-								<text id="text1" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" wrap="true"/>
-								<interact onClick="changeBodyType(1)"/>
-							</panel>
-							<control id="slider1" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
-						</panel>
-						<panel height="5%" width="100%">
-						<!-- Space -->
-						</panel>
-						<panel id="t2" height="14%" width="100%" childLayout="vertical">
-							<panel id="cont2" height="50%" width="100%" childLayout="horizontal">
-								<text id="text2" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" wrap="true"/>
-								<interact onClick="changeBodyType(2)"/>
-							</panel>
-							<control id="slider2" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
-						</panel>
-						<panel height="5%" width="100%">
-						<!-- Space -->
-						</panel>
-						<panel id="t3" height="14%" width="100%" childLayout="vertical">
-							<panel id="cont3" height="50%" width="100%" childLayout="horizontal">
-								<text id="text3" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" wrap="true"/>
-								<interact onClick="changeBodyType(3)"/>
-							</panel>
-							<control id="slider3" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
-						</panel>
-						<panel height="5%" width="100%">
-						<!-- Space -->
-						</panel>
-						<panel id="t4" height="14%" width="100%" childLayout="vertical">
-							<panel id="cont4" height="50%" width="100%" childLayout="horizontal">
-								<text id="text4" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" wrap="true"/>
-								<interact onClick="changeBodyType(4)"/>
-							</panel>
-							<control id="slider4" name="horizontalSlider" max="100" min="-50" value="0" height="50%" width="80%"/>
-						</panel>
-					</panel>
-					<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-						<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
-							<interact onClick="changeScalePage(-)"/>
 						</image>
-						<panel height="50%" width="34%">
-						<!-- Space -->
-						</panel>
-						<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
-							<interact onClick="changeScalePage(+)"/>
+						<!-- Change Advanced Options Panel -->
+						<image id="advanced" childLayout="center" filename="${CALL.getTexture(tab-r)}">
+							<panel id="advancedPanel" height="100%" width="100%" childLayout="center">
+								<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+								<interact onClick="changeTab(advanced)"/>
+							</panel>
 						</image>
 					</panel>
-				</panel>
-				<panel height="15%" width="100%">
-					<!-- Space -->
-				</panel>
+					<panel id="texturePanel" height="85%" width="100%" childLayout="horizontal" align="right">
+						<panel height="100%" width="12%" align="center" childLayout="center">
+							<image id="leftT" align="center" filename="${CALL.getButton(left)}">
+								<interact onClick="changeScalePage(-)"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+								</effect>
+							</image>
+						</panel>
+						<panel id="panel_image" height="100%" width="76%" align="center" childLayout="vertical">
+							<panel height="5%" width="100%"/>
+							<panel id="t0" height="14%" width="100%" childLayout="vertical">
+								<panel id="b0" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb0" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+									<interact onClick="changeBodyType(0)"/>
+								</panel>
+								<panel id="a0" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta0" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider0" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
+								</panel>
+							</panel>
+							<panel height="5%" width="100%">
+							<!-- Space -->
+							</panel>
+							<panel id="t1" height="14%" width="100%" childLayout="vertical">
+								<panel id="b1" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb1" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+									<interact onClick="changeBodyType(1)"/>
+								</panel>
+								<panel id="a1" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta1" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider1" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
+								</panel>
+							</panel>
+							<panel height="5%" width="100%">
+							<!-- Space -->
+							</panel>
+							<panel id="t2" height="14%" width="100%" childLayout="vertical">
+								<panel id="b2" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb2" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+									<interact onClick="changeBodyType(2)"/>
+								</panel>
+								<panel id="a2" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta2" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider2" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
+								</panel>
+							</panel>
+							<panel height="5%" width="100%">
+							<!-- Space -->
+							</panel>
+							<panel id="t3" height="14%" width="100%" childLayout="vertical">
+								<panel id="b3" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb3" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+									<interact onClick="changeBodyType(3)"/>
+								</panel>
+								<panel id="a3" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta3" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider3" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
+								</panel>
+							</panel>
+							<panel height="5%" width="100%">
+							<!-- Space -->
+							</panel>
+							<panel id="t4" height="14%" width="100%" childLayout="vertical">
+								<panel id="b4" height="50%" width="100%" childLayout="horizontal">
+									<text id="textb4" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+									<interact onClick="changeBodyType(4)"/>
+								</panel>
+								<panel id="a4" height="50%" width="100%" childLayout="horizontal">
+									<text id="texta4" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
+									<control id="slider4" name="horizontalSlidereCharacter" max="100" min="-50" value="0" width="50%"/>
+								</panel>
+							</panel>
+						</panel>
+						<panel height="100%" width="12%" align="center" childLayout="center">
+							<image id="rightT" align="center" filename="${CALL.getButton(right)}">
+								<interact onClick="changeScalePage(+)"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
+								</effect>
+							</image>
+						</panel>
+					</panel>
+				</image>
+				<panel height="7%" width="100%"/>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
@@ -347,23 +555,19 @@
     </screen>
 	
 	<!-- Fifth screen(skin)-->
-	<screen id="singleStage" controller="es.eucm.character.gui.Gui">
+	<screen id="singleStage" controller="es.eucm.echaracter.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
-			<panel height="2%" width="100%">
-				<!-- Space -->
-			</panel>
+			<panel height="2%" width="100%"/>
 			<!-- Option Panel -->
 			<panel width="100%" childLayout="Horizontal"> 
 				<image id="panel_options" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-left)}"> 
 					
 				</image>
-				<panel height="100%" width="1%">
-					<!-- Space -->
-				</panel>
+				<panel height="100%" width="1%"/>
 				<image id="panel_options2" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-right)}">
 					<panel id ="exportPanel" childLayout="horizontal"height="100%" width="70%">
 						<panel childLayout="vertical" valign="bottom" height="80%" width="100%">
-						<image id = "export" align="center" filename="${CALL.getMenu(export)}">
+						<image id = "exportIcon" align="center" filename="${CALL.getMenu(export)}">
 							<interact onClick="changeScreen(animationStage)"/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(export-over)}" post="true" />
@@ -374,7 +578,7 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}" visible="false">
 							<interact onClick=""/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
@@ -383,21 +587,17 @@
 					</panel>
 				</image>
 			</panel>
-			<panel height="10%" width="100%">
-				<!-- Space -->
-			</panel>
+			<panel height="10%" width="100%"/>
 			<panel height="79%" width="94%" childLayout="vertical" align="center">
 				<image id="rightSelectionPanel" childLayout="Vertical" align="right" filename="${CALL.getTexture(s2-right-panel)}">
-					<panel height="2%" width="100%">
-						<!-- Space -->
-					</panel>
+					<panel height="2%" width="100%"/>
 					<panel id="texturePanel" height="80%" width="100%" childLayout="Horizontal">	
 						<panel id="leftPanel" height="100%" width="12%" align="center" childLayout="center">
 							<image id="leftT" align="center" filename="${CALL.getButton(left)}">
-									<interact onClick="changeTexturePage(-)"/>
-									<effect>
-										<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
-									</effect>
+								<interact onClick="changeTexturePage(-)"/>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+								</effect>
 							</image>
 						</panel>
 						<panel id="panel_image" height="100%" width="76%" align="center" childLayout="vertical">
@@ -411,9 +611,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t1" height="100%" width="22%" childLayout="center">
 									<image id = "i1" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,1)"/>
@@ -422,9 +620,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t2" height="100%" width="22%" childLayout="center">
 									<image id = "i2" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,2)"/>
@@ -433,9 +629,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t3" height="100%" width="22%" childLayout="center">
 									<image id = "i3" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,3)"/>
@@ -445,9 +639,7 @@
 									</image>
 								</panel>
 							</panel>
-							<panel height="4%" width="100%">
-							<!-- Space -->
-							</panel>
+							<panel height="4%" width="100%"/>
 							<panel id="t47" height="22%" width="100%" childLayout="horizontal">
 								<panel id="t4" height="100%" width="22%" childLayout="center">
 									<image id = "i4" filename="Interface/x.png" height="95%" width="95%">
@@ -457,9 +649,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t5" height="100%" width="22%" childLayout="center">
 									<image id = "i5" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,5)"/>
@@ -468,9 +658,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t6" height="100%" width="22%" childLayout="center">
 									<image id = "i6" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,6)"/>
@@ -479,9 +667,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t7" height="100%" width="22%" childLayout="center">
 									<image id = "i7" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,7)"/>
@@ -491,9 +677,7 @@
 									</image>
 								</panel>
 							</panel>
-							<panel height="4%" width="100%">
-							<!-- Space -->
-							</panel>
+							<panel height="4%" width="100%"/>
 							<panel id="t811" height="22%" width="100%" childLayout="horizontal">
 								<panel id="t8" height="100%" width="22%" childLayout="center">
 									<image id = "i8" filename="Interface/x.png" height="95%" width="95%">
@@ -503,9 +687,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t9" height="100%" width="22%" childLayout="center">
 									<image id = "i9" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,9)"/>
@@ -514,9 +696,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t10" height="100%" width="22%" childLayout="center">
 									<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,10)"/>
@@ -525,9 +705,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t11" height="100%" width="22%" childLayout="center">
 									<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,11)"/>
@@ -537,9 +715,7 @@
 									</image>
 								</panel>
 							</panel>
-							<panel height="4%" width="100%">
-							<!-- Space -->
-							</panel>
+							<panel height="4%" width="100%"/>
 							<panel id="t1215" height="22%" width="100%" childLayout="horizontal">
 								<panel id="t12" height="100%" width="22%" childLayout="center">
 									<image id = "i12" filename="Interface/x.png" height="95%" width="95%">
@@ -549,9 +725,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t13" height="100%" width="22%" childLayout="center">
 									<image id = "i13" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,13)"/>
@@ -560,9 +734,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t14" height="100%" width="22%" childLayout="center">
 									<image id = "i14" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,14)"/>
@@ -571,9 +743,7 @@
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="4%">
-								<!-- Space -->
-								</panel>
+								<panel height="100%" width="4%"/>
 								<panel id="t15" height="100%" width="22%" childLayout="center">
 									<image id = "i15" filename="Interface/x.png" height="95%" width="95%">
 										<interact onClick="changeTextureOrSubMesh(0,15)"/>
@@ -593,20 +763,16 @@
 							</image>
 						</panel>
 					</panel>
-					<panel height="3%" width="100%">
-						<!-- Space -->
-					</panel>
+					<panel height="3%" width="100%"/>
 					<panel id="panel_color" height="10%" width="42%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-						<text id="colorText" text="" color="#000000FF" font="${CALL.getfont(20)}" width="100%" height="100%" />
+						<text id="colorText" text="" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
 						<interact onClick="showWindowChangeColor(0)"/>
 						<effect>
 							<onHover name="imageOverlay" filename="${CALL.getButton(color-over)}" post="true" />
 						</effect>
 					</panel>
 				</image>
-				<panel height="15%" width="100%">
-					<!-- Space -->
-				</panel>
+				<panel height="7%" width="100%"/>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
@@ -615,9 +781,7 @@
 							<onHover name="imageOverlay" filename="${CALL.getButton(previous-over)}" post="true" />
 						</effect>
 					</image>
-					<panel height="100%" width="90%">
-						<!-- Space -->
-					</panel>
+					<panel height="100%" width="90%"/>
 					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="changeScreen(+)"/>
 						<effect>
@@ -636,7 +800,7 @@
     </screen>
 	
 	<!-- Sixth screen(accesories)-->
-	<screen id="multiStage" controller="es.eucm.character.gui.Gui">
+	<screen id="multiStage" controller="es.eucm.echaracter.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<panel height="2%" width="100%">
 				<!-- Space -->
@@ -646,13 +810,11 @@
 				<image id="panel_options" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-left)}"> 
 					
 				</image>
-				<panel height="100%" width="1%">
-					<!-- Space -->
-				</panel>
+				<panel height="100%" width="1%"/>
 				<image id="panel_options2" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-right)}">
 					<panel id ="exportPanel" childLayout="horizontal"height="100%" width="70%">
 						<panel childLayout="vertical" valign="bottom" height="80%" width="100%">
-						<image id = "export" align="center" filename="${CALL.getMenu(export)}">
+						<image id = "exportIcon" align="center" filename="${CALL.getMenu(export)}">
 							<interact onClick="changeScreen(animationStage)"/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(export-over)}" post="true" />
@@ -662,7 +824,7 @@
 						</panel>
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
-					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
+					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%" visible="false">
 						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
 							<interact onClick=""/>
 							<effect>
@@ -672,9 +834,7 @@
 					</panel>
 				</image>
 			</panel>
-			<panel height="10%" width="100%">
-				<!-- Space -->
-			</panel>
+			<panel height="10%" width="100%"/>
 			<panel height="79%" width="94%" childLayout="vertical" align="center">
 				<image id="rightSelectionPanel" childLayout="vertical" align="right" filename="${CALL.getTexture(s2-right-panel)}">
 					<panel id="upT" height="10%" width="100%" childLayout="center">
@@ -688,88 +848,142 @@
 					<panel id="panel_image" height="80%" width="100%" align="center" childLayout="vertical">
 						<panel id="t0" height="48%" width="100%" childLayout="vertical">
 							<panel id="textPanel0" height="15%" width="100%" childLayout="center" align="center">
-								<text id="text0" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" wrap="true"/>
+								<text id="text0" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" wrap="true" color="#565857"/>
 							</panel>
-							<panel id="p0" height="50%" width="80%" childLayout="horizontal" align="center">
-								<panel id="t00" height="100%" width="47.5%" childLayout="center">
-									<image id = "i00" filename="Interface/x.png" height="95%" width="95%">
-										<interact onClick="changeTextureOrSubMesh(0,0)"/>
+							<panel height="47%" width="100%" childLayout="horizontal">
+								<panel height="100%" width="12%" align="center" childLayout="center">
+									<image id="leftT0" align="center" filename="${CALL.getButton(left)}">
+										<interact onClick="changePageSubStage(0,-)"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="5%">
-								<!-- Space -->
+								<panel id="p0" height="100%" width="76%" childLayout="horizontal" align="center">
+									<panel id="t00" height="100%" width="22%" childLayout="center">
+										<image id = "i00" filename="Interface/x.png" height="95%" width="95%">
+											<interact onClick="changeTextureOrSubMesh(0,0)"/>
+											<effect>
+												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											</effect>
+										</image>
+									</panel>
+									<panel height="100%" width="4%"/>
+									<panel id="t01" height="100%" width="22%" childLayout="center">
+										<image id = "i01" filename="Interface/x.png" height="95%" width="95%">
+											<interact onClick="changeTextureOrSubMesh(0,1)"/>
+											<effect>
+												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											</effect>
+										</image>
+									</panel>
+									<panel height="100%" width="4%"/>
+									<panel id="t02" height="100%" width="22%" childLayout="center">
+										<image id = "i02" filename="Interface/x.png" height="95%" width="95%">
+											<interact onClick="changeTextureOrSubMesh(0,2)"/>
+											<effect>
+												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											</effect>
+										</image>
+									</panel>
+									<panel height="100%" width="4%"/>
+									<panel id="t03" height="100%" width="22%" childLayout="center">
+										<image id = "i03" filename="Interface/x.png" height="95%" width="95%">
+											<interact onClick="changeTextureOrSubMesh(0,3)"/>
+											<effect>
+												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											</effect>
+										</image>
+									</panel>
 								</panel>
-								<panel id="t01" height="100%" width="47.5%" childLayout="center">
-									<image id = "i01" filename="Interface/x.png" height="95%" width="95%">
-										<interact onClick="changeTextureOrSubMesh(0,1)"/>
+								<panel height="100%" width="12%" align="center" childLayout="center">
+									<image id="rightT0" align="center" filename="${CALL.getButton(right)}">
+										<interact onClick="changePageSubStage(0,+)"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
 										</effect>
 									</image>
 								</panel>
 							</panel>
-							<panel id="panel_change0" height="10%" width="70%" align="center" childLayout="horizontal">
-								<image id="leftT0" filename="${CALL.getButton(left)}" height="100%" width="33%" valign="center" align="left">
-									<interact onClick="changePageSubStage(0,-)"/>
-								</image>
-								<panel height="100%" width="34%">
-									<!-- Space -->
-								</panel>
-								<image id="rightT0" filename="${CALL.getButton(right)}" height="100%" width="33%" valign="center" align="right">
-									<interact onClick="changePageSubStage(0,+)"/>
-								</image>
-							</panel>
-							<panel id="panel_color0" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-								<text id="colorText0" text="Color" font="${CALL.getfont(20)}" width="100%" height="100%" />
+							<panel height="10%" width="100%"/>
+							<image id="panel_color0" align="center" childLayout="center" filename="${CALL.getButton(color)}">
+								<text id="colorText0" text="Color" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
 								<interact onClick="showWindowChangeColor(0)"/>
-							</panel>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(color-over)}" post="true" />
+								</effect>
+							</image>
 						</panel>
-						<panel height="2%" width="100%">
-						<!-- Space -->
+						<panel height="2%" width="100%" childLayout="center">
+							<image align="center" filename="${CALL.getTexture(s2-separator)}"/>
 						</panel>
 						<panel id="t1" height="48%" width="100%" childLayout="vertical">
 							<panel id="textPanel1" height="15%" width="100%" childLayout="center" align="center">
-								<text id="text1" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" wrap="true"/>
+								<text id="text1" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" wrap="true" color="#565857"/>
 							</panel>
-							<panel id="p1" height="50%" width="80%" childLayout="horizontal" align="center">
-								<panel id="t10" height="100%" width="47.5%" childLayout="center">
-									<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
-										<interact onClick="changeTextureOrSubMesh(1,0)"/>
+							<panel height="47%" width="100%" childLayout="horizontal">
+								<panel height="100%" width="12%" align="center" childLayout="center">
+									<image id="leftT1" align="center" filename="${CALL.getButton(left)}">
+										<interact onClick="changePageSubStage(1,-)"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
 										</effect>
 									</image>
 								</panel>
-								<panel height="100%" width="5%">
-								<!-- Space -->
+								<panel id="p1" height="100%" width="76%" childLayout="horizontal" align="center">
+									<panel id="t10" height="100%" width="22%" childLayout="center">
+										<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
+											<interact onClick="changeTextureOrSubMesh(1,0)"/>
+											<effect>
+												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											</effect>
+										</image>
+									</panel>
+									<panel height="100%" width="4%"/>
+									<panel id="t11" height="100%" width="22%" childLayout="center">
+										<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
+											<interact onClick="changeTextureOrSubMesh(1,1)"/>
+											<effect>
+												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											</effect>
+										</image>
+									</panel>
+									<panel height="100%" width="4%"/>
+									<panel id="t12" height="100%" width="22%" childLayout="center">
+										<image id = "i12" filename="Interface/x.png" height="95%" width="95%">
+											<interact onClick="changeTextureOrSubMesh(1,2)"/>
+											<effect>
+												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											</effect>
+										</image>
+									</panel>
+									<panel height="100%" width="4%"/>
+									<panel id="t13" height="100%" width="22%" childLayout="center">
+										<image id = "i13" filename="Interface/x.png" height="95%" width="95%">
+											<interact onClick="changeTextureOrSubMesh(1,3)"/>
+											<effect>
+												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											</effect>
+										</image>
+									</panel>
 								</panel>
-								<panel id="t11" height="100%" width="47.5%" childLayout="center">
-									<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
-										<interact onClick="changeTextureOrSubMesh(1,1)"/>
+								<panel height="100%" width="12%" align="center" childLayout="center">
+									<image id="rightT1" align="center" filename="${CALL.getButton(right)}">
+										<interact onClick="changePageSubStage(1,+)"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
 										</effect>
 									</image>
 								</panel>
 							</panel>
-							<panel id="panel_change1" height="10%" width="70%" align="center" childLayout="horizontal">
-								<image id="leftT1" filename="${CALL.getButton(left)}" height="100%" width="33%" valign="center" align="left">
-									<interact onClick="changePageSubStage(1,-)"/>
-								</image>
-								<panel height="100%" width="34%">
-									<!-- Space -->
-								</panel>
-								<image id="rightT1" filename="${CALL.getButton(right)}" height="100%" width="33%" valign="center" align="right">
-									<interact onClick="changePageSubStage(1,+)"/>
-								</image>
-							</panel>
-							<panel id="panel_color1" height="25%" width="70%" align="center" childLayout="center" backgroundImage="${CALL.getButton(color)}">
-								<text id="colorText1" text="Color" font="${CALL.getfont(20)}" width="100%" height="100%" />
+							<panel height="10%" width="100%"/>
+							<image id="panel_color1" align="center" childLayout="center" filename="${CALL.getButton(color)}">
+								<text id="colorText1" text="Color" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
 								<interact onClick="showWindowChangeColor(1)"/>
-							</panel>
+								<effect>
+									<onHover name="imageOverlay" filename="${CALL.getButton(color-over)}" post="true" />
+								</effect>
+							</image>
 						</panel>
 					</panel>
 					<panel id="downT" height="10%" width="100%" childLayout="vertical">
@@ -781,7 +995,7 @@
 						</image>
 					</panel>
 				</image>
-				<panel height="15%" width="100%"/>
+				<panel height="7%" width="100%"/>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
@@ -790,9 +1004,7 @@
 							<onHover name="imageOverlay" filename="${CALL.getButton(previous-over)}" post="true" />
 						</effect>
 					</image>
-					<panel height="100%" width="90%">
-						<!-- Space -->
-					</panel>
+					<panel height="100%" width="90%"/>
 					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="changeScreen(+)"/>
 						<effect>
@@ -811,7 +1023,7 @@
     </screen>
 	
 	<!-- Eigthth screen(export)-->
-	<screen id="animationStage" controller="es.eucm.character.gui.Gui">
+	<screen id="animationStage" controller="es.eucm.echaracter.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="vertical">
 			<panel height="2%" width="100%">
 				<!-- Space -->
@@ -827,7 +1039,7 @@
 				<image id="panel_options2" childLayout="Horizontal" filename="${CALL.getMenu(s2-header-right)}">
 					<panel id ="exportPanel" childLayout="horizontal"height="100%" width="70%">
 						<panel childLayout="vertical" valign="bottom" height="80%" width="100%">
-						<image id = "export" align="center" filename="${CALL.getMenu(export)}">
+						<image id = "exportIcon" align="center" filename="${CALL.getMenu(export)}">
 							<interact onClick="changeScreen(animationStage)"/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(export-over)}" post="true" />
@@ -838,7 +1050,7 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}" visible="false">
 							<interact onClick=""/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
@@ -847,254 +1059,260 @@
 					</panel>
 				</image>
 			</panel>
-			<panel height="6%" width="100%">
-				<!-- Space -->
-			</panel>
+			<panel height="6%" width="100%"/>
 			<panel height="79%" width="94%" childLayout="vertical" align="center">
-				<panel id="panel_options-animation" height="4%" width="30%" align="right" childLayout="horizontal"> 
-					<!-- Change Basic Options Panel -->
-					<panel id="basicPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-						<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" />
-						<interact onClick="changeTab(basic)"/>
+				<image id="rightSelectionPanel" childLayout="vertical" align="right" filename="${CALL.getTexture(s2-right-panel)}">
+					<panel id="panel_options-animation" height="10%" width="100%" childLayout="horizontal"> 
+						<panel height="100%" width="2%"/>
+						<!-- Change Basic Options Panel -->
+						<image id="basic" childLayout="center" filename="${CALL.getTexture(tab-l)}">
+							<panel id="basicPanel" height="100%" width="100%" childLayout="center">
+								<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+								<interact onClick="changeTab(basic)"/>
+							</panel>
+						</image>
+						<!-- Change Advanced Options Panel -->
+						<image id="advanced" childLayout="center" filename="${CALL.getTexture(tab-r)}">
+							<panel id="advancedPanel" height="100%" width="100%" childLayout="center">
+								<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+								<interact onClick="changeTab(advanced)"/>
+							</panel>
+						</image>
 					</panel>
-					<!-- Change Advanced Options Panel -->
-					<panel id="advancedPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-						<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" />
-						<interact onClick="changeTab(advanced)"/>
-					</panel>
-				</panel>
-				<panel id="texturePanel" height="70%" width="30%" childLayout="vertical" align="right">
-					<panel id="panel_image" height="90%" width="100%" align="center" childLayout="vertical">
-						<panel height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
-							<panel id="animationsPanel" height="100%" width="80%" childLayout="vertical">
-								<text id="animationsText" text="" font="${CALL.getfont(20)}" align="center" width="100%" height="10%" wrap = "true"/>
-								<panel height="5%" width="100%">
-									<!-- Space -->
-								</panel>
-								<panel id="a0" height="15%" width="100%" childLayout="horizontal">
-									<text id="aText0" text="" font="${CALL.getfont(20)}" align="center" valign="center" width="55%" wrap = "true"/>
+					<panel id="texturePanel" height="85%" width="100%" childLayout="vertical">
+						<panel height="32%" width="100%" childLayout="horizontal">
+							<panel height="100%" width="12%" align="center" childLayout="center">
+								<image id="aleftT" align="center" filename="${CALL.getButton(left)}">
+									<interact onClick="changePageAnimations(a,-)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+									</effect>
+								</image>
+							</panel>
+							<panel id="animationsPanel" height="100%" width="76%" childLayout="vertical">
+								<text id="animationsText" text="" font="${CALL.getfont(20)}" width="100%" height="10%" color="#565857" wrap = "true"/>
+								<panel height="5%" width="100%"/>
+								<panel id="a0" height="20%" width="100%" childLayout="horizontal">
+									<text id="aText0" text="" font="${CALL.getfont(20)}" textHAlign="left" valign="center" color="#565857" width="55%" wrap = "true"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control id="aCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<control id="aCheckBox0" name="checkbox" align="center" valign="center" width="7%" checked ="false"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control name="button" label="ver" id="aButton0" width="25%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="preview(0)" />
-									</control>
-								</panel>
-								<panel height="5%" width="100%">
-									<!-- Space -->
-								</panel>
-								<panel id="a1" height="15%" width="100%" childLayout="horizontal">
-									<text id="aText1" text="" font="${CALL.getfont(20)}" align="center" valign="center" width="55%" wrap = "true"/>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<control id="aCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<control name="button" label="ver" id="aButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="preview(1)" />
-									</control>
+									<image id="aButton0" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+										<text id="aButton0Text" font="${CALL.getfont(15)}" text="" color="#565857"/>
+										<interact onClick="preview(0)"/>
+										<effect>
+											<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+										</effect>
+									</image>
 								</panel>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
-								<panel id="a2" height="15%" width="100%" childLayout="horizontal">
-									<text id="aText2" text="" font="${CALL.getfont(20)}" align="center" valign="center" width="55%" wrap = "true"/>
+								<panel id="a1" height="20%" width="100%" childLayout="horizontal">
+									<text id="aText1" text="" font="${CALL.getfont(20)}" textHAlign="left" valign="center" width="55%" color="#565857" wrap = "true"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control id="aCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<control id="aCheckBox1" name="checkbox" align="center" valign="center" width="7%" checked ="false"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control name="button" label="ver" id="aButton2" width="25%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="preview(2)" />
-									</control>
+									<image id="aButton1" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+										<text id="aButton1Text" font="${CALL.getfont(15)}" text="" color="#565857"/>
+										<interact onClick="preview(1)"/>
+										<effect>
+											<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+										</effect>
+									</image>
 								</panel>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
 								<panel id="aChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
-										<image id="aleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
-											<interact onClick="changePageAnimations(a,-)"/>
+										<panel width="10%"/>
+										<image id="aAllButton" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+											<text id="aAllButtonText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+											<interact onClick="checkAll(a,true)"/>
+											<effect>
+												<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+											</effect>
 										</image>
-										<panel width="5%">
-											<!-- Space -->
-										</panel>
-										<control name="button" label="All" id="aAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-											<interact onClick="checkAll(a,true)" />
-										</control>
-										<panel width="5%">
-											<!-- Space -->
-										</panel>
-										<control name="button" label="No" id="aNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-											<interact onClick="checkAll(a,false)" />
-										</control>
-										<panel width="5%">
-											<!-- Space -->
-										</panel>
-										<image id="arightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
-											<interact onClick="changePageAnimations(a,+)"/>
+										<panel width="25%"/>
+										<image id="aNoButton" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+											<text id="aNoButtonText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+											<interact onClick="checkAll(a,false)"/>
+											<effect>
+												<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+											</effect>
 										</image>
 								</panel>
 							</panel>
+							<panel height="100%" width="12%" align="center" childLayout="center">
+								<image id="arightT" align="center" filename="${CALL.getButton(right)}">
+									<interact onClick="changePageAnimations(a,+)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
+									</effect>
+								</image>
+							</panel>
 						</panel>
-						<panel height="2%" width="100%">
-						<!-- Space -->
+						<panel height="2%" width="100%" childLayout="center">
+							<image align="center" filename="${CALL.getTexture(s2-separator)}"/>
 						</panel>
-						<panel id="Panel2" height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
-							<panel id="qualityPanel" height="100%" width="80%" childLayout="vertical">
-								<text id="qualityText" text="" font="${CALL.getfont(20)}" align="center" width="100%" height="10%" wrap = "true"/>
+						<panel id="Panel2" height="32%" width="100%" childLayout="horizontal">
+							<panel height="100%" width="12%" align="center" childLayout="center">
+								<image id="qleftT" align="center" filename="${CALL.getButton(left)}">
+									<interact onClick="changePageAnimations(q,-)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+									</effect>
+								</image>
+							</panel>
+							<panel id="qualityPanel" height="100%" width="76%" childLayout="vertical">
+								<text id="qualityText" text="" font="${CALL.getfont(20)}" width="100%" height="10%" color="#565857" wrap = "true"/>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
-								<panel id="q0" height="15%" width="100%" childLayout="horizontal">
-									<text id="qText0" text="" font="${CALL.getfont(20)}" align="center" valign="center" width="85%" wrap = "true"/>
+								<panel id="q0" height="20%" width="100%" childLayout="horizontal">
+									<text id="qText0" text="" font="${CALL.getfont(20)}" textHAlign="left" valign="center" width="55%" color="#565857" wrap = "true"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control id="qCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<control id="qCheckBox0" name="checkbox" align="center" valign="center" width="7%" checked ="false"/>
 								</panel>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
-								<panel id="q1" height="15%" width="100%" childLayout="horizontal">
-									<text id="qText1" text="" font="${CALL.getfont(20)}" align="center" valign="center" width="85%" wrap = "true"/>
+								<panel id="q1" height="20%" width="100%" childLayout="horizontal">
+									<text id="qText1" text="" font="${CALL.getfont(20)}" textHAlign="left" valign="center" width="55%" color="#565857" wrap = "true"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control id="qCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-								</panel>
-								<panel height="5%" width="100%">
-									<!-- Space -->
-								</panel>
-								<panel id="q2" height="15%" width="100%" childLayout="horizontal">
-									<text id="qText2" text="" font="${CALL.getfont(20)}" align="center" valign="center" width="85%" wrap = "true"/>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<control id="qCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<control id="qCheckBox1" name="checkbox" align="center" valign="center" width="7%" checked ="false"/>
 								</panel>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
 								<panel id="qChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
-										<image id="qleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
-											<interact onClick="changePageAnimations(q,-)"/>
+										<panel width="10%"/>
+										<image id="qAllButton" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+											<text id="qAllButtonText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+											<interact onClick="checkAll(q,true)"/>
+											<effect>
+												<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+											</effect>
 										</image>
-										<panel width="5%">
-											<!-- Space -->
-										</panel>
-										<control name="button" label="All" id="qAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-											<interact onClick="checkAll(q,true)" />
-										</control>
-										<panel width="5%">
-											<!-- Space -->
-										</panel>
-										<control name="button" label="No" id="qNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-											<interact onClick="checkAll(q,false)" />
-										</control>
-										<panel width="5%">
-											<!-- Space -->
-										</panel>
-										<image id="qrightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
-											<interact onClick="changePageAnimations(q,+)"/>
+										<panel width="25%"/>
+										<image id="qNoButton" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+											<text id="qNoButtonText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+											<interact onClick="checkAll(q,false)"/>
+											<effect>
+												<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+											</effect>
 										</image>
 								</panel>
 							</panel>
+							<panel height="100%" width="12%" align="center" childLayout="center">
+								<image id="qrightT" align="center" filename="${CALL.getButton(right)}">
+									<interact onClick="changePageAnimations(q,+)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
+									</effect>
+								</image>
+							</panel>
 						</panel>
-						<panel height="2%" width="100%">
-						<!-- Space -->
+						<panel height="2%" width="100%" childLayout="center">
+							<image align="center" filename="${CALL.getTexture(s2-separator)}"/>
 						</panel>
-						<panel id="Panel3" height="32%" width="100%" childLayout="center" backgroundImage="Interface/CuadroAzul.png">
-							<panel id="cameraPanel" height="100%" width="80%" childLayout="vertical">
-								<text id="cameraText" text="" font="${CALL.getfont(20)}" width="100%" height="10%" wrap = "true"/>
+						<panel id="Panel3" height="32%" width="100%" childLayout="horizontal">
+							<panel height="100%" width="12%" align="center" childLayout="center">
+								<image id="cleftT" align="center" filename="${CALL.getButton(left)}">
+									<interact onClick="changePageAnimations(c,-)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+									</effect>
+								</image>
+							</panel>
+							<panel id="cameraPanel" height="100%" width="76%" childLayout="vertical">
+								<text id="cameraText" text="" font="${CALL.getfont(20)}" width="100%" height="10%" color="#565857" wrap = "true"/>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
-								<panel id="c0" height="15%" width="100%" childLayout="horizontal">
-									<text id="cText0" text="" font="${CALL.getfont(20)}" align="center" valign="center" width="55%" wrap = "true"/>
+								<panel id="c0" height="20%" width="100%" childLayout="horizontal">
+									<text id="cText0" text="" font="${CALL.getfont(20)}" textHAlign="left" valign="center" color="#565857" width="55%" wrap = "true"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control id="cCheckBox0" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<control id="cCheckBox0" name="checkbox" align="center" valign="center" width="7%" checked ="false"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control name="button" label="ver" id="cButton0" width="25%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="cameraPreview(0)" />
-									</control>
-								</panel>
-								<panel height="5%" width="100%">
-									<!-- Space -->
-								</panel>
-								<panel id="c1" height="15%" width="100%" childLayout="horizontal">
-									<text id="cText1" text="" font="${CALL.getfont(20)}" align="center" valign="center" width="55%" wrap = "true"/>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<control id="cCheckBox1" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
-									<panel width="5%">
-										<!-- Space -->
-									</panel>
-									<control name="button" label="ver" id="cButton1" width="25%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="cameraPreview(1)" />
-									</control>
+									<image id="cButton0" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+										<text id="cButton0Text" font="${CALL.getfont(15)}" text="" color="#565857"/>
+										<interact onClick="cameraPreview(0)"/>
+										<effect>
+											<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+										</effect>
+									</image>
 								</panel>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
-								<panel id="c2" height="15%" width="100%" childLayout="horizontal">
-									<text id="cText2" text="" font="${CALL.getfont(20)}" align="center" valign="center" width="55%" wrap = "true"/>
+								<panel id="c1" height="20%" width="100%" childLayout="horizontal">
+									<text id="cText1" text="" font="${CALL.getfont(20)}" textHAlign="left" valign="center" width="55%" color="#565857" wrap = "true"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control id="cCheckBox2" name="checkbox" align="center" valign="center" width="10%" checked ="false"/>
+									<control id="cCheckBox1" name="checkbox" align="center" valign="center" width="7%" checked ="false"/>
 									<panel width="5%">
 										<!-- Space -->
 									</panel>
-									<control name="button" label="ver" id="cButton2" width="25%" align="center" valign="center" visibleToMouse="true"> 
-										<interact onClick="cameraPreview(2)" />
-									</control>
+									<image id="cButton1" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+										<text id="cButton1Text" font="${CALL.getfont(15)}" text="" color="#565857"/>
+										<interact onClick="cameraPreview(1)"/>
+										<effect>
+											<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+										</effect>
+									</image>
 								</panel>
 								<panel height="5%" width="100%">
 									<!-- Space -->
 								</panel>
 								<panel id="cChangePanel" height="25%" width="100%" align="center" childLayout="horizontal">
-										<image id="cleftT" filename="${CALL.getButton(left)}" height="50%" width="12.5%" valign="center" align="left">
-											<interact onClick="changePageAnimations(c,-)"/>
+										<panel width="10%"/>
+										<image id="cAllButton" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+											<text id="cAllButtonText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+											<interact onClick="checkAll(c,true)"/>
+											<effect>
+												<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+											</effect>
 										</image>
-										<panel width="5%">
-											<!-- Space -->
-										</panel>
-										<control name="button" label="All" id="cAllButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-											<interact onClick="checkAll(c,true)" />
-										</control>
-										<panel width="5%">
-											<!-- Space -->
-										</panel>
-										<control name="button" label="No" id="cNoButton" width="30%" align="center" valign="center" visibleToMouse="true"> 
-											<interact onClick="checkAll(c,false)" />
-										</control>
-										<panel width="5%">
-											<!-- Space -->
-										</panel>
-										<image id="crightT" filename="${CALL.getButton(right)}" height="50%" width="12.5%" valign="center" align="right">
-											<interact onClick="changePageAnimations(c,+)"/>
+										<panel width="25%"/>
+										<image id="cNoButton" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+											<text id="cNoButtonText" font="${CALL.getfont(15)}" text="" color="#565857"/>
+											<interact onClick="checkAll(c,false)"/>
+											<effect>
+												<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+											</effect>
 										</image>
 								</panel>
 							</panel>
+							<panel height="100%" width="12%" align="center" childLayout="center">
+								<image id="crightT" align="center" filename="${CALL.getButton(right)}">
+									<interact onClick="changePageAnimations(c,+)"/>
+									<effect>
+										<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
+									</effect>
+								</image>
+							</panel>
 						</panel>
 					</panel>
-				</panel>
-				<panel height="15%" width="100%">
-					<!-- Space -->
-				</panel>
+				</image>
+				<panel height="7%" width="100%"/>
 				<!-- Change screen Panel -->
 				<panel id="panel_change_screen" height="7%" width="100%" childLayout="horizontal">
 					<image id="panel_screenleft" valign="center" filename="${CALL.getButton(previous)}">
@@ -1118,55 +1336,64 @@
     </screen>
 	
 	<!-- Nineth screen(export)-->
-	<screen id="popupScreen" controller="es.eucm.character.gui.Gui">
-        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
-               
-        </layer>
-        <layer id="foreground" backgroundColor="#0000" childLayout="center">
-				<panel id="popup" height="15%" width="40%" childLayout="vertical" valign="center" backgroundImage="Interface/CuadroAzul.png">
-					<text id="popUpText" text="" font="${CALL.getfont(20)}" width="100%" height="50%" wrap="true"/>
-					<panel id="buttonPanel" height="50%" width="100%" childLayout="horizontal" valign="center">
-						<panel id="button1" height="100%" width="50%" childLayout="center" valign="center">
-							<control name="button" label="" id="popUpButton1" align="center" valign="center" visibleToMouse="true"> 
-								<interact onClick="popUpButtonClicked(popUpButton1)" />
-							</control>
-						</panel>
-						<panel id="button2" height="100%" width="50%" childLayout="center" valign="center">
-							<control name="button" label="" id="popUpButton2" align="center" valign="center" visibleToMouse="true"> 
-								<interact onClick="popUpButtonClicked(popUpButton2)" />
-							</control>
-						</panel>
+	<screen id="popupScreen" controller="es.eucm.echaracter.gui.Gui">
+        <layer id="foreground" childLayout="center">
+			<image filename="${CALL.getTexture(background-popup-dialog)}" childLayout="vertical">
+				<panel height="45%" width="100%"/>
+				<panel id="popup" height="30%" width="60%" childLayout="vertical" align="center">
+					<panel id="textPanel" height="70%" width="100%" childLayout="horizontal" valign="center">
+						<text id="popUpText" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#565857" wrap="true"/>
+					</panel>
+					<panel id="buttonPanel" height="30%" width="100%" childLayout="horizontal" valign="center">
+						<panel height="100%" width="12%"/>
+						<image id="button1" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+							<text id="button1Text" font="${CALL.getfont(15)}" text="" color="#565857"/>
+							<interact onClick="popUpButtonClicked(popUpButton1)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+							</effect>
+						</image>
+						<panel height="100%" width="50%"/>
+						<image id="button2" align="center" valign="center" filename="${CALL.getButton(button)}" childLayout="center">
+							<text id="button2Text" font="${CALL.getfont(15)}" text="" color="#565857"/>
+							<interact onClick="popUpButtonClicked(popUpButton2)"/>
+							<effect>
+								<onHover name="imageOverlay" filename="${CALL.getButton(button-over)}" post="true" />
+							</effect>
+						</image>
 					</panel>
 				</panel>
+			</image>
         </layer>
     </screen>
 	
 	<!-- Nineth screen(export)-->
-	<screen id="emptyScreen" controller="es.eucm.character.gui.Gui">
-        <layer id="background" backgroundColor="#0000" childLayout="horizontal">
-               
-        </layer>
+	<screen id="emptyScreen" controller="es.eucm.echaracter.gui.Gui">
         <layer id="foreground" backgroundColor="#0000" childLayout="center">
 		
         </layer>
     </screen>
 	
-	<popup id="popupColor" childLayout="center" controller="es.eucm.character.gui.Gui" backgroundColor="#FFFA">
+	<popup id="popupColor" childLayout="center" controller="es.eucm.echaracter.gui.Gui" backgroundColor="#FFFA">
 		<panel id="popupPanel" height="35%" width="50%" childLayout="horizontal"  valign="center" >
-			<panel id="selectionPanel" height="100%" width="50%" childLayout="vertical" valign="center" backgroundImage="${CALL.getMenu(ca)}">
-				<panel id="colorOptions" height="10%" width="100%" align="center" childLayout="horizontal"> 
+			<image id="selectionPanel" childLayout="vertical" valign="center" filename="${CALL.getTexture(background-popup)}">
+				<panel id="colorOptions" height="20%" width="90%" align="center" childLayout="horizontal">
 					<!-- Change Basic Options Panel -->
-					<panel id="basicPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-						<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" />
-						<interact onClick="changeTabColor(basic)"/>
-					</panel>
+					<image id="basic" childLayout="center" width="50%" filename="${CALL.getTexture(tab-l)}">
+						<panel id="basicPanel" height="100%" width="100%" childLayout="center">
+							<text id="basicText" text="Basic" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+							<interact onClick="changeTabColor(basic)"/>
+						</panel>
+					</image>
 					<!-- Change Advanced Options Panel -->
-					<panel id="advancedPanel" height="100%" width="50%" childLayout="center" backgroundImage="${CALL.getMenu(an)}">
-						<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" />
-						<interact onClick="changeTabColor(advanced)"/>
-					</panel>
+					<image id="advanced" childLayout="center" width="50%" filename="${CALL.getTexture(tab-r)}">
+						<panel id="advancedPanel" height="100%" width="100%" childLayout="center">
+							<text id="customText" text="Custom" font="${CALL.getfont(20)}" width="100%" height="100%" color="#565857"/>
+							<interact onClick="changeTabColor(advanced)"/>
+						</panel>
+					</image>
 				</panel>
-				<panel id="basicSelection" height="70%" width="100%" childLayout="horizontal">
+				<panel id="basicSelection" height="60%" width="90%" childLayout="horizontal" align="center">
 					<panel height="100%" width="5%">
 					<!-- Space -->
 					</panel>
@@ -1176,30 +1403,30 @@
 						</panel>
 						<panel id="c0" height="14%" width="100%" childLayout="center" backgroundColor="#FFFFFFFF">
 							<interact onClick="changeSliderColor(#FFFFFFFF,0)"/>
-							<panel id = "ci0" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci0" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c1" height="14%" width="100%" childLayout="center" backgroundColor="#EAEAEAFF">
 							<interact onClick="changeSliderColor(#EAEAEAFF,1)"/>
-							<panel id = "ci1" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci1" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c2" height="14%" width="100%" childLayout="center" backgroundColor="#DDDDDDFF">
 							<interact onClick="changeSliderColor(#DDDDDDFF,2)"/>
-							<panel id = "ci2" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci2" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c3" height="14%" width="100%" childLayout="center" backgroundColor="#C0C0C0FF">
 							<interact onClick="changeSliderColor(#C0C0C0FF,3)"/>
-							<panel id = "ci3" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci3" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c4" height="14%" width="100%" childLayout="center" backgroundColor="#B2B2B2FF">
 							<interact onClick="changeSliderColor(#B2B2B2FF,4)"/>
-							<panel id = "ci4" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci4" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c5" height="14%" width="100%" childLayout="center" backgroundColor="#969696FF">
 							<interact onClick="changeSliderColor(#969696FF,5)"/>
-							<panel id = "ci5" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci5" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1211,30 +1438,30 @@
 						</panel>
 						<panel id="c6" height="14%" width="100%" childLayout="center" backgroundColor="#000000FF">
 							<interact onClick="changeSliderColor(#000000FF,6)"/>
-							<panel id = "ci6" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci6" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c7" height="14%" width="100%" childLayout="center" backgroundColor="#4D4D4DFF">
 							<interact onClick="changeSliderColor(#4D4D4DFF,7)"/>
-							<panel id = "ci7" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci7" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c8" height="14%" width="100%" childLayout="center" backgroundColor="#333333FF">
 							<interact onClick="changeSliderColor(#333333FF,8)"/>
-							<panel id = "ci8" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci8" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c9" height="14%" width="100%" childLayout="center" backgroundColor="#292929FF">
 							<interact onClick="changeSliderColor(#292929FF,9)"/>
-							<panel id = "ci9" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci9" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c10" height="14%" width="100%" childLayout="center" backgroundColor="#1C1C1CFF">
 							<interact onClick="changeSliderColor(#1C1C1CFF,10)"/>
-							<panel id = "ci10" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci10" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c11" height="14%" width="100%" childLayout="center" backgroundColor="#111111FF">
 							<interact onClick="changeSliderColor(#111111FF,11)"/>
-							<panel id = "ci11" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci11" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1246,30 +1473,30 @@
 						</panel>
 						<panel id="c12" height="14%" width="100%" childLayout="center" backgroundColor="#EEECE1FF">
 							<interact onClick="changeSliderColor(#EEECE1FF,12)"/>
-							<panel id = "ci12" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci12" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c13" height="14%" width="100%" childLayout="center" backgroundColor="#CDC8A7FF">
 							<interact onClick="changeSliderColor(#CDC8A7FF,13)"/>
-							<panel id = "ci13" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci13" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c14" height="14%" width="100%" childLayout="center" backgroundColor="#BAB284FF">
 							<interact onClick="changeSliderColor(#BAB284FF,14)"/>
-							<panel id = "ci14" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci14" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c15" height="14%" width="100%" childLayout="center" backgroundColor="#A89E64FF">
 							<interact onClick="changeSliderColor(#A89E64FF,15)"/>
-							<panel id = "ci15" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci15" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c16" height="14%" width="100%" childLayout="center" backgroundColor="#766F42FF">
 							<interact onClick="changeSliderColor(#766F42FF,16)"/>
-							<panel id = "ci16" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci16" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c17" height="14%" width="100%" childLayout="center" backgroundColor="#403C24FF">
 							<interact onClick="changeSliderColor(#403C24FF,17)"/>
-							<panel id = "ci17" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci17" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1281,30 +1508,30 @@
 						</panel>
 						<panel id="c18" height="14%" width="100%" childLayout="center" backgroundColor="#1F497DFF">
 							<interact onClick="changeSliderColor(#1F497DFF,18)"/>
-							<panel id = "ci18" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci18" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c19" height="14%" width="100%" childLayout="center" backgroundColor="#A2C2E8FF">
 							<interact onClick="changeSliderColor(#A2C2E8FF,19)"/>
-							<panel id = "ci19" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci19" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c20" height="14%" width="100%" childLayout="center" backgroundColor="#72A2DCFF">
 							<interact onClick="changeSliderColor(#72A2DCFF,20)"/>
-							<panel id = "ci20" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci20" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c21" height="14%" width="100%" childLayout="center" backgroundColor="#3379CDFF">
 							<interact onClick="changeSliderColor(#3379CDFF,21)"/>
-							<panel id = "ci21" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci21" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c22" height="14%" width="100%" childLayout="center" backgroundColor="#2962A7FF">
 							<interact onClick="changeSliderColor(#2962A7FF,22)"/>
-							<panel id = "ci22" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci22" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c23" height="14%" width="100%" childLayout="center" backgroundColor="#122B4AFF">
 							<interact onClick="changeSliderColor(#122B4AFF,23)"/>
-							<panel id = "ci23" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci23" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1316,30 +1543,30 @@
 						</panel>
 						<panel id="c24" height="14%" width="100%" childLayout="center" backgroundColor="#4F81BDFF">
 							<interact onClick="changeSliderColor(#4F81BDFF,24)"/>
-							<panel id = "ci24" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci24" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c25" height="14%" width="100%" childLayout="center" backgroundColor="#C8D7EAFF">
 							<interact onClick="changeSliderColor(#C8D7EAFF,25)"/>
-							<panel id = "ci25" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci25" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c26" height="14%" width="100%" childLayout="center" backgroundColor="#9BB7D9FF">
 							<interact onClick="changeSliderColor(#9BB7D9FF,26)"/>
-							<panel id = "ci26" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci26" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c27" height="14%" width="100%" childLayout="center" backgroundColor="#638FC5FF">
 							<interact onClick="changeSliderColor(#638FC5FF,27)"/>
-							<panel id = "ci27" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci27" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c28" height="14%" width="100%" childLayout="center" backgroundColor="#396497FF">
 							<interact onClick="changeSliderColor(#396497FF,28)"/>
-							<panel id = "ci28" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci28" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c29" height="14%" width="100%" childLayout="center" backgroundColor="#233E5FFF">
 							<interact onClick="changeSliderColor(#233E5FFF,29)"/>
-							<panel id = "ci29" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci29" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1351,30 +1578,30 @@
 						</panel>
 						<panel id="c30" height="14%" width="100%" childLayout="center" backgroundColor="#C0504DFF">
 							<interact onClick="changeSliderColor(#C0504DFF,30)"/>
-							<panel id = "ci30" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci30" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c31" height="14%" width="100%" childLayout="center" backgroundColor="#EAC5C4FF">
 							<interact onClick="changeSliderColor(#EAC5C4FF,31)"/>
-							<panel id = "ci31" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci31" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c32" height="14%" width="100%" childLayout="center" backgroundColor="#DA9896FF">
 							<interact onClick="changeSliderColor(#DA9896FF,32)"/>
-							<panel id = "ci32" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci32" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c33" height="14%" width="100%" childLayout="center" backgroundColor="#D97977FF">
 							<interact onClick="changeSliderColor(#D97977FF,33)"/>
-							<panel id = "ci33" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci33" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c34" height="14%" width="100%" childLayout="center" backgroundColor="#9A3836FF">
 							<interact onClick="changeSliderColor(#9A3836FF,34)"/>
-							<panel id = "ci34" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci34" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c35" height="14%" width="100%" childLayout="center" backgroundColor="#692725FF">
 							<interact onClick="changeSliderColor(#692725FF,35)"/>
-							<panel id = "ci35" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci35" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1386,30 +1613,30 @@
 						</panel>
 						<panel id="c36" height="14%" width="100%" childLayout="center" backgroundColor="#8064A2FF">
 							<interact onClick="changeSliderColor(#8064A2FF,36)"/>
-							<panel id = "ci36" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci36" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c37" height="14%" width="100%" childLayout="center" backgroundColor="#D0C5DDFF">
 							<interact onClick="changeSliderColor(#D0C5DDFF,37)"/>
-							<panel id = "ci37" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci37" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c38" height="14%" width="100%" childLayout="center" backgroundColor="#B09FC5FF">
 							<interact onClick="changeSliderColor(#B09FC5FF,38)"/>
-							<panel id = "ci38" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci38" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c39" height="14%" width="100%" childLayout="center" backgroundColor="#947CB0FF">
 							<interact onClick="changeSliderColor(#947CB0FF,39)"/>
-							<panel id = "ci39" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci39" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c40" height="14%" width="100%" childLayout="center" backgroundColor="#60497BFF">
 							<interact onClick="changeSliderColor(#60497BFF,40)"/>
-							<panel id = "ci40" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci40" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c41" height="14%" width="100%" childLayout="center" backgroundColor="#3F3151FF">
 							<interact onClick="changeSliderColor(#3F3151FF,41)"/>
-							<panel id = "ci41" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci41" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1421,30 +1648,30 @@
 						</panel>
 						<panel id="t42" height="14%" width="100%" childLayout="center" backgroundColor="#FFC000FF">
 							<interact onClick="changeSliderColor(#FFC000FF,42)"/>
-							<panel id = "ci42" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci42" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c43" height="14%" width="100%" childLayout="center" backgroundColor="#FFF2CCFF">
 							<interact onClick="changeSliderColor(#FFF2CCFF,43)"/>
-							<panel id = "ci43" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci43" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c44" height="14%" width="100%" childLayout="center" backgroundColor="#FFE699FF">
 							<interact onClick="changeSliderColor(#FFE699FF,44)"/>
-							<panel id = "ci44" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci44" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c45" height="14%" width="100%" childLayout="center" backgroundColor="#FFD966FF">
 							<interact onClick="changeSliderColor(#FFD966FF,45)"/>
-							<panel id = "ci45" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci45" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c46" height="14%" width="100%" childLayout="center" backgroundColor="#BF9000FF">
 							<interact onClick="changeSliderColor(#BF9000FF,46)"/>
-							<panel id = "ci46" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci46" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c47" height="14%" width="100%" childLayout="center" backgroundColor="#7F6000FF">
 							<interact onClick="changeSliderColor(#7F6000FF,47)"/>
-							<panel id = "ci47" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci47" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1456,30 +1683,30 @@
 						</panel>
 						<panel id="c48" height="14%" width="100%" childLayout="center" backgroundColor="#4BACC6FF">
 							<interact onClick="changeSliderColor(#4BACC6FF,48)"/>
-							<panel id = "ci48" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci48" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c49" height="14%" width="100%" childLayout="center" backgroundColor="#A5D6E3FF">
 							<interact onClick="changeSliderColor(#A5D6E3FF,49)"/>
-							<panel id = "ci49" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci49" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c50" height="14%" width="100%" childLayout="center" backgroundColor="#8AC9DAFF">
 							<interact onClick="changeSliderColor(#8AC9DAFF,50)"/>
-							<panel id = "ci50" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci50" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c51" height="14%" width="100%" childLayout="center" backgroundColor="#3898B2FF">
 							<interact onClick="changeSliderColor(#3898B2FF,51)"/>
-							<panel id = "ci51" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci51" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c52" height="14%" width="100%" childLayout="center" backgroundColor="#2A7286FF">
 							<interact onClick="changeSliderColor(#2A7286FF,52)"/>
-							<panel id = "ci52" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci52" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c53" height="14%" width="100%" childLayout="center" backgroundColor="#215A69FF">
 							<interact onClick="changeSliderColor(#215A69FF,53)"/>
-							<panel id = "ci53" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci53" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1491,30 +1718,30 @@
 						</panel>
 						<panel id="c54" height="14%" width="100%" childLayout="center" backgroundColor="#FF0000FF">
 							<interact onClick="changeSliderColor(#FF0000FF,54)"/>
-							<panel id = "ci54" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci54" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c55" height="14%" width="100%" childLayout="center" backgroundColor="#FF7D7DFF">
 							<interact onClick="changeSliderColor(#FF7D7DFF,55)"/>
-							<panel id = "ci55" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci55" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c56" height="14%" width="100%" childLayout="center" backgroundColor="#FF4949FF">
 							<interact onClick="changeSliderColor(#FF4949FF,56)"/>
-							<panel id = "ci56" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci56" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c57" height="14%" width="100%" childLayout="center" backgroundColor="#B40000FF">
 							<interact onClick="changeSliderColor(#B40000FF,57)"/>
-							<panel id = "ci57" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci57" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c58" height="14%" width="100%" childLayout="center" backgroundColor="#960000FF">
 							<interact onClick="changeSliderColor(#960000FF,58)"/>
-							<panel id = "ci58" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci58" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c59" height="14%" width="100%" childLayout="center" backgroundColor="#700000FF">
 							<interact onClick="changeSliderColor(#700000FF,59)"/>
-							<panel id = "ci59" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci59" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1526,30 +1753,30 @@
 						</panel>
 						<panel id="c60" height="14%" width="100%" childLayout="center" backgroundColor="#70AD47FF">
 							<interact onClick="changeSliderColor(#70AD47FF,60)"/>
-							<panel id = "ci60" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci60" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel height="5%" width="100%">
 						<!-- Space -->
 						</panel>
 						<panel id="c61" height="14%" width="100%" childLayout="center" backgroundColor="#E2F0D9FF">
 							<interact onClick="changeSliderColor(#E2F0D9FF,61)"/>
-							<panel id = "ci61" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci61" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c62" height="14%" width="100%" childLayout="center" backgroundColor="#C5E0B4FF">
 							<interact onClick="changeSliderColor(#C5E0B4FF,62)"/>
-							<panel id = "ci62" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci62" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c63" height="14%" width="100%" childLayout="center" backgroundColor="#A9D18EFF">
 							<interact onClick="changeSliderColor(#A9D18EFF,63)"/>
-							<panel id = "ci63" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci63" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c64" height="14%" width="100%" childLayout="center" backgroundColor="#548235FF">
 							<interact onClick="changeSliderColor(#548235FF,64)"/>
-							<panel id = "ci64" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci64" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c65" height="14%" width="100%" childLayout="center" backgroundColor="#385723FF">
 							<interact onClick="changeSliderColor(#385723FF,65)"/>
-							<panel id = "ci65" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci65" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 					<panel height="100%" width="1%">
@@ -1561,163 +1788,269 @@
 						</panel>
 						<panel id="c66" height="14%" width="100%" childLayout="center" backgroundColor="#F79646FF">
 							<interact onClick="changeSliderColor(#F79646FF,66)"/>
-							<panel id = "ci66" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci66" filename="${CALL.getTick()}"/>
 						</panel>
-						<panel height="5%" width="100%">
-						<!-- Space -->
-						</panel>
+						<panel height="5%" width="100%"/>
 						<panel id="c67" height="14%" width="100%" childLayout="center" backgroundColor="#FBCDA7FF">
 							<interact onClick="changeSliderColor(#FBCDA7FF,67)"/>
-							<panel id = "ci67" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci67" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c68" height="14%" width="100%" childLayout="center" backgroundColor="#F9B277FF">
 							<interact onClick="changeSliderColor(#F9B277FF,68)"/>
-							<panel id = "ci68" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci68" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c69" height="14%" width="100%" childLayout="center" backgroundColor="#F5801FFF">
 							<interact onClick="changeSliderColor(#F5801FFF,69)"/>
-							<panel id = "ci69" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci69" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c70" height="14%" width="100%" childLayout="center" backgroundColor="#DD6909FF">
 							<interact onClick="changeSliderColor(#DD6909FF,70)"/>
-							<panel id = "ci70" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci70" filename="${CALL.getTick()}"/>
 						</panel>
 						<panel id="c71" height="14%" width="100%" childLayout="center" backgroundColor="#A95007FF">
 							<interact onClick="changeSliderColor(#A95007FF,71)"/>
-							<panel id = "ci71" backgroundImage="${CALL.getTick()}" height="95%" width="95%"/>
+							<image id = "ci71" filename="${CALL.getTick()}"/>
 						</panel>
 					</panel>
 				</panel>
-				<panel id="buttonPanel" height="20%" width="100%" childLayout="horizontal" valign="center">
-					<panel id="acceptPanel" height="90%" width="40%" childLayout="center" valign="center">
-						<control name="button" width="80%" label="Acept" id="aceptButton" align="center" valign="center" visibleToMouse="true"> 
-							<!--<interact onClick="popUpButtonClicked(popUpButton1)" />-->
-						</control>
-					</panel>
-					<panel id="cancelPanel" height="90%" width="40%" childLayout="center" valign="center">
-						<control name="button" width="80%" label="Cancel" id="cancelButton" align="center" valign="center" visibleToMouse="true"> 
-							<!--<interact onClick="popUpButtonClicked(popUpButton2)" />-->
-						</control>
-					</panel>
-					<panel id="morePanel" height="90%" width="20%" childLayout="center" valign="center">
-						<control name="button" width="50%" label=">>" id="moreButton" align="center" valign="center" visibleToMouse="true"> 
-							<interact onClick="showMoreColors()"/>
-						</control>
-					</panel>
+				<panel id="buttonPanel" height="15%" width="90%" childLayout="horizontal" align="center" valign="center">
+					<panel height="100%" width="7%"/>
+					<image id="acceptI" align="center" valign="center" filename="${CALL.getButton(accept)}" childLayout="vertical">
+						<panel id="acceptPanel" height="100%" width="75%" align="right" childLayout="center">
+							<text id="acceptText" font="${CALL.getfont(20)}" text="" align="center" valign="center" color="#565857"/>
+						</panel>
+						<interact onClick="acceptButtonClicked()"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(accept-over)}" post="true" />
+						</effect>
+					</image>
+					<panel height="100%" width="5%"/>
+					<image id="cancelI" align="center" valign="center" filename="${CALL.getButton(cancel)}" childLayout="vertical">
+						<panel id="cancelPanel" height="100%" width="75%" align="right" childLayout="center">
+							<text id="cancelText" font="${CALL.getfont(20)}" text="" align="center" valign="center" color="#565857"/>
+						</panel>
+						<interact onClick="cancelButtonClicked()"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(cancel-over)}" post="true" />
+						</effect>
+					</image>
+					<panel height="100%" width="5%"/>
+					<image id="moreI" align="center" valign="center" filename="${CALL.getButton(more)}" childLayout="vertical">
+						<interact onClick="showMoreColors()"/>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(more-over)}" post="true" />
+						</effect>
+					</image>
 				</panel>
-			</panel>
-			<panel id="advancedSelection" height="70%" width="50%" childLayout="horizontal" backgroundImage="${CALL.getMenu(ca)}">
-				<panel id="redPanel" height="90%" width="25%" childLayout="vertical" valign="center">
-					<control id="sliderR" name="verticalSlider" max="255" min="0" value="0" buttonStepSize="1" align="center"/>
-					<text id="redText" text="Red" font="${CALL.getfont(20)}" width="100%" align="center" wrap="true"/>
+			</image>
+			<image id="advancedSelection" childLayout="horizontal" filename="${CALL.getTexture(background-popup-custom)}">
+				<panel height="100%" width="11%"/>
+				<panel id="redPanel" height="75%" width="20%" childLayout="vertical" valign="center">
+					<control id="sliderR" name="verticalSlidereCharacter" max="255" min="0" value="0" buttonStepSize="1" align="center"/>
+					<panel height="5%" width="100%"/>
+					<image id="redI" align="center" valign="center" filename="${CALL.getTexture(red)}"/>
 				</panel>
-				<panel id="greenPanel" height="90%" width="25%" childLayout="vertical" valign="center">
-					<control id="sliderG" name="verticalSlider" max="255" min="0" value="0" buttonStepSize="1" align="center"/>
-					<text id="greenText" text="Green" font="${CALL.getfont(20)}" width="100%" align="center" wrap="true"/>
+				<panel id="greenPanel" height="75%" width="20%" childLayout="vertical" valign="center">
+					<control id="sliderG" name="verticalSlidereCharacter" max="255" min="0" value="0" buttonStepSize="1" align="center"/>
+					<panel height="5%" width="100%"/>
+					<image id="greenI" align="center" valign="center" filename="${CALL.getTexture(green)}"/>
 				</panel>
-				<panel id="bluePanel" height="90%" width="25%" childLayout="vertical" valign="center">
-					<control id="sliderB" name="verticalSlider" max="255" min="0" value="0" buttonStepSize="1" align="center"/>
-					<text id="blueText" text="Blue" font="${CALL.getfont(20)}" width="100%" align="center" wrap="true"/>
+				<panel id="bluePanel" height="75%" width="20%" childLayout="vertical" valign="center">
+					<control id="sliderB" name="verticalSlidereCharacter" max="255" min="0" value="0" buttonStepSize="1" align="center"/>
+					<panel height="5%" width="100%"/>
+					<image id="blueI" align="center" valign="center" filename="${CALL.getTexture(blue)}"/>
 				</panel>
-				<panel id="colorPanel" height="25%" width="15%" align="center" valign="center" backgroundColor="#000F"/>
-			</panel>
+				<panel id="colorPanel" height="15%" width="15%" align="center" valign="center" backgroundColor="#000F"/>
+			</image>
 		</panel>
 	</popup>
 	
-	<popup id="popupColor3" childLayout="center" controller="es.eucm.character.gui.Gui" backgroundColor="#FFFA">
-		<panel id="popUpPanel" height="70%" width="30%" childLayout="vertical" backgroundImage="Interface/CuadroAzul.png">
-			<panel id="panel_image" height="70%" width="80%" align="center" childLayout="vertical">
-				<!-- Texture's Image -->
-				<panel height="10%" width="100%">
-				<!-- Space -->
-				</panel>
-				<panel id="t01" height="26%" width="100%" childLayout="horizontal">
-					<panel id="t0" height="100%" width="47.5%" childLayout="center">
-						<image id = "i0" filename="Interface/x.png" height="95%" width="95%">
-							<interact onClick="changePopUpColor(0)"/>
-							<effect>
-								<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-							</effect>
-						</image>
-					</panel>
-					<panel height="100%" width="5%">
-					<!-- Space -->
-					</panel>
-					<panel id="t1" height="100%" width="47.5%" childLayout="center">
-						<image id = "i1" filename="Interface/x.png" height="95%" width="95%">
-							<interact onClick="changePopUpColor(1)"/>
-							<effect>
-								<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-							</effect>
-						</image>
-					</panel>
-				</panel>
-				<panel height="5%" width="100%">
-				<!-- Space -->
-				</panel>
-				<panel id="t23" height="26%" width="100%" childLayout="horizontal">
-					<panel id="t2" height="100%" width="47.5%" childLayout="center">
-						<image id = "i2" filename="Interface/x.png" height="95%" width="95%">
-							<interact onClick="changePopUpColor(2)"/>
-							<effect>
-								<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-							</effect>
-						</image>
-					</panel>
-					<panel height="100%" width="5%">
-					<!-- Space -->
-					</panel>
-					<panel id="t3" height="100%" width="47.5%" childLayout="center">
-						<image id = "i3" filename="Interface/x.png" height="95%" width="95%">
-							<interact onClick="changePopUpColor(3)"/>
-							<effect>
-								<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-							</effect>
-						</image>
-					</panel>
-				</panel>
-				<panel height="5%" width="100%">
-				<!-- Space -->
-				</panel>
-				<panel id="t45" height="26%" width="100%" childLayout="horizontal">
-					<panel id="t4" height="100%" width="47.5%" childLayout="center">
-						<image id = "i4" filename="Interface/x.png" height="95%" width="95%">
-							<interact onClick="changePopUpColor(4)"/>
-							<effect>
-								<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-							</effect>
-						</image>
-					</panel>
-					<panel height="100%" width="5%">
-					<!-- Space -->
-					</panel>
-					<panel id="t5" height="100%" width="47.5%" childLayout="center">
-						<image id = "i5" filename="Interface/x.png" height="95%" width="95%">
-							<interact onClick="changePopUpColor(5)"/>
-							<effect>
-								<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
-							</effect>
-						</image>
-					</panel>
-				</panel>
-			</panel>
-			<panel id="panel_change" height="20%" width="80%" align="center" childLayout="horizontal">
-				<image id="leftT" filename="${CALL.getButton(left)}" height="50%" width="33%" valign="center" align="left">
+	<popup id="PopUpColorDefault" childLayout="center" controller="es.eucm.echaracter.gui.Gui" backgroundColor="#FFFA">
+		<image id="popUpPanel" childLayout="Vertical" filename="${CALL.getTexture(s2-right-panel)}">
+			<panel height="2%" width="100%"/>
+			<panel id="texturePanel" height="80%" width="100%" childLayout="Horizontal">	
+				<panel id="leftPanel" height="100%" width="12%" align="center" childLayout="center">
+					<image id="leftT" align="center" filename="${CALL.getButton(left)}">
 						<interact onClick="changePopUpPage(-)"/>
-				</image>
-				<panel height="50%" width="34%">
-				<!-- Space -->
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(left-over)}" post="true" />
+						</effect>
+					</image>
 				</panel>
-				<image id="rightT" filename="${CALL.getButton(right)}" height="50%" width="33%" valign="center" align="right">
+				<panel id="panel_image" height="100%" width="76%" align="center" childLayout="vertical">
+					<!-- Texture's Image -->
+					<panel id="t03" height="22%" width="100%" childLayout="horizontal">
+						<panel id="t0" height="100%" width="22%" childLayout="center">
+							<image id = "i0" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(0)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t1" height="100%" width="22%" childLayout="center">
+							<image id = "i1" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(1)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t2" height="100%" width="22%" childLayout="center">
+							<image id = "i2" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(2)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t3" height="100%" width="22%" childLayout="center">
+							<image id = "i3" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(3)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+					</panel>
+					<panel height="4%" width="100%"/>
+					<panel id="t47" height="22%" width="100%" childLayout="horizontal">
+						<panel id="t4" height="100%" width="22%" childLayout="center">
+							<image id = "i4" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(4)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t5" height="100%" width="22%" childLayout="center">
+							<image id = "i5" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(5)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t6" height="100%" width="22%" childLayout="center">
+							<image id = "i6" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(6)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t7" height="100%" width="22%" childLayout="center">
+							<image id = "i7" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(7)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+					</panel>
+					<panel height="4%" width="100%"/>
+					<panel id="t811" height="22%" width="100%" childLayout="horizontal">
+						<panel id="t8" height="100%" width="22%" childLayout="center">
+							<image id = "i8" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(8)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t9" height="100%" width="22%" childLayout="center">
+							<image id = "i9" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(9)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t10" height="100%" width="22%" childLayout="center">
+							<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(10)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t11" height="100%" width="22%" childLayout="center">
+							<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(11)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+					</panel>
+					<panel height="4%" width="100%"/>
+					<panel id="t1215" height="22%" width="100%" childLayout="horizontal">
+						<panel id="t12" height="100%" width="22%" childLayout="center">
+							<image id = "i12" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(12)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t13" height="100%" width="22%" childLayout="center">
+							<image id = "i13" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(13)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t14" height="100%" width="22%" childLayout="center">
+							<image id = "i14" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(14)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+						<panel height="100%" width="4%"/>
+						<panel id="t15" height="100%" width="22%" childLayout="center">
+							<image id = "i15" filename="Interface/x.png" height="95%" width="95%">
+								<interact onClick="changePopUpColor(15)"/>
+								<effect>
+									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+								</effect>
+							</image>
+						</panel>
+					</panel>
+				</panel>
+				<panel id="rightPanel" height="100%" width="12%" align="center" childLayout="center">
+					<image id="rightT" align="center" filename="${CALL.getButton(right)}">
 						<interact onClick="changePopUpPage(+)"/>
-				</image>
+						<effect>
+							<onHover name="imageOverlay" filename="${CALL.getButton(right-over)}" post="true" />
+						</effect>
+					</image>
+				</panel>
 			</panel>
-			<panel id="cancelPanel" height="10%" width="50%" childLayout="center" align="center">
-				<control name="button" label="Cancel" id="cancelButton" align="center" valign="center" visibleToMouse="true"> 
-					<!--<interact onClick="popUpButtonClicked(popUpButton2)" />-->
-				</control>
-			</panel>
-		</panel>
+			<panel height="3%" width="100%"/>
+			<image id="cancelI" align="center" filename="${CALL.getButton(cancel)}" childLayout="vertical">
+				<panel id="cancelPanel" height="100%" width="75%" align="right" childLayout="center">
+					<text id="cancelText" font="${CALL.getfont(20)}" text="" align="center" valign="center" color="#565857"/>
+				</panel>
+				<interact onClick="cancelButtonClicked()"/>
+				<effect>
+					<onHover name="imageOverlay" filename="${CALL.getButton(cancel-over)}" post="true" />
+				</effect>
+			</image>
+		</image>
 		<layer id="layer2" childLayout="absolute">
             <panel id="hint-panel" visible="false" childLayout="vertical" padding="5px,10px,5px,10px" backgroundColor="#ffc">
                 <text id="content" font="${CALL.getfont(20)}" text="empty" align="center" valign="center" color="#100"/>

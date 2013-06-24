@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="es_ES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<string id="idNameFamily">Cubix Studio</string>
+	<string id="idAbstractFamily">Hombre y mujer adultos de calidad media con estética realista.</string>
+	<string id="idDescriptionFamily">Esta familia está compuesta por 2 humanos: un chico y una chica. Cada humano se puede vestir de casual o medieval.</string>
+	<string id="idAuthor">Cubix Studio</string>
+	<string id="idMultiStageLabel1">Escalado</string>
+	<string id="idBoneControler1">Cabeza</string>
+	<string id="idBoneControler2">Brazos</string>
+	<string id="idBoneControler3">Manos</string>
+	<string id="idBoneControler4">Piernas</string>
+	<string id="idBoneControler5">Pies</string>
+	<string id="idMultiStageLabel2">Piel</string>
+	<string id="idTextureSubStageLabel1">Pieles</string>
+	<string id="idMultiStageLabel3">Pelo</string>
+	<string id="idTextureSubStageLabel2">Pelos</string>
+	<string id="idMultiStageLabel4">Ojos</string>
+	<string id="idTextureSubStageLabel3">Ojos</string>
+	<string id="idMultiStageLabel5">Ropa</string>
+	<string id="idTextureSubStageLabel4">Camisetas</string>
+	<string id="idTextureSubStageLabel5">Pantalones o faldas</string>
+	<string id="idMultiStageLabel6">Zapatos</string>
+	<string id="idTextureSubStageLabel6">Zapatos</string>
+	<string id="idMultiStageLabel7">Accesorios</string>
+	<string id="idTextureSubStageLabel7">Accesorios</string>
+	<string id="idAnimationStageLabel1">Exportación</string>
+	<string id="idQualityLabel1">Alto</string>
+	<string id="idQualityLabel2">Medio</string>
+	<string id="idQualityLabel3">Bajo</string>
+	<string id="idCameraLabel1">Frontal</string>
+	<string id="idCameraLabel2">2D</string>
+	<string id="idModelLabel1">Hombre</string>
+	<string id="idModelLabel2">Mujer</string>
+</metadata>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<string id="idPhysicalBuildLabel1">Medium-Built</string>
+	<string id="idPhysicalBuildLabel2">Heavy</string>
+	<string id="idPhysicalBuildLabel3">Thin</string>
+	<string id="idPhysicalBuildLabel4">Tall</string>
+	<string id="idPhysicalBuildLabel5">Small</string>
+	<string id="idTextPielBlanca">White skin</string>
+	<string id="idTextPielNegra">Black skin</string>
+	<string id="idTextPielAmarillaOscura">Dark yellow skin</string>
+	<string id="idTextPielAmarillaClara">Light yellow skin</string>
+	<string id="idTextPielRoja">Red skin</string>
+	<string id="idTextBlancoOjos">Sclera</string>
+	<string id="idTextOjos">Eyes</string>
+	<string id="idTextCejas1">Thin eyebrows</string>
+	<string id="idTextCejas2">Fat eyebrows</string>
+	<string id="idTextPestanas">Eye lashes</string>
+	<string id="idTextCamisetaSinMangas">Sleeveless t-shirt</string>
+	<string id="idTextCamiseta">T-shirt</string>
+	<string id="idTextCamisetaTirantes">Tank top</string>
+	<string id="idTextTop">Top</string>
+	<string id="idTextPantalonCorto">Shorts</string>
+	<string id="idTextPantalonLargo">Long pants</string>
+	<string id="idTextZapatos">Shoes</string>
+	<string id="idTextMedias">Tights</string>
+	<string id="idTextColorete">Blushers</string>
+	<string id="idTextSombraOjos">Eyeshadow</string>
+	<string id="idTextLabios">Lips</string>
+	<string id="idTextDientes">Teeth</string>
+	<string id="idTextLengua">Tongue</string>
+	<string id="idTextPendientes">Slopes</string>
+	<string id="idTextTiritaDcha">Right sticking-plaster </string>
+	<string id="idTextTiritaIzq">Left sticking-plaster </string>
+	<string id="idTextPearcingBarbilla">Piercing in chin</string>
+	<string id="idTextPearcingDcho">Right piercing</string>
+	<string id="idTextPearcingIzq">Left piercing</string>
+	<string id="idTextCollar1">Necklace</string>
+	<string id="idTextCollar2">Necklace</string>
+	<string id="idTextLazoCuello">Loop in the neck</string>
+	<string id="idTextMunequeras">Wristbands</string>
+	<string id="idTextPulseraDcha">Right wrist</string>
+	<string id="idTextPulseraIzq">Left wrist</string>
+	<string id="idTextPeloLong">Long haircut</string>
+	<string id="idTextPeloOld">Old haircut</string>
+	<string id="idTextPeloPonyTail">Ponytail haircut</string>
+	<string id="idTextPeloShort">Short haircut</string>
+</metadata>

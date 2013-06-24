@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="family">
+		<xs:complexType>
+			<xs:sequence>
+				<!--This element contains all information about 
+			the family. License and URL are optional 
+			elements.-->
+				<xs:element name="metadata">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="license" type="licenseType" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="name" type="xs:string"/>
+							<xs:element name="abstract" type="xs:string"/>
+							<xs:element name="description" type="xs:string"/>
+							<xs:element name="author" type="xs:string"/>
+							<xs:element name="URL" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<!--Internationalization files 
+							should be in this path-->
+							<xs:element name="languagesPath" type="xs:string"/>
+							<xs:element name="iconPath" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<!-- This element contains information about the GUI. 
+					The order in which stages are defined, defines 
+					the order in which show it -->
+				<xs:element name="stages">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="scaleStage" type="scaleStageType" minOccurs="1" maxOccurs="10"/>
+							<xs:element name="multiStage" type="multiStageType" minOccurs="1" maxOccurs="10"/>
+							<!-- Animation stage is 
+							obligatory.-->
+							<xs:element name="animationStage" type="animationStageType"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="modelsRef">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="modelRef" type="modelRefType" minOccurs="1" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="licenseType">
+		<xs:sequence>
+			<xs:element name="title" type="xs:string"/>
+			<xs:element name="terms" type="xs:string"/>
+			<xs:element name="URL" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="multiStageType">
+		<xs:sequence>
+			<!-- If iconPath exists, it will be displayed in the top 
+			banner instead of stageLabel. -->
+			<xs:element name="iconPath" type="xs:string"/>
+			<xs:element name="subStage" type="subStageType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="stageLabel" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="subStageType">
+		<xs:attribute name="subStageType" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="meshSubStage"/>
+					<xs:enumeration value="textureSubStage"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="subStageLabel" type="xs:string" use="required"/>
+		<xs:attribute name="idPanel" type="xs:ID" use="required"/>
+		<xs:attribute name="multiselection" type="xs:boolean" use="optional"/>
+		<!--If multiselection is true, users would be able to select many 
+		textures or submeshes in the same substage.-->
+	</xs:complexType>
+	<xs:complexType name="scaleStageType">
+		<xs:sequence>
+			<!-- If iconPath exists, it will be displayed in the top 
+			banner instead of stageLabel. -->
+			<xs:element name="iconPath" type="xs:string"/>
+			<xs:element name="boneController" minOccurs="1" maxOccurs="15">
+				<xs:complexType>
+					<xs:attribute name="controllerLabel" type="xs:string" use="required"/>
+					<xs:attribute name="idController" type="xs:ID" use="required"/>
+					<xs:attribute name="level" type="xs:integer" use="required"/>
+					<!-- Level allow us make a tree structure to 
+					organize the controllers. The highest level is 
+					0 and it increase in lower levels.-->
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stageLabel" type="xs:string" use="required"/>
+		<xs:attribute name="idPanel" type="xs:ID" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="animationStageType">
+		<xs:sequence>
+			<xs:element name="fps" type="fpsType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="camera" type="cameraType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="stageLabel" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="fpsType">
+		<xs:attribute name="qualityLabel" type="xs:string" use="required"/>
+		<xs:attribute name="fpsValue" type="xs:integer" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="cameraType">
+		<xs:sequence>
+			<xs:element name="upAxis" type="vectorType"/>
+			<xs:element name="location" type="vectorType"/>
+			<xs:element name="direction" type="vectorType"/>
+		</xs:sequence>
+		<xs:attribute name="cameraLabel" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="vectorType">
+		<xs:attribute name="valueX" type="xs:float" use="required"/>
+		<xs:attribute name="valueY" type="xs:float" use="required"/>
+		<xs:attribute name="valueZ" type="xs:float" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="modelRefType">
+		<xs:sequence>
+			<xs:element name="modelLabel" type="xs:ID"/>
+			<xs:element name="iconPath" type="xs:string"/>
+			<xs:element name="modelPath" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

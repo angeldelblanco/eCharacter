@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./language.xsd">
+	<string id="language">assets/Locale/Flags/United_Kingdom.png</string>
 	<string id="idDescription">Welcome to eAdventure characters configurator. This configurator can create your avatar to play platform games eAdventure.</string>
 	<string id="idStart">Start</string>
 	<string id="idQuit">Quit</string>
@@ -34,4 +35,12 @@
 	<string id="idDescriptionFamily">Description</string>
 	<string id="idAuthor">Author</string>
 	<string id="idUrl">Url</string>
+	<string id="idHeader">Select a family and then the base model to start</string>
+	<string id="idSubHeader">Welcome to eCharacter, the configurator eAdventure characters. To learn more about the project click</string>
+	<string id="idHere">here</string>
+	<string id="idWelcome">Welcome to</string>
+	<string id="ideCharacter">Configurator characters</string>
+	<string id="idPopupLanguage">Please select the language you prefer to the list</string>
+	<string id="idDownload">Download</string>
+	<string id="idRepoText">Download the families that you like</string>
 </metadata>
