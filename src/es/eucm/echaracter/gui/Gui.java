@@ -15,7 +15,7 @@
  *          C Profesor Jose Garcia Santesmases sn,
  *          28040 Madrid (Madrid), Spain.
  *  
- *          For more info please visit:  <http://character.e-ucm.es>, 
+ *          For more info please visit:  <http://echaracter.e-ucm.es>, 
  *          <http://e-adventure.e-ucm.es> or <http://www.e-ucm.es>
  *  
  *  ****************************************************************************
