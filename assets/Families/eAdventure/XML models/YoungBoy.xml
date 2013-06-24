@@ -289,7 +289,7 @@
 			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="Torax"/>
 			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaIz"/>
 			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaDer"/>
-			<bone idControllerRef="head" defaultValue="0" minValue="-50" maxValue="50" boneName="Cabeza"/>
+			<bone idControllerRef="head" defaultValue="20" minValue="-50" maxValue="50" boneName="Cabeza"/>
 			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaIz"/>
 			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaDer"/>
 			<bone idControllerRef="leftArm" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaIz"/>
