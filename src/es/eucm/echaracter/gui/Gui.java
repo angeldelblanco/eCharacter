@@ -926,6 +926,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         ArrayList<String> listFamilies = repository.getFamiliesID();
         String idFamily = listFamilies.get(repositoryPage);
         repository.downloadFamily(idFamily);
+        control.refreshFamilies();
         modelsb.initModels();
     }
 }
