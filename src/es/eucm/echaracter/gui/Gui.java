@@ -805,6 +805,12 @@ public class Gui extends AbstractAppState implements ScreenController {
     /******************************PhysicalBuildControler*****************************/
     
     public void changeBodyType(String bodyType){
+        Iterator<String> it = idBones.iterator();
+        while(it.hasNext()){
+            String idBoneController = it.next();
+            control.setBoneControllerValue(idBoneController, 1.0f);     
+            control.setDefaultValueBoneController(idBoneController, 0.0f);            
+        }
         control.setPhysicalBuild(idPhysicalBuild.get(page*BONES_PAGE+Integer.parseInt(bodyType)));
     }
     
