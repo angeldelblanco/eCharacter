@@ -335,7 +335,7 @@
 				<path>assets/Families/eAdventure/Textures/Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoGoku.jpg</iconPath>
+		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoGoku.png</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idAfro" default="false" text="idTextPeloAfro">
 		<path>assets/Families/eAdventure/Models/Hair Boy/afro haircut.mesh.xml</path>
@@ -346,7 +346,7 @@
 				<path>assets/Families/eAdventure/Textures/Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoAfro.jpg</iconPath>
+		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoAfro.png</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idBowl" default="false" text="idTextPeloBowl">
 		<path>assets/Families/eAdventure/Models/Hair Boy/bowl haircut.mesh.xml</path>
@@ -357,7 +357,7 @@
 				<path>assets/Families/eAdventure/Textures/Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoTazon.jpg</iconPath>
+		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoTazon.png</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idPunta" default="true" text="idTextPeloPunta">
 		<path>assets/Families/eAdventure/Models/Hair Boy/punta haircut.mesh.xml</path>
@@ -368,7 +368,7 @@
 				<path>assets/Families/eAdventure/Textures/Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoPunta.jpg</iconPath>
+		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoPunta.png</iconPath>
 	</subMesh>
 	<languagesPath>assets/Families/eAdventure/Locale/Man</languagesPath>
 </model>
