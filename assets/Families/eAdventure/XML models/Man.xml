@@ -173,7 +173,7 @@
 				<path>assets/Families/eAdventure/Textures/Boy/PerillaInferiorBoy.png</path>
 			</simpleTexture>
 			<!-- accesoriesFace textures-->
-			<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
+			<!--<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoDientesBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/DientesBoy.png</path>
 				<colorDefault>
@@ -185,7 +185,7 @@
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idLengua"  text="idTextLengua">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoLenguaBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/LenguaBoy.png</path>
-			</simpleTexture>
+			</simpleTexture>-->
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idPendienteDcho"  text="idTextPendienteDcho">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPendienteDchoBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/PendienteDchoBoy.png</path>
