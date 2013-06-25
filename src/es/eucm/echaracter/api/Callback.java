@@ -38,7 +38,7 @@ package es.eucm.echaracter.api;
 
 public interface Callback {
     
-    public int returnFailed();
-    public int returnSuccess();
+    public void returnFailed();
+    public void returnSuccess();
     
 }

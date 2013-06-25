@@ -289,7 +289,7 @@
 			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="Torax"/>
 			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaIz"/>
 			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaDer"/>
-			<bone idControllerRef="head" defaultValue="20" minValue="-50" maxValue="50" boneName="Cabeza"/>
+			<bone idControllerRef="head" defaultValue="0" minValue="-50" maxValue="50" boneName="Cabeza"/>
 			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaIz"/>
 			<bone idControllerRef="arms" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaDer"/>
 			<bone idControllerRef="leftArm" defaultValue="0" minValue="-50" maxValue="50" boneName="ClaviculaIz"/>
@@ -306,23 +306,23 @@
 		<!--Physical Builds-->
 		<physicalBuilds>
 			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
-				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+				<escalation boneName="ALL" valueX="1.538" valueY="1.538" valueZ="1.538"/>
                                 <escalation boneName="Cabeza" valueX="1.0" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
 			<physicalBuild label="idPhysicalBuildLabel2" idPanelRef="ScalePanel" idPhysicalBuild="idHeavy">
-				<escalation boneName="ALL" valueX="1.50" valueY="1.0" valueZ="1.0"/>
+				<escalation boneName="ALL" valueX="2.30" valueY="1.538" valueZ="1.538"/>
 				<escalation boneName="Cabeza" valueX="0.66" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
 			<physicalBuild label="idPhysicalBuildLabel3" idPanelRef="ScalePanel" idPhysicalBuild="idThin">
-				<escalation boneName="ALL" valueX="0.65" valueY="1.0" valueZ="1.0"/>
-				<escalation boneName="Cabeza" valueX="1.54" valueY="1.0" valueZ="1.0"/>
+				<escalation boneName="ALL" valueX="1.230" valueY="1.538" valueZ="1.538"/>
+				<escalation boneName="Cabeza" valueX="1.25" valueY="1.0" valueZ="1.0"/>
 			</physicalBuild>
 			<physicalBuild label="idPhysicalBuildLabel4" idPanelRef="ScalePanel" idPhysicalBuild="idTall">
-				<escalation boneName="ALL" valueX="1.1" valueY="1.25" valueZ="1.25"/>
+				<escalation boneName="ALL" valueX="1.69" valueY="1.923" valueZ="1.923"/>
 				<escalation boneName="Cabeza" valueX="0.91" valueY="0.8" valueZ="0.8"/>
 			</physicalBuild>
 			<physicalBuild label="idPhysicalBuildLabel5" idPanelRef="ScalePanel" idPhysicalBuild="idSmall">
-				<escalation boneName="ALL" valueX="0.9" valueY="0.75" valueZ="0.75"/>
+				<escalation boneName="ALL" valueX="1.38" valueY="1.15" valueZ="1.15"/>
 				<escalation boneName="Cabeza" valueX="1.11" valueY="1.33" valueZ="1.33"/>
 			</physicalBuild>
 		</physicalBuilds>

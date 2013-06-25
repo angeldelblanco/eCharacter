@@ -96,6 +96,7 @@ public class Configuration {
     public final static String INPUT_LANG = "lang";
     public final static String INPUT_DEFAULT_FAMILY = "defaultFamily";
     public final static String INPUT_DEFAULT_MODEL = "defaultModel";
+    public final static String INPUT_DEFAULT_STAGE = "defaultStage";
     
     Properties properties;
     

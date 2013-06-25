@@ -46,6 +46,7 @@ public class eCharacter {
      * - lang : Active language
      * - defaultExportPath: Default export path
      * - defaultFamily and defaultModel: Set the initial model for configuration
+     * - defaultStage: Set the initial stage
      */
     
     private HashSet<String> keySet;
@@ -56,6 +57,7 @@ public class eCharacter {
         keySet.add("defaultExportPath");
         keySet.add("defaultFamily");
         keySet.add("defaultModel");
+        keySet.add("defaultStage");
     }
     
     public void eCharacter(Properties properties,Callback callback) throws Exception{ 
