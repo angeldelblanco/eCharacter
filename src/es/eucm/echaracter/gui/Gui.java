@@ -136,7 +136,10 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
 
     public void quitGame() {
-        app.stop();
+         if (callback != null){
+            callback.returnSuccess();
+        }
+        app.stop();       
     }
 
     public void bind(Nifty nifty, Screen screen) {
@@ -195,7 +198,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
                 control.selectFamily(config.getProperty(Configuration.INPUT_DEFAULT_FAMILY));
                 modelSelection = config.getProperty(Configuration.INPUT_DEFAULT_MODEL);
-                loadFirstScreen();                
+                loadFirstScreen(); 
             }
                 
         }
@@ -979,7 +982,7 @@ public class Gui extends AbstractAppState implements ScreenController {
      * loadFirstScreen() sets mustLoad:=true.
      */
     private void doLoad() {
-                index = 0;
+        index = 0;
         control.selectModel(modelSelection);
         i18nModel = new I18N(control.getLanguageModelPath(),language);
         stages = control.getStagesLabels();
@@ -999,6 +1002,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         
         loadScreen(control.getStageTypes(selection).toString());
         nifty.gotoScreen(control.getStageTypes(selection).toString());
+        if((callback != null) && (config.getProperty(Configuration.INPUT_DEFAULT_STAGE) != null)){
+            changeScreen(config.getProperty(Configuration.INPUT_DEFAULT_STAGE));
+        }
 
     }
 }
