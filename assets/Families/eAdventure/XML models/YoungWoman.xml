@@ -180,7 +180,7 @@
 				<shadowPath>assets/Families/eAdventure/Textures/Girl/LabiosSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<!-- accesoriesFace textures-->
-			<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
+			<!--<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
 				<iconPath>assets/Families/eAdventure/Icons/Girl/IconoDientesGirl.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Girl/DientesGirl.png</path>
 				<colorDefault>
@@ -192,7 +192,7 @@
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idLengua"  text="idTextLengua">
 				<iconPath>assets/Families/eAdventure/Icons/Girl/IconoLenguaGirl.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Girl/LenguaGirl.png</path>
-			</simpleTexture>
+			</simpleTexture>-->
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idPendientes"  text="idTextPendientes">
 				<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPendientesGirl.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Girl/PendientesGirl.png</path>
@@ -314,7 +314,7 @@
 				<path>assets/Families/eAdventure/Textures/Girl/PeloGirl.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPeloChicaLargo.jpg</iconPath>
+		<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPeloChicaLargo.png</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idOldHair" default="false" text="idTextPeloOld">
 		<path>assets/Families/eAdventure/Models/Hair Girl/old haircut.mesh.xml</path>
@@ -325,7 +325,7 @@
 				<path>assets/Families/eAdventure/Textures/Girl/PeloGirl.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPeloChicaViejo.jpg</iconPath>	
+		<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPeloChicaViejo.png</iconPath>	
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idPonyTailHair" default="true" text="idTextPeloPonyTail">
 		<path>assets/Families/eAdventure/Models/Hair Girl/ponytail haircut.mesh.xml</path>
@@ -336,7 +336,7 @@
 				<path>assets/Families/eAdventure/Textures/Girl/PeloGirl.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPeloChicaColeta.jpg</iconPath>		
+		<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPeloChicaColeta.png</iconPath>		
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza"  idSubMesh="idShortHair" default="false"  text="idTextPeloShort">
 		<path>assets/Families/eAdventure/Models/Hair Girl/short haircut.mesh.xml</path>
@@ -347,7 +347,7 @@
 				<path>assets/Families/eAdventure/Textures/Girl/PeloGirl.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPeloChicaCorto.jpg</iconPath>		
+		<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPeloChicaCorto.png</iconPath>		
 	</subMesh>
 	<languagesPath>assets/Families/eAdventure/Locale/Young Woman</languagesPath>
 </model>

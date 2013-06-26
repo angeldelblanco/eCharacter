@@ -157,7 +157,7 @@
 			</baseShadowTexture>			
 			<!-- accesoriesPanel textures-->
 			<!-- facePanel textures-->
-			<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idBarba"  text="idTextBarba">
+			<!--<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idBarba"  text="idTextBarba">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoBarbaBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/BarbaBoy.png</path>
 			</simpleTexture>
@@ -172,9 +172,9 @@
 			<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idPerillaInferior"  text="idTextPerillaInferior">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPerillaInferiorBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/PerillaInferiorBoy.png</path>
-			</simpleTexture>
+			</simpleTexture>-->
 			<!-- accesoriesFace textures-->
-			<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
+			<!--<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoDientesBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/DientesBoy.png</path>
 				<colorDefault>
@@ -186,7 +186,7 @@
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idLengua"  text="idTextLengua">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoLenguaBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/LenguaBoy.png</path>
-			</simpleTexture>
+			</simpleTexture>-->
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idPendienteDcho"  text="idTextPendienteDcho">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPendienteDchoBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/PendienteDchoBoy.png</path>
@@ -336,7 +336,7 @@
 				<path>assets/Families/eAdventure/Textures/Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoGoku.jpg</iconPath>
+		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoGoku.png</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idAfro" default="false" text="idTextPeloAfro">
 		<path>assets/Families/eAdventure/Models/Hair Boy/afro haircut.mesh.xml</path>
@@ -347,7 +347,7 @@
 				<path>assets/Families/eAdventure/Textures/Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoAfro.jpg</iconPath>
+		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoAfro.png</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idBowl" default="true" text="idTextPeloBowl">
 		<path>assets/Families/eAdventure/Models/Hair Boy/bowl haircut.mesh.xml</path>
@@ -358,7 +358,7 @@
 				<path>assets/Families/eAdventure/Textures/Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoTazon.jpg</iconPath>
+		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoTazon.png</iconPath>
 	</subMesh>
 	<subMesh idPanelRef="hairsPanel" associatedBone="Cabeza" idSubMesh="idPunta" default="false" text="idTextPeloPunta">
 		<path>assets/Families/eAdventure/Models/Hair Boy/punta haircut.mesh.xml</path>
@@ -369,7 +369,7 @@
 				<path>assets/Families/eAdventure/Textures/Boy/PeloBoy.png</path>
 			</baseShadowTextureSubMesh>
 		</subMeshTexture>
-		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoPunta.jpg</iconPath>
+		<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPeloChicoPunta.png</iconPath>
 	</subMesh>
 	<languagesPath>assets/Families/eAdventure/Locale/Young Boy</languagesPath>
 </model>
