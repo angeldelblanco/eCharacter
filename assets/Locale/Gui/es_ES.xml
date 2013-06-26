@@ -42,6 +42,9 @@
 	<string id="ideCharacter">El configurador de personajes</string>
 	<string id="idPopupLanguage">Por favor, seleccione el idioma de la lista que prefiera utilizar</string>
 	<string id="idDownload">Descargar</string>
-	<string id="idRepoText">Descarga las familias que más te gusten</string>
+	<string id="idRepo">Repositorio de</string>
+	<string id="idRepoText">Estas son las familias disponibles en el repositorio. Selecciona una y pulsa "Descargar" a continuación para que aparezca en tu equipo.</string>
+	<string id="idLoading">CARGANDO</string>
+	<string id="idDownloading">DESCARGANDO</string>
 </metadata>
 	

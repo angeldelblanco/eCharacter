@@ -40,8 +40,11 @@
 	<string id="idHere">ici</string>
 	<string id="idWelcome">Bienvenue</string>
 	<string id="ideCharacter">Chaîne caractères configurateur</string>
+	<string id="idRepo">référentiel de</string>
 	<string id="idPopupLanguage">S'il vous plaît choisir la langue que vous préférez utiliser la liste</string>
 	<string id="idDownload">Télécharger</string>
-	<string id="idRepoText">Télécharger les familles que vous aimez</string>
+	<string id="idRepoText">Ce sont les familles disponibles dans le référentiel. Sélectionnez l'une et cliquez sur "Télécharger" ci-dessous pour apparaître sur votre ordinateur.</string>
+	<string id="idLoading">CHARGEMENT</string>
+	<string id="idDownloading">TÉLÉCHARGEMENT</string>
 </metadata>
 	

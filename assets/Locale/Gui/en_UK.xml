@@ -42,5 +42,8 @@
 	<string id="ideCharacter">Configurator characters</string>
 	<string id="idPopupLanguage">Please select the language you prefer to the list</string>
 	<string id="idDownload">Download</string>
-	<string id="idRepoText">Download the families that you like</string>
+	<string id="idRepo">Repository of</string>
+	<string id="idRepoText">These are the families available in the repository. Select one and click "Download" below to appear on your computer.</string>
+	<string id="idLoading">LOADING</string>
+	<string id="idDownloading">DOWNLOADING</string>
 </metadata>
