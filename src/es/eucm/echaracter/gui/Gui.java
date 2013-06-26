@@ -190,7 +190,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 modelSelection = config.getProperty(Configuration.INPUT_DEFAULT_MODEL);
                 loadFirstScreen(); 
             }
-            if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_ANIMATION) != null)
+            if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_ANIMATIONS) != null)
                 && (config.getProperty(Configuration.INPUT_DEFAULT_CAMERA) != null) 
                 && (config.getProperty(Configuration.INPUT_DEFAULT_QUALITY) != null)){
                 //Ocultar el panel de la exportación

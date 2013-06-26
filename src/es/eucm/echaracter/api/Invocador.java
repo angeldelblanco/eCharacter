@@ -31,12 +31,10 @@ public class Invocador implements Callback{
                     +File.separator+"XML models"+File.separator+"YoungBoy.xml");
             p.put("defaultStage","idMultiStageLabel6");
             p.put("defaultCamera","idCameraLabel2");
-            p.put("defaultAnimation","Coger");
+            p.put("defaultAnimations","Coger|Andar");
             p.put("defaultQuality","6");
             eCharacter eC = new eCharacter();
             eC.eCharacter(p,inv);
-            /*while (Invocador.flag == 0);
-            System.out.println("fin");*/
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());

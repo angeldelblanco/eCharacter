@@ -43,11 +43,23 @@ import java.util.Properties;
 public class eCharacter {
     
     /* The keyset for the file properties is:
-     * - lang : Active language
-     * - defaultExportPath: Default export path
-     * - defaultFamily and defaultModel: Set the initial model for configuration
-     * - defaultStage: Set the initial stage
-     * - defaultCamera, defaultAnimation and defaultQuality : Set the configuration for the process export.
+     * - lang : 
+     *      Active language, e.g: en_EN
+     * - defaultExportPath: 
+     *      Set the absolute path where you want write the export file ZIP
+     * - defaultFamily and defaultModel: 
+     *      Set the initial model with which start the process configuration.
+     *      For this, both keys must be defined.
+     * - defaultStage: 
+     *      Set the initial stage with which start the process configuration.
+     * - defaultCamera, defaultAnimation and defaultQuality : 
+     *      Set the configuration with which the process export will be done.
+     *      For this, this three keys must be defined.
+     *      defaultCamera must be one of the idCamera that are defined in the XML family file
+     *      defaultQuality is the frames per seconds (FPS) that will be done the export. Must be an integer.
+     *      defaultAnimations are the names of animation that will be exported. 
+     *      This animation must be appear in the .skeleton file asociated with the model.
+     *      The separation character between animations is '|' e.g: Walk|Run|Jump
      */
     
     private HashSet<String> keySet;
@@ -60,7 +72,7 @@ public class eCharacter {
         keySet.add("defaultModel");
         keySet.add("defaultStage");
         keySet.add("defaultCamera");
-        keySet.add("defaultAnimation");
+        keySet.add("defaultAnimations");
         keySet.add("defaultQuality");
     }
     

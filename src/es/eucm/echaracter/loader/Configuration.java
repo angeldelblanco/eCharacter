@@ -98,7 +98,7 @@ public class Configuration {
     public final static String INPUT_DEFAULT_MODEL = "defaultModel";
     public final static String INPUT_DEFAULT_STAGE = "defaultStage";
     public final static String INPUT_DEFAULT_CAMERA = "defaultCamera";
-    public final static String INPUT_DEFAULT_ANIMATION = "defaultAnimation";
+    public final static String INPUT_DEFAULT_ANIMATIONS = "defaultAnimations";
     public final static String INPUT_DEFAULT_QUALITY = "defaultQuality";
     
     Properties properties;

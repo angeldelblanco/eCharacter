@@ -394,7 +394,7 @@ public class SceneControl {
         
         //Check if the application has been called by API
         boolean callbackAPI = false;
-        if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_ANIMATION) != null)
+        if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_ANIMATIONS) != null)
                 && (config.getProperty(Configuration.INPUT_DEFAULT_CAMERA) != null) 
                 && (config.getProperty(Configuration.INPUT_DEFAULT_QUALITY) != null)){
             callbackAPI = true;
@@ -404,9 +404,13 @@ public class SceneControl {
         //Animations list that is checked
         ArrayList<String> listAnimationsChecked = new ArrayList<String>();
         if (callbackAPI){
-            String animation = config.getProperty(Configuration.INPUT_DEFAULT_ANIMATION);
-            if (existsAnimation(animation)){
-                listAnimationsChecked.add(animation);
+            String animations = config.getProperty(Configuration.INPUT_DEFAULT_ANIMATIONS);
+            StringTokenizer animationsTokenizer = new StringTokenizer(animations, "|");
+            while(animationsTokenizer.hasMoreTokens()){
+                String animationName = animationsTokenizer.nextToken();
+                if (existsAnimation(animationName)){
+                    listAnimationsChecked.add(animationName);
+                }
             }
         }else{
             Iterator<String> it = animations.keySet().iterator();
