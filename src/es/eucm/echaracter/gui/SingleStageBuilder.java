@@ -69,7 +69,11 @@ public class SingleStageBuilder {
         seleccionado = new HashMap<String,String>();
         subStageSelected = "";
         this.i18nModel = i18nModel;
-        nifty.getScreen(stageType).findElementByName("colorText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
+        String idColor = i18nGui.getString("idColor");
+        if(idColor==null){
+            idColor="idColor";
+        }
+        nifty.getScreen(stageType).findElementByName("colorText").getRenderer(TextRenderer.class).setText(idColor);
         nifty.getScreen(stageType).findElementByName("panel_color").layoutElements();
         nifty.getScreen(stageType).findElementByName("panel_color").setVisible(false);
     }
@@ -87,7 +91,11 @@ public class SingleStageBuilder {
             if(i<((page+1)*TEXTURES_PAGE)){
                 Element image = nifty.getScreen(stageType).findElementByName("i"+Integer.toString(i%TEXTURES_PAGE));
                 List<Effect> effects = image.getEffects(EffectEventId.onHover,Tooltip.class);
-                effects.get(0).getParameters().setProperty("hintText", i18nModel.getString(control.getTextTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i))));
+                String idTexturesOrSubMeshes = i18nModel.getString(control.getTextTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)));
+                if(idTexturesOrSubMeshes==null){
+                    idTexturesOrSubMeshes=control.getTextTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i));
+                }
+                effects.get(0).getParameters().setProperty("hintText",idTexturesOrSubMeshes);
                 image.setVisible(true);
                 ImageRenderer imager = image.getRenderer(ImageRenderer.class);
                 String imagePath = control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i));

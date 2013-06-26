@@ -113,5 +113,7 @@ public interface Resources {
     public static final String eCharacter = "assets/Interface/eCharacter.png";
     public static final String tick = "assets/Interface/tick.png";
     public static final String x = "assets/Interface/x.png";
+    public static final String repositorio = "assets/Interface/repositorio.png";
+    public static final String repositorio_over = "assets/Interface/repositorio-over.png";
     
 }

@@ -36,7 +36,6 @@
 package es.eucm.echaracter.gui;
 
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.effects.Effect;
 import de.lessvoid.nifty.effects.EffectEventId;
@@ -83,7 +82,11 @@ public class PopUpBuilder {
         int r,g,b;
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.baseShadow)){
             popupColor = nifty.createPopup("popupColor");
-            popupColor.findElementByName("acceptText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAcept"));
+            String idAcept = i18nGui.getString("idAcept");
+            if(idAcept==null){
+                idAcept="idAcept";
+            }
+            popupColor.findElementByName("acceptText").getRenderer(TextRenderer.class).setText(idAcept);
             popupColor.findElementByName("acceptPanel").layoutElements();
             popupColor.findElementByName("advancedSelection").setVisible(false);
             popupColor.findElementByName("colorOptions").setVisible(false);
@@ -100,12 +103,24 @@ public class PopUpBuilder {
         }
         if(control.getTextureType(textureOrSubMeshSelected).equals(TexturesMeshType.doubleTexture)){
             popupColor = nifty.createPopup("popupColor");
-            popupColor.findElementByName("acceptText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAcept"));
+            String idAcept = i18nGui.getString("idAcept");
+            String idBase = i18nGui.getString("idBase");
+            String idDetails = i18nGui.getString("idDetails");
+            if(idAcept==null){
+                idAcept="idAcept";
+            }
+            if(idBase==null){
+                idBase="idBase";
+            }
+            if(idDetails==null){
+                idDetails="idDetails";
+            }
+            popupColor.findElementByName("acceptText").getRenderer(TextRenderer.class).setText(idAcept);
             popupColor.findElementByName("acceptPanel").layoutElements();
             popupColor.findElementByName("advancedSelection").setVisible(false);
             popupColor.findElementByName("colorOptions").setVisible(true);
-            popupColor.findElementByName("basicText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBase"));
-            popupColor.findElementByName("customText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDetails"));
+            popupColor.findElementByName("basicText").getRenderer(TextRenderer.class).setText(idBase);
+            popupColor.findElementByName("customText").getRenderer(TextRenderer.class).setText(idDetails);
             baseColor = null;
             detailsColor = null;
             if(control.getColorTexture(subStageSelected, textureOrSubMeshSelected)!=null){
@@ -129,7 +144,11 @@ public class PopUpBuilder {
             baseColor = null;
             detailsColor = null;
         }
-        popupColor.findElementByName("cancelText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCancel"));
+        String idCancel = i18nGui.getString("idCancel");
+        if(idCancel==null){
+            idCancel="idCancel";
+        }
+        popupColor.findElementByName("cancelText").getRenderer(TextRenderer.class).setText(idCancel);
         popupColor.findElementByName("cancelPanel").layoutElements();
         nifty.showPopup(nifty.getCurrentScreen(), popupColor.getId(), null);
         changeTabColor("basic");
@@ -173,7 +192,11 @@ public class PopUpBuilder {
             if(i<((popUpPage+1)*TEXTURES_POPUP)){
                 Element image = popupColor.findElementByName("i"+Integer.toString(i%TEXTURES_POPUP));
                 List<Effect> effects = image.getEffects(EffectEventId.onHover,Tooltip.class);
-                effects.get(0).getParameters().setProperty("hintText", i18nModel.getString(control.getTextSubTextureInMultiOption(textureOrSubMeshSelected, control.getIdsSubTexturesInMultiOption(textureOrSubMeshSelected).get(i))));
+                String IdSubTexturesInMultiOption = i18nModel.getString(control.getTextSubTextureInMultiOption(textureOrSubMeshSelected, control.getIdsSubTexturesInMultiOption(textureOrSubMeshSelected).get(i)));
+                if(IdSubTexturesInMultiOption==null){
+                    IdSubTexturesInMultiOption=control.getIdsSubTexturesInMultiOption(textureOrSubMeshSelected).get(i);
+                }
+                effects.get(0).getParameters().setProperty("hintText",IdSubTexturesInMultiOption);
                 image.setVisible(true);
                 ImageRenderer imager = image.getRenderer(ImageRenderer.class);
                 imager.setImage(nifty.getRenderEngine().createImage(control.getIconPathInMultiOption(textureOrSubMeshSelected, control.getIdsSubTexturesInMultiOption(textureOrSubMeshSelected).get(i)), false));
@@ -273,11 +296,23 @@ public class PopUpBuilder {
             if(popUpNum == 1){
                 popUpNum = 2;
                 control.screenShot();
-                nifty.getScreen(stage).findElementByName("popUpText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopup2"));
+                String idPopup2 = i18nGui.getString("idPopup2");
+                String idPopupButton3 = i18nGui.getString("idPopupButton3");
+                String idPopupButton4 = i18nGui.getString("idPopupButton4");
+                if(idPopup2==null){
+                    idPopup2="idPopup2";
+                }
+                if(idPopupButton3==null){
+                    idPopupButton3="idPopupButton3";
+                }
+                if(idPopupButton4==null){
+                    idPopupButton4="idPopupButton4";
+                }
+                nifty.getScreen(stage).findElementByName("popUpText").getRenderer(TextRenderer.class).setText(idPopup2);
                 nifty.getScreen(stage).findElementByName("textPanel").layoutElements();
-                nifty.getScreen(stage).findElementByName("button1Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupButton3"));
+                nifty.getScreen(stage).findElementByName("button1Text").getRenderer(TextRenderer.class).setText(idPopupButton3);
                 nifty.getScreen(stage).findElementByName("button1").layoutElements();
-                nifty.getScreen(stage).findElementByName("button2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupButton4"));
+                nifty.getScreen(stage).findElementByName("button2Text").getRenderer(TextRenderer.class).setText(idPopupButton4);
                 nifty.getScreen(stage).findElementByName("button2").layoutElements();
                 return 3;
             }
@@ -292,11 +327,23 @@ public class PopUpBuilder {
         String stage = "popupScreen";
         nifty.gotoScreen(stage);
         popUpNum = 1;
-        nifty.getScreen(stage).findElementByName("popUpText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopup1"));
+        String idPopup1 = i18nGui.getString("idPopup1");
+        String idPopupButton1 = i18nGui.getString("idPopupButton1");
+        String idPopupButton2 = i18nGui.getString("idPopupButton2");
+        if(idPopup1==null){
+            idPopup1="idPopup1";
+        }
+        if(idPopupButton1==null){
+            idPopupButton1="idPopupButton1";
+        }
+        if(idPopupButton2==null){
+            idPopupButton2="idPopupButton2";
+        }
+        nifty.getScreen(stage).findElementByName("popUpText").getRenderer(TextRenderer.class).setText(idPopup1);
         nifty.getScreen(stage).findElementByName("textPanel").layoutElements();
-        nifty.getScreen(stage).findElementByName("button1Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupButton1"));
+        nifty.getScreen(stage).findElementByName("button1Text").getRenderer(TextRenderer.class).setText(idPopupButton1);
         nifty.getScreen(stage).findElementByName("button1").layoutElements();
-        nifty.getScreen(stage).findElementByName("button2Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupButton2"));
+        nifty.getScreen(stage).findElementByName("button2Text").getRenderer(TextRenderer.class).setText(idPopupButton2);
         nifty.getScreen(stage).findElementByName("button2").layoutElements();
     }
     

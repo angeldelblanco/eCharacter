@@ -39,17 +39,12 @@ package es.eucm.echaracter.gui;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.material.RenderState;
-import com.jme3.renderer.RenderManager;
-import com.jme3.scene.Node;
-import com.jme3.scene.shape.Sphere;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.controls.CheckBoxStateChangedEvent;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
-import es.eucm.echaracter.repository.RepositoryReader;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
@@ -57,9 +52,9 @@ import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import es.eucm.echaracter.api.Callback;
 import es.eucm.echaracter.control.Control;
-import es.eucm.echaracter.gui.progressbar.ProgressbarThread;
 import es.eucm.echaracter.i18n.I18N;
 import es.eucm.echaracter.loader.Configuration;
+import es.eucm.echaracter.repository.RepositoryReader;
 import es.eucm.echaracter.types.StageType;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -254,11 +249,12 @@ public class Gui extends AbstractAppState implements ScreenController {
         // First, iterate layers to make loading indicators visible
         List<Element> layers = this.nifty.getCurrentScreen().getLayerElements();
         for (Element e:layers){
-           if (e.getId().equals("progressLayer") || e.getId().equals("Loading")){
+           if (e.getId().equals("LoadingLayer")){
                e.setVisible(true);
 
            }
         }
+        
    
         // Set mustLoad to true. This will trigger the model loading process in the next update cycle.
         // (A full cycle is skipped to ensure Nifty has time to get updated as to reflect the changes
@@ -619,6 +615,12 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("x")){
             return Resources.x;
         }
+        if(param.equals("repositorio")){
+            return Resources.repositorio;
+        }
+        if(param.equals("repositorio-over")){
+            return Resources.repositorio_over;
+        }
         return null;
     }
     
@@ -663,7 +665,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
         language = listLanguages.get(languagePage);
-        //config.setProperty(Configuration.LANGUAGE, language);
         i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
         modelsb.changeLocale(i18nGui,language);
         if(languagePage > 0){
@@ -911,11 +912,23 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void showRepository(){
         repository = new RepositoryReader();
         String stageType = "start";
-        nifty.getScreen(stageType).findElementByName("repoWelcome").getRenderer(TextRenderer.class).setText(i18nGui.getString("idWelcome"));
+        String idWelcome = i18nGui.getString("idWelcome");
+        String idRepoText = i18nGui.getString("idRepoText");
+        String idDownload = i18nGui.getString("idDownload");
+        if(idWelcome==null){
+            idWelcome="idWelcome";
+        }
+        if(idRepoText==null){
+            idRepoText="idRepoText";
+        }
+        if(idDownload==null){
+            idDownload="idDownload";
+        }
+        nifty.getScreen(stageType).findElementByName("repoWelcome").getRenderer(TextRenderer.class).setText(idWelcome);
         nifty.getScreen(stageType).findElementByName("welcomeRepoPanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("repoDescText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idRepoText"));
+        nifty.getScreen(stageType).findElementByName("repoDescText").getRenderer(TextRenderer.class).setText(idRepoText);
         nifty.getScreen(stageType).findElementByName("repoDescPanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("downloadText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idDownload"));
+        nifty.getScreen(stageType).findElementByName("downloadText").getRenderer(TextRenderer.class).setText(idDownload);
         nifty.getScreen(stageType).findElementByName("download").layoutElements();
         nifty.getScreen(stageType).getLayerElements().get(4).setVisible(true);
         changeRepository("0");
@@ -965,6 +978,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         String idFamily = listFamilies.get(repositoryPage);
         repository.downloadFamily(idFamily);
         control.refreshFamilies();
+        families = this.control.getFamiliesID();
         modelsb.initModels();
     }
     
@@ -1007,10 +1021,16 @@ public class Gui extends AbstractAppState implements ScreenController {
         buildMenu();
         
         loadScreen(control.getStageTypes(selection).toString());
+        List<Element> layers = this.nifty.getScreen("start").getLayerElements();
+        for (Element e:layers){
+           if (e.getId().equals("LoadingLayer")){
+               e.setVisible(false);
+
+           }
+        }
         nifty.gotoScreen(control.getStageTypes(selection).toString());
         if((callback != null) && (config.getProperty(Configuration.INPUT_DEFAULT_STAGE) != null)){
             changeScreen(config.getProperty(Configuration.INPUT_DEFAULT_STAGE));
         }
-
     }
 }

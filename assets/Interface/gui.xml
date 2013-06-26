@@ -110,10 +110,10 @@
 					<panel id="header" height="100%" width="79%" childLayout="center">
 						<text textHAlign="left" id= "headerText" align="right" text="" font="${CALL.getfont(30)}" wrap="true"/>
 					</panel>
-					<image valign ="center" filename="${CALL.getMenu(s1-settings)}">
+					<image valign ="center" filename="${CALL.getTexture(repositorio)}">
 						<interact onClick="showRepository()"/>
 						<effect>
-							<onHover name="imageOverlay" filename="${CALL.getMenu(s1-settings-over)}" post="true"/>
+							<onHover name="imageOverlay" filename="${CALL.getTexture(repositorio-over)}" post="true"/>
 						</effect>
 					</image> 
 				</panel>
@@ -392,14 +392,8 @@
 				</panel>
 			</image>
         </layer>
-
-        <layer id="Loading" childLayout="center" visible="false">
-             <text id="familyNamePopupText" textHAlign="right" textVAlign="bottom" text="Loading" font="${CALL.getfont(30)}" color="#000088" wrap="true"/>
-            			
-        </layer>
-
-		<layer id="progressLayer" childLayout="center" visible="false" backgroundColor="#5555">
-			<control id="my-progress" name="progressbar" align="center" valign="center" width="400px" height="32px"/>
+		<layer id="LoadingLayer" childLayout="center" visible="false" backgroundColor="#5555">
+			<text text="LOADING..." font="${CALL.getfont(30)}" color="#000088"/>
 		</layer>
     </screen>
   

@@ -60,9 +60,17 @@ public class ScaleStageBuilder {
         this.i18nModel = i18nModel;
         this.nifty = nifty;
         this.control = control;
-        nifty.getScreen(stage).findElementByName("basicText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBasic"));
+        String idBasic = i18nGui.getString("idBasic");
+        String idCustom = i18nGui.getString("idCustom");
+        if(idBasic==null){
+            idBasic="idBasic";
+        }
+        if(idCustom==null){
+            idCustom="idCustom";
+        }
+        nifty.getScreen(stage).findElementByName("basicText").getRenderer(TextRenderer.class).setText(idBasic);
         nifty.getScreen(stage).findElementByName("basicPanel").layoutElements();
-        nifty.getScreen(stage).findElementByName("customText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCustom"));
+        nifty.getScreen(stage).findElementByName("customText").getRenderer(TextRenderer.class).setText(idCustom);
         nifty.getScreen(stage).findElementByName("advancedPanel").layoutElements();
     }
     
@@ -76,11 +84,15 @@ public class ScaleStageBuilder {
                 bonesSize = idPhysicalBuild.size();
                 for(int i=page*SCALE_PAGE; i<bonesSize; i++){
                     if(i<((page+1)*SCALE_PAGE)){
-                       nifty.getScreen(stage).findElementByName("textb"+Integer.toString(i%SCALE_PAGE)).getRenderer(TextRenderer.class).setText(i18nModel.getString(control.getPhysicalBuildLabel(idPhysicalBuild.get(i))));
-                       nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).layoutElements();
-                       nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).enable();
-                       nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).setVisible(true);
-                       nifty.getScreen(stage).findElementByName("a"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
+                        String idPhysicalBuildLabel = i18nModel.getString(control.getPhysicalBuildLabel(idPhysicalBuild.get(i)));
+                        if(idPhysicalBuildLabel==null){
+                            idPhysicalBuildLabel=control.getPhysicalBuildLabel(idPhysicalBuild.get(i));
+                        }
+                        nifty.getScreen(stage).findElementByName("textb"+Integer.toString(i%SCALE_PAGE)).getRenderer(TextRenderer.class).setText(idPhysicalBuildLabel);
+                        nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).layoutElements();
+                        nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).enable();
+                        nifty.getScreen(stage).findElementByName("b"+Integer.toString(i%SCALE_PAGE)).setVisible(true);
+                        nifty.getScreen(stage).findElementByName("a"+Integer.toString(i%SCALE_PAGE)).setVisible(false);
                     }
                 }
                 nifty.getScreen(stage).findElementByName("basicPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color("#00000000"));
@@ -92,6 +104,9 @@ public class ScaleStageBuilder {
                 for(int i=page*SCALE_PAGE; i<bonesSize; i++){
                     if(i<((page+1)*SCALE_PAGE)){
                        String text = i18nFamily.getString(control.getBoneControllerLabel(selection, idBones.get(i)));
+                        if(text==null){
+                            text=control.getBoneControllerLabel(selection, idBones.get(i));
+                        }
                        int level = control.getBoneControllerLevel(selection, idBones.get(i));
                        nifty.getScreen(stage).findElementByName("texta"+Integer.toString(i%SCALE_PAGE)).getRenderer(TextRenderer.class).setText(indentLabel(text,level));
                        nifty.getScreen(stage).findElementByName("a"+Integer.toString(i%SCALE_PAGE)).layoutElements();
