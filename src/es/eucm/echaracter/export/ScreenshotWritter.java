@@ -86,6 +86,5 @@ public final class ScreenshotWritter extends Thread{
             }
         }
         GenerateAnimation.createAnimation(exportPath, nameAnimationToSave, listAnimationsName, zipWritter);
-        System.out.println("ScreenshotWritter OK");
     }
 }

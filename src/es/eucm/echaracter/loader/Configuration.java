@@ -93,10 +93,13 @@ public class Configuration {
     public final static String DEFAULT_TEMP_PATH = "defaultTempPath";
     
     //FOR API
-    public final static String INPUT_LANG = "lang";
+    public final static String INPUT_DEFAULT_LANG = "lang";
     public final static String INPUT_DEFAULT_FAMILY = "defaultFamily";
     public final static String INPUT_DEFAULT_MODEL = "defaultModel";
     public final static String INPUT_DEFAULT_STAGE = "defaultStage";
+    public final static String INPUT_DEFAULT_CAMERA = "defaultCamera";
+    public final static String INPUT_DEFAULT_ANIMATION = "defaultAnimation";
+    public final static String INPUT_DEFAULT_QUALITY = "defaultQuality";
     
     Properties properties;
     

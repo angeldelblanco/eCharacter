@@ -50,7 +50,6 @@ import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import es.eucm.echaracter.api.Callback;
 import es.eucm.echaracter.control.Control;
 import es.eucm.echaracter.i18n.I18N;
 import es.eucm.echaracter.loader.Configuration;
@@ -85,7 +84,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     private AnimationStageBuilder animationsb;
     private PopUpBuilder popUp;
     private RepositoryReader repository;
-    private Callback callback;
     
     /**
      * The mustLoad and loading params are used as a quick&dirty state machine implementation.
@@ -101,10 +99,9 @@ public class Gui extends AbstractAppState implements ScreenController {
     private boolean mustLoad=false;
     private boolean loading=false;
     
-    public Gui(Control control,Configuration config,Callback callback){
+    public Gui(Control control,Configuration config){
         this.control = control;
         this.config = config;
-        this.callback = callback;
         families = this.control.getFamiliesID();
     }
     
@@ -131,9 +128,6 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
 
     public void quitGame() {
-         if (callback != null){
-            callback.returnSuccess();
-        }
         app.stop();       
     }
 
@@ -155,7 +149,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         index = 0;
         popUp = null;
         //Native application
-        if(callback == null){            
+        if(control.getCallback() == null){            
             String systemLanguagePrefix = getSystemLanguage();
             String systemLanguage = I18N.getLanguage(config.getProperty(Configuration.LOCALE_PATH), systemLanguagePrefix);
             if (systemLanguage != null){
@@ -178,8 +172,8 @@ public class Gui extends AbstractAppState implements ScreenController {
         //Called by API
         else{
             //Load GUI with the language specified if exists
-            if (config.getProperty(Configuration.INPUT_LANG) != null){
-                language = config.getProperty(Configuration.INPUT_LANG);
+            if (config.getProperty(Configuration.INPUT_DEFAULT_LANG) != null){
+                language = config.getProperty(Configuration.INPUT_DEFAULT_LANG);
                 ArrayList<String> listLanguages = I18N.getListLanguage(config.getProperty(Configuration.LOCALE_PATH));
                 languagePage = listLanguages.indexOf(language);
                 hideLanguagePopup();                
@@ -190,14 +184,18 @@ public class Gui extends AbstractAppState implements ScreenController {
             if((config.getProperty(Configuration.INPUT_DEFAULT_FAMILY) != null) && 
                        (config.getProperty(Configuration.INPUT_DEFAULT_MODEL) != null))
             {
+                control.selectFamily(config.getProperty(Configuration.INPUT_DEFAULT_FAMILY));
                 i18nFamily = new I18N(control.getLanguageFamilyPath(),language);
                 control.selectFamily(config.getProperty(Configuration.INPUT_DEFAULT_FAMILY));
                 modelSelection = config.getProperty(Configuration.INPUT_DEFAULT_MODEL);
                 loadFirstScreen(); 
             }
-            //Ocultar el panel de la exportación
-            //nifty.getScreen("animationStage").findElementByName("rightSelectionPanel").setVisible(false);
-                
+            if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_ANIMATION) != null)
+                && (config.getProperty(Configuration.INPUT_DEFAULT_CAMERA) != null) 
+                && (config.getProperty(Configuration.INPUT_DEFAULT_QUALITY) != null)){
+                //Ocultar el panel de la exportación
+                nifty.getScreen("animationStage").findElementByName("rightSelectionPanel").setVisible(false);     
+            }     
         }
     }
     
@@ -1047,7 +1045,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         loadScreen(control.getStageTypes(selection).toString());
         showProgress(false);
         nifty.gotoScreen(control.getStageTypes(selection).toString());
-        if((callback != null) && (config.getProperty(Configuration.INPUT_DEFAULT_STAGE) != null)){
+        if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_STAGE) != null)){
             changeScreen(config.getProperty(Configuration.INPUT_DEFAULT_STAGE));
         }
     }

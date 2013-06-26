@@ -40,9 +40,9 @@ import com.jme3.animation.AnimChannel;
 import com.jme3.animation.LoopMode;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
+import es.eucm.echaracter.api.Callback;
 import es.eucm.echaracter.control.SceneControl;
 import es.eucm.echaracter.loader.Configuration;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -53,24 +53,24 @@ public class ScreenshotThread extends Thread{
     
     private SceneControl sc;
     private Configuration config;
+    private Callback callback;
     private ScreenshotMyAppState screenShotState;
     private AnimChannel channel;
-    private ViewPort guiViewPort;
     private NiftyJmeDisplay niftyDisplay;    
     private ArrayList<String> listAnimations;
     private ArrayList<Integer> listQualities;
     private ArrayList<CameraValues> listCameras;
     private float stepAnimationTime;
     
-    public ScreenshotThread(SceneControl sc,Configuration config, ScreenshotMyAppState screeShotState,AnimChannel channel,
-            ViewPort guiViewPort,NiftyJmeDisplay niftyDisplay,ArrayList<String> listAnimations, 
+    public ScreenshotThread(SceneControl sc,Configuration config, Callback callback,ScreenshotMyAppState screeShotState,AnimChannel channel,
+            NiftyJmeDisplay niftyDisplay,ArrayList<String> listAnimations, 
             ArrayList<Integer> listQualities, ArrayList<CameraValues> listCameras){
         super();
         this.sc = sc;
         this.config = config;
+        this.callback = callback;
         this.screenShotState = screeShotState;
         this.channel = channel;
-        this.guiViewPort = guiViewPort;
         this.niftyDisplay = niftyDisplay;
         this.listAnimations = listAnimations; 
         this.listQualities = listQualities;
@@ -134,9 +134,13 @@ public class ScreenshotThread extends Thread{
                 }
             }
             zipWritter.closeZip();
-            niftyDisplay.getNifty().gotoScreen("popupScreen");
-            sc.loadBackground();
-            System.out.println("ScreenshotThread OK");
+            if(callback != null){
+                sc.quitGame();
+            }
+            else{
+                niftyDisplay.getNifty().gotoScreen("popupScreen");
+                sc.loadBackground();
+            }
          } 
         catch (InterruptedException ex) {
                 Logger.getLogger(ScreenshotThread.class.getName()).log(Level.SEVERE, null, ex);

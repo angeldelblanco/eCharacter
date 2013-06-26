@@ -47,6 +47,7 @@ public class eCharacter {
      * - defaultExportPath: Default export path
      * - defaultFamily and defaultModel: Set the initial model for configuration
      * - defaultStage: Set the initial stage
+     * - defaultCamera, defaultAnimation and defaultQuality : Set the configuration for the process export.
      */
     
     private HashSet<String> keySet;
@@ -58,6 +59,9 @@ public class eCharacter {
         keySet.add("defaultFamily");
         keySet.add("defaultModel");
         keySet.add("defaultStage");
+        keySet.add("defaultCamera");
+        keySet.add("defaultAnimation");
+        keySet.add("defaultQuality");
     }
     
     public void eCharacter(Properties properties,Callback callback) throws Exception{ 

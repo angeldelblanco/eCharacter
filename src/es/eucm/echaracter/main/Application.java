@@ -67,6 +67,7 @@ import javax.imageio.ImageIO;
 public class Application extends SimpleApplication{
     
     private final String guiFile = "assets/Interface/gui.xml";
+    private boolean succeess = false;
 
     private Gui gui;
     private ScreenshotMyAppState screenShotState;
@@ -111,8 +112,8 @@ public class Application extends SimpleApplication{
             guiViewPort.addProcessor(niftyDisplay);
 
             screenShotState = new ScreenshotMyAppState();        
-            control = new Control(config,rootNode,cam,assetManager,this, viewPort, guiViewPort, niftyDisplay, screenShotState);
-            gui = new Gui(control,config,callback);
+            control = new Control(callback,config,rootNode,cam,assetManager,this, viewPort, guiViewPort, niftyDisplay, screenShotState);
+            gui = new Gui(control,config);
 
             //Activate the Nifty-JME integration
             nifty = niftyDisplay.getNifty();
@@ -135,9 +136,21 @@ public class Application extends SimpleApplication{
     {}
     
     @Override
+    public void stop(){
+        succeess = true;
+        super.stop();
+    }
+    
+    @Override
     public void destroy(){
-      
-        System.out.println("****************************");
+        if(callback != null ){
+            if (succeess){
+                callback.exportSuccess();      
+            }
+            else{
+                callback.exportFailed();
+            }
+        }
         super.destroy();
     }
     

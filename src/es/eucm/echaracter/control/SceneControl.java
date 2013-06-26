@@ -40,7 +40,6 @@ import com.jme3.animation.AnimControl;
 import com.jme3.animation.Bone;
 import com.jme3.animation.LoopMode;
 import com.jme3.animation.SkeletonControl;
-import com.jme3.collision.CollisionResults;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -48,12 +47,9 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.CameraNode;
-import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.Cylinder;
 import com.jme3.texture.Image;
-import com.jme3.texture.Texture;
 import com.jme3.texture.Texture2D;
 import com.jme3.texture.plugins.AWTLoader;
 import es.eucm.echaracter.data.model.EscalationType;
@@ -81,7 +77,6 @@ public class SceneControl {
     private Configuration config;
     private Node mainMeshNode;
     private Spatial mainMesh;
-    private Geometry base;
     private HashMap<String,Spatial> subMeshes;
     private HashMap<String,Boolean> animations;
     private HashMap<String,Boolean> cameras;
@@ -116,9 +111,6 @@ public class SceneControl {
         defaultCamera = this.parseDefaultCamera();
         defaultCameraView();
         this.control.getRootNode().attachChild(cameraNode);
-        
-        //Add base
-        //loadBase();
         
         //Load and locate the main model
         this.mainMesh = this.control.getAssetManager().loadModel(mainMeshPath); 
@@ -166,23 +158,6 @@ public class SceneControl {
         lights.add(light2);
         lights.add(light3);
         lights.add(light4);
-    }
-    
-    private void loadBase(){
-        Cylinder c = new Cylinder(12, 50, 2.3f, 0.1f, true, false);
-        base = new Geometry("Cylinder", c);
-        Material mat1 = new Material(control.getAssetManager(), "Common/MatDefs/Light/Lighting.j3md"); 
-        Texture t = control.getAssetManager().loadTexture("assets/Interface/peana.png");
-        mat1.setTexture("DiffuseMap",t);
-        base.setMaterial(mat1);
-        base.rotate(FastMath.DEG_TO_RAD*(-90), 0, 0);
-        base.move(-2.5f,-3.0f,0.0f);
-        //base.rotate(FastMath.DEG_TO_RAD*(-13.0f),0.0f,0.0f);
-        this.control.getRootNode().attachChild(base);
-    }
-    
-    private void removeBase(){
-        this.control.getRootNode().detachChild(base);
     }
     
     private void setPositionModel(ArrayList<TransformationType> listTransformations){
@@ -282,12 +257,6 @@ public class SceneControl {
             b.setUserControl(true);
             b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,new Vector3f(inc,inc,inc));
         }
-        /*CollisionResults result = new CollisionResults();
-        int num = mainMesh.collideWith(base.getModelBound(), result);
-        if(num > 0){
-            float d = result.getClosestCollision().getDistance();
-            mainMesh.move(0.0f, d, 0.0f);
-        }*/
     }
     
     public ArrayList<String> getAnimationsName(){
@@ -418,25 +387,40 @@ public class SceneControl {
     }
     
     public void screenShot(){
-        //Remove background, base, restart rotation and center the model
+        //Remove background and restart rotation
         control.removeBackground();
-        //removeBase();
         restartRotationModel();
-        control.getViewPort().setBackgroundColor(new ColorRGBA(0f, 0f, 0f, 0.4f));
+        control.getViewPort().setBackgroundColor(new ColorRGBA(0f, 0f, 0f, 0.4f));        
+        
+        //Check if the application has been called by API
+        boolean callbackAPI = false;
+        if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_ANIMATION) != null)
+                && (config.getProperty(Configuration.INPUT_DEFAULT_CAMERA) != null) 
+                && (config.getProperty(Configuration.INPUT_DEFAULT_QUALITY) != null)){
+            callbackAPI = true;
+        }
+        
         
         //Animations list that is checked
         ArrayList<String> listAnimationsChecked = new ArrayList<String>();
-        Iterator<String> it = animations.keySet().iterator();
-        while(it.hasNext()){
-            String animationName = it.next();
-            if(animations.get(animationName)){
-                listAnimationsChecked.add(animationName);
+        if (callbackAPI){
+            String animation = config.getProperty(Configuration.INPUT_DEFAULT_ANIMATION);
+            if (existsAnimation(animation)){
+                listAnimationsChecked.add(animation);
+            }
+        }else{
+            Iterator<String> it = animations.keySet().iterator();
+            while(it.hasNext()){
+                String animationName = it.next();
+                if(animations.get(animationName)){
+                    listAnimationsChecked.add(animationName);
+                }
             }
         }
         
         //List of qualities value that is checked
         ArrayList<Integer> listQualitiesChecked = new ArrayList<Integer>();
-        it = qualities.keySet().iterator();
+        Iterator<String> it = qualities.keySet().iterator();
         while(it.hasNext()){
             String qualityLabel = it.next();
             if(qualities.get(qualityLabel)){
@@ -444,9 +428,16 @@ public class SceneControl {
             }
         }
         if(listQualitiesChecked.isEmpty()){
-            int defaultQuality = Integer.parseInt(config.getProperty(Configuration.DEFAULT_QUALITY));
+            int defaultQuality;
+            if(callbackAPI){
+                defaultQuality = Integer.parseInt(config.getProperty(Configuration.INPUT_DEFAULT_QUALITY));
+            }
+            else{
+                defaultQuality = Integer.parseInt(config.getProperty(Configuration.DEFAULT_QUALITY));
+            }
             listQualitiesChecked.add(defaultQuality);
         }
+        
         //List of cameras value that is checked
         ArrayList<CameraValues> listCamerasChecked = new ArrayList<CameraValues>();
         it = cameras.keySet().iterator();
@@ -457,16 +448,30 @@ public class SceneControl {
             }
         }
         if(listCamerasChecked.isEmpty()){
-            listCamerasChecked.add(defaultCamera);
+            if (callbackAPI){
+                listCamerasChecked.add(control.getCameraValues(config.getProperty(Configuration.INPUT_DEFAULT_CAMERA)));
+            }
+            else{
+                listCamerasChecked.add(defaultCamera);
+            }
         }
+        
         if(listAnimationsChecked.size() > 0){
-            //control.getGuiViewPort().removeProcessor(control.getNiftyDisplay());
             control.getNiftyDisplay().getNifty().gotoScreen("emptyScreen");
-            ScreenshotThread sst = new ScreenshotThread(this,config, control.getScreenShotState(),animChannel,
-                    control.getGuiViewPort(),control.getNiftyDisplay(),listAnimationsChecked, 
+            ScreenshotThread sst = new ScreenshotThread(this,config,control.getCallback(), control.getScreenShotState(),animChannel,
+                    control.getNiftyDisplay(),listAnimationsChecked, 
                     listQualitiesChecked, listCamerasChecked);
             sst.start();
         }
+    }
+    
+    private boolean existsAnimation(String animation){
+        return animations.keySet().contains(animation);
+    }
+    
+    //This method is called if the callback exists and the export process has success.
+    public void quitGame(){
+        control.quitGame();
     }
     
     private void fillAnimations(Set<String> listAnimations){

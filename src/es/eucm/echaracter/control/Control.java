@@ -42,6 +42,7 @@ import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
+import es.eucm.echaracter.api.Callback;
 import es.eucm.echaracter.data.model.EscalationType;
 import es.eucm.echaracter.data.model.Model;
 import es.eucm.echaracter.data.model.SubMeshType;
@@ -63,6 +64,7 @@ import java.util.Iterator;
 
 public class Control {
     
+    private Callback callback;
     private Configuration config;
     private Node rootNode;
     private Camera camera;
@@ -79,9 +81,10 @@ public class Control {
     private ModelControl mc;
     private SceneControl sc;
     
-    public Control(Configuration config, Node rootNode,Camera camera,AssetManager assetManager, Application app, 
+    public Control(Callback callback,Configuration config, Node rootNode,Camera camera,AssetManager assetManager, Application app, 
             ViewPort viewPort, ViewPort guiViewPort, NiftyJmeDisplay niftyDisplay, ScreenshotMyAppState screenShotState){
         this.config = config;
+        this.callback = callback;
         String familiesPath1 = this.config.getProperty(Configuration.FAMILIES_PATH);
         String familiesPath2 = this.config.getProperty(Configuration.FAMILIES_REPO_PATH);
         XMLFamilyReader xmlReader = new XMLFamilyReader(familiesPath1, familiesPath2);
@@ -102,6 +105,10 @@ public class Control {
         String familiesPath2 = this.config.getProperty(Configuration.FAMILIES_REPO_PATH);
         XMLFamilyReader xmlReader = new XMLFamilyReader(familiesPath1, familiesPath2);
         families = xmlReader.readXML();
+    }
+    
+    public Callback getCallback(){
+        return callback;
     }
     
     public AssetManager getAssetManager() {
@@ -437,6 +444,10 @@ public class Control {
     
     public void screenShot(){
         sc.screenShot();
+    }
+    
+    public void quitGame(){
+        app.stop();
     }
     
     public void setBoneControllerValue(String idBoneController, float inc){
