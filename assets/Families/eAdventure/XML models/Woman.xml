@@ -10,7 +10,11 @@
                 <!--Textures-->
 		<mainMeshTextures>
 			<!-- skinPanel textures-->
-			<simpleTexture idPanelRef="skinsPanel" layer="0" default="true" idTexture="idPielBlanca" text="idTextPielBlanca">
+			<simpleTexture idPanelRef="skinsPanel" layer="0" default="true" idTexture="idPielBlancaPale" text="idTextPielBlanca">
+				<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPielBlancaPaleGirl.png</iconPath>
+				<path>assets/Families/eAdventure/Textures/Girl/PielBlancaPaleGirl.png</path>
+			</simpleTexture>
+                        <simpleTexture idPanelRef="skinsPanel" layer="0" default="false" idTexture="idPielBlanca" text="idTextPielBlanca">
 				<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPielBlancaGirl.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Girl/PielBlancaGirl.png</path>
 			</simpleTexture>
@@ -179,7 +183,7 @@
 				<shadowPath>assets/Families/eAdventure/Textures/Girl/LabiosSombrasGirl.png</shadowPath>
 			</baseShadowTexture>
 			<!-- accesoriesFace textures-->
-			<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
+			<!--<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
 				<iconPath>assets/Families/eAdventure/Icons/Girl/IconoDientesGirl.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Girl/DientesGirl.png</path>
 				<colorDefault>
@@ -191,7 +195,7 @@
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idLengua"  text="idTextLengua">
 				<iconPath>assets/Families/eAdventure/Icons/Girl/IconoLenguaGirl.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Girl/LenguaGirl.png</path>
-			</simpleTexture>
+			</simpleTexture>-->
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idPendientes"  text="idTextPendientes">
 				<iconPath>assets/Families/eAdventure/Icons/Girl/IconoPendientesGirl.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Girl/PendientesGirl.png</path>
