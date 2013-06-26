@@ -72,16 +72,40 @@ public class FamilyStageBuilder {
         nifty.getScreen(stageType).findElementByName("rightT").setVisible(false);
         nifty.getScreen(stageType).findElementByName("m").setVisible(false);
         nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(false);
-        String subHeader = i18nGui.getString("idSubHeader")+" \\#0000FF#"+i18nGui.getString("idHere");
-        nifty.getScreen(stageType).findElementByName("headerText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idHeader"));
+        String idSubHeader = i18nGui.getString("idSubHeader");
+        String idHere = i18nGui.getString("idHere");
+        String idHeader = i18nGui.getString("idHeader");
+        String idWelcome = i18nGui.getString("idWelcome");
+        String ideCharacter = i18nGui.getString("ideCharacter");
+        String idPopupLanguage = i18nGui.getString("idPopupLanguage");
+        if(idSubHeader==null){
+            idSubHeader="idSubHeader";
+        }
+        if(idHere==null){
+            idHere="idHere";
+        }
+        if(idHeader==null){
+            idHeader="idHeader";
+        }
+        if(idWelcome==null){
+            idWelcome="idWelcome";
+        }
+        if(ideCharacter==null){
+            ideCharacter="ideCharacter";
+        }
+        if(idPopupLanguage==null){
+            idPopupLanguage="idPopupLanguage";
+        }
+        String subHeader = idSubHeader +" \\#0000FF#"+idHere;
+        nifty.getScreen(stageType).findElementByName("headerText").getRenderer(TextRenderer.class).setText(idHeader);
         nifty.getScreen(stageType).findElementByName("header").layoutElements();
         nifty.getScreen(stageType).findElementByName("subHeaderText").getRenderer(TextRenderer.class).setText(subHeader);
         nifty.getScreen(stageType).findElementByName("subHeader").layoutElements();
-        nifty.getScreen(stageType).findElementByName("welcome").getRenderer(TextRenderer.class).setText(i18nGui.getString("idWelcome"));
+        nifty.getScreen(stageType).findElementByName("welcome").getRenderer(TextRenderer.class).setText(idWelcome);
         nifty.getScreen(stageType).findElementByName("welcomePanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("subWelcome").getRenderer(TextRenderer.class).setText(i18nGui.getString("ideCharacter"));
+        nifty.getScreen(stageType).findElementByName("subWelcome").getRenderer(TextRenderer.class).setText(ideCharacter);
         nifty.getScreen(stageType).findElementByName("subWelcomePanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("localeDescriptionPopupText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPopupLanguage"));
+        nifty.getScreen(stageType).findElementByName("localeDescriptionPopupText").getRenderer(TextRenderer.class).setText(idPopupLanguage);
         nifty.getScreen(stageType).findElementByName("localeDescriptionPopupPanel").layoutElements();
         for(int i=0; i<FAMILIES_PAGE;i++){
             Element image = nifty.getScreen(stageType).findElementByName("t"+i);
@@ -160,10 +184,18 @@ public class FamilyStageBuilder {
             I18N i18nAux = new I18N(control.getLanguageFamilyPath(),language);
             if(i<FAMILIES_PAGE+familyPage){
                 int j= i-familyPage;
+                String idAbstract = i18nAux.getString(control.getMetadataFamilyAbstract());
+                String idName = i18nAux.getString(control.getMetadataFamilyName());
+                if(idAbstract==null){
+                    idAbstract=control.getMetadataFamilyAbstract();
+                }
+                if(idName==null){
+                    idName=control.getMetadataFamilyName();
+                }
                 nifty.getScreen(stageType).findElementByName("t"+j).setVisible(true);
-                nifty.getScreen(stageType).findElementByName("description"+j).getRenderer(TextRenderer.class).setText(i18nAux.getString(control.getMetadataFamilyAbstract()));
+                nifty.getScreen(stageType).findElementByName("description"+j).getRenderer(TextRenderer.class).setText(idAbstract);
                 nifty.getScreen(stageType).findElementByName("textPanel"+j).layoutElements();
-                nifty.getScreen(stageType).findElementByName("name"+j).getRenderer(TextRenderer.class).setText(i18nAux.getString(control.getMetadataFamilyName()));
+                nifty.getScreen(stageType).findElementByName("name"+j).getRenderer(TextRenderer.class).setText(idName);
                 nifty.getScreen(stageType).findElementByName("textPanel"+j).layoutElements();
                 
                 Element image = nifty.getScreen(stageType).findElementByName("f"+j);
@@ -214,11 +246,35 @@ public class FamilyStageBuilder {
         ArrayList<String> families = control.getFamiliesID();
         control.selectFamily(families.get(i));
         I18N i18nAux = new I18N(control.getLanguageFamilyPath(),language);
-        String description = "\\#FF0000#"+i18nGui.getString("idDescriptionFamily")+"\n"+i18nAux.getString(control.getMetadataFamilyDescription());
-        String author = "\\#FF0000#"+i18nGui.getString("idAuthor")+"\n"+i18nAux.getString(control.getMetadataFamilyAuthor());
+        String idDescriptionFamily = i18nGui.getString("idDescriptionFamily");
+        String idFDesc = i18nAux.getString(control.getMetadataFamilyDescription());
+        String idAuthor = i18nGui.getString("idAuthor");
+        String idA = i18nAux.getString(control.getMetadataFamilyAuthor());
+        String idUrl = i18nGui.getString("idUrl");
+        String idFamilyUrl = i18nAux.getString(control.getMetadataFamilyURL());
+        if(idDescriptionFamily==null){
+            idDescriptionFamily="idDescriptionFamily";
+        }
+        if(idFDesc==null){
+            idFDesc=i18nAux.getString(control.getMetadataFamilyDescription());
+        }
+        if(idAuthor==null){
+            idAuthor="idAuthor";
+        }
+        if(idA==null){
+            idA=control.getMetadataFamilyAuthor();
+        }
+        if(idUrl==null){
+            idUrl="idUrl";
+        }
+        if(idFamilyUrl==null){
+            idFamilyUrl=control.getMetadataFamilyURL();
+        }
+        String description = "\\#FF0000#"+idDescriptionFamily+"\n"+idFDesc;
+        String author = "\\#FF0000#"+idAuthor+"\n"+idA;
         String url;
         if(control.getMetadataFamilyURL()!=null){
-            url = "\\#FF0000#"+i18nGui.getString("idUrl")+"\n"+i18nAux.getString(control.getMetadataFamilyURL());
+            url = "\\#FF0000#"+idUrl+"\n"+idFamilyUrl;
             nifty.getScreen(stageType).findElementByName("familyUrlPopupText").getRenderer(TextRenderer.class).setText(url);
             nifty.getScreen(stageType).findElementByName("familyUrlPopupPanel").layoutElements();
             nifty.getScreen(stageType).findElementByName("familyUrlPopupPanel").setVisible(true);
@@ -226,13 +282,21 @@ public class FamilyStageBuilder {
         else{
             nifty.getScreen(stageType).findElementByName("familyUrlPopupPanel").setVisible(false);
         }
+        String idFamilyName = i18nAux.getString(control.getMetadataFamilyName());
+        String idAcept = i18nGui.getString("idAcept");
+        if(idFamilyName==null){
+            idFamilyName=control.getMetadataFamilyName();
+        }
+        if(idAcept==null){
+            idAcept=idAcept;
+        }
         nifty.getScreen(stageType).findElementByName("familyDescriptionPopupText").getRenderer(TextRenderer.class).setText(description);
         nifty.getScreen(stageType).findElementByName("familyDescriptionPopupPanel").layoutElements();
         nifty.getScreen(stageType).findElementByName("familyAuthorPopupText").getRenderer(TextRenderer.class).setText(author);
         nifty.getScreen(stageType).findElementByName("familyAuthorPopupPanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("familyNamePopupText").getRenderer(TextRenderer.class).setText(i18nAux.getString(control.getMetadataFamilyName()));
+        nifty.getScreen(stageType).findElementByName("familyNamePopupText").getRenderer(TextRenderer.class).setText(idFamilyName);
         nifty.getScreen(stageType).findElementByName("familyNamePopupPanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("acceptText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAcept"));
+        nifty.getScreen(stageType).findElementByName("acceptText").getRenderer(TextRenderer.class).setText(idAcept);
         nifty.getScreen(stageType).findElementByName("accept").layoutElements();
         nifty.getScreen(stageType).getLayerElements().get(2).setVisible(true);
         if(familySelected!=-1){

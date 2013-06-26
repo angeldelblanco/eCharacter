@@ -47,7 +47,7 @@ public class ProgressbarThread extends Thread{
   public ProgressbarThread(Nifty nifty) {
       super();
       this.nifty = nifty;
-      nifty.getScreen("start").getLayerElements().get(5).setVisible(true);
+      //nifty.getScreen("start").getLayerElements().get(5).setVisible(true);
   }
   
   @Override

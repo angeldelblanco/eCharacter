@@ -72,7 +72,11 @@ public class MultiStageBuilder {
         seleccionado = new HashMap<String,String>();
         multiPage = new int[SUBSTAGE_PAGE];
         for(int i=0; i<SUBSTAGE_PAGE;i++){
-            nifty.getScreen(stageType).findElementByName("colorText"+Integer.toString(i)).getRenderer(TextRenderer.class).setText(i18nGui.getString("idColor"));
+            String idColor = i18nGui.getString("idColor");
+            if(idColor==null){
+                idColor="idColor";
+            }
+            nifty.getScreen(stageType).findElementByName("colorText"+Integer.toString(i)).getRenderer(TextRenderer.class).setText(idColor);
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(i)).layoutElements();
             multiPage[i]=0;
             subStageSelected[i]=""; 
@@ -89,14 +93,22 @@ public class MultiStageBuilder {
             nifty.getScreen(stageType).findElementByName("t"+Integer.toString(h)).setVisible(true);
             nifty.getScreen(stageType).findElementByName("panel_color"+Integer.toString(h)).setVisible(false);
             changeMultiPage(h,steep);
-            nifty.getScreen(stageType).findElementByName("text"+Integer.toString(h)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(control.getSubStageLabel(selection,idSubStages.get(page*SUBSTAGE_PAGE+h))));
+            String idSubStageLabel = i18nFamily.getString(control.getSubStageLabel(selection,idSubStages.get(page*SUBSTAGE_PAGE+h)));
+            if(idSubStageLabel==null){
+                idSubStageLabel=control.getSubStageLabel(selection,idSubStages.get(page*SUBSTAGE_PAGE+h));
+            }
+            nifty.getScreen(stageType).findElementByName("text"+Integer.toString(h)).getRenderer(TextRenderer.class).setText(idSubStageLabel);
             nifty.getScreen(stageType).findElementByName("textPanel"+Integer.toString(h)).layoutElements();
             ArrayList<String> idsTexturesOrSubMeshes = control.getIdsTexturesORSubMeshes(idSubStages.get(h+page*SUBSTAGE_PAGE));
             for(int i=multiPage[h]*TEXTURES_PAGE; i<control.getNumTexturesORSubMeshes(idSubStages.get(page*SUBSTAGE_PAGE+h)); i++){
                 if(i<((multiPage[h]+1)*TEXTURES_PAGE)){
                     Element image = nifty.getScreen(stageType).findElementByName("i"+Integer.toString(h)+Integer.toString(i%TEXTURES_PAGE));
                     List<Effect> effects = image.getEffects(EffectEventId.onHover,Tooltip.class);
-                    effects.get(0).getParameters().setProperty("hintText", i18nModel.getString(control.getTextTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i))));
+                    String idTexturesOrSubMeshes = i18nModel.getString(control.getTextTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i)));
+                    if(idTexturesOrSubMeshes==null){
+                        idTexturesOrSubMeshes=control.getTextTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i));
+                    }
+                    effects.get(0).getParameters().setProperty("hintText",idTexturesOrSubMeshes);
                     image.setVisible(true);
                     ImageRenderer imager = image.getRenderer(ImageRenderer.class);
                     String imagePath = control.getIconPathTexturesORSubMeshes(idsTexturesOrSubMeshes.get(i));

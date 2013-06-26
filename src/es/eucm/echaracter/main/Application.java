@@ -412,6 +412,12 @@ public class Application extends SimpleApplication{
         if (ResourceLocator.getPathResource(Resources.x) == null){
             return false;
         }
+        if (ResourceLocator.getPathResource(Resources.repositorio) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.repositorio_over) == null){
+            return false;
+        }
         return true;
     }
 }

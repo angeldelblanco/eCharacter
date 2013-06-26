@@ -37,9 +37,7 @@
 package es.eucm.echaracter.gui;
 
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.CheckBox;
-import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.tools.Color;
@@ -66,15 +64,35 @@ public class AnimationStageBuilder {
         this.control = control;
         this.i18nGui = i18nGui;
         this.i18nFamily = i18nFamily;
-        nifty.getScreen(stageType).findElementByName("basicText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idBasic"));
+        String idBasic = i18nGui.getString("idBasic");
+        String idCustom = i18nGui.getString("idCustom");
+        String idAnimations = i18nGui.getString("idAnimations");
+        String idQuality = i18nGui.getString("idQuality");
+        String idCamera = i18nGui.getString("idCamera");
+        if(idBasic==null){
+            idBasic="idBasic";
+        }
+        if(idCustom==null){
+            idCustom="idCustom";
+        }
+        if(idAnimations==null){
+            idAnimations="idAnimations";
+        }
+        if(idQuality==null){
+            idQuality="idQuality";
+        }
+        if(idCamera==null){
+            idCamera="idCamera";
+        }
+        nifty.getScreen(stageType).findElementByName("basicText").getRenderer(TextRenderer.class).setText(idBasic);
         nifty.getScreen(stageType).findElementByName("basicPanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("customText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCustom"));
+        nifty.getScreen(stageType).findElementByName("customText").getRenderer(TextRenderer.class).setText(idCustom);
         nifty.getScreen(stageType).findElementByName("advancedPanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("animationsText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAnimations"));
+        nifty.getScreen(stageType).findElementByName("animationsText").getRenderer(TextRenderer.class).setText(idAnimations);
         nifty.getScreen(stageType).findElementByName("animationsPanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("qualityText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idQuality"));
+        nifty.getScreen(stageType).findElementByName("qualityText").getRenderer(TextRenderer.class).setText(idQuality);
         nifty.getScreen(stageType).findElementByName("qualityPanel").layoutElements();
-        nifty.getScreen(stageType).findElementByName("cameraText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idCamera"));
+        nifty.getScreen(stageType).findElementByName("cameraText").getRenderer(TextRenderer.class).setText(idCamera);
         nifty.getScreen(stageType).findElementByName("cameraPanel").layoutElements();
     }
     
@@ -156,7 +174,11 @@ public class AnimationStageBuilder {
                     }
                 }
                 else{
-                    nifty.getScreen(stageType).findElementByName(selection+"Text"+Integer.toString(i%CHECKBOX_PAGE)).getRenderer(TextRenderer.class).setText(i18nFamily.getString(labels.get(i)));
+                    String text = i18nFamily.getString(labels.get(i));
+                    if(text==null){
+                        text=labels.get(i);
+                    }
+                    nifty.getScreen(stageType).findElementByName(selection+"Text"+Integer.toString(i%CHECKBOX_PAGE)).getRenderer(TextRenderer.class).setText(text);
                     if(selection.equals("q")){
                         if(control.isCheckedQuality(labels.get(i))){
                             nifty.getScreen(stageType).findNiftyControl("qCheckBox"+Integer.toString(i%CHECKBOX_PAGE), CheckBox.class).setChecked(true);
@@ -217,15 +239,27 @@ public class AnimationStageBuilder {
         }
         String types[] = {"a","q","c"};
         for(String type : types){
-            nifty.getScreen(stageType).findElementByName(type+"AllButtonText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idAll"));
+            String idAll = i18nGui.getString("idAll");
+            String idNothing = i18nGui.getString("idNothing");
+            if(idAll==null){
+                idAll="idAll";
+            }
+            if(idNothing==null){
+                idNothing="idNothing";
+            }
+            nifty.getScreen(stageType).findElementByName(type+"AllButtonText").getRenderer(TextRenderer.class).setText(idAll);
             nifty.getScreen(stageType).findElementByName(type+"AllButton").layoutElements();
-            nifty.getScreen(stageType).findElementByName(type+"NoButtonText").getRenderer(TextRenderer.class).setText(i18nGui.getString("idNothing"));
+            nifty.getScreen(stageType).findElementByName(type+"NoButtonText").getRenderer(TextRenderer.class).setText(idNothing);
             nifty.getScreen(stageType).findElementByName(type+"NoButton").layoutElements();
         }
         for(int i = 0; i<CHECKBOX_PAGE; i++){
-            nifty.getScreen(stageType).findElementByName("aButton"+i+"Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPreview"));
+            String button = i18nGui.getString("idPreview");
+            if(button==null){
+                button="idPreview";
+            }
+            nifty.getScreen(stageType).findElementByName("aButton"+i+"Text").getRenderer(TextRenderer.class).setText(button);
             nifty.getScreen(stageType).findElementByName("aButton"+i).layoutElements();
-            nifty.getScreen(stageType).findElementByName("cButton"+i+"Text").getRenderer(TextRenderer.class).setText(i18nGui.getString("idPreview"));
+            nifty.getScreen(stageType).findElementByName("cButton"+i+"Text").getRenderer(TextRenderer.class).setText(button);
             nifty.getScreen(stageType).findElementByName("cButton"+i).layoutElements();
         }
     }
