@@ -248,20 +248,13 @@ public class Gui extends AbstractAppState implements ScreenController {
      */
     public void loadFirstScreen(){
         
-        // First, iterate layers to make loading indicators visible
-        List<Element> layers = this.nifty.getCurrentScreen().getLayerElements();
-        for (Element e:layers){
-           if (e.getId().equals("LoadingLayer")){
-               e.setVisible(true);
-
-           }
-        }
         
-   
+        showProgress(true);
         // Set mustLoad to true. This will trigger the model loading process in the next update cycle.
         // (A full cycle is skipped to ensure Nifty has time to get updated as to reflect the changes
         // done to the visibility of the elements used to convey loading progress).
       mustLoad=true;
+      whatToDoNext=DO_LOAD_MODEL;
     }
     
     public void changeScalePage(String steep){
@@ -889,7 +882,7 @@ public class Gui extends AbstractAppState implements ScreenController {
             if (Desktop.isDesktopSupported()) {
                 Desktop desktop = Desktop.getDesktop();
                 if (desktop.isSupported(Desktop.Action.BROWSE)) {
-                    desktop.browse(new URI("http://character.e-ucm.es"));
+                    desktop.browse(new URI("http://echaracter.e-ucm.es"));
                 }
             }
         } catch (Exception e) {
@@ -977,11 +970,31 @@ public class Gui extends AbstractAppState implements ScreenController {
     }
     public void downloadFamily(){
         ArrayList<String> listFamilies = repository.getFamiliesID();
-        String idFamily = listFamilies.get(repositoryPage);
+        idFamily = listFamilies.get(repositoryPage);
+        
+        showProgress(true);
+        mustLoad=true;
+        whatToDoNext=DO_DOWNLOAD;
+        
+    }
+    
+    private void showProgress(boolean show){
+        // First, iterate layers to make loading indicators visible
+        List<Element> layers = this.nifty.getScreen("start").getLayerElements();
+        for (Element e:layers){
+           if (e.getId().equals("LoadingLayer")){
+               e.setVisible(show);
+
+           }
+        }
+    }
+    
+    public void doDownload(){
         repository.downloadFamily(idFamily);
         control.refreshFamilies();
         families = this.control.getFamiliesID();
         modelsb.initModels();
+        showProgress(false);
     }
     
     /**
@@ -994,11 +1007,20 @@ public class Gui extends AbstractAppState implements ScreenController {
             mustLoad=false;
         } else if (loading){
             mustLoad=loading=false;
-            doLoad();
+            if (whatToDoNext == DO_LOAD_MODEL){
+                doLoad();    
+            }
+            else if (whatToDoNext == DO_DOWNLOAD){
+                doDownload();    
+            }
         }
+        
     //System.out.println("UPDATING");
     }
-
+    private int whatToDoNext;
+    private String idFamily;
+    public static int DO_LOAD_MODEL = 0;
+    public static int DO_DOWNLOAD = 1;
     /**
      * Starts loading the model for customization. This method is only invoked by update() after method
      * loadFirstScreen() sets mustLoad:=true.
@@ -1023,13 +1045,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         buildMenu();
         
         loadScreen(control.getStageTypes(selection).toString());
-        List<Element> layers = this.nifty.getScreen("start").getLayerElements();
-        for (Element e:layers){
-           if (e.getId().equals("LoadingLayer")){
-               e.setVisible(false);
-
-           }
-        }
+        showProgress(false);
         nifty.gotoScreen(control.getStageTypes(selection).toString());
         if((callback != null) && (config.getProperty(Configuration.INPUT_DEFAULT_STAGE) != null)){
             changeScreen(config.getProperty(Configuration.INPUT_DEFAULT_STAGE));
