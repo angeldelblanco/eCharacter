@@ -347,8 +347,8 @@
 								</effect>
 							</image>
 						</panel>
-						<panel id="repoDescPanel" height="40%" width="100%" childLayout="horizontal" align="center">
-							<text id="repoDescText" valign="center" height="50%" width="100%" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#565857" wrap="true"/>
+						<panel id="repoDescPanel" height="40%" width="90%" childLayout="horizontal">
+							<text id="repoDescText" valign="center" height="50%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
 						</panel>
 					</panel>
 				</panel>
@@ -393,13 +393,13 @@
 			</image>
         </layer>
 		<layer id="LoadingLayer" childLayout="center" visible="false" backgroundColor="#5555">
-			<text text="LOADING..." font="${CALL.getfont(30)}" color="#000088"/>
+			<text id="idLoadingText" text="" font="${CALL.getfont(30)}" color="#000088"/>
 		</layer>
     </screen>
   
   <!-- Third screen(basic)-->
 	<screen id="scaleStage" controller="es.eucm.echaracter.gui.Gui">
-		<layer id="foreground" backgroundColor="#0000" childLayout="vertical">
+		<layer id="foreground" childLayout="vertical">
 			<panel height="2%" width="100%"/>
 			<!-- Option Panel -->
 			<panel width="100%" childLayout="Horizontal"> 
@@ -421,8 +421,8 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}" visible="false">
-							<interact onClick=""/>
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+							<interact onClick="restarModel()"/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true"/>
 							</effect>
@@ -543,9 +543,7 @@
 							<onHover name="imageOverlay" filename="${CALL.getButton(previous-over)}" post="true" />
 						</effect>
 					</image>
-					<panel height="100%" width="90%">
-						<!-- Space -->
-					</panel>
+					<panel height="100%" width="90%"/>
 					<image id="panel_screenright" valign="center" filename="${CALL.getButton(next)}">
 						<interact onClick="changeScreen(+)"/>
 						<effect>
@@ -555,6 +553,25 @@
 				</panel>
 			</panel>
         </layer>
+		<layer id="CameraLayer" height="30%" childLayout="vertical">
+			<panel height="20%" width="100%"/>
+			<panel childLayout="horizontal" height="20%" width="100%">
+				<panel height="100%" width="3%"/>
+				<image filename="${CALL.getButton(camerapanel-leftbutton)}">
+					<interact onClick="rotateCamera(-)"/>
+					<effect>
+						<onHover name="imageOverlay" filename="${CALL.getButton(camerapanel-leftbutton-over)}" post="true" />
+					</effect>
+				</image>
+				<panel height="100%" width="1%"/>
+				<image filename="${CALL.getButton(camerapanel-rightbutton)}">
+					<interact onClick="rotateCamera(+)"/>
+					<effect>
+						<onHover name="imageOverlay" filename="${CALL.getButton(camerapanel-rightbutton-over)}" post="true" />
+					</effect>
+				</image>
+			</panel>
+		</layer>
     </screen>
 	
 	<!-- Fifth screen(skin)-->
@@ -581,8 +598,8 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}" visible="false">
-							<interact onClick=""/>
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+							<interact onClick="restarModel()"/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
 							</effect>
@@ -800,6 +817,25 @@
                 <text id="content" font="${CALL.getfont(20)}" text="" align="center" valign="center" color="#000"/>
             </panel>    
         </layer>
+		<layer id="CameraLayer" height="30%" childLayout="vertical">
+			<panel height="20%" width="100%"/>
+			<panel childLayout="horizontal" height="20%" width="100%">
+				<panel height="100%" width="3%"/>
+				<image filename="${CALL.getButton(camerapanel-leftbutton)}">
+					<interact onClick="rotateCamera(-)"/>
+					<effect>
+						<onHover name="imageOverlay" filename="${CALL.getButton(camerapanel-leftbutton-over)}" post="true" />
+					</effect>
+				</image>
+				<panel height="100%" width="1%"/>
+				<image filename="${CALL.getButton(camerapanel-rightbutton)}">
+					<interact onClick="rotateCamera(+)"/>
+					<effect>
+						<onHover name="imageOverlay" filename="${CALL.getButton(camerapanel-rightbutton-over)}" post="true" />
+					</effect>
+				</image>
+			</panel>
+		</layer>
     </screen>
 	
 	<!-- Sixth screen(accesories)-->
@@ -827,9 +863,9 @@
 						</panel>
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
-					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%" visible="false">
+					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
 						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
-							<interact onClick=""/>
+							<interact onClick="restarModel()"/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
 							</effect>
@@ -1023,6 +1059,25 @@
                 <text id="content" font="${CALL.getfont(20)}" text="" align="center" valign="center" color="#000"/>
             </panel>    
         </layer>
+		<layer id="CameraLayer" height="30%" childLayout="vertical">
+			<panel height="20%" width="100%"/>
+			<panel childLayout="horizontal" height="20%" width="100%">
+				<panel height="100%" width="3%"/>
+				<image filename="${CALL.getButton(camerapanel-leftbutton)}">
+					<interact onClick="rotateCamera(-)"/>
+					<effect>
+						<onHover name="imageOverlay" filename="${CALL.getButton(camerapanel-leftbutton-over)}" post="true" />
+					</effect>
+				</image>
+				<panel height="100%" width="1%"/>
+				<image filename="${CALL.getButton(camerapanel-rightbutton)}">
+					<interact onClick="rotateCamera(+)"/>
+					<effect>
+						<onHover name="imageOverlay" filename="${CALL.getButton(camerapanel-rightbutton-over)}" post="true" />
+					</effect>
+				</image>
+			</panel>
+		</layer>
     </screen>
 	
 	<!-- Eigthth screen(export)-->
@@ -1053,8 +1108,8 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}" visible="false">
-							<interact onClick=""/>
+						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+							<interact onClick="restarModel()"/>
 							<effect>
 								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
 							</effect>

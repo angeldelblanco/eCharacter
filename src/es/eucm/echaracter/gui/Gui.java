@@ -247,7 +247,7 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void loadFirstScreen(){
         
         
-        showProgress(true);
+        showProgress(true,"idLoading");
         // Set mustLoad to true. This will trigger the model loading process in the next update cycle.
         // (A full cycle is skipped to ensure Nifty has time to get updated as to reflect the changes
         // done to the visibility of the elements used to convey loading progress).
@@ -543,6 +543,18 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(param.equals("close-language-over")){
             return Resources.close_language_over;
+        }
+        if(param.equals("camerapanel-leftbutton")){
+            return Resources.camerapanel_leftbutton;
+        }
+        if(param.equals("camerapanel-leftbutton-over")){
+            return Resources.camerapanel_leftbutton_over;
+        }
+        if(param.equals("camerapanel-rightbutton")){
+            return Resources.camerapanel_rightbutton;
+        }
+        if(param.equals("camerapanel-rightbutton-over")){
+            return Resources.camerapanel_rightbutton_over;
         }
         return null;
     }
@@ -970,15 +982,20 @@ public class Gui extends AbstractAppState implements ScreenController {
         ArrayList<String> listFamilies = repository.getFamiliesID();
         idFamily = listFamilies.get(repositoryPage);
         
-        showProgress(true);
+        showProgress(true,"idDownloading");
         mustLoad=true;
         whatToDoNext=DO_DOWNLOAD;
         
     }
     
-    private void showProgress(boolean show){
+    private void showProgress(boolean show, String idText){
         // First, iterate layers to make loading indicators visible
         List<Element> layers = this.nifty.getScreen("start").getLayerElements();
+        String text = i18nGui.getString(idText)+"  . . .";
+        if(text==null){
+            text=idText;
+        }
+        nifty.getScreen("start").findElementByName("idLoadingText").getRenderer(TextRenderer.class).setText(text);
         for (Element e:layers){
            if (e.getId().equals("LoadingLayer")){
                e.setVisible(show);
@@ -992,7 +1009,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         control.refreshFamilies();
         families = this.control.getFamiliesID();
         modelsb.initModels();
-        showProgress(false);
+        showProgress(false,"idDownloading");
     }
     
     /**
@@ -1043,10 +1060,26 @@ public class Gui extends AbstractAppState implements ScreenController {
         buildMenu();
         
         loadScreen(control.getStageTypes(selection).toString());
-        showProgress(false);
+        showProgress(false,"idLoading");
         nifty.gotoScreen(control.getStageTypes(selection).toString());
         if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_STAGE) != null)){
             changeScreen(config.getProperty(Configuration.INPUT_DEFAULT_STAGE));
         }
+    }
+    public void rotateCamera(String steep){
+        if(steep.equals("+")){
+            control.rotateModel(5.0f);
+        }
+        if(steep.equals("-")){
+            control.rotateModel(-5.0f);
+        }
+    }
+    public void restarModel(){
+        control.removeModel();
+        control.selectModel(modelSelection);
+        index = 0;
+        selection = stages.get(index);
+        loadScreen(control.getStageTypes(selection).toString());
+        nifty.gotoScreen(control.getStageTypes(selection).toString());
     }
 }

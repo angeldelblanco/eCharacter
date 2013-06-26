@@ -90,6 +90,10 @@ public interface Resources {
     public static final String selector_down_over = "assets/Interface/down-selector-over.png";
     public static final String close_language = "assets/Interface/close-language.png";
     public static final String close_language_over = "assets/Interface/close-language-over.png";
+    public static final String camerapanel_leftbutton = "assets/Interface/camerapanel-leftbutton.png";
+    public static final String camerapanel_leftbutton_over = "assets/Interface/camerapanel-leftbutton-over.png";
+    public static final String camerapanel_rightbutton = "assets/Interface/camerapanel-rightbutton.png";
+    public static final String camerapanel_rightbutton_over = "assets/Interface/camerapanel-rightbutton-over.png";
     
     //Texture
     public static final String flag = "assets/Interface/flag.png";
