@@ -195,6 +195,8 @@ public class Gui extends AbstractAppState implements ScreenController {
                 modelSelection = config.getProperty(Configuration.INPUT_DEFAULT_MODEL);
                 loadFirstScreen(); 
             }
+            //Ocultar el panel de la exportación
+            //nifty.getScreen("animationStage").findElementByName("rightSelectionPanel").setVisible(false);
                 
         }
     }

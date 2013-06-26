@@ -94,7 +94,7 @@ public class Application extends SimpleApplication{
     }
     
     @Override
-    public void simpleInitApp() {
+    public void simpleInitApp() { 
         initKeys();
         disableLogNifty();        
                 
@@ -133,6 +133,13 @@ public class Application extends SimpleApplication{
  
     public void onAnimChange(AnimControl control, AnimChannel channel, String animName) 
     {}
+    
+    @Override
+    public void destroy(){
+      
+        System.out.println("****************************");
+        super.destroy();
+    }
     
     //Disable log of nifty
     private void disableLogNifty(){

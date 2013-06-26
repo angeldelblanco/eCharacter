@@ -118,7 +118,7 @@ public class SceneControl {
         this.control.getRootNode().attachChild(cameraNode);
         
         //Add base
-        loadBase();
+        //loadBase();
         
         //Load and locate the main model
         this.mainMesh = this.control.getAssetManager().loadModel(mainMeshPath); 
@@ -420,7 +420,7 @@ public class SceneControl {
     public void screenShot(){
         //Remove background, base, restart rotation and center the model
         control.removeBackground();
-        removeBase();
+        //removeBase();
         restartRotationModel();
         control.getViewPort().setBackgroundColor(new ColorRGBA(0f, 0f, 0f, 0.4f));
         

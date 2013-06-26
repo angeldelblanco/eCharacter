@@ -32,7 +32,7 @@ public class Invocador implements Callback{
             p.put("defaultFamily","assets"+File.separator+"Families"+File.separator+"eAdventure.xml");
             p.put("defaultModel","assets"+File.separator+"Families"+File.separator+"eAdventure"
                     +File.separator+"XML models"+File.separator+"YoungBoy.xml");
-            //p.put("defaultStage","idMultiStageLabel8");
+            p.put("defaultStage","idMultiStageLabel8");
             //p.put("defaultExportPath", "C:/Users/Alex/Desktop");
             eCharacter eC = new eCharacter();
             eC.eCharacter(p,inv);
