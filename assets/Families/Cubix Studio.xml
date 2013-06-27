@@ -31,8 +31,9 @@
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel5">
 			<iconPath>assets/Families/Cubix Studio/Icons/IconosBarraSuperior_0003_Camiseta.png</iconPath>
-			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel4" idPanel="shirtsPanel" multiselection="true"/>
-			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel5" idPanel="trousersPanel" multiselection="true"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel4" idPanel="shirtsPanel" multiselection="false"/>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel5" idPanel="trousersPanel" multiselection="false"/>
+                        <!--<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel5b" idPanel="baseColorPanel" multiselection="false"/>-->
 		</multiStage>
 		<multiStage stageLabel="idMultiStageLabel6">
 			<iconPath>assets/Families/Cubix Studio/Icons/IconosBarraSuperior_0005_Calzado.png</iconPath>

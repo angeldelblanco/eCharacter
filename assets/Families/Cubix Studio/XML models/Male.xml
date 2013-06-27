@@ -8,63 +8,89 @@
                 <transformation transformationType="translate" valueX="-2.65" valueY="-2.9" valueZ="0.0"></transformation>
                 <!--Textures-->
 		<mainMeshTextures>
-			<!-- skinPanel textures-->
-			<simpleTexture idPanelRef="skinsPanel" layer="0" default="true" idTexture="idPielCasual"  text="idTextPielCasual">
+			<!--<simpleTexture idPanelRef="baseColorPanel" layer="0" default="true" idTexture="idPiel"  text="idTextPielBase">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPielBlancaBoy.png</iconPath>
+				<path>assets/Families/Cubix Studio/Textures/Male/Skin.png</path>
+			</simpleTexture>-->
+                        <!-- skinPanel textures-->
+                        
+                        <doubleTexture idPanelRef="skinsPanel" layer="0" default="false" idTexture="idPielMedieval"  text="idTextPielMedieval">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/MedievalFace.png</iconPath>
+				<basePath>assets/Families/Cubix Studio/Textures/Male/BaseSkinMaleMedieval.png</basePath>
+				<detailsPath>assets/Families/Cubix Studio/Textures/Male/ShadowSkinMaleMedieval.png</detailsPath>
+			</doubleTexture>
+                        <doubleTexture idPanelRef="skinsPanel" layer="0" default="true" idTexture="idPielCasual"  text="idTextPielCasual">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/CasualFace.png</iconPath>
+				<basePath>assets/Families/Cubix Studio/Textures/Male/BaseSkinMaleCasual.png</basePath>
+				<detailsPath>assets/Families/Cubix Studio/Textures/Male/ShadowSkinMaleCasual.png</detailsPath>
+			</doubleTexture>                        
+                        <!--<simpleTexture idPanelRef="skinsPanel" layer="0" default="false" idTexture="idPielCasual"  text="idTextPielCasual">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPielBlancaBoy.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/SkinMaleCasual.png</path>
 			</simpleTexture>
 			<simpleTexture idPanelRef="skinsPanel" layer="0" default="false" idTexture="idPielMedieval"  text="idTextPielMedieval">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPielNegraBoy.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/SkinMaleMedieval.png</path>
-			</simpleTexture>
+			</simpleTexture>-->
 			<!-- hairs textures -->
-			<simpleTexture idPanelRef="hairsPanel" layer="0" idTexture="idPeloCasual" default="true"  text="idTextPeloCasual">
+                        <doubleTexture idPanelRef="hairsPanel" layer="1" default="false" idTexture="idPeloMedieval"  text="idTextPeloMedieval">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/MedievalHair.png</iconPath>
+				<basePath>assets/Families/Cubix Studio/Textures/Male/BaseHairMaleMedieval.png</basePath>
+				<detailsPath>assets/Families/Cubix Studio/Textures/Male/ShadowHairMaleMedieval.png</detailsPath>
+			</doubleTexture>
+                    
+                        <doubleTexture idPanelRef="hairsPanel" layer="1" default="true" idTexture="idPeloCasual"  text="idTextPeloCasual">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/CasualHair.png</iconPath>
+				<basePath>assets/Families/Cubix Studio/Textures/Male/BaseHairMaleCasual.png</basePath>
+				<detailsPath>assets/Families/Cubix Studio/Textures/Male/ShadowHairMaleCasual.png</detailsPath>
+			</doubleTexture>
+			<!--<simpleTexture idPanelRef="hairsPanel" layer="1" idTexture="idPeloCasual" default="false"  text="idTextPeloCasual">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPielNegraBoy.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/HairMaleCasual.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="hairsPanel" layer="0" idTexture="idPeloMedieval" default="false"  text="idTextPeloMedieval">
+			<simpleTexture idPanelRef="hairsPanel" layer="1" idTexture="idPeloMedieval" default="false"  text="idTextPeloMedieval">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPielBlancaBoy.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/HairMaleMedieval.png</path>
-			</simpleTexture>
+			</simpleTexture>-->
 			<!-- eyes textures-->
-			<simpleTexture idPanelRef="eyesPanel" layer="1" idTexture="idOjosCasual" default="true"  text="idTextOjosCasual">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoOjosBoy.png</iconPath>
+			<simpleTexture idPanelRef="eyesPanel" layer="2" idTexture="idOjosCasual" default="true"  text="idTextOjosCasual">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/Eyes.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/EyesMaleCasual.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="eyesPanel" layer="1" idTexture="idOjosMedieval" default="false"  text="idTextOjosMedieval">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoOjosBoy.png</iconPath>
+			<simpleTexture idPanelRef="eyesPanel" layer="2" idTexture="idOjosMedieval" default="false"  text="idTextOjosMedieval">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/Eyes.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/EyesMaleMedieval.png</path>
 			</simpleTexture>
 			<!-- tshirtsPanel textures-->	
-			<simpleTexture idPanelRef="shirtsPanel" layer="0" idTexture="idCamisetaCasual" default="true"	 text="idTextCamisetaCasual">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoCamisaCortaBoy.png</iconPath>
+			<simpleTexture idPanelRef="shirtsPanel" layer="2" idTexture="idCamisetaCasual" default="true"	 text="idTextCamisetaCasual">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/CasualShirt.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/ShirtSolidMaleCasual.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="shirtsPanel" layer="0" idTexture="idCamisetaMedieval" default="false"	 text="idTextCamisetaMedieval">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoCamisaLargaBoy.png</iconPath>
+			<simpleTexture idPanelRef="shirtsPanel" layer="2" idTexture="idCamisetaMedieval" default="false"	 text="idTextCamisetaMedieval">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/MedievalShirt.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/ClothSolidMaleMedieval.png</path>
 			</simpleTexture>
 			<!-- trousersPanel textures-->
-			<simpleTexture idPanelRef="trousersPanel" layer="0" idTexture="idPantalonCasual" default="true" text="idTextPantalonCasual">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPantalonCortoBoy.png</iconPath>
+			<simpleTexture idPanelRef="trousersPanel" layer="2" idTexture="idPantalonCasual" default="true" text="idTextPantalonCasual">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/CasualPants.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/TrousersSolidMaleCasual.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="trousersPanel" layer="0" idTexture="idPantalonMedieval" default="false" text="idTextPantalonMedieval">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPantalonLargoBoy.png</iconPath>
+			<simpleTexture idPanelRef="trousersPanel" layer="2" idTexture="idPantalonMedieval" default="false" text="idTextPantalonMedieval">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/MedievalPants.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/TrousersMaleMedieval.png</path>
 			</simpleTexture>		
 			<!-- shoesPanel textures-->
-			<simpleTexture idPanelRef="shoesPanel" layer="0" idTexture="idZapatosCasual" default="true" text="idTextZapatosCasual">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoZapatosBoy.png</iconPath>
+			<simpleTexture idPanelRef="shoesPanel" layer="2" idTexture="idZapatosCasual" default="true" text="idTextZapatosCasual">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/CasualShoes.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/ShoesSolidMaleCasual.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="shoesPanel" layer="0" idTexture="idZapatosMedieval" default="false" text="idTextZapatosMedieval">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoZapatosBoy.png</iconPath>
+			<simpleTexture idPanelRef="shoesPanel" layer="2" idTexture="idZapatosMedieval" default="false" text="idTextZapatosMedieval">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/MedievalShoes.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/ShoesMaleMedieval.png</path>
 			</simpleTexture>
 			<!-- accesoriesPanel textures-->
-			<simpleTexture idPanelRef="accesoriesPanel" layer="1" idTexture="idGuantes" default="false" text="idTextGuantes">
-				<iconPath>assets/Families/Cubix Studio/Textures/Male/GlovesMaleMedieval.png</iconPath>
+			<simpleTexture idPanelRef="accesoriesPanel" layer="3" idTexture="idGuantes" default="false" text="idTextGuantes">
+				<iconPath>assets/Families/Cubix Studio/Icons/Male/Gloves.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Male/GlovesMaleMedieval.png</path>
 			</simpleTexture>
 		</mainMeshTextures>		
