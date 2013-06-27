@@ -49,8 +49,8 @@ public interface Resources {
     public static final String export = "assets/Interface/export.png";
     public static final String export_over = "assets/Interface/export-over.png";
     public static final String export_selection = "assets/Interface/export-selection.png";
-    public static final String s2_settings = "assets/Interface/s2-settings.png";
-    public static final String s2_settings_over = "assets/Interface/s2-settings-over.png";
+    public static final String restartmodel = "assets/Interface/restartmodel.png";
+    public static final String restartmodel_over = "assets/Interface/restartmodel.png";
     public static final String menu_selection = "assets/Interface/header-selection.png";
     
     //Font
@@ -94,6 +94,8 @@ public interface Resources {
     public static final String camerapanel_leftbutton_over = "assets/Interface/camerapanel-leftbutton-over.png";
     public static final String camerapanel_rightbutton = "assets/Interface/camerapanel-rightbutton.png";
     public static final String camerapanel_rightbutton_over = "assets/Interface/camerapanel-rightbutton-over.png";
+    public static final String complexion = "assets/Interface/complexion.png";
+    public static final String complexion_over = "assets/Interface/complexion-over.png";
     
     //Texture
     public static final String flag = "assets/Interface/flag.png";
@@ -119,5 +121,6 @@ public interface Resources {
     public static final String x = "assets/Interface/x.png";
     public static final String repositorio = "assets/Interface/repositorio.png";
     public static final String repositorio_over = "assets/Interface/repositorio-over.png";
+    public static final String eCharacterRepository = "assets/Interface/eCharacterRepository.png";
     
 }

@@ -98,6 +98,10 @@ public class Gui extends AbstractAppState implements ScreenController {
      */
     private boolean mustLoad=false;
     private boolean loading=false;
+    private int whatToDoNext;
+    private String idFamily;
+    public static int DO_LOAD_MODEL = 0;
+    public static int DO_DOWNLOAD = 1;
     
     public Gui(Control control,Configuration config){
         this.control = control;
@@ -424,11 +428,11 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("export-selection")){
             return Resources.export_selection;
         }
-        if(param.equals("s2-settings")){
-            return Resources.s2_settings;
+        if(param.equals("restartmodel")){
+            return Resources.restartmodel;
         }
-        if(param.equals("s2-settings-over")){
-            return Resources.s2_settings_over;
+        if(param.equals("restartmodel-over")){
+            return Resources.restartmodel_over;
         }
         if(param.equals("menu-selection")){
             return Resources.menu_selection;
@@ -556,6 +560,12 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("camerapanel-rightbutton-over")){
             return Resources.camerapanel_rightbutton_over;
         }
+        if(param.equals("complexion")){
+            return Resources.complexion;
+        }
+        if(param.equals("complexion-over")){
+            return Resources.complexion_over;
+        }
         return null;
     }
     
@@ -625,6 +635,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(param.equals("repositorio-over")){
             return Resources.repositorio_over;
+        }
+        if(param.equals("eCharacterRepository")){
+            return Resources.eCharacterRepository;
         }
         return null;
     }
@@ -917,20 +930,14 @@ public class Gui extends AbstractAppState implements ScreenController {
     public void showRepository(){
         repository = new RepositoryReader();
         String stageType = "start";
-        String idWelcome = i18nGui.getString("idWelcome");
         String idRepoText = i18nGui.getString("idRepoText");
         String idDownload = i18nGui.getString("idDownload");
-        if(idWelcome==null){
-            idWelcome="idWelcome";
-        }
         if(idRepoText==null){
             idRepoText="idRepoText";
         }
         if(idDownload==null){
             idDownload="idDownload";
         }
-        nifty.getScreen(stageType).findElementByName("repoWelcome").getRenderer(TextRenderer.class).setText(idWelcome);
-        nifty.getScreen(stageType).findElementByName("welcomeRepoPanel").layoutElements();
         nifty.getScreen(stageType).findElementByName("repoDescText").getRenderer(TextRenderer.class).setText(idRepoText);
         nifty.getScreen(stageType).findElementByName("repoDescPanel").layoutElements();
         nifty.getScreen(stageType).findElementByName("downloadText").getRenderer(TextRenderer.class).setText(idDownload);
@@ -1032,10 +1039,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         
     //System.out.println("UPDATING");
     }
-    private int whatToDoNext;
-    private String idFamily;
-    public static int DO_LOAD_MODEL = 0;
-    public static int DO_DOWNLOAD = 1;
+    
     /**
      * Starts loading the model for customization. This method is only invoked by update() after method
      * loadFirstScreen() sets mustLoad:=true.

@@ -337,8 +337,7 @@
 					<panel height="100%" width="25%"/>
 					<panel height="100%" width="75%" childLayout="vertical" align="center">
 						<panel id="welcomeRepoPanel" height="60%" width="100%" childLayout="horizontal" align="center">
-							<text id="repoWelcome" valign="center" height="50%" width="30%" textHAlign="left" text="" font="${CALL.getfont(30)}" color="#000000" wrap="true"/>
-							<image filename="${CALL.getTexture(eCharacter)}" valign="center"/>
+							<image filename="${CALL.getTexture(eCharacterRepository)}" valign="center"/>
 							<panel height="100%" width="25%"/>
 							<image valign="top" filename="${CALL.getButton(close-language)}" childLayout="center">
 								<interact onClick="hideRepository()"/>
@@ -421,10 +420,10 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(restartmodel)}">
 							<interact onClick="restarModel()"/>
 							<effect>
-								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true"/>
+								<onHover name="imageOverlay" filename="${CALL.getMenu(restartmodel-over)}" post="true"/>
 							</effect>
 						</image>
 					</panel>
@@ -462,9 +461,14 @@
 						<panel id="panel_image" height="100%" width="76%" align="center" childLayout="vertical">
 							<panel height="5%" width="100%"/>
 							<panel id="t0" height="14%" width="100%" childLayout="vertical">
-								<panel id="b0" height="50%" width="100%" childLayout="horizontal">
-									<text id="textb0" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
-									<interact onClick="changeBodyType(0)"/>
+								<panel height="50%" width="100%" childLayout="center">
+									<image id="b0" filename="${CALL.getButton(complexion)}" childLayout="center">
+										<text id="textb0" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+										<interact onClick="changeBodyType(0)"/>
+										<effect>
+											<onHover name="imageOverlay" filename="${CALL.getButton(complexion-over)}" post="true" />
+										</effect>
+									</image>
 								</panel>
 								<panel id="a0" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta0" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
@@ -475,9 +479,14 @@
 							<!-- Space -->
 							</panel>
 							<panel id="t1" height="14%" width="100%" childLayout="vertical">
-								<panel id="b1" height="50%" width="100%" childLayout="horizontal">
-									<text id="textb1" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
-									<interact onClick="changeBodyType(1)"/>
+								<panel height="50%" width="100%" childLayout="center">
+									<image id="b1" filename="${CALL.getButton(complexion)}" childLayout="center">
+										<text id="textb1" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+										<interact onClick="changeBodyType(1)"/>
+										<effect>
+											<onHover name="imageOverlay" filename="${CALL.getButton(complexion-over)}" post="true" />
+										</effect>
+									</image>
 								</panel>
 								<panel id="a1" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta1" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
@@ -488,9 +497,14 @@
 							<!-- Space -->
 							</panel>
 							<panel id="t2" height="14%" width="100%" childLayout="vertical">
-								<panel id="b2" height="50%" width="100%" childLayout="horizontal">
-									<text id="textb2" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
-									<interact onClick="changeBodyType(2)"/>
+								<panel height="50%" width="100%" childLayout="center">
+									<image id="b2" filename="${CALL.getButton(complexion)}" childLayout="center">
+										<text id="textb2" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+										<interact onClick="changeBodyType(2)"/>
+										<effect>
+											<onHover name="imageOverlay" filename="${CALL.getButton(complexion-over)}" post="true" />
+										</effect>
+									</image>
 								</panel>
 								<panel id="a2" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta2" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
@@ -501,9 +515,14 @@
 							<!-- Space -->
 							</panel>
 							<panel id="t3" height="14%" width="100%" childLayout="vertical">
-								<panel id="b3" height="50%" width="100%" childLayout="horizontal">
-									<text id="textb3" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
-									<interact onClick="changeBodyType(3)"/>
+								<panel height="50%" width="100%" childLayout="center">
+									<image id="b3" filename="${CALL.getButton(complexion)}" childLayout="center">
+										<text id="textb3" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+										<interact onClick="changeBodyType(3)"/>
+										<effect>
+											<onHover name="imageOverlay" filename="${CALL.getButton(complexion-over)}" post="true" />
+										</effect>
+									</image>
 								</panel>
 								<panel id="a3" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta3" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
@@ -514,9 +533,14 @@
 							<!-- Space -->
 							</panel>
 							<panel id="t4" height="14%" width="100%" childLayout="vertical">
-								<panel id="b4" height="50%" width="100%" childLayout="horizontal">
-									<text id="textb4" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
-									<interact onClick="changeBodyType(4)"/>
+								<panel height="50%" width="100%" childLayout="center">
+									<image id="b4" filename="${CALL.getButton(complexion)}" childLayout="center">
+										<text id="textb4" text="Head" font="${CALL.getfont(20)}" height="100%" width="100%" color="#565857" wrap="true"/>
+										<interact onClick="changeBodyType(4)"/>
+										<effect>
+											<onHover name="imageOverlay" filename="${CALL.getButton(complexion-over)}" post="true" />
+										</effect>
+									</image>
 								</panel>
 								<panel id="a4" height="50%" width="100%" childLayout="horizontal">
 									<text id="texta4" textHAlign="left" text="Head" font="${CALL.getfont(20)}" height="100%" width="50%" color="#565857" wrap="true"/>
@@ -598,10 +622,10 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(restartmodel)}">
 							<interact onClick="restarModel()"/>
 							<effect>
-								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
+								<onHover name="imageOverlay" filename="${CALL.getMenu(restartmodel-over)}" post="true" />
 							</effect>
 						</image>
 					</panel>
@@ -623,152 +647,168 @@
 						<panel id="panel_image" height="100%" width="76%" align="center" childLayout="vertical">
 							<!-- Texture's Image -->
 							<panel id="t03" height="22%" width="100%" childLayout="horizontal">
-								<panel id="t0" height="100%" width="22%" childLayout="center">
-									<image id = "i0" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i0" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,0)"/>
+										<image id="t0" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t1" height="100%" width="22%" childLayout="center">
-									<image id = "i1" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i1" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,1)"/>
+										<image id="t1" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t2" height="100%" width="22%" childLayout="center">
-									<image id = "i2" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i2" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,2)"/>
+										<image id="t2" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t3" height="100%" width="22%" childLayout="center">
-									<image id = "i3" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i3" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,3)"/>
+										<image id="t3" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 							</panel>
 							<panel height="4%" width="100%"/>
 							<panel id="t47" height="22%" width="100%" childLayout="horizontal">
-								<panel id="t4" height="100%" width="22%" childLayout="center">
-									<image id = "i4" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i4" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,4)"/>
+										<image id="t4" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t5" height="100%" width="22%" childLayout="center">
-									<image id = "i5" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i5" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,5)"/>
+										<image id="t5" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t6" height="100%" width="22%" childLayout="center">
-									<image id = "i6" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i6" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,6)"/>
+										<image id="t6" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t7" height="100%" width="22%" childLayout="center">
-									<image id = "i7" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i7" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,7)"/>
+										<image id="t7" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 							</panel>
 							<panel height="4%" width="100%"/>
 							<panel id="t811" height="22%" width="100%" childLayout="horizontal">
-								<panel id="t8" height="100%" width="22%" childLayout="center">
-									<image id = "i8" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i8" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,8)"/>
+										<image id="t8" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t9" height="100%" width="22%" childLayout="center">
-									<image id = "i9" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i9" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,9)"/>
+										<image id="t9" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t10" height="100%" width="22%" childLayout="center">
-									<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i10" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,10)"/>
+										<image id="t10" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t11" height="100%" width="22%" childLayout="center">
-									<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i11" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,11)"/>
+										<image id="t11" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 							</panel>
 							<panel height="4%" width="100%"/>
 							<panel id="t1215" height="22%" width="100%" childLayout="horizontal">
-								<panel id="t12" height="100%" width="22%" childLayout="center">
-									<image id = "i12" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i12" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,12)"/>
+										<image id="t12" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t13" height="100%" width="22%" childLayout="center">
-									<image id = "i13" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i13" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,13)"/>
+										<image id="t13" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t14" height="100%" width="22%" childLayout="center">
-									<image id = "i14" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i14" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,14)"/>
+										<image id="t14" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
 								<panel height="100%" width="4%"/>
-								<panel id="t15" height="100%" width="22%" childLayout="center">
-									<image id = "i15" filename="Interface/x.png" height="95%" width="95%">
+								<panel height="100%" width="22%" childLayout="center">
+									<image id = "i15" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 										<interact onClick="changeTextureOrSubMesh(0,15)"/>
+										<image id="t15" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 										<effect>
-											<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+											<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 										</effect>
 									</image>
 								</panel>
@@ -864,10 +904,10 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(restartmodel)}">
 							<interact onClick="restarModel()"/>
 							<effect>
-								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
+								<onHover name="imageOverlay" filename="${CALL.getMenu(restartmodel-over)}" post="true" />
 							</effect>
 						</image>
 					</panel>
@@ -899,38 +939,42 @@
 									</image>
 								</panel>
 								<panel id="p0" height="100%" width="76%" childLayout="horizontal" align="center">
-									<panel id="t00" height="100%" width="22%" childLayout="center">
-										<image id = "i00" filename="Interface/x.png" height="95%" width="95%">
+									<panel height="100%" width="22%" childLayout="center">
+										<image id = "i00" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 											<interact onClick="changeTextureOrSubMesh(0,0)"/>
+											<image id="t00" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 											<effect>
-												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+												<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 											</effect>
 										</image>
 									</panel>
 									<panel height="100%" width="4%"/>
-									<panel id="t01" height="100%" width="22%" childLayout="center">
-										<image id = "i01" filename="Interface/x.png" height="95%" width="95%">
+									<panel height="100%" width="22%" childLayout="center">
+										<image id = "i01" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 											<interact onClick="changeTextureOrSubMesh(0,1)"/>
+											<image id="t01" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 											<effect>
-												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+												<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 											</effect>
 										</image>
 									</panel>
 									<panel height="100%" width="4%"/>
-									<panel id="t02" height="100%" width="22%" childLayout="center">
-										<image id = "i02" filename="Interface/x.png" height="95%" width="95%">
+									<panel height="100%" width="22%" childLayout="center">
+										<image id = "i02" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 											<interact onClick="changeTextureOrSubMesh(0,2)"/>
+											<image id="t02" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 											<effect>
-												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+												<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 											</effect>
 										</image>
 									</panel>
 									<panel height="100%" width="4%"/>
-									<panel id="t03" height="100%" width="22%" childLayout="center">
-										<image id = "i03" filename="Interface/x.png" height="95%" width="95%">
+									<panel height="100%" width="22%" childLayout="center">
+										<image id = "i03" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 											<interact onClick="changeTextureOrSubMesh(0,3)"/>
+											<image id="t03" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 											<effect>
-												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+												<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 											</effect>
 										</image>
 									</panel>
@@ -970,38 +1014,42 @@
 									</image>
 								</panel>
 								<panel id="p1" height="100%" width="76%" childLayout="horizontal" align="center">
-									<panel id="t10" height="100%" width="22%" childLayout="center">
-										<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
+									<panel height="100%" width="22%" childLayout="center">
+										<image id = "i10" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 											<interact onClick="changeTextureOrSubMesh(1,0)"/>
+											<image id="t10" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 											<effect>
-												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+												<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 											</effect>
 										</image>
 									</panel>
 									<panel height="100%" width="4%"/>
-									<panel id="t11" height="100%" width="22%" childLayout="center">
-										<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
+									<panel height="100%" width="22%" childLayout="center">
+										<image id = "i11" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 											<interact onClick="changeTextureOrSubMesh(1,1)"/>
+											<image id="t11" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 											<effect>
-												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+												<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 											</effect>
 										</image>
 									</panel>
 									<panel height="100%" width="4%"/>
-									<panel id="t12" height="100%" width="22%" childLayout="center">
-										<image id = "i12" filename="Interface/x.png" height="95%" width="95%">
+									<panel height="100%" width="22%" childLayout="center">
+										<image id = "i12" filename="${CALL.getTexture(x)}" height="95%" width="95%" childLayout="center">
 											<interact onClick="changeTextureOrSubMesh(1,2)"/>
+											<image id="t12" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 											<effect>
-												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+												<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 											</effect>
 										</image>
 									</panel>
 									<panel height="100%" width="4%"/>
-									<panel id="t13" height="100%" width="22%" childLayout="center">
-										<image id = "i13" filename="Interface/x.png" height="95%" width="95%">
+									<panel height="100%" width="22%" childLayout="center">
+										<image id = "i13" filename="${CALL.getTexture(x)}" height="95%" width="95%"childLayout="center">
 											<interact onClick="changeTextureOrSubMesh(1,3)"/>
+											<image id="t13" filename="${CALL.getTick()}" align="right" valign="bottom" visible="false"/>
 											<effect>
-												<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+												<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 											</effect>
 										</image>
 									</panel>
@@ -1108,10 +1156,10 @@
 					</panel>
 					<image filename="${CALL.getMenu(header-rightseparator)}" valign= "center"/>
 					<panel id ="settingsPanel" childLayout="center" valign= "center" width="30%">
-						<image id = "settings" filename="${CALL.getMenu(s2-settings)}">
+						<image id = "settings" filename="${CALL.getMenu(restartmodel)}">
 							<interact onClick="restarModel()"/>
 							<effect>
-								<onHover name="imageOverlay" filename="${CALL.getMenu(s2-settings-over)}" post="true" />
+								<onHover name="imageOverlay" filename="${CALL.getMenu(restartmodel-over)}" post="true" />
 							</effect>
 						</image>
 					</panel>
@@ -1939,37 +1987,37 @@
 					<!-- Texture's Image -->
 					<panel id="t03" height="22%" width="100%" childLayout="horizontal">
 						<panel id="t0" height="100%" width="22%" childLayout="center">
-							<image id = "i0" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i0" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(0)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t1" height="100%" width="22%" childLayout="center">
-							<image id = "i1" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i1" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(1)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t2" height="100%" width="22%" childLayout="center">
-							<image id = "i2" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i2" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(2)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t3" height="100%" width="22%" childLayout="center">
-							<image id = "i3" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i3" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(3)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
@@ -1977,37 +2025,37 @@
 					<panel height="4%" width="100%"/>
 					<panel id="t47" height="22%" width="100%" childLayout="horizontal">
 						<panel id="t4" height="100%" width="22%" childLayout="center">
-							<image id = "i4" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i4" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(4)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t5" height="100%" width="22%" childLayout="center">
-							<image id = "i5" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i5" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(5)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t6" height="100%" width="22%" childLayout="center">
-							<image id = "i6" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i6" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(6)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t7" height="100%" width="22%" childLayout="center">
-							<image id = "i7" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i7" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(7)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
@@ -2015,37 +2063,37 @@
 					<panel height="4%" width="100%"/>
 					<panel id="t811" height="22%" width="100%" childLayout="horizontal">
 						<panel id="t8" height="100%" width="22%" childLayout="center">
-							<image id = "i8" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i8" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(8)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t9" height="100%" width="22%" childLayout="center">
-							<image id = "i9" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i9" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(9)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t10" height="100%" width="22%" childLayout="center">
-							<image id = "i10" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i10" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(10)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t11" height="100%" width="22%" childLayout="center">
-							<image id = "i11" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i11" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(11)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
@@ -2053,37 +2101,37 @@
 					<panel height="4%" width="100%"/>
 					<panel id="t1215" height="22%" width="100%" childLayout="horizontal">
 						<panel id="t12" height="100%" width="22%" childLayout="center">
-							<image id = "i12" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i12" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(12)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t13" height="100%" width="22%" childLayout="center">
-							<image id = "i13" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i13" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(13)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t14" height="100%" width="22%" childLayout="center">
-							<image id = "i14" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i14" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(14)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>
 						<panel height="100%" width="4%"/>
 						<panel id="t15" height="100%" width="22%" childLayout="center">
-							<image id = "i15" filename="Interface/x.png" height="95%" width="95%">
+							<image id = "i15" filename="${CALL.getTexture(x)}" height="95%" width="95%">
 								<interact onClick="changePopUpColor(15)"/>
 								<effect>
-									<onHover name="tooltip" targetElement="hint-panel" hintText="Model 5" />
+									<onHover name="tooltip" targetElement="hint-panel" hintText="" />
 								</effect>
 							</image>
 						</panel>

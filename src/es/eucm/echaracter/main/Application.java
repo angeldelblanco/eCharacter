@@ -399,10 +399,10 @@ public class Application extends SimpleApplication{
         if (ResourceLocator.getPathResource(Resources.s2_separator) == null){
             return false;
         }
-        if (ResourceLocator.getPathResource(Resources.s2_settings) == null){
+        if (ResourceLocator.getPathResource(Resources.restartmodel) == null){
             return false;
         }
-        if (ResourceLocator.getPathResource(Resources.s2_settings_over) == null){
+        if (ResourceLocator.getPathResource(Resources.restartmodel_over) == null){
             return false;
         }
         if (ResourceLocator.getPathResource(Resources.selector) == null){
@@ -436,6 +436,27 @@ public class Application extends SimpleApplication{
             return false;
         }
         if (ResourceLocator.getPathResource(Resources.repositorio_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.eCharacterRepository) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.camerapanel_leftbutton) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.camerapanel_leftbutton_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.camerapanel_rightbutton) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.camerapanel_rightbutton_over) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.complexion) == null){
+            return false;
+        }
+        if (ResourceLocator.getPathResource(Resources.complexion_over) == null){
             return false;
         }
         return true;
