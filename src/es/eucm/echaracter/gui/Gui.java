@@ -1083,6 +1083,7 @@ public class Gui extends AbstractAppState implements ScreenController {
         control.selectModel(modelSelection);
         index = 0;
         selection = stages.get(index);
+        nifty.gotoScreen("scaleStage");
         loadScreen(control.getStageTypes(selection).toString());
         nifty.gotoScreen(control.getStageTypes(selection).toString());
     }
