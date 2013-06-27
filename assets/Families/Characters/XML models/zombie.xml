@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<mainMesh>
+		<path>assets/Families/Characters/Models/Zombie/zombie.mesh.xml</path>
+		<!--Transformations-->
+		<transformation transformationType="rotate" valueX="0.0" valueY="-80.0" valueZ="0.0"></transformation>
+		<transformation transformationType="scale" valueX="0.3" valueY="0.3" valueZ="0.3"></transformation>
+		<transformation transformationType="translate" valueX="-3" valueY="-3.5" valueZ="-3"></transformation>
+		<!-- <transformation transformationType="scale" valueX="0.2" valueY="0.2" valueZ="0.2"></transformation>
+		<transformation transformationType="translate" valueX="-2.0" valueY="-2.5" valueZ="0.25"></transformation>
+		<transformation transformationType="rotate" valueX="0.0" valueY="60.0" valueZ="0.0"></transformation> -->
+		<!--Textures-->
+		<mainMeshTextures>
+			<!-- bodyworkPanel textures-->
+			<simpleTexture idPanelRef="clothesPanel" layer="0" default="true" idTexture="idRopaZombie" text="idTextRopaZombie">
+				<iconPath>assets/Families/Characters/Textures/Zombie/zombie.jpg</iconPath>
+				<path>assets/Families/Characters/Textures/Zombie/zombie.jpg</path>
+			</simpleTexture>
+		</mainMeshTextures>
+		<!--Bones-->
+		<bones>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName=""/>
+		</bones>
+		<!--Physical Builds-->
+		<physicalBuilds>
+			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
+				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+			</physicalBuild>
+		</physicalBuilds>
+	</mainMesh>
+	<languagesPath>assets/Families/Characters/Locale/Zombie</languagesPath>
+</model>

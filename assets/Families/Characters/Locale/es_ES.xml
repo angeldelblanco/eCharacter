@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="es_ES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<string id="idNameFamily">Personajes</string>
+	<string id="idAbstractFamily">Un ninja y un zombie.</string>
+	<string id="idDescriptionFamily">Esta familia está compuesta por 2 personajes: un ninja y un zombie.</string>
+	<string id="idAuthor">Alex,Sergio y David</string>
+	<string id="idMultiStageLabel1">Escalado</string>
+	<string id="idBoneControler1">No tocar</string>
+	<string id="idMultiStageLabel2">Ropa</string>
+	<string id="idTextureSubStageLabel1">Ropa</string>
+	<string id="idAnimationStageLabel1">Exportación</string>
+	<string id="idQualityLabel1">Alto</string>
+	<string id="idQualityLabel2">Medio</string>
+	<string id="idQualityLabel3">Bajo</string>
+	<string id="idCameraLabel1">Frontal</string>
+	<string id="idCameraLabel2">2D</string>
+	<string id="idModelLabel1">Ninja</string>
+	<string id="idModelLabel2">Zombie</string>
+</metadata>

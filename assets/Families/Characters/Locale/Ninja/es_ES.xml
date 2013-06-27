@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="es_ES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<string id="idPhysicalBuildLabel1">Complexión media</string>
+	<string id="idTextRopaNinjaBlanca">Ropa blanca</string>
+	<string id="idTextRopaNinjaAzul">Ropa azul</string>
+	<string id="idTextRopaNinjaMarron">Ropa marrón</string>
+	<string id="idTextRopaNinjaVerde">Ropa verde</string>
+	<string id="idTextRopaNinjaRoja">Ropa roja</string>
+</metadata>
