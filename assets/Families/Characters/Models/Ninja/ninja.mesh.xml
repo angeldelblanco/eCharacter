@@ -5215,14 +5215,6 @@
     <submeshnames>
         <submesh index="0" name="Material0">
         </submesh>
-        <submesh index="1" name="Material1">
-        </submesh>
-        <submesh index="2" name="Material2">
-        </submesh>
-        <submesh index="3" name="Material3">
-        </submesh>
-        <submesh index="4" name="Material4">
-        </submesh>
     </submeshnames>
     <skeletonlink name="ninja.skeleton"/>
     <boneassignments>

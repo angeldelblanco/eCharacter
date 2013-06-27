@@ -3,13 +3,15 @@
 	<mainMesh>
 		<path>assets/Families/Characters/Models/Ninja/ninja.mesh.xml</path>
 		<!--Transformations-->
-		<!-- <transformation transformationType="scale" valueX="0.07" valueY="0.07" valueZ="0.07"></transformation>
-		<transformation transformationType="translate" valueX="-2.0" valueY="-2.5" valueZ="0.25"></transformation>
+		<transformation transformationType="scale" valueX="0.4" valueY="0.4" valueZ="0.4"></transformation>
+		<transformation transformationType="translate" valueX="-2.5" valueY="-2.5" valueZ="0.0"></transformation>
+		<transformation transformationType="rotate" valueX="0.0" valueY="100.0" valueZ="0.0"></transformation>
+		<!-- <transformation transformationType="translate" valueX="-2.0" valueY="-2.5" valueZ="0.25"></transformation>
 		<transformation transformationType="rotate" valueX="0.0" valueY="60.0" valueZ="0.0"></transformation> -->
 		<!--Textures-->
 		<mainMeshTextures>
 			<!-- bodyworkPanel textures-->
-			<simpleTexture idPanelRef="clothesPanel" layer="0" default="true" idTexture="idRopaNinjaBlanca" text="idTextRopaNinjaBlanca">
+			<simpleTexture idPanelRef="clothesPanel" layer="0" default="false" idTexture="idRopaNinjaBlanca" text="idTextRopaNinjaBlanca">
 				<iconPath>assets/Families/Characters/Textures/Ninja/ninja_white.jpg</iconPath>
 				<path>assets/Families/Characters/Textures/Ninja/ninja_white.jpg</path>
 			</simpleTexture>
@@ -25,7 +27,7 @@
 				<iconPath>assets/Families/Characters/Textures/Ninja/ninja_green.jpg</iconPath>
 				<path>assets/Families/Characters/Textures/Ninja/ninja_green.jpg</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="clothesPanel" layer="0" default="false" idTexture="idRopaNinjaRoja" text="idTextRopaNinjaRoja">
+			<simpleTexture idPanelRef="clothesPanel" layer="0" default="true" idTexture="idRopaNinjaRoja" text="idTextRopaNinjaRoja">
 				<iconPath>assets/Families/Characters/Textures/Ninja/ninja_red.jpg</iconPath>
 				<path>assets/Families/Characters/Textures/Ninja/ninja_red.jpg</path>
 			</simpleTexture>

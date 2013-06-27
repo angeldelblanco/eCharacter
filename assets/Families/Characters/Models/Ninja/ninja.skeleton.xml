@@ -29591,7 +29591,7 @@
         </track>
       </tracks>
     </animation>
-	<animation length="0.48" name="Punch & Sword" >
+	<animation length="0.48" name="Punch_Sword" >
       <tracks >
         <track bone="Joint1" >
           <keyframes >
@@ -32255,7 +32255,7 @@
         </track>
       </tracks>
     </animation>
-	<animation length="0.56" name="Swipe & Sword" >
+	<animation length="0.56" name="Swipe_Sword" >
       <tracks >
         <track bone="Joint1" >
           <keyframes >
