@@ -157,36 +157,15 @@
 			</baseShadowTexture>			
 			<!-- accesoriesPanel textures-->
 			<!-- facePanel textures-->
-			<!--<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idBarba"  text="idTextBarba">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoBarbaBoy.png</iconPath>
-				<path>assets/Families/eAdventure/Textures/Boy/BarbaBoy.png</path>
+			<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idTiritaDcha"  text="idTextTiritaDcha">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoTiritaDchaBoy.png</iconPath>
+				<path>assets/Families/eAdventure/Textures/Boy/TiritaDchaBoy.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idBigote"  text="idTextBigote">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoBigoteBoy.png</iconPath>
-				<path>assets/Families/eAdventure/Textures/Boy/BigoteBoy.png</path>
+			<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idTiritaIzq"  text="idTextTiritaIzq">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoTiritaIzqBoy.png</iconPath>
+				<path>assets/Families/eAdventure/Textures/Boy/TiritaIzqBoy.png</path>
 			</simpleTexture>
-			<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idPerilla"  text="idTextPerilla">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPerillaBoy.png</iconPath>
-				<path>assets/Families/eAdventure/Textures/Boy/PerillaBoy.png</path>
-			</simpleTexture>
-			<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idPerillaInferior"  text="idTextPerillaInferior">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPerillaInferiorBoy.png</iconPath>
-				<path>assets/Families/eAdventure/Textures/Boy/PerillaInferiorBoy.png</path>
-			</simpleTexture>-->
 			<!-- accesoriesFace textures-->
-			<!--<baseShadowTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idDientes"  text="idTextDientes">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoDientesBoy.png</iconPath>
-				<path>assets/Families/eAdventure/Textures/Boy/DientesBoy.png</path>
-				<colorDefault>
-					<red>255</red>
-					<green>255</green>
-					<blue>255</blue>
-				</colorDefault>
-			</baseShadowTexture>
-			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idLengua"  text="idTextLengua">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoLenguaBoy.png</iconPath>
-				<path>assets/Families/eAdventure/Textures/Boy/LenguaBoy.png</path>
-			</simpleTexture>-->
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idPendienteDcho"  text="idTextPendienteDcho">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPendienteDchoBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/PendienteDchoBoy.png</path>
@@ -194,14 +173,6 @@
 			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idPendienteIzq"  text="idTextPendienteIzq">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPendienteIzqBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/PendienteIzqBoy.png</path>
-			</simpleTexture>
-			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idTiritaDcha"  text="idTextTiritaDcha">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoTiritaDchaBoy.png</iconPath>
-				<path>assets/Families/eAdventure/Textures/Boy/TiritaDchaBoy.png</path>
-			</simpleTexture>
-			<simpleTexture idPanelRef="accesoriesFacePanel" layer="2" default="false" idTexture="idTiritaIzq"  text="idTextTiritaIzq">
-				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoTiritaIzqBoy.png</iconPath>
-				<path>assets/Families/eAdventure/Textures/Boy/TiritaIzqBoy.png</path>
 			</simpleTexture>
 			<!--otherAccesoriesPanel textures-->
 			<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="3" default="false" idTexture="idCinturon"  text="idTextCinturon">
