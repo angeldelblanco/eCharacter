@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<mainMesh>
+		<path>assets/Families/Animals/Models/Dog/dog.mesh.xml</path>
+		<!--Transformations-->
+		<transformation transformationType="scale" valueX="0.07" valueY="0.07" valueZ="0.07"></transformation>
+		<transformation transformationType="translate" valueX="-2.0" valueY="-2.5" valueZ="0.25"></transformation>
+		<transformation transformationType="rotate" valueX="0.0" valueY="60.0" valueZ="0.0"></transformation>
+		<!--Textures-->
+		<mainMeshTextures>
+			<!-- bodyworkPanel textures-->
+			<simpleTexture idPanelRef="skinsPanel" layer="0" default="true" idTexture="idPielPerro" text="idTextPielPerro">
+				<iconPath>assets/Families/Animals/Textures/Dog/dog_skin.jpg</iconPath>
+				<path>assets/Families/Animals/Textures/Dog/dog_skin.jpg</path>
+			</simpleTexture>
+		</mainMeshTextures>
+		<!--Bones-->
+		<bones>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName=""/>
+		</bones>
+		<!--Physical Builds-->
+		<physicalBuilds>
+			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
+				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+			</physicalBuild>
+		</physicalBuilds>
+	</mainMesh>
+	<languagesPath>assets/Families/Animals/Locale/Dog</languagesPath>
+</model>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="es_ES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<string id="idPhysicalBuildLabel1">Complexión media</string>
+	<string id="idTextPinturaVerde">Pintura verde</string>
+	<string id="idTextPinturaGris">Pintura gris</string>
+	<string id="idTextPinturaRoja">Pintura roja</string>
+	<string id="idTextPinturaAmarilla">Pintura amarilla</string>
+</metadata>

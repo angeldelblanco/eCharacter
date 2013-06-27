@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="en_UK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<string id="idNameFamily">Animals</string>
+	<string id="idAbstractFamily">Dog and cat.</string>
+	<string id="idDescriptionFamily">This family has composed by two animals: dog and cat.</string>
+	<string id="idAuthor">Alex,Sergio and David</string>
+	<string id="idMultiStageLabel1">Scale</string>
+	<string id="idBoneControler1">Don't touch</string>
+	<string id="idMultiStageLabel2">Skins</string>
+	<string id="idTextureSubStageLabel1">Skin</string>
+	<string id="idAnimationStageLabel1">Export</string>
+	<string id="idQualityLabel1">High</string>
+	<string id="idQualityLabel2">Medium</string>
+	<string id="idQualityLabel3">Low</string>
+	<string id="idCameraLabel1">Front</string>
+	<string id="idCameraLabel2">2D</string>
+	<string id="idModelLabel1">Dog</string>
+	<string id="idModelLabel2">Cat</string>
+</metadata>

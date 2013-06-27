@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="fr_FR" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<string id="idPhysicalBuildLabel1">Corpulence moyenne</string>
+<string id="idTextPinturaVerde">Peinture verte</string>
+	<string id="idTextPinturaGris">Peinture grise</string>
+	<string id="idTextPinturaRoja">Peinture rouge</string>
+	<string id="idTextPinturaAmarilla">Peinture jaune</string>
+</metadata>

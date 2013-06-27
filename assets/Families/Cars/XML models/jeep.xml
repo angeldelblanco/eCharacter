@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<mainMesh>
+		<path>assets/Families/Cars/Models/Jeep/jeep.mesh.xml</path>
+		<!--Transformations-->
+		<transformation transformationType="translate" valueX="-2.5" valueY="-2.5" valueZ="0.0"></transformation>
+		<transformation transformationType="scale" valueX="0.25" valueY="0.25" valueZ="0.25"></transformation>
+		<transformation transformationType="rotate" valueX="0.0" valueY="60.0" valueZ="0.0"></transformation>
+		<!--Textures-->
+		<mainMeshTextures>
+			<!-- bodyworkPanel textures-->
+			<simpleTexture idPanelRef="bodyworkPanel" layer="0" default="false" idTexture="idPinturaGris" text="idTextPinturaGris">
+				<iconPath>assets/Families/Cars/Textures/Jeep/jeep_grey.jpg</iconPath>
+				<path>assets/Families/Cars/Textures/Jeep/jeep_grey.jpg</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="bodyworkPanel" layer="0" default="true" idTexture="idPinturaVerde" text="idTextPinturaVerde">
+				<iconPath>assets/Families/Cars/Textures/Jeep/jeep_green.jpg</iconPath>
+				<path>assets/Families/Cars/Textures/Jeep/jeep_green.jpg</path>
+			</simpleTexture>
+		</mainMeshTextures>
+		<!--Bones-->
+		<bones>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName=""/>
+		</bones>
+		<!--Physical Builds-->
+		<physicalBuilds>
+			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
+				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+			</physicalBuild>
+		</physicalBuilds>
+	</mainMesh>
+	<languagesPath>assets/Families/Cars/Locale/Jeep</languagesPath>
+</model>

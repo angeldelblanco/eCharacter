@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.06.22 a las 11:33:06 AM CEST 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: PM.06.27 a las 01:32:06 PM CEST 
 //
 
 
@@ -50,8 +50,8 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="scaleStage" type="{}scaleStageType" maxOccurs="10"/>
- *                   &lt;element name="multiStage" type="{}multiStageType" maxOccurs="10"/>
+ *                   &lt;element name="scaleStage" type="{}scaleStageType" maxOccurs="10" minOccurs="0"/>
+ *                   &lt;element name="multiStage" type="{}multiStageType" maxOccurs="10" minOccurs="0"/>
  *                   &lt;element name="animationStage" type="{}animationStageType"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
@@ -486,8 +486,8 @@ public class Family {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="scaleStage" type="{}scaleStageType" maxOccurs="10"/>
-     *         &lt;element name="multiStage" type="{}multiStageType" maxOccurs="10"/>
+     *         &lt;element name="scaleStage" type="{}scaleStageType" maxOccurs="10" minOccurs="0"/>
+     *         &lt;element name="multiStage" type="{}multiStageType" maxOccurs="10" minOccurs="0"/>
      *         &lt;element name="animationStage" type="{}animationStageType"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
@@ -505,9 +505,7 @@ public class Family {
     })
     public static class Stages {
 
-        @XmlElement(required = true)
         protected List<ScaleStageType> scaleStage;
-        @XmlElement(required = true)
         protected List<MultiStageType> multiStage;
         @XmlElement(required = true)
         protected AnimationStageType animationStage;

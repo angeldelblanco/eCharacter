@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<family xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Users\Sergio\jMonkeyEngine\eCharacter\assets\XSD\family.xsd">
+	<metadata>
+		<name>idNameFamily</name>
+		<abstract>idAbstractFamily</abstract>
+		<description>idDescriptionFamily</description>
+		<author>idAuthor</author>
+		<languagesPath>assets/Families/Animals/Locale</languagesPath>
+		<iconPath>assets/Families/Animals/Icons/IconoAnimals.png</iconPath>
+	</metadata>
+	<stages>
+		<scaleStage stageLabel="idMultiStageLabel1" idPanel="ScalePanel">
+			<iconPath>assets/Families/Animals/Icons/IconosBarraSuperior_0000_Complexion.png</iconPath>
+			<boneController controllerLabel="idBoneControler1" idController="torsoHeadArms" level="0"/>
+		</scaleStage>
+		<multiStage stageLabel="idMultiStageLabel2">
+			<iconPath>assets/Families/Animals/Icons/IconosBarraSuperior_0001_Piel.png</iconPath>
+			<subStage subStageType="textureSubStage" subStageLabel="idTextureSubStageLabel1" idPanel="skinsPanel" multiselection="false"/>
+		</multiStage>
+		<animationStage stageLabel="idAnimationStageLabel1">
+			<!-- Dar valores. Los que hay son aleatorios -->
+			<fps qualityLabel="idQualityLabel1" fpsValue="24"/>
+			<fps qualityLabel="idQualityLabel2" fpsValue="12"/>
+			<fps qualityLabel="idQualityLabel3" fpsValue="6"/>
+			<camera cameraLabel="idCameraLabel1">
+				<upAxis valueX="0.0" valueY="1.0" valueZ="0.0"/>
+				<location valueX="0.0" valueY="0.0" valueZ="11.0"/>
+				<direction valueX="0.0" valueY="0.0" valueZ="-1.0"/>
+			</camera>
+			<camera cameraLabel="idCameraLabel2">
+				<upAxis valueX="0.0" valueY="1.0" valueZ="0.0"/>
+				<location valueX="-2.5" valueY="3.0" valueZ="11.0"/>
+				<direction valueX="0.0" valueY="0.0" valueZ="-1.0"/>
+			</camera>
+		</animationStage>
+	</stages>
+	<modelsRef>
+		<modelRef>
+			<modelLabel>idModelLabel1</modelLabel>
+			<iconPath>assets/Families/Animals/Icons/dog.jpg</iconPath>
+			<modelPath>assets/Families/Animals/XML models/dog.xml</modelPath>
+		</modelRef>	
+		<modelRef>
+			<modelLabel>idModelLabel2</modelLabel>
+			<iconPath>assets/Families/Animals/Icons/cat.jpg</iconPath>
+			<modelPath>assets/Families/Animals/XML models/cat.xml</modelPath>
+		</modelRef>
+	</modelsRef>
+</family>

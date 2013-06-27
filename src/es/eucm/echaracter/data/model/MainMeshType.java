@@ -1,8 +1,8 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantaciï¿½n de la referencia de enlace (JAXB) XML v2.2.6 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.6 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
-// Generado el: AM.06.11 a las 11:39:57 AM CEST 
+// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Generado el: PM.06.27 a las 01:32:19 PM CEST 
 //
 
 
@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="bones" type="{}bonesType"/>
- *         &lt;element name="physicalBuilds" type="{}physicalBuildsType"/>
+ *         &lt;element name="bones" type="{}bonesType" minOccurs="0"/>
+ *         &lt;element name="physicalBuilds" type="{}physicalBuildsType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -62,9 +62,7 @@ public class MainMeshType
 {
 
     protected MainMeshType.MainMeshTextures mainMeshTextures;
-    @XmlElement(required = true)
     protected BonesType bones;
-    @XmlElement(required = true)
     protected PhysicalBuildsType physicalBuilds;
 
     /**

@@ -123,15 +123,17 @@ public class SceneControl {
 
         //Setting the initial animation
         this.animControl = this.mainMesh.getControl(AnimControl.class);
-        this.animChannel = this.animControl.createChannel();
-        Set<String> animList = (Set<String>) this.animControl.getAnimationNames();
-        if(animList.size() > 0){
-            this.animChannel.setAnim(animList.iterator().next());
-            this.animChannel.setLoopMode(LoopMode.Loop); 
-        }  
-        
+        if (animControl != null){
+            this.animChannel = this.animControl.createChannel();
+            Set<String> animList = (Set<String>) this.animControl.getAnimationNames();
+            if(animList.size() > 0){
+                this.animChannel.setAnim(animList.iterator().next());
+                this.animChannel.setLoopMode(LoopMode.Loop); 
+            }
+            fillAnimations(animList);
+        }
+
         //Fill the structures
-        fillAnimations(animList);
         fillCameras(control.getCamerasLabels());
         fillQualities(control.getQualityLabels());  
     }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../XSD/model.xsd">
+	<mainMesh>
+		<path>assets/Families/Cars/Models/Ferrari_f360/ferrari_f360.mesh.xml</path>
+		<!--Transformations-->
+		<transformation transformationType="scale" valueX="0.05" valueY="0.05" valueZ="0.05"/>
+		 <transformation transformationType="translate" valueX="-2.5" valueY="-1.8" valueZ="0.0"></transformation>
+		<transformation transformationType="rotate" valueX="0.0" valueY="240.0" valueZ="0.0"></transformation>
+		<!--Textures-->
+		<mainMeshTextures>
+			<!-- bodyworkPanel textures-->
+			<simpleTexture idPanelRef="bodyworkPanel" layer="0" default="false" idTexture="idPinturaVerde" text="idTextPinturaVerde">
+				<iconPath>assets/Families/Cars/Textures/Ferrari_f360/f360_green.jpg</iconPath>
+				<path>assets/Families/Cars/Textures/Ferrari_f360/f360_green.jpg</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="bodyworkPanel" layer="0" default="false" idTexture="idPinturaGris" text="idTextPinturaGris">
+				<iconPath>assets/Families/Cars/Textures/Ferrari_f360/f360_grey.jpg</iconPath>
+				<path>assets/Families/Cars/Textures/Ferrari_f360/f360_grey.jpg</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="bodyworkPanel" layer="0" default="true" idTexture="idPinturaRoja" text="idTextPinturaRoja">
+				<iconPath>assets/Families/Cars/Textures/Ferrari_f360/f360_red.jpg</iconPath>
+				<path>assets/Families/Cars/Textures/Ferrari_f360/f360_red.jpg</path>
+			</simpleTexture>
+			<simpleTexture idPanelRef="bodyworkPanel" layer="0" default="false" idTexture="idPinturaAmarilla" text="idTextPinturaAmarilla">
+				<iconPath>assets/Families/Cars/Textures/Ferrari_f360/f360_yellow.jpg</iconPath>
+				<path>assets/Families/Cars/Textures/Ferrari_f360/f360_yellow.jpg</path>
+			</simpleTexture>
+		</mainMeshTextures>
+		<!--Bones-->
+		<bones>
+			<bone idControllerRef="torsoHeadArms" defaultValue="0" minValue="-50" maxValue="50" boneName=""/>
+		</bones>
+		<!--Physical Builds-->
+		<physicalBuilds>
+			<physicalBuild label="idPhysicalBuildLabel1" idPanelRef="ScalePanel" idPhysicalBuild="idMediumBuilt">
+				<escalation boneName="ALL" valueX="1.0" valueY="1.0" valueZ="1.0"/>
+			</physicalBuild>
+		</physicalBuilds>
+	</mainMesh>
+	<languagesPath>assets/Families/Cars/Locale/Ferrari_f360</languagesPath>
+</model>

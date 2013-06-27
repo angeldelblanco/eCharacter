@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata language="es_ES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<string id="idNameFamily">Coches</string>
+	<string id="idAbstractFamily">Un Ferrari F360 y un Jeep.</string>
+	<string id="idDescriptionFamily">Esta familia está compuesta por 2 coches: un Ferrari F360 y un Jeep.</string>
+	<string id="idAuthor">Alex,Sergio y David</string>
+	<string id="idMultiStageLabel1">Escalado</string>
+	<string id="idBoneControler1">No tocar</string>
+	<string id="idMultiStageLabel2">Carrocería</string>
+	<string id="idTextureSubStageLabel1">Carrocería</string>
+	<string id="idAnimationStageLabel1">Exportación</string>
+	<string id="idQualityLabel1">Alto</string>
+	<string id="idQualityLabel2">Medio</string>
+	<string id="idQualityLabel3">Bajo</string>
+	<string id="idCameraLabel1">Frontal</string>
+	<string id="idCameraLabel2">2D</string>
+	<string id="idModelLabel1">Ferrari F360</string>
+	<string id="idModelLabel2">Jeep</string>
+</metadata>

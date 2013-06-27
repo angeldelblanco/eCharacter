@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:element name="model">
 		<xs:complexType>
 			<xs:sequence>
@@ -8,129 +7,99 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 				initial transformations and all the bones to scale. -->
 				<xs:element name="mainMesh" type="mainMeshType"/>
 				<!-- This node defines all the submeshes of the model -->
-				<xs:element name="subMesh" type="subMeshType" minOccurs="0"
-				maxOccurs="unbounded"/>
+				<xs:element name="subMesh" type="subMeshType" minOccurs="0" maxOccurs="unbounded"/>
 				<!-- This node define the languages path of the model -->
 				<xs:element name="languagesPath" type="xs:string"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	
 	<xs:complexType name="meshType">
 		<xs:sequence>
 			<!-- This node define the mesh path -->
 			<xs:element name="path" type="xs:string"/>
 			<!-- This node define the list of initial transformations to
 			make to the model -->
-			<xs:element name="transformation" type="transformationType"
-			minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="transformation" type="transformationType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-	
 	<xs:complexType name="mainMeshType">
 		<xs:complexContent>
 			<xs:extension base="meshType">
 				<xs:sequence>
 					<!-- This node define the list of the textures of the
 					model -->
-					<xs:element name="mainMeshTextures" 
-					minOccurs="0" maxOccurs="1">
+					<xs:element name="mainMeshTextures" minOccurs="0" maxOccurs="1">
 						<xs:complexType>
-							<xs:choice minOccurs="1"
-							maxOccurs="unbounded">
-								<xs:element 
-								name="baseShadowTexture"
-								type="baseShadowTextureType"/>
-								<xs:element name="simpleTexture"
-								type="simpleTextureType"/>
-								<xs:element name="doubleTexture"
-								type="doubleTextureType"/>
-								<xs:element 
-								name="multiOptionTexture" 
-								type="multiOptionTextureType"/>
+							<xs:choice minOccurs="1" maxOccurs="unbounded">
+								<xs:element name="baseShadowTexture" type="baseShadowTextureType"/>
+								<xs:element name="simpleTexture" type="simpleTextureType"/>
+								<xs:element name="doubleTexture" type="doubleTextureType"/>
+								<xs:element name="multiOptionTexture" type="multiOptionTextureType"/>
 							</xs:choice>
 						</xs:complexType>
 					</xs:element>
 					<!-- This node define the list of the bones to
 					scale -->
-					<xs:element name="bones" type="bonesType"/>
+					<xs:element name="bones" type="bonesType" minOccurs="0"/>
 					<!-- This node define the list of the physical
 					builds of the model -->
-					<xs:element name="physicalBuilds"
-					type="physicalBuildsType"/>
+					<xs:element name="physicalBuilds" type="physicalBuildsType" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<xs:complexType name="subMeshType">
 		<xs:complexContent>
 			<xs:extension base="meshType">
 				<xs:sequence>
 					<!-- This node is similar to mainMeshType but in
 					this case only can have one texture associated.-->
-					<xs:element name="subMeshTexture" minOccurs="0"
-					maxOccurs="1">
+					<xs:element name="subMeshTexture" minOccurs="0" maxOccurs="1">
 						<xs:complexType>
 							<xs:choice>
-								<xs:element 
-								name="baseShadowTextureSubMesh"
-								type="baseShadowTextureSubMeshType"/>
-								<xs:element 
-								name="simpleTextureSubMesh" 
-								type="simpleTextureSubMeshType"/>
-								<xs:element 
-								name="doubleTextureSubMesh" 
-								type="doubleTextureSubMeshType"/>
-								<xs:element 
-								name="multiOptionTextureSubMesh"
-								type="multiOptionTextureSubMeshType"/>
+								<xs:element name="baseShadowTextureSubMesh" type="baseShadowTextureSubMeshType"/>
+								<xs:element name="simpleTextureSubMesh" type="simpleTextureSubMeshType"/>
+								<xs:element name="doubleTextureSubMesh" type="doubleTextureSubMeshType"/>
+								<xs:element name="multiOptionTextureSubMesh" type="multiOptionTextureSubMeshType"/>
 							</xs:choice>
 						</xs:complexType>
 					</xs:element>
 					<xs:element name="iconPath" type="xs:string"/>
 				</xs:sequence>
-				<!-- This attribute indicates the panel where it has to
-				load this texture -->
-				<xs:attribute name="idPanelRef" type="xs:string" 
-				use="required"/>
-				<!--This attribute indicates the bone which the submesh
-				is associated.-->
-				<xs:attribute name="associatedBone" type="xs:string" 
-				use="required"/>
-				<!-- This attribute indicates the id of this submesh
-				must be unique -->
-				<xs:attribute name="idSubMesh" type="xs:ID"
-				use="required"/>
-				<!-- If default is true, this submesh will appear
-				when the model is loaded initially.-->
-				<xs:attribute name="default" type="xs:boolean" 
-				use="required"/>
-				<xs:attribute name="text" type="xs:string"
-				use="required"/>
+				<xs:attribute name="idPanelRef" type="xs:string" use="required"/>
+				<xs:attribute name="associatedBone" type="xs:string" use="required"/>
+				<xs:attribute name="idSubMesh" type="xs:ID" use="required"/>
+				<xs:attribute name="default" type="xs:boolean" use="required"/>
+				<xs:attribute name="text" type="xs:string" use="required"/>
 			</xs:extension>
+			<!-- This attribute indicates the panel where it has to
+				load this texture -->
+			<!--This attribute indicates the bone which the submesh
+				is associated.-->
+			<!-- This attribute indicates the id of this submesh
+				must be unique -->
+			<!-- If default is true, this submesh will appear
+				when the model is loaded initially.-->
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<!-- This node is the generic type of a texture. All the textures have
 	these fields. -->
 	<xs:complexType name="textureType">
 		<xs:sequence>
 			<xs:element name="iconPath" type="xs:string"/>
 		</xs:sequence>
+		<xs:attribute name="idPanelRef" type="xs:string" use="required"/>
+		<xs:attribute name="layer" type="xs:integer" use="required"/>
+		<xs:attribute name="idTexture" type="xs:ID" use="required"/>
+		<xs:attribute name="text" type="xs:string" use="required"/>
 		<!-- This attribute indicates the panel where it has to load
 		this texture -->
-		<xs:attribute name="idPanelRef" type="xs:string" use="required"/>
 		<!-- This attribute indicates the priority of this texture.
 		Lower value indicates higher priority.(Highest priority is 
 		layer=0) -->
-		<xs:attribute name="layer" type="xs:integer" use="required"/>
 		<!-- This attribute indicates the id of this texture. Must be
 		unique! -->
-		<xs:attribute name="idTexture" type="xs:ID" use="required"/>
-		<xs:attribute name="text" type="xs:string" use="required"/>
 	</xs:complexType>
-	
 	<xs:complexType name="baseShadowTextureType">
 		<xs:complexContent>
 			<xs:extension base="textureType">
@@ -139,19 +108,15 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 					<xs:element name="path" type="xs:string"/>
 					<!-- RGB value which is initially loaded in the 
 					texture.-->
-					<xs:element name="colorDefault"
-					type="colorType"/>
-					<xs:element name="shadowPath" type="xs:string" 
-					minOccurs="0" maxOccurs="1"/>
+					<xs:element name="colorDefault" type="colorType"/>
+					<xs:element name="shadowPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>
-				<!-- If default is true, this texture will appear
-				when the model is loaded initially.-->
-				<xs:attribute name="default" type="xs:boolean" 
-				use="required"/>
+				<xs:attribute name="default" type="xs:boolean" use="required"/>
 			</xs:extension>
+			<!-- If default is true, this texture will appear
+				when the model is loaded initially.-->
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<xs:complexType name="colorType">
 		<xs:sequence>
 			<xs:element name="red" type="xs:integer"/>
@@ -159,86 +124,70 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 			<xs:element name="blue" type="xs:integer"/>
 		</xs:sequence>
 	</xs:complexType>
-	
 	<xs:complexType name="simpleTextureType">
 		<xs:complexContent>
 			<xs:extension base="textureType">
 				<xs:sequence>
 					<xs:element name="path" type="xs:string"/>
 				</xs:sequence>
-				<xs:attribute name="default" type="xs:boolean" 
-				use="required"/>
+				<xs:attribute name="default" type="xs:boolean" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<xs:complexType name="doubleTextureType">
 		<xs:complexContent>
 			<xs:extension base="textureType">
 				<xs:sequence>
 					<xs:element name="basePath" type="xs:string"/>
-					<xs:element name="detailsPath" 
-					type="xs:string"/>
+					<xs:element name="detailsPath" type="xs:string"/>
 				</xs:sequence>
-				<xs:attribute name="default" type="xs:boolean" 
-				use="required"/>
+				<xs:attribute name="default" type="xs:boolean" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<xs:complexType name="multiOptionTextureType">
 		<xs:complexContent>
 			<xs:extension base="textureType">
 				<xs:sequence>
-					<xs:element name="optionTexture" minOccurs="1" 
-					maxOccurs="unbounded">
+					<xs:element name="optionTexture" minOccurs="1" maxOccurs="unbounded">
 						<xs:complexType>
 							<xs:sequence>
-								<xs:element name="path" 
-								type="xs:string"/>
-								<xs:element name="iconPath" 
-								type="xs:string"/>
+								<xs:element name="path" type="xs:string"/>
+								<xs:element name="iconPath" type="xs:string"/>
 							</xs:sequence>
+							<xs:attribute name="idSubTexture" type="xs:ID" use="required"/>
+							<xs:attribute name="default" type="xs:boolean" use="required"/>
+							<xs:attribute name="text" type="xs:string" use="required"/>
 							<!-- This attribute indicates the id of
 							this subtexture. Must be unique! -->
-							<xs:attribute name="idSubTexture"
-							type="xs:ID" use="required"/>
 							<!-- If default is true, this
 							subtexture will appear when the 
 							model is loaded initially.-->
-							<xs:attribute name="default"
-							type="xs:boolean" use="required"/>
-							<xs:attribute name="text"
-							type="xs:string" use="required"/>
 						</xs:complexType>
 					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<!-- Textures SubMeshes -->
 	<xs:complexType name="textureSubMeshType">
+		<xs:attribute name="layer" type="xs:integer" use="required"/>
+		<xs:attribute name="idTexture" type="xs:ID" use="required"/>
 		<!-- This attribute indicates the priority of this texture.
 			 Lower value indicates higher priority.(Highest priority is
 			 layer=0) -->
-		<xs:attribute name="layer" type="xs:integer" use="required"/>
-		<xs:attribute name="idTexture" type="xs:ID" use="required"/>
 	</xs:complexType>
-	
 	<xs:complexType name="baseShadowTextureSubMeshType">
 		<xs:complexContent>
 			<xs:extension base="textureSubMeshType">
 				<xs:sequence>
 					<!--Base path.-->
 					<xs:element name="path" type="xs:string"/>
-					<xs:element name="shadowPath" type="xs:string" 
-					minOccurs="0" maxOccurs="1"/>
+					<xs:element name="shadowPath" type="xs:string" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<xs:complexType name="simpleTextureSubMeshType">
 		<xs:complexContent>
 			<xs:extension base="textureSubMeshType">
@@ -248,102 +197,81 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<xs:complexType name="doubleTextureSubMeshType">
 		<xs:complexContent>
 			<xs:extension base="textureSubMeshType">
 				<xs:sequence>
 					<xs:element name="basePath" type="xs:string"/>
-					<xs:element name="detailsPath" 
-					type="xs:string"/>
+					<xs:element name="detailsPath" type="xs:string"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<xs:complexType name="multiOptionTextureSubMeshType">
 		<xs:complexContent>
 			<xs:extension base="textureSubMeshType">
 				<xs:sequence>
-					<xs:element name="optionTexture" minOccurs="1" 
-					maxOccurs="unbounded">
+					<xs:element name="optionTexture" minOccurs="1" maxOccurs="unbounded">
 						<xs:complexType>
 							<xs:sequence>
-								<xs:element name="path" 
-								type="xs:string"/>
-								<xs:element name="iconPath" 
-								type="xs:string"/>
+								<xs:element name="path" type="xs:string"/>
+								<xs:element name="iconPath" type="xs:string"/>
 							</xs:sequence>
+							<xs:attribute name="idSubTexture" type="xs:ID" use="required"/>
+							<xs:attribute name="default" type="xs:boolean" use="required"/>
+							<xs:attribute name="text" type="xs:string" use="required"/>
 							<!-- This attribute indicates the id
 							of this subtexture. Must be unique! -->
-							<xs:attribute name="idSubTexture" 
-							type="xs:ID" use="required"/>
 							<!-- If default is true, this subtexture
 							will appear when the model is loaded 
 							initially.-->
-							<xs:attribute name="default"
-							type="xs:boolean" use="required"/>
-							<xs:attribute name="text"
-							type="xs:string" use="required"/>
 						</xs:complexType>
 					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
 	<xs:complexType name="bonesType">
 		<xs:sequence>
-			<xs:element name="bone" type="boneType" minOccurs="1" 
-			maxOccurs="unbounded"/>
+			<xs:element name="bone" type="boneType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-	
 	<xs:complexType name="boneType">
-		<!--This attribute indicates the controller defined in XML family 
-		with which it is associated.-->
-		<xs:attribute name="idControllerRef" type="xs:string"
-		use="required"/>
-		<xs:attribute name="defaultValue" type="xs:float"
-		use="required"/>
+		<xs:attribute name="idControllerRef" type="xs:string" use="required"/>
+		<xs:attribute name="defaultValue" type="xs:float" use="required"/>
 		<xs:attribute name="minValue" type="xs:float" use="required"/>
 		<xs:attribute name="maxValue" type="xs:float" use="required"/>
 		<xs:attribute name="boneName" type="xs:string" use="required"/>
+		<!--This attribute indicates the controller defined in XML family 
+		with which it is associated.-->
 	</xs:complexType>
-	
 	<xs:complexType name="physicalBuildsType">
 		<xs:sequence>
-			<xs:element name="physicalBuild" type="physicalBuildType" 
-			minOccurs="1" maxOccurs="10"/>
+			<xs:element name="physicalBuild" type="physicalBuildType" minOccurs="1" maxOccurs="10"/>
 		</xs:sequence>
 	</xs:complexType>
-	
 	<xs:complexType name="physicalBuildType">
-		<!--This attributes indicates the escalations sequence that will 
-		be applied to model.-->
 		<xs:sequence>
-			<xs:element name="escalation" type="escalationType" 
-			minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="escalation" type="escalationType" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<!-- This attribute indicates the panel where it has to load this 
-		texture -->
 		<xs:attribute name="idPanelRef" type="xs:string" use="required"/>
 		<xs:attribute name="label" type="xs:string" use="required"/>
+		<xs:attribute name="idPhysicalBuild" type="xs:ID" use="required"/>
+		<!--This attributes indicates the escalations sequence that will 
+		be applied to model.-->
+		<!-- This attribute indicates the panel where it has to load this 
+		texture -->
 		<!-- This attribute indicates the id of this physical build. Must 
 		be unique! -->
-		<xs:attribute name="idPhysicalBuild" type="xs:ID"
-		use="required"/>
 	</xs:complexType>
-	
 	<xs:complexType name="escalationType">
 		<xs:attribute name="boneName" type="xs:string" use="required"/>
-		<!-- These fields define the values of the transformations on
-		each axis. -->
 		<xs:attribute name="valueX" type="xs:float" use="required"/>
 		<xs:attribute name="valueY" type="xs:float" use="required"/>
 		<xs:attribute name="valueZ" type="xs:float" use="required"/>
+		<!-- These fields define the values of the transformations on
+		each axis. -->
 	</xs:complexType>
-	
 	<xs:complexType name="transformationType">
 		<xs:attribute name="transformationType" use="required">
 			<!-- This field defines the type of the transformation
@@ -356,10 +284,10 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-		<!-- These fields define the values of the transformations on 
-		each axis. -->
 		<xs:attribute name="valueX" type="xs:float" use="required"/>
 		<xs:attribute name="valueY" type="xs:float" use="required"/>
-		<xs:attribute name="valueZ" type="xs:float" use="required"/>		
+		<xs:attribute name="valueZ" type="xs:float" use="required"/>
+		<!-- These fields define the values of the transformations on 
+		each axis. -->
 	</xs:complexType>
 </xs:schema>
