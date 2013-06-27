@@ -401,12 +401,6 @@ public class Gui extends AbstractAppState implements ScreenController {
         if(param.equals("logo")){
             return Resources.logo;
         }
-        if(param.equals("s1-settings")){
-            return Resources.s1_settings;
-        }
-        if(param.equals("s1-settings-over")){
-            return Resources.s1_settings_over;
-        }
         if(param.equals("s2-header-left")){
             return Resources.s2_header_left;
         }
@@ -617,6 +611,9 @@ public class Gui extends AbstractAppState implements ScreenController {
         }
         if(param.equals("background-popup-language")){
             return Resources.background_popup_language;
+        }
+        if(param.equals("background-popup-repository")){
+            return Resources.background_popup_repository;
         }
         if(param.equals("tab-l")){
             return Resources.tab_left;

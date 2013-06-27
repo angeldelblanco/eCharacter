@@ -381,10 +381,7 @@ public class Application extends SimpleApplication{
         if (ResourceLocator.getPathResource(Resources.s1_right_panel) == null){
             return false;
         }
-        if (ResourceLocator.getPathResource(Resources.s1_settings) == null){
-            return false;
-        }
-        if (ResourceLocator.getPathResource(Resources.s1_settings_over) == null){
+        if (ResourceLocator.getPathResource(Resources.background_popup_repository) == null){
             return false;
         }
         if (ResourceLocator.getPathResource(Resources.s2_header_left) == null){

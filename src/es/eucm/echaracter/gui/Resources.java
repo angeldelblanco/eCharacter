@@ -40,8 +40,6 @@ public interface Resources {
     //Menu
     public static final String s1_header = "assets/Interface/s1-header.png";
     public static final String logo = "assets/Interface/logo.png";
-    public static final String s1_settings = "assets/Interface/s1-settings.png";
-    public static final String s1_settings_over = "assets/Interface/s1-settings-over.png";
     public static final String s2_header_left = "assets/Interface/s2-header-left.png";
     public static final String header_left_separator = "assets/Interface/header-leftseparator.png";
     public static final String s2_header_right = "assets/Interface/s2-header-right.png";
@@ -114,6 +112,7 @@ public interface Resources {
     public static final String background_popup_custom = "assets/Interface/background-popup-custom.png";
     public static final String background_popup_dialog = "assets/Interface/background-popup-dialog.png";
     public static final String background_popup_language = "assets/Interface/background-popup-language.png";
+    public static final String background_popup_repository = "assets/Interface/background-popup-repository.png";
     public static final String tab_left = "assets/Interface/tab-l.png";
     public static final String tab_rigth = "assets/Interface/tab-r.png";
     public static final String eCharacter = "assets/Interface/eCharacter.png";

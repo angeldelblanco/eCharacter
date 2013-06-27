@@ -330,29 +330,29 @@
 				</panel>
 			</image>
         </layer>
-		<layer id="repository" childLayout="center" visible="false">
-			<image filename="${CALL.getTexture(background-popup-language)}" childLayout="vertical">
-				<panel height="27%" width="100%"/>
-				<panel height="12%" width="70%" childLayout="horizontal" align="center">
-					<panel height="100%" width="25%"/>
-					<panel height="100%" width="75%" childLayout="vertical" align="center">
-						<panel id="welcomeRepoPanel" height="60%" width="100%" childLayout="horizontal" align="center">
-							<image filename="${CALL.getTexture(eCharacterRepository)}" valign="center"/>
-							<panel height="100%" width="25%"/>
-							<image valign="top" filename="${CALL.getButton(close-language)}" childLayout="center">
+		<layer id="repository" childLayout="center" visible="false" backgroundColor="#3A3A3AAA">
+			<image filename="${CALL.getTexture(background-popup-repository)}" childLayout="vertical">
+				<panel height="35%" width="100%" childLayout="horizontal" align="center">
+					<panel height="100%" width="5%"/>
+					<image filename="${CALL.getTexture(eCharacterRepository)}" valign="center"/>
+					<panel width="5%"/>
+					<panel height="100%" childLayout="vertical" align="center">
+						<panel id="welcomeRepoPanel" height="30%" width="100%" childLayout="horizontal" align="center">
+							<panel height="100%" width="85%"/>
+							<image valign="bottom" filename="${CALL.getButton(close-language)}" childLayout="center">
 								<interact onClick="hideRepository()"/>
 								<effect>
 									<onHover name="imageOverlay" filename="${CALL.getButton(close-language-over)}" post="true" />
 								</effect>
 							</image>
 						</panel>
-						<panel id="repoDescPanel" height="40%" width="90%" childLayout="horizontal">
+						<panel id="repoDescPanel" height="70%" width="90%" childLayout="horizontal">
 							<text id="repoDescText" valign="center" height="50%" width="100%" textHAlign="left" text="" font="${CALL.getfont(20)}" color="#565857" wrap="true"/>
 						</panel>
 					</panel>
 				</panel>
 				<panel height="5%" width="100%"/>
-				<panel id="popupRepository" height="30%" width="60%" childLayout="horizontal" align="center">
+				<panel id="popupRepository" height="55%" width="90%" childLayout="horizontal" align="center">
 					<panel height="100%" width="5%" childLayout="center">
 						<image id="familyRepoLeft" filename="${CALL.getButton(left)}">
 							<interact onClick="changeRepository(-)"/>
