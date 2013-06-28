@@ -49,18 +49,20 @@ public class FamilyStageBuilder {
     private Nifty nifty;
     private I18N i18nGui; 
     private Control control;
-    private String stageType, language, pathNoSel;
+    private String stageType, language, pathNoSel,pathSel;
     private int modelsPage, familyPage, familySelected;
     
-    public FamilyStageBuilder(Nifty nifty, Control control,I18N i18nGui,String pathNoSel, String language){
+    public FamilyStageBuilder(Nifty nifty, Control control,I18N i18nGui,String pathNoSel,String pathSel, String language){
         stageType = "start";
         this.nifty = nifty;
         this.control = control;
         modelsPage = 0;
         familyPage = 0;
+        familySelected = -1;
         this.i18nGui = i18nGui;
         this.language = language;
         this.pathNoSel = pathNoSel;
+        this.pathSel = pathSel;
         initModels();
     }
     
@@ -171,9 +173,15 @@ public class FamilyStageBuilder {
     public void showFamilyPage(String steep){
         ArrayList<String> families = control.getFamiliesID();
         if(steep.equals("+")){
+            if(familySelected!=-1){
+                reselect(-1);
+            }
             familyPage++;
         }
         if(steep.equals("-")){
+            if(familySelected!=-1){
+                reselect(+1);
+            }
             familyPage--;
         }
         if(steep.equals("0")){
@@ -225,6 +233,9 @@ public class FamilyStageBuilder {
         else{
             nifty.getScreen(stageType).findElementByName("downT").setVisible(false);
         }
+        if(familySelected!=-1){
+            control.selectFamily(families.get(familySelected));
+        }
     }
     
     public int selectFamily(String id, String pathNoSel, String pathSel){
@@ -239,6 +250,20 @@ public class FamilyStageBuilder {
         nifty.getScreen(stageType).findElementByName("panel_screenright").setVisible(true);
         familySelected = Integer.parseInt(id)+familyPage;
         return familySelected;
+    }
+    
+    public void reselect(int sel){
+        int id = familySelected - familyPage + sel;
+        for(int i=0; i<FAMILIES_PAGE;i++){
+            Element image = nifty.getScreen(stageType).findElementByName("t"+i);
+            ImageRenderer imager = image.getRenderer(ImageRenderer.class);
+            imager.setImage(nifty.getRenderEngine().createImage(pathNoSel, false));
+        }
+        if(0<=id&&id<3){
+            Element image = nifty.getScreen(stageType).findElementByName("t"+id);
+            ImageRenderer imager = image.getRenderer(ImageRenderer.class);
+            imager.setImage(nifty.getRenderEngine().createImage(pathSel, false));
+        }
     }
     
     public void showInfo(String family){

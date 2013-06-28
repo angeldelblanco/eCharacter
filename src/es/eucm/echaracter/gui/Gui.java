@@ -170,7 +170,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 languagePage = 0;
             }
             i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
-            modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
+            modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),getTexture("family-button-over"),language);
             changeLocale("");
         }
         //Called by API
@@ -183,7 +183,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 hideLanguagePopup();                
             }
             i18nGui = new I18N(config.getProperty(Configuration.LOCALE_PATH),language);
-            modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),language);
+            modelsb = new FamilyStageBuilder(nifty,control,i18nGui,getTexture("family-button"),getTexture("family-button-over"),language);
             //Load the initial model specified if exists
             if((config.getProperty(Configuration.INPUT_DEFAULT_FAMILY) != null) && 
                        (config.getProperty(Configuration.INPUT_DEFAULT_MODEL) != null))
