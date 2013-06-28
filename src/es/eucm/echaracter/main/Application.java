@@ -168,10 +168,10 @@ public class Application extends SimpleApplication{
     private void initIcons(){
         BufferedImage[] arrayIcons = new BufferedImage[4];
         try {
-            arrayIcons[0] = ImageIO.read(new File("assets"+File.separator+"Icons"+File.separator+"Logo2-256.png"));
-            arrayIcons[1] = ImageIO.read(new File("assets"+File.separator+"Icons"+File.separator+"Logo2-128.png"));
-            arrayIcons[2] = ImageIO.read(new File("assets"+File.separator+"Icons"+File.separator+"Logo2-32.png"));
-            arrayIcons[3] = ImageIO.read(new File("assets"+File.separator+"Icons"+File.separator+"Logo2-16.png"));
+            arrayIcons[0] = ImageIO.read(ResourceLocator.getResource("assets"+File.separator+"Icons"+File.separator+"Logo2-256.png"));
+            arrayIcons[1] = ImageIO.read(ResourceLocator.getResource("assets"+File.separator+"Icons"+File.separator+"Logo2-128.png"));
+            arrayIcons[2] = ImageIO.read(ResourceLocator.getResource("assets"+File.separator+"Icons"+File.separator+"Logo2-32.png"));
+            arrayIcons[3] = ImageIO.read(ResourceLocator.getResource("assets"+File.separator+"Icons"+File.separator+"Logo2-16.png"));
         } catch (IOException ex) {
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
         }

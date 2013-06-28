@@ -66,11 +66,16 @@
                                 </optionTexture>
                         </multiOptionTexture>-->
                         <!-- clothesPanel textures-->
-                        <doubleTexture idPanelRef="shirtsPanel" layer="0" default="true" idTexture="idCamisetaCasual"  text="idTextCamisetaCasual">
+                        <baseShadowTexture idPanelRef="shirtsPanel" layer="0" default="true" idTexture="idCamisetaCasual"  text="idTextCamisetaCasual">
 				<iconPath>assets/Families/Cubix Studio/Icons/Female/Blusa.png</iconPath>
-				<basePath>assets/Families/Cubix Studio/Textures/Female/Blusa-Casual-Base.png</basePath>
-				<detailsPath>assets/Families/Cubix Studio/Textures/Female/Blusa-Casual-Shadow.png</detailsPath>
-			</doubleTexture> 	
+				<path>assets/Families/Cubix Studio/Textures/Female/Blusa-Casual-Base.png</path>
+				<colorDefault>
+					<red>255</red>
+					<green>0</green>
+					<blue>0</blue>
+				</colorDefault>
+                                <shadowPath>assets/Families/Cubix Studio/Textures/Female/Blusa-Casual-Shadow.png</shadowPath>
+			</baseShadowTexture> 	
 			<!--<simpleTexture idPanelRef="shirtsPanel" layer="0" idTexture="idCamisetaCasual" default="true"	  text="idTextCamisetaCasual">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoCamisaCortaBoy.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Female/CoatFemaleCasual.png</path>
