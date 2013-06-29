@@ -57,6 +57,26 @@
 				<location valueX="-2.25" valueY="2.0" valueZ="11.0"/>
 				<direction valueX="0.0" valueY="0.0" valueZ="-1.0"/>
 			</camera>
+                        <camera cameraLabel="Left">
+				<upAxis valueX="0.0" valueY="1.0" valueZ="0.0"/>
+				<location valueX="8" valueY="3.0" valueZ="0.0"/>
+				<direction valueX="-1.0" valueY="0.0" valueZ="-0.0"/>
+			</camera>
+                        <camera cameraLabel="Right">
+				<upAxis valueX="0.0" valueY="1.0" valueZ="0.0"/>
+				<location valueX="-12" valueY="3.0" valueZ="7.0"/>
+				<direction valueX="1.0" valueY="0.0" valueZ="-1.5"/>
+			</camera>
+                        <camera cameraLabel="Front">
+				<upAxis valueX="0.0" valueY="1.0" valueZ="0.0"/>
+				<location valueX="0.0" valueY="2.5" valueZ="11.0"/>
+				<direction valueX="0.0" valueY="0.0" valueZ="-1.0"/>
+			</camera>
+                        <camera cameraLabel="Back">
+				<upAxis valueX="0.0" valueY="1.0" valueZ="0.0"/>
+				<location valueX="-5.0" valueY="2.5" valueZ="-11.0"/>
+				<direction valueX="0.0" valueY="0.0" valueZ="1.0"/>
+			</camera>
 		</animationStage>
 	</stages>
 	<modelsRef>

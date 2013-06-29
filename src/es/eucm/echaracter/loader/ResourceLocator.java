@@ -230,28 +230,59 @@ public class ResourceLocator implements AssetLocator{
     }
     
     public static InputStream getResource(String filePath){
+        InputStream stream = null;
         try {
-            InputStream stream = new FileInputStream(filePath);  
-            // The file exists
-            return stream;
+            System.out.println("Trying to fetch ... "+filePath +" ... via FileInputStream");
+            stream = new FileInputStream(filePath);  
         } catch (FileNotFoundException ex) {
+            stream=null;
+        }
+        
+        // The file does not exist
+        if (stream==null){
+                   
 
             try {
                 // The file don't exists. 
                 String s = Configuration.APPLICATION_PATH+File.separator+filePath;
-                InputStream stream = new FileInputStream(s);
-                return stream;
+                System.out.println("Trying to fetch ... "+s +" ... via FileInputStream");
+                 stream = new FileInputStream(s);
+                
             } catch (FileNotFoundException ex1) {
-                String fileName = getFileName(filePath);
-                // Search this file in root directory. 
-                return getResourceInDirectory(fileName, "."+File.separator);
+                stream=null;
+                
             }
             
-
-            //String fileName = getFileName(filePath);
-            // Search this file in root directory.
-            //return getResourceInDirectory(fileName, "."+File.separator);
-        }     
+            if (stream==null){
+                String fileName = getFileName(filePath);
+                // Search this file in root directory. 
+                System.out.println("Trying to fetch ... "+fileName +" ... via Directory");
+                stream = getResourceInDirectory(fileName, "."+File.separator);
+                if (stream==null){
+                    System.out.println("Trying to fetch ... "+filePath +" ... via ResourceLocator");
+                    stream = ResourceLocator.class.getResourceAsStream(filePath);
+                    if (stream == null){
+                        System.out.println("Trying to fetch ... "+fileName +" ... via ResourceLocator");
+                        stream = ResourceLocator.class.getResourceAsStream(fileName);
+                        if (stream == null){
+                            String swapBars=filePath.replaceAll("\\\\", "/");
+                            System.out.println("Trying to fetch ... "+swapBars +" ... via ResourceLocator");
+                            stream = ResourceLocator.class.getResourceAsStream(swapBars);
+                            if (stream == null){
+                                String addPointBefore="./"+swapBars;
+                                System.out.println("Trying to fetch ... "+addPointBefore +" ... via ResourceLocator");
+                                stream = ResourceLocator.class.getResourceAsStream(addPointBefore);
+                            }
+                        }
+                    }
+                }
+                
+                //String fileName = getFileName(filePath);
+                // Search this file in root directory.
+                //return getResourceInDirectory(fileName, "."+File.separator);
+            }
+        }
+        return stream;
     }
     
     /** Get the name of the file */
