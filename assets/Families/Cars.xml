@@ -37,12 +37,12 @@
 	<modelsRef>
 		<modelRef>
 			<modelLabel>idModelLabel1</modelLabel>
-			<iconPath>assets/Families/Cars/Icons/ferrari_f360.jpg</iconPath>
+			<iconPath>assets/Families/Cars/Icons/ferrari_f360.png</iconPath>
 			<modelPath>assets/Families/Cars/XML models/ferrari_f360.xml</modelPath>
 		</modelRef>	
 		<modelRef>
 			<modelLabel>idModelLabel2</modelLabel>
-			<iconPath>assets/Families/Cars/Icons/jeep.jpg</iconPath>
+			<iconPath>assets/Families/Cars/Icons/jeep.png</iconPath>
 			<modelPath>assets/Families/Cars/XML models/jeep.xml</modelPath>
 		</modelRef>
 	</modelsRef>

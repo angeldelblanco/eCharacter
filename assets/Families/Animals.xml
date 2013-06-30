@@ -37,12 +37,12 @@
 	<modelsRef>
 		<modelRef>
 			<modelLabel>idModelLabel1</modelLabel>
-			<iconPath>assets/Families/Animals/Icons/dog.jpg</iconPath>
+			<iconPath>assets/Families/Animals/Icons/dog.png</iconPath>
 			<modelPath>assets/Families/Animals/XML models/dog.xml</modelPath>
 		</modelRef>	
 		<modelRef>
 			<modelLabel>idModelLabel2</modelLabel>
-			<iconPath>assets/Families/Animals/Icons/cat.jpg</iconPath>
+			<iconPath>assets/Families/Animals/Icons/cat.png</iconPath>
 			<modelPath>assets/Families/Animals/XML models/cat.xml</modelPath>
 		</modelRef>
 	</modelsRef>
