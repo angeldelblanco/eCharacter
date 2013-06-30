@@ -50,7 +50,7 @@
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoOjosBoy.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Female/EyeColorFemaleMedieval.png</path>
 			</simpleTexture>-->
-                        <simpleTexture idPanelRef="eyesPanel" layer="0" idTexture="idLabiosCasual" default="false" text="idTextLabiosCasual">
+                        <simpleTexture idPanelRef="eyesPanel" layer="0" idTexture="idLabiosCasual" default="true" text="idTextLabiosCasual">
                             <iconPath>assets/Families/Cubix Studio/Icons/Female/Labios1.png</iconPath>				
                             <path>assets/Families/Cubix Studio/Textures/Female/LipsFemaleCasual.png</path>                            
 			</simpleTexture>
@@ -70,9 +70,9 @@
 				<iconPath>assets/Families/Cubix Studio/Icons/Female/Blusa.png</iconPath>
 				<path>assets/Families/Cubix Studio/Textures/Female/Blusa-Casual-Base.png</path>
 				<colorDefault>
-					<red>255</red>
-					<green>0</green>
-					<blue>0</blue>
+					<red>157</red>
+					<green>126</green>
+					<blue>33</blue>
 				</colorDefault>
                                 <shadowPath>assets/Families/Cubix Studio/Textures/Female/Blusa-Casual-Shadow.png</shadowPath>
 			</baseShadowTexture> 	
