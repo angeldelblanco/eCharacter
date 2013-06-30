@@ -84,10 +84,12 @@ public class Application extends SimpleApplication{
     public Application(int width,int height,Configuration config,Callback callback){
         //Creation of the new configuration
         newSettings = new AppSettings(true);
+        newSettings.setSamples(4);
         newSettings.setResolution(width,height);
         newSettings.setTitle("eCharacter");
         initIcons();
         //newSettings.setFullscreen(true);
+        this.setPauseOnLostFocus(false);
         this.setShowSettings(false);
         this.setSettings(newSettings);
         this.config = config;

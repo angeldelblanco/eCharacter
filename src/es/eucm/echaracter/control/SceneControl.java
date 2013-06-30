@@ -414,6 +414,12 @@ public class SceneControl {
                     listAnimationsChecked.add(animationName);
                 }
             }
+            // If the special animation ##all## is set, then all available animations will be used
+            if (animations.toLowerCase().contains("##all##")){
+                for (String animationName:this.animations.keySet()){
+                    listAnimationsChecked.add(animationName);
+                }
+            }
         }else{
             Iterator<String> it = animations.keySet().iterator();
             while(it.hasNext()){
@@ -455,7 +461,18 @@ public class SceneControl {
         }
         if(listCamerasChecked.isEmpty()){
             if (callbackAPI){
-                listCamerasChecked.add(control.getCameraValues(config.getProperty(Configuration.INPUT_DEFAULT_CAMERA)));
+                StringTokenizer camerasTokenizer = new StringTokenizer(config.getProperty(Configuration.INPUT_DEFAULT_CAMERA), "|");
+                while(camerasTokenizer.hasMoreTokens()){
+                    String cameraName = camerasTokenizer.nextToken();
+                    listCamerasChecked.add(control.getCameraValues(cameraName));
+                }
+                
+                // If the special animation ##all## is set, then all available animations will be used
+                if (config.getProperty(Configuration.INPUT_DEFAULT_CAMERA).toLowerCase().contains("##all##")){
+                    for (String cameraName:this.cameras.keySet()){
+                        listCamerasChecked.add(control.getCameraValues(cameraName));
+                    }
+                }                
             }
             else{
                 listCamerasChecked.add(defaultCamera);

@@ -60,6 +60,8 @@ public class eCharacter {
      *      defaultAnimations are the names of animation that will be exported. 
      *      This animation must be appear in the .skeleton file asociated with the model.
      *      The separation character between animations is '|' e.g: Walk|Run|Jump
+     * 
+     *      If the special animation name "##all##" is used, then all available animations will be set up.
      */
     
     private HashSet<String> keySet;

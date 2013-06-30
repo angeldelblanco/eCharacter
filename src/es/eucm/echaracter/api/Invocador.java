@@ -21,18 +21,40 @@ public class Invocador implements Callback{
         flag = 1;
     }  
     
+    private static final int TEMP_DIR_ATTEMPTS = 10000;
+    
+    public static File createTempDir() {
+        File baseDir = new File(System.getProperty("java.io.tmpdir"));
+        String baseName = System.currentTimeMillis() + "-";
+
+        for (int counter = 0; counter < TEMP_DIR_ATTEMPTS; counter++) {
+          File tempDir = new File(baseDir, baseName + counter);
+          if (tempDir.mkdir()) {
+            return tempDir;
+          }
+        }
+        throw new IllegalStateException("Failed to create directory within "
+            + TEMP_DIR_ATTEMPTS + " attempts (tried "
+            + baseName + "0 to " + baseName + (TEMP_DIR_ATTEMPTS - 1) + ')');
+      }
+    
     public static void main(String[] args){
         try {
             Invocador inv = new Invocador();
             Properties p = new Properties();
-            p.put("lang", "fr_FR");
-            p.put("defaultFamily","assets"+File.separator+"Families"+File.separator+"eAdventure.xml");
-            p.put("defaultModel","assets"+File.separator+"Families"+File.separator+"eAdventure"
-                    +File.separator+"XML models"+File.separator+"YoungBoy.xml");
-            p.put("defaultStage","idMultiStageLabel6");
-            p.put("defaultCamera","idCameraLabel2");
-            p.put("defaultAnimations","Coger|Andar");
-            p.put("defaultQuality","6");
+                    
+        
+            p.put("lang", "en_EN.xml");    
+        
+            
+        
+        String exportPath = createTempDir().getAbsolutePath( );
+        new File(exportPath).mkdir( );
+        p.put( "defaultExportPath", exportPath);
+        
+        p.put( "defaultCamera", "Front|Back|Left|Right" );
+        p.put( "defaultAnimations", "##all##" );
+        p.put( "defaultQuality", "5" );
             eCharacter eC = new eCharacter();
             eC.eCharacter(p,inv);
             
