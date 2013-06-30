@@ -84,7 +84,7 @@ public class Application extends SimpleApplication{
     public Application(int width,int height,Configuration config,Callback callback){
         //Creation of the new configuration
         newSettings = new AppSettings(true);
-        newSettings.setSamples(4);
+        //newSettings.setSamples(4);
         newSettings.setResolution(width,height);
         newSettings.setTitle("eCharacter");
         initIcons();

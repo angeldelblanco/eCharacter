@@ -48,7 +48,7 @@ public interface Resources {
     public static final String export_over = "assets/Interface/export-over.png";
     public static final String export_selection = "assets/Interface/export-selection.png";
     public static final String restartmodel = "assets/Interface/restartmodel.png";
-    public static final String restartmodel_over = "assets/Interface/restartmodel.png";
+    public static final String restartmodel_over = "assets/Interface/restartmodel-over.png";
     public static final String menu_selection = "assets/Interface/header-selection.png";
     
     //Font
