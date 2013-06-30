@@ -53,7 +53,7 @@ import java.util.zip.ZipInputStream;
 
 public class RepositoryReader {
     
-    private final String url = "https://dl.dropboxusercontent.com/u/29636278/eCharacter/repo.xml";
+    private final String url = "https://sites.google.com/a/e-ucm.es/echaracter/repositorio/repository.xml?attredirects=0&d=1";
     private final String downloadFolder = Configuration.APPLICATION_PATH+File.separator+"repository"+File.separator;
     private final String fileName = "families.xml";
     
