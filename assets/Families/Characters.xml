@@ -37,12 +37,12 @@
 	<modelsRef>
 		<modelRef>
 			<modelLabel>idModelLabel1</modelLabel>
-			<iconPath>assets/Families/Characters/Icons/ninja.jpg</iconPath>
+			<iconPath>assets/Families/Characters/Icons/ninja.png</iconPath>
 			<modelPath>assets/Families/Characters/XML models/ninja.xml</modelPath>
 		</modelRef>	
 		<modelRef>
 			<modelLabel>idModelLabel2</modelLabel>
-			<iconPath>assets/Families/Characters/Icons/zombie.jpeg</iconPath>
+			<iconPath>assets/Families/Characters/Icons/zombie.png</iconPath>
 			<modelPath>assets/Families/Characters/XML models/zombie.xml</modelPath>
 		</modelRef>
 	</modelsRef>
