@@ -111,7 +111,13 @@
 					<blue>66</blue>
 				</colorDefault>
 				<shadowPath>assets/Families/eAdventure/Textures/Boy/CamisetaTirantesSombrasBoy.png</shadowPath>
-			</baseShadowTexture>			
+			</baseShadowTexture>
+                        <doubleTexture idPanelRef="tshirtsPanel" layer="1" default="false" idTexture="idCamisetaEspaña"  text="idTextCamisetaEspaña">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/icono_españa.png</iconPath>
+				<basePath>assets/Families/eAdventure/Textures/Boy/base_españa_01.png</basePath>
+				<detailsPath>assets/Families/eAdventure/Textures/Boy/bordes_españa_01.png</detailsPath>
+			</doubleTexture>
+
 			<!-- trousersPanel textures-->
 			<baseShadowTexture idPanelRef="trousersPanel" layer="2" default="false" idTexture="idPantalonCorto"  text="idTextPantalonCorto">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPantalonCortoBoy.png</iconPath>
@@ -132,6 +138,15 @@
 					<blue>2</blue>
 				</colorDefault>
 				<shadowPath>assets/Families/eAdventure/Textures/Boy/PantalonLargoSombrasBoy.png</shadowPath>
+			</baseShadowTexture>
+                        <baseShadowTexture idPanelRef="trousersPanel" layer="2" default="false" idTexture="idPantalonCorto2"  text="idTextPantalonCorto2">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoPantalonCortoBoy2.png</iconPath>
+				<path>assets/Families/eAdventure/Textures/Boy/PantalonCortoSolidoBoy.png</path>
+				<colorDefault>
+					<red>55</red>
+					<green>69</green>
+					<blue>247</blue>
+				</colorDefault>
 			</baseShadowTexture>			
 			<!-- shoesPanel textures-->
 			<baseShadowTexture idPanelRef="shoesPanel" layer="2" default="true" idTexture="idZapatos"  text="idTextZapatos">
@@ -153,7 +168,16 @@
 					<green>49</green>
 					<blue>100</blue>
 				</colorDefault>
-			</baseShadowTexture>			
+			</baseShadowTexture>
+                        <baseShadowTexture idPanelRef="socksPanel" layer="1" default="false" idTexture="idMedias"  text="idTextMedias">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/medias.png</iconPath>
+				<path>assets/Families/eAdventure/Textures/Boy/medias.png</path>
+				<colorDefault>
+					<red>51</red>
+					<green>51</green>
+					<blue>51</blue>
+				</colorDefault>
+			</baseShadowTexture>						
 			<!-- accesoriesPanel textures-->
 			<!-- facePanel textures-->
 			<simpleTexture idPanelRef="facePanel" layer="2" default="false" idTexture="idBarba"  text="idTextBarba">
@@ -270,6 +294,71 @@
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoLogoCamisetaBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/LogoCamisetaBoy.png</path>
 			</simpleTexture>
+                        <baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idDetalleCamisetaEspaña"  text="idTextDetalleCamisetaEspaña">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/detalle_españa.png</iconPath>
+				<path>assets/Families/eAdventure/Textures/Boy/detalles_españa_01.png</path>
+				<colorDefault>
+					<red>55</red>
+					<green>69</green>
+					<blue>247</blue>
+				</colorDefault>
+			</baseShadowTexture>
+                        <!--<baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idNumeroCamiseta"  text="idTextNumeroCamiseta">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoCamisetaTirantesBoy.png</iconPath>
+				<path>assets/Families/eAdventure/Textures/Boy/7.png</path>
+				<colorDefault>
+					<red>243</red>
+					<green>187</green>
+					<blue>40</blue>
+				</colorDefault>
+			</baseShadowTexture>-->
+                        <multiOptionTexture idPanelRef="otherAccesoriesPanel" layer="2" idTexture="idNumeroCamiseta"  text="idTextNumeroCamiseta">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/0.png</iconPath>
+				<optionTexture idSubTexture="idNumeroCamiseta1" default="false" text="idTextNumeroCamiseta1">
+					<path>assets/Families/eAdventure/Textures/Boy/1.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/1.png</iconPath>			
+				</optionTexture>
+				<optionTexture idSubTexture="idNumeroCamiseta2" default="false" text="idTextNumeroCamiseta2">
+					<path>assets/Families/eAdventure/Textures/Boy/2.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/2.png</iconPath>			
+				</optionTexture>
+                                <optionTexture idSubTexture="idNumeroCamiseta3" default="false" text="idTextNumeroCamiseta3">
+					<path>assets/Families/eAdventure/Textures/Boy/3.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/3.png</iconPath>			
+				</optionTexture>
+                                <optionTexture idSubTexture="idNumeroCamiseta4" default="false" text="idTextNumeroCamiseta4">
+					<path>assets/Families/eAdventure/Textures/Boy/4.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/4.png</iconPath>			
+				</optionTexture>
+                                <optionTexture idSubTexture="idNumeroCamiseta5" default="false" text="idTextNumeroCamiseta5">
+					<path>assets/Families/eAdventure/Textures/Boy/5.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/5.png</iconPath>			
+				</optionTexture>
+                                <optionTexture idSubTexture="idNumeroCamiseta6" default="false" text="idTextNumeroCamiseta6">
+					<path>assets/Families/eAdventure/Textures/Boy/6.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/6.png</iconPath>			
+				</optionTexture>
+                                <optionTexture idSubTexture="idNumeroCamiseta7" default="false" text="idTextNumeroCamiseta7">
+					<path>assets/Families/eAdventure/Textures/Boy/7.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/7.png</iconPath>			
+				</optionTexture>
+                                <optionTexture idSubTexture="idNumeroCamiseta8" default="false" text="idTextNumeroCamiseta8">
+					<path>assets/Families/eAdventure/Textures/Boy/8.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/8.png</iconPath>			
+				</optionTexture>
+                                <optionTexture idSubTexture="idNumeroCamiseta9" default="false" text="idTextNumeroCamiseta9">
+					<path>assets/Families/eAdventure/Textures/Boy/9.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/9.png</iconPath>			
+				</optionTexture>
+                                <optionTexture idSubTexture="idNumeroCamiseta10" default="false" text="idTextNumeroCamiseta10">
+					<path>assets/Families/eAdventure/Textures/Boy/10.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/10.png</iconPath>			
+				</optionTexture>
+                                <optionTexture idSubTexture="idNumeroCamiseta11" default="false" text="idTextNumeroCamiseta11">
+					<path>assets/Families/eAdventure/Textures/Boy/11.png</path>
+					<iconPath>assets/Families/eAdventure/Icons/Boy/11.png</iconPath>			
+				</optionTexture>
+			</multiOptionTexture>
 			<multiOptionTexture idPanelRef="tshirtsPanel" layer="1" idTexture="idMultiCamisetas"  text="idTextCamisetas">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoMulti.png</iconPath>
 				<optionTexture idSubTexture="idMultiCamisaCorta" default="false" text="idTextMultiCamisaCorta">
