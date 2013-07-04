@@ -294,6 +294,10 @@
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoLogoCamisetaBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/LogoCamisetaBoy.png</path>
 			</simpleTexture>
+                        <simpleTexture idPanelRef="otherAccesoriesPanel" layer="3" default="false" idTexture="idLogoEspaña"  text="idTextLogoEspaña">
+				<iconPath>assets/Families/eAdventure/Icons/Boy/escudo_españa.png</iconPath>
+				<path>assets/Families/eAdventure/Textures/Boy/escudo_españa.png</path>
+			</simpleTexture>
                         <baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="3" default="false" idTexture="idDetalleCamisetaEspaña"  text="idTextDetalleCamisetaEspaña">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/detalle_españa.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/detalles_españa_01.png</path>
