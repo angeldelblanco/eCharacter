@@ -294,7 +294,7 @@
 				<iconPath>assets/Families/eAdventure/Icons/Boy/IconoLogoCamisetaBoy.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/LogoCamisetaBoy.png</path>
 			</simpleTexture>
-                        <baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="2" default="false" idTexture="idDetalleCamisetaEspaña"  text="idTextDetalleCamisetaEspaña">
+                        <baseShadowTexture idPanelRef="otherAccesoriesPanel" layer="3" default="false" idTexture="idDetalleCamisetaEspaña"  text="idTextDetalleCamisetaEspaña">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/detalle_españa.png</iconPath>
 				<path>assets/Families/eAdventure/Textures/Boy/detalles_españa_01.png</path>
 				<colorDefault>
@@ -312,7 +312,7 @@
 					<blue>40</blue>
 				</colorDefault>
 			</baseShadowTexture>-->
-                        <multiOptionTexture idPanelRef="otherAccesoriesPanel" layer="2" idTexture="idNumeroCamiseta"  text="idTextNumeroCamiseta">
+                        <multiOptionTexture idPanelRef="otherAccesoriesPanel" layer="3" idTexture="idNumeroCamiseta"  text="idTextNumeroCamiseta">
 				<iconPath>assets/Families/eAdventure/Icons/Boy/0.png</iconPath>
 				<optionTexture idSubTexture="idNumeroCamiseta1" default="false" text="idTextNumeroCamiseta1">
 					<path>assets/Families/eAdventure/Textures/Boy/1.png</path>
