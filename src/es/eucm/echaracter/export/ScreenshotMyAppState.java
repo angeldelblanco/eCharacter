@@ -40,6 +40,7 @@ import com.jme3.app.Application;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.app.state.ScreenshotAppState;
 import com.jme3.input.InputManager;
+import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
 import com.jme3.renderer.ViewPort;
@@ -181,15 +182,13 @@ public class ScreenshotMyAppState extends ScreenshotAppState{
             capture = false;
             shotIndex++;
 
-            /*Camera curCamera = rm.getCurrentCamera();
+            Camera curCamera = rm.getCurrentCamera();
             int viewX = (int) (curCamera.getViewPortLeft() * curCamera.getWidth());
             int viewY = (int) (curCamera.getViewPortBottom() * curCamera.getHeight());
             int viewWidth = (int) ((curCamera.getViewPortRight() - curCamera.getViewPortLeft()) * curCamera.getWidth());
             int viewHeight = (int) ((curCamera.getViewPortTop() - curCamera.getViewPortBottom()) * curCamera.getHeight());
 
-            //if (!viewPortInit){
-                renderer.setViewPort(0, 0, width, height);*/
-            //}
+            renderer.setViewPort(0, 0, width, height);
             renderer.readFrameBuffer(out, outBuf);
             
             //Transform ByteBuffer to BufferedImage
