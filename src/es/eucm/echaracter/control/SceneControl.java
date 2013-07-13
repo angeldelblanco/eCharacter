@@ -47,6 +47,7 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.CameraNode;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Image;
@@ -66,6 +67,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -252,13 +254,34 @@ public class SceneControl {
     }
     
     public void scaleBone(ArrayList<String> bonesNames,float inc){
+        printChildrenStructure(mainMeshNode,0);
         Iterator<String> it = bonesNames.iterator();
         while(it.hasNext()){
             String idBone = it.next();
             Bone b = animControl.getSkeleton().getBone(idBone);
             b.setUserControl(true);
-            b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,new Vector3f(inc,inc,inc));
+            //b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,new Vector3f(inc,inc,inc));
+            b.setUserTransforms(Vector3f.ZERO,Quaternion.IDENTITY,new Vector3f(inc,1,1));
+                
         }
+    }
+    
+    private void printChildrenStructure(Node node, int level){
+        System.out.println(indent(level)+node.getName());
+        for (Spatial child:node.getChildren()){
+            if (child instanceof Geometry){
+                System.out.println(indent(level+1)+((Geometry)child).getName());
+            } else if (child instanceof Node){
+                printChildrenStructure ((Node)child, level+1);
+            }
+        }
+    }
+    
+    private String indent(int level){
+        String tabs = "";
+        for (int i=0; i<level; i++)
+            tabs+="\t";
+        return tabs;
     }
     
     public ArrayList<String> getAnimationsName(){

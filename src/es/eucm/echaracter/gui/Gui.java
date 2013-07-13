@@ -194,12 +194,7 @@ public class Gui extends AbstractAppState implements ScreenController {
                 modelSelection = config.getProperty(Configuration.INPUT_DEFAULT_MODEL);
                 loadFirstScreen(); 
             }
-            if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_ANIMATIONS) != null)
-                && (config.getProperty(Configuration.INPUT_DEFAULT_CAMERA) != null) 
-                && (config.getProperty(Configuration.INPUT_DEFAULT_QUALITY) != null)){
-                //Ocultar el panel de la exportación
-                nifty.getScreen("animationStage").findElementByName("rightSelectionPanel").setVisible(false);     
-            }     
+                 
         }
     }
     
@@ -330,8 +325,17 @@ public class Gui extends AbstractAppState implements ScreenController {
                 loadFamilyScreen();
             }
             else{
-                nifty.gotoScreen("animationStage");
-                loadScreen("animationStage");
+                if((control.getCallback() != null) && (config.getProperty(Configuration.INPUT_DEFAULT_ANIMATIONS) != null)
+                    && (config.getProperty(Configuration.INPUT_DEFAULT_CAMERA) != null) 
+                    && (config.getProperty(Configuration.INPUT_DEFAULT_QUALITY) != null)){
+                    //Jump directly to the exportation popup
+                        export();
+                } else {
+                
+                
+                    nifty.gotoScreen("animationStage");
+                    loadScreen("animationStage");
+                }
             }
         }
         
