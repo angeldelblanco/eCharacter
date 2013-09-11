@@ -1,0 +1,68 @@
+#########################
+# Maven
+#########################
+
+# general output
+target/
+
+#########################
+# Eclipse
+#########################
+
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+*.iml
+.idea/
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+# ignore editor backups
+**~
+
+# ignore all compilation output
+**.class
+
+# eclipse settings
+*.prefs
+
+#########################
+# NetBeans
+#########################
+
+nb-configuration.xml
+nbactions.xml
+
+#########################
+# Java output / logs
+#########################
+
+# jvm error files
+**/hs_err*.log
+
+# Logs
+*.log
+
+#########################
+# LWJGL natives libraries
+#########################
+*.dll
+*.so
